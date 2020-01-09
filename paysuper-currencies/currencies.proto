@@ -5,53 +5,35 @@ package currencies;
 import "google/protobuf/timestamp.proto";
 
 service currencyratesService {
-    rpc GetRateCurrentCommon (GetRateCurrentCommonRequest) returns (RateData) {
-    }
-    rpc GetRateByDateCommon (GetRateByDateCommonRequest) returns (RateData) {
-    }
+    rpc GetRateCurrentCommon (GetRateCurrentCommonRequest) returns (RateData) {}
+    rpc GetRateByDateCommon (GetRateByDateCommonRequest) returns (RateData) {}
 
-    rpc GetRateCurrentForMerchant (GetRateCurrentForMerchantRequest) returns (RateData) {
-    }
-    rpc GetRateByDateForMerchant (GetRateByDateForMerchantRequest) returns (RateData) {
-    }
+    rpc GetRateCurrentForMerchant (GetRateCurrentForMerchantRequest) returns (RateData) {}
+    rpc GetRateByDateForMerchant (GetRateByDateForMerchantRequest) returns (RateData) {}
 
-    rpc ExchangeCurrencyCurrentCommon (ExchangeCurrencyCurrentCommonRequest) returns (ExchangeCurrencyResponse) {
-    }
-    rpc ExchangeCurrencyCurrentForMerchant (ExchangeCurrencyCurrentForMerchantRequest) returns (ExchangeCurrencyResponse) {
-    }
+    rpc ExchangeCurrencyCurrentCommon (ExchangeCurrencyCurrentCommonRequest) returns (ExchangeCurrencyResponse) {}
+    rpc ExchangeCurrencyCurrentForMerchant (ExchangeCurrencyCurrentForMerchantRequest) returns (ExchangeCurrencyResponse) {}
 
-    rpc ExchangeCurrencyByDateCommon (ExchangeCurrencyByDateCommonRequest) returns (ExchangeCurrencyResponse) {
-    }
-    rpc ExchangeCurrencyByDateForMerchant (ExchangeCurrencyByDateForMerchantRequest) returns (ExchangeCurrencyResponse) {
-    }
+    rpc ExchangeCurrencyByDateCommon (ExchangeCurrencyByDateCommonRequest) returns (ExchangeCurrencyResponse) {}
+    rpc ExchangeCurrencyByDateForMerchant (ExchangeCurrencyByDateForMerchantRequest) returns (ExchangeCurrencyResponse) {}
 
-    rpc GetCommonRateCorrectionRule (CommonCorrectionRuleRequest) returns (CorrectionRule) {
-    }
-    rpc GetMerchantRateCorrectionRule (MerchantCorrectionRuleRequest) returns (CorrectionRule) {
-    }
+    rpc GetCommonRateCorrectionRule (CommonCorrectionRuleRequest) returns (CorrectionRule) {}
+    rpc GetMerchantRateCorrectionRule (MerchantCorrectionRuleRequest) returns (CorrectionRule) {}
 
-    rpc AddCommonRateCorrectionRule (CommonCorrectionRule) returns (EmptyResponse) {
-    }
-    rpc AddMerchantRateCorrectionRule (CorrectionRule) returns (EmptyResponse) {
-    }
+    rpc AddCommonRateCorrectionRule (CommonCorrectionRule) returns (EmptyResponse) {}
+    rpc AddMerchantRateCorrectionRule (CorrectionRule) returns (EmptyResponse) {}
 
-    rpc GetSupportedCurrencies (EmptyRequest) returns (CurrenciesList) {
-    }
+    rpc GetSupportedCurrencies (EmptyRequest) returns (CurrenciesList) {}
 
-    rpc GetSettlementCurrencies (EmptyRequest) returns (CurrenciesList) {
-    }
+    rpc GetSettlementCurrencies (EmptyRequest) returns (CurrenciesList) {}
 
-    rpc GetPriceCurrencies (EmptyRequest) returns (CurrenciesList) {
-    }
+    rpc GetPriceCurrencies (EmptyRequest) returns (CurrenciesList) {}
 
-    rpc GetVatCurrencies (EmptyRequest) returns (CurrenciesList) {
-    }
+    rpc GetVatCurrencies (EmptyRequest) returns (CurrenciesList) {}
 
-    rpc GetAccountingCurrencies (EmptyRequest) returns (CurrenciesList) {
-    }
+    rpc GetAccountingCurrencies (EmptyRequest) returns (CurrenciesList) {}
 
-    rpc GetCurrenciesPrecision (EmptyRequest) returns (CurrenciesPrecisionResponse) {
-    }
+    rpc GetCurrenciesPrecision (EmptyRequest) returns (CurrenciesPrecisionResponse) {}
 }
 
 message GetRateCurrentCommonRequest {

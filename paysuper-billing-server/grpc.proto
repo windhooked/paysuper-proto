@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-option go_package = "github.com/paysuper/paysuper-billing-server/pkg/proto/grpc";
+option go_package = "github.com/paysuper/paysuper-proto/paysuper-billing-server";
 package grpc;
 
 import "google/protobuf/timestamp.proto";
-import "billing/billing.proto";
-import "paylink/paylink.proto";
+import "billing.proto";
+import "paylink.proto";
 
 service BillingService {
     rpc OrderCreateByPaylink (billing.OrderCreateByPaylink) returns (OrderCreateProcessResponse) {}

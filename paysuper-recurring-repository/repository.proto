@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-option go_package = "github.com/paysuper/paysuper-recurring-repository/pkg/proto/repository";
+option go_package = "github.com/paysuper/paysuper-proto/paysuper-recurring-repository";
 
-import "entity/entity.proto";
+import "entity.proto";
 
 package repository;
 
