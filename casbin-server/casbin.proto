@@ -1,0 +1,433 @@
+// Copyright 2018 The casbin Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package casbinpb;
+
+option go_package = "casbinpb";
+import "protoc-gen-swagger/options/annotations.proto";
+import "google/api/annotations.proto";
+import "protoc-gen-validate/validate/validate.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+  info: {
+    version: "0";
+  };
+  schemes: HTTPS;
+  consumes: "application/grpc";
+  produces: "application/grpc";
+};
+
+// The Casbin service definition.
+service Casbin {
+  rpc Enforce (EnforceRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "Enforce";
+      description: "Check permissions for user on endpoint with specific method";
+    };
+    option (google.api.http) = { post: "/casbin/enforce"; body:"*"; };
+  };
+
+  rpc ImportPolicy (ImportPolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "ImportPolicy";
+      description: "Import Casbin Policy";
+    };
+    option (google.api.http) = { post: "/casbin/import_policy"; body:"*"; };
+  };
+
+  rpc LoadPolicy (Empty) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "LoadPolicy";
+      description: "Load Casbin Policy";
+    };
+    option (google.api.http) = { get: "/casbin/load_policy" };
+  };
+
+  rpc SavePolicy (Empty) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "SavePolicy";
+      description: "Save Casbin Policy";
+    };
+    option (google.api.http) = { put: "/casbin/save_policy"; body:"*"; };
+  };
+
+  rpc AddPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "AddPolicy";
+      description: "Add new policy rule";
+    };
+    option (google.api.http) = { post: "/casbin/add_policy"; body:"*"; };
+  };
+
+  rpc AddNamedPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "AddNamedPolicy";
+      description: "Add new named policy rule";
+    };
+    option (google.api.http) = { post: "/casbin/add_named_policy"; body:"*"; };
+  };
+
+  rpc RemovePolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "RemovePolicy";
+      description: "Remove policy rule";
+    };
+    option (google.api.http) = { delete: "/casbin/remove_policy"; body:"*"; };
+  };
+
+  rpc RemoveNamedPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "RemoveNamedPolicy";
+      description: "Remove named policy rule";
+    };
+    option (google.api.http) = { delete: "/casbin/remove_named_policy"; body:"*"; };
+  };
+
+  rpc RemoveFilteredPolicy (FilteredPolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "RemoveFilteredPolicy";
+      description: "Remove filtered policy rule";
+    };
+    option (google.api.http) = { delete: "/casbin/remove_filtered_policy"; body:"*"; };
+  };
+
+  rpc RemoveFilteredNamedPolicy (FilteredPolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "RemoveFilteredNamedPolicy";
+      description: "Remove filtered named policy rule";
+    };
+    option (google.api.http) = { delete: "/casbin/remove_filtered_named_policy"; body:"*"; };
+  };
+
+  rpc GetPolicy (Empty) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetPolicy";
+      description: "Get policy";
+    };
+    option (google.api.http) = { get: "/casbin/get_policy" };
+  };
+
+  rpc GetNamedPolicy (PolicyRequest) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetNamedPolicy";
+      description: "Get named policy";
+    };
+    option (google.api.http) = { get: "/casbin/get_named_policy" };
+  };
+
+  rpc GetFilteredPolicy (FilteredPolicyRequest) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetFilteredPolicy";
+      description: "Get filtered policy";
+    };
+    option (google.api.http) = { get: "/casbin/get_filtered_policy" };
+  };
+
+  rpc GetFilteredNamedPolicy (FilteredPolicyRequest) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetFilteredNamedPolicy";
+      description: "Get filtered named policy";
+    };
+    option (google.api.http) = { get: "/casbin/get_filtered_named_policy" };
+  };
+
+  rpc AddGroupingPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "AddGroupingPolicy";
+      description: "Add grouping policy";
+    };
+    option (google.api.http) = { post: "/casbin/add_grouping_policy"; body:"*"; };
+  };
+
+  rpc AddNamedGroupingPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "AddNamedGroupingPolicy";
+      description: "Add named grouping policy";
+    };
+    option (google.api.http) = { post: "/casbin/add_named_grouping_policy"; body:"*"; };
+  };
+
+  rpc RemoveGroupingPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "RemoveGroupingPolicy";
+      description: "Remove grouping policy";
+    };
+    option (google.api.http) = { delete: "/casbin/remove_grouping_policy"; body:"*"; };
+  };
+
+  rpc RemoveNamedGroupingPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "RemoveNamedGroupingPolicy";
+      description: "Remove named grouping policy";
+    };
+    option (google.api.http) = { delete: "/casbin/remove_named_grouping_policy"; body:"*"; };
+  };
+
+  rpc RemoveFilteredGroupingPolicy (FilteredPolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "RemoveFileredGroupingPolicy";
+      description: "Remove filtered grouping policy";
+    };
+    option (google.api.http) = { delete: "/casbin/remove_filtered_grouping_policy"; body:"*"; };
+  };
+
+  rpc RemoveFilteredNamedGroupingPolicy (FilteredPolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "RemoveFileredNamedGroupingPolicy";
+      description: "Remove filtered named grouping policy";
+    };
+    option (google.api.http) = { delete: "/casbin/remove_filtered_named_grouping_policy"; body:"*"; };
+  };
+
+  rpc GetGroupingPolicy (Empty) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetGroupingPolicy";
+      description: "Get grouping policy";
+    };
+    option (google.api.http) = { get: "/casbin/get_grouping_policy"; };
+  };
+
+  rpc GetNamedGroupingPolicy(PolicyRequest) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetNamedGroupingPolicy";
+      description: "Get named grouping policy";
+    };
+    option (google.api.http) = { get: "/casbin/get_named_grouping_policy" };
+  };
+
+  rpc GetFilteredGroupingPolicy (FilteredPolicyRequest) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetFilteredGroupingPolicy";
+      description: "Get filtered grouping policy";
+    };
+    option (google.api.http) = { get: "/casbin/get_filtered_grouping_policy"; };
+  };
+
+  rpc GetFilteredNamedGroupingPolicy (FilteredPolicyRequest) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetFilteredNamedGroupingPolicy";
+      description: "Get filtered named grouping policy";
+    };
+    option (google.api.http) = { get: "/casbin/get_filtered_named_grouping_policy"; };
+  };
+
+  rpc GetAllSubjects (Empty) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetAllSubjects";
+      description: "Get all subjects";
+    };
+    option (google.api.http) = { get: "/casbin/get_all_subjects"; };
+  };
+
+  rpc GetAllNamedSubjects (SimpleGetRequest) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetAllNamedSubjects";
+      description: "Get all named subjects";
+    };
+    option (google.api.http) = { get: "/casbin/get_all_named_subjects" };
+  };
+
+  rpc GetAllObjects (Empty) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetAllObjects";
+      description: "Get all objects";
+    };
+    option (google.api.http) = { get: "/casbin/get_all_objects" };
+  };
+
+  rpc GetAllNamedObjects (SimpleGetRequest) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetAllNamedObjects";
+      description: "Get all named objects";
+    };
+    option (google.api.http) = { get: "/casbin/get_all_named_objects" };
+  };
+
+  rpc GetAllActions (Empty) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetAllActions";
+      description: "Get all actions";
+    };
+    option (google.api.http) = { get: "/casbin/get_all_actions" };
+  };
+
+
+  rpc GetAllNamedActions (SimpleGetRequest) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetAllNamedActions";
+      description: "Get all named actions";
+    };
+    option (google.api.http) = { get: "/casbin/get_all_named_actions" };
+  };
+
+  rpc GetAllRoles (Empty) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetAllRoles";
+      description: "Get all roles";
+    };
+    option (google.api.http) = { get: "/casbin/get_all_roles" };
+  };
+
+  rpc GetAllNamedRoles (SimpleGetRequest) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetAllNamedRoles";
+      description: "Get all named roles";
+    };
+    option (google.api.http) = { get: "/casbin/get_all_named_roles" };
+  };
+
+  rpc HasPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "HasPolicy";
+      description: "Has policy";
+    };
+    option (google.api.http) = { get: "/casbin/has_policy" };
+  };
+
+  rpc HasNamedPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "HasNamedPolicy";
+      description: "Has named policy";
+    };
+    option (google.api.http) = { get: "/casbin/has_named_policy" };
+  };
+
+  rpc HasGroupingPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "HasGroupingPolicy";
+      description: "Has grouping policy";
+    };
+    option (google.api.http) = { get: "/casbin/has_grouping_policy" };
+  };
+
+  rpc HasNamedGroupingPolicy (PolicyRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "HasNamedGroupingPolicy";
+      description: "Has named grouping policy";
+    };
+    option (google.api.http) = { get: "/casbin/has_named_grouping_policy" };
+  };
+
+  rpc AddRoleForUser(UserRoleRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "AddRoleForUser";
+      description: "Add role for user";
+    };
+    option (google.api.http) = { get: "/casbin/add_role_for_user" };
+  };
+
+  rpc DeleteRoleForUser(UserRoleRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "DeleteRoleForUser";
+      description: "Delete role for user";
+    };
+    option (google.api.http) = { get: "/casbin/delete_role_for_user" };
+  };
+
+  rpc DeleteUser(UserRoleRequest) returns (Empty) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "DeleteUser";
+      description: "Delete user";
+    };
+    option (google.api.http) = { get: "/casbin/delete_user" };
+  };
+
+  rpc GetRolesForUser (UserRoleRequest) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetRolesForUser";
+      description: "Get roles for user";
+    };
+    option (google.api.http) = { get: "/casbin/get_roles_for_user" };
+  };
+
+  rpc GetImplicitRolesForUser (UserRoleRequest) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetImplicitRolesForUser";
+      description: "Get implicit roles for user";
+    };
+    option (google.api.http) = { get: "/casbin/get_implicit_roles_for_user" };
+  };
+
+  rpc GetUsersForRole (UserRoleRequest) returns (ArrayReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetUsersForRole";
+      description: "Get users for role";
+    };
+    option (google.api.http) = { get: "/casbin/get_users_for_role" };
+  };
+
+  rpc GetPermissionsForUser (PermissionRequest) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetPermissionsForUser";
+      description: "Get permissions for user";
+    };
+    option (google.api.http) = { get: "/casbin/get_permissions_for_user" };
+  };
+
+  rpc GetImplicitPermissionsForUser (PermissionRequest) returns (Array2DReply) {
+    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+      operation_id: "GetImplicitPermissionsForUser";
+      description: "Get implicit permissions for user";
+    };
+    option (google.api.http) = { get: "/casbin/get_implicit_permissions_for_user" };
+  };
+}
+
+message EnforceRequest {
+  repeated string params = 2 [(validate.rules).repeated = {min_items: 3, max_items: 3}];
+}
+
+message PolicyRequest {
+  string pType = 1;
+  repeated string params = 2;
+}
+
+message SimpleGetRequest {
+  string pType = 1;
+}
+
+message ArrayReply {
+  repeated string array = 1;
+}
+
+message FilteredPolicyRequest {
+  string pType = 1;
+  int32 fieldIndex = 2;
+  repeated string fieldValues = 3;
+}
+
+message Empty {};
+
+message UserRoleRequest {
+  string user = 1 [(validate.rules).string = {min_len: 3, max_len: 255}];
+  string role = 2;
+}
+
+message PermissionRequest {
+  string user = 1;
+  repeated string permissions = 2;
+}
+
+message ImportPolicyRequest {
+  bytes data = 1;
+};
+
+message Array2DReply {
+  message d {
+    repeated string d1 = 1;
+  }
+  repeated d d2 = 1;
+}

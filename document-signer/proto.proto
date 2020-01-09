@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+option go_package = "github.com/paysuper/document-signer/pkg/proto";
+package proto;
+
+import "google/protobuf/timestamp.proto";
+
+service DocumentSignerService {
+    rpc CreateSignature (CreateSignatureRequest) returns (CreateSignatureResponse) {}
+    rpc GetSignatureUrl (GetSignatureUrlRequest) returns (GetSignatureUrlResponse) {}
+}
+
+message ResponseErrorMessage {
+    //@inject_tag: json:"code"
+    string code = 1;
+    //@inject_tag: json:"message"
+    string message = 2;
+    //@inject_tag: json:"details,omitempty"
+    string details = 3;
+}
+
+message CreateSignatureRequestSigner {
+    string email = 1;
+    string name = 2;
+    string pin = 3;
+    string group = 4;
+    string role_name = 5;
+}
+
+message CreateSignatureRequestCustomFields {
+    //@inject_tag: json:"name"
+    string name = 1;
+    //@inject_tag: json:"value"
+    string value = 2;
+    //@inject_tag: json:"required"
+    bool required = 3;
+    //@inject_tag: json:"editor"
+    string editor = 4;
+}
+
+message CreateSignatureRequestCcs {
+    string email_address = 1;
+    string role_name = 2;
+}
+
+message CreateSignatureRequestSigningOptions {
+    bool draw = 1;
+    bool type = 2;
+    bool upload = 3;
+    bool phone = 4;
+    string default = 5;
+}
+
+message CreateSignatureRequestFileUrl {
+    string name = 1;
+    string storage = 2;
+}
+
+message CreateSignatureRequest {
+    string template_id = 1;
+    string title = 2;
+    string subject = 3;
+    string message = 4;
+    repeated CreateSignatureRequestSigner signers = 5;
+    //@inject_tag: json:"custom_fields"
+    repeated CreateSignatureRequestCustomFields custom_fields = 6;
+    int32 allow_decline = 7;
+    string signing_redirect_url = 8;
+    repeated CreateSignatureRequestCcs ccs = 9;
+    map<string, string> metadata = 10;
+    string client_id = 11;
+    repeated CreateSignatureRequestFileUrl file_url = 12;
+    CreateSignatureRequestSigningOptions signing_options = 13;
+    string request_type = 14;
+}
+
+message CreateSignatureResponseItem {
+    string details_url = 1;
+    string files_url = 2;
+    string signature_request_id = 3;
+    string merchant_signature_id = 4;
+    string ps_signature_id = 5;
+}
+
+message CreateSignatureResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    CreateSignatureResponseItem item = 3;
+}
+
+message GetSignatureUrlRequest {
+    string signature_id = 1;
+}
+
+message GetSignatureUrlResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    GetSignatureUrlResponseEmbedded item = 3;
+}
+
+message GetSignUrlResponse {
+    GetSignUrlResponseEmbedded embedded = 1;
+}
+
+message GetSignUrlResponseEmbedded {
+    string sign_url = 1;
+    int64 expires_at = 2;
+}
+
+message GetSignatureUrlResponseEmbedded {
+    string sign_url = 1;
+    google.protobuf.Timestamp expires_at = 2;
+}
