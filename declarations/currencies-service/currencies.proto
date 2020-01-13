@@ -1,10 +1,11 @@
 syntax = "proto3";
 
+option go_package = "currenciespb";
 package currencies;
 
 import "google/protobuf/timestamp.proto";
 
-service currencyratesService {
+service CurrencyRatesService {
     rpc GetRateCurrentCommon (GetRateCurrentCommonRequest) returns (RateData) {}
     rpc GetRateByDateCommon (GetRateByDateCommonRequest) returns (RateData) {}
 

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/paysuper/paysuper-proto/paysuper-recurring-repository";
+option go_package = "recurringpb";
 
 package entity;
 

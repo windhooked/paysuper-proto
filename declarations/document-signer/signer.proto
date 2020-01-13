@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-option go_package = "github.com/paysuper/paysuper-proto/document-signer";
-package proto;
+option go_package = "document_signerpb";
+package document_signer;
 
 import "google/protobuf/timestamp.proto";
 

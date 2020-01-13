@@ -1,6 +1,6 @@
 syntax = "proto3";
-option go_package = "github.com/paysuper/paysuper-proto/paysuper-reporter";
-package proto;
+option go_package = "reporterpb";
+package reporter;
 
 import "google/protobuf/timestamp.proto";
 
