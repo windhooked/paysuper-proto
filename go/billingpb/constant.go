@@ -1,0 +1,15 @@
+package billingpb
+
+const (
+	ServiceName    = "p1paybilling"
+	ServiceVersion = "latest"
+
+	ResponseStatusOk          = int32(200)
+	ResponseStatusNotModified = int32(304)
+	ResponseStatusBadData     = int32(400)
+	ResponseStatusNotFound    = int32(404)
+	ResponseStatusForbidden   = int32(403)
+	ResponseStatusGone        = int32(410)
+	ResponseStatusSystemError = int32(500)
+	ResponseStatusTemporary   = int32(410)
+)
