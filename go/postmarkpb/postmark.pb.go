@@ -23,12 +23,12 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type PayloadHeader struct {
 	//@inject_tag: json:"Name"
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"Name"`
 	//@inject_tag: json:"Value"
-	Value                string   `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Value                string   `protobuf:"bytes,2,opt,name=value,proto3" json:"Value"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *PayloadHeader) Reset()         { *m = PayloadHeader{} }
@@ -72,14 +72,14 @@ func (m *PayloadHeader) GetValue() string {
 
 type PayloadAttachment struct {
 	//@inject_tag: json:"Name"
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"Name"`
 	//@inject_tag: json:"Content"
-	Content string `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
+	Content string `protobuf:"bytes,2,opt,name=content,proto3" json:"Content"`
 	//@inject_tag: json:"ContentType"
-	ContentType          string   `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ContentType          string   `protobuf:"bytes,3,opt,name=content_type,json=contentType,proto3" json:"ContentType"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *PayloadAttachment) Reset()         { *m = PayloadAttachment{} }
@@ -130,40 +130,40 @@ func (m *PayloadAttachment) GetContentType() string {
 
 type Payload struct {
 	//@inject_tag: protobuf:"varint,1,opt,name=template_id,json=TemplateId,proto3"
-	TemplateId int32 `protobuf:"varint,1,opt,name=template_id,json=templateId,proto3" json:"template_id,omitempty"`
+	TemplateId int32 `protobuf:"varint,1,opt,name=template_id,json=TemplateId,proto3" json:"template_id,omitempty"`
 	//@inject_tag: `protobuf:"bytes,2,opt,name=template_alias,json=TemplateAlias,proto3"
-	TemplateAlias string `protobuf:"bytes,2,opt,name=template_alias,json=templateAlias,proto3" json:"template_alias,omitempty"`
+	TemplateAlias string `protobuf:"bytes,2,opt,name=template_alias,json=TemplateAlias,proto3" json:"template_alias,omitempty"`
 	//@inject_tag: protobuf:"bytes,3,rep,name=template_model,proto3" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"
-	TemplateModel map[string]string `protobuf:"bytes,3,rep,name=template_model,json=templateModel,proto3" json:"template_model,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	TemplateModel map[string]string `protobuf:"bytes,3,rep,name=template_model,proto3" json:"template_model,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	//@inject_tag: protobuf:"varint,4,opt,name=inline_css,json=InlineCss,proto3"
-	InlineCss bool `protobuf:"varint,4,opt,name=inline_css,json=inlineCss,proto3" json:"inline_css,omitempty"`
+	InlineCss bool `protobuf:"varint,4,opt,name=inline_css,json=InlineCss,proto3" json:"inline_css,omitempty"`
 	//@inject_tag: protobuf:"bytes,5,opt,name=from,json=From,proto3"
-	From string `protobuf:"bytes,5,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,5,opt,name=from,json=From,proto3" json:"from,omitempty"`
 	//@inject_tag: protobuf:"bytes,6,opt,name=to,json=To,proto3"
-	To string `protobuf:"bytes,6,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,6,opt,name=to,json=To,proto3" json:"to,omitempty"`
 	//@inject_tag: protobuf:"bytes,7,opt,name=cc,json=Cc,proto3"
-	Cc string `protobuf:"bytes,7,opt,name=cc,proto3" json:"cc,omitempty"`
+	Cc string `protobuf:"bytes,7,opt,name=cc,json=Cc,proto3" json:"cc,omitempty"`
 	//@inject_tag: protobuf:"bytes,8,opt,name=bcc,json=Bcc,proto3"
-	Bcc string `protobuf:"bytes,8,opt,name=bcc,proto3" json:"bcc,omitempty"`
+	Bcc string `protobuf:"bytes,8,opt,name=bcc,json=Bcc,proto3" json:"bcc,omitempty"`
 	//@inject_tag: protobuf:"bytes,9,opt,name=tag,json=Tag,proto3"
-	Tag string `protobuf:"bytes,9,opt,name=tag,proto3" json:"tag,omitempty"`
+	Tag string `protobuf:"bytes,9,opt,name=tag,json=Tag,proto3" json:"tag,omitempty"`
 	//@inject_tag: protobuf:"bytes,10,opt,name=reply_to,json=ReplyTo,proto3"
-	ReplyTo string `protobuf:"bytes,10,opt,name=reply_to,json=replyTo,proto3" json:"reply_to,omitempty"`
+	ReplyTo string `protobuf:"bytes,10,opt,name=reply_to,json=ReplyTo,proto3" json:"reply_to,omitempty"`
 	//@inject_tag: protobuf:"bytes,11,rep,name=headers,json=Headers,proto3"
-	Headers []*PayloadHeader `protobuf:"bytes,11,rep,name=headers,proto3" json:"headers,omitempty"`
+	Headers []*PayloadHeader `protobuf:"bytes,11,rep,name=headers,json=Headers,proto3" json:"headers,omitempty"`
 	//@inject_tag: protobuf:"varint,12,opt,name=track_opens,json=TrackOpens,proto3"
-	TrackOpens bool `protobuf:"varint,12,opt,name=track_opens,json=trackOpens,proto3" json:"track_opens,omitempty"`
+	TrackOpens bool `protobuf:"varint,12,opt,name=track_opens,json=TrackOpens,proto3" json:"track_opens,omitempty"`
 	//@inject_tag: protobuf:"bytes,13,opt,name=track_links,json=TrackLinks,proto3"
-	TrackLinks string `protobuf:"bytes,13,opt,name=track_links,json=trackLinks,proto3" json:"track_links,omitempty"`
+	TrackLinks string `protobuf:"bytes,13,opt,name=track_links,json=TrackLinks,proto3" json:"track_links,omitempty"`
 	//@inject_tag: protobuf:"bytes,14,rep,name=Attachments,json=Attachments,proto3"
-	Attachments []*PayloadAttachment `protobuf:"bytes,14,rep,name=attachments,proto3" json:"attachments,omitempty"`
+	Attachments []*PayloadAttachment `protobuf:"bytes,14,rep,name=Attachments,json=Attachments,proto3" json:"attachments,omitempty"`
 	//@inject_tag: protobuf:"bytes,15,rep,name=metadata,json=Metadata,proto3" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"
-	Metadata map[string]string `protobuf:"bytes,15,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Metadata map[string]string `protobuf:"bytes,15,rep,name=metadata,json=Metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	//@inject_tag: protobuf:"bytes,16,opt,name=template_object_model,json=TemplateModel,proto3"
-	TemplateObjectModel  *_struct.Struct `protobuf:"bytes,16,opt,name=template_object_model,json=templateObjectModel,proto3" json:"template_object_model,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+	TemplateObjectModel  *_struct.Struct `protobuf:"bytes,16,opt,name=template_object_model,json=TemplateModel,proto3" json:"template_object_model,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte          `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32           `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *Payload) Reset()         { *m = Payload{} }
