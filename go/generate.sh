@@ -42,6 +42,8 @@ protoc-go-inject-tag -input=./reporterpb/reporter.pb.go -XXX_skip=bson,json,stru
 
 protoc-go-inject-tag -input=./taxpb/tax_service.pb.go -XXX_skip=bson,json,structure,validate
 
+echo "GENERATING MOCKS"
+
 for d in */ ; do
     mockery -recursive=true -all -dir=./"$d" -output=./"$d"/mocks
 done

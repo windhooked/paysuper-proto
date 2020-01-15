@@ -12,4 +12,15 @@ const (
 	ResponseStatusGone        = int32(410)
 	ResponseStatusSystemError = int32(500)
 	ResponseStatusTemporary   = int32(410)
+
+	OrderTypeOrder  = "order"
+	OrderTypeRefund = "refund"
+
+	VatReportStatusThreshold = "threshold"
+	VatReportStatusExpired   = "expired"
+	VatReportStatusPending   = "pending"
+	VatReportStatusNeedToPay = "need_to_pay"
+	VatReportStatusPaid      = "paid"
+	VatReportStatusOverdue   = "overdue"
+	VatReportStatusCanceled  = "canceled"
 )
