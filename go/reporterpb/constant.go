@@ -1,5 +1,6 @@
 package reporterpb
 
 const (
-	ServiceName = "p1payreporter"
+	ServiceName    = "p1payreporter"
+	ServiceVersion = "latest"
 )
