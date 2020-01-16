@@ -31,4 +31,6 @@ const (
 	MerchantStatusRejected         = int32(6)
 	MerchantStatusPending          = int32(7)
 	MerchantStatusAccepted         = int32(8)
+
+	ErrorGrpcServiceCallFailed = "gRPC call failed"
 )
