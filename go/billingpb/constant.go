@@ -24,13 +24,5 @@ const (
 	VatReportStatusOverdue   = "overdue"
 	VatReportStatusCanceled  = "canceled"
 
-	MerchantStatusDraft            = int32(0)
-	MerchantStatusAgreementSigning = int32(3)
-	MerchantStatusAgreementSigned  = int32(4)
-	MerchantStatusDeleted          = int32(5)
-	MerchantStatusRejected         = int32(6)
-	MerchantStatusPending          = int32(7)
-	MerchantStatusAccepted         = int32(8)
-
 	ErrorGrpcServiceCallFailed = "gRPC call failed"
 )
