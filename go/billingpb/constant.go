@@ -23,4 +23,6 @@ const (
 	VatReportStatusPaid      = "paid"
 	VatReportStatusOverdue   = "overdue"
 	VatReportStatusCanceled  = "canceled"
+
+	ErrorGrpcServiceCallFailed = "gRPC call failed"
 )
