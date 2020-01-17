@@ -12,4 +12,8 @@ const (
 
 	StorageTypeAgreement = "agreement"
 	StorageTypeReport    = "report"
+
+	RequestTypeCreateEmbeddedWithTemplate = "create_embedded_with_template"
+	RequestTypeCreateEmbedded             = "create_embedded"
+	RequestTypeCreateWebsite              = "create_website"
 )
