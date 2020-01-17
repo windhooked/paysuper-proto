@@ -16,6 +16,13 @@ const (
 	OutputExtensionCsv  = "csv"
 	OutputExtensionPdf  = "pdf"
 
+	ParamsFieldId            = "id"
+	ParamsFieldCountry       = "country"
+	ParamsFieldStatus        = "status"
+	ParamsFieldPaymentMethod = "payment_method"
+	ParamsFieldDateFrom      = "date_from"
+	ParamsFieldDateTo        = "date_to"
+
 	RequestParameterAgreementNumber                             = "number"
 	RequestParameterAgreementLegalName                          = "legal_name"
 	RequestParameterAgreementAddress                            = "address"
