@@ -4,6 +4,9 @@ const (
 	PayOneRepositoryServiceName = "p1payrepository"
 	PayOneMicroserviceVersion   = "latest"
 
+	PayOneTopicNotifyPaymentName  = "notify-payment"
+	PayOneTopicNotifyMerchantName = "notify-merchant"
+
 	OrderPublicStatusCreated    = "created"
 	OrderPublicStatusProcessed  = "processed"
 	OrderPublicStatusCanceled   = "canceled"
