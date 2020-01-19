@@ -155,6 +155,12 @@ const (
 	ErrorInvalidObjectId = "invalid bson object id"
 
 	PaymentMethodKey = "%s:%s:%s:%s" // currency:mcc_code:operating_company_id:brand, for example: "USD:5816:5dc3f70deb494903d835f28a:VISA"
+
+	TariffRegionRussiaAndCis = "russia_and_cis"
+	TariffRegionEurope       = "europe"
+	TariffRegionAsia         = "asia"
+	TariffRegionLatAm        = "latin_america"
+	TariffRegionWorldwide    = "worldwide"
 )
 
 var (
@@ -201,4 +207,12 @@ var (
 		recurringpb.OrderStatusChargeback:                  recurringpb.OrderPublicStatusChargeback,
 		recurringpb.OrderStatusItemReplaced:                recurringpb.OrderPublicStatusProcessed,
 	}
+	HomeRegions = map[string]string{
+		TariffRegionAsia:         "Asia",
+		TariffRegionEurope:       "Europe",
+		TariffRegionLatAm:        "Latin America",
+		TariffRegionRussiaAndCis: "Russia & CIS",
+		TariffRegionWorldwide:    "Worldwide",
+	}
+
 )
