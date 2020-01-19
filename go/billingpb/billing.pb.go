@@ -10246,6 +10246,55 @@ func (m *OrderViewMoney) GetCurrency() string {
 	return ""
 }
 
+type OrderViewMerchantInfo struct {
+	//@inject_tag: json:"company_name" bson:"company_name"
+	CompanyName string `protobuf:"bytes,1,opt,name=company_name,json=companyName,proto3" json:"company_name" bson:"company_name"`
+	//@inject_tag: json:"agreement_number" bson:"agreement_number"
+	AgreementNumber      string   `protobuf:"bytes,2,opt,name=agreement_number,json=agreementNumber,proto3" json:"agreement_number" bson:"agreement_number"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+}
+
+func (m *OrderViewMerchantInfo) Reset()         { *m = OrderViewMerchantInfo{} }
+func (m *OrderViewMerchantInfo) String() string { return proto.CompactTextString(m) }
+func (*OrderViewMerchantInfo) ProtoMessage()    {}
+func (*OrderViewMerchantInfo) Descriptor() ([]byte, []int) {
+	return fileDescriptor_76f8da37d8b92239, []int{102}
+}
+
+func (m *OrderViewMerchantInfo) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OrderViewMerchantInfo.Unmarshal(m, b)
+}
+func (m *OrderViewMerchantInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OrderViewMerchantInfo.Marshal(b, m, deterministic)
+}
+func (m *OrderViewMerchantInfo) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OrderViewMerchantInfo.Merge(m, src)
+}
+func (m *OrderViewMerchantInfo) XXX_Size() int {
+	return xxx_messageInfo_OrderViewMerchantInfo.Size(m)
+}
+func (m *OrderViewMerchantInfo) XXX_DiscardUnknown() {
+	xxx_messageInfo_OrderViewMerchantInfo.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OrderViewMerchantInfo proto.InternalMessageInfo
+
+func (m *OrderViewMerchantInfo) GetCompanyName() string {
+	if m != nil {
+		return m.CompanyName
+	}
+	return ""
+}
+
+func (m *OrderViewMerchantInfo) GetAgreementNumber() string {
+	if m != nil {
+		return m.AgreementNumber
+	}
+	return ""
+}
+
 type OrderViewPublic struct {
 	// @inject_tag: json:"-" bson:"_id"
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
@@ -10907,7 +10956,13 @@ type OrderViewPrivate struct {
 	// @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
 	VatPayer string `protobuf:"bytes,85,opt,name=vat_payer,json=vatPayer,proto3" json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"`
 	// @inject_tag: json:"is_production" bson:"is_production"
-	IsProduction         bool     `protobuf:"varint,86,opt,name=is_production,json=isProduction,proto3" json:"is_production" bson:"is_production"`
+	IsProduction bool `protobuf:"varint,86,opt,name=is_production,json=isProduction,proto3" json:"is_production" bson:"is_production"`
+	// @inject_tag: json:"merchant_info" bson:"merchant_info"
+	MerchantInfo *OrderViewMerchantInfo `protobuf:"bytes,87,opt,name=merchant_info,json=merchantInfo,proto3" json:"merchant_info" bson:"merchant_info"`
+	// @inject_tag: json:"order_charge_before_vat" bson:"order_charge_before_vat"
+	OrderChargeBeforeVat *OrderViewMoney `protobuf:"bytes,88,opt,name=order_charge_before_vat,json=orderChargeBeforeVat,proto3" json:"order_charge_before_vat" bson:"order_charge_before_vat"`
+	// @inject_tag: json:"tax_rate" bson:"tax_rate"
+	TaxRate              float64  `protobuf:"fixed64,89,opt,name=tax_rate,json=taxRate,proto3" json:"tax_rate" bson:"tax_rate"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -11538,6 +11593,27 @@ func (m *OrderViewPrivate) GetIsProduction() bool {
 		return m.IsProduction
 	}
 	return false
+}
+
+func (m *OrderViewPrivate) GetMerchantInfo() *OrderViewMerchantInfo {
+	if m != nil {
+		return m.MerchantInfo
+	}
+	return nil
+}
+
+func (m *OrderViewPrivate) GetOrderChargeBeforeVat() *OrderViewMoney {
+	if m != nil {
+		return m.OrderChargeBeforeVat
+	}
+	return nil
+}
+
+func (m *OrderViewPrivate) GetTaxRate() float64 {
+	if m != nil {
+		return m.TaxRate
+	}
+	return 0
 }
 
 type RecommendedPrice struct {
