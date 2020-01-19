@@ -176,6 +176,8 @@ const (
 
 	RoleTypeMerchant = "merchant"
 	RoleTypeSystem   = "system"
+
+	PaymentSystemHandlerCardPay = "cardpay"
 )
 
 var (
