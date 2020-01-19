@@ -161,6 +161,10 @@ const (
 	TariffRegionAsia         = "asia"
 	TariffRegionLatAm        = "latin_america"
 	TariffRegionWorldwide    = "worldwide"
+
+	VatPayerBuyer  = "buyer"
+	VatPayerSeller = "seller"
+	VatPayerNobody = "nobody"
 )
 
 var (
