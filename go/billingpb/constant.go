@@ -178,6 +178,9 @@ const (
 	RoleTypeSystem   = "system"
 
 	PaymentSystemHandlerCardPay = "cardpay"
+
+	PaylinkUrlDefaultMask = "/paylink/%s"
+	DatabaseRequestDefaultLimit = int64(100)
 )
 
 var (
