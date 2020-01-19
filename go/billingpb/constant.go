@@ -165,6 +165,9 @@ const (
 	VatPayerBuyer  = "buyer"
 	VatPayerSeller = "seller"
 	VatPayerNobody = "nobody"
+
+	// MerchantId_UserId
+	CasbinMerchantUserMask = "%s_%s"
 )
 
 var (
