@@ -181,6 +181,11 @@ const (
 
 	PaylinkUrlDefaultMask = "/paylink/%s"
 	DatabaseRequestDefaultLimit = int64(100)
+
+	RoyaltyReportChangeSourceAuto     = "auto"
+	RoyaltyReportChangeSourceMerchant = "merchant"
+	RoyaltyReportChangeSourceAdmin    = "admin"
+
 )
 
 var (
