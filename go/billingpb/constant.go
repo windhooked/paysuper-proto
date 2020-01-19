@@ -211,6 +211,7 @@ var (
 		recurringpb.OrderStatusChargeback:                  recurringpb.OrderPublicStatusChargeback,
 		recurringpb.OrderStatusItemReplaced:                recurringpb.OrderPublicStatusProcessed,
 	}
+
 	HomeRegions = map[string]string{
 		TariffRegionAsia:         "Asia",
 		TariffRegionEurope:       "Europe",
@@ -218,5 +219,4 @@ var (
 		TariffRegionRussiaAndCis: "Russia & CIS",
 		TariffRegionWorldwide:    "Worldwide",
 	}
-
 )

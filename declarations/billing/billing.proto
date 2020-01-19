@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "billingpb";
+option go_package = "github.com/paysuper/paysuper-billing-server/pkg/proto/billing";
 package billing;
 
 import "google/protobuf/timestamp.proto";
@@ -303,7 +303,7 @@ message MerchantAgreementSignatureData {
 }
 
 message MerchantTariff {
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"payments"
     repeated billing.MerchantTariffRatesPayment payment = 1;
     // @inject_tag: json:"-"
     MerchantTariffRatesSettingsItem payout = 2;
@@ -1769,9 +1769,9 @@ message AnnualTurnover {
 }
 
 message OrderViewMoney {
-    //@inject_tag: json:"amount"
+    //@inject_tag: json:"amount" bson:"amount"
     double amount = 1;
-    //@inject_tag: json:"currency"
+    //@inject_tag: json:"currency" bson:"currency"
     string currency = 2;
 }
 
@@ -2138,13 +2138,13 @@ message MerchantTariffRatesSettingsItem {
     //@inject_tag: json:"method_name" bson:"method_name"
     string method_name = 1;
     //@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
-	double method_percent_fee = 2;
+    double method_percent_fee = 2;
     //@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
-	double method_fixed_fee = 3;
+    double method_fixed_fee = 3;
     //@inject_tag: json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"
-	string method_fixed_fee_currency = 4;
+    string method_fixed_fee_currency = 4;
     //@inject_tag: json:"is_paid_by_merchant" bson:"is_paid_by_merchant"
-	bool is_paid_by_merchant = 5;
+    bool is_paid_by_merchant = 5;
 }
 
 message MerchantTariffRatesSettings {
@@ -2290,6 +2290,8 @@ message OrderReceipt {
     string url = 16;
     //@inject_tag: json:"vat_rate"
     string vat_rate = 17;
+    //@inject_tag: json:"customer_email"
+    string customer_email = 18;
 }
 
 message OrderReceiptItem {
