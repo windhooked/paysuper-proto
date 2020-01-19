@@ -14,6 +14,11 @@ const (
 	CardPayPaymentResponseStatusCompleted  = "COMPLETED"
 	CardPayPaymentResponseStatusCancelled  = "CANCELLED"
 
+	StatusOK              = int32(0)
+	StatusErrorValidation = int32(1)
+	StatusErrorSystem     = int32(2)
+	StatusTemporary       = int32(4)
+
 	ResponseStatusOk          = int32(200)
 	ResponseStatusNotModified = int32(304)
 	ResponseStatusBadData     = int32(400)
@@ -165,6 +170,22 @@ const (
 	VatPayerBuyer  = "buyer"
 	VatPayerSeller = "seller"
 	VatPayerNobody = "nobody"
+
+	// MerchantId_UserId
+	CasbinMerchantUserMask = "%s_%s"
+
+	RoleTypeMerchant = "merchant"
+	RoleTypeSystem   = "system"
+
+	PaymentSystemHandlerCardPay = "cardpay"
+
+	PaylinkUrlDefaultMask = "/paylink/%s"
+	DatabaseRequestDefaultLimit = int64(100)
+
+	RoyaltyReportChangeSourceAuto     = "auto"
+	RoyaltyReportChangeSourceMerchant = "merchant"
+	RoyaltyReportChangeSourceAdmin    = "admin"
+
 )
 
 var (
