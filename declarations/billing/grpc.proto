@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-option go_package = "github.com/paysuper/paysuper-billing-server/pkg/proto/grpc";
+option go_package = "billingpb";
 package grpc;
 
 import "google/protobuf/timestamp.proto";
-import "billing/billing.proto";
-import "paylink/paylink.proto";
+import "billing.proto";
+import "paylink.proto";
 
 service BillingService {
     rpc OrderCreateByPaylink (billing.OrderCreateByPaylink) returns (OrderCreateProcessResponse) {}
@@ -140,6 +140,7 @@ service BillingService {
     rpc GetVatReportTransactions (VatTransactionsRequest) returns (TransactionsResponse) {}
     rpc ProcessVatReports (ProcessVatReportsRequest) returns (EmptyResponse) {}
     rpc UpdateVatReportStatus (UpdateVatReportStatusRequest) returns (ResponseError) {}
+    rpc GetVatReport (VatReportRequest) returns (VatReportResponse) {}
 
     rpc CalcAnnualTurnovers (EmptyRequest) returns (EmptyResponse) {}
     rpc GetMerchantOnboardingCompleteData (SetMerchantS3AgreementRequest) returns (GetMerchantOnboardingCompleteDataResponse) {}
@@ -1781,6 +1782,20 @@ message VatReportsRequest {
     int64 offset = 3;
     // @inject_tag: query:"sort[]"
     repeated string sort = 4;
+}
+
+message VatReportRequest {
+    //@inject_tag: json:"id" validate:"required,hexadecimal,len=24"
+    string id = 1;
+}
+
+message VatReportResponse {
+    //@inject_tag: json:"status"
+    int32 status = 1;
+    // @inject_tag: json:"message,omitempty"
+    ResponseErrorMessage message = 2;
+    // @inject_tag: json:"vat"
+    billing.VatReport vat = 3;
 }
 
 message VatReportsPaginate {

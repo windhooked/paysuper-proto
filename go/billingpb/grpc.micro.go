@@ -141,7 +141,7 @@ type BillingService interface {
 	RoyaltyReportPdfUploaded(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, opts ...client.CallOption) (*RoyaltyReportPdfUploadedResponse, error)
 	GetVatReportsDashboard(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*VatReportsResponse, error)
 	GetVatReportsForCountry(ctx context.Context, in *VatReportsRequest, opts ...client.CallOption) (*VatReportsResponse, error)
-	GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, opts ...client.CallOption) (*PrivateTransactionsResponse, error)
+	GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, opts ...client.CallOption) (*TransactionsResponse, error)
 	ProcessVatReports(ctx context.Context, in *ProcessVatReportsRequest, opts ...client.CallOption) (*EmptyResponse, error)
 	UpdateVatReportStatus(ctx context.Context, in *UpdateVatReportStatusRequest, opts ...client.CallOption) (*ResponseError, error)
 	GetVatReport(ctx context.Context, in *VatReportRequest, opts ...client.CallOption) (*VatReportResponse, error)
@@ -1291,9 +1291,9 @@ func (c *billingService) GetVatReportsForCountry(ctx context.Context, in *VatRep
 	return out, nil
 }
 
-func (c *billingService) GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, opts ...client.CallOption) (*PrivateTransactionsResponse, error) {
+func (c *billingService) GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, opts ...client.CallOption) (*TransactionsResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.GetVatReportTransactions", in)
-	out := new(PrivateTransactionsResponse)
+	out := new(TransactionsResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2100,7 +2100,7 @@ type BillingServiceHandler interface {
 	RoyaltyReportPdfUploaded(context.Context, *RoyaltyReportPdfUploadedRequest, *RoyaltyReportPdfUploadedResponse) error
 	GetVatReportsDashboard(context.Context, *EmptyRequest, *VatReportsResponse) error
 	GetVatReportsForCountry(context.Context, *VatReportsRequest, *VatReportsResponse) error
-	GetVatReportTransactions(context.Context, *VatTransactionsRequest, *PrivateTransactionsResponse) error
+	GetVatReportTransactions(context.Context, *VatTransactionsRequest, *TransactionsResponse) error
 	ProcessVatReports(context.Context, *ProcessVatReportsRequest, *EmptyResponse) error
 	UpdateVatReportStatus(context.Context, *UpdateVatReportStatusRequest, *ResponseError) error
 	GetVatReport(context.Context, *VatReportRequest, *VatReportResponse) error
@@ -2280,7 +2280,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		RoyaltyReportPdfUploaded(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, out *RoyaltyReportPdfUploadedResponse) error
 		GetVatReportsDashboard(ctx context.Context, in *EmptyRequest, out *VatReportsResponse) error
 		GetVatReportsForCountry(ctx context.Context, in *VatReportsRequest, out *VatReportsResponse) error
-		GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, out *PrivateTransactionsResponse) error
+		GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, out *TransactionsResponse) error
 		ProcessVatReports(ctx context.Context, in *ProcessVatReportsRequest, out *EmptyResponse) error
 		UpdateVatReportStatus(ctx context.Context, in *UpdateVatReportStatusRequest, out *ResponseError) error
 		GetVatReport(ctx context.Context, in *VatReportRequest, out *VatReportResponse) error
@@ -2786,7 +2786,7 @@ func (h *billingServiceHandler) GetVatReportsForCountry(ctx context.Context, in 
 	return h.BillingServiceHandler.GetVatReportsForCountry(ctx, in, out)
 }
 
-func (h *billingServiceHandler) GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, out *PrivateTransactionsResponse) error {
+func (h *billingServiceHandler) GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, out *TransactionsResponse) error {
 	return h.BillingServiceHandler.GetVatReportTransactions(ctx, in, out)
 }
 
