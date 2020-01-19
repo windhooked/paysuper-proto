@@ -1,4 +1,4 @@
-protoc -I=../declarations/casbin --micro_out=./casbinpb/ --go_out=./casbinpb/ ../declarations/casbin/casbin.proto
+protoc -I=../declarations/casbin -I=$GOPATH/src/github.com/envoyproxy/ -I=$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/ -I=$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/ --micro_out=./casbinpb/ --go_out=./casbinpb/ ../declarations/casbin/casbin.proto
 
 protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/billing.proto
 protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/cardpay.proto
