@@ -3,6 +3,7 @@ module github.com/paysuper/paysuper-proto/go/billingpb
 go 1.13
 
 require (
+	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/golang/protobuf v1.3.2
 	github.com/jinzhu/copier v0.0.0-20190924061706-b57f9002281a
 	github.com/jinzhu/now v1.1.1
