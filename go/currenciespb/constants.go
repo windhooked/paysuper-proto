@@ -21,4 +21,7 @@ const (
 
 	// RateTypeCardpay - rate type value for Cardpay rates
 	RateTypeCardpay = "cardpay"
+
+	ExchangeDirectionSell = "sell"
+	ExchangeDirectionBuy  = "buy"
 )
