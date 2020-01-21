@@ -20,7 +20,7 @@ install:
 
 script:
 #  - go test ./go/... -coverprofile=coverage.out -covermode=atomic -p=1
-  - ./go/generate.sh
+  - cd ./go && ./generate.sh
 
 #after_success:
 #  - bash <(curl -s https://codecov.io/bash)
