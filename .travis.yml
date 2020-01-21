@@ -13,12 +13,7 @@ install:
   - unzip "protoc-${PROTOBUF_VERSION}-linux-x86_64.zip" -d protoc
   - export PATH="$(pwd)/protoc/bin:$PATH"
 
-test:
-  cache:
-    directories:
-    - "$HOME/gopath/pkg/mod"
-  install: true
-  script:
+script:
 #  - go test ./go/... -coverprofile=coverage.out -covermode=atomic -p=1
   - protoc --version
 
