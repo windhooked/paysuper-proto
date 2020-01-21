@@ -27,9 +27,9 @@ type CardPayAddress struct {
 	State                string   `protobuf:"bytes,4,opt,name=state,proto3" json:"state,omitempty"`
 	Street               string   `protobuf:"bytes,5,opt,name=street,proto3" json:"street,omitempty"`
 	Zip                  string   `protobuf:"bytes,6,opt,name=zip,proto3" json:"zip,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CardPayAddress) Reset()         { *m = CardPayAddress{} }
@@ -104,9 +104,9 @@ type CardPayItem struct {
 	Description          string   `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	Count                int32    `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
 	Price                float64  `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CardPayItem) Reset()         { *m = CardPayItem{} }
@@ -168,9 +168,9 @@ type CardPayMerchantOrder struct {
 	Description          string          `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
 	Items                []*CardPayItem  `protobuf:"bytes,3,rep,name=items,proto3" json:"items,omitempty"`
 	ShippingAddress      *CardPayAddress `protobuf:"bytes,4,opt,name=shipping_address,json=shippingAddress,proto3" json:"shipping_address,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte          `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32           `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
 }
 
 func (m *CardPayMerchantOrder) Reset()         { *m = CardPayMerchantOrder{} }
@@ -231,9 +231,9 @@ type CallbackCardPayBankCardAccount struct {
 	IssuingCountryCode   string   `protobuf:"bytes,2,opt,name=issuing_country_code,json=issuingCountryCode,proto3" json:"issuing_country_code,omitempty"`
 	MaskedPan            string   `protobuf:"bytes,3,opt,name=masked_pan,json=maskedPan,proto3" json:"masked_pan,omitempty"`
 	Token                string   `protobuf:"bytes,4,opt,name=token,proto3" json:"token,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CallbackCardPayBankCardAccount) Reset()         { *m = CallbackCardPayBankCardAccount{} }
@@ -294,9 +294,9 @@ type CallbackCardPayCryptoCurrencyAccount struct {
 	CryptoTransactionId  string   `protobuf:"bytes,2,opt,name=crypto_transaction_id,json=cryptoTransactionId,proto3" json:"crypto_transaction_id,omitempty"`
 	PrcAmount            string   `protobuf:"bytes,3,opt,name=prc_amount,json=prcAmount,proto3" json:"prc_amount,omitempty"`
 	PrcCurrency          string   `protobuf:"bytes,4,opt,name=prc_currency,json=prcCurrency,proto3" json:"prc_currency,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CallbackCardPayCryptoCurrencyAccount) Reset()         { *m = CallbackCardPayCryptoCurrencyAccount{} }
@@ -357,9 +357,9 @@ type CardPayCustomer struct {
 	Ip                   string   `protobuf:"bytes,2,opt,name=ip,proto3" json:"ip,omitempty"`
 	Id                   string   `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
 	Locale               string   `protobuf:"bytes,4,opt,name=locale,proto3" json:"locale,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CardPayCustomer) Reset()         { *m = CardPayCustomer{} }
@@ -417,9 +417,9 @@ func (m *CardPayCustomer) GetLocale() string {
 
 type CardPayEWalletAccount struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CardPayEWalletAccount) Reset()         { *m = CardPayEWalletAccount{} }
@@ -467,9 +467,9 @@ type CallbackCardPayPaymentData struct {
 	Note                 string   `protobuf:"bytes,10,opt,name=note,proto3" json:"note,omitempty"`
 	Rrn                  string   `protobuf:"bytes,11,opt,name=rrn,proto3" json:"rrn,omitempty"`
 	Status               string   `protobuf:"bytes,12,opt,name=status,proto3" json:"status,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CallbackCardPayPaymentData) Reset()         { *m = CallbackCardPayPaymentData{} }
@@ -583,9 +583,9 @@ func (m *CallbackCardPayPaymentData) GetStatus() string {
 
 type CardPayCallbackRecurringDataFilling struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CardPayCallbackRecurringDataFilling) Reset()         { *m = CardPayCallbackRecurringDataFilling{} }
@@ -634,9 +634,9 @@ type CardPayCallbackRecurringData struct {
 	Rrn                  string                               `protobuf:"bytes,11,opt,name=rrn,proto3" json:"rrn,omitempty"`
 	Status               string                               `protobuf:"bytes,12,opt,name=status,proto3" json:"status,omitempty"`
 	Filing               *CardPayCallbackRecurringDataFilling `protobuf:"bytes,13,opt,name=filing,proto3" json:"filing,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                             `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                               `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                                `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}                             `json:"-"`
+	XXX_unrecognized     []byte                               `json:"-"`
+	XXX_sizecache        int32                                `json:"-"`
 }
 
 func (m *CardPayCallbackRecurringData) Reset()         { *m = CardPayCallbackRecurringData{} }
@@ -767,9 +767,9 @@ type CardPayPaymentCallback struct {
 	PaymentData *CallbackCardPayPaymentData `protobuf:"bytes,8,opt,name=payment_data,json=paymentData,proto3" json:"payment_data,omitempty"`
 	// @inject_tag: json:"recurring_data,omitempty"
 	RecurringData        *CardPayCallbackRecurringData `protobuf:"bytes,9,opt,name=recurring_data,json=recurringData,proto3" json:"recurring_data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                      `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                        `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                         `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}                      `json:"-"`
+	XXX_unrecognized     []byte                        `json:"-"`
+	XXX_sizecache        int32                         `json:"-"`
 }
 
 func (m *CardPayPaymentCallback) Reset()         { *m = CardPayPaymentCallback{} }
@@ -862,23 +862,23 @@ func (m *CardPayPaymentCallback) GetRecurringData() *CardPayCallbackRecurringDat
 
 type CardPayRefundCallbackRefundData struct {
 	// @inject_tag: validate:"required,numeric,gt=0"
-	Amount float64 `protobuf:"fixed64,1,opt,name=amount,proto3" json:"amount,omitempty" validate:"required,numeric,gt=0"`
+	Amount float64 `protobuf:"fixed64,1,opt,name=amount,proto3" json:"amount,omitempty"`
 	// @inject_tag: validate:"required"
-	Created string `protobuf:"bytes,2,opt,name=created,proto3" json:"created,omitempty" validate:"required"`
+	Created string `protobuf:"bytes,2,opt,name=created,proto3" json:"created,omitempty"`
 	// @inject_tag: validate:"required,alpha,len=3"
-	Currency string `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty" validate:"required,alpha,len=3"`
+	Currency string `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency,omitempty"`
 	// @inject_tag: validate:"required"
-	Id string `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty" validate:"required"`
+	Id string `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty"`
 	// @inject_tag: validate:"required"
-	Status               string   `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty" validate:"required"`
+	Status               string   `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 	AuthCode             string   `protobuf:"bytes,6,opt,name=auth_code,json=authCode,proto3" json:"auth_code,omitempty"`
 	DeclineCode          string   `protobuf:"bytes,7,opt,name=decline_code,json=declineCode,proto3" json:"decline_code,omitempty"`
 	DeclineReason        string   `protobuf:"bytes,8,opt,name=decline_reason,json=declineReason,proto3" json:"decline_reason,omitempty"`
 	Is_3D                bool     `protobuf:"varint,9,opt,name=is_3d,json=is3d,proto3" json:"is_3d,omitempty"`
 	Rrn                  string   `protobuf:"bytes,10,opt,name=rrn,proto3" json:"rrn,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CardPayRefundCallbackRefundData) Reset()         { *m = CardPayRefundCallbackRefundData{} }
@@ -978,12 +978,12 @@ func (m *CardPayRefundCallbackRefundData) GetRrn() string {
 
 type CardPayRefundCallbackPaymentData struct {
 	// @inject_tag: validate:"required"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" validate:"required"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// @inject_tag: validate:"numeric,gte=0"
-	RemainingAmount      float64  `protobuf:"fixed64,2,opt,name=remaining_amount,json=remainingAmount,proto3" json:"remaining_amount,omitempty" validate:"numeric,gte=0"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	RemainingAmount      float64  `protobuf:"fixed64,2,opt,name=remaining_amount,json=remainingAmount,proto3" json:"remaining_amount,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CardPayRefundCallbackPaymentData) Reset()         { *m = CardPayRefundCallbackPaymentData{} }
@@ -1027,22 +1027,22 @@ func (m *CardPayRefundCallbackPaymentData) GetRemainingAmount() float64 {
 
 type CardPayRefundCallback struct {
 	// @inject_tag: validate:"required"
-	MerchantOrder *CardPayMerchantOrder `protobuf:"bytes,1,opt,name=merchant_order,json=merchantOrder,proto3" json:"merchant_order,omitempty" validate:"required"`
+	MerchantOrder *CardPayMerchantOrder `protobuf:"bytes,1,opt,name=merchant_order,json=merchantOrder,proto3" json:"merchant_order,omitempty"`
 	// @inject_tag: validate:"required"
-	PaymentMethod string `protobuf:"bytes,2,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty" validate:"required"`
+	PaymentMethod string `protobuf:"bytes,2,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
 	// @inject_tag: validate:"required"
-	PaymentData *CardPayRefundCallbackPaymentData `protobuf:"bytes,3,opt,name=payment_data,json=paymentData,proto3" json:"payment_data,omitempty" validate:"required"`
+	PaymentData *CardPayRefundCallbackPaymentData `protobuf:"bytes,3,opt,name=payment_data,json=paymentData,proto3" json:"payment_data,omitempty"`
 	// @inject_tag: validate:"required"
-	RefundData   *CardPayRefundCallbackRefundData `protobuf:"bytes,4,opt,name=refund_data,json=refundData,proto3" json:"refund_data,omitempty" validate:"required"`
+	RefundData   *CardPayRefundCallbackRefundData `protobuf:"bytes,4,opt,name=refund_data,json=refundData,proto3" json:"refund_data,omitempty"`
 	CallbackTime string                           `protobuf:"bytes,5,opt,name=callback_time,json=callbackTime,proto3" json:"callback_time,omitempty"`
 	// @inject_tag: json:"-"
-	CardAccount *CallbackCardPayBankCardAccount `protobuf:"bytes,6,opt,name=card_account,json=cardAccount,proto3" json:"-"`
+	CardAccount *CallbackCardPayBankCardAccount `protobuf:"bytes,6,opt,name=card_account,json=cardAccount,proto3" json:"card_account,omitempty"`
 	Customer    *CardPayCustomer                `protobuf:"bytes,7,opt,name=customer,proto3" json:"customer,omitempty"`
 	// @inject_tag: json:"-"
-	EwalletAccount       *CardPayEWalletAccount `protobuf:"bytes,8,opt,name=ewallet_account,json=ewalletAccount,proto3" json:"-"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                 `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                  `json:"-" bson:"-" structure:"-" validate:"-"`
+	EwalletAccount       *CardPayEWalletAccount `protobuf:"bytes,8,opt,name=ewallet_account,json=ewalletAccount,proto3" json:"ewallet_account,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
 func (m *CardPayRefundCallback) Reset()         { *m = CardPayRefundCallback{} }
