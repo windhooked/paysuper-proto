@@ -27,7 +27,7 @@ after_success:
   - git config user.name "Travis CI"
   - git config user.email "Travis CI"
   - git checkout -q develop
-  - git add *.go
+  - git add .
   - git commit --allow-empty -m "Update repo [skip ci]"
   - git remote add authenticated https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/paysuper/paysuper-proto.git
   - export GIT_TAG=0.1.$TRAVIS_BUILD_NUMBER

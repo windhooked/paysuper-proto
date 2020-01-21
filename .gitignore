@@ -1,2 +1,3 @@
 /migrations/000_create_currencies.up.json
 .idea
+*.sum
