@@ -30,7 +30,9 @@ after_success:
   - git add *.go
   - git commit --allow-empty -m "Update repo [skip ci]"
   - git remote add authenticated https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/paysuper/paysuper-proto.git
-  - git push --quiet authenticated develop &>/dev/null
+  - export GIT_TAG=0.1.$TRAVIS_BUILD_NUMBER
+  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+  - git push --quiet authenticated develop --tags &>/dev/null
 
 notifications:
   email: false
