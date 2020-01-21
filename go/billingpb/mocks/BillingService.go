@@ -3612,6 +3612,36 @@ func (_m *BillingService) GetUserProfile(ctx context.Context, in *billingpb.GetU
 	return r0, r1
 }
 
+// GetVatReport provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetVatReport(ctx context.Context, in *billingpb.VatReportRequest, opts ...client.CallOption) (*billingpb.VatReportResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.VatReportResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.VatReportRequest, ...client.CallOption) *billingpb.VatReportResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.VatReportResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.VatReportRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetVatReportTransactions provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) GetVatReportTransactions(ctx context.Context, in *billingpb.VatTransactionsRequest, opts ...client.CallOption) (*billingpb.PrivateTransactionsResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -5044,36 +5074,6 @@ func (_m *BillingService) UpdateCountry(ctx context.Context, in *billingpb.Count
 
 	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.Country, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// UpdateMerchant provides a mock function with given fields: ctx, in, opts
-func (_m *BillingService) UpdateMerchant(ctx context.Context, in *billingpb.Merchant, opts ...client.CallOption) (*billingpb.EmptyResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *billingpb.EmptyResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.Merchant, ...client.CallOption) *billingpb.EmptyResponse); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*billingpb.EmptyResponse)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.Merchant, ...client.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)
