@@ -30,7 +30,7 @@ after_success:
   - git add .
   - git commit --allow-empty -m "Update repo [skip ci]"
   - git remote add authenticated https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/paysuper/paysuper-proto.git
-  - git push --quiet authenticated master &>/dev/null
+  - git push --quiet authenticated develop &>/dev/null
 
 notifications:
   email: false
