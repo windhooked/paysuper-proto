@@ -1,0 +1,38 @@
+language: go
+sudo: false
+go:
+- 1.13.x
+
+env:
+  global:
+  - GO111MODULE=on
+  - PROTOBUF_VERSION=3.11.2
+
+install:
+  - wget "https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip"
+  - unzip "protoc-${PROTOBUF_VERSION}-linux-x86_64.zip" -d protoc
+  - export PATH="$(pwd)/protoc/bin:$PATH"
+  - go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+  - go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+  - go get -u github.com/golang/protobuf/protoc-gen-go
+  - go get github.com/favadi/protoc-go-inject-tag
+  - go get github.com/vektra/mockery/.../
+
+script:
+#  - go test ./go/... -coverprofile=coverage.out -covermode=atomic -p=1
+  - cd ./go && ./generate.sh
+
+after_success:
+#  - bash <(curl -s https://codecov.io/bash)
+  - git config user.name "Travis CI"
+  - git config user.email "Travis CI"
+  - git checkout -q develop
+  - git add *.go
+  - git commit --allow-empty -m "Update repo [skip ci]"
+  - git remote add authenticated https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/paysuper/paysuper-proto.git
+  - git push --quiet authenticated develop &>/dev/null
+
+notifications:
+  email: false
+  slack:
+    secure: O2pbj01Ece+O1BRL/Kl0k94k/4U4hoE9hm6HvwxQhIMNLmjkAhSj5PZ+z+sns/0SkHSflYcp56QDMdSm1j8uFH0YwELeJ9ngWc+G0tib7cxF965V3GAtYEq5nhN+ax/9TjUNo8aYomfG+GqNnoXzeot0lp90bXod4/4i0dfESuQL74p8wpwHDFHBjMwRNy/Fq6hJ/5D4LnX3w5Pz4ubOPpX2l5YRZSoWf/4t26P5ZdpQPVkj0ysBDcS5uusSOu1woL6BEBPd+btw2kSMqqpm8BkvC/CMIdLSVjCVfDWbl61dNYECPpCxqfFVAOHzSBdgqokHzuulpYJJ7T3MtR0R+FraINT5cP2FIwAHXcCzvJpKuADv/80G3sm7Q8F2JuxTf3nTICqUmm85gi5sei2TcSmSDOSzopaW2rN7Zeum0YOSef4mKC+XGQMRjh7CHaXh59YZYOIF8quHZUhFdmHDcUomP0Qxy0SWnXD6LYZm63inxoEOAhOWfCud3OjpZg5comN5NLnAbDk79ZhZE0OER7aBDyPcnhO4JsLjb0Ok+RzmFBv21mWuocw3dEmfUxNqxyk6KRLEoAUcx030Fqsl3Se+8MrN+QM/tKSqmLjQx+PCuK3bXhnfLiG9fU4Ed0FFmbWBc59z4i7DR3XyGYeR7E+kUmWIC26jvDmHEGJhvU8=
