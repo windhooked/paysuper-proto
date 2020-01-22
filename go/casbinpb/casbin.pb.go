@@ -25,9 +25,9 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type EnforceRequest struct {
 	Params               []string `protobuf:"bytes,2,rep,name=params,proto3" json:"params,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *EnforceRequest) Reset()         { *m = EnforceRequest{} }
@@ -65,9 +65,9 @@ func (m *EnforceRequest) GetParams() []string {
 type PolicyRequest struct {
 	PType                string   `protobuf:"bytes,1,opt,name=pType,proto3" json:"pType,omitempty"`
 	Params               []string `protobuf:"bytes,2,rep,name=params,proto3" json:"params,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *PolicyRequest) Reset()         { *m = PolicyRequest{} }
@@ -111,9 +111,9 @@ func (m *PolicyRequest) GetParams() []string {
 
 type SimpleGetRequest struct {
 	PType                string   `protobuf:"bytes,1,opt,name=pType,proto3" json:"pType,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *SimpleGetRequest) Reset()         { *m = SimpleGetRequest{} }
@@ -150,9 +150,9 @@ func (m *SimpleGetRequest) GetPType() string {
 
 type ArrayReply struct {
 	Array                []string `protobuf:"bytes,1,rep,name=array,proto3" json:"array,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ArrayReply) Reset()         { *m = ArrayReply{} }
@@ -191,9 +191,9 @@ type FilteredPolicyRequest struct {
 	PType                string   `protobuf:"bytes,1,opt,name=pType,proto3" json:"pType,omitempty"`
 	FieldIndex           int32    `protobuf:"varint,2,opt,name=fieldIndex,proto3" json:"fieldIndex,omitempty"`
 	FieldValues          []string `protobuf:"bytes,3,rep,name=fieldValues,proto3" json:"fieldValues,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *FilteredPolicyRequest) Reset()         { *m = FilteredPolicyRequest{} }
@@ -243,9 +243,9 @@ func (m *FilteredPolicyRequest) GetFieldValues() []string {
 }
 
 type Empty struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Empty) Reset()         { *m = Empty{} }
@@ -276,9 +276,9 @@ var xxx_messageInfo_Empty proto.InternalMessageInfo
 type UserRoleRequest struct {
 	User                 string   `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	Role                 string   `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *UserRoleRequest) Reset()         { *m = UserRoleRequest{} }
@@ -323,9 +323,9 @@ func (m *UserRoleRequest) GetRole() string {
 type PermissionRequest struct {
 	User                 string   `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	Permissions          []string `protobuf:"bytes,2,rep,name=permissions,proto3" json:"permissions,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *PermissionRequest) Reset()         { *m = PermissionRequest{} }
@@ -369,9 +369,9 @@ func (m *PermissionRequest) GetPermissions() []string {
 
 type ImportPolicyRequest struct {
 	Data                 []byte   `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ImportPolicyRequest) Reset()         { *m = ImportPolicyRequest{} }
@@ -408,9 +408,9 @@ func (m *ImportPolicyRequest) GetData() []byte {
 
 type Array2DReply struct {
 	D2                   []*Array2DReplyD `protobuf:"bytes,1,rep,name=d2,proto3" json:"d2,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte           `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32            `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
 }
 
 func (m *Array2DReply) Reset()         { *m = Array2DReply{} }
@@ -447,9 +447,9 @@ func (m *Array2DReply) GetD2() []*Array2DReplyD {
 
 type Array2DReplyD struct {
 	D1                   []string `protobuf:"bytes,1,rep,name=d1,proto3" json:"d1,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Array2DReplyD) Reset()         { *m = Array2DReplyD{} }

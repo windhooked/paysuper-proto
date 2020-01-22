@@ -21,9 +21,9 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type Result struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Result) Reset()         { *m = Result{} }
@@ -53,9 +53,9 @@ var xxx_messageInfo_Result proto.InternalMessageInfo
 
 type FindByStringValue struct {
 	Value                string   `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *FindByStringValue) Reset()         { *m = FindByStringValue{} }
@@ -98,9 +98,9 @@ type SavedCardRequest struct {
 	CardHolder           string      `protobuf:"bytes,5,opt,name=card_holder,json=cardHolder,proto3" json:"card_holder,omitempty"`
 	RecurringId          string      `protobuf:"bytes,6,opt,name=recurring_id,json=recurringId,proto3" json:"recurring_id,omitempty"`
 	Expire               *CardExpire `protobuf:"bytes,7,opt,name=expire,proto3" json:"expire,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte      `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32       `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
 func (m *SavedCardRequest) Reset()         { *m = SavedCardRequest{} }
@@ -179,9 +179,9 @@ func (m *SavedCardRequest) GetExpire() *CardExpire {
 
 type SavedCardList struct {
 	SavedCards           []*SavedCard `protobuf:"bytes,1,rep,name=saved_cards,json=savedCards,proto3" json:"saved_cards,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}     `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte       `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32        `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
+	XXX_unrecognized     []byte       `json:"-"`
+	XXX_sizecache        int32        `json:"-"`
 }
 
 func (m *SavedCardList) Reset()         { *m = SavedCardList{} }
@@ -219,9 +219,9 @@ func (m *SavedCardList) GetSavedCards() []*SavedCard {
 type DeleteSavedCardRequest struct {
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Token                string   `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *DeleteSavedCardRequest) Reset()         { *m = DeleteSavedCardRequest{} }
@@ -266,9 +266,9 @@ func (m *DeleteSavedCardRequest) GetToken() string {
 type DeleteSavedCardResponse struct {
 	Status               int32    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
 	Message              string   `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *DeleteSavedCardResponse) Reset()         { *m = DeleteSavedCardResponse{} }
