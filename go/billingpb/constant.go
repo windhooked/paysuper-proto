@@ -186,6 +186,11 @@ const (
 	RoyaltyReportChangeSourceMerchant = "merchant"
 	RoyaltyReportChangeSourceAdmin    = "admin"
 
+	ProjectRedirectModeAny        = "any"
+	ProjectRedirectModeDisable    = "disable"
+	ProjectRedirectModeSuccessful = "successful"
+	ProjectRedirectModeFail       = "fail"
+	ProjectRedirectUsageAny       = "any"
 )
 
 var (
