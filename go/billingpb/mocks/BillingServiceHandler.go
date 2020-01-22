@@ -1691,6 +1691,20 @@ func (_m *BillingServiceHandler) GetUserProfile(_a0 context.Context, _a1 *billin
 	return r0
 }
 
+// GetVatReport provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetVatReport(_a0 context.Context, _a1 *billingpb.VatReportRequest, _a2 *billingpb.VatReportResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.VatReportRequest, *billingpb.VatReportResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetVatReportTransactions provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetVatReportTransactions(_a0 context.Context, _a1 *billingpb.VatTransactionsRequest, _a2 *billingpb.PrivateTransactionsResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
