@@ -2377,20 +2377,6 @@ func (_m *BillingServiceHandler) UpdateCountry(_a0 context.Context, _a1 *billing
 	return r0
 }
 
-// UpdateMerchant provides a mock function with given fields: _a0, _a1, _a2
-func (_m *BillingServiceHandler) UpdateMerchant(_a0 context.Context, _a1 *billingpb.Merchant, _a2 *billingpb.EmptyResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.Merchant, *billingpb.EmptyResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // UpdateOrder provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) UpdateOrder(_a0 context.Context, _a1 *billingpb.Order, _a2 *billingpb.EmptyResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)

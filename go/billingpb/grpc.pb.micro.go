@@ -43,7 +43,6 @@ type BillingService interface {
 	OrderReceipt(ctx context.Context, in *OrderReceiptRequest, opts ...client.CallOption) (*OrderReceiptResponse, error)
 	OrderReCreateProcess(ctx context.Context, in *OrderReCreateProcessRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error)
 	UpdateOrder(ctx context.Context, in *Order, opts ...client.CallOption) (*EmptyResponse, error)
-	UpdateMerchant(ctx context.Context, in *Merchant, opts ...client.CallOption) (*EmptyResponse, error)
 	GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, opts ...client.CallOption) (*GetMerchantResponse, error)
 	ListMerchants(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*MerchantListingResponse, error)
 	ChangeMerchant(ctx context.Context, in *OnboardingRequest, opts ...client.CallOption) (*ChangeMerchantResponse, error)
@@ -303,16 +302,6 @@ func (c *billingService) OrderReCreateProcess(ctx context.Context, in *OrderReCr
 
 func (c *billingService) UpdateOrder(ctx context.Context, in *Order, opts ...client.CallOption) (*EmptyResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.UpdateOrder", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *billingService) UpdateMerchant(ctx context.Context, in *Merchant, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UpdateMerchant", in)
 	out := new(EmptyResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -2002,7 +1991,6 @@ type BillingServiceHandler interface {
 	OrderReceipt(context.Context, *OrderReceiptRequest, *OrderReceiptResponse) error
 	OrderReCreateProcess(context.Context, *OrderReCreateProcessRequest, *OrderCreateProcessResponse) error
 	UpdateOrder(context.Context, *Order, *EmptyResponse) error
-	UpdateMerchant(context.Context, *Merchant, *EmptyResponse) error
 	GetMerchantBy(context.Context, *GetMerchantByRequest, *GetMerchantResponse) error
 	ListMerchants(context.Context, *MerchantListingRequest, *MerchantListingResponse) error
 	ChangeMerchant(context.Context, *OnboardingRequest, *ChangeMerchantResponse) error
@@ -2182,7 +2170,6 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		OrderReceipt(ctx context.Context, in *OrderReceiptRequest, out *OrderReceiptResponse) error
 		OrderReCreateProcess(ctx context.Context, in *OrderReCreateProcessRequest, out *OrderCreateProcessResponse) error
 		UpdateOrder(ctx context.Context, in *Order, out *EmptyResponse) error
-		UpdateMerchant(ctx context.Context, in *Merchant, out *EmptyResponse) error
 		GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, out *GetMerchantResponse) error
 		ListMerchants(ctx context.Context, in *MerchantListingRequest, out *MerchantListingResponse) error
 		ChangeMerchant(ctx context.Context, in *OnboardingRequest, out *ChangeMerchantResponse) error
@@ -2392,10 +2379,6 @@ func (h *billingServiceHandler) OrderReCreateProcess(ctx context.Context, in *Or
 
 func (h *billingServiceHandler) UpdateOrder(ctx context.Context, in *Order, out *EmptyResponse) error {
 	return h.BillingServiceHandler.UpdateOrder(ctx, in, out)
-}
-
-func (h *billingServiceHandler) UpdateMerchant(ctx context.Context, in *Merchant, out *EmptyResponse) error {
-	return h.BillingServiceHandler.UpdateMerchant(ctx, in, out)
 }
 
 func (h *billingServiceHandler) GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, out *GetMerchantResponse) error {
