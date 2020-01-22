@@ -3613,7 +3613,7 @@ func (_m *BillingService) GetUserProfile(ctx context.Context, in *billingpb.GetU
 }
 
 // GetVatReportTransactions provides a mock function with given fields: ctx, in, opts
-func (_m *BillingService) GetVatReportTransactions(ctx context.Context, in *billingpb.VatTransactionsRequest, opts ...client.CallOption) (*billingpb.TransactionsResponse, error) {
+func (_m *BillingService) GetVatReportTransactions(ctx context.Context, in *billingpb.VatTransactionsRequest, opts ...client.CallOption) (*billingpb.PrivateTransactionsResponse, error) {
 	_va := make([]interface{}, len(opts))
 	for _i := range opts {
 		_va[_i] = opts[_i]
@@ -3623,12 +3623,12 @@ func (_m *BillingService) GetVatReportTransactions(ctx context.Context, in *bill
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
-	var r0 *billingpb.TransactionsResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.VatTransactionsRequest, ...client.CallOption) *billingpb.TransactionsResponse); ok {
+	var r0 *billingpb.PrivateTransactionsResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.VatTransactionsRequest, ...client.CallOption) *billingpb.PrivateTransactionsResponse); ok {
 		r0 = rf(ctx, in, opts...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*billingpb.TransactionsResponse)
+			r0 = ret.Get(0).(*billingpb.PrivateTransactionsResponse)
 		}
 	}
 
