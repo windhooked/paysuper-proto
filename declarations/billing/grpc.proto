@@ -17,7 +17,6 @@ service BillingService {
     rpc OrderReCreateProcess (OrderReCreateProcessRequest) returns (OrderCreateProcessResponse) {}
 
     rpc UpdateOrder (billing.Order) returns (EmptyResponse) {}
-    rpc UpdateMerchant (billing.Merchant) returns (EmptyResponse) {}
 
     rpc GetMerchantBy (GetMerchantByRequest) returns (GetMerchantResponse) {}
     rpc ListMerchants (MerchantListingRequest) returns (MerchantListingResponse) {}
