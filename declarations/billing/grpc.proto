@@ -140,6 +140,7 @@ service BillingService {
     rpc GetVatReportTransactions (VatTransactionsRequest) returns (PrivateTransactionsResponse) {}
     rpc ProcessVatReports (ProcessVatReportsRequest) returns (EmptyResponse) {}
     rpc UpdateVatReportStatus (UpdateVatReportStatusRequest) returns (ResponseError) {}
+    rpc GetVatReport (VatReportRequest) returns (VatReportResponse) {}
 
     rpc CalcAnnualTurnovers (EmptyRequest) returns (EmptyResponse) {}
     rpc GetMerchantOnboardingCompleteData (SetMerchantS3AgreementRequest) returns (GetMerchantOnboardingCompleteDataResponse) {}
