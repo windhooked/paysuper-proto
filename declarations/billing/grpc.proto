@@ -1092,6 +1092,8 @@ message Platform {
     string icon = 3;
     //@inject_tag: json:"-"
     int32 order = 4;
+    //@inject_tag: json:"-"
+    string activation_instruction_url = 5;
 }
 
 message Product {
