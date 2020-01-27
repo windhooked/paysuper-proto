@@ -23,14 +23,14 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type ResponseErrorMessage struct {
 	//@inject_tag: json:"code"
-	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code"`
+	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
 	//@inject_tag: json:"message"
-	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message"`
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	//@inject_tag: json:"details,omitempty"
 	Details              string   `protobuf:"bytes,3,opt,name=details,proto3" json:"details,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *ResponseErrorMessage) Reset()         { *m = ResponseErrorMessage{} }
@@ -85,9 +85,9 @@ type CreateSignatureRequestSigner struct {
 	Pin                  string   `protobuf:"bytes,3,opt,name=pin,proto3" json:"pin,omitempty"`
 	Group                string   `protobuf:"bytes,4,opt,name=group,proto3" json:"group,omitempty"`
 	RoleName             string   `protobuf:"bytes,5,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CreateSignatureRequestSigner) Reset()         { *m = CreateSignatureRequestSigner{} }
@@ -152,16 +152,16 @@ func (m *CreateSignatureRequestSigner) GetRoleName() string {
 
 type CreateSignatureRequestCustomFields struct {
 	//@inject_tag: json:"name"
-	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name"`
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	//@inject_tag: json:"value"
-	Value string `protobuf:"bytes,2,opt,name=value,proto3" json:"value"`
+	Value string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
 	//@inject_tag: json:"required"
-	Required bool `protobuf:"varint,3,opt,name=required,proto3" json:"required"`
+	Required bool `protobuf:"varint,3,opt,name=required,proto3" json:"required,omitempty"`
 	//@inject_tag: json:"editor"
-	Editor               string   `protobuf:"bytes,4,opt,name=editor,proto3" json:"editor"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	Editor               string   `protobuf:"bytes,4,opt,name=editor,proto3" json:"editor,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CreateSignatureRequestCustomFields) Reset()         { *m = CreateSignatureRequestCustomFields{} }
@@ -220,9 +220,9 @@ func (m *CreateSignatureRequestCustomFields) GetEditor() string {
 type CreateSignatureRequestCcs struct {
 	EmailAddress         string   `protobuf:"bytes,1,opt,name=email_address,json=emailAddress,proto3" json:"email_address,omitempty"`
 	RoleName             string   `protobuf:"bytes,2,opt,name=role_name,json=roleName,proto3" json:"role_name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CreateSignatureRequestCcs) Reset()         { *m = CreateSignatureRequestCcs{} }
@@ -270,9 +270,9 @@ type CreateSignatureRequestSigningOptions struct {
 	Upload               bool     `protobuf:"varint,3,opt,name=upload,proto3" json:"upload,omitempty"`
 	Phone                bool     `protobuf:"varint,4,opt,name=phone,proto3" json:"phone,omitempty"`
 	Default              string   `protobuf:"bytes,5,opt,name=default,proto3" json:"default,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CreateSignatureRequestSigningOptions) Reset()         { *m = CreateSignatureRequestSigningOptions{} }
@@ -338,9 +338,9 @@ func (m *CreateSignatureRequestSigningOptions) GetDefault() string {
 type CreateSignatureRequestFileUrl struct {
 	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Storage              string   `protobuf:"bytes,2,opt,name=storage,proto3" json:"storage,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CreateSignatureRequestFileUrl) Reset()         { *m = CreateSignatureRequestFileUrl{} }
@@ -389,7 +389,7 @@ type CreateSignatureRequest struct {
 	Message    string                          `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
 	Signers    []*CreateSignatureRequestSigner `protobuf:"bytes,5,rep,name=signers,proto3" json:"signers,omitempty"`
 	//@inject_tag: json:"custom_fields"
-	CustomFields         []*CreateSignatureRequestCustomFields `protobuf:"bytes,6,rep,name=custom_fields,json=customFields,proto3" json:"custom_fields"`
+	CustomFields         []*CreateSignatureRequestCustomFields `protobuf:"bytes,6,rep,name=custom_fields,json=customFields,proto3" json:"custom_fields,omitempty"`
 	AllowDecline         int32                                 `protobuf:"varint,7,opt,name=allow_decline,json=allowDecline,proto3" json:"allow_decline,omitempty"`
 	SigningRedirectUrl   string                                `protobuf:"bytes,8,opt,name=signing_redirect_url,json=signingRedirectUrl,proto3" json:"signing_redirect_url,omitempty"`
 	Ccs                  []*CreateSignatureRequestCcs          `protobuf:"bytes,9,rep,name=ccs,proto3" json:"ccs,omitempty"`
@@ -398,9 +398,9 @@ type CreateSignatureRequest struct {
 	FileUrl              []*CreateSignatureRequestFileUrl      `protobuf:"bytes,12,rep,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty"`
 	SigningOptions       *CreateSignatureRequestSigningOptions `protobuf:"bytes,13,opt,name=signing_options,json=signingOptions,proto3" json:"signing_options,omitempty"`
 	RequestType          string                                `protobuf:"bytes,14,opt,name=request_type,json=requestType,proto3" json:"request_type,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                              `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                                `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                                 `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}                              `json:"-"`
+	XXX_unrecognized     []byte                                `json:"-"`
+	XXX_sizecache        int32                                 `json:"-"`
 }
 
 func (m *CreateSignatureRequest) Reset()         { *m = CreateSignatureRequest{} }
@@ -532,9 +532,9 @@ type CreateSignatureResponseItem struct {
 	SignatureRequestId   string   `protobuf:"bytes,3,opt,name=signature_request_id,json=signatureRequestId,proto3" json:"signature_request_id,omitempty"`
 	MerchantSignatureId  string   `protobuf:"bytes,4,opt,name=merchant_signature_id,json=merchantSignatureId,proto3" json:"merchant_signature_id,omitempty"`
 	PsSignatureId        string   `protobuf:"bytes,5,opt,name=ps_signature_id,json=psSignatureId,proto3" json:"ps_signature_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CreateSignatureResponseItem) Reset()         { *m = CreateSignatureResponseItem{} }
@@ -601,9 +601,9 @@ type CreateSignatureResponse struct {
 	Status               int32                        `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
 	Message              *ResponseErrorMessage        `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Item                 *CreateSignatureResponseItem `protobuf:"bytes,3,opt,name=item,proto3" json:"item,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                     `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                       `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                        `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}                     `json:"-"`
+	XXX_unrecognized     []byte                       `json:"-"`
+	XXX_sizecache        int32                        `json:"-"`
 }
 
 func (m *CreateSignatureResponse) Reset()         { *m = CreateSignatureResponse{} }
@@ -654,9 +654,9 @@ func (m *CreateSignatureResponse) GetItem() *CreateSignatureResponseItem {
 
 type GetSignatureUrlRequest struct {
 	SignatureId          string   `protobuf:"bytes,1,opt,name=signature_id,json=signatureId,proto3" json:"signature_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *GetSignatureUrlRequest) Reset()         { *m = GetSignatureUrlRequest{} }
@@ -695,9 +695,9 @@ type GetSignatureUrlResponse struct {
 	Status               int32                            `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
 	Message              *ResponseErrorMessage            `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Item                 *GetSignatureUrlResponseEmbedded `protobuf:"bytes,3,opt,name=item,proto3" json:"item,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                         `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                           `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                            `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}                         `json:"-"`
+	XXX_unrecognized     []byte                           `json:"-"`
+	XXX_sizecache        int32                            `json:"-"`
 }
 
 func (m *GetSignatureUrlResponse) Reset()         { *m = GetSignatureUrlResponse{} }
@@ -748,9 +748,9 @@ func (m *GetSignatureUrlResponse) GetItem() *GetSignatureUrlResponseEmbedded {
 
 type GetSignUrlResponse struct {
 	Embedded             *GetSignUrlResponseEmbedded `protobuf:"bytes,1,opt,name=embedded,proto3" json:"embedded,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                    `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                      `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                       `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}                    `json:"-"`
+	XXX_unrecognized     []byte                      `json:"-"`
+	XXX_sizecache        int32                       `json:"-"`
 }
 
 func (m *GetSignUrlResponse) Reset()         { *m = GetSignUrlResponse{} }
@@ -788,9 +788,9 @@ func (m *GetSignUrlResponse) GetEmbedded() *GetSignUrlResponseEmbedded {
 type GetSignUrlResponseEmbedded struct {
 	SignUrl              string   `protobuf:"bytes,1,opt,name=sign_url,json=signUrl,proto3" json:"sign_url,omitempty"`
 	ExpiresAt            int64    `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *GetSignUrlResponseEmbedded) Reset()         { *m = GetSignUrlResponseEmbedded{} }
@@ -835,9 +835,9 @@ func (m *GetSignUrlResponseEmbedded) GetExpiresAt() int64 {
 type GetSignatureUrlResponseEmbedded struct {
 	SignUrl              string               `protobuf:"bytes,1,opt,name=sign_url,json=signUrl,proto3" json:"sign_url,omitempty"`
 	ExpiresAt            *timestamp.Timestamp `protobuf:"bytes,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *GetSignatureUrlResponseEmbedded) Reset()         { *m = GetSignatureUrlResponseEmbedded{} }

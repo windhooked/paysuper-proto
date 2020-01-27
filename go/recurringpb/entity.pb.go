@@ -23,22 +23,22 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type SavedCard struct {
 	// @inject_tag: json:"id"
-	Id         string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	Id         string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Token      string `protobuf:"bytes,2,opt,name=token,proto3" json:"token,omitempty"`
 	ProjectId  string `protobuf:"bytes,3,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
 	// @inject_tag: json:"pan"
-	MaskedPan  string `protobuf:"bytes,5,opt,name=masked_pan,json=maskedPan,proto3" json:"pan"`
+	MaskedPan  string `protobuf:"bytes,5,opt,name=masked_pan,json=maskedPan,proto3" json:"masked_pan,omitempty"`
 	CardHolder string `protobuf:"bytes,6,opt,name=card_holder,json=cardHolder,proto3" json:"card_holder,omitempty"`
 	// @inject_tag: json:"expire"
-	Expire               *CardExpire          `protobuf:"bytes,7,opt,name=expire,proto3" json:"expire"`
+	Expire               *CardExpire          `protobuf:"bytes,7,opt,name=expire,proto3" json:"expire,omitempty"`
 	RecurringId          string               `protobuf:"bytes,8,opt,name=recurring_id,json=recurringId,proto3" json:"recurring_id,omitempty"`
 	IsActive             bool                 `protobuf:"varint,9,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
+	XXX_unrecognized     []byte               `json:"-"`
+	XXX_sizecache        int32                `json:"-"`
 }
 
 func (m *SavedCard) Reset()         { *m = SavedCard{} }
@@ -145,12 +145,12 @@ func (m *SavedCard) GetUpdatedAt() *timestamp.Timestamp {
 
 type CardExpire struct {
 	// @inject_tag: json:"month"
-	Month string `protobuf:"bytes,1,opt,name=month,proto3" json:"month"`
+	Month string `protobuf:"bytes,1,opt,name=month,proto3" json:"month,omitempty"`
 	// @inject_tag: json:"year"
-	Year                 string   `protobuf:"bytes,2,opt,name=year,proto3" json:"year"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	Year                 string   `protobuf:"bytes,2,opt,name=year,proto3" json:"year,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CardExpire) Reset()         { *m = CardExpire{} }
