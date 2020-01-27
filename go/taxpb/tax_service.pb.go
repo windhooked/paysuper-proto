@@ -22,16 +22,16 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type GeoIdentity struct {
 	// @inject_tag: json:"zip"
-	Zip string `protobuf:"bytes,1,opt,name=zip,proto3" json:"zip,omitempty"`
+	Zip string `protobuf:"bytes,1,opt,name=zip,proto3" json:"zip"`
 	// @inject_tag: json:"country"
-	Country string `protobuf:"bytes,2,opt,name=country,proto3" json:"country,omitempty"`
+	Country string `protobuf:"bytes,2,opt,name=country,proto3" json:"country"`
 	// @inject_tag: json:"city,omitempty"
 	City string `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
 	// @inject_tag: json:"state,omitempty"
 	State                string   `protobuf:"bytes,4,opt,name=state,proto3" json:"state,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *GeoIdentity) Reset()         { *m = GeoIdentity{} }
@@ -89,20 +89,20 @@ func (m *GeoIdentity) GetState() string {
 
 type TaxRate struct {
 	// @inject_tag: json:"id"
-	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// @inject_tag: json:"zip"
-	Zip string `protobuf:"bytes,2,opt,name=zip,proto3" json:"zip,omitempty"`
+	Zip string `protobuf:"bytes,2,opt,name=zip,proto3" json:"zip"`
 	// @inject_tag: json:"country"
-	Country string `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
+	Country string `protobuf:"bytes,3,opt,name=country,proto3" json:"country"`
 	// @inject_tag: json:"city,omitempty"
 	City string `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
 	// @inject_tag: gorm:"type:varchar(2)"
-	State string `protobuf:"bytes,5,opt,name=state,proto3" json:"state,omitempty"`
+	State string `protobuf:"bytes,5,opt,name=state,proto3" json:"state,omitempty" gorm:"type:varchar(2)"`
 	// @inject_tag: json:"rate"
-	Rate                 float64  `protobuf:"fixed64,6,opt,name=rate,proto3" json:"rate,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Rate                 float64  `protobuf:"fixed64,6,opt,name=rate,proto3" json:"rate"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *TaxRate) Reset()         { *m = TaxRate{} }
@@ -174,9 +174,9 @@ func (m *TaxRate) GetRate() float64 {
 
 type GetRatesRequest struct {
 	// @inject_tag: json:"zip"
-	Zip string `protobuf:"bytes,1,opt,name=zip,proto3" json:"zip,omitempty"`
+	Zip string `protobuf:"bytes,1,opt,name=zip,proto3" json:"zip"`
 	// @inject_tag: json:"country"
-	Country string `protobuf:"bytes,2,opt,name=country,proto3" json:"country,omitempty"`
+	Country string `protobuf:"bytes,2,opt,name=country,proto3" json:"country"`
 	// @inject_tag: json:"city,omitempty"
 	City string `protobuf:"bytes,3,opt,name=city,proto3" json:"city,omitempty"`
 	// @inject_tag: json:"state,omitempty"
@@ -185,9 +185,9 @@ type GetRatesRequest struct {
 	Limit int32 `protobuf:"varint,5,opt,name=limit,proto3" json:"limit,omitempty"`
 	// @inject_tag: json:"offset,omitempty"
 	Offset               int32    `protobuf:"varint,6,opt,name=offset,proto3" json:"offset,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *GetRatesRequest) Reset()         { *m = GetRatesRequest{} }
@@ -259,10 +259,10 @@ func (m *GetRatesRequest) GetOffset() int32 {
 
 type GetRatesResponse struct {
 	// @inject_tag: json:"rates"
-	Rates                []*TaxRate `protobuf:"bytes,1,rep,name=rates,proto3" json:"rates,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
+	Rates                []*TaxRate `protobuf:"bytes,1,rep,name=rates,proto3" json:"rates"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte     `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32      `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *GetRatesResponse) Reset()         { *m = GetRatesResponse{} }
@@ -298,9 +298,9 @@ func (m *GetRatesResponse) GetRates() []*TaxRate {
 }
 
 type DeleteRateResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *DeleteRateResponse) Reset()         { *m = DeleteRateResponse{} }
@@ -330,9 +330,9 @@ var xxx_messageInfo_DeleteRateResponse proto.InternalMessageInfo
 
 type DeleteRateRequest struct {
 	Id                   uint32   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *DeleteRateRequest) Reset()         { *m = DeleteRateRequest{} }
