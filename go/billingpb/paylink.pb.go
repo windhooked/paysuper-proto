@@ -23,24 +23,24 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type CreatePaylinkRequest struct {
 	//@inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// @inject_tag: json:"expires_at" validate:"omitempty,numeric,gte=0"
-	ExpiresAt int64 `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at" validate:"omitempty,numeric,gte=0"`
+	ExpiresAt int64 `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	//@inject_tag: json:"products" validate:"required,gte=1,dive,hexadecimal,len=24"
-	Products []string `protobuf:"bytes,3,rep,name=products,proto3" json:"products" validate:"required,gte=1,dive,hexadecimal,len=24"`
+	Products []string `protobuf:"bytes,3,rep,name=products,proto3" json:"products,omitempty"`
 	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
+	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
 	//@inject_tag: json:"project_id" validate:"required,hexadecimal,len=24"
-	ProjectId string `protobuf:"bytes,5,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24"`
+	ProjectId string `protobuf:"bytes,5,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	// @inject_tag: json:"name" validate:"required"
-	Name string `protobuf:"bytes,6,opt,name=name,proto3" json:"name" validate:"required"`
+	Name string `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
 	// @inject_tag: json:"no_expiry_date"
-	NoExpiryDate bool `protobuf:"varint,7,opt,name=no_expiry_date,json=noExpiryDate,proto3" json:"no_expiry_date"`
+	NoExpiryDate bool `protobuf:"varint,7,opt,name=no_expiry_date,json=noExpiryDate,proto3" json:"no_expiry_date,omitempty"`
 	// @inject_tag: json:"products_type" validate="required,oneof=product key"
-	ProductsType         string   `protobuf:"bytes,8,opt,name=products_type,json=productsType,proto3" json:"products_type"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	ProductsType         string   `protobuf:"bytes,8,opt,name=products_type,json=productsType,proto3" json:"products_type,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *CreatePaylinkRequest) Reset()         { *m = CreatePaylinkRequest{} }
@@ -126,52 +126,52 @@ func (m *CreatePaylinkRequest) GetProductsType() string {
 
 type Paylink struct {
 	// @inject_tag: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// @inject_tag: json:"object"
-	Object string `protobuf:"bytes,2,opt,name=object,proto3" json:"object"`
+	Object string `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
 	// @inject_tag: json:"products"
-	Products []string `protobuf:"bytes,3,rep,name=products,proto3" json:"products"`
+	Products []string `protobuf:"bytes,3,rep,name=products,proto3" json:"products,omitempty"`
 	// @inject_tag: json:"expires_at"
-	ExpiresAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at"`
+	ExpiresAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	// @inject_tag: json:"created_at"
-	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	// @inject_tag: json:"updated_at"
-	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	// @inject_tag: json:"merchant_id"
-	MerchantId string `protobuf:"bytes,7,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id"`
+	MerchantId string `protobuf:"bytes,7,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
 	// @inject_tag: json:"project_id"
-	ProjectId string `protobuf:"bytes,8,opt,name=project_id,json=projectId,proto3" json:"project_id"`
+	ProjectId string `protobuf:"bytes,8,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
 	// @inject_tag: json:"name"
-	Name string `protobuf:"bytes,9,opt,name=name,proto3" json:"name"`
+	Name string `protobuf:"bytes,9,opt,name=name,proto3" json:"name,omitempty"`
 	// @inject_tag: json:"is_expired"
-	IsExpired bool `protobuf:"varint,10,opt,name=is_expired,json=isExpired,proto3" json:"is_expired"`
+	IsExpired bool `protobuf:"varint,10,opt,name=is_expired,json=isExpired,proto3" json:"is_expired,omitempty"`
 	// @inject_tag: json:"visits"
-	Visits int32 `protobuf:"varint,11,opt,name=visits,proto3" json:"visits"`
+	Visits int32 `protobuf:"varint,11,opt,name=visits,proto3" json:"visits,omitempty"`
 	// @inject_tag: json:"no_expiry_date"
-	NoExpiryDate bool `protobuf:"varint,12,opt,name=no_expiry_date,json=noExpiryDate,proto3" json:"no_expiry_date"`
+	NoExpiryDate bool `protobuf:"varint,12,opt,name=no_expiry_date,json=noExpiryDate,proto3" json:"no_expiry_date,omitempty"`
 	// @inject_tag: json:"products_type"
-	ProductsType string `protobuf:"bytes,13,opt,name=products_type,json=productsType,proto3" json:"products_type"`
+	ProductsType string `protobuf:"bytes,13,opt,name=products_type,json=productsType,proto3" json:"products_type,omitempty"`
 	// @inject_tag: json:"-"
-	Deleted bool `protobuf:"varint,14,opt,name=deleted,proto3" json:"-"`
+	Deleted bool `protobuf:"varint,14,opt,name=deleted,proto3" json:"deleted,omitempty"`
 	// @inject_tag: json:"total_transactions"
-	TotalTransactions int32 `protobuf:"varint,15,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions"`
+	TotalTransactions int32 `protobuf:"varint,15,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions,omitempty"`
 	// @inject_tag: json:"sales_count"
-	SalesCount int32 `protobuf:"varint,16,opt,name=sales_count,json=salesCount,proto3" json:"sales_count"`
+	SalesCount int32 `protobuf:"varint,16,opt,name=sales_count,json=salesCount,proto3" json:"sales_count,omitempty"`
 	// @inject_tag: json:"returns_count"
-	ReturnsCount int32 `protobuf:"varint,17,opt,name=returns_count,json=returnsCount,proto3" json:"returns_count"`
+	ReturnsCount int32 `protobuf:"varint,17,opt,name=returns_count,json=returnsCount,proto3" json:"returns_count,omitempty"`
 	// @inject_tag: json:"conversion"
-	Conversion float64 `protobuf:"fixed64,18,opt,name=conversion,proto3" json:"conversion"`
+	Conversion float64 `protobuf:"fixed64,18,opt,name=conversion,proto3" json:"conversion,omitempty"`
 	// @inject_tag: json:"gross_sales_amount"
-	GrossSalesAmount float64 `protobuf:"fixed64,19,opt,name=gross_sales_amount,json=grossSalesAmount,proto3" json:"gross_sales_amount"`
+	GrossSalesAmount float64 `protobuf:"fixed64,19,opt,name=gross_sales_amount,json=grossSalesAmount,proto3" json:"gross_sales_amount,omitempty"`
 	// @inject_tag: json:"gross_returns_amount"
-	GrossReturnsAmount float64 `protobuf:"fixed64,20,opt,name=gross_returns_amount,json=grossReturnsAmount,proto3" json:"gross_returns_amount"`
+	GrossReturnsAmount float64 `protobuf:"fixed64,20,opt,name=gross_returns_amount,json=grossReturnsAmount,proto3" json:"gross_returns_amount,omitempty"`
 	// @inject_tag: json:"gross_total_amount"
-	GrossTotalAmount float64 `protobuf:"fixed64,21,opt,name=gross_total_amount,json=grossTotalAmount,proto3" json:"gross_total_amount"`
+	GrossTotalAmount float64 `protobuf:"fixed64,21,opt,name=gross_total_amount,json=grossTotalAmount,proto3" json:"gross_total_amount,omitempty"`
 	// @inject_tag: json:"transactions_currency"
-	TransactionsCurrency string   `protobuf:"bytes,22,opt,name=transactions_currency,json=transactionsCurrency,proto3" json:"transactions_currency"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	TransactionsCurrency string   `protobuf:"bytes,22,opt,name=transactions_currency,json=transactionsCurrency,proto3" json:"transactions_currency,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Paylink) Reset()         { *m = Paylink{} }
@@ -355,38 +355,38 @@ func (m *Paylink) GetTransactionsCurrency() string {
 
 type StatCommon struct {
 	// @inject_tag: json:"-" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// @inject_tag: json:"paylink_id" bson:"-"
-	PaylinkId string `protobuf:"bytes,2,opt,name=paylink_id,json=paylinkId,proto3" json:"paylink_id" bson:"-"`
+	PaylinkId string `protobuf:"bytes,2,opt,name=paylink_id,json=paylinkId,proto3" json:"paylink_id,omitempty"`
 	// @inject_tag: json:"visits" bson:"-"
-	Visits int32 `protobuf:"varint,3,opt,name=visits,proto3" json:"visits" bson:"-"`
+	Visits int32 `protobuf:"varint,3,opt,name=visits,proto3" json:"visits,omitempty"`
 	// @inject_tag: json:"total_transactions" bson:"total_transactions"
-	TotalTransactions int32 `protobuf:"varint,4,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions" bson:"total_transactions"`
+	TotalTransactions int32 `protobuf:"varint,4,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions,omitempty"`
 	// @inject_tag: json:"sales_count" bson:"sales_count"
-	SalesCount int32 `protobuf:"varint,5,opt,name=sales_count,json=salesCount,proto3" json:"sales_count" bson:"sales_count"`
+	SalesCount int32 `protobuf:"varint,5,opt,name=sales_count,json=salesCount,proto3" json:"sales_count,omitempty"`
 	// @inject_tag: json:"returns_count" bson:"returns_count"
-	ReturnsCount int32 `protobuf:"varint,6,opt,name=returns_count,json=returnsCount,proto3" json:"returns_count" bson:"returns_count"`
+	ReturnsCount int32 `protobuf:"varint,6,opt,name=returns_count,json=returnsCount,proto3" json:"returns_count,omitempty"`
 	// @inject_tag: json:"gross_sales_amount" bson:"gross_sales_amount"
-	GrossSalesAmount float64 `protobuf:"fixed64,7,opt,name=gross_sales_amount,json=grossSalesAmount,proto3" json:"gross_sales_amount" bson:"gross_sales_amount"`
+	GrossSalesAmount float64 `protobuf:"fixed64,7,opt,name=gross_sales_amount,json=grossSalesAmount,proto3" json:"gross_sales_amount,omitempty"`
 	// @inject_tag: json:"gross_returns_amount" bson:"gross_returns_amount"
-	GrossReturnsAmount float64 `protobuf:"fixed64,8,opt,name=gross_returns_amount,json=grossReturnsAmount,proto3" json:"gross_returns_amount" bson:"gross_returns_amount"`
+	GrossReturnsAmount float64 `protobuf:"fixed64,8,opt,name=gross_returns_amount,json=grossReturnsAmount,proto3" json:"gross_returns_amount,omitempty"`
 	// @inject_tag: json:"gross_total_amount" bson:"gross_total_amount"
-	GrossTotalAmount float64 `protobuf:"fixed64,9,opt,name=gross_total_amount,json=grossTotalAmount,proto3" json:"gross_total_amount" bson:"gross_total_amount"`
+	GrossTotalAmount float64 `protobuf:"fixed64,9,opt,name=gross_total_amount,json=grossTotalAmount,proto3" json:"gross_total_amount,omitempty"`
 	// @inject_tag: json:"transactions_currency" bson:"transactions_currency"
-	TransactionsCurrency string `protobuf:"bytes,10,opt,name=transactions_currency,json=transactionsCurrency,proto3" json:"transactions_currency" bson:"transactions_currency"`
+	TransactionsCurrency string `protobuf:"bytes,10,opt,name=transactions_currency,json=transactionsCurrency,proto3" json:"transactions_currency,omitempty"`
 	// @inject_tag: json:"conversion" bson:"-"
-	Conversion float64 `protobuf:"fixed64,11,opt,name=conversion,proto3" json:"conversion" bson:"-"`
+	Conversion float64 `protobuf:"fixed64,11,opt,name=conversion,proto3" json:"conversion,omitempty"`
 	// @inject_tag: json:"country_code" bson:"-"
-	CountryCode string `protobuf:"bytes,12,opt,name=country_code,json=countryCode,proto3" json:"country_code" bson:"-"`
+	CountryCode string `protobuf:"bytes,12,opt,name=country_code,json=countryCode,proto3" json:"country_code,omitempty"`
 	// @inject_tag: json:"date" bson:"-"
-	Date string `protobuf:"bytes,13,opt,name=date,proto3" json:"date" bson:"-"`
+	Date string `protobuf:"bytes,13,opt,name=date,proto3" json:"date,omitempty"`
 	// @inject_tag: json:"referrer_host" bson:"-"
-	ReferrerHost string `protobuf:"bytes,14,opt,name=referrer_host,json=referrerHost,proto3" json:"referrer_host" bson:"-"`
+	ReferrerHost string `protobuf:"bytes,14,opt,name=referrer_host,json=referrerHost,proto3" json:"referrer_host,omitempty"`
 	// @inject_tag: json:"utm" bson:"-"
-	Utm                  *Utm     `protobuf:"bytes,15,opt,name=utm,proto3" json:"utm" bson:"-"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	Utm                  *Utm     `protobuf:"bytes,15,opt,name=utm,proto3" json:"utm,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *StatCommon) Reset()         { *m = StatCommon{} }
@@ -521,14 +521,14 @@ func (m *StatCommon) GetUtm() *Utm {
 
 type Utm struct {
 	// @inject_tag: json:"utm_source"
-	UtmSource string `protobuf:"bytes,1,opt,name=utm_source,json=utmSource,proto3" json:"utm_source"`
+	UtmSource string `protobuf:"bytes,1,opt,name=utm_source,json=utmSource,proto3" json:"utm_source,omitempty"`
 	// @inject_tag: json:"utm_medium"
-	UtmMedium string `protobuf:"bytes,2,opt,name=utm_medium,json=utmMedium,proto3" json:"utm_medium"`
+	UtmMedium string `protobuf:"bytes,2,opt,name=utm_medium,json=utmMedium,proto3" json:"utm_medium,omitempty"`
 	// @inject_tag: json:"utm_campaign"
-	UtmCampaign          string   `protobuf:"bytes,3,opt,name=utm_campaign,json=utmCampaign,proto3" json:"utm_campaign"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	UtmCampaign          string   `protobuf:"bytes,3,opt,name=utm_campaign,json=utmCampaign,proto3" json:"utm_campaign,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *Utm) Reset()         { *m = Utm{} }
@@ -579,12 +579,12 @@ func (m *Utm) GetUtmCampaign() string {
 
 type GroupStatCommon struct {
 	// @inject_tag: json:"top" bson:"top"
-	Top []*StatCommon `protobuf:"bytes,1,rep,name=top,proto3" json:"top" bson:"top"`
+	Top []*StatCommon `protobuf:"bytes,1,rep,name=top,proto3" json:"top,omitempty"`
 	// @inject_tag: json:"total" bson:"total"
-	Total                *StatCommon `protobuf:"bytes,2,opt,name=total,proto3" json:"total" bson:"total"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte      `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32       `json:"-" bson:"-" structure:"-" validate:"-"`
+	Total                *StatCommon `protobuf:"bytes,2,opt,name=total,proto3" json:"total,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
 func (m *GroupStatCommon) Reset()         { *m = GroupStatCommon{} }
