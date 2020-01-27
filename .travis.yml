@@ -28,13 +28,13 @@ after_success:
 #  - bash <(curl -s https://codecov.io/bash)
   - git config user.name "Travis CI"
   - git config user.email "Travis CI"
-  - git checkout -q develop
+  - git checkout -q $TRAVIS_BRANCH
   - git add .
   - git commit --allow-empty -m "Update repo [skip ci]"
   - git remote add authenticated https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/paysuper/paysuper-proto.git
   - export GIT_TAG=v0.1.$TRAVIS_BUILD_NUMBER
   - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
-  - git push --quiet authenticated develop --tags &>/dev/null
+  - git push --quiet authenticated $TRAVIS_BRANCH --tags &>/dev/null
 
 notifications:
   email: false
