@@ -4025,8 +4025,8 @@ type PaymentMethodOrder struct {
 	Wallet *PaymentMethodWallet `protobuf:"bytes,9,opt,name=wallet,proto3" json:"wallet" bson:"wallet"`
 	//@inject_tag: json:"crypto_currency" bson:"crypto_currency"
 	CryptoCurrency *PaymentMethodCrypto `protobuf:"bytes,10,opt,name=crypto_currency,json=cryptoCurrency,proto3" json:"crypto_currency" bson:"crypto_currency"`
-	// @inject_tag: json:"type" bson:"group_alias"
-	Handler string `protobuf:"bytes,11,opt,name=handler,proto3" json:"type" bson:"group_alias"`
+	// @inject_tag: json:"type" bson:"handler"
+	Handler string `protobuf:"bytes,11,opt,name=handler,proto3" json:"type" bson:"handler"`
 	// @inject_tag: json:"refund_allowed" bson:"refund_allowed"
 	RefundAllowed        bool     `protobuf:"varint,12,opt,name=refund_allowed,json=refundAllowed,proto3" json:"refund_allowed" bson:"refund_allowed"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`

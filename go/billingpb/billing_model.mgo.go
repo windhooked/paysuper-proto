@@ -4486,6 +4486,7 @@ func getPaymentMethodOrder(in *MgoOrderPaymentMethod) *PaymentMethodOrder {
 		Group:           in.Group,
 		Saved:           in.Saved,
 		RefundAllowed:   in.RefundAllowed,
+		Handler:         in.Handler,
 	}
 
 	if in.Card != nil {

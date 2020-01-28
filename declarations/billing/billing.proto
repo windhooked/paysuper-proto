@@ -839,7 +839,7 @@ message PaymentMethodOrder {
     PaymentMethodWallet wallet = 9;
     //@inject_tag: json:"crypto_currency" bson:"crypto_currency"
     PaymentMethodCrypto crypto_currency = 10;
-    // @inject_tag: json:"type" bson:"group_alias"
+    // @inject_tag: json:"type" bson:"handler"
     string handler = 11;
     // @inject_tag: json:"refund_allowed" bson:"refund_allowed"
     bool refund_allowed = 12;
