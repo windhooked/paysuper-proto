@@ -14,3 +14,11 @@ func (m *Merchant) GetOwnerName() string {
 
 	return m.User.FirstName + " " + m.User.LastName
 }
+
+func (m *Merchant) GetOwnerEmail() string {
+	if m.User == nil {
+		return ""
+	}
+
+	return m.User.Email
+}
