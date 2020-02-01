@@ -58,6 +58,7 @@ type MgoProject struct {
 	VirtualCurrency  *ProjectVirtualCurrency  `bson:"virtual_currency"`
 	VatPayer         string                   `bson:"vat_payer"`
 	RedirectSettings *ProjectRedirectSettings `bson:"redirect_settings"`
+	WebHookMode      string                   `bson:"webhook_mode"`
 }
 
 type MgoMerchantLastPayout struct {
@@ -1421,6 +1422,7 @@ func (m *Project) MarshalBSON() ([]byte, error) {
 		VirtualCurrency:          m.VirtualCurrency,
 		VatPayer:                 m.VatPayer,
 		RedirectSettings:         m.RedirectSettings,
+		WebHookMode:              m.WebhookMode,
 	}
 
 	if len(m.Name) > 0 {
@@ -1510,6 +1512,7 @@ func (m *Project) UnmarshalBSON(raw []byte) error {
 	m.VirtualCurrency = decoded.VirtualCurrency
 	m.VatPayer = decoded.VatPayer
 	m.RedirectSettings = decoded.RedirectSettings
+	m.WebhookMode = decoded.WebHookMode
 
 	nameLen := len(decoded.Name)
 
