@@ -8,5 +8,3 @@ require (
 	github.com/stretchr/testify v1.4.0
 	go.mongodb.org/mongo-driver v1.2.1
 )
-
-replace github.com/hashicorp/consul => github.com/hashicorp/consul v1.5.1

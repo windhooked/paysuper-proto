@@ -10,5 +10,3 @@ require (
 	github.com/stretchr/testify v1.4.0
 	google.golang.org/genproto v0.0.0-20200117163144-32f20d992d24
 )
-
-replace github.com/hashicorp/consul => github.com/hashicorp/consul v1.5.1

@@ -13,5 +13,3 @@ require (
 	go.mongodb.org/mongo-driver v1.2.1
 	go.uber.org/zap v1.13.0
 )
-
-replace github.com/hashicorp/consul => github.com/hashicorp/consul v1.5.1

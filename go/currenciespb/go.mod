@@ -8,5 +8,3 @@ require (
 	github.com/micro/go-micro v1.18.0
 	github.com/stretchr/testify v1.4.0
 )
-
-replace github.com/hashicorp/consul => github.com/hashicorp/consul v1.5.1
