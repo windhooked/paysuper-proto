@@ -15,6 +15,7 @@ install:
   - export GOBIN=$GOPATH/bin && export PATH=$PATH:$GOROOT:$GOPATH:$GOBIN
   - go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
   - go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+  - go get -u github.com/unistack-org/protoc-gen-microrest
   - go get -u github.com/golang/protobuf/protoc-gen-go
   - go get -u github.com/micro/protoc-gen-micro
   - go get github.com/favadi/protoc-go-inject-tag
