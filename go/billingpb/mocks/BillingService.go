@@ -4152,6 +4152,36 @@ func (_m *BillingService) MerchantReviewRoyaltyReport(ctx context.Context, in *b
 	return r0, r1
 }
 
+// NotifyWebhookTestResults provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) NotifyWebhookTestResults(ctx context.Context, in *billingpb.NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.EmptyResponseWithStatus
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.NotifyWebhookTestResultsRequest, ...client.CallOption) *billingpb.EmptyResponseWithStatus); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.EmptyResponseWithStatus)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.NotifyWebhookTestResultsRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // OrderCreateByPaylink provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) OrderCreateByPaylink(ctx context.Context, in *billingpb.OrderCreateByPaylink, opts ...client.CallOption) (*billingpb.OrderCreateProcessResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -4722,6 +4752,36 @@ func (_m *BillingService) RoyaltyReportPdfUploaded(ctx context.Context, in *bill
 	return r0, r1
 }
 
+// SendWebhookToMerchant provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) SendWebhookToMerchant(ctx context.Context, in *billingpb.OrderCreateRequest, opts ...client.CallOption) (*billingpb.SendWebhookToMerchantResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.SendWebhookToMerchantResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.OrderCreateRequest, ...client.CallOption) *billingpb.SendWebhookToMerchantResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.SendWebhookToMerchantResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.OrderCreateRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // SetMerchantOperatingCompany provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) SetMerchantOperatingCompany(ctx context.Context, in *billingpb.SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*billingpb.SetMerchantOperatingCompanyResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -5074,6 +5134,36 @@ func (_m *BillingService) UpdateCountry(ctx context.Context, in *billingpb.Count
 
 	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.Country, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// UpdateMerchant provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) UpdateMerchant(ctx context.Context, in *billingpb.Merchant, opts ...client.CallOption) (*billingpb.EmptyResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.EmptyResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.Merchant, ...client.CallOption) *billingpb.EmptyResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.EmptyResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.Merchant, ...client.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)

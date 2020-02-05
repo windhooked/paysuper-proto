@@ -16,7 +16,7 @@ message Name {
 message OrderCreateRequest {
     // @inject_tag: query:"PO_PROJECT_ID" form:"PO_PROJECT_ID" json:"project"  validate:"omitempty,hexadecimal" required:"true"
     //
-    // The ID of the Project found in your merchant account in the PaySuper Dashboard.
+    // The ID of the Project found in your merchant account in the PaySuper Dashboard.    
     string project_id = 1;
     // @inject_tag: query:"PO_SIGNATURE" form:"PO_SIGNATURE" json:"-" validate:"omitempty,alphanum"
     string signature = 2;
@@ -119,6 +119,9 @@ message OrderCreateRequest {
     //
     //The redirect button messages after the successful or failed payment. If it has an empty value the redirect message will be set at OK.
     string button_caption = 41;
+
+    //@inject_tag: bson:"testing_case" json:"testing_case" validate:"omitempty,oneof=correct_payment non_existing_user existing_user invalid_signature"
+    string testing_case = 42;
 }
 
 message ProjectRedirectSettings {
@@ -217,6 +220,38 @@ message Project {
     //
     //The customer's redirection settings for the successful or failed payment.
     ProjectRedirectSettings redirect_settings = 37;
+
+    //@inject_tag: json:"webhook_testing"
+    WebHookTesting webhook_testing = 38;
+    //@inject_tag: json:"webhook_mode" validate:"omitempty,oneof=default pre_approval"
+    string webhook_mode = 39;
+}
+
+message WebHookTesting {
+    //@inject_tag: json:"products" bson:"products"
+    ProductsTesting products = 1;
+    //@inject_tag: json:"virtual_currency" bson:"virtual_currency"
+    VirtualCurrencyTesting virtual_currency = 2;
+    //@inject_tag: json:"keys" bson:"keys"
+    KeysTesting keys = 3;
+}
+
+message ProductsTesting {
+    bool non_existing_user = 1;
+    bool existing_user = 2;
+    bool correct_payment = 3;
+    bool incorrect_payment = 4;
+}
+
+message VirtualCurrencyTesting {
+    bool non_existing_user = 1;
+    bool existing_user = 2;
+    bool correct_payment = 3;
+    bool incorrect_payment = 4;
+}
+
+message KeysTesting  {
+    bool is_passed = 1;
 }
 
 message ProjectOrder {
@@ -734,6 +769,8 @@ message Order {
     string vat_payer = 86;
     // @inject_tag: json:"is_production"
     bool is_production = 87;
+    // @inject_tag: json:"testing_case"
+    string testing_case = 88;
 }
 
 message ParentOrder {

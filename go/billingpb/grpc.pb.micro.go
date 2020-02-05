@@ -43,6 +43,7 @@ type BillingService interface {
 	OrderReceipt(ctx context.Context, in *OrderReceiptRequest, opts ...client.CallOption) (*OrderReceiptResponse, error)
 	OrderReCreateProcess(ctx context.Context, in *OrderReCreateProcessRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error)
 	UpdateOrder(ctx context.Context, in *Order, opts ...client.CallOption) (*EmptyResponse, error)
+	UpdateMerchant(ctx context.Context, in *Merchant, opts ...client.CallOption) (*EmptyResponse, error)
 	GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, opts ...client.CallOption) (*GetMerchantResponse, error)
 	ListMerchants(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*MerchantListingResponse, error)
 	ChangeMerchant(ctx context.Context, in *OnboardingRequest, opts ...client.CallOption) (*ChangeMerchantResponse, error)
@@ -193,6 +194,8 @@ type BillingService interface {
 	GetOperatingCompany(ctx context.Context, in *GetOperatingCompanyRequest, opts ...client.CallOption) (*GetOperatingCompanyResponse, error)
 	GetPaymentMinLimitsSystem(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetPaymentMinLimitsSystemResponse, error)
 	SetPaymentMinLimitSystem(ctx context.Context, in *PaymentMinLimitSystem, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, opts ...client.CallOption) (*SendWebhookToMerchantResponse, error)
+	NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	GetMerchantUsers(ctx context.Context, in *GetMerchantUsersRequest, opts ...client.CallOption) (*GetMerchantUsersResponse, error)
 	GetAdminUsers(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetAdminUsersResponse, error)
 	InviteUserMerchant(ctx context.Context, in *InviteUserMerchantRequest, opts ...client.CallOption) (*InviteUserMerchantResponse, error)
@@ -302,6 +305,16 @@ func (c *billingService) OrderReCreateProcess(ctx context.Context, in *OrderReCr
 
 func (c *billingService) UpdateOrder(ctx context.Context, in *Order, opts ...client.CallOption) (*EmptyResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.UpdateOrder", in)
+	out := new(EmptyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) UpdateMerchant(ctx context.Context, in *Merchant, opts ...client.CallOption) (*EmptyResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.UpdateMerchant", in)
 	out := new(EmptyResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -1810,6 +1823,26 @@ func (c *billingService) SetPaymentMinLimitSystem(ctx context.Context, in *Payme
 	return out, nil
 }
 
+func (c *billingService) SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, opts ...client.CallOption) (*SendWebhookToMerchantResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.SendWebhookToMerchant", in)
+	out := new(SendWebhookToMerchantResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	req := c.c.NewRequest(c.name, "BillingService.NotifyWebhookTestResults", in)
+	out := new(EmptyResponseWithStatus)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) GetMerchantUsers(ctx context.Context, in *GetMerchantUsersRequest, opts ...client.CallOption) (*GetMerchantUsersResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.GetMerchantUsers", in)
 	out := new(GetMerchantUsersResponse)
@@ -1991,6 +2024,7 @@ type BillingServiceHandler interface {
 	OrderReceipt(context.Context, *OrderReceiptRequest, *OrderReceiptResponse) error
 	OrderReCreateProcess(context.Context, *OrderReCreateProcessRequest, *OrderCreateProcessResponse) error
 	UpdateOrder(context.Context, *Order, *EmptyResponse) error
+	UpdateMerchant(context.Context, *Merchant, *EmptyResponse) error
 	GetMerchantBy(context.Context, *GetMerchantByRequest, *GetMerchantResponse) error
 	ListMerchants(context.Context, *MerchantListingRequest, *MerchantListingResponse) error
 	ChangeMerchant(context.Context, *OnboardingRequest, *ChangeMerchantResponse) error
@@ -2141,6 +2175,8 @@ type BillingServiceHandler interface {
 	GetOperatingCompany(context.Context, *GetOperatingCompanyRequest, *GetOperatingCompanyResponse) error
 	GetPaymentMinLimitsSystem(context.Context, *EmptyRequest, *GetPaymentMinLimitsSystemResponse) error
 	SetPaymentMinLimitSystem(context.Context, *PaymentMinLimitSystem, *EmptyResponseWithStatus) error
+	SendWebhookToMerchant(context.Context, *OrderCreateRequest, *SendWebhookToMerchantResponse) error
+	NotifyWebhookTestResults(context.Context, *NotifyWebhookTestResultsRequest, *EmptyResponseWithStatus) error
 	GetMerchantUsers(context.Context, *GetMerchantUsersRequest, *GetMerchantUsersResponse) error
 	GetAdminUsers(context.Context, *EmptyRequest, *GetAdminUsersResponse) error
 	InviteUserMerchant(context.Context, *InviteUserMerchantRequest, *InviteUserMerchantResponse) error
@@ -2170,6 +2206,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		OrderReceipt(ctx context.Context, in *OrderReceiptRequest, out *OrderReceiptResponse) error
 		OrderReCreateProcess(ctx context.Context, in *OrderReCreateProcessRequest, out *OrderCreateProcessResponse) error
 		UpdateOrder(ctx context.Context, in *Order, out *EmptyResponse) error
+		UpdateMerchant(ctx context.Context, in *Merchant, out *EmptyResponse) error
 		GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, out *GetMerchantResponse) error
 		ListMerchants(ctx context.Context, in *MerchantListingRequest, out *MerchantListingResponse) error
 		ChangeMerchant(ctx context.Context, in *OnboardingRequest, out *ChangeMerchantResponse) error
@@ -2320,6 +2357,8 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetOperatingCompany(ctx context.Context, in *GetOperatingCompanyRequest, out *GetOperatingCompanyResponse) error
 		GetPaymentMinLimitsSystem(ctx context.Context, in *EmptyRequest, out *GetPaymentMinLimitsSystemResponse) error
 		SetPaymentMinLimitSystem(ctx context.Context, in *PaymentMinLimitSystem, out *EmptyResponseWithStatus) error
+		SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, out *SendWebhookToMerchantResponse) error
+		NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, out *EmptyResponseWithStatus) error
 		GetMerchantUsers(ctx context.Context, in *GetMerchantUsersRequest, out *GetMerchantUsersResponse) error
 		GetAdminUsers(ctx context.Context, in *EmptyRequest, out *GetAdminUsersResponse) error
 		InviteUserMerchant(ctx context.Context, in *InviteUserMerchantRequest, out *InviteUserMerchantResponse) error
@@ -2379,6 +2418,10 @@ func (h *billingServiceHandler) OrderReCreateProcess(ctx context.Context, in *Or
 
 func (h *billingServiceHandler) UpdateOrder(ctx context.Context, in *Order, out *EmptyResponse) error {
 	return h.BillingServiceHandler.UpdateOrder(ctx, in, out)
+}
+
+func (h *billingServiceHandler) UpdateMerchant(ctx context.Context, in *Merchant, out *EmptyResponse) error {
+	return h.BillingServiceHandler.UpdateMerchant(ctx, in, out)
 }
 
 func (h *billingServiceHandler) GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, out *GetMerchantResponse) error {
@@ -2979,6 +3022,14 @@ func (h *billingServiceHandler) GetPaymentMinLimitsSystem(ctx context.Context, i
 
 func (h *billingServiceHandler) SetPaymentMinLimitSystem(ctx context.Context, in *PaymentMinLimitSystem, out *EmptyResponseWithStatus) error {
 	return h.BillingServiceHandler.SetPaymentMinLimitSystem(ctx, in, out)
+}
+
+func (h *billingServiceHandler) SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, out *SendWebhookToMerchantResponse) error {
+	return h.BillingServiceHandler.SendWebhookToMerchant(ctx, in, out)
+}
+
+func (h *billingServiceHandler) NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, out *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.NotifyWebhookTestResults(ctx, in, out)
 }
 
 func (h *billingServiceHandler) GetMerchantUsers(ctx context.Context, in *GetMerchantUsersRequest, out *GetMerchantUsersResponse) error {
