@@ -20,3 +20,5 @@ protoc -I=../declarations/tax-service --micro_out=./taxpb/ --go_out=./taxpb/ ../
 
 protoc -I=../declarations/document-signer --micro_out=./document_signerpb/ --go_out=./document_signerpb/ ../declarations/document-signer/signer.proto
 
+protoc -I=../declarations/notifier --micro_out=./notifierpb/ --go_out=./notifierpb/ ../declarations/notifier/notifier.proto
+
