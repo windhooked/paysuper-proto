@@ -220,6 +220,9 @@ service BillingService {
     rpc GetMerchantUserRole(MerchantRoleRequest) returns (UserRoleResponse) {}
     rpc GetAdminUserRole(AdminRoleRequest) returns (UserRoleResponse) {}
     rpc GetCommonUserProfile(CommonUserProfileRequest) returns (CommonUserProfileResponse) {}
+
+    rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
+    rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {
