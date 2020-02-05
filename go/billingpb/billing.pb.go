@@ -2079,8 +2079,8 @@ type Merchant struct {
 	// @inject_tag: json:"status"
 	//
 	// The merchant's status. Available values: 0 - The merchant've just been created and the merchant profile have not been filled yet.
-	//3 - The agreement with the merchant was signed by the merchant owner.
-	//4 - The agreement with the merchant was signed by PaySuper.
+	//3 - The agreement with the merchant is signed by the merchant owner.
+	//4 - The agreement with the merchant is signed by PaySuper.
 	//5 - The merchant is removed.
 	//6 - The merchant is marked as a fraud and will be removed.
 	//7 - The merchant must fill the onboarding.
@@ -2208,7 +2208,7 @@ type Merchant struct {
 	ManualPayoutsEnabled bool `protobuf:"varint,54,opt,name=manual_payouts_enabled,json=manualPayoutsEnabled,proto3" json:"manual_payouts_enabled"`
 	// @inject_tag: json:"mcc_code"
 	//
-	// The Merchant Category Code (MCC).
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode string `protobuf:"bytes,55,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code"`
 	// @inject_tag: json:"operating_company_id"
 	//
@@ -2631,8 +2631,12 @@ func (m *MerchantCommon) GetHasProjects() bool {
 
 type SystemNotificationStatuses struct {
 	// @inject_tag: json:"from"
+	//
+	// The before changes status.
 	From int32 `protobuf:"varint,1,opt,name=from,proto3" json:"from"`
 	// @inject_tag: json:"to"
+	//
+	// The after changes status.
 	To                   int32    `protobuf:"varint,2,opt,name=to,proto3" json:"to"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -2680,22 +2684,40 @@ func (m *SystemNotificationStatuses) GetTo() int32 {
 
 type Notification struct {
 	// @inject_tag: json:"id"
+	//
+	// The unique identifier for the notification.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	// @inject_tag: json:"message"
+	//
+	// The notification message.
 	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message"`
 	// @inject_tag: json:"merchant_id"
+	//
+	// The unique identifier for the merchant who is the recipient of the notification.
 	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id"`
 	// @inject_tag: json:"user_id"
+	//
+	// The unique identifier for the user who is the sender of the notification.
 	UserId string `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id"`
 	// @inject_tag: json:"is_system"
+	//
+	// Has a true value if the notification is generated automatically.
 	IsSystem bool `protobuf:"varint,6,opt,name=is_system,json=isSystem,proto3" json:"is_system"`
 	// @inject_tag: json:"is_read"
+	//
+	// Has a true value if the recipient has read the notification.
 	IsRead bool `protobuf:"varint,7,opt,name=is_read,json=isRead,proto3" json:"is_read"`
 	// @inject_tag: json:"statuses"
+	//
+	// The system notification statuses. Has a null value if it's not the system notification.
 	Statuses *SystemNotificationStatuses `protobuf:"bytes,8,opt,name=statuses,proto3" json:"statuses"`
 	// @inject_tag: json:"created_at"
+	//
+	// The date of the notification creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
 	// @inject_tag: json:"updated_at"
+	//
+	// The date of the notification last update.
 	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -5664,7 +5686,7 @@ type MerchantPaymentMethod struct {
 	Commission *MerchantPaymentMethodCommissions `protobuf:"bytes,4,opt,name=commission,proto3" json:"commission,omitempty"`
 	//@inject_tag: json:"-"
 	Integration *MerchantPaymentMethodIntegration `protobuf:"bytes,5,opt,name=integration,proto3" json:"-"`
-	// Has a true value if the merchant's payment method is active.
+	// Has a true value if the payment method is active.
 	IsActive             bool     `protobuf:"varint,6,opt,name=is_active,json=isActive,proto3" json:"is_active,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -11042,15 +11064,15 @@ type OrderViewPublic struct {
 	TaxFeeTotal *OrderViewMoney `protobuf:"bytes,21,opt,name=tax_fee_total,json=taxFeeTotal,proto3" json:"tax_fee_total" bson:"tax_fee_total"`
 	// @inject_tag: json:"method_fee_total" bson:"method_fee_total"
 	//
-	// The tax fee total method.
+	// The tax fee total.
 	MethodFeeTotal *OrderViewMoney `protobuf:"bytes,22,opt,name=method_fee_total,json=methodFeeTotal,proto3" json:"method_fee_total" bson:"method_fee_total"`
 	// @inject_tag: json:"method_fee_tariff" bson:"method_fee_tariff"
 	//
-	// The tariff for the tax fee method.
+	// The tariff for the tax fee.
 	MethodFeeTariff *OrderViewMoney `protobuf:"bytes,23,opt,name=method_fee_tariff,json=methodFeeTariff,proto3" json:"method_fee_tariff" bson:"method_fee_tariff"`
 	// @inject_tag: json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"
 	//
-	// The tariff for the fixed tax fee method.
+	// The tariff for the fixed tax fee.
 	MethodFixedFeeTariff *OrderViewMoney `protobuf:"bytes,24,opt,name=method_fixed_fee_tariff,json=methodFixedFeeTariff,proto3" json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"`
 	// @inject_tag: json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"
 	//
@@ -12657,30 +12679,56 @@ func (m *RangeInt) GetTo() int32 {
 
 type MerchantTariffRatesPayment struct {
 	//@inject_tag: json:"min_amount" bson:"min_amount"
+	//
+	// The minimum payment amount.
 	MinAmount float64 `protobuf:"fixed64,1,opt,name=min_amount,json=minAmount,proto3" json:"min_amount" bson:"min_amount"`
 	//@inject_tag: json:"max_amount" bson:"max_amount"
+	//
+	// The maximum payment amount.
 	MaxAmount float64 `protobuf:"fixed64,2,opt,name=max_amount,json=maxAmount,proto3" json:"max_amount" bson:"max_amount"`
 	//@inject_tag: json:"method_name" bson:"method_name"
+	//
+	// The payment method's name.
 	MethodName string `protobuf:"bytes,3,opt,name=method_name,json=methodName,proto3" json:"method_name" bson:"method_name"`
 	//@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
+	//
+	// The fee of the payment method in per cent.
 	MethodPercentFee float64 `protobuf:"fixed64,4,opt,name=method_percent_fee,json=methodPercentFee,proto3" json:"method_percent_fee" bson:"method_percent_fee"`
 	//@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
+	//
+	// The fixed fee of the payment method in the particular currency.
 	MethodFixedFee float64 `protobuf:"fixed64,5,opt,name=method_fixed_fee,json=methodFixedFee,proto3" json:"method_fixed_fee" bson:"method_fixed_fee"`
 	//@inject_tag: json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"
+	//
+	// The currency of the fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
 	MethodFixedFeeCurrency string `protobuf:"bytes,6,opt,name=method_fixed_fee_currency,json=methodFixedFeeCurrency,proto3" json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"`
 	//@inject_tag: json:"ps_percent_fee" bson:"ps_percent_fee"
+	//
+	// The PaySuper fee in per cent.
 	PsPercentFee float64 `protobuf:"fixed64,7,opt,name=ps_percent_fee,json=psPercentFee,proto3" json:"ps_percent_fee" bson:"ps_percent_fee"`
 	//@inject_tag: json:"ps_fixed_fee" bson:"ps_fixed_fee"
+	//
+	// The PaySuper fixed fee in a particular currency.
 	PsFixedFee float64 `protobuf:"fixed64,8,opt,name=ps_fixed_fee,json=psFixedFee,proto3" json:"ps_fixed_fee" bson:"ps_fixed_fee"`
 	//@inject_tag: json:"ps_fixed_fee_currency" bson:"ps_fixed_fee_currency"
+	//
+	// The currency of the PaySuper fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
 	PsFixedFeeCurrency string `protobuf:"bytes,9,opt,name=ps_fixed_fee_currency,json=psFixedFeeCurrency,proto3" json:"ps_fixed_fee_currency" bson:"ps_fixed_fee_currency"`
 	//@inject_tag: json:"merchant_home_region" bson:"merchant_home_region"
+	//
+	// The merchant's home region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
 	MerchantHomeRegion string `protobuf:"bytes,10,opt,name=merchant_home_region,json=merchantHomeRegion,proto3" json:"merchant_home_region" bson:"merchant_home_region"`
 	//@inject_tag: json:"payer_region" bson:"payer_region"
+	//
+	// The payer's region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
 	PayerRegion string `protobuf:"bytes,11,opt,name=payer_region,json=payerRegion,proto3" json:"payer_region" bson:"payer_region"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
+	//
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode string `protobuf:"bytes,12,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
 	// @inject_tag: json:"is_active" bson:"is_active"
+	//
+	// Has a true value if the payment method is active.
 	IsActive             bool     `protobuf:"varint,13,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12805,14 +12853,24 @@ func (m *MerchantTariffRatesPayment) GetIsActive() bool {
 
 type MerchantTariffRatesSettingsItem struct {
 	//@inject_tag: json:"method_name" bson:"method_name"
+	//
+	// The method's name.
 	MethodName string `protobuf:"bytes,1,opt,name=method_name,json=methodName,proto3" json:"method_name" bson:"method_name"`
 	//@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
+	//
+	// The fee of the method in per cent.
 	MethodPercentFee float64 `protobuf:"fixed64,2,opt,name=method_percent_fee,json=methodPercentFee,proto3" json:"method_percent_fee" bson:"method_percent_fee"`
 	//@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
+	//
+	// The fixed fee of the method in the particular currency.
 	MethodFixedFee float64 `protobuf:"fixed64,3,opt,name=method_fixed_fee,json=methodFixedFee,proto3" json:"method_fixed_fee" bson:"method_fixed_fee"`
 	//@inject_tag: json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"
+	//
+	// The currency of the fixed fee of the method. Three-letter currency code ISO 4217, in uppercase.
 	MethodFixedFeeCurrency string `protobuf:"bytes,4,opt,name=method_fixed_fee_currency,json=methodFixedFeeCurrency,proto3" json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"`
 	//@inject_tag: json:"is_paid_by_merchant" bson:"is_paid_by_merchant"
+	//
+	// Has a true value if the method is paid by the merchant.
 	IsPaidByMerchant     bool     `protobuf:"varint,5,opt,name=is_paid_by_merchant,json=isPaidByMerchant,proto3" json:"is_paid_by_merchant" bson:"is_paid_by_merchant"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
