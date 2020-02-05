@@ -23,21 +23,37 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type CreatePaylinkRequest struct {
 	//@inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the payment link.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: json:"expires_at" validate:"omitempty,numeric,gte=0"
+	//
+	// The date of the payment link expiration.
 	ExpiresAt int64 `protobuf:"varint,2,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at" validate:"omitempty,numeric,gte=0"`
-	//@inject_tag: json:"products" validate:"required,gte=1,dive,hexadecimal,len=24"
-	Products []string `protobuf:"bytes,3,rep,name=products,proto3" json:"products" validate:"required,gte=1,dive,hexadecimal,len=24"`
-	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: json:"project_id" validate:"required,hexadecimal,len=24"
-	ProjectId string `protobuf:"bytes,5,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24"`
-	// @inject_tag: json:"name" validate:"required"
-	Name string `protobuf:"bytes,6,opt,name=name,proto3" json:"name" validate:"required"`
+	//@inject_tag: json:"products" validate:"required,gte=1,dive,hexadecimal,len=24" required:"true"
+	//
+	// The list of the payment link's products.
+	Products []string `protobuf:"bytes,3,rep,name=products,proto3" json:"products" validate:"required,gte=1,dive,hexadecimal,len=24" required:"true"`
+	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
+	//
+	// The unique identifier for the merchant.
+	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"`
+	//@inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" required:"true"
+	//
+	// The unique identifier for the project.
+	ProjectId string `protobuf:"bytes,5,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24" required:"true"`
+	// @inject_tag: json:"name" validate:"required" required:"true"
+	//
+	// The payment link's name.
+	Name string `protobuf:"bytes,6,opt,name=name,proto3" json:"name" validate:"required" required:"true"`
 	// @inject_tag: json:"no_expiry_date"
+	//
+	// Has a true value if the payment link has no expiry date.
 	NoExpiryDate bool `protobuf:"varint,7,opt,name=no_expiry_date,json=noExpiryDate,proto3" json:"no_expiry_date"`
-	// @inject_tag: json:"products_type" validate="required,oneof=product key"
-	ProductsType         string   `protobuf:"bytes,8,opt,name=products_type,json=productsType,proto3" json:"products_type"`
+	// @inject_tag: json:"products_type" validate="required,oneof=product key" required:"true"
+	//
+	// The type of products. Available values: product, key.
+	ProductsType         string   `protobuf:"bytes,8,opt,name=products_type,json=productsType,proto3" json:"products_type" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -126,48 +142,90 @@ func (m *CreatePaylinkRequest) GetProductsType() string {
 
 type Paylink struct {
 	// @inject_tag: json:"id"
+	//
+	// The unique identifier for the payment link.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	// @inject_tag: json:"object"
+	//
+	// The system constant that contains the returned object's type. Const value: paylink.
 	Object string `protobuf:"bytes,2,opt,name=object,proto3" json:"object"`
 	// @inject_tag: json:"products"
+	//
+	// The list of the payment link's products.
 	Products []string `protobuf:"bytes,3,rep,name=products,proto3" json:"products"`
 	// @inject_tag: json:"expires_at"
+	//
+	// The date of the payment link expiration.
 	ExpiresAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at"`
 	// @inject_tag: json:"created_at"
+	//
+	// The date of the payment link creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
 	// @inject_tag: json:"updated_at"
+	//
+	// The date of the payment link last update.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	// @inject_tag: json:"merchant_id"
+	//
+	// The unique identifier for the merchant.
 	MerchantId string `protobuf:"bytes,7,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id"`
 	// @inject_tag: json:"project_id"
+	//
+	// The unique identifier for the project.
 	ProjectId string `protobuf:"bytes,8,opt,name=project_id,json=projectId,proto3" json:"project_id"`
 	// @inject_tag: json:"name"
+	//
+	// The payment link's name.
 	Name string `protobuf:"bytes,9,opt,name=name,proto3" json:"name"`
 	// @inject_tag: json:"is_expired"
+	//
+	// Has a true value if the payment link has expired.
 	IsExpired bool `protobuf:"varint,10,opt,name=is_expired,json=isExpired,proto3" json:"is_expired"`
 	// @inject_tag: json:"visits"
+	//
+	// The total number of visits.
 	Visits int32 `protobuf:"varint,11,opt,name=visits,proto3" json:"visits"`
 	// @inject_tag: json:"no_expiry_date"
+	//
+	// Has a true value if the payment link has no expiry date.
 	NoExpiryDate bool `protobuf:"varint,12,opt,name=no_expiry_date,json=noExpiryDate,proto3" json:"no_expiry_date"`
 	// @inject_tag: json:"products_type"
+	//
+	// The type of products. Available values: product, key.
 	ProductsType string `protobuf:"bytes,13,opt,name=products_type,json=productsType,proto3" json:"products_type"`
 	// @inject_tag: json:"-"
 	Deleted bool `protobuf:"varint,14,opt,name=deleted,proto3" json:"-"`
 	// @inject_tag: json:"total_transactions"
+	//
+	// The total number of transactions.
 	TotalTransactions int32 `protobuf:"varint,15,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions"`
 	// @inject_tag: json:"sales_count"
+	//
+	// The total number of sales.
 	SalesCount int32 `protobuf:"varint,16,opt,name=sales_count,json=salesCount,proto3" json:"sales_count"`
 	// @inject_tag: json:"returns_count"
+	//
+	// The total number of returns.
 	ReturnsCount int32 `protobuf:"varint,17,opt,name=returns_count,json=returnsCount,proto3" json:"returns_count"`
 	// @inject_tag: json:"conversion"
+	//
+	// The conversion - sales per visits relation.
 	Conversion float64 `protobuf:"fixed64,18,opt,name=conversion,proto3" json:"conversion"`
 	// @inject_tag: json:"gross_sales_amount"
+	//
+	// The gross amount of sales.
 	GrossSalesAmount float64 `protobuf:"fixed64,19,opt,name=gross_sales_amount,json=grossSalesAmount,proto3" json:"gross_sales_amount"`
 	// @inject_tag: json:"gross_returns_amount"
+	//
+	// The gross amount of returns.
 	GrossReturnsAmount float64 `protobuf:"fixed64,20,opt,name=gross_returns_amount,json=grossReturnsAmount,proto3" json:"gross_returns_amount"`
 	// @inject_tag: json:"gross_total_amount"
+	//
+	// The gross revenue.
 	GrossTotalAmount float64 `protobuf:"fixed64,21,opt,name=gross_total_amount,json=grossTotalAmount,proto3" json:"gross_total_amount"`
 	// @inject_tag: json:"transactions_currency"
+	//
+	// The transactions currency. Three-letter currency code in ISO 4217, in uppercase.
 	TransactionsCurrency string   `protobuf:"bytes,22,opt,name=transactions_currency,json=transactionsCurrency,proto3" json:"transactions_currency"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -357,32 +415,60 @@ type StatCommon struct {
 	// @inject_tag: json:"-" bson:"_id"
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
 	// @inject_tag: json:"paylink_id" bson:"-"
+	//
+	// The unique identifier for the payment link.
 	PaylinkId string `protobuf:"bytes,2,opt,name=paylink_id,json=paylinkId,proto3" json:"paylink_id" bson:"-"`
 	// @inject_tag: json:"visits" bson:"-"
+	//
+	// The total number of visits.
 	Visits int32 `protobuf:"varint,3,opt,name=visits,proto3" json:"visits" bson:"-"`
 	// @inject_tag: json:"total_transactions" bson:"total_transactions"
+	//
+	// The total number of transactions.
 	TotalTransactions int32 `protobuf:"varint,4,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions" bson:"total_transactions"`
 	// @inject_tag: json:"sales_count" bson:"sales_count"
+	//
+	// The total number of sales.
 	SalesCount int32 `protobuf:"varint,5,opt,name=sales_count,json=salesCount,proto3" json:"sales_count" bson:"sales_count"`
 	// @inject_tag: json:"returns_count" bson:"returns_count"
+	//
+	// The total number of returns.
 	ReturnsCount int32 `protobuf:"varint,6,opt,name=returns_count,json=returnsCount,proto3" json:"returns_count" bson:"returns_count"`
 	// @inject_tag: json:"gross_sales_amount" bson:"gross_sales_amount"
+	//
+	// The gross amount of sales.
 	GrossSalesAmount float64 `protobuf:"fixed64,7,opt,name=gross_sales_amount,json=grossSalesAmount,proto3" json:"gross_sales_amount" bson:"gross_sales_amount"`
 	// @inject_tag: json:"gross_returns_amount" bson:"gross_returns_amount"
+	//
+	// The gross amount of returns.
 	GrossReturnsAmount float64 `protobuf:"fixed64,8,opt,name=gross_returns_amount,json=grossReturnsAmount,proto3" json:"gross_returns_amount" bson:"gross_returns_amount"`
 	// @inject_tag: json:"gross_total_amount" bson:"gross_total_amount"
+	//
+	// The gross revenue.
 	GrossTotalAmount float64 `protobuf:"fixed64,9,opt,name=gross_total_amount,json=grossTotalAmount,proto3" json:"gross_total_amount" bson:"gross_total_amount"`
 	// @inject_tag: json:"transactions_currency" bson:"transactions_currency"
+	//
+	// The transactions currency. Three-letter currency code in ISO 4217, in uppercase.
 	TransactionsCurrency string `protobuf:"bytes,10,opt,name=transactions_currency,json=transactionsCurrency,proto3" json:"transactions_currency" bson:"transactions_currency"`
 	// @inject_tag: json:"conversion" bson:"-"
+	//
+	// The conversion - sales per visits relation.
 	Conversion float64 `protobuf:"fixed64,11,opt,name=conversion,proto3" json:"conversion" bson:"-"`
 	// @inject_tag: json:"country_code" bson:"-"
+	//
+	// Two-letter country code in ISO 3166-1, in uppercase (for instance US).
 	CountryCode string `protobuf:"bytes,12,opt,name=country_code,json=countryCode,proto3" json:"country_code" bson:"-"`
 	// @inject_tag: json:"date" bson:"-"
+	//
+	// The date of the summary.
 	Date string `protobuf:"bytes,13,opt,name=date,proto3" json:"date" bson:"-"`
 	// @inject_tag: json:"referrer_host" bson:"-"
+	//
+	// The address of the webpage where the request originated.
 	ReferrerHost string `protobuf:"bytes,14,opt,name=referrer_host,json=referrerHost,proto3" json:"referrer_host" bson:"-"`
 	// @inject_tag: json:"utm" bson:"-"
+	//
+	// The UTM-tags list.
 	Utm                  *Utm     `protobuf:"bytes,15,opt,name=utm,proto3" json:"utm" bson:"-"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -521,10 +607,16 @@ func (m *StatCommon) GetUtm() *Utm {
 
 type Utm struct {
 	// @inject_tag: json:"utm_source"
+	//
+	// The UTM-tag of the advertising system, for example: Bing Ads, Google Adwords.
 	UtmSource string `protobuf:"bytes,1,opt,name=utm_source,json=utmSource,proto3" json:"utm_source"`
 	// @inject_tag: json:"utm_medium"
+	//
+	// The UTM-tag of the traffic type, e.g.: cpc, cpm, email newsletter.
 	UtmMedium string `protobuf:"bytes,2,opt,name=utm_medium,json=utmMedium,proto3" json:"utm_medium"`
 	// @inject_tag: json:"utm_campaign"
+	//
+	// The UTM-tag of the advertising campaign, for example: Online games, Simulation game.
 	UtmCampaign          string   `protobuf:"bytes,3,opt,name=utm_campaign,json=utmCampaign,proto3" json:"utm_campaign"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -579,8 +671,12 @@ func (m *Utm) GetUtmCampaign() string {
 
 type GroupStatCommon struct {
 	// @inject_tag: json:"top" bson:"top"
+	//
+	// The list of statistical results for the period.
 	Top []*StatCommon `protobuf:"bytes,1,rep,name=top,proto3" json:"top" bson:"top"`
 	// @inject_tag: json:"total" bson:"total"
+	//
+	// The statistical results for the country.
 	Total                *StatCommon `protobuf:"bytes,2,opt,name=total,proto3" json:"total" bson:"total"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte      `json:"-" bson:"-" structure:"-" validate:"-"`
