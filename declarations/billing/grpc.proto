@@ -686,8 +686,12 @@ message NotificationRequest {
 
 message Notifications {
     // @inject_tag: json:"count"
+    //
+    // The total number of found notifications.
     int64 count = 1;
     // @inject_tag: json:"items"
+    //
+    // The list of notifications.
     repeated billing.Notification items = 2;
 }
 
@@ -696,7 +700,7 @@ message ListingNotificationRequest {
     string merchant_id = 1;
     // @inject_tag: query:"user" validate:"omitempty,hexadecimal,len=24"
     string user_id = 2;
-    // @inject_tag: validate:"omitempty,numeric,oneof=1 2"
+    // @inject_tag: query:"is_system" validate:"omitempty,numeric,oneof=1 2"
     int32 is_system = 3;
     // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
     int64 limit = 4;
@@ -1254,7 +1258,7 @@ message ListProductsResponse {
     int64 offset = 2;
     // @inject_tag: json:"count"
     //
-    // The total number of returned items.
+    // The total number of found items.
     int64 total = 3;
     // @inject_tag: json:"items"
     //
@@ -1322,7 +1326,7 @@ message ListProjectsRequest {
 message ListProjectsResponse {
     //@inject_tag: json:"count"
     //
-    // The total number of returned projects.
+    // The total number of found projects.
     int64 count = 1;
     //@inject_tag: json:"items"
     //
@@ -2071,7 +2075,7 @@ message VatTransactionsRequest {
 message TransactionsPaginate {
     // @inject_tag: json:"count"
     //
-    // The total number of returned transactions.
+    // The total number of found transactions.
     int32 count = 1;
     // @inject_tag: json:"items"
     //
@@ -2159,16 +2163,25 @@ message GetMerchantTariffRatesRequest {
 }
 
 message GetMerchantTariffRatesResponseItems {
+    // The payment tariffs.
     repeated billing.MerchantTariffRatesPayment payment = 1;
     //@inject_tag: json:"-"
     repeated billing.MerchantTariffRatesSettingsItem refund = 2;
     //@inject_tag: json:"chargeback"
+    //
+    // The chargeback tariffs.
     repeated billing.MerchantTariffRatesSettingsItem chargeback = 3;
     //@inject_tag: json:"payout"
+    //
+    // The payout tariffs.
     map<string, billing.MerchantTariffRatesSettingsItem> payout = 4;
     //@inject_tag: json:"minimal_payout"
+    //
+    // The minimum payout limits.
     map<string, float> minimal_payout = 5;
     //@inject_tag: json:"mcc_code"
+    //
+    // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 6;
 }
 

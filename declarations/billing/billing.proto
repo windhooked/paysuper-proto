@@ -552,8 +552,8 @@ message Merchant {
     // @inject_tag: json:"status"
     //
     // The merchant's status. Available values: 0 - The merchant've just been created and the merchant profile have not been filled yet.
-    //3 - The agreement with the merchant was signed by the merchant owner.
-    //4 - The agreement with the merchant was signed by PaySuper.
+    //3 - The agreement with the merchant is signed by the merchant owner.
+    //4 - The agreement with the merchant is signed by PaySuper.
     //5 - The merchant is removed.
     //6 - The merchant is marked as a fraud and will be removed.
     //7 - The merchant must fill the onboarding.
@@ -681,7 +681,7 @@ message Merchant {
     bool manual_payouts_enabled = 54;
     // @inject_tag: json:"mcc_code"
     //
-    // The Merchant Category Code (MCC).
+    // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 55;
     // @inject_tag: json:"operating_company_id"
     //
@@ -712,29 +712,51 @@ message MerchantCommon {
 
 message SystemNotificationStatuses {
     // @inject_tag: json:"from"
+    //
+    // The before changes status.
     int32 from = 1;
     // @inject_tag: json:"to"
+    //
+    // The after changes status.
     int32 to = 2;
 }
 
 message Notification {
     // @inject_tag: json:"id"
+    //
+    // The unique identifier for the notification.
     string id = 1;
     // @inject_tag: json:"message"
+    //
+    // The notification message.
     string message = 3;
     // @inject_tag: json:"merchant_id"
+    //
+    // The unique identifier for the merchant who is the recipient of the notification.
     string merchant_id = 4;
     // @inject_tag: json:"user_id"
+    //
+    // The unique identifier for the user who is the sender of the notification.
     string user_id = 5;
     // @inject_tag: json:"is_system"
+    //
+    // Has a true value if the notification is generated automatically.
     bool is_system = 6;
     // @inject_tag: json:"is_read"
+    //
+    // Has a true value if the recipient has read the notification.
     bool is_read = 7;
     // @inject_tag: json:"statuses"
+    //
+    // The system notification statuses. Has a null value if it's not the system notification.
     SystemNotificationStatuses statuses = 8;
     // @inject_tag: json:"created_at"
+    //
+    // The date of the notification creation.
     google.protobuf.Timestamp created_at = 9;
     // @inject_tag: json:"updated_at"
+    //
+    // The date of the notification last update.
     google.protobuf.Timestamp updated_at = 10;
 }
 
@@ -1375,7 +1397,7 @@ message MerchantPaymentMethod {
     MerchantPaymentMethodCommissions commission = 4;
     //@inject_tag: json:"-"
     MerchantPaymentMethodIntegration integration = 5;
-    // Has a true value if the merchant's payment method is active.
+    // Has a true value if the payment method is active.
     bool is_active = 6;
 }
 
@@ -2441,15 +2463,15 @@ message OrderViewPublic {
     OrderViewMoney tax_fee_total = 21;
     // @inject_tag: json:"method_fee_total" bson:"method_fee_total"
     //
-    // The tax fee total method.
+    // The tax fee total.
     OrderViewMoney method_fee_total = 22;
     // @inject_tag: json:"method_fee_tariff" bson:"method_fee_tariff"
     //
-    // The tariff for the tax fee method.
+    // The tariff for the tax fee.
     OrderViewMoney method_fee_tariff = 23;
     // @inject_tag: json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"
     //
-    // The tariff for the fixed tax fee method.
+    // The tariff for the fixed tax fee.
     OrderViewMoney method_fixed_fee_tariff = 24;
     // @inject_tag: json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"
     //
@@ -2796,43 +2818,79 @@ message RangeInt {
 
 message MerchantTariffRatesPayment {
     //@inject_tag: json:"min_amount" bson:"min_amount"
+    //
+    // The minimum payment amount.
     double min_amount = 1;
     //@inject_tag: json:"max_amount" bson:"max_amount"
+    //
+    // The maximum payment amount.
     double max_amount = 2;
     //@inject_tag: json:"method_name" bson:"method_name"
+    //
+    // The payment method's name.
     string method_name = 3;
     //@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
+    //
+    // The fee of the payment method in per cent.
     double method_percent_fee = 4;
     //@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
+    //
+    // The fixed fee of the payment method in the particular currency.
     double method_fixed_fee = 5;
     //@inject_tag: json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"
+    //
+    // The currency of the fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
     string method_fixed_fee_currency = 6;
     //@inject_tag: json:"ps_percent_fee" bson:"ps_percent_fee"
+    //
+    // The PaySuper fee in per cent.
     double ps_percent_fee = 7;
     //@inject_tag: json:"ps_fixed_fee" bson:"ps_fixed_fee"
+    //
+    // The PaySuper fixed fee in a particular currency.
     double ps_fixed_fee = 8;
     //@inject_tag: json:"ps_fixed_fee_currency" bson:"ps_fixed_fee_currency"
+    //
+    // The currency of the PaySuper fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
     string ps_fixed_fee_currency = 9;
     //@inject_tag: json:"merchant_home_region" bson:"merchant_home_region"
+    //
+    // The merchant's home region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
     string merchant_home_region = 10;
     //@inject_tag: json:"payer_region" bson:"payer_region"
+    //
+    // The payer's region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
     string payer_region = 11;
     // @inject_tag: json:"mcc_code" bson:"mcc_code"
+    //
+    // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 12;
     // @inject_tag: json:"is_active" bson:"is_active"
+    //
+    // Has a true value if the payment method is active.
     bool is_active = 13;
 }
 
 message MerchantTariffRatesSettingsItem {
     //@inject_tag: json:"method_name" bson:"method_name"
+    //
+    // The method's name.
     string method_name = 1;
     //@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
+    //
+    // The fee of the method in per cent.
     double method_percent_fee = 2;
     //@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
+    //
+    // The fixed fee of the method in the particular currency.
     double method_fixed_fee = 3;
     //@inject_tag: json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"
+    //
+    // The currency of the fixed fee of the method. Three-letter currency code ISO 4217, in uppercase.
     string method_fixed_fee_currency = 4;
     //@inject_tag: json:"is_paid_by_merchant" bson:"is_paid_by_merchant"
+    //
+    // Has a true value if the method is paid by the merchant.
     bool is_paid_by_merchant = 5;
 }
 
