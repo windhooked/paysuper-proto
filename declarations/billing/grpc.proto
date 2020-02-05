@@ -17,7 +17,6 @@ service BillingService {
     rpc OrderReCreateProcess (OrderReCreateProcessRequest) returns (OrderCreateProcessResponse) {}
 
     rpc UpdateOrder (billing.Order) returns (EmptyResponse) {}
-    rpc UpdateMerchant (billing.Merchant) returns (EmptyResponse) {}
 
     rpc GetMerchantBy (GetMerchantByRequest) returns (GetMerchantResponse) {}
     rpc ListMerchants (MerchantListingRequest) returns (MerchantListingResponse) {}
@@ -203,9 +202,6 @@ service BillingService {
 
     rpc GetPaymentMinLimitsSystem (EmptyRequest) returns (GetPaymentMinLimitsSystemResponse) {}
     rpc SetPaymentMinLimitSystem (billing.PaymentMinLimitSystem) returns (EmptyResponseWithStatus) {}
-
-    rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
-    rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
 
     rpc GetMerchantUsers(GetMerchantUsersRequest) returns (GetMerchantUsersResponse) {}
     rpc GetAdminUsers(EmptyRequest) returns (GetAdminUsersResponse) {}
