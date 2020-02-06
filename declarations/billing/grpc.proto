@@ -220,6 +220,9 @@ service BillingService {
     rpc GetMerchantUserRole(MerchantRoleRequest) returns (UserRoleResponse) {}
     rpc GetAdminUserRole(AdminRoleRequest) returns (UserRoleResponse) {}
     rpc GetCommonUserProfile(CommonUserProfileRequest) returns (CommonUserProfileResponse) {}
+
+    rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
+    rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {
@@ -2416,11 +2419,24 @@ message GetPaylinksRequest {
     int64 offset = 4;
 }
 
+message SendWebhookToMerchantResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    string order_id = 3;
+}
+
 message PaylinksPaginate {
     // @inject_tag: json:"count"
     int32 count = 1; // total count of selected orders
     // @inject_tag: json:"items"
     repeated paylink.Paylink items = 2; // array of selected docs
+}
+
+message NotifyWebhookTestResultsRequest {
+    string type = 1;
+    string project_id = 2;
+    bool is_passed = 3;
+    string test_case = 4;
 }
 
 message GetPaylinksResponse {
