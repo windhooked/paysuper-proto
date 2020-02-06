@@ -237,20 +237,29 @@ message WebHookTesting {
 }
 
 message ProductsTesting {
+    //@inject_tag: json:"non_existing_user" bson:"non_existing_user"
     bool non_existing_user = 1;
+    //@inject_tag: json:"existing_user" bson:"existing_user"
     bool existing_user = 2;
+    //@inject_tag: json:"correct_payment" bson:"correct_payment"
     bool correct_payment = 3;
+    //@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
     bool incorrect_payment = 4;
 }
 
 message VirtualCurrencyTesting {
+    //@inject_tag: json:"non_existing_user" bson:"non_existing_user"
     bool non_existing_user = 1;
+    //@inject_tag: json:"existing_user" bson:"existing_user"
     bool existing_user = 2;
+    //@inject_tag: json:"correct_payment" bson:"correct_payment"
     bool correct_payment = 3;
+    //@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
     bool incorrect_payment = 4;
 }
 
 message KeysTesting  {
+    //@inject_tag: json:"is_passed" bson:"is_passed"
     bool is_passed = 1;
 }
 
