@@ -1013,10 +1013,14 @@ func (m *WebHookTesting) GetKeys() *KeysTesting {
 }
 
 type ProductsTesting struct {
-	NonExistingUser      bool     `protobuf:"varint,1,opt,name=non_existing_user,json=nonExistingUser,proto3" json:"non_existing_user,omitempty"`
-	ExistingUser         bool     `protobuf:"varint,2,opt,name=existing_user,json=existingUser,proto3" json:"existing_user,omitempty"`
-	CorrectPayment       bool     `protobuf:"varint,3,opt,name=correct_payment,json=correctPayment,proto3" json:"correct_payment,omitempty"`
-	IncorrectPayment     bool     `protobuf:"varint,4,opt,name=incorrect_payment,json=incorrectPayment,proto3" json:"incorrect_payment,omitempty"`
+	//@inject_tag: json:"non_existing_user" bson:"non_existing_user"
+	NonExistingUser bool `protobuf:"varint,1,opt,name=non_existing_user,json=nonExistingUser,proto3" json:"non_existing_user" bson:"non_existing_user"`
+	//@inject_tag: json:"existing_user" bson:"existing_user"
+	ExistingUser bool `protobuf:"varint,2,opt,name=existing_user,json=existingUser,proto3" json:"existing_user" bson:"existing_user"`
+	//@inject_tag: json:"correct_payment" bson:"correct_payment"
+	CorrectPayment bool `protobuf:"varint,3,opt,name=correct_payment,json=correctPayment,proto3" json:"correct_payment" bson:"correct_payment"`
+	//@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
+	IncorrectPayment     bool     `protobuf:"varint,4,opt,name=incorrect_payment,json=incorrectPayment,proto3" json:"incorrect_payment" bson:"incorrect_payment"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1076,10 +1080,14 @@ func (m *ProductsTesting) GetIncorrectPayment() bool {
 }
 
 type VirtualCurrencyTesting struct {
-	NonExistingUser      bool     `protobuf:"varint,1,opt,name=non_existing_user,json=nonExistingUser,proto3" json:"non_existing_user,omitempty"`
-	ExistingUser         bool     `protobuf:"varint,2,opt,name=existing_user,json=existingUser,proto3" json:"existing_user,omitempty"`
-	CorrectPayment       bool     `protobuf:"varint,3,opt,name=correct_payment,json=correctPayment,proto3" json:"correct_payment,omitempty"`
-	IncorrectPayment     bool     `protobuf:"varint,4,opt,name=incorrect_payment,json=incorrectPayment,proto3" json:"incorrect_payment,omitempty"`
+	//@inject_tag: json:"non_existing_user" bson:"non_existing_user"
+	NonExistingUser bool `protobuf:"varint,1,opt,name=non_existing_user,json=nonExistingUser,proto3" json:"non_existing_user" bson:"non_existing_user"`
+	//@inject_tag: json:"existing_user" bson:"existing_user"
+	ExistingUser bool `protobuf:"varint,2,opt,name=existing_user,json=existingUser,proto3" json:"existing_user" bson:"existing_user"`
+	//@inject_tag: json:"correct_payment" bson:"correct_payment"
+	CorrectPayment bool `protobuf:"varint,3,opt,name=correct_payment,json=correctPayment,proto3" json:"correct_payment" bson:"correct_payment"`
+	//@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
+	IncorrectPayment     bool     `protobuf:"varint,4,opt,name=incorrect_payment,json=incorrectPayment,proto3" json:"incorrect_payment" bson:"incorrect_payment"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1139,7 +1147,8 @@ func (m *VirtualCurrencyTesting) GetIncorrectPayment() bool {
 }
 
 type KeysTesting struct {
-	IsPassed             bool     `protobuf:"varint,1,opt,name=is_passed,json=isPassed,proto3" json:"is_passed,omitempty"`
+	//@inject_tag: json:"is_passed" bson:"is_passed"
+	IsPassed             bool     `protobuf:"varint,1,opt,name=is_passed,json=isPassed,proto3" json:"is_passed" bson:"is_passed"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
