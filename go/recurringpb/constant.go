@@ -37,4 +37,11 @@ const (
 	PaymentSystemGroupAliasNeteller = "NETELLER"
 	PaymentSystemGroupAliasAlipay   = "ALIPAY"
 	PaymentSystemGroupAliasBitcoin  = "BITCOIN"
+
+	TaxjarTransactionsTopicName      = "taxjar-sync-transactions"
+	TaxjarTransactionsRetryTopicName = "taxjar-sync-transactions-retry"
+	TaxjarRefundsTopicName           = "taxjar-sync-refunds"
+	TaxjarRefundsRetryTopicName      = "taxjar-sync-refunds-retry"
+	TaxjarNotificationStatusPayment  = "taxjar-payment"
+	TaxjarNotificationStatusRefund   = "taxjar-refund"
 )

@@ -86,13 +86,6 @@ func (m *Merchant) GetAuthorizedEmail() string {
 	return m.Contacts.Authorized.Email
 }
 
-func (m *Merchant) GetAuthorizedName() string {
-	if m.Contacts == nil || m.Contacts.Authorized == nil || m.Contacts.Authorized.Name == "" {
-		return ""
-	}
-	return m.Contacts.Authorized.Name
-}
-
 func (m *Merchant) GetCompanyName() string {
 	if m.Company == nil || m.Company.Name == "" {
 		return ""

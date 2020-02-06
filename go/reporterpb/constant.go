@@ -22,6 +22,7 @@ const (
 	ParamsFieldPaymentMethod = "payment_method"
 	ParamsFieldDateFrom      = "date_from"
 	ParamsFieldDateTo        = "date_to"
+	ParamsFieldMerchantId    = "merchant_id"
 
 	RequestParameterAgreementNumber                             = "number"
 	RequestParameterAgreementLegalName                          = "legal_name"
