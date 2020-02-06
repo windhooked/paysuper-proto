@@ -2740,8 +2740,12 @@ func (m *NotificationRequest) GetMessage() string {
 
 type Notifications struct {
 	// @inject_tag: json:"count"
+	//
+	// The total number of found notifications.
 	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
+	//
+	// The list of notifications.
 	Items                []*Notification `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte          `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -2792,8 +2796,8 @@ type ListingNotificationRequest struct {
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: query:"user" validate:"omitempty,hexadecimal,len=24"
 	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" query:"user" validate:"omitempty,hexadecimal,len=24"`
-	// @inject_tag: validate:"omitempty,numeric,oneof=1 2"
-	IsSystem int32 `protobuf:"varint,3,opt,name=is_system,json=isSystem,proto3" json:"is_system,omitempty" validate:"omitempty,numeric,oneof=1 2"`
+	// @inject_tag: query:"is_system" validate:"omitempty,numeric,oneof=1 2"
+	IsSystem int32 `protobuf:"varint,3,opt,name=is_system,json=isSystem,proto3" json:"is_system,omitempty" query:"is_system" validate:"omitempty,numeric,oneof=1 2"`
 	// @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
 	Limit int64 `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty" query:"limit" validate:"omitempty,numeric,gt=0"`
 	// @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
@@ -5911,7 +5915,7 @@ type ListProductsResponse struct {
 	Offset int64 `protobuf:"varint,2,opt,name=offset,proto3" json:"offset"`
 	// @inject_tag: json:"count"
 	//
-	// The total number of returned items.
+	// The total number of found items.
 	Total int64 `protobuf:"varint,3,opt,name=total,proto3" json:"count"`
 	// @inject_tag: json:"items"
 	//
@@ -6357,7 +6361,7 @@ func (m *ListProjectsRequest) GetSort() []string {
 type ListProjectsResponse struct {
 	//@inject_tag: json:"count"
 	//
-	// The total number of returned projects.
+	// The total number of found projects.
 	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	//@inject_tag: json:"items"
 	//
@@ -10678,7 +10682,7 @@ func (m *VatTransactionsRequest) GetSort() []string {
 type TransactionsPaginate struct {
 	// @inject_tag: json:"count"
 	//
-	// The total number of returned transactions.
+	// The total number of found transactions.
 	Count int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
 	//
@@ -11248,16 +11252,25 @@ func (m *GetMerchantTariffRatesRequest) GetMerchantOperationsType() string {
 }
 
 type GetMerchantTariffRatesResponseItems struct {
+	// The payment tariffs.
 	Payment []*MerchantTariffRatesPayment `protobuf:"bytes,1,rep,name=payment,proto3" json:"payment,omitempty"`
 	//@inject_tag: json:"-"
 	Refund []*MerchantTariffRatesSettingsItem `protobuf:"bytes,2,rep,name=refund,proto3" json:"-"`
 	//@inject_tag: json:"chargeback"
+	//
+	// The chargeback tariffs.
 	Chargeback []*MerchantTariffRatesSettingsItem `protobuf:"bytes,3,rep,name=chargeback,proto3" json:"chargeback"`
 	//@inject_tag: json:"payout"
+	//
+	// The payout tariffs.
 	Payout map[string]*MerchantTariffRatesSettingsItem `protobuf:"bytes,4,rep,name=payout,proto3" json:"payout" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	//@inject_tag: json:"minimal_payout"
+	//
+	// The minimum payout limits.
 	MinimalPayout map[string]float32 `protobuf:"bytes,5,rep,name=minimal_payout,json=minimalPayout,proto3" json:"minimal_payout" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"fixed32,2,opt,name=value,proto3"`
 	//@inject_tag: json:"mcc_code"
+	//
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode              string   `protobuf:"bytes,6,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
