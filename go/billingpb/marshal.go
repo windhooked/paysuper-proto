@@ -104,6 +104,40 @@ func (m *OrderItem) MarshalJSON() ([]byte, error) {
 	})
 }
 
+func (m *OrderItem) UnmarshalJSON(data []byte) error {
+	type Alias OrderItem
+	st := &struct {
+		CreatedAt time.Time `json:"created_at"`
+		UpdatedAt time.Time `json:"updated_at"`
+		*Alias
+	}{
+		Alias: (*Alias)(m),
+	}
+
+	err := json.Unmarshal(data, &st)
+
+	if err != nil {
+		return err
+	}
+
+	createdAt, err := ptypes.TimestampProto(st.CreatedAt)
+
+	if err != nil {
+		return err
+	}
+
+	updatedAt, err := ptypes.TimestampProto(st.UpdatedAt)
+
+	if err != nil {
+		return err
+	}
+
+	m.CreatedAt = createdAt
+	m.UpdatedAt = updatedAt
+
+	return nil
+}
+
 func (m *Refund) MarshalJSON() ([]byte, error) {
 	return json.Marshal(
 		&JsonRefund{
