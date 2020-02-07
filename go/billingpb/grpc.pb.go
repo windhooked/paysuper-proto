@@ -1436,9 +1436,10 @@ func (m *ListKeyProductsRequest) GetEnabled() string {
 }
 
 type PaymentCreateRequest struct {
-	// required:"true"
+	// @inject_tag: required:"true"
+	//
 	// The customer's payment requisites.
-	Data map[string]string `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Data map[string]string `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" required:"true"`
 	// @inject_tag: json:"-"
 	Ip string `protobuf:"bytes,3,opt,name=ip,proto3" json:"-"`
 	// @inject_tag: json:"-"
