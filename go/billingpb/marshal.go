@@ -87,6 +87,48 @@ func (m *Order) MarshalJSON() ([]byte, error) {
 	})
 }
 
+func (m *Order) UnmarshalJSON(data []byte) error {
+	type Alias Order
+	st := &struct {
+		CreatedAt  time.Time `json:"created_at"`
+		CanceledAt time.Time `json:"canceled_at"`
+		RefundedAt time.Time `json:"refunded_at"`
+		*Alias
+	}{
+		Alias: (*Alias)(m),
+	}
+
+	err := json.Unmarshal(data, &st)
+
+	if err != nil {
+		return err
+	}
+
+	createdAt, err := ptypes.TimestampProto(st.CreatedAt)
+
+	if err != nil {
+		return err
+	}
+
+	canceledAt, err := ptypes.TimestampProto(st.CanceledAt)
+
+	if err != nil {
+		return err
+	}
+
+	refundedAt, err := ptypes.TimestampProto(st.RefundedAt)
+
+	if err != nil {
+		return err
+	}
+
+	m.CreatedAt = createdAt
+	m.CanceledAt = canceledAt
+	m.RefundedAt = refundedAt
+
+	return nil
+}
+
 func (m *OrderItem) MarshalJSON() ([]byte, error) {
 	type Alias OrderItem
 
