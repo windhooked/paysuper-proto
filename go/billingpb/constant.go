@@ -179,7 +179,7 @@ const (
 
 	PaymentSystemHandlerCardPay = "cardpay"
 
-	PaylinkUrlDefaultMask = "/paylink/%s"
+	PaylinkUrlDefaultMask       = "/paylink/%s"
 	DatabaseRequestDefaultLimit = int64(100)
 
 	RoyaltyReportChangeSourceAuto     = "auto"
@@ -191,6 +191,11 @@ const (
 	ProjectRedirectModeSuccessful = "successful"
 	ProjectRedirectModeFail       = "fail"
 	ProjectRedirectUsageAny       = "any"
+
+	TestCaseCorrectPayment   = "correct_payment"
+	TestCaseNonExistingUser  = "non_existing_user"
+	TestCaseExistingUser     = "existing_user"
+	TestCaseIncorrectPayment = "invalid_signature"
 )
 
 var (

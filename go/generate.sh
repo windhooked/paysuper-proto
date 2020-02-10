@@ -22,6 +22,8 @@ protoc -I=../declarations/tax-service --micro_out=./taxpb/ --go_out=./taxpb/ ../
 
 protoc -I=../declarations/document-signer --micro_out=./document_signerpb/ --go_out=./document_signerpb/ ../declarations/document-signer/signer.proto
 
+protoc -I=../declarations/notifier --micro_out=./notifierpb/ --go_out=./notifierpb/ ../declarations/notifier/notifier.proto
+
 echo "INJECTING TAGS"
 protoc-go-inject-tag -input=./casbinpb/casbin.pb.go -XXX_skip=bson,json,structure,validate
 
@@ -44,6 +46,8 @@ protoc-go-inject-tag -input=./recurringpb/xsolla.pb.go -XXX_skip=bson,json,struc
 protoc-go-inject-tag -input=./reporterpb/reporter.pb.go -XXX_skip=bson,json,structure,validate
 
 protoc-go-inject-tag -input=./taxpb/tax_service.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./notifierpb/notifier.pb.go -XXX_skip=bson,json,structure,validate
 
 echo "GENERATING MOCKS"
 
