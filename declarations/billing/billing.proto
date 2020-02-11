@@ -16,7 +16,7 @@ message Name {
 message OrderCreateRequest {
     // @inject_tag: query:"PO_PROJECT_ID" form:"PO_PROJECT_ID" json:"project"  validate:"omitempty,hexadecimal" required:"true"
     //
-    // The ID of the Project found in your merchant account in the PaySuper Dashboard.    
+    // The unique identifier for the Project found in the merchant account in the PaySuper Dashboard.
     string project_id = 1;
     // @inject_tag: query:"PO_SIGNATURE" form:"PO_SIGNATURE" json:"-" validate:"omitempty,alphanum"
     string signature = 2;
@@ -1201,7 +1201,7 @@ message PaymentMethodOrder {
     //
     // Information about the crypto payment method.
     PaymentMethodCrypto crypto_currency = 10;
-    // @inject_tag: json:"type" bson:"handler"
+    // @inject_tag: json:"handler" bson:"handler"
     //
     // The internal unique identifier for the payment method in PaySuper.
     string handler = 11;
@@ -1667,7 +1667,7 @@ message TokenSettingsItem {
 message TokenSettings {
     //@inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" required:"true"
     //
-    // The ID of the Project found in your merchant account in the PaySuper Dashboard.
+    // The unique identifier for the Project found in the merchant account in the PaySuper Dashboard.
     string project_id = 2;
     //@inject_tag: json:"return_url"
     //
