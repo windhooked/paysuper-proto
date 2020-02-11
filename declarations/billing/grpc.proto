@@ -2290,129 +2290,213 @@ message GetDashboardRevenueDynamicsReportResponse {
 
 message DashboardAmountItemWithChart {
     //@inject_tag: json:"amount_current"
+    //
+    // The total amount calculated for the current report.
     double amount_current = 1;
     //@inject_tag: json:"amount_previous"
+    //
+    // The total amount calculated for the previous report.
     double amount_previous = 2;
     //@inject_tag: json:"currency"
+    //
+    // The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 3;
     //@inject_tag: json:"chart"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardChartItemFloat chart = 4;
 }
 
 message DashboardChartItemFloat {
     //@inject_tag: json:"label" bson:"label"
+    //
+    // The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
     int64 label = 1;
     //@inject_tag: json:"value" bson:"value"
+    //
+    // The point value.
     double value = 2;
 }
 
 message DashboardMainReportTotalTransactions {
     //@inject_tag: json:"count_current" bson:"count"
+    //
+    // The total amount calculated for the current report.
     int64 count_current = 1;
     //@inject_tag: json:"count_previous"
+    //
+    // The total amount calculated for the previous report.
     int64 count_previous = 2;
     //@inject_tag: json:"chart"
+    //
+    // The list of data for drawing the chart.
     repeated DashboardChartItemFloat chart = 3;
 }
 
 message DashboardMainReport {
     //@inject_tag: json:"gross_revenue" bson:"gross_revenue"
+    //
+    // The gross revenue data.
     DashboardAmountItemWithChart gross_revenue = 1;
     //@inject_tag: json:"vat" bson:"vat"
+    //
+    // VAT data.
     DashboardAmountItemWithChart vat = 2;
     //@inject_tag: json:"total_transactions" bson:"total_transactions"
+    //
+    // The transactions data.
     DashboardMainReportTotalTransactions total_transactions = 3;
     //@inject_tag: json:"arpu" bson:"arpu"
+    //
+    // ARPU data.
     DashboardAmountItemWithChart arpu = 4;
 }
 
 message DashboardRevenueDynamicReport {
     //@inject_tag: json:"currency"
+    //
+    // The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 1;
     //@inject_tag: json:"items"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardRevenueDynamicReportItem items = 2;
 }
 
 message DashboardRevenueDynamicReportItem {
     //@inject_tag: json:"label"
+    //
+    // The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
     int64 label = 1;
     //@inject_tag: json:"amount"
+    //
+    // The revenue amount.
     double amount = 2;
     //@inject_tag: json:"-"
     string currency = 3;
     //@inject_tag: json:"count"
+    //
+    // The total number of transactions.
     int64 count = 4;
 }
 
 message DashboardRevenueByCountryReportTop {
     //@inject_tag: json:"country"
+    //
+    // The country's name.
     string country = 1;
     //@inject_tag: json:"amount"
+    //
+    // The revenue amount for this country.
     double amount = 2;
 }
 
 message DashboardRevenueByCountryReportChartItem {
     //@inject_tag: json:"label"
+    //
+    // The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
     int64 label = 1;
     //@inject_tag: json:"amount"
+    //
+    // The amount by country.
     double amount = 2;
 }
 
 message DashboardRevenueByCountryReport {
     //@inject_tag: json:"currency"
+    //
+    // The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 1;
     //@inject_tag: json:"top" bson:"top"
+    //
+    // The list of data about top 5 revenue countries for the specified period.
     repeated DashboardRevenueByCountryReportTop top = 2;
     //@inject_tag: json:"total_current" bson:"total"
+    //
+    // The total revenue amount for the specified period.
     double total_current = 3;
     //@inject_tag: json:"total_previous"
+    //
+    // The total revenue amount for the previous period.
     double total_previous = 4;
     //@inject_tag: json:"chart" bson:"chart"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardRevenueByCountryReportChartItem chart = 5;
 }
 
 message DashboardSalesTodayReportTop {
     //@inject_tag: json:"name" bson:"name"
+    //
+    // The sold product's name.
     string name = 1;
     //@inject_tag: json:"count" bson:"count"
+    //
+    // The total number of products which were sold for the specified period.
     int64 count = 2;
 }
 
 message DashboardChartItemInt {
     //@inject_tag: json:"label" bson:"label"
+    //
+    // The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
     int64 label = 1;
     //@inject_tag: json:"value" bson:"value"
+    //
+    // The point value.
     int64 value = 2;
 }
 
 message DashboardSalesTodayReport {
     //@inject_tag: json:"top" bson:"top"
+    //
+    // The list of data about top 5 merchant's products (projects) which were sold for the specified period.
     repeated DashboardSalesTodayReportTop top = 1;
     //@inject_tag: json:"total_current" bson:"total"
+    //
+    // The total number of products which were sold for the specified period.
     int64 total_current = 2;
     //@inject_tag: json:"total_previous"
+    //
+    // The total number of products which were sold for the previous period.
     int64 total_previous = 3;
     //@inject_tag: json:"chart" bson:"chart"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardChartItemInt chart = 4;
 }
 
 message DashboardSourcesReport {
     //@inject_tag: json:"top" bson:"top"
+    //
+    // The list of data about top 5 source URLs for the specified period.
     repeated DashboardSalesTodayReportTop top = 1;
     //@inject_tag: json:"total_current" bson:"total"
+    //
+    // The total number of transactions for the specified period.
     int64 total_current = 2;
     //@inject_tag: json:"total_previous"
+    //
+    // The total number of transactions for the previous period.
     int64 total_previous = 3;
     //@inject_tag: json:"chart" bson:"chart"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardChartItemInt chart = 4;
 }
 
 message DashboardBaseReports {
     //@inject_tag: json:"revenue_by_country"
+    //
+    // The data for the Dashboard block Revenue by country.
     DashboardRevenueByCountryReport revenue_by_country = 1;
     //@inject_tag: json:"sales_today"
+    //
+    // The data for the Dashboard block Sales today.
     DashboardSalesTodayReport sales_today = 2;
     //@inject_tag: json:"sources"
+    //
+    // The data for the Dashboard block Sources.
     DashboardSourcesReport sources = 4;
 }
 
