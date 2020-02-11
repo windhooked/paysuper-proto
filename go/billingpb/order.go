@@ -261,5 +261,6 @@ func (m *Order) CountryChangeAllowed() bool {
 
 func (m *Order) NeedCallbackNotification() bool {
 	status := m.GetPublicStatus()
-	return status == recurringpb.OrderPublicStatusRefunded || status == recurringpb.OrderPublicStatusProcessed || m.IsDeclined()
+	return status == recurringpb.OrderPublicStatusRefunded || status == recurringpb.OrderPublicStatusProcessed ||
+		status == recurringpb.OrderPublicStatusChargeback || m.IsDeclined()
 }
