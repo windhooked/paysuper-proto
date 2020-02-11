@@ -2600,8 +2600,11 @@ message GetPaylinksRequest {
 }
 
 message SendWebhookToMerchantResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The unique identifier for the order.
     string order_id = 3;
 }
 
