@@ -177,6 +177,8 @@ type OrderCreateRequest struct {
 	//The redirect button messages after the successful or failed payment. If it has an empty value the redirect message will be set at OK.
 	ButtonCaption string `protobuf:"bytes,41,opt,name=button_caption,json=buttonCaption,proto3" json:"-" bson:"-"`
 	//@inject_tag: bson:"testing_case" json:"testing_case" validate:"omitempty,oneof=correct_payment non_existing_user existing_user invalid_signature"
+	//
+	// The webhook testing mode. Available values: correct_payment, non_existing_user, existing_user, invalid_signature.
 	TestingCase          string   `protobuf:"bytes,42,opt,name=testing_case,json=testingCase,proto3" json:"testing_case" bson:"testing_case" validate:"omitempty,oneof=correct_payment non_existing_user existing_user invalid_signature"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -593,8 +595,8 @@ type Project struct {
 	CallbackProtocol string `protobuf:"bytes,6,opt,name=callback_protocol,json=callbackProtocol,proto3" json:"callback_protocol" validate:"omitempty,oneof=default empty"`
 	//@inject_tag: json:"-" validate:"omitempty,dive,url"
 	CreateOrderAllowedUrls []string `protobuf:"bytes,7,rep,name=create_order_allowed_urls,json=createOrderAllowedUrls,proto3" json:"-" validate:"omitempty,dive,url"`
-	//@inject_tag: json:""
-	AllowDynamicNotifyUrls bool `protobuf:"varint,8,opt,name=allow_dynamic_notify_urls,json=allowDynamicNotifyUrls,proto3" json:"allow_dynamic_notify_urls,omitempty"`
+	//@inject_tag: json:"-"
+	AllowDynamicNotifyUrls bool `protobuf:"varint,8,opt,name=allow_dynamic_notify_urls,json=allowDynamicNotifyUrls,proto3" json:"-"`
 	//@inject_tag: json:"-"
 	AllowDynamicRedirectUrls bool `protobuf:"varint,9,opt,name=allow_dynamic_redirect_urls,json=allowDynamicRedirectUrls,proto3" json:"-"`
 	//@inject_tag: json:"limits_currency" validate:"omitempty,len=3"
@@ -714,8 +716,12 @@ type Project struct {
 	//The customer's redirection settings for the successful or failed payment.
 	RedirectSettings *ProjectRedirectSettings `protobuf:"bytes,37,opt,name=redirect_settings,json=redirectSettings,proto3" json:"redirect_settings" bson:"redirect_settings" validate:"omitempty,dive"`
 	//@inject_tag: json:"webhook_testing"
+	//
+	// The testing parameters for webhooks.
 	WebhookTesting *WebHookTesting `protobuf:"bytes,38,opt,name=webhook_testing,json=webhookTesting,proto3" json:"webhook_testing"`
 	//@inject_tag: json:"webhook_mode" validate:"omitempty,oneof=default pre_approval"
+	//
+	// The webhooks mode. Available values: default, pre_approval.
 	WebhookMode          string   `protobuf:"bytes,39,opt,name=webhook_mode,json=webhookMode,proto3" json:"webhook_mode" validate:"omitempty,oneof=default pre_approval"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1022,10 +1028,16 @@ func (m *Project) GetWebhookMode() string {
 
 type WebHookTesting struct {
 	//@inject_tag: json:"products" bson:"products"
+	//
+	// The testing parameters for product.
 	Products *ProductsTesting `protobuf:"bytes,1,opt,name=products,proto3" json:"products" bson:"products"`
 	//@inject_tag: json:"virtual_currency" bson:"virtual_currency"
+	//
+	// The testing parameters for virtual currency.
 	VirtualCurrency *VirtualCurrencyTesting `protobuf:"bytes,2,opt,name=virtual_currency,json=virtualCurrency,proto3" json:"virtual_currency" bson:"virtual_currency"`
 	//@inject_tag: json:"keys" bson:"keys"
+	//
+	// The testing parameters for key.
 	Keys                 *KeysTesting `protobuf:"bytes,3,opt,name=keys,proto3" json:"keys" bson:"keys"`
 	XXX_NoUnkeyedLiteral struct{}     `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte       `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1080,12 +1092,20 @@ func (m *WebHookTesting) GetKeys() *KeysTesting {
 
 type ProductsTesting struct {
 	//@inject_tag: json:"non_existing_user" bson:"non_existing_user"
+	//
+	// Has a true value if the user does not exist in the storage.
 	NonExistingUser bool `protobuf:"varint,1,opt,name=non_existing_user,json=nonExistingUser,proto3" json:"non_existing_user" bson:"non_existing_user"`
 	//@inject_tag: json:"existing_user" bson:"existing_user"
+	//
+	// Has a true value if the user exists in the storage.
 	ExistingUser bool `protobuf:"varint,2,opt,name=existing_user,json=existingUser,proto3" json:"existing_user" bson:"existing_user"`
 	//@inject_tag: json:"correct_payment" bson:"correct_payment"
+	//
+	// Has a true value if the payment correctly completed.
 	CorrectPayment bool `protobuf:"varint,3,opt,name=correct_payment,json=correctPayment,proto3" json:"correct_payment" bson:"correct_payment"`
 	//@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
+	//
+	// Has a true value if the payment not correctly completed.
 	IncorrectPayment     bool     `protobuf:"varint,4,opt,name=incorrect_payment,json=incorrectPayment,proto3" json:"incorrect_payment" bson:"incorrect_payment"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1147,12 +1167,20 @@ func (m *ProductsTesting) GetIncorrectPayment() bool {
 
 type VirtualCurrencyTesting struct {
 	//@inject_tag: json:"non_existing_user" bson:"non_existing_user"
+	//
+	// Has a true value if the user does not exist in the storage.
 	NonExistingUser bool `protobuf:"varint,1,opt,name=non_existing_user,json=nonExistingUser,proto3" json:"non_existing_user" bson:"non_existing_user"`
 	//@inject_tag: json:"existing_user" bson:"existing_user"
+	//
+	// Has a true value if the user exists in the storage.
 	ExistingUser bool `protobuf:"varint,2,opt,name=existing_user,json=existingUser,proto3" json:"existing_user" bson:"existing_user"`
 	//@inject_tag: json:"correct_payment" bson:"correct_payment"
+	//
+	// Has a true value if the payment correctly completed.
 	CorrectPayment bool `protobuf:"varint,3,opt,name=correct_payment,json=correctPayment,proto3" json:"correct_payment" bson:"correct_payment"`
 	//@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
+	//
+	// Has a true value if the payment not correctly completed.
 	IncorrectPayment     bool     `protobuf:"varint,4,opt,name=incorrect_payment,json=incorrectPayment,proto3" json:"incorrect_payment" bson:"incorrect_payment"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1214,6 +1242,8 @@ func (m *VirtualCurrencyTesting) GetIncorrectPayment() bool {
 
 type KeysTesting struct {
 	//@inject_tag: json:"is_passed" bson:"is_passed"
+	//
+	// Has a true value if the key has been passed.
 	IsPassed             bool     `protobuf:"varint,1,opt,name=is_passed,json=isPassed,proto3" json:"is_passed" bson:"is_passed"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`

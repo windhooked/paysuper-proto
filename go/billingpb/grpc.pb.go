@@ -12146,12 +12146,20 @@ func (m *GetDashboardRevenueDynamicsReportResponse) GetItem() *DashboardRevenueD
 
 type DashboardAmountItemWithChart struct {
 	//@inject_tag: json:"amount_current"
+	//
+	// The total amount calculated for the current report.
 	AmountCurrent float64 `protobuf:"fixed64,1,opt,name=amount_current,json=amountCurrent,proto3" json:"amount_current"`
 	//@inject_tag: json:"amount_previous"
+	//
+	// The total amount calculated for the previous report.
 	AmountPrevious float64 `protobuf:"fixed64,2,opt,name=amount_previous,json=amountPrevious,proto3" json:"amount_previous"`
 	//@inject_tag: json:"currency"
+	//
+	// The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency"`
 	//@inject_tag: json:"chart"
+	//
+	// The list of points for drawing the chart.
 	Chart                []*DashboardChartItemFloat `protobuf:"bytes,4,rep,name=chart,proto3" json:"chart"`
 	XXX_NoUnkeyedLiteral struct{}                   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                     `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12213,8 +12221,12 @@ func (m *DashboardAmountItemWithChart) GetChart() []*DashboardChartItemFloat {
 
 type DashboardChartItemFloat struct {
 	//@inject_tag: json:"label" bson:"label"
+	//
+	// The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
 	Label int64 `protobuf:"varint,1,opt,name=label,proto3" json:"label" bson:"label"`
 	//@inject_tag: json:"value" bson:"value"
+	//
+	// The point value.
 	Value                float64  `protobuf:"fixed64,2,opt,name=value,proto3" json:"value" bson:"value"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12262,10 +12274,16 @@ func (m *DashboardChartItemFloat) GetValue() float64 {
 
 type DashboardMainReportTotalTransactions struct {
 	//@inject_tag: json:"count_current" bson:"count"
+	//
+	// The total amount calculated for the current report.
 	CountCurrent int64 `protobuf:"varint,1,opt,name=count_current,json=countCurrent,proto3" json:"count_current" bson:"count"`
 	//@inject_tag: json:"count_previous"
+	//
+	// The total amount calculated for the previous report.
 	CountPrevious int64 `protobuf:"varint,2,opt,name=count_previous,json=countPrevious,proto3" json:"count_previous"`
 	//@inject_tag: json:"chart"
+	//
+	// The list of data for drawing the chart.
 	Chart                []*DashboardChartItemFloat `protobuf:"bytes,3,rep,name=chart,proto3" json:"chart"`
 	XXX_NoUnkeyedLiteral struct{}                   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                     `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12320,12 +12338,20 @@ func (m *DashboardMainReportTotalTransactions) GetChart() []*DashboardChartItemF
 
 type DashboardMainReport struct {
 	//@inject_tag: json:"gross_revenue" bson:"gross_revenue"
+	//
+	// The gross revenue data.
 	GrossRevenue *DashboardAmountItemWithChart `protobuf:"bytes,1,opt,name=gross_revenue,json=grossRevenue,proto3" json:"gross_revenue" bson:"gross_revenue"`
 	//@inject_tag: json:"vat" bson:"vat"
+	//
+	// VAT data.
 	Vat *DashboardAmountItemWithChart `protobuf:"bytes,2,opt,name=vat,proto3" json:"vat" bson:"vat"`
 	//@inject_tag: json:"total_transactions" bson:"total_transactions"
+	//
+	// The transactions data.
 	TotalTransactions *DashboardMainReportTotalTransactions `protobuf:"bytes,3,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions" bson:"total_transactions"`
 	//@inject_tag: json:"arpu" bson:"arpu"
+	//
+	// ARPU data.
 	Arpu                 *DashboardAmountItemWithChart `protobuf:"bytes,4,opt,name=arpu,proto3" json:"arpu" bson:"arpu"`
 	XXX_NoUnkeyedLiteral struct{}                      `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                        `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12387,8 +12413,12 @@ func (m *DashboardMainReport) GetArpu() *DashboardAmountItemWithChart {
 
 type DashboardRevenueDynamicReport struct {
 	//@inject_tag: json:"currency"
+	//
+	// The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency"`
 	//@inject_tag: json:"items"
+	//
+	// The list of points for drawing the chart.
 	Items                []*DashboardRevenueDynamicReportItem `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}                             `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                               `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12436,12 +12466,18 @@ func (m *DashboardRevenueDynamicReport) GetItems() []*DashboardRevenueDynamicRep
 
 type DashboardRevenueDynamicReportItem struct {
 	//@inject_tag: json:"label"
+	//
+	// The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
 	Label int64 `protobuf:"varint,1,opt,name=label,proto3" json:"label"`
 	//@inject_tag: json:"amount"
+	//
+	// The revenue amount.
 	Amount float64 `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount"`
 	//@inject_tag: json:"-"
 	Currency string `protobuf:"bytes,3,opt,name=currency,proto3" json:"-"`
 	//@inject_tag: json:"count"
+	//
+	// The total number of transactions.
 	Count                int64    `protobuf:"varint,4,opt,name=count,proto3" json:"count"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12503,8 +12539,12 @@ func (m *DashboardRevenueDynamicReportItem) GetCount() int64 {
 
 type DashboardRevenueByCountryReportTop struct {
 	//@inject_tag: json:"country"
+	//
+	// The country's name.
 	Country string `protobuf:"bytes,1,opt,name=country,proto3" json:"country"`
 	//@inject_tag: json:"amount"
+	//
+	// The revenue amount for this country.
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12552,8 +12592,12 @@ func (m *DashboardRevenueByCountryReportTop) GetAmount() float64 {
 
 type DashboardRevenueByCountryReportChartItem struct {
 	//@inject_tag: json:"label"
+	//
+	// The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
 	Label int64 `protobuf:"varint,1,opt,name=label,proto3" json:"label"`
 	//@inject_tag: json:"amount"
+	//
+	// The amount by country.
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12603,14 +12647,24 @@ func (m *DashboardRevenueByCountryReportChartItem) GetAmount() float64 {
 
 type DashboardRevenueByCountryReport struct {
 	//@inject_tag: json:"currency"
+	//
+	// The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency"`
 	//@inject_tag: json:"top" bson:"top"
+	//
+	// The list of data about top 5 revenue countries for the specified period.
 	Top []*DashboardRevenueByCountryReportTop `protobuf:"bytes,2,rep,name=top,proto3" json:"top" bson:"top"`
 	//@inject_tag: json:"total_current" bson:"total"
+	//
+	// The total revenue amount for the specified period.
 	TotalCurrent float64 `protobuf:"fixed64,3,opt,name=total_current,json=totalCurrent,proto3" json:"total_current" bson:"total"`
 	//@inject_tag: json:"total_previous"
+	//
+	// The total revenue amount for the previous period.
 	TotalPrevious float64 `protobuf:"fixed64,4,opt,name=total_previous,json=totalPrevious,proto3" json:"total_previous"`
 	//@inject_tag: json:"chart" bson:"chart"
+	//
+	// The list of points for drawing the chart.
 	Chart                []*DashboardRevenueByCountryReportChartItem `protobuf:"bytes,5,rep,name=chart,proto3" json:"chart" bson:"chart"`
 	XXX_NoUnkeyedLiteral struct{}                                    `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                                      `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12679,8 +12733,12 @@ func (m *DashboardRevenueByCountryReport) GetChart() []*DashboardRevenueByCountr
 
 type DashboardSalesTodayReportTop struct {
 	//@inject_tag: json:"name" bson:"name"
+	//
+	// The sold product's name.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name" bson:"name"`
 	//@inject_tag: json:"count" bson:"count"
+	//
+	// The total number of products which were sold for the specified period.
 	Count                int64    `protobuf:"varint,2,opt,name=count,proto3" json:"count" bson:"count"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12728,8 +12786,12 @@ func (m *DashboardSalesTodayReportTop) GetCount() int64 {
 
 type DashboardChartItemInt struct {
 	//@inject_tag: json:"label" bson:"label"
+	//
+	// The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
 	Label int64 `protobuf:"varint,1,opt,name=label,proto3" json:"label" bson:"label"`
 	//@inject_tag: json:"value" bson:"value"
+	//
+	// The point value.
 	Value                int64    `protobuf:"varint,2,opt,name=value,proto3" json:"value" bson:"value"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12777,12 +12839,20 @@ func (m *DashboardChartItemInt) GetValue() int64 {
 
 type DashboardSalesTodayReport struct {
 	//@inject_tag: json:"top" bson:"top"
+	//
+	// The list of data about top 5 merchant's products (projects) which were sold for the specified period.
 	Top []*DashboardSalesTodayReportTop `protobuf:"bytes,1,rep,name=top,proto3" json:"top" bson:"top"`
 	//@inject_tag: json:"total_current" bson:"total"
+	//
+	// The total number of products which were sold for the specified period.
 	TotalCurrent int64 `protobuf:"varint,2,opt,name=total_current,json=totalCurrent,proto3" json:"total_current" bson:"total"`
 	//@inject_tag: json:"total_previous"
+	//
+	// The total number of products which were sold for the previous period.
 	TotalPrevious int64 `protobuf:"varint,3,opt,name=total_previous,json=totalPrevious,proto3" json:"total_previous"`
 	//@inject_tag: json:"chart" bson:"chart"
+	//
+	// The list of points for drawing the chart.
 	Chart                []*DashboardChartItemInt `protobuf:"bytes,4,rep,name=chart,proto3" json:"chart" bson:"chart"`
 	XXX_NoUnkeyedLiteral struct{}                 `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12844,12 +12914,20 @@ func (m *DashboardSalesTodayReport) GetChart() []*DashboardChartItemInt {
 
 type DashboardSourcesReport struct {
 	//@inject_tag: json:"top" bson:"top"
+	//
+	// The list of data about top 5 source URLs for the specified period.
 	Top []*DashboardSalesTodayReportTop `protobuf:"bytes,1,rep,name=top,proto3" json:"top" bson:"top"`
 	//@inject_tag: json:"total_current" bson:"total"
+	//
+	// The total number of transactions for the specified period.
 	TotalCurrent int64 `protobuf:"varint,2,opt,name=total_current,json=totalCurrent,proto3" json:"total_current" bson:"total"`
 	//@inject_tag: json:"total_previous"
+	//
+	// The total number of transactions for the previous period.
 	TotalPrevious int64 `protobuf:"varint,3,opt,name=total_previous,json=totalPrevious,proto3" json:"total_previous"`
 	//@inject_tag: json:"chart" bson:"chart"
+	//
+	// The list of points for drawing the chart.
 	Chart                []*DashboardChartItemInt `protobuf:"bytes,4,rep,name=chart,proto3" json:"chart" bson:"chart"`
 	XXX_NoUnkeyedLiteral struct{}                 `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12911,10 +12989,16 @@ func (m *DashboardSourcesReport) GetChart() []*DashboardChartItemInt {
 
 type DashboardBaseReports struct {
 	//@inject_tag: json:"revenue_by_country"
+	//
+	// The data for the Dashboard block Revenue by country.
 	RevenueByCountry *DashboardRevenueByCountryReport `protobuf:"bytes,1,opt,name=revenue_by_country,json=revenueByCountry,proto3" json:"revenue_by_country"`
 	//@inject_tag: json:"sales_today"
+	//
+	// The data for the Dashboard block Sales today.
 	SalesToday *DashboardSalesTodayReport `protobuf:"bytes,2,opt,name=sales_today,json=salesToday,proto3" json:"sales_today"`
 	//@inject_tag: json:"sources"
+	//
+	// The data for the Dashboard block Sources.
 	Sources              *DashboardSourcesReport `protobuf:"bytes,4,opt,name=sources,proto3" json:"sources"`
 	XXX_NoUnkeyedLiteral struct{}                `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                  `json:"-" bson:"-" structure:"-" validate:"-"`
