@@ -3671,7 +3671,11 @@ message UserRole {
 
 message RoleListItem {
     //@inject_tag: json:"id"
+    //
+    // The unique identifier for the role.
     string id = 1;
     //@inject_tag: json:"name"
+    //
+    // The role's name.
     string name = 2;
 }

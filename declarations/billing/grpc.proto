@@ -231,7 +231,9 @@ message EmptyResponse {
 }
 
 message EmptyResponseWithStatus {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
 }
 
@@ -3010,17 +3012,26 @@ message GetMerchantUsersResponse {
 }
 
 message InviteUserMerchantRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 1;
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The merchant user's email address.
     string email = 2;
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The merchant user's role. Available values: merchant_developer, merchant_accounting, merchant_support, merchant_view_only.
     string role = 3;
 }
 
 message InviteUserMerchantResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The merchant user's role data.
     billing.UserRole role = 3;
 }
 
@@ -3168,6 +3179,7 @@ message GetRoleListRequest {
 }
 
 message GetRoleListResponse {
+    // The list of the merchant's types of roles.
     repeated billing.RoleListItem items = 1;
 }
 
@@ -3191,8 +3203,11 @@ message Permission {
 }
 
 message UserRoleResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The user's role.
     billing.UserRole user_role = 3;
 }
 
