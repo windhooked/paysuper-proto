@@ -3209,19 +3209,34 @@ message PayoutDocumentChanges {
 
 message MerchantBalance {
     //@inject_tag: json:"id" validate:"required,hexadecimal,len=24"
+    //
+    // The unique identifier for the merchant's balance.
     string id = 1;
     //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 2;
     //@inject_tag: json:"currency" validate:"required,alpha,len=3"
+    //
+    // The balance currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 3;
     //@inject_tag: json:"debit" validate:"required,numeric"
+    //
+    // The debit balance.
     double debit = 4;
     //@inject_tag: json:"credit" validate:"required,numeric"
+    //
+    // The credit balance.
     double credit = 5;
     //@inject_tag: json:"rolling_reserve" validate:"required,numeric"
+    //
+    // The rolling reserve balance.
     double rolling_reserve = 6;
     //@inject_tag: json:"total" validate:"required,numeric"
+    //
+    // The total amount.
     double total = 7;
+    // The date of the balance creation.
     google.protobuf.Timestamp created_at = 8;
 }
 
