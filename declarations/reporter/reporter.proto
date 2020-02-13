@@ -10,10 +10,16 @@ service ReporterService {
 
 message CreateFileResponse {
     // @inject_tag: json:"status"
+    //
+    // The response status code.
     int32 status = 1;
     // @inject_tag: json:"message,omitempty"
+    //
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
     // @inject_tag: json:"file_id"
+    //
+    // The unique identifier for the file.
     string file_id = 3;
 }
 

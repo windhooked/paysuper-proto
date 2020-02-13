@@ -369,16 +369,16 @@ message CreateOrUpdateKeyProductRequest {
 }
 
 message UnPublishKeyProductRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string key_product_id = 1;
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" json:"-"
     string merchant_id = 2;
 }
 
 message PublishKeyProductRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string key_product_id = 1;
-    //@inject_tag: validate:"hexadecimal,len=24"
+    //@inject_tag: validate:"hexadecimal,len=24" json:"-"
     string merchant_id = 2;
 }
 
