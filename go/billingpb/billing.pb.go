@@ -13883,19 +13883,34 @@ func (m *PayoutDocumentChanges) GetCreatedAt() *timestamp.Timestamp {
 
 type MerchantBalance struct {
 	//@inject_tag: json:"id" validate:"required,hexadecimal,len=24"
+	//
+	// The unique identifier for the merchant's balance.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24"`
 	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
+	//
+	// The unique identifier for the merchant.
 	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
 	//@inject_tag: json:"currency" validate:"required,alpha,len=3"
+	//
+	// The balance currency. Three-letter currency code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency" validate:"required,alpha,len=3"`
 	//@inject_tag: json:"debit" validate:"required,numeric"
+	//
+	// The debit balance.
 	Debit float64 `protobuf:"fixed64,4,opt,name=debit,proto3" json:"debit" validate:"required,numeric"`
 	//@inject_tag: json:"credit" validate:"required,numeric"
+	//
+	// The credit balance.
 	Credit float64 `protobuf:"fixed64,5,opt,name=credit,proto3" json:"credit" validate:"required,numeric"`
 	//@inject_tag: json:"rolling_reserve" validate:"required,numeric"
+	//
+	// The rolling reserve balance.
 	RollingReserve float64 `protobuf:"fixed64,6,opt,name=rolling_reserve,json=rollingReserve,proto3" json:"rolling_reserve" validate:"required,numeric"`
 	//@inject_tag: json:"total" validate:"required,numeric"
-	Total                float64              `protobuf:"fixed64,7,opt,name=total,proto3" json:"total" validate:"required,numeric"`
+	//
+	// The total amount.
+	Total float64 `protobuf:"fixed64,7,opt,name=total,proto3" json:"total" validate:"required,numeric"`
+	// The date of the balance creation.
 	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
