@@ -74,7 +74,7 @@ func (m *Name) GetRu() string {
 type OrderCreateRequest struct {
 	// @inject_tag: query:"PO_PROJECT_ID" form:"PO_PROJECT_ID" json:"project"  validate:"omitempty,hexadecimal" required:"true"
 	//
-	// The ID of the Project found in your merchant account in the PaySuper Dashboard.
+	// The unique identifier for the Project found in the merchant account in the PaySuper Dashboard.
 	ProjectId string `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project" query:"PO_PROJECT_ID" form:"PO_PROJECT_ID" validate:"omitempty,hexadecimal" required:"true"`
 	// @inject_tag: query:"PO_SIGNATURE" form:"PO_SIGNATURE" json:"-" validate:"omitempty,alphanum"
 	Signature string `protobuf:"bytes,2,opt,name=signature,proto3" json:"-" query:"PO_SIGNATURE" form:"PO_SIGNATURE" validate:"omitempty,alphanum"`
@@ -4612,10 +4612,10 @@ type PaymentMethodOrder struct {
 	//
 	// Information about the crypto payment method.
 	CryptoCurrency *PaymentMethodCrypto `protobuf:"bytes,10,opt,name=crypto_currency,json=cryptoCurrency,proto3" json:"crypto_currency" bson:"crypto_currency"`
-	// @inject_tag: json:"type" bson:"handler"
+	// @inject_tag: json:"handler" bson:"handler"
 	//
 	// The internal unique identifier for the payment method in PaySuper.
-	Handler string `protobuf:"bytes,11,opt,name=handler,proto3" json:"type" bson:"handler"`
+	Handler string `protobuf:"bytes,11,opt,name=handler,proto3" json:"handler" bson:"handler"`
 	// @inject_tag: json:"refund_allowed" bson:"refund_allowed"
 	//
 	// Has a true value if the payment method allows a refund.
@@ -7315,7 +7315,7 @@ func (m *TokenSettingsItem) GetCurrency() string {
 type TokenSettings struct {
 	//@inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" required:"true"
 	//
-	// The ID of the Project found in your merchant account in the PaySuper Dashboard.
+	// The unique identifier for the Project found in the merchant account in the PaySuper Dashboard.
 	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24" required:"true"`
 	//@inject_tag: json:"return_url"
 	//
