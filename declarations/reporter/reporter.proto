@@ -10,10 +10,16 @@ service ReporterService {
 
 message CreateFileResponse {
     // @inject_tag: json:"status"
+    //
+    // The response status code.
     int32 status = 1;
     // @inject_tag: json:"message,omitempty"
+    //
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
     // @inject_tag: json:"file_id"
+    //
+    // The unique identifier for the file.
     string file_id = 3;
 }
 
@@ -33,7 +39,7 @@ message ReportFile {
     string user_id = 2;
     // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
     string merchant_id = 3;
-    // @inject_tag: json:"report_type" validate:"required,alpha"
+    // @inject_tag: json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement"
     string report_type = 4;
     // @inject_tag: json:"file_type" validate:"required,alpha"
     string file_type = 5;

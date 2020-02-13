@@ -23,10 +23,16 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type CreateFileResponse struct {
 	// @inject_tag: json:"status"
+	//
+	// The response status code.
 	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status"`
 	// @inject_tag: json:"message,omitempty"
+	//
+	// The response error message (if any).
 	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// @inject_tag: json:"file_id"
+	//
+	// The unique identifier for the file.
 	FileId               string   `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -144,8 +150,8 @@ type ReportFile struct {
 	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
 	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
-	// @inject_tag: json:"report_type" validate:"required,alpha"
-	ReportType string `protobuf:"bytes,4,opt,name=report_type,json=reportType,proto3" json:"report_type" validate:"required,alpha"`
+	// @inject_tag: json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement"
+	ReportType string `protobuf:"bytes,4,opt,name=report_type,json=reportType,proto3" json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement"`
 	// @inject_tag: json:"file_type" validate:"required,alpha"
 	FileType string `protobuf:"bytes,5,opt,name=file_type,json=fileType,proto3" json:"file_type" validate:"required,alpha"`
 	// @inject_tag: json:"params"
