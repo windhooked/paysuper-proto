@@ -10013,16 +10013,28 @@ func (m *AccountingEntry) GetOperatingCompanyId() string {
 
 type RoyaltyReportTotals struct {
 	//@inject_tag: bson:"transactions_count"
+	//
+	// The total transactions.
 	TransactionsCount int32 `protobuf:"varint,2,opt,name=transactions_count,json=transactionsCount,proto3" json:"transactions_count,omitempty" bson:"transactions_count"`
 	//@inject_tag: bson:"fee_amount"
+	//
+	// The amount of fees.
 	FeeAmount float64 `protobuf:"fixed64,3,opt,name=fee_amount,json=feeAmount,proto3" json:"fee_amount,omitempty" bson:"fee_amount"`
 	//@inject_tag: bson:"vat_amount"
+	//
+	// The amount of VAT.
 	VatAmount float64 `protobuf:"fixed64,4,opt,name=vat_amount,json=vatAmount,proto3" json:"vat_amount,omitempty" bson:"vat_amount"`
 	//@inject_tag: bson:"payout_amount"
+	//
+	// The payout amount.
 	PayoutAmount float64 `protobuf:"fixed64,5,opt,name=payout_amount,json=payoutAmount,proto3" json:"payout_amount,omitempty" bson:"payout_amount"`
 	//@inject_tag: bson:"rolling_reserve_total_amount"
+	//
+	// The rolling reserve amount.
 	RollingReserveAmount float64 `protobuf:"fixed64,6,opt,name=rolling_reserve_amount,json=rollingReserveAmount,proto3" json:"rolling_reserve_amount,omitempty" bson:"rolling_reserve_total_amount"`
 	//@inject_tag: bson:"correction_total_amount"
+	//
+	// The corrections amount.
 	CorrectionAmount     float64  `protobuf:"fixed64,7,opt,name=correction_amount,json=correctionAmount,proto3" json:"correction_amount,omitempty" bson:"correction_total_amount"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -10098,26 +10110,48 @@ func (m *RoyaltyReportTotals) GetCorrectionAmount() float64 {
 
 type RoyaltyReportProductSummaryItem struct {
 	//@inject_tag: bson:"product" json:"product"
+	//
+	// The name of the product or project.
 	Product string `protobuf:"bytes,1,opt,name=product,proto3" json:"product" bson:"product"`
 	//@inject_tag: bson:"region" json:"region"
+	//
+	// The country's name. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
 	Region string `protobuf:"bytes,2,opt,name=region,proto3" json:"region" bson:"region"`
 	//@inject_tag: bson:"total_transactions" json:"total_transactions"
+	//
+	// The total number of transactions for the current product or project in the current country (including sales and returns).
 	TotalTransactions int32 `protobuf:"varint,3,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions" bson:"total_transactions"`
 	//@inject_tag: bson:"sales_count" json:"sales_count"
+	//
+	// The number of sales for the current product or project in the current country.
 	SalesCount int32 `protobuf:"varint,4,opt,name=sales_count,json=salesCount,proto3" json:"sales_count" bson:"sales_count"`
 	//@inject_tag: bson:"gross_sales_amount" json:"gross_sales_amount"
+	//
+	// The gross amount of sales for current product or project in the current country.
 	GrossSalesAmount float64 `protobuf:"fixed64,5,opt,name=gross_sales_amount,json=grossSalesAmount,proto3" json:"gross_sales_amount" bson:"gross_sales_amount"`
 	//@inject_tag: bson:"returns_count" json:"returns_count"
+	//
+	// The number of returns for current product or project in the current country.
 	ReturnsCount int32 `protobuf:"varint,6,opt,name=returns_count,json=returnsCount,proto3" json:"returns_count" bson:"returns_count"`
 	//@inject_tag: bson:"gross_returns_amount" json:"gross_returns_amount"
+	//
+	// The gross amount of returns for current product or project in the current country.
 	GrossReturnsAmount float64 `protobuf:"fixed64,7,opt,name=gross_returns_amount,json=grossReturnsAmount,proto3" json:"gross_returns_amount" bson:"gross_returns_amount"`
 	//@inject_tag: bson:"gross_total_amount" json:"gross_total_amount"
+	//
+	// The total gross amount (sales minus returns) for current product or project in the current country.
 	GrossTotalAmount float64 `protobuf:"fixed64,8,opt,name=gross_total_amount,json=grossTotalAmount,proto3" json:"gross_total_amount" bson:"gross_total_amount"`
 	//@inject_tag: bson:"total_fees" json:"total_fees"
+	//
+	// The amount of fees for current product or project in the current country.
 	TotalFees float64 `protobuf:"fixed64,9,opt,name=total_fees,json=totalFees,proto3" json:"total_fees" bson:"total_fees"`
 	//@inject_tag: bson:"total_vat" json:"total_vat"
+	//
+	// The amount of VAT for current product or project in the current country.
 	TotalVat float64 `protobuf:"fixed64,10,opt,name=total_vat,json=totalVat,proto3" json:"total_vat" bson:"total_vat"`
 	//@inject_tag: bson:"payout_amount" json:"payout_amount"
+	//
+	// The payout amount for current product or project in the current country.
 	PayoutAmount         float64  `protobuf:"fixed64,11,opt,name=payout_amount,json=payoutAmount,proto3" json:"payout_amount" bson:"payout_amount"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -10228,14 +10262,24 @@ func (m *RoyaltyReportProductSummaryItem) GetPayoutAmount() float64 {
 
 type RoyaltyReportCorrectionItem struct {
 	//@inject_tag: bson:"accounting_entry_id" json:"accounting_entry_id"
+	//
+	// The unique identifier for the linked accounting entry.
 	AccountingEntryId string `protobuf:"bytes,1,opt,name=accounting_entry_id,json=accountingEntryId,proto3" json:"accounting_entry_id" bson:"accounting_entry_id"`
 	//@inject_tag: bson:"amount" json:"amount"
+	//
+	// The amount of the correction.
 	Amount float64 `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount" bson:"amount"`
 	//@inject_tag: bson:"currency" json:"currency"
+	//
+	// The currency of the correction. Three-letter Currency Code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,3,opt,name=currency,proto3" json:"currency" bson:"currency"`
 	//@inject_tag: bson:"reason" json:"reason"
+	//
+	// The correction reason.
 	Reason string `protobuf:"bytes,4,opt,name=reason,proto3" json:"reason" bson:"reason"`
 	//@inject_tag: bson:"entry_date" json:"entry_date"
+	//
+	// The date of the correction.
 	EntryDate            *timestamp.Timestamp `protobuf:"bytes,5,opt,name=entry_date,json=entryDate,proto3" json:"entry_date" bson:"entry_date"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -10304,12 +10348,20 @@ func (m *RoyaltyReportCorrectionItem) GetEntryDate() *timestamp.Timestamp {
 
 type RoyaltyReportSummary struct {
 	//@inject_tag: bson:"products_items" json:"products_items"
+	//
+	// The summary for each product (project) and country.
 	ProductsItems []*RoyaltyReportProductSummaryItem `protobuf:"bytes,1,rep,name=products_items,json=productsItems,proto3" json:"products_items" bson:"products_items"`
 	//@inject_tag: bson:"products_total" json:"products_total"
+	//
+	// The summary totals for all product (project) and country.
 	ProductsTotal *RoyaltyReportProductSummaryItem `protobuf:"bytes,2,opt,name=products_total,json=productsTotal,proto3" json:"products_total" bson:"products_total"`
 	//@inject_tag: bson:"corrections" json:"corrections"
+	//
+	// The list of the applied corrections (if any).
 	Corrections []*RoyaltyReportCorrectionItem `protobuf:"bytes,3,rep,name=corrections,proto3" json:"corrections" bson:"corrections"`
 	//@inject_tag: bson:"rolling_reserves" json:"rolling_reserves"
+	//
+	// The list of the applied rolling reserves (if any).
 	RollingReserves      []*RoyaltyReportCorrectionItem `protobuf:"bytes,4,rep,name=rolling_reserves,json=rollingReserves,proto3" json:"rolling_reserves" bson:"rolling_reserves"`
 	XXX_NoUnkeyedLiteral struct{}                       `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                         `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -10371,42 +10423,80 @@ func (m *RoyaltyReportSummary) GetRollingReserves() []*RoyaltyReportCorrectionIt
 
 type RoyaltyReport struct {
 	//@inject_tag: bson:"_id" json:"id"
+	//
+	// The unique identifier for the royalty report.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
 	//@inject_tag: bson:"merchant_id" json:"merchant_id"
+	//
+	// The unique identifier for the merchant.
 	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id"`
 	//@inject_tag: bson:"created_at" json:"created_at"
+	//
+	// The date of the royalty report creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,3,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at"`
 	//@inject_tag: bson:"updated_at" json:"updated_at"
+	//
+	// The date of the royalty report last update.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at" bson:"updated_at"`
 	//@inject_tag: bson:"payout_date" json:"payout_date"
+	//
+	// The date when the report was paid.
 	PayoutDate *timestamp.Timestamp `protobuf:"bytes,5,opt,name=payout_date,json=payoutDate,proto3" json:"payout_date" bson:"payout_date"`
 	//@inject_tag: bson:"status" json:"status"
+	//
+	// The document status. Available values: skip, pending, in_progress, paid, canceled, failed.
 	Status string `protobuf:"bytes,6,opt,name=status,proto3" json:"status" bson:"status"`
 	//@inject_tag: bson:"period_from" json:"period_from"
+	//
+	// The start date of the report time period.
 	PeriodFrom *timestamp.Timestamp `protobuf:"bytes,7,opt,name=period_from,json=periodFrom,proto3" json:"period_from" bson:"period_from"`
 	//@inject_tag: bson:"period_to" json:"period_to"
+	//
+	// The end date of the report time period.
 	PeriodTo *timestamp.Timestamp `protobuf:"bytes,8,opt,name=period_to,json=periodTo,proto3" json:"period_to" bson:"period_to"`
 	//@inject_tag: bson:"accept_expire_at" json:"accept_expire_at"
+	//
+	// The date when the royalty report will be auto-accepted (if the merchant hadn't accept it yet or started a dispute).
 	AcceptExpireAt *timestamp.Timestamp `protobuf:"bytes,9,opt,name=accept_expire_at,json=acceptExpireAt,proto3" json:"accept_expire_at" bson:"accept_expire_at"`
 	//@inject_tag: bson:"merchant_id" json:"accepted_at"
+	//
+	// The date when the royalty report was accepted.
 	AcceptedAt *timestamp.Timestamp `protobuf:"bytes,10,opt,name=accepted_at,json=acceptedAt,proto3" json:"accepted_at" bson:"merchant_id"`
 	//@inject_tag: bson:"totals" json:"totals"
+	//
+	// The totals section of the royalty report.
 	Totals *RoyaltyReportTotals `protobuf:"bytes,11,opt,name=totals,proto3" json:"totals" bson:"totals"`
 	//@inject_tag: bson:"currency" json:"currency"
+	//
+	// The currency of the royalty report. Three-letter Currency Code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,12,opt,name=currency,proto3" json:"currency" bson:"currency"`
 	//@inject_tag: bson:"summary" json:"summary"
+	//
+	// The summary section of the royalty report.
 	Summary *RoyaltyReportSummary `protobuf:"bytes,13,opt,name=summary,proto3" json:"summary" bson:"summary"`
 	//@inject_tag: bson:"dispute_reason" json:"dispute_reason"
+	//
+	// The dispute reason (if any).
 	DisputeReason string `protobuf:"bytes,14,opt,name=dispute_reason,json=disputeReason,proto3" json:"dispute_reason" bson:"dispute_reason"`
 	//@inject_tag: bson:"dispute_started_at" json:"dispute_closed_at"
+	//
+	// The start date of the dispute (if any).
 	DisputeStartedAt *timestamp.Timestamp `protobuf:"bytes,15,opt,name=dispute_started_at,json=disputeStartedAt,proto3" json:"dispute_closed_at" bson:"dispute_started_at"`
 	//@inject_tag: bson:"dispute_closed_at" json:"dispute_closed_at"
+	//
+	// The resolution date of the dispute (if any).
 	DisputeClosedAt *timestamp.Timestamp `protobuf:"bytes,16,opt,name=dispute_closed_at,json=disputeClosedAt,proto3" json:"dispute_closed_at" bson:"dispute_closed_at"`
 	//@inject_tag: bson:"is_auto_accepted" json:"is_auto_accepted"
+	//
+	// Has a true value if the royalty report is auto-accepted.
 	IsAutoAccepted bool `protobuf:"varint,17,opt,name=is_auto_accepted,json=isAutoAccepted,proto3" json:"is_auto_accepted" bson:"is_auto_accepted"`
 	//@inject_tag: bson:"payout_document_id" json:"payout_document_id"
+	//
+	// The unique identifier for the payout document.
 	PayoutDocumentId string `protobuf:"bytes,18,opt,name=payout_document_id,json=payoutDocumentId,proto3" json:"payout_document_id" bson:"payout_document_id"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+	//
+	// The unique identifier for the operation company.
 	OperatingCompanyId   string   `protobuf:"bytes,19,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -13430,50 +13520,96 @@ func (m *Key) GetRedeemedAt() *timestamp.Timestamp {
 
 type PayoutDocument struct {
 	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the payout document.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the merchant who is the owner of the payout document.
 	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: json:"source_id"
+	//
+	// The list of the unique identifiers for the royalty reports.
 	SourceId []string `protobuf:"bytes,3,rep,name=source_id,json=sourceId,proto3" json:"source_id"`
 	// @inject_tag: json:"total_fees" validate:"numeric,gte=0"
+	//
+	// The total amount of fees.
 	TotalFees float64 `protobuf:"fixed64,4,opt,name=total_fees,json=totalFees,proto3" json:"total_fees" validate:"numeric,gte=0"`
 	// @inject_tag: json:"balance" validate:"numeric,gte=0"
+	//
+	// The payout amount.
 	Balance float64 `protobuf:"fixed64,5,opt,name=balance,proto3" json:"balance" validate:"numeric,gte=0"`
 	//@inject_tag: json:"currency" validate:"required,alpha,len=3"
+	//
+	// The payout amount currency. Three-letter Currency Code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,6,opt,name=currency,proto3" json:"currency" validate:"required,alpha,len=3"`
 	// @inject_tag: json:"period_from"
+	//
+	// The start date of the payout period .
 	PeriodFrom *timestamp.Timestamp `protobuf:"bytes,7,opt,name=period_from,json=periodFrom,proto3" json:"period_from"`
 	// @inject_tag: json:"period_to"
+	//
+	// The end date of the payout period.
 	PeriodTo *timestamp.Timestamp `protobuf:"bytes,8,opt,name=period_to,json=periodTo,proto3" json:"period_to"`
 	// @inject_tag: json:"total_transactions"
+	//
+	// The total number of transactions.
 	TotalTransactions int32 `protobuf:"varint,9,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions"`
 	//@inject_tag: json:"description" validate:"omitempty,max=255"
+	//
+	// The additional description of the payout.
 	Description string `protobuf:"bytes,10,opt,name=description,proto3" json:"description" validate:"omitempty,max=255"`
 	//@inject_tag: json:"destination" validate:"max=255"
+	//
+	// The merchant's banking data.
 	Destination *MerchantBanking `protobuf:"bytes,11,opt,name=destination,proto3" json:"destination" validate:"max=255"`
 	//@inject_tag: json:"merchant_agreement_number" validate:"max=255"
+	//
+	// The merchant's license agreement number.
 	MerchantAgreementNumber string `protobuf:"bytes,12,opt,name=merchant_agreement_number,json=merchantAgreementNumber,proto3" json:"merchant_agreement_number" validate:"max=255"`
 	// @inject_tag: json:"company"
+	//
+	// Information about the merchant's company.
 	Company *MerchantCompanyInfo `protobuf:"bytes,13,opt,name=company,proto3" json:"company"`
 	//@inject_tag: json:"status" validate:"required,oneof=skip pending in_progress paid canceled failed"
+	//
+	// The document status. Available values: skip, pending, in_progress, paid, canceled, failed.
 	Status string `protobuf:"bytes,14,opt,name=status,proto3" json:"status" validate:"required,oneof=skip pending in_progress paid canceled failed"`
 	//@inject_tag: json:"transaction" validate:"max=255"
+	//
+	// The unique identifier for the payout transaction.
 	Transaction string `protobuf:"bytes,15,opt,name=transaction,proto3" json:"transaction" validate:"max=255"`
 	//@inject_tag: json:"failure_code" validate:"omitempty,oneof=account_closed account_frozen account_restricted destination_bank_invalid could_not_process declined insufficient_funds invalid_account_number incorrect_account_holder_name invalid_currency"
+	//
+	// The payout's failure code. Available values: account_closed, account_frozen, account_restricted, destination_bank_invalid, could_not_process, declined, insufficient_funds, invalid_account_number, incorrect_account_holder_name, invalid_currency.
 	FailureCode string `protobuf:"bytes,16,opt,name=failure_code,json=failureCode,proto3" json:"failure_code" validate:"omitempty,oneof=account_closed account_frozen account_restricted destination_bank_invalid could_not_process declined insufficient_funds invalid_account_number incorrect_account_holder_name invalid_currency"`
 	//@inject_tag: json:"failure_message" validate:"max=255"
+	//
+	// The payout's failure message.
 	FailureMessage string `protobuf:"bytes,17,opt,name=failure_message,json=failureMessage,proto3" json:"failure_message" validate:"max=255"`
 	//@inject_tag: json:"failure_transaction" validate:"max=255"
+	//
+	// The unique identifier for the payout failure transaction.
 	FailureTransaction string `protobuf:"bytes,18,opt,name=failure_transaction,json=failureTransaction,proto3" json:"failure_transaction" validate:"max=255"`
 	//@inject_tag: json:"created_at"
+	//
+	// The date of the payout creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,24,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
 	//@inject_tag: json:"updated_at"
+	//
+	// The date of the payout last update.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,25,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	//@inject_tag: json:"arrival_date"
+	//
+	// The payout arrival date.
 	ArrivalDate *timestamp.Timestamp `protobuf:"bytes,26,opt,name=arrival_date,json=arrivalDate,proto3" json:"arrival_date"`
 	//@inject_tag: json:"paid_at"
+	//
+	// The payout date.
 	PaidAt *timestamp.Timestamp `protobuf:"bytes,27,opt,name=paid_at,json=paidAt,proto3" json:"paid_at"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+	//
+	// The unique identifier for the operation company.
 	OperatingCompanyId   string   `protobuf:"bytes,28,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`

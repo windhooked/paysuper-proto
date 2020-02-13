@@ -23,10 +23,16 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type CreateFileResponse struct {
 	// @inject_tag: json:"status"
+	//
+	// The response status code.
 	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status"`
 	// @inject_tag: json:"message,omitempty"
+	//
+	// The response error message (if any).
 	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// @inject_tag: json:"file_id"
+	//
+	// The unique identifier for the report file.
 	FileId               string   `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`

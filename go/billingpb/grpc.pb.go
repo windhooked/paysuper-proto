@@ -286,9 +286,13 @@ func (m *ChangeCodeInOrderResponse) GetOrder() *Order {
 }
 
 type GetPlatformKeyCountResponse struct {
-	Status  int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
 	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	//@inject_tag: json:"count"
+	//
+	// The total number of keys for products.
 	Count                int32    `protobuf:"varint,3,opt,name=count,proto3" json:"count"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -570,13 +574,17 @@ func (m *PlatformKeyReserveRequest) GetOrderId() string {
 }
 
 type PlatformKeysFileResponse struct {
-	Status               int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	KeysProcessed        int32                 `protobuf:"varint,3,opt,name=keys_processed,json=keysProcessed,proto3" json:"keys_processed,omitempty"`
-	TotalCount           int32                 `protobuf:"varint,4,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                 `json:"-" bson:"-" structure:"-" validate:"-"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
+	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// The number of the processed keys.
+	KeysProcessed int32 `protobuf:"varint,3,opt,name=keys_processed,json=keysProcessed,proto3" json:"keys_processed,omitempty"`
+	// The total number of keys.
+	TotalCount           int32    `protobuf:"varint,4,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *PlatformKeysFileResponse) Reset()         { *m = PlatformKeysFileResponse{} }
@@ -633,14 +641,16 @@ func (m *PlatformKeysFileResponse) GetTotalCount() int32 {
 }
 
 type PlatformKeysFileRequest struct {
-	//@inject_tag: validate:"required,max=10485760"
-	File []byte `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty" validate:"required,max=10485760"`
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	KeyProductId string `protobuf:"bytes,2,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: validate:"hexadecimal,len=24" json:"merchant_id"
-	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"hexadecimal,len=24"`
-	//@inject_tag: validate:"required,max=255"
-	PlatformId           string   `protobuf:"bytes,4,opt,name=platform_id,json=platformId,proto3" json:"platform_id,omitempty" validate:"required,max=255"`
+	//@inject_tag: validate:"required,max=10485760" required:"true"
+	//
+	// The file with keys.
+	File []byte `protobuf:"bytes,1,opt,name=file,proto3" json:"file,omitempty" validate:"required,max=10485760" required:"true"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+	KeyProductId string `protobuf:"bytes,2,opt,name=key_product_id,json=keyProductId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
+	//@inject_tag: validate:"hexadecimal,len=24" json:"-"
+	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"hexadecimal,len=24"`
+	//@inject_tag: validate:"required,max=255" json:"-"
+	PlatformId           string   `protobuf:"bytes,4,opt,name=platform_id,json=platformId,proto3" json:"-" validate:"required,max=255"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -872,34 +882,62 @@ func (m *KeyProductResponse) GetProduct() *KeyProduct {
 }
 
 type CreateOrUpdateKeyProductRequest struct {
-	//@inject_tag: validate:"required,min=1"
-	Name map[string]string `protobuf:"bytes,1,rep,name=name,proto3" json:"name,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validate:"required,min=1"`
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: validate:"required,min=1"
-	Description map[string]string `protobuf:"bytes,3,rep,name=description,proto3" json:"description,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validate:"required,min=1"`
+	//@inject_tag: validate:"required,min=1" required:"true"
+	//
+	// The list of the product's localized names.
+	Name map[string]string `protobuf:"bytes,1,rep,name=name,proto3" json:"name,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validate:"required,min=1" required:"true"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+	//
+	// The unique identifier for the project.
+	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty" validate:"required,hexadecimal,len=24" required:"true"`
+	//@inject_tag: validate:"required,min=1" required:"true"
+	//
+	// The list of the product's localized concise descriptions.
+	Description map[string]string `protobuf:"bytes,3,rep,name=description,proto3" json:"description,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validate:"required,min=1" required:"true"`
 	//@inject_tag: json:"long_description"
+	//
+	// The list of the product's localized extended descriptions.
 	LongDescription map[string]string `protobuf:"bytes,4,rep,name=long_description,json=longDescription,proto3" json:"long_description" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	//@inject_tag: validate:"required,max=255"
-	Sku string `protobuf:"bytes,5,opt,name=sku,proto3" json:"sku,omitempty" validate:"required,max=255"`
+	//@inject_tag: validate:"required,max=255" required:"true"
+	//
+	// The SKU of the product.
+	Sku string `protobuf:"bytes,5,opt,name=sku,proto3" json:"sku,omitempty" validate:"required,max=255" required:"true"`
 	//@inject_tag: json:"cover"
+	//
+	// The product's covers for each localization.
 	Cover *ImageCollection `protobuf:"bytes,6,opt,name=cover,proto3" json:"cover"`
 	//@inject_tag: validate:"omitempty,url" json:"url"
+	//
+	// The product's URL in the merchant project.
 	Url string `protobuf:"bytes,7,opt,name=url,proto3" json:"url" validate:"omitempty,url"`
-	//@inject_tag: validate:"required,alpha,len=3" json:"default_currency"
-	DefaultCurrency string `protobuf:"bytes,8,opt,name=default_currency,json=defaultCurrency,proto3" json:"default_currency" validate:"required,alpha,len=3"`
+	//@inject_tag: validate:"required,alpha,len=3" json:"default_currency" required:"true"
+	//
+	// The product's default currency. Three-letter Currency Code ISO 4217, in uppercase.
+	DefaultCurrency string `protobuf:"bytes,8,opt,name=default_currency,json=defaultCurrency,proto3" json:"default_currency" validate:"required,alpha,len=3" required:"true"`
 	//@inject_tag: validate:"hexadecimal,len=24" json:"merchant_id"
+	//
+	// The unique identifier for the merchant.
 	MerchantId string `protobuf:"bytes,9,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"hexadecimal,len=24"`
 	//@inject_tag: validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the key-activated product.
 	Id string `protobuf:"bytes,10,opt,name=id,proto3" json:"id,omitempty" validate:"omitempty,hexadecimal,len=24"`
-	//@inject_tag: json:"object" validate:"required"
-	Object string `protobuf:"bytes,11,opt,name=object,proto3" json:"object" validate:"required"`
+	//@inject_tag: json:"object" validate:"required" required:"true"
+	//
+	// The system constant that contains the returned object's type.
+	Object string `protobuf:"bytes,11,opt,name=object,proto3" json:"object" validate:"required" required:"true"`
 	//@inject_tag: json:"metadata"
+	//
+	// The string-value description for the product.
 	Metadata map[string]string `protobuf:"bytes,12,rep,name=metadata,proto3" json:"metadata" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	//@inject_tag: validate:"dive" json:"platforms"
+	//
+	// The list of the platforms.
 	Platforms []*PlatformPrice `protobuf:"bytes,13,rep,name=platforms,proto3" json:"platforms" validate:"dive"`
-	// @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default"
-	Pricing              string   `protobuf:"bytes,14,opt,name=pricing,proto3" json:"pricing" validate:"required,oneof=currency manual steam default"`
+	// @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default" required:"true"
+	//
+	// The pricing mode. Available values: currency, manual, steam, default.
+	Pricing              string   `protobuf:"bytes,14,opt,name=pricing,proto3" json:"pricing" validate:"required,oneof=currency manual steam default" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1176,15 +1214,25 @@ func (m *ListPlatformsRequest) GetOffset() int32 {
 }
 
 type ListPlatformsResponse struct {
-	Status  int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
 	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// @inject_tag: json:"limit"
+	//
+	// The number of platforms returned in one page.
 	Limit int32 `protobuf:"varint,3,opt,name=limit,proto3" json:"limit"`
 	// @inject_tag: json:"offset"
+	//
+	// The ranking number of the first item on the page.
 	Offset int32 `protobuf:"varint,4,opt,name=offset,proto3" json:"offset"`
 	// @inject_tag: json:"count"
+	//
+	// The total number of found products.
 	Count int32 `protobuf:"varint,5,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"platforms"
+	//
+	// The list of platforms.
 	Platforms            []*Platform `protobuf:"bytes,6,rep,name=platforms,proto3" json:"platforms"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte      `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1259,15 +1307,25 @@ func (m *ListPlatformsResponse) GetPlatforms() []*Platform {
 }
 
 type ListKeyProductsResponse struct {
-	Status  int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
 	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	// @inject_tag: json:"limit"
+	//
+	// The number of products returned in one page.
 	Limit int64 `protobuf:"varint,3,opt,name=limit,proto3" json:"limit"`
 	// @inject_tag: json:"offset"
+	//
+	// The ranking number of the first item on the page.
 	Offset int64 `protobuf:"varint,4,opt,name=offset,proto3" json:"offset"`
 	// @inject_tag: json:"count"
+	//
+	// The total number of found products.
 	Count int64 `protobuf:"varint,5,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"products"
+	//
+	// The list of key-activated products.
 	Products             []*KeyProduct `protobuf:"bytes,6,rep,name=products,proto3" json:"products"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte        `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -4976,42 +5034,76 @@ func (m *ProductPriceInfo) GetIsFallback() bool {
 
 type KeyProduct struct {
 	//@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id"
+	//
+	// The unique identifier for the key-activated product.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
 	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
 	//@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id"
+	//
+	// The unique identifier for the project.
 	ProjectId string `protobuf:"bytes,3,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24"`
 	//@inject_tag: validate:"omitempty" json:"object"
+	//
+	// The system constant that contains the returned object's type.
 	Object string `protobuf:"bytes,4,opt,name=object,proto3" json:"object" validate:"omitempty"`
 	//@inject_tag: validate:"required" json:"sku"
+	//
+	// The SKU of the product.
 	Sku string `protobuf:"bytes,5,opt,name=sku,proto3" json:"sku" validate:"required"`
 	//@inject_tag: validate:"required" json:"name"
+	//
+	// The list of the product's localized names.
 	Name map[string]string `protobuf:"bytes,6,rep,name=name,proto3" json:"name" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validate:"required"`
 	//@inject_tag: validate:"required,alpha,len=3" json:"default_currency"
+	//
+	// The product's default currency. Three-letter Currency Code ISO 4217, in uppercase.
 	DefaultCurrency string `protobuf:"bytes,7,opt,name=default_currency,json=defaultCurrency,proto3" json:"default_currency" validate:"required,alpha,len=3"`
 	//@inject_tag: json:"enabled"
+	//
+	// Has a true value if the product is enabled.
 	Enabled bool `protobuf:"varint,8,opt,name=enabled,proto3" json:"enabled"`
 	//@inject_tag: validate:"required,min=1,dive" json:"platforms"
+	//
+	// The list of the platforms.
 	Platforms []*PlatformPrice `protobuf:"bytes,9,rep,name=platforms,proto3" json:"platforms" validate:"required,min=1,dive"`
 	//@inject_tag: validate:"required" json:"description"
+	//
+	// The list of the product's localized concise descriptions.
 	Description map[string]string `protobuf:"bytes,10,rep,name=description,proto3" json:"description" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validate:"required"`
 	//@inject_tag: validate:"omitempty" json:"long_description"
+	//
+	// The list of the product's localized extended descriptions.
 	LongDescription map[string]string `protobuf:"bytes,11,rep,name=long_description,json=longDescription,proto3" json:"long_description" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validate:"omitempty"`
 	//@inject_tag: json:"created_at"
+	//
+	// The date of the product creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
 	//@inject_tag: json:"updated_at"
+	//
+	// The date of the product last update.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	//@inject_tag: json:"cover"
+	//
+	// The product's covers for each localization.
 	Cover *ImageCollection `protobuf:"bytes,14,opt,name=cover,proto3" json:"cover"`
 	//@inject_tag: validate:"omitempty,url" json:"url"
+	//
+	// The product's URL in the merchant project.
 	Url string `protobuf:"bytes,15,opt,name=url,proto3" json:"url" validate:"omitempty,url"`
 	//@inject_tag: json:"metadata"
+	//
+	// The string-value description for the product.
 	Metadata map[string]string `protobuf:"bytes,16,rep,name=metadata,proto3" json:"metadata" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	//@inject_tag: json:"-"
 	Deleted bool `protobuf:"varint,17,opt,name=deleted,proto3" json:"-"`
 	//@inject_tag: json:"published_at"
+	//
+	// Tha date of the product publishing.
 	PublishedAt *timestamp.Timestamp `protobuf:"bytes,18,opt,name=published_at,json=publishedAt,proto3" json:"published_at"`
 	// @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default"
+	//
+	// The pricing mode. Available values: currency, manual, steam, default.
 	Pricing              string   `protobuf:"bytes,19,opt,name=pricing,proto3" json:"pricing" validate:"required,oneof=currency manual steam default"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -5178,17 +5270,28 @@ func (m *KeyProduct) GetPricing() string {
 
 type PlatformPrice struct {
 	//@inject_tag: validate:"required" json:"id"
+	//
+	// The unique name of the platform. Available values: steam, gog, uplay, origin, psn, xbox, nintendo, itch, egs.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required"`
 	//@inject_tag: json:"name"
+	//
+	// The full name of the platform. (for instance for gog - Good old games.com)
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 	//@inject_tag: validate:"required,min=1,currency_price,dive" json:"prices"
+	//
+	// The list of the key pricing for all platforms.
 	Prices []*ProductPrice `protobuf:"bytes,3,rep,name=prices,proto3" json:"prices" validate:"required,min=1,currency_price,dive"`
 	//@inject_tag: validate:"omitempty,url" json:"eula_url"
+	//
+	// The license agreement link of the platform.
 	EulaUrl string `protobuf:"bytes,4,opt,name=eula_url,json=eulaUrl,proto3" json:"eula_url" validate:"omitempty,url"`
 	//@inject_tag: validate:"omitempty,url" json:"activation_url"
+	//
+	// The link of the key's activation rules for the platform.
 	ActivationUrl string `protobuf:"bytes,5,opt,name=activation_url,json=activationUrl,proto3" json:"activation_url" validate:"omitempty,url"`
-	// count is used only in listing of key products for merchant. in all other keys will be empty always
 	//@inject_tag: validate:"omitempty" json:"count"
+	//
+	// The number of created keys for the platform.
 	Count                int32    `protobuf:"varint,6,opt,name=count,proto3" json:"count" validate:"omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -13053,11 +13156,17 @@ func (m *DashboardBaseReports) GetSources() *DashboardSourcesReport {
 
 type CreatePayoutDocumentRequest struct {
 	//@inject_tag: json:"description" validate:"max=255"
+	//
+	// The description of the payout document.
 	Description string `protobuf:"bytes,1,opt,name=description,proto3" json:"description" validate:"max=255"`
-	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: json:"ip" validate:"required"
-	Ip string `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip" validate:"required"`
+	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
+	//
+	// The unique identifier for the merchant.
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"`
+	//@inject_tag: json:"ip" validate:"required" required:"true"
+	//
+	// The merchant's IP address.
+	Ip string `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip" validate:"required" required:"true"`
 	//@inject_tag: json:"-" validate:"required"
 	Initiator string `protobuf:"bytes,4,opt,name=initiator,proto3" json:"-" validate:"required"`
 	//@inject_tag: json:"-"
@@ -13245,18 +13354,32 @@ func (m *CreatePayoutDocumentResponse) GetItems() []*PayoutDocument {
 
 type UpdatePayoutDocumentRequest struct {
 	//@inject_tag: json:"payout_document_id" validate:"required,hexadecimal,len=24" param:"payout_document_id"
+	//
+	// The unique identifier for the payout document.
 	PayoutDocumentId string `protobuf:"bytes,1,opt,name=payout_document_id,json=payoutDocumentId,proto3" json:"payout_document_id" validate:"required,hexadecimal,len=24" param:"payout_document_id"`
 	//@inject_tag: json:"transaction" validate:"omitempty,max=255"
+	//
+	// The unique identifier for the payout transaction.
 	Transaction string `protobuf:"bytes,2,opt,name=transaction,proto3" json:"transaction" validate:"omitempty,max=255"`
 	//@inject_tag: json:"status" validate:"required,oneof=skip pending in_progress paid canceled failed"
+	//
+	// The document status. Available values: skip, pending, in_progress, paid, canceled, failed.
 	Status string `protobuf:"bytes,3,opt,name=status,proto3" json:"status" validate:"required,oneof=skip pending in_progress paid canceled failed"`
 	//@inject_tag: json:"failure_code" validate:"omitempty,oneof=account_closed account_frozen account_restricted destination_bank_invalid could_not_process declined insufficient_funds invalid_account_number incorrect_account_holder_name invalid_currency"
+	//
+	// The payout's failure code. Available values: account_closed, account_frozen, account_restricted, destination_bank_invalid, could_not_process, declined, insufficient_funds, invalid_account_number, incorrect_account_holder_name, invalid_currency.
 	FailureCode string `protobuf:"bytes,4,opt,name=failure_code,json=failureCode,proto3" json:"failure_code" validate:"omitempty,oneof=account_closed account_frozen account_restricted destination_bank_invalid could_not_process declined insufficient_funds invalid_account_number incorrect_account_holder_name invalid_currency"`
 	//@inject_tag: json:"failure_message" validate:"omitempty,max=255"
+	//
+	// The payout's failure message.
 	FailureMessage string `protobuf:"bytes,5,opt,name=failure_message,json=failureMessage,proto3" json:"failure_message" validate:"omitempty,max=255"`
 	//@inject_tag: json:"failure_transaction" validate:"omitempty,max=255"
+	//
+	// The unique identifier for the payout failure transaction.
 	FailureTransaction string `protobuf:"bytes,6,opt,name=failure_transaction,json=failureTransaction,proto3" json:"failure_transaction" validate:"omitempty,max=255"`
 	//@inject_tag: json:"ip"
+	//
+	// The merchant's IP address.
 	Ip                   string   `protobuf:"bytes,7,opt,name=ip,proto3" json:"ip"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -13482,8 +13605,12 @@ func (m *GetPayoutDocumentsRequest) GetOffset() int64 {
 
 type PayoutDocumentsPaginate struct {
 	// @inject_tag: json:"count"
+	//
+	// The total number of the payout documents.
 	Count int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
+	//
+	// The list of the payout documents.
 	Items                []*PayoutDocument `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}          `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte            `json:"-" bson:"-" structure:"-" validate:"-"`
