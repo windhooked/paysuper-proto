@@ -84,7 +84,9 @@ func (m *EmptyResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_EmptyResponse proto.InternalMessageInfo
 
 type EmptyResponseWithStatus struct {
-	Status               int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
 	Message              *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}              `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -15822,12 +15824,18 @@ func (m *GetMerchantUsersResponse) GetUsers() []*UserRole {
 }
 
 type InviteUserMerchantRequest struct {
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: validate:"required,email"
-	Email string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty" validate:"required,email"`
-	//@inject_tag: validate:"required"
-	Role                 string   `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty" validate:"required"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+	//
+	// The unique identifier for the merchant.
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24" required:"true"`
+	//@inject_tag: validate:"required,email" required:"true"
+	//
+	// The merchant user's email address.
+	Email string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty" validate:"required,email" required:"true"`
+	//@inject_tag: validate:"required" required:"true"
+	//
+	// The merchant user's role. Available values: merchant_developer, merchant_accounting, merchant_support, merchant_view_only.
+	Role                 string   `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty" validate:"required" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -15880,12 +15888,15 @@ func (m *InviteUserMerchantRequest) GetRole() string {
 }
 
 type InviteUserMerchantResponse struct {
-	Status               int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Role                 *UserRole             `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                 `json:"-" bson:"-" structure:"-" validate:"-"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
+	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// The merchant user's role data.
+	Role                 *UserRole `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32     `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *InviteUserMerchantResponse) Reset()         { *m = InviteUserMerchantResponse{} }
@@ -16918,6 +16929,7 @@ func (m *GetRoleListRequest) GetType() string {
 }
 
 type GetRoleListResponse struct {
+	// The list of the merchant's types of roles.
 	Items                []*RoleListItem `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte          `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -17095,12 +17107,15 @@ func (m *Permission) GetAccess() string {
 }
 
 type UserRoleResponse struct {
-	Status               int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	UserRole             *UserRole             `protobuf:"bytes,3,opt,name=user_role,json=userRole,proto3" json:"user_role,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                 `json:"-" bson:"-" structure:"-" validate:"-"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
+	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// The user's role.
+	UserRole             *UserRole `protobuf:"bytes,3,opt,name=user_role,json=userRole,proto3" json:"user_role,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32     `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *UserRoleResponse) Reset()         { *m = UserRoleResponse{} }
