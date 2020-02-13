@@ -1027,10 +1027,10 @@ func (m *CreateOrUpdateKeyProductRequest) GetPricing() string {
 }
 
 type UnPublishKeyProductRequest struct {
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	KeyProductId string `protobuf:"bytes,1,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: validate:"required"
-	MerchantId           string   `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+	KeyProductId string `protobuf:"bytes,1,opt,name=key_product_id,json=keyProductId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
+	//@inject_tag: validate:"required" json:"-"
+	MerchantId           string   `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -1076,10 +1076,10 @@ func (m *UnPublishKeyProductRequest) GetMerchantId() string {
 }
 
 type PublishKeyProductRequest struct {
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	KeyProductId string `protobuf:"bytes,1,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: validate:"hexadecimal,len=24"
-	MerchantId           string   `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"hexadecimal,len=24"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+	KeyProductId string `protobuf:"bytes,1,opt,name=key_product_id,json=keyProductId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
+	//@inject_tag: validate:"hexadecimal,len=24" json:"-"
+	MerchantId           string   `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"hexadecimal,len=24"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
