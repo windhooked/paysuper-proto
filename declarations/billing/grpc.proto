@@ -258,9 +258,13 @@ message ChangeCodeInOrderResponse {
 }
 
 message GetPlatformKeyCountResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
     //@inject_tag: json:"count"
+    //
+    // The total number of keys for products.
     int32 count = 3;
 }
 
@@ -297,20 +301,26 @@ message PlatformKeyReserveRequest {
 }
 
 message PlatformKeysFileResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The number of the processed keys.
     int32 keys_processed = 3;
+    // The total number of keys.
     int32 total_count = 4;
 }
 
 message PlatformKeysFileRequest {
-    //@inject_tag: validate:"required,max=10485760"
+    //@inject_tag: validate:"required,max=10485760" required:"true"
+    //
+    // The file with keys.
     bytes file = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string key_product_id = 2;
-    //@inject_tag: validate:"hexadecimal,len=24" json:"merchant_id"
+    //@inject_tag: validate:"hexadecimal,len=24" json:"-"
     string merchant_id = 3;
-    //@inject_tag: validate:"required,max=255"
+    //@inject_tag: validate:"required,max=255" json:"-"
     string platform_id = 4;
 }
 
@@ -340,33 +350,61 @@ message KeyProductResponse {
 }
 
 message CreateOrUpdateKeyProductRequest {
-    //@inject_tag: validate:"required,min=1"
+    //@inject_tag: validate:"required,min=1" required:"true"
+    //
+    // The list of the product's localized names.
     map<string, string> name = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the project.
     string project_id = 2;
-    //@inject_tag: validate:"required,min=1"
+    //@inject_tag: validate:"required,min=1" required:"true"
+    //
+    // The list of the product's localized concise descriptions.
     map<string, string> description = 3;
     //@inject_tag: json:"long_description"
+    //
+    // The list of the product's localized extended descriptions.
     map<string, string> long_description = 4;
-    //@inject_tag: validate:"required,max=255"
+    //@inject_tag: validate:"required,max=255" required:"true"
+    //
+    // The SKU of the product.
     string sku = 5;
     //@inject_tag: json:"cover"
+    //
+    // The product's covers for each localization.
     billing.ImageCollection cover = 6;
     //@inject_tag: validate:"omitempty,url" json:"url"
+    //
+    // The product's URL in the merchant project.
     string url = 7;
-    //@inject_tag: validate:"required,alpha,len=3" json:"default_currency"
+    //@inject_tag: validate:"required,alpha,len=3" json:"default_currency" required:"true"
+    //
+    // The product's default currency. Three-letter Currency Code ISO 4217, in uppercase.
     string default_currency = 8;
     //@inject_tag: validate:"hexadecimal,len=24" json:"merchant_id"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 9;
     //@inject_tag: validate:"omitempty,hexadecimal,len=24"
+    //
+    // The unique identifier for the key-activated product.
     string id = 10;
-    //@inject_tag: json:"object" validate:"required"
+    //@inject_tag: json:"object" validate:"required" required:"true"
+    //
+    // The system constant that contains the returned object's type.
     string object = 11;
     //@inject_tag: json:"metadata"
+    //
+    // The string-value description for the product.
     map<string, string> metadata = 12;
     //@inject_tag: validate:"dive" json:"platforms"
+    //
+    // The list of the platforms.
     repeated PlatformPrice platforms = 13;
-    // @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default"
+    // @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default" required:"true"
+    //
+    // The pricing mode. Available values: currency, manual, steam, default.
     string pricing = 14;
 }
 
@@ -392,28 +430,48 @@ message ListPlatformsRequest {
 }
 
 message ListPlatformsResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
     // @inject_tag: json:"limit"
+    //
+    // The number of platforms returned in one page.
     int32 limit = 3;
     // @inject_tag: json:"offset"
+    //
+    // The ranking number of the first item on the page.
     int32 offset = 4;
     // @inject_tag: json:"count"
+    //
+    // The total number of found products.
     int32 count = 5;
     // @inject_tag: json:"platforms"
+    //
+    // The list of platforms.
     repeated Platform platforms = 6;
 }
 
 message ListKeyProductsResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
     // @inject_tag: json:"limit"
+    //
+    // The number of products returned in one page.
     int64 limit = 3;
     // @inject_tag: json:"offset"
+    //
+    // The ranking number of the first item on the page.
     int64 offset = 4;
     // @inject_tag: json:"count"
+    //
+    // The total number of found products.
     int64 count = 5;
     // @inject_tag: json:"products"
+    //
+    // The list of key-activated products.
     repeated KeyProduct products = 6;
 }
 
@@ -1052,58 +1110,103 @@ message ProductPriceInfo {
 
 message KeyProduct {
     //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id"
+    //
+    // The unique identifier for the key-activated product.
     string id = 1;
     //@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 2;
     //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id"
+    //
+    // The unique identifier for the project.
     string project_id = 3;
     //@inject_tag: validate:"omitempty" json:"object"
+    //
+    // The system constant that contains the returned object's type.
     string object = 4;
     //@inject_tag: validate:"required" json:"sku"
+    //
+    // The SKU of the product.
     string sku = 5;
     //@inject_tag: validate:"required" json:"name"
+    //
+    // The list of the product's localized names.
     map<string, string> name = 6;
     //@inject_tag: validate:"required,alpha,len=3" json:"default_currency"
+    //
+    // The product's default currency. Three-letter Currency Code ISO 4217, in uppercase.
     string default_currency = 7;
     //@inject_tag: json:"enabled"
+    //
+    // Has a true value if the product is enabled.
     bool enabled = 8;
     //@inject_tag: validate:"required,min=1,dive" json:"platforms"
+    //
+    // The list of the platforms.
     repeated PlatformPrice platforms = 9;
     //@inject_tag: validate:"required" json:"description"
+    //
+    // The list of the product's localized concise descriptions.
     map<string, string> description = 10;
     //@inject_tag: validate:"omitempty" json:"long_description"
+    //
+    // The list of the product's localized extended descriptions.
     map<string, string> long_description = 11;
     //@inject_tag: json:"created_at"
+    //
+    // The date of the product creation.
     google.protobuf.Timestamp created_at = 12;
     //@inject_tag: json:"updated_at"
+    //
+    // The date of the product last update.
     google.protobuf.Timestamp updated_at = 13;
     //@inject_tag: json:"cover"
+    //
+    // The product's covers for each localization.
     billing.ImageCollection cover = 14;
     //@inject_tag: validate:"omitempty,url" json:"url"
+    //
+    // The product's URL in the merchant project.
     string url = 15;
     //@inject_tag: json:"metadata"
+    //
+    // The string-value description for the product.
     map<string, string> metadata = 16;
     //@inject_tag: json:"-"
     bool deleted = 17;
     //@inject_tag: json:"published_at"
+    //
+    // Tha date of the product publishing.
     google.protobuf.Timestamp published_at = 18;
     // @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default"
+    //
+    // The pricing mode. Available values: currency, manual, steam, default.
     string pricing = 19;
 }
 
 message PlatformPrice {
     //@inject_tag: validate:"required" json:"id"
+    //
+    // The unique name of the platform. Available values: steam, gog, uplay, origin, psn, xbox, nintendo, itch, egs.
     string id = 1;
     //@inject_tag: json:"name"
+    //
+    // The full name of the platform. (for instance for gog - Good old games.com)
     string name = 2;
     //@inject_tag: validate:"required,min=1,currency_price,dive" json:"prices"
+    //
+    // The list of the key pricing for all platforms.
     repeated billing.ProductPrice prices = 3;
     //@inject_tag: validate:"omitempty,url" json:"eula_url"
+    //
+    // The license agreement link of the platform.
     string eula_url = 4;
     //@inject_tag: validate:"omitempty,url" json:"activation_url"
+    //
+    // The link of the key's activation rules for the platform.
     string activation_url = 5;
-    // count is used only in listing of key products for merchant. in all other keys will be empty always
     //@inject_tag: validate:"omitempty" json:"count"
+    //
+    // The number of created keys for the platform.
     int32 count = 6;
 }
 
@@ -2502,10 +2605,16 @@ message DashboardBaseReports {
 
 message CreatePayoutDocumentRequest {
     //@inject_tag: json:"description" validate:"max=255"
+    //
+    // The description of the payout document.
     string description = 1;
-    //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
+    //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 2;
-    //@inject_tag: json:"ip" validate:"required"
+    //@inject_tag: json:"ip" validate:"required" required:"true"
+    //
+    // The merchant's IP address.
     string ip = 3;
     //@inject_tag: json:"-" validate:"required"
     string initiator = 4;
@@ -2533,18 +2642,32 @@ message CreatePayoutDocumentResponse {
 
 message UpdatePayoutDocumentRequest {
     //@inject_tag: json:"payout_document_id" validate:"required,hexadecimal,len=24" param:"payout_document_id"
+    //
+    // The unique identifier for the payout document.
     string payout_document_id = 1;
     //@inject_tag: json:"transaction" validate:"omitempty,max=255"
+    //
+    // The unique identifier for the payout transaction.
     string transaction = 2;
     //@inject_tag: json:"status" validate:"required,oneof=skip pending in_progress paid canceled failed"
+    //
+    // The document status. Available values: skip, pending, in_progress, paid, canceled, failed.
     string status = 3;
     //@inject_tag: json:"failure_code" validate:"omitempty,oneof=account_closed account_frozen account_restricted destination_bank_invalid could_not_process declined insufficient_funds invalid_account_number incorrect_account_holder_name invalid_currency"
+    //
+    // The payout's failure code. Available values: account_closed, account_frozen, account_restricted, destination_bank_invalid, could_not_process, declined, insufficient_funds, invalid_account_number, incorrect_account_holder_name, invalid_currency.
     string failure_code = 4;
     //@inject_tag: json:"failure_message" validate:"omitempty,max=255"
+    //
+    // The payout's failure message.
     string failure_message = 5;
     //@inject_tag: json:"failure_transaction" validate:"omitempty,max=255"
+    //
+    // The unique identifier for the payout failure transaction.
     string failure_transaction = 6;
     //@inject_tag: json:"ip"
+    //
+    // The merchant's IP address.
     string ip = 7;
 }
 
@@ -2574,9 +2697,13 @@ message GetPayoutDocumentsRequest {
 
 message PayoutDocumentsPaginate {
     // @inject_tag: json:"count"
-    int32 count = 1; // total count of selected orders
+    //
+    // The total number of the payout documents.
+    int32 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.PayoutDocument items = 2; // array of selected docs
+    //
+    // The list of the payout documents.
+    repeated billing.PayoutDocument items = 2;
 }
 
 message GetPayoutDocumentsResponse {

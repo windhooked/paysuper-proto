@@ -2216,106 +2216,196 @@ message AccountingEntry {
 
 message RoyaltyReportTotals {
     //@inject_tag: bson:"transactions_count"
+    //
+    // The total transactions.
     int32 transactions_count = 2;
     //@inject_tag: bson:"fee_amount"
+    //
+    // The amount of fees.
     double fee_amount = 3;
     //@inject_tag: bson:"vat_amount"
+    //
+    // The amount of VAT.
     double vat_amount = 4;
     //@inject_tag: bson:"payout_amount"
+    //
+    // The payout amount.
     double payout_amount = 5;
     //@inject_tag: bson:"rolling_reserve_total_amount"
+    //
+    // The rolling reserve amount.
     double rolling_reserve_amount = 6;
     //@inject_tag: bson:"correction_total_amount"
+    //
+    // The corrections amount.
     double correction_amount = 7;
 }
 
 message RoyaltyReportProductSummaryItem {
     //@inject_tag: bson:"product" json:"product"
+    //
+    // The name of the product or project.
     string product = 1;
     //@inject_tag: bson:"region" json:"region"
+    //
+    // The country's name. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
     string region = 2;
     //@inject_tag: bson:"total_transactions" json:"total_transactions"
+    //
+    // The total number of transactions for the current product or project in the current country (including sales and returns).
     int32 total_transactions = 3;
     //@inject_tag: bson:"sales_count" json:"sales_count"
+    //
+    // The number of sales for the current product or project in the current country.
     int32 sales_count = 4;
     //@inject_tag: bson:"gross_sales_amount" json:"gross_sales_amount"
+    //
+    // The gross amount of sales for current product or project in the current country.
     double gross_sales_amount = 5;
     //@inject_tag: bson:"returns_count" json:"returns_count"
+    //
+    // The number of returns for current product or project in the current country.
     int32 returns_count = 6;
     //@inject_tag: bson:"gross_returns_amount" json:"gross_returns_amount"
+    //
+    // The gross amount of returns for current product or project in the current country.
     double gross_returns_amount = 7;
     //@inject_tag: bson:"gross_total_amount" json:"gross_total_amount"
+    //
+    // The total gross amount (sales minus returns) for current product or project in the current country.
     double gross_total_amount = 8;
     //@inject_tag: bson:"total_fees" json:"total_fees"
+    //
+    // The amount of fees for current product or project in the current country.
     double total_fees = 9;
     //@inject_tag: bson:"total_vat" json:"total_vat"
+    //
+    // The amount of VAT for current product or project in the current country.
     double total_vat = 10;
     //@inject_tag: bson:"payout_amount" json:"payout_amount"
+    //
+    // The payout amount for current product or project in the current country.
     double payout_amount = 11;
 }
 
 message RoyaltyReportCorrectionItem {
     //@inject_tag: bson:"accounting_entry_id" json:"accounting_entry_id"
+    //
+    // The unique identifier for the linked accounting entry.
     string accounting_entry_id = 1;
     //@inject_tag: bson:"amount" json:"amount"
+    //
+    // The amount of the correction.
     double amount = 2;
     //@inject_tag: bson:"currency" json:"currency"
+    //
+    // The currency of the correction. Three-letter Currency Code ISO 4217, in uppercase.
     string currency = 3;
     //@inject_tag: bson:"reason" json:"reason"
+    //
+    // The correction reason.
     string reason = 4;
     //@inject_tag: bson:"entry_date" json:"entry_date"
+    //
+    // The date of the correction.
     google.protobuf.Timestamp entry_date = 5;
 }
 
 message RoyaltyReportSummary {
     //@inject_tag: bson:"products_items" json:"products_items"
+    //
+    // The summary for each product (project) and country.
     repeated RoyaltyReportProductSummaryItem products_items = 1;
     //@inject_tag: bson:"products_total" json:"products_total"
+    //
+    // The summary totals for all product (project) and country.
     RoyaltyReportProductSummaryItem products_total = 2;
     //@inject_tag: bson:"corrections" json:"corrections"
+    //
+    // The list of the applied corrections (if any).
     repeated RoyaltyReportCorrectionItem corrections = 3;
     //@inject_tag: bson:"rolling_reserves" json:"rolling_reserves"
+    //
+    // The list of the applied rolling reserves (if any).
     repeated RoyaltyReportCorrectionItem rolling_reserves = 4;
 }
 
 message RoyaltyReport {
     //@inject_tag: bson:"_id" json:"id"
+    //
+    // The unique identifier for the royalty report.
     string id = 1;
     //@inject_tag: bson:"merchant_id" json:"merchant_id"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 2;
     //@inject_tag: bson:"created_at" json:"created_at"
+    //
+    // The date of the royalty report creation.
     google.protobuf.Timestamp created_at = 3;
     //@inject_tag: bson:"updated_at" json:"updated_at"
+    //
+    // The date of the royalty report last update.
     google.protobuf.Timestamp updated_at = 4;
     //@inject_tag: bson:"payout_date" json:"payout_date"
+    //
+    // The date when the report was paid.
     google.protobuf.Timestamp payout_date = 5;
     //@inject_tag: bson:"status" json:"status"
+    //
+    // The document status. Available values: skip, pending, in_progress, paid, canceled, failed.
     string status = 6;
     //@inject_tag: bson:"period_from" json:"period_from"
+    //
+    // The start date of the report time period.
     google.protobuf.Timestamp period_from = 7;
     //@inject_tag: bson:"period_to" json:"period_to"
+    //
+    // The end date of the report time period.
     google.protobuf.Timestamp period_to = 8;
     //@inject_tag: bson:"accept_expire_at" json:"accept_expire_at"
+    //
+    // The date when the royalty report will be auto-accepted (if the merchant hadn't accept it yet or started a dispute).
     google.protobuf.Timestamp accept_expire_at = 9;
     //@inject_tag: bson:"merchant_id" json:"accepted_at"
+    //
+    // The date when the royalty report was accepted.
     google.protobuf.Timestamp accepted_at = 10;
     //@inject_tag: bson:"totals" json:"totals"
+    //
+    // The totals section of the royalty report.
     RoyaltyReportTotals totals = 11;
     //@inject_tag: bson:"currency" json:"currency"
+    //
+    // The currency of the royalty report. Three-letter Currency Code ISO 4217, in uppercase.
     string currency = 12;
     //@inject_tag: bson:"summary" json:"summary"
+    //
+    // The summary section of the royalty report.
     RoyaltyReportSummary summary = 13;
     //@inject_tag: bson:"dispute_reason" json:"dispute_reason"
+    //
+    // The dispute reason (if any).
     string dispute_reason = 14;
     //@inject_tag: bson:"dispute_started_at" json:"dispute_closed_at"
+    //
+    // The start date of the dispute (if any).
     google.protobuf.Timestamp dispute_started_at = 15;
     //@inject_tag: bson:"dispute_closed_at" json:"dispute_closed_at"
+    //
+    // The resolution date of the dispute (if any).
     google.protobuf.Timestamp dispute_closed_at = 16;
     //@inject_tag: bson:"is_auto_accepted" json:"is_auto_accepted"
+    //
+    // Has a true value if the royalty report is auto-accepted.
     bool is_auto_accepted = 17;
     //@inject_tag: bson:"payout_document_id" json:"payout_document_id"
+    //
+    // The unique identifier for the payout document.
     string payout_document_id = 18;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    //
+    // The unique identifier for the operation company.
     string operating_company_id = 19;
 }
 
@@ -3015,50 +3105,96 @@ message Key {
 
 message PayoutDocument {
     //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //
+    // The unique identifier for the payout document.
     string id = 1;
     //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24"
+    //
+    // The unique identifier for the merchant who is the owner of the payout document.
     string merchant_id = 2;
     //@inject_tag: json:"source_id"
+    //
+    // The list of the unique identifiers for the royalty reports.
     repeated string source_id = 3;
     // @inject_tag: json:"total_fees" validate:"numeric,gte=0"
+    //
+    // The total amount of fees.
     double total_fees = 4;
     // @inject_tag: json:"balance" validate:"numeric,gte=0"
+    //
+    // The payout amount.
     double balance = 5;
     //@inject_tag: json:"currency" validate:"required,alpha,len=3"
+    //
+    // The payout amount currency. Three-letter Currency Code ISO 4217, in uppercase.
     string currency = 6;
     // @inject_tag: json:"period_from"
+    //
+    // The start date of the payout period .
     google.protobuf.Timestamp period_from = 7;
     // @inject_tag: json:"period_to"
+    //
+    // The end date of the payout period.
     google.protobuf.Timestamp period_to = 8;
     // @inject_tag: json:"total_transactions"
+    //
+    // The total number of transactions.
     int32 total_transactions = 9;
     //@inject_tag: json:"description" validate:"omitempty,max=255"
+    //
+    // The additional description of the payout.
     string description = 10;
     //@inject_tag: json:"destination" validate:"max=255"
+    //
+    // The merchant's banking data.
     MerchantBanking destination = 11;
     //@inject_tag: json:"merchant_agreement_number" validate:"max=255"
+    //
+    // The merchant's license agreement number.
     string merchant_agreement_number = 12;
     // @inject_tag: json:"company"
+    //
+    // Information about the merchant's company.
     MerchantCompanyInfo company = 13;
     //@inject_tag: json:"status" validate:"required,oneof=skip pending in_progress paid canceled failed"
+    //
+    // The document status. Available values: skip, pending, in_progress, paid, canceled, failed.
     string status = 14;
     //@inject_tag: json:"transaction" validate:"max=255"
+    //
+    // The unique identifier for the payout transaction.
     string transaction = 15;
     //@inject_tag: json:"failure_code" validate:"omitempty,oneof=account_closed account_frozen account_restricted destination_bank_invalid could_not_process declined insufficient_funds invalid_account_number incorrect_account_holder_name invalid_currency"
+    //
+    // The payout's failure code. Available values: account_closed, account_frozen, account_restricted, destination_bank_invalid, could_not_process, declined, insufficient_funds, invalid_account_number, incorrect_account_holder_name, invalid_currency.
     string failure_code = 16;
     //@inject_tag: json:"failure_message" validate:"max=255"
+    //
+    // The payout's failure message.
     string failure_message = 17;
     //@inject_tag: json:"failure_transaction" validate:"max=255"
+    //
+    // The unique identifier for the payout failure transaction.
     string failure_transaction = 18;
     //@inject_tag: json:"created_at"
+    //
+    // The date of the payout creation.
     google.protobuf.Timestamp created_at = 24;
     //@inject_tag: json:"updated_at"
+    //
+    // The date of the payout last update.
     google.protobuf.Timestamp updated_at = 25;
     //@inject_tag: json:"arrival_date"
+    //
+    // The payout arrival date.
     google.protobuf.Timestamp arrival_date = 26;
     //@inject_tag: json:"paid_at"
+    //
+    // The payout date.
     google.protobuf.Timestamp paid_at = 27;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    //
+    // The unique identifier for the operation company.
     string operating_company_id = 28;
 }
 
