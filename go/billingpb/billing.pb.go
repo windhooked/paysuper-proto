@@ -15585,8 +15585,12 @@ func (m *UserRole) GetUpdatedAt() *timestamp.Timestamp {
 
 type RoleListItem struct {
 	//@inject_tag: json:"id"
+	//
+	// The unique identifier for the role.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	//@inject_tag: json:"name"
+	//
+	// The role's name.
 	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
