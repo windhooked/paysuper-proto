@@ -3049,9 +3049,13 @@ message InviteUserAdminResponse {
 }
 
 message ResendInviteMerchantRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 1;
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email address.
     string email = 2;
 }
 
