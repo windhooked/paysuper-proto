@@ -839,12 +839,20 @@ message OrderPlatformFee {
 
 message OrderTax {
     // @inject_tag: json:"type"
+    //
+    // The type of the tax.
     string type = 1;
     // @inject_tag: json:"rate"
+    //
+    // The tax rate.
     double rate = 2;
     // @inject_tag: json:"amount"
+    //
+    // The tax amount.
     double amount = 3;
     // @inject_tag: json:"currency"
+    //
+    // The tax currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 4;
 }
 
@@ -931,66 +939,124 @@ message Order {
     // @inject_tag: json:"-" bson:"_id"
     string id = 1; // unique internal order identifier in Protocol One
     // @inject_tag: json:"id" bson:"uuid"
-    string uuid = 2; // unique public order identifier in Protocol One
+    //
+    // The public unique identifier for the order in PaySuper.
+    string uuid = 2;
     // @inject_tag: json:"transaction" bson:"pm_order_id"
-    string transaction = 3; // unique order id in payment system
+    //
+    // The unique identifier for the order in the payment system.
+    string transaction = 3;
     // @inject_tag: json:"object" bson:"object"
+    //
+    // The system constant that contains the returned object's type.
     string object = 4;
     // @inject_tag: json:"status" bson:"status"
+    //
+    // The current status of the order. Available values: created, processed, canceled, rejected, refunded, chargeback, pending.
     string status = 5;
     // @inject_tag: json:"-" bson:"private_status"
     int32 private_status = 6; // order status
     // @inject_tag: json:"description" bson:"description"
+    //
+    // The order's description.
     string description = 7;
     // @inject_tag: bson:"created_at" bson:"created_at"
+    //
+    // The date of the order creation.
     google.protobuf.Timestamp created_at = 8;
     // @inject_tag: json:"-" bson:"updated_at"
     google.protobuf.Timestamp updated_at = 9; // date of last update order data
     //@inject_tag: json:"canceled_at" bson:"canceled_at"
+    //
+    // The date of the order cancellation.
     google.protobuf.Timestamp canceled_at = 10;
     //@inject_tag: json:"canceled" bson:"canceled"
+    //
+    // Has a true value if the order is cancelled.
     bool canceled = 11;
     //@inject_tag: json:"cancellation" bson:"cancellation"
+    //
+    // The notification of cancellation.
     OrderNotificationCancellation cancellation = 12;
     //@inject_tag: json:"refunded" bson:"refunded"
+    //
+    // Has a true value if the order is refunded.
     bool refunded = 13;
     //@inject_tag: json:"refunded_at" bson:"refunded_at"
+    //
+    // The date of the order refund.
     google.protobuf.Timestamp refunded_at = 14;
     // @inject_tag: json:"receipt_email" bson:"receipt_email"
+    //
+    // The customer's email that is used for the payment receipt.
     string receipt_email = 15;
     // @inject_tag: json:"receipt_phone" bson:"receipt_phone"
+    //
+    // The customer's phone who receives the payment receipt.
     string receipt_phone = 16;
     // @inject_tag: json:"receipt_number" bson:"receipt_number"
+    //
+    // The unique identifier for the order's receipt.
     string receipt_number = 17;
     // @inject_tag: json:"receipt_url" bson:"receipt_url"
+    //
+    // The URL in PaySuper service for online access to the refund's receipt.
     string receipt_url = 18;
     //@inject_tag: json:"agreement_version" bson:"agreement_version" validate:"required"
+    //
+    // The license agreement version.
     string agreement_version = 19;
     //@inject_tag: json:"agreement_accepted" bson:"agreement_accepted" validate:"required"
+    //
+    // Has a true value if the customer has accepted the license agreement.
     bool agreement_accepted = 20;
     //@inject_tag: json:"notify_sale" bson:"notify_sale" validate:"required"
+    //
+    // Has a true value if the customer has agreed to receive the sales notifications.
     bool notify_sale = 21;
     //@inject_tag: json:"notify_sale_email" bson:"notify_sale_email"
+    //
+    // The customer's email for the sales notifications.
     string notify_sale_email = 22;
     //@inject_tag: json:"issuer" bson:"issuer" validate:"required"
+    //
+    // The order issuer data.
     OrderIssuer issuer = 23;
     //@inject_tag: json:"amount" bson:"total_payment_amount"
-    double total_payment_amount = 24; // total amount to payment with all commissions
+    //
+    // The total payment amount including all commissions.
+    double total_payment_amount = 24;
     //@inject_tag: json:"currency" bson:"currency" validate:"required,alpha,len=3"
+    //
+    // The order currency. Three-letter Currency Code ISO 4217, in uppercase.
     string currency = 25;
     //@inject_tag: json:"user" bson:"user"
+    //
+    // The customer data.
     OrderUser user = 26;
     //@inject_tag: json:"billing_address" bson:"billing_address"
-    OrderBillingAddress billing_address = 27; // user billing address entered in payment form
+    //
+    // The customer's billing address entered in payment form.
+    OrderBillingAddress billing_address = 27;
     //@inject_tag: json:"tax" bson:"tax"
+    //
+    // The tax in the order.
     OrderTax tax = 28;
     // @inject_tag: json:"method" bson:"payment_method"
-    PaymentMethodOrder payment_method = 29; // payment method unique identifier
+    //
+    // The payment method data.
+    PaymentMethodOrder payment_method = 29;
     // @inject_tag: json:"items" bson:"items" validate="omitempty,gte=1,dive"
+    //
+    // The list of products in the order.
     repeated OrderItem items = 30;
     //@inject_tag: json:"refund" bson:"refund" validate:"omitempty,dive"
+    //
+    // The refund's notification. Has a null value if the order is not refunded.
     OrderNotificationRefund refund = 31;
     // @inject_tag: json:"metadata" bson:"metadata"
+    //
+    // A string-value description for the order.
     map<string, string> metadata = 32;
     // @inject_tag: json:"-" bson:"private_metadata"
     map<string, string> private_metadata = 33;
@@ -1009,6 +1075,8 @@ message Order {
     // @inject_tag: json:"-" bson:"created_by_json"
     bool is_json_request = 40; // is order create by json request
     // @inject_tag: json:"original_amount" bson:"private_amount" validate:"required,numeric,gt=0"
+    //
+    // The order amount excluding commissions.
     double order_amount = 41;
     // @inject_tag: json:"-" bson:"pm_account"
     string payment_method_payer_account = 42; // account of payer in payment system
@@ -1027,6 +1095,8 @@ message Order {
     // @inject_tag: json:"-" bson:"country_restriction"
     CountryRestriction country_restriction = 49;
     //@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
+    //
+    // The customer's country code. Two-letter country code in ISO 3166-1, in uppercase.
     string country_code = 50;
     // @inject_tag: json:"-"
     ParentOrder parent_order = 51;
@@ -1037,18 +1107,28 @@ message Order {
     // @inject_tag: json:"-"
     bool is_vat_deduction = 54;
     // @inject_tag: validate="oneof=simple product key virtual_currency" json:"type"
+    //
+    // The type of the order's product. Available values: simple, product, key, virtual_currency.
     string product_type = 69;
     // @inject_tag: json:"platform_id"
+    //
+    // The default platform's name for which the customer buys a key. This field is used only for the key type. Available values: steam, gog, uplay, origin, psn, xbox, nintendo, itch, egs.
     string platform_id = 70;
     // @inject_tag: json:"-" bson:"keys"
     repeated string keys = 71;
     // @inject_tag: json:"-"
     bool is_key_product_notified = 72;
     // @inject_tag: json:"receipt_id" bson:"receipt_id"
-    string receipt_id = 73; // unique public receipt identifier
+    //
+    // The public unique identifier for the receipt.
+    string receipt_id = 73;
     // @inject_tag: json:"virtual_currency_amount" bson:"virtual_currency_amount"
+    //
+    // The virtual currency amount.
     double virtual_currency_amount = 74;
     // @inject_tag: json:"is_buy_for_virtual_currency" bson:"is_buy_for_virtual_currency"
+    //
+    // Has a true value if the order is paid for the virtual currency.
     bool is_buy_for_virtual_currency = 75;
     // @inject_tag: json:"-"
     string mcc_code = 76;
@@ -1059,8 +1139,12 @@ message Order {
     // @inject_tag: json:"-"
     bool is_currency_predefined = 79;
     // @inject_tag: json:"charge_currency"
+    //
+    // The currency of the order charge. It can differ from the order currency because it also depends on the customer's card currency.
     string charge_currency = 80;
     // @inject_tag: json:"charge_amount"
+    //
+    // The total amount of the order charge.
     double charge_amount = 81;
     // @inject_tag: json:"-"
     string payment_ip_country = 82;
@@ -1071,10 +1155,16 @@ message Order {
     // @inject_tag: json:"-"
     bool is_refund_allowed = 85;
     // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
+    //
+    // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
     string vat_payer = 86;
     // @inject_tag: json:"is_production"
+    //
+    // Has a true value for a production payment and false for a test payment that goes through a test sandbox.
     bool is_production = 87;
     // @inject_tag: json:"testing_case"
+    //
+    // The webhook testing mode. Available values: correct_payment, non_existing_user, existing_user, invalid_signature.
     string testing_case = 88;
 }
 
@@ -1475,30 +1565,49 @@ message MerchantPaymentMethod {
 }
 
 message RefundPayerData {
+    // The customer's country.
     string country = 1;
+    // The customer's ZIP code.
     string zip = 2;
+    // The customer's state.
     string state = 3;
 }
 
 message RefundOrder {
+    // The unique identifier for the refund in PaySuper.
     string id = 1;
+    // The public unique identifier for the refund in PaySuper.
     string uuid = 2;
 }
 
 message Refund {
+    // The unique identifier for the refund in PaySuper.
     string id = 1;
+    // The initial order data.
     RefundOrder original_order = 2;
+    // The unique identifier for the refund in the payment system.
     string external_id = 3;
+    // The refund amount.
     double amount = 4;
+    // The unique identifier for the user initiated an action on the return.
     string creatorId = 5;
+    // The refund reason. Available values: Customer's request, Redeem chargeback, Purchase not provided, Card data was stolen.
     string reason = 6;
+    // The refund's currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 7;
+    // The refund status. Available values: 0 - created, 1 - rejected on the payment system side, 2 - in process on the payment system side, 3 - successfully completed.
     int32 status = 8;
+    // The date of the refund creation.
     google.protobuf.Timestamp created_at = 9;
+    // The date of the refund last update.
     google.protobuf.Timestamp updated_at = 10;
+    // The customer data.
     RefundPayerData payer_data = 11;
+    // The refund tax fee.
     float sales_tax = 12;
+    // Has a true value if this refund is a chargeback.
     bool is_chargeback = 13;
+    // The unique identifier for the original order for which the refund was made.
     string created_order_id = 14;
 }
 
@@ -2574,7 +2683,7 @@ message OrderViewPublic {
     PaymentMethodOrder payment_method = 8;
     // @inject_tag: json:"country_code" bson:"country_code"
     //
-    // Two-letter country code by ISO 3166-1, in uppercase.
+    // Two-letter country code in ISO 3166-1, in uppercase.
     string country_code = 9;
     // @inject_tag: json:"merchant_id" bson:"merchant_id"
     //
@@ -2582,11 +2691,11 @@ message OrderViewPublic {
     string merchant_id = 10;
     // @inject_tag: json:"locale" bson:"locale"
     //
-    // The customer’s locale name. Four-letter language code by ISO 639, for instance en-US.
+    // The customer’s locale name. Four-letter language code in ISO 639, for instance en-US.
     string locale = 11;
     // @inject_tag: json:"status" bson:"status"
     //
-    // The current status of the order.
+    // The current status of the order. Available values: created, processed, canceled, rejected, refunded, chargeback, pending.
     string status = 12;
     // @inject_tag: json:"transaction_date" bson:"pm_order_close_date"
     //
@@ -3022,7 +3131,7 @@ message MerchantTariffRatesPayment {
     string merchant_home_region = 10;
     //@inject_tag: json:"payer_region" bson:"payer_region"
     //
-    // The payer's region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
+    // The customer's region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
     string payer_region = 11;
     // @inject_tag: json:"mcc_code" bson:"mcc_code"
     //
