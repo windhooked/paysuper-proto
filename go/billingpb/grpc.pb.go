@@ -184,10 +184,12 @@ func (m *CheckSkuAndKeyProjectRequest) GetProjectId() string {
 }
 
 type ChangeCodeInOrderRequest struct {
-	//@inject_tag: validate:"required"
-	OrderId string `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty" validate:"required"`
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	KeyProductId         string   `protobuf:"bytes,2,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24"`
+	//@inject_tag: validate:"required" json:"-"
+	OrderId string `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"-" validate:"required"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+	//
+	// The unique identifier for the key-activated product.
+	KeyProductId         string   `protobuf:"bytes,2,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -3383,15 +3385,20 @@ func (m *GetNotificationRequest) GetNotificationId() string {
 }
 
 type CreateRefundRequest struct {
-	// @inject_tag: validate:"required,uuid"
-	OrderId string `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty" validate:"required,uuid"`
-	// @inject_tag: validate:"required,numeric,gt=0"
-	Amount       float64 `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty" validate:"required,numeric,gt=0"`
-	CreatorId    string  `protobuf:"bytes,3,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
-	Reason       string  `protobuf:"bytes,4,opt,name=reason,proto3" json:"reason,omitempty"`
-	IsChargeback bool    `protobuf:"varint,5,opt,name=is_chargeback,json=isChargeback,proto3" json:"is_chargeback,omitempty"`
-	// @inject_tag: validate:"required,hexadecimal,len=24"
-	MerchantId           string   `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"required,uuid" json:"-"
+	OrderId string `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"-" validate:"required,uuid"`
+	// @inject_tag: validate:"required,numeric,gt=0" required:"true"
+	//
+	// The refund amount.
+	Amount float64 `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty" validate:"required,numeric,gt=0" required:"true"`
+	// The unique identifier for the user initiated an action on the return.
+	CreatorId string `protobuf:"bytes,3,opt,name=creator_id,json=creatorId,proto3" json:"creator_id,omitempty"`
+	// The refund reason. Available values: Customer's request, Redeem chargeback, Purchase not provided, Card data was stolen.
+	Reason string `protobuf:"bytes,4,opt,name=reason,proto3" json:"reason,omitempty"`
+	// Has a true value if this refund is a chargeback.
+	IsChargeback bool `protobuf:"varint,5,opt,name=is_chargeback,json=isChargeback,proto3" json:"is_chargeback,omitempty"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+	MerchantId           string   `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -3588,8 +3595,12 @@ func (m *ListRefundsRequest) GetOffset() int64 {
 
 type ListRefundsResponse struct {
 	// @inject_tag: json:"count"
+	//
+	// The total number of found refunds.
 	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
+	//
+	// The list of the refunds.
 	Items                []*Refund `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -11565,8 +11576,12 @@ func (m *SetMerchantTariffRatesRequest) GetMerchantOperationsType() string {
 
 type ListOrdersPublicResponseItem struct {
 	// @inject_tag: json:"count"
+	//
+	// The total number of found orders.
 	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
+	//
+	// The list of the orders.
 	Items                []*OrderViewPublic `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}           `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte             `json:"-" bson:"-" structure:"-" validate:"-"`

@@ -3158,12 +3158,20 @@ func (m *OrderPlatformFee) GetEffectiveRate() float32 {
 
 type OrderTax struct {
 	// @inject_tag: json:"type"
+	//
+	// The type of the tax.
 	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type"`
 	// @inject_tag: json:"rate"
+	//
+	// The tax rate.
 	Rate float64 `protobuf:"fixed64,2,opt,name=rate,proto3" json:"rate"`
 	// @inject_tag: json:"amount"
+	//
+	// The tax amount.
 	Amount float64 `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount"`
 	// @inject_tag: json:"currency"
+	//
+	// The tax currency. Three-letter currency code ISO 4217, in uppercase.
 	Currency             string   `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -3537,66 +3545,124 @@ type Order struct {
 	// @inject_tag: json:"-" bson:"_id"
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
 	// @inject_tag: json:"id" bson:"uuid"
+	//
+	// The public unique identifier for the order in PaySuper.
 	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"id" bson:"uuid"`
 	// @inject_tag: json:"transaction" bson:"pm_order_id"
+	//
+	// The unique identifier for the order in the payment system.
 	Transaction string `protobuf:"bytes,3,opt,name=transaction,proto3" json:"transaction" bson:"pm_order_id"`
 	// @inject_tag: json:"object" bson:"object"
+	//
+	// The system constant that contains the returned object's type.
 	Object string `protobuf:"bytes,4,opt,name=object,proto3" json:"object" bson:"object"`
 	// @inject_tag: json:"status" bson:"status"
+	//
+	// The current status of the order. Available values: created, processed, canceled, rejected, refunded, chargeback, pending.
 	Status string `protobuf:"bytes,5,opt,name=status,proto3" json:"status" bson:"status"`
 	// @inject_tag: json:"-" bson:"private_status"
 	PrivateStatus int32 `protobuf:"varint,6,opt,name=private_status,json=privateStatus,proto3" json:"-" bson:"private_status"`
 	// @inject_tag: json:"description" bson:"description"
+	//
+	// The order's description.
 	Description string `protobuf:"bytes,7,opt,name=description,proto3" json:"description" bson:"description"`
 	// @inject_tag: bson:"created_at" bson:"created_at"
+	//
+	// The date of the order creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty" bson:"created_at" bson:"created_at"`
 	// @inject_tag: json:"-" bson:"updated_at"
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"-" bson:"updated_at"`
 	//@inject_tag: json:"canceled_at" bson:"canceled_at"
+	//
+	// The date of the order cancellation.
 	CanceledAt *timestamp.Timestamp `protobuf:"bytes,10,opt,name=canceled_at,json=canceledAt,proto3" json:"canceled_at" bson:"canceled_at"`
 	//@inject_tag: json:"canceled" bson:"canceled"
+	//
+	// Has a true value if the order is cancelled.
 	Canceled bool `protobuf:"varint,11,opt,name=canceled,proto3" json:"canceled" bson:"canceled"`
 	//@inject_tag: json:"cancellation" bson:"cancellation"
+	//
+	// The notification of cancellation.
 	Cancellation *OrderNotificationCancellation `protobuf:"bytes,12,opt,name=cancellation,proto3" json:"cancellation" bson:"cancellation"`
 	//@inject_tag: json:"refunded" bson:"refunded"
+	//
+	// Has a true value if the order is refunded.
 	Refunded bool `protobuf:"varint,13,opt,name=refunded,proto3" json:"refunded" bson:"refunded"`
 	//@inject_tag: json:"refunded_at" bson:"refunded_at"
+	//
+	// The date of the order refund.
 	RefundedAt *timestamp.Timestamp `protobuf:"bytes,14,opt,name=refunded_at,json=refundedAt,proto3" json:"refunded_at" bson:"refunded_at"`
 	// @inject_tag: json:"receipt_email" bson:"receipt_email"
+	//
+	// The customer's email that is used for the payment receipt.
 	ReceiptEmail string `protobuf:"bytes,15,opt,name=receipt_email,json=receiptEmail,proto3" json:"receipt_email" bson:"receipt_email"`
 	// @inject_tag: json:"receipt_phone" bson:"receipt_phone"
+	//
+	// The customer's phone who receives the payment receipt.
 	ReceiptPhone string `protobuf:"bytes,16,opt,name=receipt_phone,json=receiptPhone,proto3" json:"receipt_phone" bson:"receipt_phone"`
 	// @inject_tag: json:"receipt_number" bson:"receipt_number"
+	//
+	// The unique identifier for the order's receipt.
 	ReceiptNumber string `protobuf:"bytes,17,opt,name=receipt_number,json=receiptNumber,proto3" json:"receipt_number" bson:"receipt_number"`
 	// @inject_tag: json:"receipt_url" bson:"receipt_url"
+	//
+	// The URL in PaySuper service for online access to the refund's receipt.
 	ReceiptUrl string `protobuf:"bytes,18,opt,name=receipt_url,json=receiptUrl,proto3" json:"receipt_url" bson:"receipt_url"`
 	//@inject_tag: json:"agreement_version" bson:"agreement_version" validate:"required"
+	//
+	// The license agreement version.
 	AgreementVersion string `protobuf:"bytes,19,opt,name=agreement_version,json=agreementVersion,proto3" json:"agreement_version" bson:"agreement_version" validate:"required"`
 	//@inject_tag: json:"agreement_accepted" bson:"agreement_accepted" validate:"required"
+	//
+	// Has a true value if the customer has accepted the license agreement.
 	AgreementAccepted bool `protobuf:"varint,20,opt,name=agreement_accepted,json=agreementAccepted,proto3" json:"agreement_accepted" bson:"agreement_accepted" validate:"required"`
 	//@inject_tag: json:"notify_sale" bson:"notify_sale" validate:"required"
+	//
+	// Has a true value if the customer has agreed to receive the sales notifications.
 	NotifySale bool `protobuf:"varint,21,opt,name=notify_sale,json=notifySale,proto3" json:"notify_sale" bson:"notify_sale" validate:"required"`
 	//@inject_tag: json:"notify_sale_email" bson:"notify_sale_email"
+	//
+	// The customer's email for the sales notifications.
 	NotifySaleEmail string `protobuf:"bytes,22,opt,name=notify_sale_email,json=notifySaleEmail,proto3" json:"notify_sale_email" bson:"notify_sale_email"`
 	//@inject_tag: json:"issuer" bson:"issuer" validate:"required"
+	//
+	// The order issuer data.
 	Issuer *OrderIssuer `protobuf:"bytes,23,opt,name=issuer,proto3" json:"issuer" bson:"issuer" validate:"required"`
 	//@inject_tag: json:"amount" bson:"total_payment_amount"
+	//
+	// The total payment amount including all commissions.
 	TotalPaymentAmount float64 `protobuf:"fixed64,24,opt,name=total_payment_amount,json=totalPaymentAmount,proto3" json:"amount" bson:"total_payment_amount"`
 	//@inject_tag: json:"currency" bson:"currency" validate:"required,alpha,len=3"
+	//
+	// The order currency. Three-letter Currency Code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,25,opt,name=currency,proto3" json:"currency" bson:"currency" validate:"required,alpha,len=3"`
 	//@inject_tag: json:"user" bson:"user"
+	//
+	// The customer data.
 	User *OrderUser `protobuf:"bytes,26,opt,name=user,proto3" json:"user" bson:"user"`
 	//@inject_tag: json:"billing_address" bson:"billing_address"
+	//
+	// The customer's billing address entered in payment form.
 	BillingAddress *OrderBillingAddress `protobuf:"bytes,27,opt,name=billing_address,json=billingAddress,proto3" json:"billing_address" bson:"billing_address"`
 	//@inject_tag: json:"tax" bson:"tax"
+	//
+	// The tax in the order.
 	Tax *OrderTax `protobuf:"bytes,28,opt,name=tax,proto3" json:"tax" bson:"tax"`
 	// @inject_tag: json:"method" bson:"payment_method"
+	//
+	// The payment method data.
 	PaymentMethod *PaymentMethodOrder `protobuf:"bytes,29,opt,name=payment_method,json=paymentMethod,proto3" json:"method" bson:"payment_method"`
 	// @inject_tag: json:"items" bson:"items" validate="omitempty,gte=1,dive"
+	//
+	// The list of products in the order.
 	Items []*OrderItem `protobuf:"bytes,30,rep,name=items,proto3" json:"items" bson:"items"`
 	//@inject_tag: json:"refund" bson:"refund" validate:"omitempty,dive"
+	//
+	// The refund's notification. Has a null value if the order is not refunded.
 	Refund *OrderNotificationRefund `protobuf:"bytes,31,opt,name=refund,proto3" json:"refund" bson:"refund" validate:"omitempty,dive"`
 	// @inject_tag: json:"metadata" bson:"metadata"
+	//
+	// A string-value description for the order.
 	Metadata map[string]string `protobuf:"bytes,32,rep,name=metadata,proto3" json:"metadata" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"metadata"`
 	// @inject_tag: json:"-" bson:"private_metadata"
 	PrivateMetadata map[string]string `protobuf:"bytes,33,rep,name=private_metadata,json=privateMetadata,proto3" json:"-" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"private_metadata"`
@@ -3615,6 +3681,8 @@ type Order struct {
 	// @inject_tag: json:"-" bson:"created_by_json"
 	IsJsonRequest bool `protobuf:"varint,40,opt,name=is_json_request,json=isJsonRequest,proto3" json:"-" bson:"created_by_json"`
 	// @inject_tag: json:"original_amount" bson:"private_amount" validate:"required,numeric,gt=0"
+	//
+	// The order amount excluding commissions.
 	OrderAmount float64 `protobuf:"fixed64,41,opt,name=order_amount,json=orderAmount,proto3" json:"original_amount" bson:"private_amount" validate:"required,numeric,gt=0"`
 	// @inject_tag: json:"-" bson:"pm_account"
 	PaymentMethodPayerAccount string `protobuf:"bytes,42,opt,name=payment_method_payer_account,json=paymentMethodPayerAccount,proto3" json:"-" bson:"pm_account"`
@@ -3633,6 +3701,8 @@ type Order struct {
 	// @inject_tag: json:"-" bson:"country_restriction"
 	CountryRestriction *CountryRestriction `protobuf:"bytes,49,opt,name=country_restriction,json=countryRestriction,proto3" json:"-" bson:"country_restriction"`
 	//@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
+	//
+	// The customer's country code. Two-letter country code in ISO 3166-1, in uppercase.
 	CountryCode string `protobuf:"bytes,50,opt,name=country_code,json=countryCode,proto3" json:"country" bson:"country" validate:"omitempty,alpha,len=2"`
 	// @inject_tag: json:"-"
 	ParentOrder *ParentOrder `protobuf:"bytes,51,opt,name=parent_order,json=parentOrder,proto3" json:"-"`
@@ -3643,18 +3713,28 @@ type Order struct {
 	// @inject_tag: json:"-"
 	IsVatDeduction bool `protobuf:"varint,54,opt,name=is_vat_deduction,json=isVatDeduction,proto3" json:"-"`
 	// @inject_tag: validate="oneof=simple product key virtual_currency" json:"type"
+	//
+	// The type of the order's product. Available values: simple, product, key, virtual_currency.
 	ProductType string `protobuf:"bytes,69,opt,name=product_type,json=productType,proto3" json:"type"`
 	// @inject_tag: json:"platform_id"
+	//
+	// The default platform's name for which the customer buys a key. This field is used only for the key type. Available values: steam, gog, uplay, origin, psn, xbox, nintendo, itch, egs.
 	PlatformId string `protobuf:"bytes,70,opt,name=platform_id,json=platformId,proto3" json:"platform_id"`
 	// @inject_tag: json:"-" bson:"keys"
 	Keys []string `protobuf:"bytes,71,rep,name=keys,proto3" json:"-" bson:"keys"`
 	// @inject_tag: json:"-"
 	IsKeyProductNotified bool `protobuf:"varint,72,opt,name=is_key_product_notified,json=isKeyProductNotified,proto3" json:"-"`
 	// @inject_tag: json:"receipt_id" bson:"receipt_id"
+	//
+	// The public unique identifier for the receipt.
 	ReceiptId string `protobuf:"bytes,73,opt,name=receipt_id,json=receiptId,proto3" json:"receipt_id" bson:"receipt_id"`
 	// @inject_tag: json:"virtual_currency_amount" bson:"virtual_currency_amount"
+	//
+	// The virtual currency amount.
 	VirtualCurrencyAmount float64 `protobuf:"fixed64,74,opt,name=virtual_currency_amount,json=virtualCurrencyAmount,proto3" json:"virtual_currency_amount" bson:"virtual_currency_amount"`
 	// @inject_tag: json:"is_buy_for_virtual_currency" bson:"is_buy_for_virtual_currency"
+	//
+	// Has a true value if the order is paid for the virtual currency.
 	IsBuyForVirtualCurrency bool `protobuf:"varint,75,opt,name=is_buy_for_virtual_currency,json=isBuyForVirtualCurrency,proto3" json:"is_buy_for_virtual_currency" bson:"is_buy_for_virtual_currency"`
 	// @inject_tag: json:"-"
 	MccCode string `protobuf:"bytes,76,opt,name=mcc_code,json=mccCode,proto3" json:"-"`
@@ -3665,8 +3745,12 @@ type Order struct {
 	// @inject_tag: json:"-"
 	IsCurrencyPredefined bool `protobuf:"varint,79,opt,name=is_currency_predefined,json=isCurrencyPredefined,proto3" json:"-"`
 	// @inject_tag: json:"charge_currency"
+	//
+	// The currency of the order charge. It can differ from the order currency because it also depends on the customer's card currency.
 	ChargeCurrency string `protobuf:"bytes,80,opt,name=charge_currency,json=chargeCurrency,proto3" json:"charge_currency"`
 	// @inject_tag: json:"charge_amount"
+	//
+	// The total amount of the order charge.
 	ChargeAmount float64 `protobuf:"fixed64,81,opt,name=charge_amount,json=chargeAmount,proto3" json:"charge_amount"`
 	// @inject_tag: json:"-"
 	PaymentIpCountry string `protobuf:"bytes,82,opt,name=payment_ip_country,json=paymentIpCountry,proto3" json:"-"`
@@ -3677,10 +3761,16 @@ type Order struct {
 	// @inject_tag: json:"-"
 	IsRefundAllowed bool `protobuf:"varint,85,opt,name=is_refund_allowed,json=isRefundAllowed,proto3" json:"-"`
 	// @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
+	//
+	// The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
 	VatPayer string `protobuf:"bytes,86,opt,name=vat_payer,json=vatPayer,proto3" json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"`
 	// @inject_tag: json:"is_production"
+	//
+	// Has a true value for a production payment and false for a test payment that goes through a test sandbox.
 	IsProduction bool `protobuf:"varint,87,opt,name=is_production,json=isProduction,proto3" json:"is_production"`
 	// @inject_tag: json:"testing_case"
+	//
+	// The webhook testing mode. Available values: correct_payment, non_existing_user, existing_user, invalid_signature.
 	TestingCase          string   `protobuf:"bytes,88,opt,name=testing_case,json=testingCase,proto3" json:"testing_case"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -6045,8 +6135,11 @@ func (m *MerchantPaymentMethod) GetIsActive() bool {
 }
 
 type RefundPayerData struct {
-	Country              string   `protobuf:"bytes,1,opt,name=country,proto3" json:"country,omitempty"`
-	Zip                  string   `protobuf:"bytes,2,opt,name=zip,proto3" json:"zip,omitempty"`
+	// The customer's country.
+	Country string `protobuf:"bytes,1,opt,name=country,proto3" json:"country,omitempty"`
+	// The customer's ZIP code.
+	Zip string `protobuf:"bytes,2,opt,name=zip,proto3" json:"zip,omitempty"`
+	// The customer's state.
 	State                string   `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -6100,7 +6193,9 @@ func (m *RefundPayerData) GetState() string {
 }
 
 type RefundOrder struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The unique identifier for the refund in PaySuper.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The public unique identifier for the refund in PaySuper.
 	Uuid                 string   `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -6147,23 +6242,37 @@ func (m *RefundOrder) GetUuid() string {
 }
 
 type Refund struct {
-	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	OriginalOrder        *RefundOrder         `protobuf:"bytes,2,opt,name=original_order,json=originalOrder,proto3" json:"original_order,omitempty"`
-	ExternalId           string               `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
-	Amount               float64              `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
-	CreatorId            string               `protobuf:"bytes,5,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
-	Reason               string               `protobuf:"bytes,6,opt,name=reason,proto3" json:"reason,omitempty"`
-	Currency             string               `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
-	Status               int32                `protobuf:"varint,8,opt,name=status,proto3" json:"status,omitempty"`
-	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	PayerData            *RefundPayerData     `protobuf:"bytes,11,opt,name=payer_data,json=payerData,proto3" json:"payer_data,omitempty"`
-	SalesTax             float32              `protobuf:"fixed32,12,opt,name=sales_tax,json=salesTax,proto3" json:"sales_tax,omitempty"`
-	IsChargeback         bool                 `protobuf:"varint,13,opt,name=is_chargeback,json=isChargeback,proto3" json:"is_chargeback,omitempty"`
-	CreatedOrderId       string               `protobuf:"bytes,14,opt,name=created_order_id,json=createdOrderId,proto3" json:"created_order_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                `json:"-" bson:"-" structure:"-" validate:"-"`
+	// The unique identifier for the refund in PaySuper.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// The initial order data.
+	OriginalOrder *RefundOrder `protobuf:"bytes,2,opt,name=original_order,json=originalOrder,proto3" json:"original_order,omitempty"`
+	// The unique identifier for the refund in the payment system.
+	ExternalId string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
+	// The refund amount.
+	Amount float64 `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
+	// The unique identifier for the user initiated an action on the return.
+	CreatorId string `protobuf:"bytes,5,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
+	// The refund reason. Available values: Customer's request, Redeem chargeback, Purchase not provided, Card data was stolen.
+	Reason string `protobuf:"bytes,6,opt,name=reason,proto3" json:"reason,omitempty"`
+	// The refund's currency. Three-letter currency code ISO 4217, in uppercase.
+	Currency string `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
+	// The refund status. Available values: 0 - created, 1 - rejected on the payment system side, 2 - in process on the payment system side, 3 - successfully completed.
+	Status int32 `protobuf:"varint,8,opt,name=status,proto3" json:"status,omitempty"`
+	// The date of the refund creation.
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// The date of the refund last update.
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// The customer data.
+	PayerData *RefundPayerData `protobuf:"bytes,11,opt,name=payer_data,json=payerData,proto3" json:"payer_data,omitempty"`
+	// The refund tax fee.
+	SalesTax float32 `protobuf:"fixed32,12,opt,name=sales_tax,json=salesTax,proto3" json:"sales_tax,omitempty"`
+	// Has a true value if this refund is a chargeback.
+	IsChargeback bool `protobuf:"varint,13,opt,name=is_chargeback,json=isChargeback,proto3" json:"is_chargeback,omitempty"`
+	// The unique identifier for the original order for which the refund was made.
+	CreatedOrderId       string   `protobuf:"bytes,14,opt,name=created_order_id,json=createdOrderId,proto3" json:"created_order_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *Refund) Reset()         { *m = Refund{} }
@@ -11400,7 +11509,7 @@ type OrderViewPublic struct {
 	PaymentMethod *PaymentMethodOrder `protobuf:"bytes,8,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method" bson:"payment_method"`
 	// @inject_tag: json:"country_code" bson:"country_code"
 	//
-	// Two-letter country code by ISO 3166-1, in uppercase.
+	// Two-letter country code in ISO 3166-1, in uppercase.
 	CountryCode string `protobuf:"bytes,9,opt,name=country_code,json=countryCode,proto3" json:"country_code" bson:"country_code"`
 	// @inject_tag: json:"merchant_id" bson:"merchant_id"
 	//
@@ -11408,11 +11517,11 @@ type OrderViewPublic struct {
 	MerchantId string `protobuf:"bytes,10,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id"`
 	// @inject_tag: json:"locale" bson:"locale"
 	//
-	// The customer’s locale name. Four-letter language code by ISO 639, for instance en-US.
+	// The customer’s locale name. Four-letter language code in ISO 639, for instance en-US.
 	Locale string `protobuf:"bytes,11,opt,name=locale,proto3" json:"locale" bson:"locale"`
 	// @inject_tag: json:"status" bson:"status"
 	//
-	// The current status of the order.
+	// The current status of the order. Available values: created, processed, canceled, rejected, refunded, chargeback, pending.
 	Status string `protobuf:"bytes,12,opt,name=status,proto3" json:"status" bson:"status"`
 	// @inject_tag: json:"transaction_date" bson:"pm_order_close_date"
 	//
@@ -13108,7 +13217,7 @@ type MerchantTariffRatesPayment struct {
 	MerchantHomeRegion string `protobuf:"bytes,10,opt,name=merchant_home_region,json=merchantHomeRegion,proto3" json:"merchant_home_region" bson:"merchant_home_region"`
 	//@inject_tag: json:"payer_region" bson:"payer_region"
 	//
-	// The payer's region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
+	// The customer's region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
 	PayerRegion string `protobuf:"bytes,11,opt,name=payer_region,json=payerRegion,proto3" json:"payer_region" bson:"payer_region"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
 	//
