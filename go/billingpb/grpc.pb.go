@@ -16050,10 +16050,14 @@ func (m *InviteUserAdminResponse) GetRole() *UserRole {
 }
 
 type ResendInviteMerchantRequest struct {
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: validate:"required,email"
-	Email                string   `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty" validate:"required,email"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+	//
+	// The unique identifier for the merchant.
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24" required:"true"`
+	//@inject_tag: validate:"required,email" required:"true"
+	//
+	// The user's email address.
+	Email                string   `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty" validate:"required,email" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
