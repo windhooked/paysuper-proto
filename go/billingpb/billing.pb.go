@@ -15311,34 +15311,64 @@ func (m *PaymentFormDataChangeResponseItem) GetVatRate() float64 {
 
 type OperatingCompany struct {
 	// @inject_tag: bson:"_id" json:"id"
+	//
+	// The unique identifier for the operating company.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
 	// @inject_tag: bson:"name" json:"name" validate:"required"
+	//
+	// The operating company's name.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required"`
 	// @inject_tag: bson:"country" json:"country" validate:"required,alpha,len=2"
+	//
+	// The operating company's country.
 	Country string `protobuf:"bytes,3,opt,name=country,proto3" json:"country" bson:"country" validate:"required,alpha,len=2"`
 	// @inject_tag: bson:"registration_number" json:"registration_number" validate:"required"
+	//
+	// The operating company's registration number.
 	RegistrationNumber string `protobuf:"bytes,4,opt,name=registration_number,json=registrationNumber,proto3" json:"registration_number" bson:"registration_number" validate:"required"`
 	// @inject_tag: bson:"vat_number" json:"vat_number" validate:"required"
+	//
+	// The operating company's VAT number.
 	VatNumber string `protobuf:"bytes,5,opt,name=vat_number,json=vatNumber,proto3" json:"vat_number" bson:"vat_number" validate:"required"`
 	// @inject_tag: bson:"address" json:"address" validate:"required"
+	//
+	// The operating company's address.
 	Address string `protobuf:"bytes,6,opt,name=address,proto3" json:"address" bson:"address" validate:"required"`
 	// @inject_tag: bson:"vat_address" json:"vat_address" validate:"required"
+	//
+	// The operating company's VAT address.
 	VatAddress string `protobuf:"bytes,7,opt,name=vat_address,json=vatAddress,proto3" json:"vat_address" bson:"vat_address" validate:"required"`
 	// @inject_tag: bson:"signatory_name" json:"signatory_name" validate:"required"
+	//
+	// The authorized signer's name of the operating company.
 	SignatoryName string `protobuf:"bytes,8,opt,name=signatory_name,json=signatoryName,proto3" json:"signatory_name" bson:"signatory_name" validate:"required"`
 	// @inject_tag: bson:"signatory_position" json:"signatory_position" validate:"required"
+	//
+	// The authorized signer's position in the operating company.
 	SignatoryPosition string `protobuf:"bytes,9,opt,name=signatory_position,json=signatoryPosition,proto3" json:"signatory_position" bson:"signatory_position" validate:"required"`
 	// @inject_tag: bson:"banking_details" json:"banking_details" validate:"required"
+	//
+	// The baking details including bank, bank address, account number, SWIFT/BIC, intermediary bank.
 	BankingDetails string `protobuf:"bytes,10,opt,name=banking_details,json=bankingDetails,proto3" json:"banking_details" bson:"banking_details" validate:"required"`
 	// @inject_tag: bson:"payment_countries" json:"payment_countries" validate:"omitempty,dive,alpha,len=2"
+	//
+	// The list of the countries allowed for a payment.
 	PaymentCountries []string `protobuf:"bytes,11,rep,name=payment_countries,json=paymentCountries,proto3" json:"payment_countries" bson:"payment_countries" validate:"omitempty,dive,alpha,len=2"`
 	// @inject_tag: json:"created_at"
+	//
+	// The date of the operating company creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,12,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
 	// @inject_tag: json:"updated_at"
+	//
+	// The date of the operating company last update.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,13,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	// @inject_tag: bson:"registration_date" json:"registration_date" validate:"required"
+	//
+	// The date of the operating company registration.
 	RegistrationDate string `protobuf:"bytes,14,opt,name=registration_date,json=registrationDate,proto3" json:"registration_date" bson:"registration_date" validate:"required"`
 	// @inject_tag: bson:"email" json:"email" validate:"required,email"
+	//
+	// The operating company's email.
 	Email                string   `protobuf:"bytes,15,opt,name=email,proto3" json:"email" bson:"email" validate:"required,email"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -15478,13 +15508,21 @@ func (m *OperatingCompany) GetEmail() string {
 type PaymentMinLimitSystem struct {
 	// @inject_tag: bson:"_id" json:"-"
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
-	//@inject_tag: validate:"required,alpha,len=3" json:"currency" bson:"currency"
-	Currency string `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency" validate:"required,alpha,len=3" bson:"currency"`
-	// @inject_tag: validate:"required,numeric,gt=0" json:"amount" bson:"amount"
-	Amount float64 `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount" validate:"required,numeric,gt=0" bson:"amount"`
+	//@inject_tag: validate:"required,alpha,len=3" json:"currency" bson:"currency" required:"true"
+	//
+	// The system limit currency.
+	Currency string `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency" validate:"required,alpha,len=3" bson:"currency" required:"true"`
+	// @inject_tag: validate:"required,numeric,gt=0" json:"amount" bson:"amount" required:"true"
+	//
+	// The system limit amount.
+	Amount float64 `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount" validate:"required,numeric,gt=0" bson:"amount" required:"true"`
 	// @inject_tag: json:"created_at"
+	//
+	// The date of the system limit created.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
 	// @inject_tag: json:"updated_at"
+	//
+	// The date of the system limit last update.
 	UpdatedAt            *timestamp.Timestamp `protobuf:"bytes,5,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
 	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
