@@ -3691,47 +3691,85 @@ message PaymentFormDataChangeResponseItem {
 
 message OperatingCompany {
     // @inject_tag: bson:"_id" json:"id"
+    //
+    // The unique identifier for the operating company.
     string id = 1;
     // @inject_tag: bson:"name" json:"name" validate:"required"
+    //
+    // The operating company's name.
     string name = 2;
     // @inject_tag: bson:"country" json:"country" validate:"required,alpha,len=2"
+    //
+    // The operating company's country.
     string country = 3;
     // @inject_tag: bson:"registration_number" json:"registration_number" validate:"required"
+    //
+    // The operating company's registration number.
     string registration_number = 4;
     // @inject_tag: bson:"vat_number" json:"vat_number" validate:"required"
+    //
+    // The operating company's VAT number.
     string vat_number = 5;
     // @inject_tag: bson:"address" json:"address" validate:"required"
+    //
+    // The operating company's address.
     string address = 6;
     // @inject_tag: bson:"vat_address" json:"vat_address" validate:"required"
+    //
+    // The operating company's VAT address.
     string vat_address = 7;
     // @inject_tag: bson:"signatory_name" json:"signatory_name" validate:"required"
+    //
+    // The authorized signer's name of the operating company.
     string signatory_name = 8;
     // @inject_tag: bson:"signatory_position" json:"signatory_position" validate:"required"
+    //
+    // The authorized signer's position in the operating company.
     string signatory_position = 9;
     // @inject_tag: bson:"banking_details" json:"banking_details" validate:"required"
+    //
+    // The baking details including bank, bank address, account number, SWIFT/BIC, intermediary bank.
     string banking_details = 10;
     // @inject_tag: bson:"payment_countries" json:"payment_countries" validate:"omitempty,dive,alpha,len=2"
+    //
+    // The list of the countries allowed for a payment.
     repeated string payment_countries = 11;
     // @inject_tag: json:"created_at"
+    //
+    // The date of the operating company creation.
     google.protobuf.Timestamp created_at = 12;
     // @inject_tag: json:"updated_at"
+    //
+    // The date of the operating company last update.
     google.protobuf.Timestamp updated_at = 13;
     // @inject_tag: bson:"registration_date" json:"registration_date" validate:"required"
+    //
+    // The date of the operating company registration.
     string registration_date = 14;
     // @inject_tag: bson:"email" json:"email" validate:"required,email"
+    //
+    // The operating company's email.
     string email = 15;
 }
 
 message PaymentMinLimitSystem {
     // @inject_tag: bson:"_id" json:"-"
     string id = 1;
-    //@inject_tag: validate:"required,alpha,len=3" json:"currency" bson:"currency"
+    //@inject_tag: validate:"required,alpha,len=3" json:"currency" bson:"currency" required:"true"
+    //
+    // The system limit currency.
     string currency = 2;
-    // @inject_tag: validate:"required,numeric,gt=0" json:"amount" bson:"amount"
+    // @inject_tag: validate:"required,numeric,gt=0" json:"amount" bson:"amount" required:"true"
+    //
+    // The system limit amount.
     double amount = 3;
     // @inject_tag: json:"created_at"
+    //
+    // The date of the system limit created.
     google.protobuf.Timestamp created_at = 4;
     // @inject_tag: json:"updated_at"
+    //
+    // The date of the system limit last update.
     google.protobuf.Timestamp updated_at = 5;
 }
 
