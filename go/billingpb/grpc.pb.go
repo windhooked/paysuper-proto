@@ -2623,8 +2623,12 @@ func (m *MerchantListingRequest) GetReceivedDateTo() int64 {
 
 type MerchantListingResponse struct {
 	// @inject_tag: json:"count"
+	//
+	// The total number of the merchants.
 	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
+	//
+	// The merchants list.
 	Items                []*Merchant `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte      `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -2671,11 +2675,15 @@ func (m *MerchantListingResponse) GetItems() []*Merchant {
 }
 
 type MerchantChangeStatusRequest struct {
-	// @inject_tag: validate:"required,hexadecimal"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal"`
-	UserId     string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	// @inject_tag: validate:"required,hexadecimal" json:"-"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal"`
+	// @inject_tag: json:"-"
+	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"-"`
 	// @inject_tag: validate:"omitempty,numeric,oneof=5 6"
-	Status               int32    `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty" validate:"omitempty,numeric,oneof=5 6"`
+	//
+	// The merchant's status. Available values: 5 - removed, 6 - rejected.
+	Status int32 `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty" validate:"omitempty,numeric,oneof=5 6"`
+	// The information about changes.
 	Message              string   `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -2736,13 +2744,18 @@ func (m *MerchantChangeStatusRequest) GetMessage() string {
 }
 
 type NotificationRequest struct {
-	// @inject_tag: validate:"required,hexadecimal"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal"`
-	UserId     string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	// @inject_tag: validate:"required"
-	Title string `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty" validate:"required"`
-	// @inject_tag: validate:"required"
-	Message              string   `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty" validate:"required"`
+	// @inject_tag: validate:"required,hexadecimal" json:"-"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal"`
+	// @inject_tag: json:"-"
+	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"-"`
+	// @inject_tag: validate:"required" required:"true"
+	//
+	// The notification title.
+	Title string `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty" validate:"required" required:"true"`
+	// @inject_tag: validate:"required" required:"true"
+	//
+	// The notification message.
+	Message              string   `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty" validate:"required" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -8123,8 +8136,12 @@ func (m *ListRoyaltyReportsRequest) GetOffset() int64 {
 
 type RoyaltyReportsPaginate struct {
 	// @inject_tag: json:"count"
+	//
+	// The total number of reports.
 	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
+	//
+	// The royalty reports list.
 	Items                []*RoyaltyReport `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}         `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte           `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -8295,7 +8312,9 @@ func (m *ListRoyaltyReportOrdersRequest) GetOffset() int64 {
 }
 
 type ChangeRoyaltyReportCorrection struct {
-	Amount               float64  `protobuf:"fixed64,1,opt,name=amount,proto3" json:"amount,omitempty"`
+	// The correction amount.
+	Amount float64 `protobuf:"fixed64,1,opt,name=amount,proto3" json:"amount,omitempty"`
+	// The correction reason.
 	Reason               string   `protobuf:"bytes,2,opt,name=reason,proto3" json:"reason,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -8449,18 +8468,23 @@ func (m *GetRoyaltyReportResponse) GetItem() *RoyaltyReport {
 }
 
 type ChangeRoyaltyReportRequest struct {
-	// @inject_tag: validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
 	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"`
 	// @inject_tag: json:"status" validate:"omitempty,oneof=pending skipped accepted canceled dispute ready_for_invoice payment_in_progress payment_done payment_error"
+	//
+	// The report status. Available values: pending, skipped, accepted, canceled, dispute, ready_for_invoice, payment_in_progress, payment_done, payment_error.
 	Status string `protobuf:"bytes,3,opt,name=status,proto3" json:"status" validate:"omitempty,oneof=pending skipped accepted canceled dispute ready_for_invoice payment_in_progress payment_done payment_error"`
 	// @inject_tag: json:"correction"
-	Correction           *ChangeRoyaltyReportCorrection `protobuf:"bytes,4,opt,name=correction,proto3" json:"correction"`
-	Ip                   string                         `protobuf:"bytes,5,opt,name=ip,proto3" json:"ip,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}                       `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                         `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                          `json:"-" bson:"-" structure:"-" validate:"-"`
+	//
+	// The report correction.
+	Correction *ChangeRoyaltyReportCorrection `protobuf:"bytes,4,opt,name=correction,proto3" json:"correction"`
+	// @inject_tag: json:"-"
+	Ip                   string   `protobuf:"bytes,5,opt,name=ip,proto3" json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *ChangeRoyaltyReportRequest) Reset()         { *m = ChangeRoyaltyReportRequest{} }
@@ -8528,10 +8552,13 @@ type MerchantReviewRoyaltyReportRequest struct {
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: validate:"required,hexadecimal,len=24" param:"report_id"
 	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"report_id,omitempty" validate:"required,hexadecimal,len=24" param:"report_id"`
-	//@inject_tag: json:"is_accepted"
-	IsAccepted bool   `protobuf:"varint,3,opt,name=is_accepted,json=isAccepted,proto3" json:"is_accepted"`
-	Ip         string `protobuf:"bytes,4,opt,name=ip,proto3" json:"ip,omitempty"`
+	//@inject_tag: json:"is_accepted" json:"-"
+	IsAccepted bool `protobuf:"varint,3,opt,name=is_accepted,json=isAccepted,proto3" json:"is_accepted" json:"-"`
+	// @inject_tag: json:"-"
+	Ip string `protobuf:"bytes,4,opt,name=ip,proto3" json:"-"`
 	//@inject_tag: json:"dispute_reason"
+	//
+	// The dispute reason.
 	DisputeReason        string   `protobuf:"bytes,5,opt,name=dispute_reason,json=disputeReason,proto3" json:"dispute_reason"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -15496,11 +15523,15 @@ func (m *GetPaymentMinLimitsSystemResponse) GetItems() []*PaymentMinLimitSystem 
 }
 
 type SetMerchantOperatingCompanyRequest struct {
-	// @inject_tag: json:"id" validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"id" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: json:"id" validate:"required,hexadecimal,len=24" json:"-"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"id" validate:"required,hexadecimal,len=24" json:"-"`
 	// @inject_tag: json:"operating_company_id" validate:"required,hexadecimal,len=24"
+	//
+	// The unique identifier for the operating company.
 	OperatingCompanyId string `protobuf:"bytes,2,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: json:"dont_charge_vat"
+	//
+	// Has a true value if the merchant doesn't pay VAT.
 	DontChargeVat        bool     `protobuf:"varint,3,opt,name=dont_charge_vat,json=dontChargeVat,proto3" json:"dont_charge_vat"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -15961,10 +15992,14 @@ func (m *InviteUserMerchantResponse) GetRole() *UserRole {
 }
 
 type InviteUserAdminRequest struct {
-	//@inject_tag: validate:"required,email"
-	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" validate:"required,email"`
-	//@inject_tag: validate:"required"
-	Role                 string   `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty" validate:"required"`
+	//@inject_tag: validate:"required,email" required:"true"
+	//
+	// The user's email.
+	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" validate:"required,email" required:"true"`
+	//@inject_tag: validate:"required" required:"true"
+	//
+	// The user role's name.
+	Role                 string   `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty" validate:"required" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -16010,12 +16045,15 @@ func (m *InviteUserAdminRequest) GetRole() string {
 }
 
 type InviteUserAdminResponse struct {
-	Status               int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message              *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Role                 *UserRole             `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                 `json:"-" bson:"-" structure:"-" validate:"-"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
+	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// The user role data.
+	Role                 *UserRole `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32     `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *InviteUserAdminResponse) Reset()         { *m = InviteUserAdminResponse{} }
@@ -16118,8 +16156,10 @@ func (m *ResendInviteMerchantRequest) GetEmail() string {
 }
 
 type ResendInviteAdminRequest struct {
-	//@inject_tag: validate:"required,email"
-	Email                string   `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" validate:"required,email"`
+	//@inject_tag: validate:"required,email" required:"true"
+	//
+	// The user's email.
+	Email                string   `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" validate:"required,email" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -16861,8 +16901,10 @@ func (m *ChangeRoleForMerchantUserRequest) GetRole() string {
 type ChangeRoleForAdminUserRequest struct {
 	//@inject_tag: validate:"required,hexadecimal,len=24" param:"role_id"
 	RoleId string `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty" validate:"required,hexadecimal,len=24" param:"role_id"`
-	//@inject_tag: validate:"required"
-	Role                 string   `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty" validate:"required"`
+	//@inject_tag: validate:"required" required:"true"
+	//
+	// The user role's name.
+	Role                 string   `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty" validate:"required" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -16948,7 +16990,7 @@ func (m *GetRoleListRequest) GetType() string {
 }
 
 type GetRoleListResponse struct {
-	// The list of the merchant's types of roles.
+	// The list of the roles.
 	Items                []*RoleListItem `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}        `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte          `json:"-" bson:"-" structure:"-" validate:"-"`
