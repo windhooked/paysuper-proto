@@ -726,27 +726,40 @@ message MerchantListingRequest {
 
 message MerchantListingResponse {
     // @inject_tag: json:"count"
+    //
+    // The total number of the merchants.
     int64 count = 1;
     // @inject_tag: json:"items"
+    //
+    // The merchants list.
     repeated billing.Merchant items = 2;
 }
 
 message MerchantChangeStatusRequest {
-    // @inject_tag: validate:"required,hexadecimal"
+    // @inject_tag: validate:"required,hexadecimal" json:"-"
     string merchant_id = 1;
+    // @inject_tag: json:"-"
     string user_id = 2;
     // @inject_tag: validate:"omitempty,numeric,oneof=5 6"
+    //
+    // The merchant's status. Available values: 5 - removed, 6 - rejected.
     int32 status = 3;
+    // The information about changes.
     string message = 4;
 }
 
 message NotificationRequest {
-    // @inject_tag: validate:"required,hexadecimal"
+    // @inject_tag: validate:"required,hexadecimal" json:"-"
     string merchant_id = 1;
+    // @inject_tag: json:"-"
     string user_id = 2;
-    // @inject_tag: validate:"required"
+    // @inject_tag: validate:"required" required:"true"
+    //
+    // The notification title.
     string title = 3;
-    // @inject_tag: validate:"required"
+    // @inject_tag: validate:"required" required:"true"
+    //
+    // The notification message.
     string message = 4;
 }
 
@@ -1714,9 +1727,13 @@ message ListRoyaltyReportsRequest {
 
 message RoyaltyReportsPaginate {
     // @inject_tag: json:"count"
-    int64 count = 1; // total count of selected orders
+    //
+    // The total number of reports.
+    int64 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.RoyaltyReport items = 2; // array of selected orders
+    //
+    // The royalty reports list.
+    repeated billing.RoyaltyReport items = 2;
 }
 
 message ListRoyaltyReportsResponse {
@@ -1739,7 +1756,9 @@ message ListRoyaltyReportOrdersRequest {
 }
 
 message ChangeRoyaltyReportCorrection {
+    // The correction amount.
     double amount = 1;
+    // The correction reason.
     string reason = 2;
 }
 
@@ -1760,14 +1779,19 @@ message GetRoyaltyReportResponse {
 }
 
 message ChangeRoyaltyReportRequest {
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 1;
     // @inject_tag: json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
     string report_id = 2;
     // @inject_tag: json:"status" validate:"omitempty,oneof=pending skipped accepted canceled dispute ready_for_invoice payment_in_progress payment_done payment_error"
+    //
+    // The report status. Available values: pending, skipped, accepted, canceled, dispute, ready_for_invoice, payment_in_progress, payment_done, payment_error.
     string status = 3;
     // @inject_tag: json:"correction"
+    //
+    // The report correction.
     ChangeRoyaltyReportCorrection correction = 4;
+    // @inject_tag: json:"-"
     string ip = 5;
 }
 
@@ -1776,10 +1800,13 @@ message MerchantReviewRoyaltyReportRequest {
     string merchant_id = 1;
     // @inject_tag: validate:"required,hexadecimal,len=24" param:"report_id"
     string report_id = 2;
-    //@inject_tag: json:"is_accepted"
+    //@inject_tag: json:"is_accepted" json:"-"
     bool is_accepted = 3;
+    // @inject_tag: json:"-"
     string ip = 4;
     //@inject_tag: json:"dispute_reason"
+    //
+    // The dispute reason.
     string dispute_reason = 5;
 }
 
@@ -2985,11 +3012,15 @@ message GetPaymentMinLimitsSystemResponse {
 }
 
 message SetMerchantOperatingCompanyRequest {
-    // @inject_tag: json:"id" validate:"required,hexadecimal,len=24"
+    // @inject_tag: json:"id" validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 1;
     // @inject_tag: json:"operating_company_id" validate:"required,hexadecimal,len=24"
+    //
+    // The unique identifier for the operating company.
     string operating_company_id = 2;
     // @inject_tag: json:"dont_charge_vat"
+    //
+    // Has a true value if the merchant doesn't pay VAT.
     bool dont_charge_vat = 3;
 }
 
@@ -3051,15 +3082,22 @@ message InviteUserMerchantResponse {
 }
 
 message InviteUserAdminRequest {
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email.
     string email = 1;
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The user role's name.
     string role = 2;
 }
 
 message InviteUserAdminResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The user role data.
     billing.UserRole role = 3;
 }
 
@@ -3075,7 +3113,9 @@ message ResendInviteMerchantRequest {
 }
 
 message ResendInviteAdminRequest {
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email.
     string email = 1;
 }
 
@@ -3188,7 +3228,9 @@ message ChangeRoleForMerchantUserRequest {
 message ChangeRoleForAdminUserRequest {
     //@inject_tag: validate:"required,hexadecimal,len=24" param:"role_id"
     string role_id = 1;
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The user role's name.
     string role = 3;
 }
 
@@ -3198,7 +3240,7 @@ message GetRoleListRequest {
 }
 
 message GetRoleListResponse {
-    // The list of the merchant's types of roles.
+    // The list of the roles.
     repeated billing.RoleListItem items = 1;
 }
 
