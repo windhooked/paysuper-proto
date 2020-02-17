@@ -1595,7 +1595,7 @@ message PaymentChannelCostMerchant {
     string name = 3;
     //@inject_tag: json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"
     string payout_currency = 4;
-    // @inject_tag: json:"min_amount" bson:"min_amount" validate:"required,numeric,gte=0"
+    // @inject_tag: json:"min_amount" bson:"min_amount" validate:"omitempty,numeric,gte=0"
     double min_amount = 5;
     //@inject_tag: json:"region" bson:"region" validate:"required"
     string region = 6;
