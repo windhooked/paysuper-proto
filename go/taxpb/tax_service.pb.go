@@ -89,16 +89,28 @@ func (m *GeoIdentity) GetState() string {
 
 type TaxRate struct {
 	// @inject_tag: json:"id"
+	//
+	// The unique identifier for the tax rate.
 	Id uint32 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
 	// @inject_tag: json:"zip"
+	//
+	// The ZIP code.
 	Zip string `protobuf:"bytes,2,opt,name=zip,proto3" json:"zip"`
 	// @inject_tag: json:"country"
+	//
+	// The country's name. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
 	Country string `protobuf:"bytes,3,opt,name=country,proto3" json:"country"`
 	// @inject_tag: json:"city,omitempty"
+	//
+	// The city.
 	City string `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
 	// @inject_tag: gorm:"type:varchar(2)"
+	//
+	// The state code in ISO 3166-2.
 	State string `protobuf:"bytes,5,opt,name=state,proto3" json:"state,omitempty" gorm:"type:varchar(2)"`
 	// @inject_tag: json:"rate"
+	//
+	// The tax rate.
 	Rate                 float64  `protobuf:"fixed64,6,opt,name=rate,proto3" json:"rate"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`

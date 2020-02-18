@@ -4826,20 +4826,34 @@ func (m *PaymentMethodOrder) GetRefundAllowed() bool {
 
 type PaymentMethodParams struct {
 	// @inject_tag: bson:"currency" json:"currency" validate:"required,alpha,len=3"
+	//
+	// The currency of the payment method. Three-letter Currency Code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency" bson:"currency" validate:"required,alpha,len=3"`
 	// @inject_tag: bson:"terminal_id" json:"terminal_id" validate:"omitempty,alphanum"
+	//
+	// The unique identifier for the terminal.
 	TerminalId string `protobuf:"bytes,2,opt,name=terminal_id,json=terminalId,proto3" json:"terminal_id" bson:"terminal_id" validate:"omitempty,alphanum"`
 	// @inject_tag: bson:"secret" json:"secret" validate:"omitempty"
+	//
+	// The secret key to create a checking hash for an update request.
 	Secret string `protobuf:"bytes,3,opt,name=secret,proto3" json:"secret" bson:"secret" validate:"omitempty"`
 	// @inject_tag: bson:"secret_callback" json:"secret_callback" validate:"omitempty"
+	//
+	// The secret key to create a checking hash for a callback request.
 	SecretCallback string `protobuf:"bytes,5,opt,name=secret_callback,json=secretCallback,proto3" json:"secret_callback" bson:"secret_callback" validate:"omitempty"`
 	// @inject_tag: bson:"api_url" json:"-"
 	ApiUrl string `protobuf:"bytes,6,opt,name=api_url,json=apiUrl,proto3" json:"-" bson:"api_url"`
 	// @inject_tag: bson:"mcc_code" json:"mcc_code" validate:"required,numeric,len=4"
+	//
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode string `protobuf:"bytes,7,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code" validate:"required,numeric,len=4"`
 	// @inject_tag: bson:"operating_company_id" json:"operating_company_id" validate:"required,hexadecimal,len=24"
+	//
+	// The unique identifier for the operation company.
 	OperatingCompanyId string `protobuf:"bytes,8,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: bson:"brand" json:"brand" validate:"required"
+	//
+	// The list of the card issuer brands.
 	Brand                []string `protobuf:"bytes,9,rep,name=brand,proto3" json:"brand" bson:"brand" validate:"required"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -5341,34 +5355,64 @@ func (m *ProjectPaymentMethod) GetCreatedAt() *timestamp.Timestamp {
 
 type PaymentMethod struct {
 	// @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the payment method.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: bson:"name" json:"name" validate:"required,omitempty,alphanum"
+	//
+	// The payment method's name.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required,omitempty,alphanum"`
 	// @inject_tag: bson:"group_alias" json:"group_alias" validate:"omitempty,alphanum"
+	//
+	// The payment method's group alias.
 	Group string `protobuf:"bytes,3,opt,name=group,proto3" json:"group_alias" bson:"group_alias" validate:"omitempty,alphanum"`
 	// @inject_tag: bson:"external_id" json:"external_id" validate:"omitempty,alphanum"
+	//
+	// The unique identifier for the payment method in the payment system.
 	ExternalId string `protobuf:"bytes,5,opt,name=external_id,json=externalId,proto3" json:"external_id" bson:"external_id" validate:"omitempty,alphanum"`
 	// @inject_tag: bson:"min_payment_amount" json:"min_payment_amount" validate:"omitempty,numeric,gte=0"
+	//
+	// The minimum payment amount.
 	MinPaymentAmount float64 `protobuf:"fixed64,7,opt,name=min_payment_amount,json=minPaymentAmount,proto3" json:"min_payment_amount" bson:"min_payment_amount" validate:"omitempty,numeric,gte=0"`
 	// @inject_tag: bson:"max_payment_amount" json:"max_payment_amount" validate:"omitempty,numeric,gte=0"
+	//
+	// The maximum payment amount.
 	MaxPaymentAmount float64 `protobuf:"fixed64,8,opt,name=max_payment_amount,json=maxPaymentAmount,proto3" json:"max_payment_amount" bson:"max_payment_amount" validate:"omitempty,numeric,gte=0"`
 	// @inject_tag: bson:"type" json:"type" validate:"omitempty,alpha,gte=0"
+	//
+	// The payment method's type. Available values: bank_card, ewallet, crypto.
 	Type string `protobuf:"bytes,9,opt,name=type,proto3" json:"type" bson:"type" validate:"omitempty,alpha,gte=0"`
 	// @inject_tag: bson:"account_regexp" json:"account_regexp" validate:"omitempty"
+	//
+	// The regexp mask for checking the main requisite of the payment method.
 	AccountRegexp string `protobuf:"bytes,10,opt,name=account_regexp,json=accountRegexp,proto3" json:"account_regexp" bson:"account_regexp" validate:"omitempty"`
 	// @inject_tag: bson:"is_active" json:"is_active" validate:"omitempty"
+	//
+	// Has a true value if the payment method is active.
 	IsActive bool `protobuf:"varint,11,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active" validate:"omitempty"`
 	// @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24"
+	//
+	// The unique identifier for the payment method in PaySuper.
 	PaymentSystemId string `protobuf:"bytes,12,opt,name=payment_system_id,json=paymentSystemId,proto3" json:"payment_system_id" bson:"payment_system_id" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: bson:"test_settings" json:"test_settings" validate:"omitempty"
+	//
+	// The testing payment parameters.
 	TestSettings map[string]*PaymentMethodParams `protobuf:"bytes,13,rep,name=test_settings,json=testSettings,proto3" json:"test_settings" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"test_settings" validate:"omitempty"`
 	// @inject_tag: bson:"production_settings" json:"production_settings" validate:"omitempty"
+	//
+	// The production payment parameters.
 	ProductionSettings map[string]*PaymentMethodParams `protobuf:"bytes,14,rep,name=production_settings,json=productionSettings,proto3" json:"production_settings" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"production_settings" validate:"omitempty"`
 	// @inject_tag: bson:"created_at" json:"max_payment_amount" validate:"omitempty"
+	//
+	// The date of the payment method creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"max_payment_amount" bson:"created_at" validate:"omitempty"`
 	// @inject_tag: bson:"updated_at" json:"max_payment_amount" validate:"omitempty"
+	//
+	// The date of the payment method last update.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,16,opt,name=updated_at,json=updatedAt,proto3" json:"max_payment_amount" bson:"updated_at" validate:"omitempty"`
 	// @inject_tag: json:"refund_allowed" bson:"refund_allowed"
+	//
+	// Has a true value if the payment method allows a refund.
 	RefundAllowed        bool     `protobuf:"varint,17,opt,name=refund_allowed,json=refundAllowed,proto3" json:"refund_allowed" bson:"refund_allowed"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -8458,28 +8502,52 @@ func (m *ZipCode) GetCreatedAt() *timestamp.Timestamp {
 
 type PaymentChannelCostSystem struct {
 	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the payment method.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,alpha"
+	//
+	// The payment method's name.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required,alpha"`
 	//@inject_tag: json:"region" bson:"region" validate:"required"
+	//
+	// The payment method's region.
 	Region string `protobuf:"bytes,3,opt,name=region,proto3" json:"region" bson:"region" validate:"required"`
 	//@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
+	//
+	// The payment method's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
 	Country string `protobuf:"bytes,4,opt,name=country,proto3" json:"country" bson:"country" validate:"omitempty,alpha,len=2"`
 	// @inject_tag: json:"percent" bson:"percent" validate:"required,numeric,gte=0,lte=1"
+	//
+	// The fee of the payment method in per cent.
 	Percent float64 `protobuf:"fixed64,5,opt,name=percent,proto3" json:"percent" bson:"percent" validate:"required,numeric,gte=0,lte=1"`
 	// @inject_tag: json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"
+	//
+	// The fixed fee of the payment method in the particular currency.
 	FixAmount float64 `protobuf:"fixed64,6,opt,name=fix_amount,json=fixAmount,proto3" json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"`
 	//@inject_tag: json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"
+	//
+	// The currency of the fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
 	FixAmountCurrency string `protobuf:"bytes,7,opt,name=fix_amount_currency,json=fixAmountCurrency,proto3" json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"`
 	//@inject_tag: json:"created_at" bson:"created_at"
+	//
+	// The date of the rates record was created.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at"`
 	//@inject_tag: json:"updated_at" bson:"updated_at"
+	//
+	// The date of the rates record was last updated.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,9,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at" bson:"updated_at"`
 	// @inject_tag: json:"is_active" bson:"is_active"
+	//
+	// Has a true value if the rates record is active.
 	IsActive bool `protobuf:"varint,10,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
+	//
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode string `protobuf:"bytes,11,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+	//
+	// The unique identifier for the operating company.
 	OperatingCompanyId   string   `protobuf:"bytes,12,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -8673,6 +8741,8 @@ func (m *PaymentChannelCostSystemRequest) GetOperatingCompanyId() string {
 
 type PaymentChannelCostSystemList struct {
 	//@inject_tag: json:"items"
+	//
+	// The system costs for payments.
 	Items                []*PaymentChannelCostSystem `protobuf:"bytes,1,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}                    `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                      `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -8713,38 +8783,72 @@ func (m *PaymentChannelCostSystemList) GetItems() []*PaymentChannelCostSystem {
 
 type PaymentChannelCostMerchant struct {
 	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the payment method.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
+	//
+	// The unique identifier for the merchant.
 	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,name"
+	//
+	// The payment method's name.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name" bson:"name" validate:"required,name"`
 	//@inject_tag: json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"
+	//
+	// The payout currency. Three-letter Currency Code ISO 4217, in uppercase.
 	PayoutCurrency string `protobuf:"bytes,4,opt,name=payout_currency,json=payoutCurrency,proto3" json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"`
 	// @inject_tag: json:"min_amount" bson:"min_amount" validate:"required,numeric,gte=0"
+	//
+	// The minimum payment amount.
 	MinAmount float64 `protobuf:"fixed64,5,opt,name=min_amount,json=minAmount,proto3" json:"min_amount" bson:"min_amount" validate:"required,numeric,gte=0"`
 	//@inject_tag: json:"region" bson:"region" validate:"required"
+	//
+	// The payment method's region.
 	Region string `protobuf:"bytes,6,opt,name=region,proto3" json:"region" bson:"region" validate:"required"`
 	//@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
+	//
+	// The payment method's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
 	Country string `protobuf:"bytes,7,opt,name=country,proto3" json:"country" bson:"country" validate:"omitempty,alpha,len=2"`
 	// @inject_tag: json:"method_percent" bson:"method_percent" validate:"required,numeric,gte=0,lte=1"
+	//
+	// The fee of the payment method in per cent.
 	MethodPercent float64 `protobuf:"fixed64,8,opt,name=method_percent,json=methodPercent,proto3" json:"method_percent" bson:"method_percent" validate:"required,numeric,gte=0,lte=1"`
 	// @inject_tag: json:"method_fix_amount" bson:"method_fix_amount" validate:"numeric,gte=0"
+	//
+	// The fixed fee of the payment method in the particular currency.
 	MethodFixAmount float64 `protobuf:"fixed64,9,opt,name=method_fix_amount,json=methodFixAmount,proto3" json:"method_fix_amount" bson:"method_fix_amount" validate:"numeric,gte=0"`
 	// @inject_tag: json:"method_fix_amount_currency" bson:"method_fix_amount_currency" validate:"required,alpha,len=3"
+	//
+	// The currency of the fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
 	MethodFixAmountCurrency string `protobuf:"bytes,10,opt,name=method_fix_amount_currency,json=methodFixAmountCurrency,proto3" json:"method_fix_amount_currency" bson:"method_fix_amount_currency" validate:"required,alpha,len=3"`
 	// @inject_tag: json:"ps_percent" bson:"ps_percent" validate:"required,numeric,gte=0,lte=1"
+	//
+	// The PaySuper fee in per cent.
 	PsPercent float64 `protobuf:"fixed64,11,opt,name=ps_percent,json=psPercent,proto3" json:"ps_percent" bson:"ps_percent" validate:"required,numeric,gte=0,lte=1"`
 	// @inject_tag: json:"ps_fixed_fee" bson:"ps_fixed_fee" validate:"numeric,gte=0"
+	//
+	// The PaySuper fixed fee in a particular currency.
 	PsFixedFee float64 `protobuf:"fixed64,12,opt,name=ps_fixed_fee,json=psFixedFee,proto3" json:"ps_fixed_fee" bson:"ps_fixed_fee" validate:"numeric,gte=0"`
 	// @inject_tag: json:"ps_fixed_fee_currency" bson:"ps_fixed_fee_currency" validate:"required,alpha,len=3"
+	//
+	// The currency of the PaySuper fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
 	PsFixedFeeCurrency string `protobuf:"bytes,13,opt,name=ps_fixed_fee_currency,json=psFixedFeeCurrency,proto3" json:"ps_fixed_fee_currency" bson:"ps_fixed_fee_currency" validate:"required,alpha,len=3"`
 	//@inject_tag: json:"created_at" bson:"created_at"
+	//
+	// The date of the rates record was created for the merchant.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at"`
 	//@inject_tag: json:"updated_at" bson:"updated_at"
+	//
+	// The date of the rates record was last updated for the merchant.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,15,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at" bson:"updated_at"`
 	// @inject_tag: json:"is_active" bson:"is_active"
+	//
+	// Has a true value if the rates record is active for the merchant.
 	IsActive bool `protobuf:"varint,16,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
+	//
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode              string   `protobuf:"bytes,17,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -8991,6 +9095,8 @@ func (m *PaymentChannelCostMerchantRequest) GetMccCode() string {
 
 type PaymentChannelCostMerchantList struct {
 	//@inject_tag: json:"items"
+	//
+	// The merchant costs for payments.
 	Items                []*PaymentChannelCostMerchant `protobuf:"bytes,1,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}                      `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                        `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -9071,36 +9177,68 @@ func (m *PaymentChannelCostMerchantListRequest) GetMerchantId() string {
 
 type MoneyBackCostSystem struct {
 	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the payment method.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,alpha"
+	//
+	// The payment method's name.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required,alpha"`
 	//@inject_tag: json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"
+	//
+	// The payout currency. Three-letter Currency Code ISO 4217, in uppercase.
 	PayoutCurrency string `protobuf:"bytes,3,opt,name=payout_currency,json=payoutCurrency,proto3" json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"`
 	//@inject_tag: json:"undo_reason" bson:"undo_reason" validate:"required,alpha,oneof=refund reversal chargeback"
+	//
+	// The return reason. Available values: refund, reversal, chargeback.
 	UndoReason string `protobuf:"bytes,4,opt,name=undo_reason,json=undoReason,proto3" json:"undo_reason" bson:"undo_reason" validate:"required,alpha,oneof=refund reversal chargeback"`
 	//@inject_tag: json:"region" bson:"region" validate:"required"
+	//
+	// The payment method's region.
 	Region string `protobuf:"bytes,5,opt,name=region,proto3" json:"region" bson:"region" validate:"required"`
 	//@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
+	//
+	// The payment method's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
 	Country string `protobuf:"bytes,6,opt,name=country,proto3" json:"country" bson:"country" validate:"omitempty,alpha,len=2"`
 	// @inject_tag: json:"days_from" bson:"days_from" validate:"numeric,gte=0"
+	//
+	// The number of days after the payment operation.
 	DaysFrom int32 `protobuf:"varint,7,opt,name=days_from,json=daysFrom,proto3" json:"days_from" bson:"days_from" validate:"numeric,gte=0"`
 	// @inject_tag: json:"payment_stage" bson:"payment_stage" validate:"numeric,gte=1"
+	//
+	// The payment stage.
 	PaymentStage int32 `protobuf:"varint,8,opt,name=payment_stage,json=paymentStage,proto3" json:"payment_stage" bson:"payment_stage" validate:"numeric,gte=1"`
 	// @inject_tag: json:"percent" bson:"percent" validate:"numeric,gte=0,lte=1"
+	//
+	// The fee of the payment method in per cent.
 	Percent float64 `protobuf:"fixed64,9,opt,name=percent,proto3" json:"percent" bson:"percent" validate:"numeric,gte=0,lte=1"`
 	// @inject_tag: json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"
+	//
+	// The fixed fee of the payment method in the particular currency.
 	FixAmount float64 `protobuf:"fixed64,10,opt,name=fix_amount,json=fixAmount,proto3" json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"`
 	//@inject_tag: json:"created_at" bson:"created_at"
+	//
+	// The date of the rates record was created.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at"`
 	//@inject_tag: json:"updated_at" bson:"updated_at"
+	//
+	// The date of the rates record was last updated.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at" bson:"updated_at"`
 	// @inject_tag: json:"is_active" bson:"is_active"
+	//
+	// Has a true value if the rates record is active.
 	IsActive bool `protobuf:"varint,13,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
+	//
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode string `protobuf:"bytes,14,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+	//
+	// The unique identifier for the operation company.
 	OperatingCompanyId string `protobuf:"bytes,15,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	// @inject_tag: json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"
+	//
+	// The currency of the fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
 	FixAmountCurrency    string   `protobuf:"bytes,16,opt,name=fix_amount_currency,json=fixAmountCurrency,proto3" json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -9358,6 +9496,8 @@ func (m *MoneyBackCostSystemRequest) GetOperatingCompanyId() string {
 
 type MoneyBackCostSystemList struct {
 	//@inject_tag: json:"items"
+	//
+	// The system costs for the money back operations.
 	Items                []*MoneyBackCostSystem `protobuf:"bytes,1,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}               `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                 `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -9398,38 +9538,72 @@ func (m *MoneyBackCostSystemList) GetItems() []*MoneyBackCostSystem {
 
 type MoneyBackCostMerchant struct {
 	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the payment method.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
+	//
+	// The unique identifier for the merchant.
 	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,name"
+	//
+	// The payment method's name.
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name" bson:"name" validate:"required,name"`
 	//@inject_tag: json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"
+	//
+	// The payout currency. Three-letter Currency Code ISO 4217, in uppercase.
 	PayoutCurrency string `protobuf:"bytes,4,opt,name=payout_currency,json=payoutCurrency,proto3" json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"`
 	//@inject_tag: json:"undo_reason" bson:"undo_reason" validate:"required,alpha,oneof=refund reversal chargeback"
+	//
+	// The return reason. Available values: refund, reversal, chargeback.
 	UndoReason string `protobuf:"bytes,5,opt,name=undo_reason,json=undoReason,proto3" json:"undo_reason" bson:"undo_reason" validate:"required,alpha,oneof=refund reversal chargeback"`
 	//@inject_tag: json:"region" bson:"region" validate:"required"
+	//
+	// The payment method's region.
 	Region string `protobuf:"bytes,6,opt,name=region,proto3" json:"region" bson:"region" validate:"required"`
 	//@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
+	//
+	// The payment method's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
 	Country string `protobuf:"bytes,7,opt,name=country,proto3" json:"country" bson:"country" validate:"omitempty,alpha,len=2"`
 	// @inject_tag: json:"days_from" bson:"days_from" validate:"numeric,gte=0"
+	//
+	// The number of days after the payment operation.
 	DaysFrom int32 `protobuf:"varint,8,opt,name=days_from,json=daysFrom,proto3" json:"days_from" bson:"days_from" validate:"numeric,gte=0"`
 	// @inject_tag: json:"payment_stage" bson:"payment_stage" validate:"numeric,gte=1"
+	//
+	// The payment stage.
 	PaymentStage int32 `protobuf:"varint,9,opt,name=payment_stage,json=paymentStage,proto3" json:"payment_stage" bson:"payment_stage" validate:"numeric,gte=1"`
 	// @inject_tag: json:"percent" bson:"percent" validate:"numeric,gte=0,lte=1"
+	//
+	// The fee of the payment method in per cent.
 	Percent float64 `protobuf:"fixed64,10,opt,name=percent,proto3" json:"percent" bson:"percent" validate:"numeric,gte=0,lte=1"`
 	// @inject_tag: json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"
+	//
+	// The fixed fee of the payment method in the particular currency.
 	FixAmount float64 `protobuf:"fixed64,11,opt,name=fix_amount,json=fixAmount,proto3" json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"`
 	// @inject_tag: json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"
+	//
+	// The currency of the fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
 	FixAmountCurrency string `protobuf:"bytes,12,opt,name=fix_amount_currency,json=fixAmountCurrency,proto3" json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"`
 	// @inject_tag: json:"is_paid_by_merchant" bson:"is_paid_by_merchant"
+	//
+	// Has a true value if the method is paid by the merchant.
 	IsPaidByMerchant bool `protobuf:"varint,13,opt,name=is_paid_by_merchant,json=isPaidByMerchant,proto3" json:"is_paid_by_merchant" bson:"is_paid_by_merchant"`
 	//@inject_tag: json:"created_at" bson:"created_at"
+	//
+	// The date of the rates record was created for the merchant.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at"`
 	//@inject_tag: json:"updated_at" bson:"updated_at"
+	//
+	// The date of the rates record was last updated for the merchant.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,15,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at" bson:"updated_at"`
 	// @inject_tag: json:"is_active" bson:"is_active"
+	//
+	// Has a true value if the rates record is active for the merchant.
 	IsActive bool `protobuf:"varint,16,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
+	//
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode              string   `protobuf:"bytes,17,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -9734,6 +9908,8 @@ func (m *PaymentCostDeleteRequest) GetId() string {
 
 type MoneyBackCostMerchantList struct {
 	//@inject_tag: json:"items"
+	//
+	// The merchant costs for money back operations.
 	Items                []*MoneyBackCostMerchant `protobuf:"bytes,1,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}                 `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -15124,7 +15300,7 @@ type PaymentFormDataChangeResponseItem struct {
 	//
 	// The customer's IP address.
 	UserIpData *UserIpData `protobuf:"bytes,2,opt,name=user_ip_data,json=userIpData,proto3" json:"user_ip_data"`
-	//
+	// The brand of the card issuer.
 	Brand string `protobuf:"bytes,3,opt,name=brand,proto3" json:"brand,omitempty"`
 	//@inject_tag: json:"country_payments_allowed"
 	//
