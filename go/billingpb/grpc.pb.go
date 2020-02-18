@@ -7371,6 +7371,8 @@ func (m *GetPaymentMethodSettingsRequest) GetOperatingCompanyId() string {
 
 type GetPaymentMethodSettingsResponse struct {
 	// @inject_tag: json:"params"
+	//
+	// The testing settings.
 	Params               []*PaymentMethodParams `protobuf:"bytes,1,rep,name=params,proto3" json:"params"`
 	XXX_NoUnkeyedLiteral struct{}               `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                 `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -7508,7 +7510,9 @@ func (m *ChangePaymentMethodParamsRequest) GetParams() *PaymentMethodParams {
 }
 
 type ChangePaymentMethodResponse struct {
-	Status               int32    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
 	Message              string   `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -7555,7 +7559,9 @@ func (m *ChangePaymentMethodResponse) GetMessage() string {
 }
 
 type ChangePaymentMethodParamsResponse struct {
-	Status               int32    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response status code.
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	// The response error message (if any).
 	Message              string   `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
