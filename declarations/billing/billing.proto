@@ -756,7 +756,7 @@ message Merchant {
     string mcc_code = 55;
     // @inject_tag: json:"operating_company_id"
     //
-    // The unique identifier for the operation company.
+    // The unique identifier for the operating company.
     string operating_company_id = 56;
     // @inject_tag: json:"merchant_operations_type" validate:"oneof=high-risk low-risk"
     //
@@ -1052,7 +1052,7 @@ message Order {
     repeated OrderItem items = 30;
     //@inject_tag: json:"refund" bson:"refund" validate:"omitempty,dive"
     //
-    // The refund's notification. Has a null value if the order is not refunded.
+    // The notification of the refund. Has a null value if the order is not refunded.
     OrderNotificationRefund refund = 31;
     // @inject_tag: json:"metadata" bson:"metadata"
     //
@@ -1326,7 +1326,7 @@ message PaymentMethodParams {
     string mcc_code = 7;
     // @inject_tag: bson:"operating_company_id" json:"operating_company_id" validate:"required,hexadecimal,len=24"
     //
-    // The unique identifier for the operation company.
+    // The unique identifier for the operating company.
     string operating_company_id = 8;
     // @inject_tag: bson:"brand" json:"brand" validate:"required"
     //
@@ -2312,7 +2312,7 @@ message MoneyBackCostSystem {
     string mcc_code = 14;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
     //
-    // The unique identifier for the operation company.
+    // The unique identifier for the operating company.
     string operating_company_id = 15;
     // @inject_tag: json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"
     //
@@ -2690,7 +2690,7 @@ message RoyaltyReport {
     string payout_document_id = 18;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
     //
-    // The unique identifier for the operation company.
+    // The unique identifier for the operating company.
     string operating_company_id = 19;
 }
 
@@ -2752,46 +2752,88 @@ message VatTransaction {
 
 message VatReport {
     //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //
+    // The unique identifier for the VAT report.
     string id = 1;
     //@inject_tag: json:"country" bson:"country" validate:"required,alpha,len=2"
+    //
+    // The country's name. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
     string country = 2;
     // @inject_tag: json:"vat_rate" bson:"vat_rate" validate:"numeric,gte=0,lte=1"
+    //
+    // VAT rate.
     double vat_rate = 3;
     //@inject_tag: json:"currency" bson:"currency" validate:"required,alpha,len=3"
+    //
+    // The rate currency. Three-letter Currency Code ISO 4217, in uppercase.
     string currency = 4;
     // @inject_tag: json:"transactions_count" bson:"transactions_count" validate:"numeric,gte=0"
+    //
+    // The total transactions.
     int32 transactions_count = 5;
     // @inject_tag: json:"gross_revenue" bson:"gross_revenue" validate:"numeric,gte=0"
+    //
+    // The gross revenue.
     double gross_revenue = 6;
     // @inject_tag: json:"vat_amount" bson:"vat_amount" validate:"numeric,gte=0"
+    //
+    // The amount of VAT.
     double vat_amount = 7;
     // @inject_tag: json:"fees_amount" bson:"fees_amount" validate:"numeric,gte=0"
+    //
+    // The total amount of fees.
     double fees_amount = 8;
     // @inject_tag: json:"deduction_amount" bson:"deduction_amount" validate:"numeric,gte=0"
+    //
+    // The deduction amount.
     double deduction_amount = 9;
     // @inject_tag: json:"correction_amount" bson:"correction_amount" validate:"numeric,lte=0"
+    //
+    // The correction amount.
     double correction_amount = 10;
     //@inject_tag: json:"status" bson:"status" validate:"required,alpha,oneof=threshold expired pending need_to_pay paid overdue canceled"
+    //
+    // The VAT report status. Available values: threshold, expired, pending, need_to_pay, paid, overdue, canceled.
     string status = 11;
     // @inject_tag: json:"country_annual_turnover" bson:"country_annual_turnover" validate:"numeric,gte=0"
+    //
+    // The annual turnover for the country.
     double country_annual_turnover = 12;
     // @inject_tag: json:"world_annual_turnover" bson:"world_annual_turnover" validate:"numeric,gte=0"
+    //
+    // The world annual turnover.
     double world_annual_turnover = 13;
     //@inject_tag: json:"amounts_approximate" bson:"amounts_approximate"
+    //
+    // Has a true value if the amounts are non-final due to the currency exchange rates delay.
     bool amounts_approximate = 14;
     //@inject_tag: json:"date_from" bson:"date_from"
+    //
+    // The start date of the period for the report.
     google.protobuf.Timestamp date_from = 15;
     //@inject_tag: json:"date_to" bson:"date_to"
+    //
+    // The end date of the period for the report.
     google.protobuf.Timestamp date_to = 16;
     //@inject_tag: json:"pay_until_date" bson:"pay_until_date"
+    //
+    // The deadline date of the VAT payment.
     google.protobuf.Timestamp pay_until_date = 17;
     //@inject_tag: json:"created_at" bson:"created_at"
+    //
+    // The date of the report creation.
     google.protobuf.Timestamp created_at = 18;
     //@inject_tag: json:"updated_at" bson:"updated_at"
+    //
+    // The date of the report last update.
     google.protobuf.Timestamp updated_at = 19;
     //@inject_tag: json:"paid_at" bson:"paid_at"
+    //
+    // The payment date.
     google.protobuf.Timestamp paid_at = 20;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    //
+    // The unique identifier for the operating company.
     string operating_company_id = 21;
 }
 
@@ -2821,8 +2863,12 @@ message OrderViewMoney {
 
 message OrderViewMerchantInfo {
     //@inject_tag: json:"company_name" bson:"company_name"
+    //
+    // The company's name.
     string company_name = 1;
     //@inject_tag: json:"agreement_number" bson:"agreement_number"
+    //
+    // The license agreement number.
     string agreement_number = 2;
 }
 
@@ -2911,19 +2957,19 @@ message OrderViewPublic {
     OrderViewMoney tax_fee_total = 21;
     // @inject_tag: json:"method_fee_total" bson:"method_fee_total"
     //
-    // The tax fee total.
+    // The method fee total.
     OrderViewMoney method_fee_total = 22;
     // @inject_tag: json:"method_fee_tariff" bson:"method_fee_tariff"
     //
-    // The tariff for the tax fee.
+    // The tariff for the method fee.
     OrderViewMoney method_fee_tariff = 23;
     // @inject_tag: json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"
     //
-    // The tariff for the fixed tax fee.
+    // The tariff of the fixed method fee.
     OrderViewMoney method_fixed_fee_tariff = 24;
     // @inject_tag: json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"
     //
-    // The tariff for the PaySuper tax fee.
+    // The PaySuper fixed fee.
     OrderViewMoney paysuper_fixed_fee = 25;
     // @inject_tag: json:"fees_total" bson:"fees_total"
     //
@@ -2943,35 +2989,35 @@ message OrderViewPublic {
     OrderViewMoney refund_gross_revenue = 29;
     // @inject_tag: json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"
     //
-    // The tariff for the fee method refund.
+    // The fee tariff for the method refund.
     OrderViewMoney method_refund_fee_tariff = 30;
     // @inject_tag: json:"merchant_refund_fixed_fee_tariff" bson:"merchant_refund_fixed_fee_tariff"
     //
-    // The tariff for the fixed fee method refund.
+    // The fixed fee tariff for the method refund.
     OrderViewMoney merchant_refund_fixed_fee_tariff = 31;
     // @inject_tag: json:"refund_tax_fee" bson:"refund_tax_fee"
     //
-    // The tax fee refund.
+    // The tax fee of the refund.
     OrderViewMoney refund_tax_fee = 32;
     // @inject_tag: json:"refund_tax_fee_currency_exchange_fee" bson:"refund_tax_fee_currency_exchange_fee"
     //
-    // The refund of the tax fee for the currency exchange.
+    // The refund tax fee for the currency exchange fee.
     OrderViewMoney refund_tax_fee_currency_exchange_fee = 33;
     // @inject_tag: json:"paysuper_refund_tax_fee_currency_exchange_fee" bson:"paysuper_refund_tax_fee_currency_exchange_fee"
     //
-    // The PaySuper tax fee for the currency exchange refund.
+    // The PaySuper refund tax fee for the currency exchange fee.
     OrderViewMoney paysuper_refund_tax_fee_currency_exchange_fee = 34;
     // @inject_tag: json:"refund_reverse_revenue" bson:"refund_reverse_revenue"
     //
-    // The reverse revenue refund.
+    // The refund reverse revenue.
     OrderViewMoney refund_reverse_revenue = 35;
     // @inject_tag: json:"refund_fees_total" bson:"refund_fees_total"
     //
-    // The total fees refund.
+    // The refund total fees.
     OrderViewMoney refund_fees_total = 36;
     // @inject_tag: json:"refund_fees_total_local" bson:"refund_fees_total_local"
     //
-    // The  local total fees refund.
+    // The refund local total fees.
     OrderViewMoney refund_fees_total_local = 37;
     // The order issuer data.
     OrderIssuer issuer = 38;
@@ -2989,11 +3035,11 @@ message OrderViewPublic {
     ParentOrder parent_order = 41;
     //@inject_tag: json:"refund" bson:"refund"
     //
-    // The refund's notification. Has a null value if the order is not refunded.
+    // The notification of the refund. Has a null value if the order is not refunded.
     OrderNotificationRefund refund = 42;
     //@inject_tag: json:"cancellation" bson:"cancellation"
     //
-    // The cancellation's notification. Has a null value if the order is not cancelled.
+    // The notification of the cancellation. Has a null value if the order is not cancelled.
     OrderNotificationCancellation cancellation = 43;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
     //
@@ -3009,7 +3055,7 @@ message OrderViewPublic {
     OrderViewMoney order_charge = 46;
     // @inject_tag: json:"payment_ip_country"
     //
-    // The IP address of the country where the order was paid for.
+    // The IP address of the country where the order was paid.
     string payment_ip_country = 47;
     // @inject_tag: json:"is_ip_country_mismatch_bin" bson:"is_ip_country_mismatch_bin"
     //
@@ -3033,180 +3079,356 @@ message OrderViewPrivate {
     // @inject_tag: json:"-" bson:"_id"
     string id = 1; // unique internal order identifier in Protocol One
     // @inject_tag: json:"uuid" bson:"uuid"
-    string uuid = 2; // unique public order identifier in Protocol One
+    //
+    // The public unique identifier for the order in PaySuper.
+    string uuid = 2;
     // @inject_tag: json:"total_payment_amount" bson:"total_payment_amount"
+    //
+    // The total payment amount including all commissions.
     double total_payment_amount = 3;
     // @inject_tag: json:"currency" bson:"currency"
+    //
+    // The currency of the order. Three-letter Currency Code ISO 4217, in uppercase.
     string currency = 4;
     // @inject_tag: json:"project" bson:"project"
+    //
+    // The project data.
     ProjectOrder project = 5;
     // @inject_tag: json:"created_at" bson:"created_at"
+    //
+    // The date of the order creation.
     google.protobuf.Timestamp created_at = 6;
     // @inject_tag: json:"transaction" bson:"pm_order_id"
-    string transaction = 7; // unique order id in payment system
+    //
+    // The unique identifier for the order in the payment system.
+    string transaction = 7;
     // @inject_tag: json:"payment_method" bson:"payment_method"
+    //
+    // The payment method data.
     PaymentMethodOrder payment_method = 8;
     // @inject_tag: json:"country_code" bson:"country_code"
+    //
+    // The customer's country code. Two-letter country code in ISO 3166-1, in uppercase.
     string country_code = 9;
     // @inject_tag: json:"merchant_id" bson:"merchant_id"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 10;
     // @inject_tag: json:"locale" bson:"locale"
+    //
+    // The customer's locale name. The language code in ISO 639-1 (for instance en-US).
     string locale = 11;
     // @inject_tag: json:"status" bson:"status"
+    //
+    // The status of the order. Available values: created, processed, canceled, rejected, refunded, chargeback, pending.
     string status = 12;
     // @inject_tag: json:"transaction_date" bson:"pm_order_close_date"
+    //
+    // The date in ISO 8601 of the processed transaction.
     google.protobuf.Timestamp transaction_date = 13;
     // @inject_tag: json:"user" bson:"user"
+    //
+    // The customer data.
     OrderUser user = 14;
     // @inject_tag: json:"billing_address" bson:"billing_address"
+    //
+    // The customer's billing address entered in payment form.
     OrderBillingAddress billing_address = 15;
     // @inject_tag: json:"type" bson:"type"
+    //
+    // The order type. It depends on your sales option (Game Keys, Virtual Items, Virtual Currency the simple checkout). For products created as Game Keys use the key type, as Virtual Items - the product type, as Virtual Currency - the virtual_currency type, for a simple checkout - the simple type. Enum values: key, product, virtual_currency, simple.
     string type = 16;
     // @inject_tag: json:"is_vat_deduction" bson:"is_vat_deduction"
+    //
+    // Has a true value if VAT can be deducted.
     bool is_vat_deduction = 17;
     // @inject_tag: json:"payment_gross_revenue_local" bson:"payment_gross_revenue_local"
+    //
+    // The local gross revenue of the payment.
     OrderViewMoney payment_gross_revenue_local = 18;
     // @inject_tag: json:"payment_gross_revenue_origin" bson:"payment_gross_revenue_origin"
+    //
+    // The origin gross revenue of the payment.
     OrderViewMoney payment_gross_revenue_origin = 19;
     // @inject_tag: json:"payment_gross_revenue" bson:"payment_gross_revenue"
+    //
+    // The gross revenue of the payment.
     OrderViewMoney payment_gross_revenue = 20;
     // @inject_tag: json:"payment_tax_fee" bson:"payment_tax_fee"
+    //
+    // The tax fee of the payment.
     OrderViewMoney payment_tax_fee = 21;
     // @inject_tag: json:"payment_tax_fee_local" bson:"payment_tax_fee_local"
+    //
+    // The local tax fee of the payment.
     OrderViewMoney payment_tax_fee_local = 22;
     // @inject_tag: json:"payment_tax_fee_origin" bson:"payment_tax_fee_origin"
+    //
+    // The origin tax fee of the payment.
     OrderViewMoney payment_tax_fee_origin = 23;
     // @inject_tag: json:"payment_tax_fee_currency_exchange_fee" bson:"payment_tax_fee_currency_exchange_fee"
+    //
+    // The tax fee of the payment for the currency exchange.
     OrderViewMoney payment_tax_fee_currency_exchange_fee = 24;
     // @inject_tag: json:"payment_tax_fee_total" bson:"payment_tax_fee_total"
+    //
+    // The tax fee total of the payment.
     OrderViewMoney payment_tax_fee_total = 25;
     // @inject_tag: json:"payment_gross_revenue_fx" bson:"payment_gross_revenue_fx"
+    //
+    // The gross FX revenue of the payment.
     OrderViewMoney payment_gross_revenue_fx = 26;
     // @inject_tag: json:"payment_gross_revenue_fx_tax_fee" bson:"payment_gross_revenue_fx_tax_fee"
+    //
+    // The tax fee for the gross FX revenue of the payment.
     OrderViewMoney payment_gross_revenue_fx_tax_fee = 27;
     // @inject_tag: json:"payment_gross_revenue_fx_profit" bson:"payment_gross_revenue_fx_profit"
+    //
+    // The gross FX revenue of the payment profit.
     OrderViewMoney payment_gross_revenue_fx_profit = 28;
     // @inject_tag: json:"gross_revenue" bson:"gross_revenue"
+    //
+    // The gross revenue.
     OrderViewMoney gross_revenue = 29;
     // @inject_tag: json:"tax_fee" bson:"tax_fee"
+    //
+    // The tax fee.
     OrderViewMoney tax_fee = 30;
     // @inject_tag: json:"tax_fee_currency_exchange_fee" bson:"tax_fee_currency_exchange_fee"
+    //
+    // The tax fee for the currency exchange.
     OrderViewMoney tax_fee_currency_exchange_fee = 31;
     // @inject_tag: json:"tax_fee_total" bson:"tax_fee_total"
+    //
+    // The total tax fee.
     OrderViewMoney tax_fee_total = 32;
     // @inject_tag: json:"method_fee_total" bson:"method_fee_total"
+    //
+    // The method fee total.
     OrderViewMoney method_fee_total = 33;
     // @inject_tag: json:"method_fee_tariff" bson:"method_fee_tariff"
+    //
+    // The tariff of the method fee.
     OrderViewMoney method_fee_tariff = 34;
     // @inject_tag: json:"paysuper_method_fee_tariff_self_cost" bson:"paysuper_method_fee_tariff_self_cost"
+    //
+    // The self-cost tariff of the PaySuper method fee.
     OrderViewMoney paysuper_method_fee_tariff_self_cost = 35;
     // @inject_tag: json:"paysuper_method_fee_profit" bson:"paysuper_method_fee_profit"
+    //
+    // The profit of the PaySuper method fee.
     OrderViewMoney paysuper_method_fee_profit = 36;
     // @inject_tag: json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"
+    //
+    // The tariff of the fixed method fee.
     OrderViewMoney method_fixed_fee_tariff = 37;
     // @inject_tag: json:"paysuper_method_fixed_fee_tariff_fx_profit" bson:"paysuper_method_fixed_fee_tariff_fx_profit"
+    //
+    // The FX profit of the PaySuper fixed method fee tariff.
     OrderViewMoney paysuper_method_fixed_fee_tariff_fx_profit = 38;
     // @inject_tag: json:"paysuper_method_fixed_fee_tariff_self_cost" bson:"paysuper_method_fixed_fee_tariff_self_cost"
+    //
+    // The self-cost tariff of the PaySuper fixed method fee.
     OrderViewMoney paysuper_method_fixed_fee_tariff_self_cost = 39;
     // @inject_tag: json:"paysuper_method_fixed_fee_tariff_total_profit" bson:"paysuper_method_fixed_fee_tariff_total_profit"
+    //
+    // The total profit of the PaySuper fixed method fee tariff.
     OrderViewMoney paysuper_method_fixed_fee_tariff_total_profit = 40;
     // @inject_tag: json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"
+    //
+    // The PaySuper fixed fee.
     OrderViewMoney paysuper_fixed_fee = 41;
     // @inject_tag: json:"paysuper_fixed_fee_fx_profit" bson:"paysuper_fixed_fee_fx_profit"
+    //
+    // The FX profit of the PaySuper fixed fee.
     OrderViewMoney paysuper_fixed_fee_fx_profit = 42;
     // @inject_tag: json:"fees_total" bson:"fees_total"
+    //
+    // The total fees.
     OrderViewMoney fees_total = 43;
     // @inject_tag: json:"fees_total_local" bson:"fees_total_local"
+    //
+    // The local total fees.
     OrderViewMoney fees_total_local = 44;
     // @inject_tag: json:"net_revenue" bson:"net_revenue"
+    //
+    // The net revenue.
     OrderViewMoney net_revenue = 45;
     // @inject_tag: json:"paysuper_method_total_profit" bson:"paysuper_method_total_profit"
+    //
+    // The total profit of the PaySuper method.
     OrderViewMoney paysuper_method_total_profit = 46;
     // @inject_tag: json:"paysuper_total_profit" bson:"paysuper_total_profit"
+    //
+    // The PaySuper total profit.
     OrderViewMoney paysuper_total_profit = 47;
     // @inject_tag: json:"payment_refund_gross_revenue_local" bson:"payment_refund_gross_revenue_local"
+    //
+    // The local gross revenue of the payment refund.
     OrderViewMoney payment_refund_gross_revenue_local = 48;
     // @inject_tag: json:"payment_refund_gross_revenue_origin" bson:"payment_refund_gross_revenue_origin"
+    //
+    // The origin gross revenue of the payment refund.
     OrderViewMoney payment_refund_gross_revenue_origin = 49;
     // @inject_tag: json:"payment_refund_gross_revenue" bson:"payment_refund_gross_revenue"
+    //
+    // The gross revenue of the payment refund.
     OrderViewMoney payment_refund_gross_revenue = 50;
     // @inject_tag: json:"payment_refund_tax_fee" bson:"payment_refund_tax_fee"
+    //
+    // The tax fee of the payment refund.
     OrderViewMoney payment_refund_tax_fee = 51;
     // @inject_tag: json:"payment_refund_tax_fee_local" bson:"payment_refund_tax_fee_local"
+    //
+    // The local tax fee of the payment refund.
     OrderViewMoney payment_refund_tax_fee_local = 52;
     // @inject_tag: json:"payment_refund_tax_fee_origin" bson:"payment_refund_tax_fee_origin"
+    //
+    // The origin tax fee of the payment refund.
     OrderViewMoney payment_refund_tax_fee_origin = 53;
     // @inject_tag: json:"payment_refund_fee_tariff" bson:"payment_refund_fee_tariff"
+    //
+    // The fee tariff of the payment refund.
     OrderViewMoney payment_refund_fee_tariff = 54;
     // @inject_tag: json:"method_refund_fixed_fee_tariff" bson:"method_refund_fixed_fee_tariff"
+    //
+    // The fixed fee tariff of the method refund.
     OrderViewMoney method_refund_fixed_fee_tariff = 55;
     // @inject_tag: json:"refund_gross_revenue" bson:"refund_gross_revenue"
+    //
+    // The gross revenue refund.
     OrderViewMoney refund_gross_revenue = 56;
     // @inject_tag: json:"refund_gross_revenue_fx" bson:"refund_gross_revenue_fx"
+    //
+    // The gross RX revenue refund.
     OrderViewMoney refund_gross_revenue_fx = 57;
     // @inject_tag: json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"
+    //
+    // The fee tariff for the method refund.
     OrderViewMoney method_refund_fee_tariff = 58;
     // @inject_tag: json:"paysuper_method_refund_fee_tariff_profit" bson:"paysuper_method_refund_fee_tariff_profit"
+    //
+    // The PaySuper method refund fee tariff profit.
     OrderViewMoney paysuper_method_refund_fee_tariff_profit = 59;
     // @inject_tag: json:"paysuper_method_refund_fixed_fee_tariff_self_cost" bson:"paysuper_method_refund_fixed_fee_tariff_self_cost"
+    //
+    // The PaySuper method refund fixed fee tariff self-cost.
     OrderViewMoney paysuper_method_refund_fixed_fee_tariff_self_cost = 60;
     // @inject_tag: json:"merchant_refund_fixed_fee_tariff" bson:"merchant_refund_fixed_fee_tariff"
+    //
+    // The merchant refund fixed fee tariff.
     OrderViewMoney merchant_refund_fixed_fee_tariff = 61;
     // @inject_tag: json:"paysuper_method_refund_fixed_fee_tariff_profit" bson:"paysuper_method_refund_fixed_fee_tariff_profit"
+    //
+    // The PaySuper method refund fixed fee tariff profit.
     OrderViewMoney paysuper_method_refund_fixed_fee_tariff_profit = 62;
     // @inject_tag: json:"refund_tax_fee" bson:"refund_tax_fee"
+    //
+    // The refund tax fee.
     OrderViewMoney refund_tax_fee = 63;
     // @inject_tag: json:"refund_tax_fee_currency_exchange_fee" bson:"refund_tax_fee_currency_exchange_fee"
+    //
+    // The refund tax fee for the currency exchange fee.
     OrderViewMoney refund_tax_fee_currency_exchange_fee = 64;
     // @inject_tag: json:"paysuper_refund_tax_fee_currency_exchange_fee" bson:"paysuper_refund_tax_fee_currency_exchange_fee"
+    //
+    // The PaySuper refund tax fee for the currency exchange fee.
     OrderViewMoney paysuper_refund_tax_fee_currency_exchange_fee = 65;
     // @inject_tag: json:"refund_tax_fee_total" bson:"refund_tax_fee_total"
+    //
+    // The total refund tax fee.
     OrderViewMoney refund_tax_fee_total = 66;
     // @inject_tag: json:"refund_reverse_revenue" bson:"refund_reverse_revenue"
+    //
+    // The refund reverse revenue.
     OrderViewMoney refund_reverse_revenue = 67;
     // @inject_tag: json:"refund_fees_total" bson:"refund_fees_total"
+    //
+    // The refund total fees.
     OrderViewMoney refund_fees_total = 68;
     // @inject_tag: json:"refund_fees_total_local" bson:"refund_fees_total_local"
+    //
+    // The refund local total fees.
     OrderViewMoney refund_fees_total_local = 69;
     // @inject_tag: json:"paysuper_refund_total_profit" bson:"paysuper_refund_total_profit"
+    //
+    // The PaySuper refund total profit.
     OrderViewMoney paysuper_refund_total_profit = 70;
     //@inject_tag: json:"issuer" bson:"issuer"
+    //
+    // The order issuer data.
     OrderIssuer issuer = 71;
     // @inject_tag: json:"items" bson:"items"
+    //
+    // The list of products in the order.
     repeated OrderItem items = 72;
     //@inject_tag: json:"merchant_payout_currency" bson:"merchant_payout_currency"
+    //
+    // The merchant's payout currency.
     string merchant_payout_currency = 73;
     //@inject_tag: json:"parent_order" bson:"parent_order"
+    //
+    // The parent order data (for refunds only).
     ParentOrder parent_order = 74;
     //@inject_tag: json:"refund" bson:"refund"
+    //
+    // The notification of refund. Has a null value if the order is not refunded.
     OrderNotificationRefund refund = 75;
     //@inject_tag: json:"cancellation" bson:"cancellation"
+    //
+    // The notification of the cancellation. Has a null value if the order is not canceled.
     OrderNotificationCancellation cancellation = 76;
     // @inject_tag: json:"mcc_code" bson:"mcc_code"
+    //
+    // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 77;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    //
+    // The unique identifier for the operating company.
     string operating_company_id = 78;
     // @inject_tag: json:"is_high_risk" bson:"is_high_risk"
+    //
+    // Has a true value if the customer can select another country while the payments are disallowed for a country determined by their IP address.
     bool is_high_risk = 79;
     // @inject_tag: json:"refund_allowed"  bson:"refund_allowed"
+    //
+    // Has a true value if the payment method allows a refund.
     bool refund_allowed = 80;
     // @inject_tag: json:"order_charge" bson:"order_charge"
+    //
+    // The order charge.
     OrderViewMoney order_charge = 81;
     // @inject_tag: json:"payment_ip_country"
+    //
+    // The IP address of the country where the order was paid.
     string payment_ip_country = 82;
     // @inject_tag: json:"is_ip_country_mismatch_bin" bson:"is_ip_country_mismatch_bin"
+    //
+    // Has a true value if the country from the card's BIN has not been matched to the country defined by the IP address (for card payments only).
     bool is_ip_country_mismatch_bin = 83;
     // @inject_tag: json:"billing_country_changed_by_user" bson:"billing_country_changed_by_user"
+    //
+    // Has a true value if the country's name was selected by the customer.
     bool billing_country_changed_by_user = 84;
     // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
+    //
+    // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
     string vat_payer = 85;
     // @inject_tag: json:"is_production" bson:"is_production"
+    //
+    // Has a true value for a production payment and false for a test payment that goes through a test sandbox.
     bool is_production = 86;
     // @inject_tag: json:"merchant_info" bson:"merchant_info"
+    //
+    // The merchant's company data.
     OrderViewMerchantInfo merchant_info = 87;
     // @inject_tag: json:"order_charge_before_vat" bson:"order_charge_before_vat"
+    //
+    // The order charge excluding VAT.
     OrderViewMoney order_charge_before_vat = 88;
     // @inject_tag: json:"tax_rate" bson:"tax_rate"
+    //
+    // The tax rate.
     double tax_rate = 89;
 }
 
@@ -3479,7 +3701,7 @@ message PayoutDocument {
     google.protobuf.Timestamp paid_at = 27;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
     //
-    // The unique identifier for the operation company.
+    // The unique identifier for the operating company.
     string operating_company_id = 28;
 }
 

@@ -2259,9 +2259,13 @@ message VatReportsRequest {
 
 message VatReportsPaginate {
     // @inject_tag: json:"count"
-    int32 count = 1; // total count of selected orders
+    //
+    // The total number of the found reports.
+    int32 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.VatReport items = 2; // array of selected orders
+    //
+    // The VAT reports list.
+    repeated billing.VatReport items = 2;
 }
 
 message VatReportsResponse {
@@ -2277,9 +2281,11 @@ message ProcessVatReportsRequest {
 }
 
 message UpdateVatReportStatusRequest {
-    //@inject_tag: json:"id" bson:"_id" validate:"hexadecimal,len=24"
+    //@inject_tag: json:"-" bson:"_id" validate:"hexadecimal,len=24"
     string id = 1;
     //@inject_tag: json:"status" bson:"status" validate:"required,alpha,oneof=paid canceled"
+    //
+    // The VAT report status. Available values: paid, canceled.
     string status = 2;
 }
 
@@ -3296,9 +3302,13 @@ message VatReportRequest {
 
 message PrivateTransactionsPaginate {
     // @inject_tag: json:"count"
-    int32 count = 1; // total count of selected transactions
+    //
+    // The total number of transactions.
+    int32 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.OrderViewPrivate items = 2; // array of selected transactions
+    //
+    // The transactions list.
+    repeated billing.OrderViewPrivate items = 2;
 }
 
 message VatReportResponse {
