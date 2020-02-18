@@ -24,16 +24,28 @@ message GeoIdentity {
 
 message TaxRate {
     // @inject_tag: json:"id"
+    //
+    // The unique identifier for the tax rate.
     uint32 id = 1;
     // @inject_tag: json:"zip"
+    //
+    // The ZIP code.
     string zip = 2;
     // @inject_tag: json:"country"
+    //
+    // The country's name. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
     string country = 3;
     // @inject_tag: json:"city,omitempty"
+    //
+    // The city.
     string city = 4;
     // @inject_tag: gorm:"type:varchar(2)"
+    //
+    // The state code in ISO 3166-2.
     string state = 5;
     // @inject_tag: json:"rate"
+    //
+    // The tax rate.
     double rate = 6;
 }
 

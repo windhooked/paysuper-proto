@@ -1606,6 +1606,8 @@ message GetPaymentMethodSettingsRequest {
 
 message GetPaymentMethodSettingsResponse {
     // @inject_tag: json:"params"
+    //
+    // The testing settings.
     repeated billing.PaymentMethodParams params = 1;
 }
 
@@ -1624,12 +1626,16 @@ message ChangePaymentMethodParamsRequest {
 }
 
 message ChangePaymentMethodResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     string message = 2;
 }
 
 message ChangePaymentMethodParamsResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     string message = 2;
 }
 
