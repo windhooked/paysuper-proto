@@ -2501,7 +2501,7 @@ type Merchant struct {
 	MccCode string `protobuf:"bytes,55,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code"`
 	// @inject_tag: json:"operating_company_id"
 	//
-	// The unique identifier for the operation company.
+	// The unique identifier for the operating company.
 	OperatingCompanyId string `protobuf:"bytes,56,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id"`
 	// @inject_tag: json:"merchant_operations_type" validate:"oneof=high-risk low-risk"
 	//
@@ -3658,7 +3658,7 @@ type Order struct {
 	Items []*OrderItem `protobuf:"bytes,30,rep,name=items,proto3" json:"items" bson:"items"`
 	//@inject_tag: json:"refund" bson:"refund" validate:"omitempty,dive"
 	//
-	// The refund's notification. Has a null value if the order is not refunded.
+	// The notification of the refund. Has a null value if the order is not refunded.
 	Refund *OrderNotificationRefund `protobuf:"bytes,31,opt,name=refund,proto3" json:"refund" bson:"refund" validate:"omitempty,dive"`
 	// @inject_tag: json:"metadata" bson:"metadata"
 	//
@@ -4849,7 +4849,7 @@ type PaymentMethodParams struct {
 	MccCode string `protobuf:"bytes,7,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code" validate:"required,numeric,len=4"`
 	// @inject_tag: bson:"operating_company_id" json:"operating_company_id" validate:"required,hexadecimal,len=24"
 	//
-	// The unique identifier for the operation company.
+	// The unique identifier for the operating company.
 	OperatingCompanyId string `protobuf:"bytes,8,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: bson:"brand" json:"brand" validate:"required"
 	//
@@ -9234,7 +9234,7 @@ type MoneyBackCostSystem struct {
 	MccCode string `protobuf:"bytes,14,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
 	//
-	// The unique identifier for the operation company.
+	// The unique identifier for the operating company.
 	OperatingCompanyId string `protobuf:"bytes,15,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	// @inject_tag: json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"
 	//
@@ -10781,7 +10781,7 @@ type RoyaltyReport struct {
 	PayoutDocumentId string `protobuf:"bytes,18,opt,name=payout_document_id,json=payoutDocumentId,proto3" json:"payout_document_id" bson:"payout_document_id"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
 	//
-	// The unique identifier for the operation company.
+	// The unique identifier for the operating company.
 	OperatingCompanyId   string   `protobuf:"bytes,19,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -11256,46 +11256,88 @@ func (m *VatTransaction) GetDateTime() *timestamp.Timestamp {
 
 type VatReport struct {
 	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+	//
+	// The unique identifier for the VAT report.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: json:"country" bson:"country" validate:"required,alpha,len=2"
+	//
+	// The country's name. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
 	Country string `protobuf:"bytes,2,opt,name=country,proto3" json:"country" bson:"country" validate:"required,alpha,len=2"`
 	// @inject_tag: json:"vat_rate" bson:"vat_rate" validate:"numeric,gte=0,lte=1"
+	//
+	// VAT rate.
 	VatRate float64 `protobuf:"fixed64,3,opt,name=vat_rate,json=vatRate,proto3" json:"vat_rate" bson:"vat_rate" validate:"numeric,gte=0,lte=1"`
 	//@inject_tag: json:"currency" bson:"currency" validate:"required,alpha,len=3"
+	//
+	// The rate currency. Three-letter Currency Code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency" bson:"currency" validate:"required,alpha,len=3"`
 	// @inject_tag: json:"transactions_count" bson:"transactions_count" validate:"numeric,gte=0"
+	//
+	// The total transactions.
 	TransactionsCount int32 `protobuf:"varint,5,opt,name=transactions_count,json=transactionsCount,proto3" json:"transactions_count" bson:"transactions_count" validate:"numeric,gte=0"`
 	// @inject_tag: json:"gross_revenue" bson:"gross_revenue" validate:"numeric,gte=0"
+	//
+	// The gross revenue.
 	GrossRevenue float64 `protobuf:"fixed64,6,opt,name=gross_revenue,json=grossRevenue,proto3" json:"gross_revenue" bson:"gross_revenue" validate:"numeric,gte=0"`
 	// @inject_tag: json:"vat_amount" bson:"vat_amount" validate:"numeric,gte=0"
+	//
+	// The amount of VAT.
 	VatAmount float64 `protobuf:"fixed64,7,opt,name=vat_amount,json=vatAmount,proto3" json:"vat_amount" bson:"vat_amount" validate:"numeric,gte=0"`
 	// @inject_tag: json:"fees_amount" bson:"fees_amount" validate:"numeric,gte=0"
+	//
+	// The total amount of fees.
 	FeesAmount float64 `protobuf:"fixed64,8,opt,name=fees_amount,json=feesAmount,proto3" json:"fees_amount" bson:"fees_amount" validate:"numeric,gte=0"`
 	// @inject_tag: json:"deduction_amount" bson:"deduction_amount" validate:"numeric,gte=0"
+	//
+	// The deduction amount.
 	DeductionAmount float64 `protobuf:"fixed64,9,opt,name=deduction_amount,json=deductionAmount,proto3" json:"deduction_amount" bson:"deduction_amount" validate:"numeric,gte=0"`
 	// @inject_tag: json:"correction_amount" bson:"correction_amount" validate:"numeric,lte=0"
+	//
+	// The correction amount.
 	CorrectionAmount float64 `protobuf:"fixed64,10,opt,name=correction_amount,json=correctionAmount,proto3" json:"correction_amount" bson:"correction_amount" validate:"numeric,lte=0"`
 	//@inject_tag: json:"status" bson:"status" validate:"required,alpha,oneof=threshold expired pending need_to_pay paid overdue canceled"
+	//
+	// The VAT report status. Available values: threshold, expired, pending, need_to_pay, paid, overdue, canceled.
 	Status string `protobuf:"bytes,11,opt,name=status,proto3" json:"status" bson:"status" validate:"required,alpha,oneof=threshold expired pending need_to_pay paid overdue canceled"`
 	// @inject_tag: json:"country_annual_turnover" bson:"country_annual_turnover" validate:"numeric,gte=0"
+	//
+	// The annual turnover for the country.
 	CountryAnnualTurnover float64 `protobuf:"fixed64,12,opt,name=country_annual_turnover,json=countryAnnualTurnover,proto3" json:"country_annual_turnover" bson:"country_annual_turnover" validate:"numeric,gte=0"`
 	// @inject_tag: json:"world_annual_turnover" bson:"world_annual_turnover" validate:"numeric,gte=0"
+	//
+	// The world annual turnover.
 	WorldAnnualTurnover float64 `protobuf:"fixed64,13,opt,name=world_annual_turnover,json=worldAnnualTurnover,proto3" json:"world_annual_turnover" bson:"world_annual_turnover" validate:"numeric,gte=0"`
 	//@inject_tag: json:"amounts_approximate" bson:"amounts_approximate"
+	//
+	// Has a true value if the amounts are non-final due to the currency exchange rates delay.
 	AmountsApproximate bool `protobuf:"varint,14,opt,name=amounts_approximate,json=amountsApproximate,proto3" json:"amounts_approximate" bson:"amounts_approximate"`
 	//@inject_tag: json:"date_from" bson:"date_from"
+	//
+	// The start date of the period for the report.
 	DateFrom *timestamp.Timestamp `protobuf:"bytes,15,opt,name=date_from,json=dateFrom,proto3" json:"date_from" bson:"date_from"`
 	//@inject_tag: json:"date_to" bson:"date_to"
+	//
+	// The end date of the period for the report.
 	DateTo *timestamp.Timestamp `protobuf:"bytes,16,opt,name=date_to,json=dateTo,proto3" json:"date_to" bson:"date_to"`
 	//@inject_tag: json:"pay_until_date" bson:"pay_until_date"
+	//
+	// The deadline date of the VAT payment.
 	PayUntilDate *timestamp.Timestamp `protobuf:"bytes,17,opt,name=pay_until_date,json=payUntilDate,proto3" json:"pay_until_date" bson:"pay_until_date"`
 	//@inject_tag: json:"created_at" bson:"created_at"
+	//
+	// The date of the report creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,18,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at"`
 	//@inject_tag: json:"updated_at" bson:"updated_at"
+	//
+	// The date of the report last update.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at" bson:"updated_at"`
 	//@inject_tag: json:"paid_at" bson:"paid_at"
+	//
+	// The payment date.
 	PaidAt *timestamp.Timestamp `protobuf:"bytes,20,opt,name=paid_at,json=paidAt,proto3" json:"paid_at" bson:"paid_at"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+	//
+	// The unique identifier for the operating company.
 	OperatingCompanyId   string   `protobuf:"bytes,21,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -11605,8 +11647,12 @@ func (m *OrderViewMoney) GetCurrency() string {
 
 type OrderViewMerchantInfo struct {
 	//@inject_tag: json:"company_name" bson:"company_name"
+	//
+	// The company's name.
 	CompanyName string `protobuf:"bytes,1,opt,name=company_name,json=companyName,proto3" json:"company_name" bson:"company_name"`
 	//@inject_tag: json:"agreement_number" bson:"agreement_number"
+	//
+	// The license agreement number.
 	AgreementNumber      string   `protobuf:"bytes,2,opt,name=agreement_number,json=agreementNumber,proto3" json:"agreement_number" bson:"agreement_number"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -11737,19 +11783,19 @@ type OrderViewPublic struct {
 	TaxFeeTotal *OrderViewMoney `protobuf:"bytes,21,opt,name=tax_fee_total,json=taxFeeTotal,proto3" json:"tax_fee_total" bson:"tax_fee_total"`
 	// @inject_tag: json:"method_fee_total" bson:"method_fee_total"
 	//
-	// The tax fee total.
+	// The method fee total.
 	MethodFeeTotal *OrderViewMoney `protobuf:"bytes,22,opt,name=method_fee_total,json=methodFeeTotal,proto3" json:"method_fee_total" bson:"method_fee_total"`
 	// @inject_tag: json:"method_fee_tariff" bson:"method_fee_tariff"
 	//
-	// The tariff for the tax fee.
+	// The tariff for the method fee.
 	MethodFeeTariff *OrderViewMoney `protobuf:"bytes,23,opt,name=method_fee_tariff,json=methodFeeTariff,proto3" json:"method_fee_tariff" bson:"method_fee_tariff"`
 	// @inject_tag: json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"
 	//
-	// The tariff for the fixed tax fee.
+	// The tariff of the fixed method fee.
 	MethodFixedFeeTariff *OrderViewMoney `protobuf:"bytes,24,opt,name=method_fixed_fee_tariff,json=methodFixedFeeTariff,proto3" json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"`
 	// @inject_tag: json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"
 	//
-	// The tariff for the PaySuper tax fee.
+	// The PaySuper fixed fee.
 	PaysuperFixedFee *OrderViewMoney `protobuf:"bytes,25,opt,name=paysuper_fixed_fee,json=paysuperFixedFee,proto3" json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"`
 	// @inject_tag: json:"fees_total" bson:"fees_total"
 	//
@@ -11769,35 +11815,35 @@ type OrderViewPublic struct {
 	RefundGrossRevenue *OrderViewMoney `protobuf:"bytes,29,opt,name=refund_gross_revenue,json=refundGrossRevenue,proto3" json:"refund_gross_revenue" bson:"refund_gross_revenue"`
 	// @inject_tag: json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"
 	//
-	// The tariff for the fee method refund.
+	// The fee tariff for the method refund.
 	MethodRefundFeeTariff *OrderViewMoney `protobuf:"bytes,30,opt,name=method_refund_fee_tariff,json=methodRefundFeeTariff,proto3" json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"`
 	// @inject_tag: json:"merchant_refund_fixed_fee_tariff" bson:"merchant_refund_fixed_fee_tariff"
 	//
-	// The tariff for the fixed fee method refund.
+	// The fixed fee tariff for the method refund.
 	MerchantRefundFixedFeeTariff *OrderViewMoney `protobuf:"bytes,31,opt,name=merchant_refund_fixed_fee_tariff,json=merchantRefundFixedFeeTariff,proto3" json:"merchant_refund_fixed_fee_tariff" bson:"merchant_refund_fixed_fee_tariff"`
 	// @inject_tag: json:"refund_tax_fee" bson:"refund_tax_fee"
 	//
-	// The tax fee refund.
+	// The tax fee of the refund.
 	RefundTaxFee *OrderViewMoney `protobuf:"bytes,32,opt,name=refund_tax_fee,json=refundTaxFee,proto3" json:"refund_tax_fee" bson:"refund_tax_fee"`
 	// @inject_tag: json:"refund_tax_fee_currency_exchange_fee" bson:"refund_tax_fee_currency_exchange_fee"
 	//
-	// The refund of the tax fee for the currency exchange.
+	// The refund tax fee for the currency exchange fee.
 	RefundTaxFeeCurrencyExchangeFee *OrderViewMoney `protobuf:"bytes,33,opt,name=refund_tax_fee_currency_exchange_fee,json=refundTaxFeeCurrencyExchangeFee,proto3" json:"refund_tax_fee_currency_exchange_fee" bson:"refund_tax_fee_currency_exchange_fee"`
 	// @inject_tag: json:"paysuper_refund_tax_fee_currency_exchange_fee" bson:"paysuper_refund_tax_fee_currency_exchange_fee"
 	//
-	// The PaySuper tax fee for the currency exchange refund.
+	// The PaySuper refund tax fee for the currency exchange fee.
 	PaysuperRefundTaxFeeCurrencyExchangeFee *OrderViewMoney `protobuf:"bytes,34,opt,name=paysuper_refund_tax_fee_currency_exchange_fee,json=paysuperRefundTaxFeeCurrencyExchangeFee,proto3" json:"paysuper_refund_tax_fee_currency_exchange_fee" bson:"paysuper_refund_tax_fee_currency_exchange_fee"`
 	// @inject_tag: json:"refund_reverse_revenue" bson:"refund_reverse_revenue"
 	//
-	// The reverse revenue refund.
+	// The refund reverse revenue.
 	RefundReverseRevenue *OrderViewMoney `protobuf:"bytes,35,opt,name=refund_reverse_revenue,json=refundReverseRevenue,proto3" json:"refund_reverse_revenue" bson:"refund_reverse_revenue"`
 	// @inject_tag: json:"refund_fees_total" bson:"refund_fees_total"
 	//
-	// The total fees refund.
+	// The refund total fees.
 	RefundFeesTotal *OrderViewMoney `protobuf:"bytes,36,opt,name=refund_fees_total,json=refundFeesTotal,proto3" json:"refund_fees_total" bson:"refund_fees_total"`
 	// @inject_tag: json:"refund_fees_total_local" bson:"refund_fees_total_local"
 	//
-	// The  local total fees refund.
+	// The refund local total fees.
 	RefundFeesTotalLocal *OrderViewMoney `protobuf:"bytes,37,opt,name=refund_fees_total_local,json=refundFeesTotalLocal,proto3" json:"refund_fees_total_local" bson:"refund_fees_total_local"`
 	// The order issuer data.
 	Issuer *OrderIssuer `protobuf:"bytes,38,opt,name=issuer,proto3" json:"issuer,omitempty"`
@@ -11815,11 +11861,11 @@ type OrderViewPublic struct {
 	ParentOrder *ParentOrder `protobuf:"bytes,41,opt,name=parent_order,json=parentOrder,proto3" json:"parent_order" bson:"parent_order"`
 	//@inject_tag: json:"refund" bson:"refund"
 	//
-	// The refund's notification. Has a null value if the order is not refunded.
+	// The notification of the refund. Has a null value if the order is not refunded.
 	Refund *OrderNotificationRefund `protobuf:"bytes,42,opt,name=refund,proto3" json:"refund" bson:"refund"`
 	//@inject_tag: json:"cancellation" bson:"cancellation"
 	//
-	// The cancellation's notification. Has a null value if the order is not cancelled.
+	// The notification of the cancellation. Has a null value if the order is not cancelled.
 	Cancellation *OrderNotificationCancellation `protobuf:"bytes,43,opt,name=cancellation,proto3" json:"cancellation" bson:"cancellation"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
 	//
@@ -11835,7 +11881,7 @@ type OrderViewPublic struct {
 	OrderCharge *OrderViewMoney `protobuf:"bytes,46,opt,name=order_charge,json=orderCharge,proto3" json:"order_charge" bson:"order_charge"`
 	// @inject_tag: json:"payment_ip_country"
 	//
-	// The IP address of the country where the order was paid for.
+	// The IP address of the country where the order was paid.
 	PaymentIpCountry string `protobuf:"bytes,47,opt,name=payment_ip_country,json=paymentIpCountry,proto3" json:"payment_ip_country"`
 	// @inject_tag: json:"is_ip_country_mismatch_bin" bson:"is_ip_country_mismatch_bin"
 	//
@@ -12244,180 +12290,356 @@ type OrderViewPrivate struct {
 	// @inject_tag: json:"-" bson:"_id"
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
 	// @inject_tag: json:"uuid" bson:"uuid"
+	//
+	// The public unique identifier for the order in PaySuper.
 	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid" bson:"uuid"`
 	// @inject_tag: json:"total_payment_amount" bson:"total_payment_amount"
+	//
+	// The total payment amount including all commissions.
 	TotalPaymentAmount float64 `protobuf:"fixed64,3,opt,name=total_payment_amount,json=totalPaymentAmount,proto3" json:"total_payment_amount" bson:"total_payment_amount"`
 	// @inject_tag: json:"currency" bson:"currency"
+	//
+	// The currency of the order. Three-letter Currency Code ISO 4217, in uppercase.
 	Currency string `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency" bson:"currency"`
 	// @inject_tag: json:"project" bson:"project"
+	//
+	// The project data.
 	Project *ProjectOrder `protobuf:"bytes,5,opt,name=project,proto3" json:"project" bson:"project"`
 	// @inject_tag: json:"created_at" bson:"created_at"
+	//
+	// The date of the order creation.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at"`
 	// @inject_tag: json:"transaction" bson:"pm_order_id"
+	//
+	// The unique identifier for the order in the payment system.
 	Transaction string `protobuf:"bytes,7,opt,name=transaction,proto3" json:"transaction" bson:"pm_order_id"`
 	// @inject_tag: json:"payment_method" bson:"payment_method"
+	//
+	// The payment method data.
 	PaymentMethod *PaymentMethodOrder `protobuf:"bytes,8,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method" bson:"payment_method"`
 	// @inject_tag: json:"country_code" bson:"country_code"
+	//
+	// The customer's country code. Two-letter country code in ISO 3166-1, in uppercase.
 	CountryCode string `protobuf:"bytes,9,opt,name=country_code,json=countryCode,proto3" json:"country_code" bson:"country_code"`
 	// @inject_tag: json:"merchant_id" bson:"merchant_id"
+	//
+	// The unique identifier for the merchant.
 	MerchantId string `protobuf:"bytes,10,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id"`
 	// @inject_tag: json:"locale" bson:"locale"
+	//
+	// The customer's locale name. The language code in ISO 639-1 (for instance en-US).
 	Locale string `protobuf:"bytes,11,opt,name=locale,proto3" json:"locale" bson:"locale"`
 	// @inject_tag: json:"status" bson:"status"
+	//
+	// The status of the order. Available values: created, processed, canceled, rejected, refunded, chargeback, pending.
 	Status string `protobuf:"bytes,12,opt,name=status,proto3" json:"status" bson:"status"`
 	// @inject_tag: json:"transaction_date" bson:"pm_order_close_date"
+	//
+	// The date in ISO 8601 of the processed transaction.
 	TransactionDate *timestamp.Timestamp `protobuf:"bytes,13,opt,name=transaction_date,json=transactionDate,proto3" json:"transaction_date" bson:"pm_order_close_date"`
 	// @inject_tag: json:"user" bson:"user"
+	//
+	// The customer data.
 	User *OrderUser `protobuf:"bytes,14,opt,name=user,proto3" json:"user" bson:"user"`
 	// @inject_tag: json:"billing_address" bson:"billing_address"
+	//
+	// The customer's billing address entered in payment form.
 	BillingAddress *OrderBillingAddress `protobuf:"bytes,15,opt,name=billing_address,json=billingAddress,proto3" json:"billing_address" bson:"billing_address"`
 	// @inject_tag: json:"type" bson:"type"
+	//
+	// The order type. It depends on your sales option (Game Keys, Virtual Items, Virtual Currency the simple checkout). For products created as Game Keys use the key type, as Virtual Items - the product type, as Virtual Currency - the virtual_currency type, for a simple checkout - the simple type. Enum values: key, product, virtual_currency, simple.
 	Type string `protobuf:"bytes,16,opt,name=type,proto3" json:"type" bson:"type"`
 	// @inject_tag: json:"is_vat_deduction" bson:"is_vat_deduction"
+	//
+	// Has a true value if VAT can be deducted.
 	IsVatDeduction bool `protobuf:"varint,17,opt,name=is_vat_deduction,json=isVatDeduction,proto3" json:"is_vat_deduction" bson:"is_vat_deduction"`
 	// @inject_tag: json:"payment_gross_revenue_local" bson:"payment_gross_revenue_local"
+	//
+	// The local gross revenue of the payment.
 	PaymentGrossRevenueLocal *OrderViewMoney `protobuf:"bytes,18,opt,name=payment_gross_revenue_local,json=paymentGrossRevenueLocal,proto3" json:"payment_gross_revenue_local" bson:"payment_gross_revenue_local"`
 	// @inject_tag: json:"payment_gross_revenue_origin" bson:"payment_gross_revenue_origin"
+	//
+	// The origin gross revenue of the payment.
 	PaymentGrossRevenueOrigin *OrderViewMoney `protobuf:"bytes,19,opt,name=payment_gross_revenue_origin,json=paymentGrossRevenueOrigin,proto3" json:"payment_gross_revenue_origin" bson:"payment_gross_revenue_origin"`
 	// @inject_tag: json:"payment_gross_revenue" bson:"payment_gross_revenue"
+	//
+	// The gross revenue of the payment.
 	PaymentGrossRevenue *OrderViewMoney `protobuf:"bytes,20,opt,name=payment_gross_revenue,json=paymentGrossRevenue,proto3" json:"payment_gross_revenue" bson:"payment_gross_revenue"`
 	// @inject_tag: json:"payment_tax_fee" bson:"payment_tax_fee"
+	//
+	// The tax fee of the payment.
 	PaymentTaxFee *OrderViewMoney `protobuf:"bytes,21,opt,name=payment_tax_fee,json=paymentTaxFee,proto3" json:"payment_tax_fee" bson:"payment_tax_fee"`
 	// @inject_tag: json:"payment_tax_fee_local" bson:"payment_tax_fee_local"
+	//
+	// The local tax fee of the payment.
 	PaymentTaxFeeLocal *OrderViewMoney `protobuf:"bytes,22,opt,name=payment_tax_fee_local,json=paymentTaxFeeLocal,proto3" json:"payment_tax_fee_local" bson:"payment_tax_fee_local"`
 	// @inject_tag: json:"payment_tax_fee_origin" bson:"payment_tax_fee_origin"
+	//
+	// The origin tax fee of the payment.
 	PaymentTaxFeeOrigin *OrderViewMoney `protobuf:"bytes,23,opt,name=payment_tax_fee_origin,json=paymentTaxFeeOrigin,proto3" json:"payment_tax_fee_origin" bson:"payment_tax_fee_origin"`
 	// @inject_tag: json:"payment_tax_fee_currency_exchange_fee" bson:"payment_tax_fee_currency_exchange_fee"
+	//
+	// The tax fee of the payment for the currency exchange.
 	PaymentTaxFeeCurrencyExchangeFee *OrderViewMoney `protobuf:"bytes,24,opt,name=payment_tax_fee_currency_exchange_fee,json=paymentTaxFeeCurrencyExchangeFee,proto3" json:"payment_tax_fee_currency_exchange_fee" bson:"payment_tax_fee_currency_exchange_fee"`
 	// @inject_tag: json:"payment_tax_fee_total" bson:"payment_tax_fee_total"
+	//
+	// The tax fee total of the payment.
 	PaymentTaxFeeTotal *OrderViewMoney `protobuf:"bytes,25,opt,name=payment_tax_fee_total,json=paymentTaxFeeTotal,proto3" json:"payment_tax_fee_total" bson:"payment_tax_fee_total"`
 	// @inject_tag: json:"payment_gross_revenue_fx" bson:"payment_gross_revenue_fx"
+	//
+	// The gross FX revenue of the payment.
 	PaymentGrossRevenueFx *OrderViewMoney `protobuf:"bytes,26,opt,name=payment_gross_revenue_fx,json=paymentGrossRevenueFx,proto3" json:"payment_gross_revenue_fx" bson:"payment_gross_revenue_fx"`
 	// @inject_tag: json:"payment_gross_revenue_fx_tax_fee" bson:"payment_gross_revenue_fx_tax_fee"
+	//
+	// The tax fee for the gross FX revenue of the payment.
 	PaymentGrossRevenueFxTaxFee *OrderViewMoney `protobuf:"bytes,27,opt,name=payment_gross_revenue_fx_tax_fee,json=paymentGrossRevenueFxTaxFee,proto3" json:"payment_gross_revenue_fx_tax_fee" bson:"payment_gross_revenue_fx_tax_fee"`
 	// @inject_tag: json:"payment_gross_revenue_fx_profit" bson:"payment_gross_revenue_fx_profit"
+	//
+	// The gross FX revenue of the payment profit.
 	PaymentGrossRevenueFxProfit *OrderViewMoney `protobuf:"bytes,28,opt,name=payment_gross_revenue_fx_profit,json=paymentGrossRevenueFxProfit,proto3" json:"payment_gross_revenue_fx_profit" bson:"payment_gross_revenue_fx_profit"`
 	// @inject_tag: json:"gross_revenue" bson:"gross_revenue"
+	//
+	// The gross revenue.
 	GrossRevenue *OrderViewMoney `protobuf:"bytes,29,opt,name=gross_revenue,json=grossRevenue,proto3" json:"gross_revenue" bson:"gross_revenue"`
 	// @inject_tag: json:"tax_fee" bson:"tax_fee"
+	//
+	// The tax fee.
 	TaxFee *OrderViewMoney `protobuf:"bytes,30,opt,name=tax_fee,json=taxFee,proto3" json:"tax_fee" bson:"tax_fee"`
 	// @inject_tag: json:"tax_fee_currency_exchange_fee" bson:"tax_fee_currency_exchange_fee"
+	//
+	// The tax fee for the currency exchange.
 	TaxFeeCurrencyExchangeFee *OrderViewMoney `protobuf:"bytes,31,opt,name=tax_fee_currency_exchange_fee,json=taxFeeCurrencyExchangeFee,proto3" json:"tax_fee_currency_exchange_fee" bson:"tax_fee_currency_exchange_fee"`
 	// @inject_tag: json:"tax_fee_total" bson:"tax_fee_total"
+	//
+	// The total tax fee.
 	TaxFeeTotal *OrderViewMoney `protobuf:"bytes,32,opt,name=tax_fee_total,json=taxFeeTotal,proto3" json:"tax_fee_total" bson:"tax_fee_total"`
 	// @inject_tag: json:"method_fee_total" bson:"method_fee_total"
+	//
+	// The method fee total.
 	MethodFeeTotal *OrderViewMoney `protobuf:"bytes,33,opt,name=method_fee_total,json=methodFeeTotal,proto3" json:"method_fee_total" bson:"method_fee_total"`
 	// @inject_tag: json:"method_fee_tariff" bson:"method_fee_tariff"
+	//
+	// The tariff of the method fee.
 	MethodFeeTariff *OrderViewMoney `protobuf:"bytes,34,opt,name=method_fee_tariff,json=methodFeeTariff,proto3" json:"method_fee_tariff" bson:"method_fee_tariff"`
 	// @inject_tag: json:"paysuper_method_fee_tariff_self_cost" bson:"paysuper_method_fee_tariff_self_cost"
+	//
+	// The self-cost tariff of the PaySuper method fee.
 	PaysuperMethodFeeTariffSelfCost *OrderViewMoney `protobuf:"bytes,35,opt,name=paysuper_method_fee_tariff_self_cost,json=paysuperMethodFeeTariffSelfCost,proto3" json:"paysuper_method_fee_tariff_self_cost" bson:"paysuper_method_fee_tariff_self_cost"`
 	// @inject_tag: json:"paysuper_method_fee_profit" bson:"paysuper_method_fee_profit"
+	//
+	// The profit of the PaySuper method fee.
 	PaysuperMethodFeeProfit *OrderViewMoney `protobuf:"bytes,36,opt,name=paysuper_method_fee_profit,json=paysuperMethodFeeProfit,proto3" json:"paysuper_method_fee_profit" bson:"paysuper_method_fee_profit"`
 	// @inject_tag: json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"
+	//
+	// The tariff of the fixed method fee.
 	MethodFixedFeeTariff *OrderViewMoney `protobuf:"bytes,37,opt,name=method_fixed_fee_tariff,json=methodFixedFeeTariff,proto3" json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"`
 	// @inject_tag: json:"paysuper_method_fixed_fee_tariff_fx_profit" bson:"paysuper_method_fixed_fee_tariff_fx_profit"
+	//
+	// The FX profit of the PaySuper fixed method fee tariff.
 	PaysuperMethodFixedFeeTariffFxProfit *OrderViewMoney `protobuf:"bytes,38,opt,name=paysuper_method_fixed_fee_tariff_fx_profit,json=paysuperMethodFixedFeeTariffFxProfit,proto3" json:"paysuper_method_fixed_fee_tariff_fx_profit" bson:"paysuper_method_fixed_fee_tariff_fx_profit"`
 	// @inject_tag: json:"paysuper_method_fixed_fee_tariff_self_cost" bson:"paysuper_method_fixed_fee_tariff_self_cost"
+	//
+	// The self-cost tariff of the PaySuper fixed method fee.
 	PaysuperMethodFixedFeeTariffSelfCost *OrderViewMoney `protobuf:"bytes,39,opt,name=paysuper_method_fixed_fee_tariff_self_cost,json=paysuperMethodFixedFeeTariffSelfCost,proto3" json:"paysuper_method_fixed_fee_tariff_self_cost" bson:"paysuper_method_fixed_fee_tariff_self_cost"`
 	// @inject_tag: json:"paysuper_method_fixed_fee_tariff_total_profit" bson:"paysuper_method_fixed_fee_tariff_total_profit"
+	//
+	// The total profit of the PaySuper fixed method fee tariff.
 	PaysuperMethodFixedFeeTariffTotalProfit *OrderViewMoney `protobuf:"bytes,40,opt,name=paysuper_method_fixed_fee_tariff_total_profit,json=paysuperMethodFixedFeeTariffTotalProfit,proto3" json:"paysuper_method_fixed_fee_tariff_total_profit" bson:"paysuper_method_fixed_fee_tariff_total_profit"`
 	// @inject_tag: json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"
+	//
+	// The PaySuper fixed fee.
 	PaysuperFixedFee *OrderViewMoney `protobuf:"bytes,41,opt,name=paysuper_fixed_fee,json=paysuperFixedFee,proto3" json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"`
 	// @inject_tag: json:"paysuper_fixed_fee_fx_profit" bson:"paysuper_fixed_fee_fx_profit"
+	//
+	// The FX profit of the PaySuper fixed fee.
 	PaysuperFixedFeeFxProfit *OrderViewMoney `protobuf:"bytes,42,opt,name=paysuper_fixed_fee_fx_profit,json=paysuperFixedFeeFxProfit,proto3" json:"paysuper_fixed_fee_fx_profit" bson:"paysuper_fixed_fee_fx_profit"`
 	// @inject_tag: json:"fees_total" bson:"fees_total"
+	//
+	// The total fees.
 	FeesTotal *OrderViewMoney `protobuf:"bytes,43,opt,name=fees_total,json=feesTotal,proto3" json:"fees_total" bson:"fees_total"`
 	// @inject_tag: json:"fees_total_local" bson:"fees_total_local"
+	//
+	// The local total fees.
 	FeesTotalLocal *OrderViewMoney `protobuf:"bytes,44,opt,name=fees_total_local,json=feesTotalLocal,proto3" json:"fees_total_local" bson:"fees_total_local"`
 	// @inject_tag: json:"net_revenue" bson:"net_revenue"
+	//
+	// The net revenue.
 	NetRevenue *OrderViewMoney `protobuf:"bytes,45,opt,name=net_revenue,json=netRevenue,proto3" json:"net_revenue" bson:"net_revenue"`
 	// @inject_tag: json:"paysuper_method_total_profit" bson:"paysuper_method_total_profit"
+	//
+	// The total profit of the PaySuper method.
 	PaysuperMethodTotalProfit *OrderViewMoney `protobuf:"bytes,46,opt,name=paysuper_method_total_profit,json=paysuperMethodTotalProfit,proto3" json:"paysuper_method_total_profit" bson:"paysuper_method_total_profit"`
 	// @inject_tag: json:"paysuper_total_profit" bson:"paysuper_total_profit"
+	//
+	// The PaySuper total profit.
 	PaysuperTotalProfit *OrderViewMoney `protobuf:"bytes,47,opt,name=paysuper_total_profit,json=paysuperTotalProfit,proto3" json:"paysuper_total_profit" bson:"paysuper_total_profit"`
 	// @inject_tag: json:"payment_refund_gross_revenue_local" bson:"payment_refund_gross_revenue_local"
+	//
+	// The local gross revenue of the payment refund.
 	PaymentRefundGrossRevenueLocal *OrderViewMoney `protobuf:"bytes,48,opt,name=payment_refund_gross_revenue_local,json=paymentRefundGrossRevenueLocal,proto3" json:"payment_refund_gross_revenue_local" bson:"payment_refund_gross_revenue_local"`
 	// @inject_tag: json:"payment_refund_gross_revenue_origin" bson:"payment_refund_gross_revenue_origin"
+	//
+	// The origin gross revenue of the payment refund.
 	PaymentRefundGrossRevenueOrigin *OrderViewMoney `protobuf:"bytes,49,opt,name=payment_refund_gross_revenue_origin,json=paymentRefundGrossRevenueOrigin,proto3" json:"payment_refund_gross_revenue_origin" bson:"payment_refund_gross_revenue_origin"`
 	// @inject_tag: json:"payment_refund_gross_revenue" bson:"payment_refund_gross_revenue"
+	//
+	// The gross revenue of the payment refund.
 	PaymentRefundGrossRevenue *OrderViewMoney `protobuf:"bytes,50,opt,name=payment_refund_gross_revenue,json=paymentRefundGrossRevenue,proto3" json:"payment_refund_gross_revenue" bson:"payment_refund_gross_revenue"`
 	// @inject_tag: json:"payment_refund_tax_fee" bson:"payment_refund_tax_fee"
+	//
+	// The tax fee of the payment refund.
 	PaymentRefundTaxFee *OrderViewMoney `protobuf:"bytes,51,opt,name=payment_refund_tax_fee,json=paymentRefundTaxFee,proto3" json:"payment_refund_tax_fee" bson:"payment_refund_tax_fee"`
 	// @inject_tag: json:"payment_refund_tax_fee_local" bson:"payment_refund_tax_fee_local"
+	//
+	// The local tax fee of the payment refund.
 	PaymentRefundTaxFeeLocal *OrderViewMoney `protobuf:"bytes,52,opt,name=payment_refund_tax_fee_local,json=paymentRefundTaxFeeLocal,proto3" json:"payment_refund_tax_fee_local" bson:"payment_refund_tax_fee_local"`
 	// @inject_tag: json:"payment_refund_tax_fee_origin" bson:"payment_refund_tax_fee_origin"
+	//
+	// The origin tax fee of the payment refund.
 	PaymentRefundTaxFeeOrigin *OrderViewMoney `protobuf:"bytes,53,opt,name=payment_refund_tax_fee_origin,json=paymentRefundTaxFeeOrigin,proto3" json:"payment_refund_tax_fee_origin" bson:"payment_refund_tax_fee_origin"`
 	// @inject_tag: json:"payment_refund_fee_tariff" bson:"payment_refund_fee_tariff"
+	//
+	// The fee tariff of the payment refund.
 	PaymentRefundFeeTariff *OrderViewMoney `protobuf:"bytes,54,opt,name=payment_refund_fee_tariff,json=paymentRefundFeeTariff,proto3" json:"payment_refund_fee_tariff" bson:"payment_refund_fee_tariff"`
 	// @inject_tag: json:"method_refund_fixed_fee_tariff" bson:"method_refund_fixed_fee_tariff"
+	//
+	// The fixed fee tariff of the method refund.
 	MethodRefundFixedFeeTariff *OrderViewMoney `protobuf:"bytes,55,opt,name=method_refund_fixed_fee_tariff,json=methodRefundFixedFeeTariff,proto3" json:"method_refund_fixed_fee_tariff" bson:"method_refund_fixed_fee_tariff"`
 	// @inject_tag: json:"refund_gross_revenue" bson:"refund_gross_revenue"
+	//
+	// The gross revenue refund.
 	RefundGrossRevenue *OrderViewMoney `protobuf:"bytes,56,opt,name=refund_gross_revenue,json=refundGrossRevenue,proto3" json:"refund_gross_revenue" bson:"refund_gross_revenue"`
 	// @inject_tag: json:"refund_gross_revenue_fx" bson:"refund_gross_revenue_fx"
+	//
+	// The gross RX revenue refund.
 	RefundGrossRevenueFx *OrderViewMoney `protobuf:"bytes,57,opt,name=refund_gross_revenue_fx,json=refundGrossRevenueFx,proto3" json:"refund_gross_revenue_fx" bson:"refund_gross_revenue_fx"`
 	// @inject_tag: json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"
+	//
+	// The fee tariff for the method refund.
 	MethodRefundFeeTariff *OrderViewMoney `protobuf:"bytes,58,opt,name=method_refund_fee_tariff,json=methodRefundFeeTariff,proto3" json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"`
 	// @inject_tag: json:"paysuper_method_refund_fee_tariff_profit" bson:"paysuper_method_refund_fee_tariff_profit"
+	//
+	// The PaySuper method refund fee tariff profit.
 	PaysuperMethodRefundFeeTariffProfit *OrderViewMoney `protobuf:"bytes,59,opt,name=paysuper_method_refund_fee_tariff_profit,json=paysuperMethodRefundFeeTariffProfit,proto3" json:"paysuper_method_refund_fee_tariff_profit" bson:"paysuper_method_refund_fee_tariff_profit"`
 	// @inject_tag: json:"paysuper_method_refund_fixed_fee_tariff_self_cost" bson:"paysuper_method_refund_fixed_fee_tariff_self_cost"
+	//
+	// The PaySuper method refund fixed fee tariff self-cost.
 	PaysuperMethodRefundFixedFeeTariffSelfCost *OrderViewMoney `protobuf:"bytes,60,opt,name=paysuper_method_refund_fixed_fee_tariff_self_cost,json=paysuperMethodRefundFixedFeeTariffSelfCost,proto3" json:"paysuper_method_refund_fixed_fee_tariff_self_cost" bson:"paysuper_method_refund_fixed_fee_tariff_self_cost"`
 	// @inject_tag: json:"merchant_refund_fixed_fee_tariff" bson:"merchant_refund_fixed_fee_tariff"
+	//
+	// The merchant refund fixed fee tariff.
 	MerchantRefundFixedFeeTariff *OrderViewMoney `protobuf:"bytes,61,opt,name=merchant_refund_fixed_fee_tariff,json=merchantRefundFixedFeeTariff,proto3" json:"merchant_refund_fixed_fee_tariff" bson:"merchant_refund_fixed_fee_tariff"`
 	// @inject_tag: json:"paysuper_method_refund_fixed_fee_tariff_profit" bson:"paysuper_method_refund_fixed_fee_tariff_profit"
+	//
+	// The PaySuper method refund fixed fee tariff profit.
 	PaysuperMethodRefundFixedFeeTariffProfit *OrderViewMoney `protobuf:"bytes,62,opt,name=paysuper_method_refund_fixed_fee_tariff_profit,json=paysuperMethodRefundFixedFeeTariffProfit,proto3" json:"paysuper_method_refund_fixed_fee_tariff_profit" bson:"paysuper_method_refund_fixed_fee_tariff_profit"`
 	// @inject_tag: json:"refund_tax_fee" bson:"refund_tax_fee"
+	//
+	// The refund tax fee.
 	RefundTaxFee *OrderViewMoney `protobuf:"bytes,63,opt,name=refund_tax_fee,json=refundTaxFee,proto3" json:"refund_tax_fee" bson:"refund_tax_fee"`
 	// @inject_tag: json:"refund_tax_fee_currency_exchange_fee" bson:"refund_tax_fee_currency_exchange_fee"
+	//
+	// The refund tax fee for the currency exchange fee.
 	RefundTaxFeeCurrencyExchangeFee *OrderViewMoney `protobuf:"bytes,64,opt,name=refund_tax_fee_currency_exchange_fee,json=refundTaxFeeCurrencyExchangeFee,proto3" json:"refund_tax_fee_currency_exchange_fee" bson:"refund_tax_fee_currency_exchange_fee"`
 	// @inject_tag: json:"paysuper_refund_tax_fee_currency_exchange_fee" bson:"paysuper_refund_tax_fee_currency_exchange_fee"
+	//
+	// The PaySuper refund tax fee for the currency exchange fee.
 	PaysuperRefundTaxFeeCurrencyExchangeFee *OrderViewMoney `protobuf:"bytes,65,opt,name=paysuper_refund_tax_fee_currency_exchange_fee,json=paysuperRefundTaxFeeCurrencyExchangeFee,proto3" json:"paysuper_refund_tax_fee_currency_exchange_fee" bson:"paysuper_refund_tax_fee_currency_exchange_fee"`
 	// @inject_tag: json:"refund_tax_fee_total" bson:"refund_tax_fee_total"
+	//
+	// The total refund tax fee.
 	RefundTaxFeeTotal *OrderViewMoney `protobuf:"bytes,66,opt,name=refund_tax_fee_total,json=refundTaxFeeTotal,proto3" json:"refund_tax_fee_total" bson:"refund_tax_fee_total"`
 	// @inject_tag: json:"refund_reverse_revenue" bson:"refund_reverse_revenue"
+	//
+	// The refund reverse revenue.
 	RefundReverseRevenue *OrderViewMoney `protobuf:"bytes,67,opt,name=refund_reverse_revenue,json=refundReverseRevenue,proto3" json:"refund_reverse_revenue" bson:"refund_reverse_revenue"`
 	// @inject_tag: json:"refund_fees_total" bson:"refund_fees_total"
+	//
+	// The refund total fees.
 	RefundFeesTotal *OrderViewMoney `protobuf:"bytes,68,opt,name=refund_fees_total,json=refundFeesTotal,proto3" json:"refund_fees_total" bson:"refund_fees_total"`
 	// @inject_tag: json:"refund_fees_total_local" bson:"refund_fees_total_local"
+	//
+	// The refund local total fees.
 	RefundFeesTotalLocal *OrderViewMoney `protobuf:"bytes,69,opt,name=refund_fees_total_local,json=refundFeesTotalLocal,proto3" json:"refund_fees_total_local" bson:"refund_fees_total_local"`
 	// @inject_tag: json:"paysuper_refund_total_profit" bson:"paysuper_refund_total_profit"
+	//
+	// The PaySuper refund total profit.
 	PaysuperRefundTotalProfit *OrderViewMoney `protobuf:"bytes,70,opt,name=paysuper_refund_total_profit,json=paysuperRefundTotalProfit,proto3" json:"paysuper_refund_total_profit" bson:"paysuper_refund_total_profit"`
 	//@inject_tag: json:"issuer" bson:"issuer"
+	//
+	// The order issuer data.
 	Issuer *OrderIssuer `protobuf:"bytes,71,opt,name=issuer,proto3" json:"issuer" bson:"issuer"`
 	// @inject_tag: json:"items" bson:"items"
+	//
+	// The list of products in the order.
 	Items []*OrderItem `protobuf:"bytes,72,rep,name=items,proto3" json:"items" bson:"items"`
 	//@inject_tag: json:"merchant_payout_currency" bson:"merchant_payout_currency"
+	//
+	// The merchant's payout currency.
 	MerchantPayoutCurrency string `protobuf:"bytes,73,opt,name=merchant_payout_currency,json=merchantPayoutCurrency,proto3" json:"merchant_payout_currency" bson:"merchant_payout_currency"`
 	//@inject_tag: json:"parent_order" bson:"parent_order"
+	//
+	// The parent order data (for refunds only).
 	ParentOrder *ParentOrder `protobuf:"bytes,74,opt,name=parent_order,json=parentOrder,proto3" json:"parent_order" bson:"parent_order"`
 	//@inject_tag: json:"refund" bson:"refund"
+	//
+	// The notification of refund. Has a null value if the order is not refunded.
 	Refund *OrderNotificationRefund `protobuf:"bytes,75,opt,name=refund,proto3" json:"refund" bson:"refund"`
 	//@inject_tag: json:"cancellation" bson:"cancellation"
+	//
+	// The notification of the cancellation. Has a null value if the order is not canceled.
 	Cancellation *OrderNotificationCancellation `protobuf:"bytes,76,opt,name=cancellation,proto3" json:"cancellation" bson:"cancellation"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
+	//
+	// The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
 	MccCode string `protobuf:"bytes,77,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+	//
+	// The unique identifier for the operating company.
 	OperatingCompanyId string `protobuf:"bytes,78,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	// @inject_tag: json:"is_high_risk" bson:"is_high_risk"
+	//
+	// Has a true value if the customer can select another country while the payments are disallowed for a country determined by their IP address.
 	IsHighRisk bool `protobuf:"varint,79,opt,name=is_high_risk,json=isHighRisk,proto3" json:"is_high_risk" bson:"is_high_risk"`
 	// @inject_tag: json:"refund_allowed"  bson:"refund_allowed"
+	//
+	// Has a true value if the payment method allows a refund.
 	RefundAllowed bool `protobuf:"varint,80,opt,name=refund_allowed,json=refundAllowed,proto3" json:"refund_allowed" bson:"refund_allowed"`
 	// @inject_tag: json:"order_charge" bson:"order_charge"
+	//
+	// The order charge.
 	OrderCharge *OrderViewMoney `protobuf:"bytes,81,opt,name=order_charge,json=orderCharge,proto3" json:"order_charge" bson:"order_charge"`
 	// @inject_tag: json:"payment_ip_country"
+	//
+	// The IP address of the country where the order was paid.
 	PaymentIpCountry string `protobuf:"bytes,82,opt,name=payment_ip_country,json=paymentIpCountry,proto3" json:"payment_ip_country"`
 	// @inject_tag: json:"is_ip_country_mismatch_bin" bson:"is_ip_country_mismatch_bin"
+	//
+	// Has a true value if the country from the card's BIN has not been matched to the country defined by the IP address (for card payments only).
 	IsIpCountryMismatchBin bool `protobuf:"varint,83,opt,name=is_ip_country_mismatch_bin,json=isIpCountryMismatchBin,proto3" json:"is_ip_country_mismatch_bin" bson:"is_ip_country_mismatch_bin"`
 	// @inject_tag: json:"billing_country_changed_by_user" bson:"billing_country_changed_by_user"
+	//
+	// Has a true value if the country's name was selected by the customer.
 	BillingCountryChangedByUser bool `protobuf:"varint,84,opt,name=billing_country_changed_by_user,json=billingCountryChangedByUser,proto3" json:"billing_country_changed_by_user" bson:"billing_country_changed_by_user"`
 	// @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
+	//
+	// The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
 	VatPayer string `protobuf:"bytes,85,opt,name=vat_payer,json=vatPayer,proto3" json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"`
 	// @inject_tag: json:"is_production" bson:"is_production"
+	//
+	// Has a true value for a production payment and false for a test payment that goes through a test sandbox.
 	IsProduction bool `protobuf:"varint,86,opt,name=is_production,json=isProduction,proto3" json:"is_production" bson:"is_production"`
 	// @inject_tag: json:"merchant_info" bson:"merchant_info"
+	//
+	// The merchant's company data.
 	MerchantInfo *OrderViewMerchantInfo `protobuf:"bytes,87,opt,name=merchant_info,json=merchantInfo,proto3" json:"merchant_info" bson:"merchant_info"`
 	// @inject_tag: json:"order_charge_before_vat" bson:"order_charge_before_vat"
+	//
+	// The order charge excluding VAT.
 	OrderChargeBeforeVat *OrderViewMoney `protobuf:"bytes,88,opt,name=order_charge_before_vat,json=orderChargeBeforeVat,proto3" json:"order_charge_before_vat" bson:"order_charge_before_vat"`
 	// @inject_tag: json:"tax_rate" bson:"tax_rate"
+	//
+	// The tax rate.
 	TaxRate              float64  `protobuf:"fixed64,89,opt,name=tax_rate,json=taxRate,proto3" json:"tax_rate" bson:"tax_rate"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -13894,7 +14116,7 @@ type PayoutDocument struct {
 	PaidAt *timestamp.Timestamp `protobuf:"bytes,27,opt,name=paid_at,json=paidAt,proto3" json:"paid_at"`
 	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
 	//
-	// The unique identifier for the operation company.
+	// The unique identifier for the operating company.
 	OperatingCompanyId   string   `protobuf:"bytes,28,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`

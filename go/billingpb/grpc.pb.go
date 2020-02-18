@@ -11008,8 +11008,12 @@ func (m *VatReportsRequest) GetSort() []string {
 
 type VatReportsPaginate struct {
 	// @inject_tag: json:"count"
+	//
+	// The total number of the found reports.
 	Count int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
+	//
+	// The VAT reports list.
 	Items                []*VatReport `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}     `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte       `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -11152,9 +11156,11 @@ func (m *ProcessVatReportsRequest) GetDate() *timestamp.Timestamp {
 }
 
 type UpdateVatReportStatusRequest struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"hexadecimal,len=24"`
+	//@inject_tag: json:"-" bson:"_id" validate:"hexadecimal,len=24"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" validate:"hexadecimal,len=24"`
 	//@inject_tag: json:"status" bson:"status" validate:"required,alpha,oneof=paid canceled"
+	//
+	// The VAT report status. Available values: paid, canceled.
 	Status               string   `protobuf:"bytes,2,opt,name=status,proto3" json:"status" bson:"status" validate:"required,alpha,oneof=paid canceled"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -17368,8 +17374,12 @@ func (m *VatReportRequest) GetId() string {
 
 type PrivateTransactionsPaginate struct {
 	// @inject_tag: json:"count"
+	//
+	// The total number of transactions.
 	Count int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
+	//
+	// The transactions list.
 	Items                []*OrderViewPrivate `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 	XXX_NoUnkeyedLiteral struct{}            `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte              `json:"-" bson:"-" structure:"-" validate:"-"`
