@@ -8220,8 +8220,8 @@ type PaymentChannelCostMerchant struct {
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name" bson:"name" validate:"required,name"`
 	//@inject_tag: json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"
 	PayoutCurrency string `protobuf:"bytes,4,opt,name=payout_currency,json=payoutCurrency,proto3" json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"`
-	// @inject_tag: json:"min_amount" bson:"min_amount" validate:"required,numeric,gte=0"
-	MinAmount float64 `protobuf:"fixed64,5,opt,name=min_amount,json=minAmount,proto3" json:"min_amount" bson:"min_amount" validate:"required,numeric,gte=0"`
+	// @inject_tag: json:"min_amount" bson:"min_amount" validate:"omitempty,numeric,gte=0"
+	MinAmount float64 `protobuf:"fixed64,5,opt,name=min_amount,json=minAmount,proto3" json:"min_amount" bson:"min_amount" validate:"omitempty,numeric,gte=0"`
 	//@inject_tag: json:"region" bson:"region" validate:"required"
 	Region string `protobuf:"bytes,6,opt,name=region,proto3" json:"region" bson:"region" validate:"required"`
 	//@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
