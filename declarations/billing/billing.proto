@@ -784,6 +784,10 @@ message Order {
     bool is_production = 87;
     // @inject_tag: json:"testing_case"
     string testing_case = 88;
+    //@inject_tag: json:"form_mode"
+    //
+    //The payment form opening mode in the project side. Possible values: embed, iframe, standalone. Default value: embed.
+    string form_mode = 89;
 }
 
 message ParentOrder {
