@@ -125,7 +125,7 @@ message OrderCreateRequest {
 
     //@inject_tag: json:"form_mode"
     //
-    //The payment form opening mode in the project side. Possible values: embed, iframe, standalone. Default value: embed.
+    //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 43;
 }
 
@@ -148,7 +148,7 @@ message ProjectRedirectSettings {
     string button_caption = 4;
     //@inject_tag: json:"form_mode"
     //
-    //The payment form opening mode in the project side. Possible values: embed, iframe, standalone. Default value: embed.
+    //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 43;
 }
 
@@ -1177,7 +1177,7 @@ message Order {
     string testing_case = 88;
     //@inject_tag: json:"form_mode"
     //
-    //The payment form opening mode in the project side. Possible values: embed, iframe, standalone. Default value: embed.
+    //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 89;
 }
 
