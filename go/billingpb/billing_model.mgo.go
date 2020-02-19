@@ -294,6 +294,7 @@ type MgoOrder struct {
 	IsRefundAllowed             bool                           `bson:"is_refund_allowed"`
 	VatPayer                    string                         `bson:"vat_payer"`
 	IsProduction                bool                           `bson:"is_production"`
+	FormMode                    string                         `bson:"form_mode"`
 }
 
 type MgoOrderItem struct {
@@ -1730,6 +1731,7 @@ func (m *Order) MarshalBSON() ([]byte, error) {
 		IsRefundAllowed:             m.IsRefundAllowed,
 		VatPayer:                    m.VatPayer,
 		IsProduction:                m.IsProduction,
+		FormMode:                    m.FormMode,
 	}
 
 	if m.Refund != nil {
@@ -1966,6 +1968,7 @@ func (m *Order) UnmarshalBSON(raw []byte) error {
 	m.IsIpCountryMismatchBin = decoded.IsIpCountryMismatchBin
 	m.BillingCountryChangedByUser = decoded.BillingCountryChangedByUser
 	m.IsRefundAllowed = decoded.IsRefundAllowed
+	m.FormMode = decoded.FormMode
 
 	if decoded.Refund != nil {
 		m.Refund = &OrderNotificationRefund{
