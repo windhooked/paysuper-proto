@@ -7750,10 +7750,10 @@ func (m *GetPriceGroupRequest) GetId() string {
 }
 
 type PriceGroup struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true"
+	//@inject_tag: json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
 	//
 	// The unique identifier for the price group.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"`
 	//@inject_tag: json:"currency" bson:"currency" validate:"required,alpha,len=3" required:"true"
 	//
 	// Three-letter Currency Code ISO 4217, in uppercase.
