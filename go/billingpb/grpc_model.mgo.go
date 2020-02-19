@@ -62,25 +62,6 @@ type MgoProduct struct {
 	BillingType     string                `bson:"billing_type" json:"billing_type"`
 }
 
-type MgoUserProfileEmail struct {
-	Email                   string    `bson:"email"`
-	Confirmed               bool      `bson:"confirmed"`
-	ConfirmedAt             time.Time `bson:"confirmed_at"`
-	IsConfirmationEmailSent bool      `bson:"is_confirmation_email_sent"`
-}
-
-type MgoUserProfile struct {
-	Id        primitive.ObjectID   `bson:"_id"`
-	UserId    string               `bson:"user_id"`
-	Email     *MgoUserProfileEmail `bson:"email"`
-	Personal  *UserProfilePersonal `bson:"personal"`
-	Help      *UserProfileHelp     `bson:"help"`
-	Company   *UserProfileCompany  `bson:"company"`
-	LastStep  string               `bson:"last_step"`
-	CreatedAt time.Time            `bson:"created_at"`
-	UpdatedAt time.Time            `bson:"updated_at"`
-}
-
 type MgoPageReview struct {
 	Id        primitive.ObjectID `bson:"_id"`
 	UserId    string             `bson:"user_id"`
@@ -260,100 +241,6 @@ func (p *Product) MarshalBSON() ([]byte, error) {
 	}
 
 	return bson.Marshal(st)
-}
-
-func (m *UserProfile) MarshalBSON() ([]byte, error) {
-	oid, _ := primitive.ObjectIDFromHex(m.Id)
-	st := &MgoUserProfile{
-		Id:     oid,
-		UserId: m.UserId,
-		Email: &MgoUserProfileEmail{
-			Email:                   m.Email.Email,
-			Confirmed:               m.Email.Confirmed,
-			IsConfirmationEmailSent: m.Email.IsConfirmationEmailSent,
-		},
-		Personal: m.Personal,
-		Help:     m.Help,
-		Company:  m.Company,
-		LastStep: m.LastStep,
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	if m.Email.ConfirmedAt != nil {
-		t, err := ptypes.Timestamp(m.Email.ConfirmedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.Email.ConfirmedAt = t
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *UserProfile) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoUserProfile)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.UserId = decoded.UserId
-	m.Email = &UserProfileEmail{
-		Email:                   decoded.Email.Email,
-		Confirmed:               decoded.Email.Confirmed,
-		IsConfirmationEmailSent: decoded.Email.IsConfirmationEmailSent,
-	}
-	m.Personal = decoded.Personal
-	m.Help = decoded.Help
-	m.Company = decoded.Company
-	m.LastStep = decoded.LastStep
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	m.Email.ConfirmedAt, err = ptypes.TimestampProto(decoded.Email.ConfirmedAt)
-
-	if err != nil {
-		return err
-	}
-
-	return nil
 }
 
 func (m *PageReview) MarshalBSON() ([]byte, error) {
