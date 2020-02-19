@@ -990,7 +990,7 @@ message ProjectPaymentMethod {
 }
 
 message PaymentMethod {
-    // @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24"
+    // @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
     // @inject_tag: bson:"name" json:"name" validate:"required,omitempty,alphanum"
     string name = 2;
@@ -1008,7 +1008,7 @@ message PaymentMethod {
     string account_regexp = 10;
     // @inject_tag: bson:"is_active" json:"is_active" validate:"omitempty"
     bool is_active = 11;
-    // @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24"
+    // @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string payment_system_id = 12;
     // @inject_tag: bson:"test_settings" json:"test_settings" validate:"omitempty"
     map<string, PaymentMethodParams> test_settings = 13;
