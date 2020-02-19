@@ -9819,10 +9819,10 @@ func (m *UserProfileEmail) GetIsConfirmationEmailSent() bool {
 }
 
 type UserProfile struct {
-	//@inject_tag: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	//@inject_tag: json:"-" validate:"required,hexadecimal,len=24"
-	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
+	//@inject_tag: json:"id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" faker:"objectIdString"`
+	//@inject_tag: json:"-" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"-" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"email"
 	Email *UserProfileEmail `protobuf:"bytes,3,opt,name=email,proto3" json:"email"`
 	//@inject_tag: json:"personal"
