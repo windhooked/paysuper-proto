@@ -47,9 +47,7 @@ message ReportFile {
     //
     // The report file type.
     string file_type = 5;
-    // @inject_tag: json:"params"
-    //
-    // The report parameters.
+    // @inject_tag: json:"-"
     bytes params = 6;
     // @inject_tag: json:"template" validate:"omitempty,hexadecimal"
     //

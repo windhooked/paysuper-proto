@@ -2170,7 +2170,7 @@ message PaymentChannelCostMerchant {
     //
     // The payout currency. Three-letter Currency Code ISO 4217, in uppercase.
     string payout_currency = 4;
-    // @inject_tag: json:"min_amount" bson:"min_amount" validate:"required,numeric,gte=0"
+    // @inject_tag: json:"min_amount" bson:"min_amount" validate:"omitempty,numeric,gte=0"
     //
     // The minimum payment amount.
     double min_amount = 5;
