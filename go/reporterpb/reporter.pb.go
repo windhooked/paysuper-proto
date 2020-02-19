@@ -87,10 +87,16 @@ func (m *CreateFileResponse) GetFileId() string {
 
 type ResponseErrorMessage struct {
 	//@inject_tag: json:"code"
+	//
+	// The response code.
 	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code"`
 	//@inject_tag: json:"message"
+	//
+	// The response message.
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message"`
 	//@inject_tag: json:"details,omitempty"
+	//
+	// The response details.
 	Details              string   `protobuf:"bytes,3,opt,name=details,proto3" json:"details,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`

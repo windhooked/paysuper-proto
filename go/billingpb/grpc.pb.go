@@ -8476,8 +8476,8 @@ func (m *GetRoyaltyReportResponse) GetItem() *RoyaltyReport {
 type ChangeRoyaltyReportRequest struct {
 	// @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
-	// @inject_tag: json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
-	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"`
+	// @inject_tag: json:"-" validate:"required,hexadecimal,len=24" param:"report_id"
+	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"-" validate:"required,hexadecimal,len=24" param:"report_id"`
 	// @inject_tag: json:"status" validate:"omitempty,oneof=pending skipped accepted canceled dispute ready_for_invoice payment_in_progress payment_done payment_error"
 	//
 	// The report status. Available values: pending, skipped, accepted, canceled, dispute, ready_for_invoice, payment_in_progress, payment_done, payment_error.
@@ -8554,10 +8554,10 @@ func (m *ChangeRoyaltyReportRequest) GetIp() string {
 }
 
 type MerchantReviewRoyaltyReportRequest struct {
-	// @inject_tag: validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
-	// @inject_tag: validate:"required,hexadecimal,len=24" param:"report_id"
-	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"report_id,omitempty" validate:"required,hexadecimal,len=24" param:"report_id"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" param:"report_id" json:"-"
+	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"-" validate:"required,hexadecimal,len=24" param:"report_id"`
 	//@inject_tag: json:"is_accepted" json:"-"
 	IsAccepted bool `protobuf:"varint,3,opt,name=is_accepted,json=isAccepted,proto3" json:"is_accepted" json:"-"`
 	// @inject_tag: json:"-"
@@ -16911,8 +16911,8 @@ func (m *ChangeRoleForMerchantUserRequest) GetRole() string {
 }
 
 type ChangeRoleForAdminUserRequest struct {
-	//@inject_tag: validate:"required,hexadecimal,len=24" param:"role_id"
-	RoleId string `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"role_id,omitempty" validate:"required,hexadecimal,len=24" param:"role_id"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" param:"role_id" json:"-"
+	RoleId string `protobuf:"bytes,1,opt,name=role_id,json=roleId,proto3" json:"-" validate:"required,hexadecimal,len=24" param:"role_id"`
 	//@inject_tag: validate:"required" required:"true"
 	//
 	// The user role's name.
