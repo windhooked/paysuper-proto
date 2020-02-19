@@ -496,14 +496,6 @@ type MgoPayoutCostSystem struct {
 	CreatedAt             time.Time          `bson:"created_at"`
 }
 
-type MgoZipCode struct {
-	Zip       string        `bson:"zip"`
-	Country   string        `bson:"country"`
-	City      string        `bson:"city"`
-	State     *ZipCodeState `bson:"state"`
-	CreatedAt time.Time     `bson:"created_at"`
-}
-
 type MgoPaymentChannelCostSystem struct {
 	Id                 primitive.ObjectID `bson:"_id"`
 	Name               string             `bson:"name"`
@@ -3614,47 +3606,6 @@ func (m *MoneyBackCostMerchant) UnmarshalBSON(raw []byte) error {
 	}
 
 	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *ZipCode) MarshalBSON() ([]byte, error) {
-	st := &MgoZipCode{
-		Zip:     m.Zip,
-		Country: m.Country,
-		City:    m.City,
-		State:   m.State,
-	}
-
-	t, err := ptypes.Timestamp(m.CreatedAt)
-
-	if err != nil {
-		return nil, err
-	}
-
-	st.CreatedAt = t
-
-	return bson.Marshal(st)
-}
-
-func (m *ZipCode) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoZipCode)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Zip = decoded.Zip
-	m.Country = decoded.Country
-	m.City = decoded.City
-	m.State = decoded.State
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-
 	if err != nil {
 		return err
 	}

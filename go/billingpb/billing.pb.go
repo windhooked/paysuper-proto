@@ -8798,10 +8798,10 @@ type PaymentChannelCostMerchant struct {
 	//
 	// The payout currency. Three-letter Currency Code ISO 4217, in uppercase.
 	PayoutCurrency string `protobuf:"bytes,4,opt,name=payout_currency,json=payoutCurrency,proto3" json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"`
-	// @inject_tag: json:"min_amount" bson:"min_amount" validate:"required,numeric,gte=0"
+	// @inject_tag: json:"min_amount" bson:"min_amount" validate:"omitempty,numeric,gte=0"
 	//
 	// The minimum payment amount.
-	MinAmount float64 `protobuf:"fixed64,5,opt,name=min_amount,json=minAmount,proto3" json:"min_amount" bson:"min_amount" validate:"required,numeric,gte=0"`
+	MinAmount float64 `protobuf:"fixed64,5,opt,name=min_amount,json=minAmount,proto3" json:"min_amount" bson:"min_amount" validate:"omitempty,numeric,gte=0"`
 	//@inject_tag: json:"region" bson:"region" validate:"required"
 	//
 	// The payment method's region.
