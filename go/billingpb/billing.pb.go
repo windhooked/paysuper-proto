@@ -4936,8 +4936,8 @@ func (m *ProjectPaymentMethod) GetCreatedAt() *timestamp.Timestamp {
 }
 
 type PaymentMethod struct {
-	// @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
+	// @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	// @inject_tag: bson:"name" json:"name" validate:"required,omitempty,alphanum"
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required,omitempty,alphanum"`
 	// @inject_tag: bson:"group_alias" json:"group_alias" validate:"omitempty,alphanum"
@@ -4954,8 +4954,8 @@ type PaymentMethod struct {
 	AccountRegexp string `protobuf:"bytes,10,opt,name=account_regexp,json=accountRegexp,proto3" json:"account_regexp" bson:"account_regexp" validate:"omitempty"`
 	// @inject_tag: bson:"is_active" json:"is_active" validate:"omitempty"
 	IsActive bool `protobuf:"varint,11,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active" validate:"omitempty"`
-	// @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24"
-	PaymentSystemId string `protobuf:"bytes,12,opt,name=payment_system_id,json=paymentSystemId,proto3" json:"payment_system_id" bson:"payment_system_id" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	PaymentSystemId string `protobuf:"bytes,12,opt,name=payment_system_id,json=paymentSystemId,proto3" json:"payment_system_id" bson:"payment_system_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	// @inject_tag: bson:"test_settings" json:"test_settings" validate:"omitempty"
 	TestSettings map[string]*PaymentMethodParams `protobuf:"bytes,13,rep,name=test_settings,json=testSettings,proto3" json:"test_settings" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"test_settings" validate:"omitempty"`
 	// @inject_tag: bson:"production_settings" json:"production_settings" validate:"omitempty"
