@@ -154,8 +154,8 @@ type ReportFile struct {
 	ReportType string `protobuf:"bytes,4,opt,name=report_type,json=reportType,proto3" json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement"`
 	// @inject_tag: json:"file_type" validate:"required,alpha"
 	FileType string `protobuf:"bytes,5,opt,name=file_type,json=fileType,proto3" json:"file_type" validate:"required,alpha"`
-	// @inject_tag: json:"params"
-	Params []byte `protobuf:"bytes,6,opt,name=params,proto3" json:"params"`
+	// @inject_tag: json:"-"
+	Params []byte `protobuf:"bytes,6,opt,name=params,proto3" json:"-"`
 	// @inject_tag: json:"template" validate:"omitempty,hexadecimal"
 	Template string `protobuf:"bytes,7,opt,name=template,proto3" json:"template" validate:"omitempty,hexadecimal"`
 	// @inject_tag: json:"retention_time"
