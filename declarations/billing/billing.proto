@@ -1486,11 +1486,11 @@ message PaymentMethod {
     //
     // The production payment parameters.
     map<string, PaymentMethodParams> production_settings = 14;
-    // @inject_tag: bson:"created_at" json:"max_payment_amount" validate:"omitempty"
+    // @inject_tag: bson:"created_at" json:"created_at" validate:"omitempty"
     //
     // The date of the payment method creation.
     google.protobuf.Timestamp created_at = 15;
-    // @inject_tag: bson:"updated_at" json:"max_payment_amount" validate:"omitempty"
+    // @inject_tag: bson:"updated_at" json:"updated_at" validate:"omitempty"
     //
     // The date of the payment method last update.
     google.protobuf.Timestamp updated_at = 16;
