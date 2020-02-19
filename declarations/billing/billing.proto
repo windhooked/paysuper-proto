@@ -122,6 +122,11 @@ message OrderCreateRequest {
     //
     // The webhook testing mode. Available values: correct_payment, non_existing_user, existing_user, invalid_signature.
     string testing_case = 42;
+
+    //@inject_tag: json:"form_mode"
+    //
+    //The payment form opening mode in the project side. Possible values: embed, iframe, standalone. Default value: embed.
+    string form_mode = 43;
 }
 
 message ProjectRedirectSettings {
@@ -141,6 +146,10 @@ message ProjectRedirectSettings {
     //
     //The redirect button messages after the successful or failed payment. If it has an empty value the redirect message will be set at OK.
     string button_caption = 4;
+    //@inject_tag: json:"form_mode"
+    //
+    //The payment form opening mode in the project side. Possible values: embed, iframe, standalone. Default value: embed.
+    string form_mode = 43;
 }
 
 message Project {
@@ -1166,6 +1175,10 @@ message Order {
     //
     // The webhook testing mode. Available values: correct_payment, non_existing_user, existing_user, invalid_signature.
     string testing_case = 88;
+    //@inject_tag: json:"form_mode"
+    //
+    //The payment form opening mode in the project side. Possible values: embed, iframe, standalone. Default value: embed.
+    string form_mode = 89;
 }
 
 message ParentOrder {
