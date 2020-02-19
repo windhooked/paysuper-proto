@@ -158,10 +158,8 @@ type ReportFile struct {
 	//
 	// The report file type.
 	FileType string `protobuf:"bytes,5,opt,name=file_type,json=fileType,proto3" json:"file_type" validate:"required,alpha"`
-	// @inject_tag: json:"params"
-	//
-	// The report parameters.
-	Params []byte `protobuf:"bytes,6,opt,name=params,proto3" json:"params"`
+	// @inject_tag: json:"-"
+	Params []byte `protobuf:"bytes,6,opt,name=params,proto3" json:"-"`
 	// @inject_tag: json:"template" validate:"omitempty,hexadecimal"
 	//
 	// The unique identifier for the report template.
