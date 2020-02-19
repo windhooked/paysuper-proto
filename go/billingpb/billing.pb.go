@@ -5435,14 +5435,14 @@ type PaymentMethod struct {
 	//
 	// The production payment parameters.
 	ProductionSettings map[string]*PaymentMethodParams `protobuf:"bytes,14,rep,name=production_settings,json=productionSettings,proto3" json:"production_settings" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"production_settings" validate:"omitempty"`
-	// @inject_tag: bson:"created_at" json:"max_payment_amount" validate:"omitempty"
+	// @inject_tag: bson:"created_at" json:"created_at" validate:"omitempty"
 	//
 	// The date of the payment method creation.
-	CreatedAt *timestamp.Timestamp `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"max_payment_amount" bson:"created_at" validate:"omitempty"`
-	// @inject_tag: bson:"updated_at" json:"max_payment_amount" validate:"omitempty"
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at" bson:"created_at" validate:"omitempty"`
+	// @inject_tag: bson:"updated_at" json:"updated_at" validate:"omitempty"
 	//
 	// The date of the payment method last update.
-	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,16,opt,name=updated_at,json=updatedAt,proto3" json:"max_payment_amount" bson:"updated_at" validate:"omitempty"`
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,16,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at" bson:"updated_at" validate:"omitempty"`
 	// @inject_tag: json:"refund_allowed" bson:"refund_allowed"
 	//
 	// Has a true value if the payment method allows a refund.
