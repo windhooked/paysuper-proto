@@ -1787,7 +1787,7 @@ message GetRoyaltyReportResponse {
 message ChangeRoyaltyReportRequest {
     // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 1;
-    // @inject_tag: json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
+    // @inject_tag: json:"-" validate:"required,hexadecimal,len=24" param:"report_id"
     string report_id = 2;
     // @inject_tag: json:"status" validate:"omitempty,oneof=pending skipped accepted canceled dispute ready_for_invoice payment_in_progress payment_done payment_error"
     //
@@ -1802,9 +1802,9 @@ message ChangeRoyaltyReportRequest {
 }
 
 message MerchantReviewRoyaltyReportRequest {
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 1;
-    // @inject_tag: validate:"required,hexadecimal,len=24" param:"report_id"
+    // @inject_tag: validate:"required,hexadecimal,len=24" param:"report_id" json:"-"
     string report_id = 2;
     //@inject_tag: json:"is_accepted" json:"-"
     bool is_accepted = 3;
@@ -3238,7 +3238,7 @@ message ChangeRoleForMerchantUserRequest {
 }
 
 message ChangeRoleForAdminUserRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24" param:"role_id"
+    //@inject_tag: validate:"required,hexadecimal,len=24" param:"role_id" json:"-"
     string role_id = 1;
     //@inject_tag: validate:"required" required:"true"
     //
