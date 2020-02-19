@@ -33,25 +33,39 @@ message ResponseErrorMessage {
 }
 
 message ReportFile {
-    //@inject_tag: json:"id" bson:"_id"
+    //@inject_tag: json:"-" bson:"_id"
     string id = 1;
-    // @inject_tag: json:"user_id" validate:"required,hexadecimal,len=24"
+    // @inject_tag: json:"-" validate:"required,hexadecimal,len=24"
     string user_id = 2;
-    // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
+    // @inject_tag: json:"-" validate:"required,hexadecimal,len=24"
     string merchant_id = 3;
     // @inject_tag: json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement"
+    //
+    // The report type. Available values: transactions, vat, vat_transactions, royalty, royalty_transactions, payout, agreement.
     string report_type = 4;
     // @inject_tag: json:"file_type" validate:"required,alpha"
+    //
+    // The report file type.
     string file_type = 5;
     // @inject_tag: json:"params"
+    //
+    // The report parameters.
     bytes params = 6;
     // @inject_tag: json:"template" validate:"omitempty,hexadecimal"
+    //
+    // The unique identifier for the report template.
     string template = 7;
     // @inject_tag: json:"retention_time"
+    //
+    // Retention time for the report.
     int32 retention_time = 8;
     // @inject_tag: json:"send_notification"
+    //
+    // Has a true value if it's required to send a notification about the report file to the user.
     bool send_notification = 9;
     // @inject_tag: json:"created_at"
+    //
+    // The date of the report file creation.
     google.protobuf.Timestamp created_at = 10;
 }
 
