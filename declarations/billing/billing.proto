@@ -924,7 +924,7 @@ message PaymentMethodParams {
 }
 
 message PaymentSystem {
-    // @inject_tag: bson:"_id" structure:"_id,bsonobjectid"
+    // @inject_tag: bson:"_id" structure:"_id,bsonobjectid" faker:"objectIdString"
     string id = 1;
     string name = 2;
     // @inject_tag: bson:"country" structure:"country"
