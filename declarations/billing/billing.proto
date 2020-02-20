@@ -1504,7 +1504,7 @@ message GetPriceGroupRequest {
 }
 
 message PriceGroup {
-    //@inject_tag: json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true"
+    //@inject_tag: json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the price group.
     string id = 1;

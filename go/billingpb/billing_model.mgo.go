@@ -410,17 +410,6 @@ type MgoCustomer struct {
 	NotifyNewRegionEmail  string                           `bson:"notify_new_region_email"`
 }
 
-type MgoPriceGroup struct {
-	Id            primitive.ObjectID `bson:"_id"`
-	Currency      string             `bson:"currency"`
-	Region        string             `bson:"region"`
-	InflationRate float64            `bson:"inflation_rate"`
-	Fraction      float64            `bson:"fraction"`
-	IsActive      bool               `bson:"is_active"`
-	CreatedAt     time.Time          `bson:"created_at"`
-	UpdatedAt     time.Time          `bson:"updated_at"`
-}
-
 type MgoCountry struct {
 	Id                      primitive.ObjectID   `bson:"_id"`
 	IsoCodeA2               string               `bson:"iso_code_a2"`
@@ -1217,83 +1206,6 @@ func (m *Country) UnmarshalBSON(raw []byte) error {
 	m.PayerTariffRegion = decoded.PayerTariffRegion
 	m.HighRiskPaymentsAllowed = decoded.HighRiskPaymentsAllowed
 	m.HighRiskChangeAllowed = decoded.HighRiskChangeAllowed
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PriceGroup) MarshalBSON() ([]byte, error) {
-	st := &MgoPriceGroup{
-		Region:        m.Region,
-		Currency:      m.Currency,
-		InflationRate: m.InflationRate,
-		Fraction:      m.Fraction,
-		IsActive:      m.IsActive,
-	}
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-
-		st.Id = oid
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *PriceGroup) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoPriceGroup)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Region = decoded.Region
-	m.Currency = decoded.Currency
-	m.InflationRate = decoded.InflationRate
-	m.Fraction = decoded.Fraction
-	m.IsActive = decoded.IsActive
 
 	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
 
