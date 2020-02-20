@@ -4548,8 +4548,8 @@ func (m *PaymentMethodParams) GetBrand() []string {
 }
 
 type PaymentSystem struct {
-	// @inject_tag: bson:"_id" structure:"_id,bsonobjectid"
-	Id   string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"_id" structure:"_id,bsonobjectid"`
+	// @inject_tag: bson:"_id" structure:"_id,bsonobjectid" faker:"objectIdString"
+	Id   string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"_id" structure:"_id,bsonobjectid" faker:"objectIdString"`
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// @inject_tag: bson:"country" structure:"country"
 	Country string `protobuf:"bytes,3,opt,name=Country,proto3" json:"Country,omitempty" bson:"country" structure:"country"`
