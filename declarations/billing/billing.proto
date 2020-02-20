@@ -2482,9 +2482,9 @@ message Key {
 }
 
 message PayoutDocument {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
-    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string merchant_id = 2;
     //@inject_tag: json:"source_id"
     repeated string source_id = 3;
@@ -2526,12 +2526,14 @@ message PayoutDocument {
     google.protobuf.Timestamp arrival_date = 26;
     //@inject_tag: json:"paid_at"
     google.protobuf.Timestamp paid_at = 27;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     string operating_company_id = 28;
 }
 
 message PayoutDocumentChanges {
+    // @inject_tag: faker:"objectIdString"
     string id = 1;
+    // @inject_tag: faker:"objectIdString"
     string payout_document_id = 2;
     string source = 3;
     string ip = 4;
