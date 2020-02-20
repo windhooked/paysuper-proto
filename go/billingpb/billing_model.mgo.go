@@ -271,18 +271,6 @@ type MgoOrderItem struct {
 	PlatformId  string             `bson:"platform_id"`
 }
 
-type MgoPaymentSystem struct {
-	Id                 primitive.ObjectID `bson:"_id"`
-	Name               string             `bson:"name"`
-	Handler            string             `bson:"handler"`
-	Country            string             `bson:"country"`
-	AccountingCurrency string             `bson:"accounting_currency"`
-	AccountingPeriod   string             `bson:"accounting_period"`
-	IsActive           bool               `bson:"is_active"`
-	CreatedAt          time.Time          `bson:"created_at"`
-	UpdatedAt          time.Time          `bson:"updated_at"`
-}
-
 type MgoNotification struct {
 	Id         primitive.ObjectID          `bson:"_id"`
 	Message    string                      `bson:"message"`
@@ -1723,86 +1711,6 @@ func (m *Order) UnmarshalBSON(raw []byte) error {
 	}
 
 	m.ExpireDateToFormInput, err = ptypes.TimestampProto(decoded.ExpireDateToFormInput)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PaymentSystem) MarshalBSON() ([]byte, error) {
-	st := &MgoPaymentSystem{
-		Name:               m.Name,
-		Country:            m.Country,
-		AccountingCurrency: m.AccountingCurrency,
-		AccountingPeriod:   m.AccountingPeriod,
-		IsActive:           m.IsActive,
-		Handler:            m.Handler,
-	}
-
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-
-		st.Id = oid
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *PaymentSystem) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoPaymentSystem)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Name = decoded.Name
-	m.Country = decoded.Country
-	m.AccountingCurrency = decoded.AccountingCurrency
-	m.AccountingPeriod = decoded.AccountingPeriod
-	m.IsActive = decoded.IsActive
-	m.Handler = decoded.Handler
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-
 	if err != nil {
 		return err
 	}
