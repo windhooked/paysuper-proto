@@ -12913,10 +12913,10 @@ func (m *Key) GetRedeemedAt() *timestamp.Timestamp {
 }
 
 type PayoutDocument struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
-	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24"`
+	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
+	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"source_id"
 	SourceId []string `protobuf:"bytes,3,rep,name=source_id,json=sourceId,proto3" json:"source_id"`
 	// @inject_tag: json:"total_fees" validate:"numeric,gte=0"
@@ -12957,8 +12957,8 @@ type PayoutDocument struct {
 	ArrivalDate *timestamp.Timestamp `protobuf:"bytes,26,opt,name=arrival_date,json=arrivalDate,proto3" json:"arrival_date"`
 	//@inject_tag: json:"paid_at"
 	PaidAt *timestamp.Timestamp `protobuf:"bytes,27,opt,name=paid_at,json=paidAt,proto3" json:"paid_at"`
-	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
-	OperatingCompanyId   string   `protobuf:"bytes,28,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
+	// @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
+	OperatingCompanyId   string   `protobuf:"bytes,28,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -13151,8 +13151,10 @@ func (m *PayoutDocument) GetOperatingCompanyId() string {
 }
 
 type PayoutDocumentChanges struct {
-	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	PayoutDocumentId     string               `protobuf:"bytes,2,opt,name=payout_document_id,json=payoutDocumentId,proto3" json:"payout_document_id,omitempty"`
+	// @inject_tag: faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
+	// @inject_tag: faker:"objectIdString"
+	PayoutDocumentId     string               `protobuf:"bytes,2,opt,name=payout_document_id,json=payoutDocumentId,proto3" json:"payout_document_id,omitempty" faker:"objectIdString"`
 	Source               string               `protobuf:"bytes,3,opt,name=source,proto3" json:"source,omitempty"`
 	Ip                   string               `protobuf:"bytes,4,opt,name=ip,proto3" json:"ip,omitempty"`
 	Hash                 string               `protobuf:"bytes,5,opt,name=hash,proto3" json:"hash,omitempty"`
