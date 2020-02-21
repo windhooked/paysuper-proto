@@ -2717,14 +2717,14 @@ func (m *SystemNotificationStatuses) GetTo() int32 {
 }
 
 type Notification struct {
-	// @inject_tag: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	// @inject_tag: json:"id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" faker:"objectIdString"`
 	// @inject_tag: json:"message"
 	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message"`
-	// @inject_tag: json:"merchant_id"
-	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id"`
-	// @inject_tag: json:"user_id"
-	UserId string `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id"`
+	// @inject_tag: json:"merchant_id" faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" faker:"objectIdString"`
+	// @inject_tag: json:"user_id" faker:"objectIdString"
+	UserId string `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id" faker:"objectIdString"`
 	// @inject_tag: json:"is_system"
 	IsSystem bool `protobuf:"varint,6,opt,name=is_system,json=isSystem,proto3" json:"is_system"`
 	// @inject_tag: json:"is_read"
