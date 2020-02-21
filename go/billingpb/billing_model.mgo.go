@@ -301,21 +301,6 @@ type MgoPayoutCostSystem struct {
 	CreatedAt             time.Time          `bson:"created_at"`
 }
 
-type MgoPaymentChannelCostSystem struct {
-	Id                 primitive.ObjectID `bson:"_id"`
-	Name               string             `bson:"name"`
-	Region             string             `bson:"region"`
-	Country            string             `bson:"country"`
-	Percent            float64            `bson:"percent"`
-	FixAmount          float64            `bson:"fix_amount"`
-	FixAmountCurrency  string             `bson:"fix_amount_currency"`
-	CreatedAt          time.Time          `bson:"created_at"`
-	UpdatedAt          time.Time          `bson:"updated_at"`
-	IsActive           bool               `bson:"is_active"`
-	MccCode            string             `bson:"mcc_code"`
-	OperatingCompanyId string             `bson:"operating_company_id"`
-}
-
 type MgoPaymentChannelCostMerchant struct {
 	Id                      primitive.ObjectID `bson:"_id"`
 	MerchantId              primitive.ObjectID `bson:"merchant_id"`
@@ -1780,83 +1765,6 @@ func (m *Customer) UnmarshalBSON(raw []byte) error {
 
 	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
 
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PaymentChannelCostSystem) MarshalBSON() ([]byte, error) {
-	st := &MgoPaymentChannelCostSystem{
-		Name:               m.Name,
-		Region:             m.Region,
-		Country:            m.Country,
-		Percent:            m.Percent,
-		FixAmount:          m.FixAmount,
-		FixAmountCurrency:  m.FixAmountCurrency,
-		IsActive:           m.IsActive,
-		MccCode:            m.MccCode,
-		OperatingCompanyId: m.OperatingCompanyId,
-	}
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-		st.Id = oid
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-		if err != nil {
-			return nil, err
-		}
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-		if err != nil {
-			return nil, err
-		}
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-	return bson.Marshal(st)
-}
-
-func (m *PaymentChannelCostSystem) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoPaymentChannelCostSystem)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Name = decoded.Name
-	m.Region = decoded.Region
-	m.Country = decoded.Country
-	m.Percent = decoded.Percent
-	m.FixAmount = decoded.FixAmount
-	m.FixAmountCurrency = decoded.FixAmountCurrency
-	m.IsActive = decoded.IsActive
-	m.MccCode = decoded.MccCode
-	m.OperatingCompanyId = decoded.OperatingCompanyId
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
 	if err != nil {
 		return err
 	}
