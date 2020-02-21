@@ -16,7 +16,7 @@ message Name {
 message OrderCreateRequest {
     // @inject_tag: query:"PO_PROJECT_ID" form:"PO_PROJECT_ID" json:"project"  validate:"omitempty,hexadecimal" required:"true"
     //
-    // The unique identifier for the Project found in the merchant account in the PaySuper Dashboard.
+    // The ID of the Project found in your merchant account in the PaySuper Dashboard.    
     string project_id = 1;
     // @inject_tag: query:"PO_SIGNATURE" form:"PO_SIGNATURE" json:"-" validate:"omitempty,alphanum"
     string signature = 2;
@@ -114,13 +114,13 @@ message OrderCreateRequest {
     bool is_buy_for_virtual_currency = 39;
     // @inject_tag: json:"-"
     string cookie = 40;
+
     //@inject_tag: json:"-" bson:"-"
     //
     //The redirect button messages after the successful or failed payment. If it has an empty value the redirect message will be set at OK.
     string button_caption = 41;
+
     //@inject_tag: bson:"testing_case" json:"testing_case" validate:"omitempty,oneof=correct_payment non_existing_user existing_user invalid_signature"
-    //
-    // The webhook testing mode. Available values: correct_payment, non_existing_user, existing_user, invalid_signature.
     string testing_case = 42;
 
     //@inject_tag: json:"form_mode"
@@ -154,253 +154,140 @@ message ProjectRedirectSettings {
 
 message Project {
     // @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24"
-    //
-    // The unique identifier for the project.
     string id = 1;
-    // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
-    //
-    // The unique identifier for the project's merchant.
+    // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
     string merchant_id = 2;
-    // @inject_tag: json:"name" validate:"required" required:"true"
-    //
-    // The list of the project's localized names.
+    // @inject_tag: json:"name" validate:"required"
     map<string, string> name = 3;
     //@inject_tag: json:"-"
     string reserved_4 = 4;
-    //@inject_tag: json:"-" validate:"omitempty,len=3"
+    //@inject_tag: json:"callback_currency" validate:"omitempty,len=3"
     string callback_currency = 5;
     //@inject_tag: json:"callback_protocol" validate:"omitempty,oneof=default empty"
-    //
-    // The protocol of the payment notification. Available values: default - the webhook protocol that is set in the Project notification settings, empty - the webhook is not sent and the payment is immediately marked as successful in the PaySuper system.
     string callback_protocol = 6;
-    //@inject_tag: json:"-" validate:"omitempty,dive,url"
+    //@inject_tag: json:"create_order_allowed_urls" validate:"omitempty,dive,url"
     repeated string create_order_allowed_urls = 7;
-    //@inject_tag: json:"-"
+    //@inject_tag: json:"allow_dynamic_notify_urls"
     bool allow_dynamic_notify_urls = 8;
-    //@inject_tag: json:"-"
+    //@inject_tag: json:"allow_dynamic_redirect_urls"
     bool allow_dynamic_redirect_urls = 9;
     //@inject_tag: json:"limits_currency" validate:"omitempty,len=3"
-    //
-    // The currency of the limit amount.
     string limits_currency = 10;
     // @inject_tag: json:"min_payment_amount" validate:"omitempty,numeric,gte=0"
-    //
-    // The minimum order amount.
     double min_payment_amount = 11;
     // @inject_tag: json:"max_payment_amount" validate:"omitempty,numeric,gte=0"
-    //
-    // The maximum order amount.
     double max_payment_amount = 12;
     // @inject_tag: json:"notify_emails" validate:"omitempty,dive,email"
-    //
-    // The list of emails to send notifications about successfully completed payment operations.
     repeated string notify_emails = 13;
     // @inject_tag: json:"is_products_checkout"
-    //
-    // Has a true value if it's allowed to create the order only with amounts from the products' pricing list.
     bool is_products_checkout = 14;
     // @inject_tag: json:"secret_key" validate:"omitempty,max=255"
-    //
-    // The secret key to create a checking hash. It's used in a request about the order status change.
     string secret_key = 15;
     // @inject_tag: json:"signature_required"
-    //
-    // Has a true value if it's required to have the secret key to check the notification request.
     bool signature_required = 16;
     // @inject_tag: json:"send_notify_email"
-    //
-    // Has a true value if it's allowed to send notifications about successfully completed payment operations to user's emails.
     bool send_notify_email = 17;
     // @inject_tag: json:"url_check_account" validate:"omitempty,url"
-    //
-    // The default URL to send a request to the merchant project for the payment data verification.
     string url_check_account = 18;
     // @inject_tag: json:"url_process_payment" validate:"omitempty,url"
-    //
-    // The default URL to send a notification request to the merchant project about the successfully completed payment.
     string url_process_payment = 19;
     // @inject_tag: json:"url_redirect_fail" validate:"omitempty,url"
-    //
-    // The default URL to redirect a customer after the failed payment.
     string url_redirect_fail = 20;
     // @inject_tag: json:"url_redirect_success" validate:"omitempty,url"
-    //
-    // The default URL to redirect a customer after the successful payment.
     string url_redirect_success = 21;
     // @inject_tag: json:"status" validate:"omitempty,numeric,oneof=0 1 2 3 4"
-    //
-    // The project's status. Available values: 0 - the new project,
-    //1 - the project successfully completed integration tests,
-    //2 - the project failed some integration tests,
-    //3 - the project is on production,
-    //4 - the project is removed.
     int32 status = 22;
     // @inject_tag: json:"created_at"
-    //
-    // The date of the project creation.
     google.protobuf.Timestamp created_at = 23;
     // @inject_tag: json:"updated_at"
-    //
-    // The date of the project last update.
     google.protobuf.Timestamp updated_at = 24;
     // @inject_tag: json:"products_count"
-    //
-    // The number of projects products.
     int64 products_count = 25;
     // @inject_tag: json:"url_chargeback_payment" validate:"omitempty,url"
-    //
-    // The URL for the chargeback.
     string url_chargeback_payment = 26;
     // @inject_tag: json:"url_cancel_payment" validate:"omitempty,url"
-    //
-    // The URL for the payment cancellation.
     string url_cancel_payment = 27;
     // @inject_tag: json:"url_fraud_payment" validate:"omitempty,url"
-    //
-    // The URL to redirect to in case of suspected fraud.
     string url_fraud_payment = 28;
     // @inject_tag: json:"url_refund_payment" validate:"omitempty,url"
-    //
-    // The URL for the payment refund.
     string url_refund_payment = 29;
     //@inject_tag: json:"localizations"
-    //
-    // The list of languages for the project's and its products descriptions localization.
     repeated string localizations = 30;
     //@inject_tag: json:"full_description"
-    //
-    // The localized extended descriptions of the project.
     map<string, string> full_description = 31;
     //@inject_tag: json:"short_description"
-    //
-    // The localized concise descriptions of the project.
     map<string, string> short_description = 32;
     //@inject_tag: json:"currencies" validate:"omitempty,dive"
-    //
-    //The list of the project's currencies.
     repeated HasCurrencyItem currencies = 33;
     //@inject_tag: json:"cover"
-    //
-    // The project's covers for each localization.
     ImageCollection cover = 34;
     //@inject_tag: json:"virtual_currency" validate:"omitempty,dive"
-    //
-    // The virtual currency data.
     ProjectVirtualCurrency virtual_currency = 35;
     // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
-    //
-    // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
     string vat_payer = 36;
     //@inject_tag: json:"redirect_settings" bson:"redirect_settings" validate:"omitempty,dive"
     //
     //The customer's redirection settings for the successful or failed payment.
     ProjectRedirectSettings redirect_settings = 37;
+
     //@inject_tag: json:"webhook_testing"
-    //
-    // The testing parameters for webhooks.
     WebHookTesting webhook_testing = 38;
     //@inject_tag: json:"webhook_mode" validate:"omitempty,oneof=default pre_approval"
-    //
-    // The webhooks mode. Available values: default, pre_approval.
     string webhook_mode = 39;
 }
 
 message WebHookTesting {
     //@inject_tag: json:"products" bson:"products"
-    //
-    // The testing parameters for product.
     ProductsTesting products = 1;
     //@inject_tag: json:"virtual_currency" bson:"virtual_currency"
-    //
-    // The testing parameters for virtual currency.
     VirtualCurrencyTesting virtual_currency = 2;
     //@inject_tag: json:"keys" bson:"keys"
-    //
-    // The testing parameters for key.
     KeysTesting keys = 3;
 }
 
 message ProductsTesting {
     //@inject_tag: json:"non_existing_user" bson:"non_existing_user"
-    //
-    // Has a true value if the user does not exist in the storage.
     bool non_existing_user = 1;
     //@inject_tag: json:"existing_user" bson:"existing_user"
-    //
-    // Has a true value if the user exists in the storage.
     bool existing_user = 2;
     //@inject_tag: json:"correct_payment" bson:"correct_payment"
-    //
-    // Has a true value if the payment correctly completed.
     bool correct_payment = 3;
     //@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
-    //
-    // Has a true value if the payment not correctly completed.
     bool incorrect_payment = 4;
 }
 
 message VirtualCurrencyTesting {
     //@inject_tag: json:"non_existing_user" bson:"non_existing_user"
-    //
-    // Has a true value if the user does not exist in the storage.
     bool non_existing_user = 1;
     //@inject_tag: json:"existing_user" bson:"existing_user"
-    //
-    // Has a true value if the user exists in the storage.
     bool existing_user = 2;
     //@inject_tag: json:"correct_payment" bson:"correct_payment"
-    //
-    // Has a true value if the payment correctly completed.
     bool correct_payment = 3;
     //@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
-    //
-    // Has a true value if the payment not correctly completed.
     bool incorrect_payment = 4;
 }
 
 message KeysTesting  {
     //@inject_tag: json:"is_passed" bson:"is_passed"
-    //
-    // Has a true value if the key has been passed.
     bool is_passed = 1;
 }
 
 message ProjectOrder {
-    // The unique identifier for the project.
     string id = 1;
-    // The unique identifier for the merchant.
     string merchant_id = 2;
-    // The list of the project's localized names.
     map<string, string> name = 3;
-    // The redirect URL for the successful payment. You need to enable the dynamic notify URLs option in the Project Settings to use this field.
     string url_success = 4;
-    // The redirect URL for the failed payment. You need to enable the dynamic notify URLs option in the Project Settings to use this field.
     string url_fail = 5;
-    // The list of emails to send notifications about successfully completed payment operations.
     repeated string notify_emails = 6;
-    // The secret key to create a checking hash. It's used in a request about the order status change.
     string secret_key = 7;
-    // Has a true value if it's allowed to send notifications about successfully completed payment operations to user's emails.
     bool send_notify_email = 8;
-    // The default URL to send a request to the merchant project for the payment data verification.
     string url_check_account = 9;
-    // The default URL to send a notification request to the merchant project about the successfully completed payment.
     string url_process_payment = 10;
-    // The protocol of the payment notification. Available values: default - the webhook protocol that is set in the Project notification settings, empty - the webhook is not sent and the payment is immediately marked as successful in the PaySuper system.
     string callback_protocol = 11;
-    // The URL for the chargeback.
     string url_chargeback_payment = 12;
-    // The URL for the payment cancellation.
     string url_cancel_payment = 13;
-    // The URL to redirect to in case of suspected fraud.
     string url_fraud_payment = 14;
-    // The URL for the payment refund.
     string url_refund_payment = 15;
-    // The project's status. Available values: 0 - the new project,
-    //1 - the project successfully completed integration tests,
-    //2 - the project failed some integration tests,
-    //3 - the project is on production,
-    //4 - the project is removed.
     int32 status = 16;
     // @inject_tag: json:"-"
     string merchant_royalty_currency = 17;
@@ -411,174 +298,100 @@ message ProjectOrder {
 }
 
 message MerchantContact {
-    // @inject_tag: validate:"required" json:"authorized" required:"true"
-    //
-    // Information about contacts of the merchant's authorised person.
+    // @inject_tag: validate:"required" json:"authorized"
     MerchantContactAuthorized authorized = 1;
-    // @inject_tag: validate:"required" json:"technical" required:"true"
-    //
-    // Information about contacts of the merchant's technical person.
+    // @inject_tag: validate:"required" json:"technical"
     MerchantContactTechnical technical = 2;
 }
 
 message MerchantContactTechnical {
-    // @inject_tag: json:"name" validate:"required,company_name,max=60" required:"true"
-    //
-    // The technical person's full name.
+    // @inject_tag: json:"name" validate:"required,company_name,max=60"
     string name = 1;
-    // @inject_tag: json:"email" validate:"required,email,max=100" required:"true"
-    //
-    // The technical person's email address.
+    // @inject_tag: json:"email" validate:"required,email,max=100"
     string email = 2;
-    // @inject_tag: json:"phone" validate:"required,numeric,max=20" required:"true"
-    //
-    // The technical person's phone.
+    // @inject_tag: json:"phone" validate:"required,numeric,max=20"
     string phone = 3;
 }
 
 message MerchantContactAuthorized {
-    // @inject_tag: json:"name" validate:"required,company_name,max=60" required:"true"
-    //
-    // The authorised person's full name.
+    // @inject_tag: json:"name" validate:"required,company_name,max=60"
     string name = 1;
-    // @inject_tag: json:"email" validate:"required,email,max=100" required:"true"
-    //
-    // The authorised person's email address.
+    // @inject_tag: json:"email" validate:"required,email,max=100"
     string email = 2;
-    // @inject_tag: json:"phone" validate:"required,numeric,max=20" required:"true"
-    //
-    // The authorised person's phone.
+    // @inject_tag: json:"phone" validate:"required,numeric,max=20"
     string phone = 3;
     // @inject_tag: json:"position" validate:"required,company_name,max=30"
-    //
-    // The authorised person's position in the company.
     string position = 4;
 }
 
 message MerchantBanking {
-    // @inject_tag: json:"currency" validate:"required,alpha,len=3" required:"true"
-    //
-    // The merchant's bank account currency.
+    // @inject_tag: json:"currency" validate:"required,alpha,len=3"
     string currency = 1;
-    // @inject_tag: json:"name" validate:"required,city,max=60" required:"true"
-    //
-    // The merchant's bank name.
+    // @inject_tag: json:"name" validate:"required,city,max=60"
     string name = 2;
-    // @inject_tag: json:"address" validate:"required,max=60" required:"true"
-    //
-    // The merchant's bank address.
+    // @inject_tag: json:"address" validate:"required,max=60"
     string address = 3;
-    // @inject_tag: json:"account_number" bson:"account_number" validate:"required,iban" required:"true"
-    //
-    // The merchant's bank account number.
+    // @inject_tag: json:"account_number" bson:"account_number" validate:"required,iban"
     string account_number = 4;
-    // @inject_tag: json:"swift" validate:"required,swift" required:"true"
-    //
-    // The merchant's bank SWIFT code.
+    // @inject_tag: json:"swift" validate:"required,swift"
     string swift = 5;
     // @inject_tag: json:"details"
-    //
-    // Additional details about the merchant's bank account.
     string details = 6;
     // @inject_tag: json:"correspondent_account" bson:"correspondent_account" validate:"omitempty,numeric,max=30"
-    //
-    // The bank correspondent account.
     string correspondent_account = 7;
 }
 
 message MerchantLastPayout {
     // @inject_tag: json:"date"
-    //
-    // The date of the last payout to the merchant.
     google.protobuf.Timestamp date = 1;
     // @inject_tag: json:"amount"
-    //
-    // The amount of the last payout to the merchant.
     double amount = 2;
 }
 
 message MerchantUser {
-    // @inject_tag: json:"id" validate:"required" required:"true"
-    //
-    // The unique identifier for the merchant user.
+    // @inject_tag: json:"id" validate:"required"
     string id = 1;
-    // @inject_tag: json:"email" validate:"required,email" required:"true"
-    //
-    // The merchant's email address.
+    // @inject_tag: json:"email" validate:"required,email"
     string email = 2;
     // @inject_tag: json:"first_name"
-    //
-    // The merchant's first name.
     string first_name = 3;
     // @inject_tag: json:"last_name"
-    //
-    // The merchant's last name.
     string last_name = 4;
     // @inject_tag: json:"profile_id"
-    //
-    // The primary onboarding profile identifier for the merchant.
     string profile_id = 5;
     // @inject_tag: json:"registration_date"
-    //
-    // The date of the merchant's confirmation.
     google.protobuf.Timestamp registration_date = 6;
 }
 
 message MerchantCompanyInfo {
-    // @inject_tag: json:"name" validate:"required,company_name,max=60" required:"true"
-    //
-    // The merchant's company name.
+    // @inject_tag: json:"name" validate:"required,company_name,max=60"
     string name = 1;
-    // @inject_tag: json:"alternative_name" bson:"alternative_name" validate:"required,company_name,max=60" required:"true"
-    //
-    // The merchant's company alternative name.
+    // @inject_tag: json:"alternative_name" bson:"alternative_name" validate:"required,company_name,max=60"
     string alternative_name = 2;
-    // @inject_tag: json:"website" validate:"required,url" required:"true"
-    //
-    // The merchant's company website.
+    // @inject_tag: json:"website" validate:"required,url"
     string website = 3;
-    // @inject_tag: json:"country" validate:"required,alpha,len=2" required:"true"
-    //
-    // The merchant's company country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
+    // @inject_tag: json:"country" validate:"required,alpha,len=2"
     string country = 4;
     // @inject_tag: json:"state"
-    //
-    // The merchant's company state.
     string state = 5;
-    // @inject_tag: json:"zip" validate:"required,max=30" required:"true"
-    //
-    // The merchant's company ZIP code.
+    // @inject_tag: json:"zip" validate:"required,max=30"
     string zip = 6;
     // @inject_tag: json:"city" validate:"required,city,max=60"
-    //
-    // The merchant's company city.
     string city = 7;
     // @inject_tag: json:"address" validate:"required,max=100"
-    //
-    // The merchant's company address.
     string address = 8;
     // @inject_tag: json:"address_additional" bson:"address_additional" validate:"omitempty,max=100"
-    //
-    // The merchant's company additional address.
     string address_additional = 9;
-    // @inject_tag: json:"registration_number" bson:"registration_number" validate:"required,max=100" required:"true"
-    //
-    // The merchant's company registration number.
+    // @inject_tag: json:"registration_number" bson:"registration_number" validate:"required,max=100"
     string registration_number = 10;
     // @inject_tag: json:"tax_id" bson:"tax_id"
-    //
-    // The unique identifier for the merchant's company tax.
     string tax_id = 11;
 }
 
 message MerchantCompletedSteps {
-    // Has a true value if the company data is filled out.
     bool company = 1;
-    // Has a true value if the contacts data is filled out.
     bool contacts = 2;
-    // Has a true value if the banking data is filled out.
     bool banking = 3;
-    // Has a true value if the tariff data is filled out.
     bool tariff = 4;
 }
 
@@ -603,177 +416,94 @@ message MerchantTariff {
     // @inject_tag: json:"-"
     MerchantTariffRatesSettingsItem payout = 2;
     // @inject_tag: json:"home_region"
-    //
-    // The merchant's region name.
     string home_region = 3;
 }
 
 message Merchant {
-    // @inject_tag: bson:"_id"
-    //
-    // The unique identifier for the merchant.
+    // @inject_tag: bson:"_id" faker:"objectIdString"
     string id = 1;
     // @inject_tag: json:"user"
-    //
-    // Information about the merchant owner from the primary onboarding profile.
     MerchantUser user = 2;
     // @inject_tag: json:"company"
-    //
-    // Information about the merchant's company.
     MerchantCompanyInfo company = 3;
     // @inject_tag: json:"contacts"
-    //
-    // The merchant's contacts.
     MerchantContact contacts = 15;
     // @inject_tag: json:"banking"
-    //
-    // The merchant's banking data.
     MerchantBanking banking = 16;
     // @inject_tag: json:"status"
-    //
-    // The merchant's status. Available values: 0 - The merchant've just been created and the merchant profile have not been filled yet.
-    //3 - The agreement with the merchant is signed by the merchant owner.
-    //4 - The agreement with the merchant is signed by PaySuper.
-    //5 - The merchant is removed.
-    //6 - The merchant is marked as a fraud and will be removed.
-    //7 - The merchant must fill the onboarding.
-    //8 - The merchant has passed the onboarding and is waiting the agreement to be signed.
     int32 status = 17;
     // @inject_tag: json:"created_at"
-    //
-    // The date of the merchant creation.
     google.protobuf.Timestamp created_at = 18;
     // @inject_tag: json:"updated_at"
-    //
-    // The date of the merchant last update.
     google.protobuf.Timestamp updated_at = 19;
     // @inject_tag: json:"first_payment_at"
-    //
-    // The date when the first payment has been made to one of the merchant's projects.
     google.protobuf.Timestamp first_payment_at = 20;
     // @inject_tag: json:"-"
     bool is_vat_enabled = 21;
     // @inject_tag: json:"-"
     bool is_commission_to_user_enabled = 22;
     // @inject_tag: json:"has_merchant_signature"
-    //
-    // Has a true value if the merchant has signed the license agreement.
     bool has_merchant_signature = 23;
     // @inject_tag: json:"has_psp_signature"
-    //
-    // Has a true value if PaySuper has signed the license agreement.
     bool has_psp_signature = 24;
     // @inject_tag: json:"last_payout"
-    //
-    // The date of the last payout to the merchant.
     MerchantLastPayout last_payout = 25;
     // @inject_tag: json:"is_signed"
-    //
-    // Has a true value if the license agreement is completely signed.
     bool is_signed = 26;
     // @inject_tag: json:"payment_methods"
-    //
-    // The list of the merchant's payment methods.
     map<string, MerchantPaymentMethod> payment_methods = 28;
     // @inject_tag: json:"agreement_type"
-    //
-    // The type of the agreement selected by the merchant. Available values: 0 - not selected, 1 - paper agreement, 2 - e-sign agreement.
     int32 agreement_type = 29;
     // @inject_tag: json:"agreement_sent_via_mail"
-    //
-    // Has a true value if the license agreement is sent via post.
     bool agreement_sent_via_mail = 30;
     // @inject_tag: json:"mail_tracking_link"
-    //
-    // The post link to the tracking package with the license agreement.
     string mail_tracking_link = 31;
     // @inject_tag: json:"-"
     string s3_agreement_name = 32;
     // @inject_tag: json:"payout_cost_amount" bson:"payout_cost_amount" validate:"numeric,gte=0"
-    //
-    // The payout cost.
     double payout_cost_amount = 33;
-    //@inject_tag: json:"payout_cost_currency" bson:"payout_cost_currency" validate:"required,alpha,len=3" required:"true"
-    //
-    // The currency of the payout cost.
+    //@inject_tag: json:"payout_cost_currency" bson:"payout_cost_currency" validate:"required,alpha,len=3"
     string payout_cost_currency = 34;
     // @inject_tag: json:"min_payout_amount" bson:"min_payout_amount" validate:"numeric,gte=0"
-    //
-    // The minimum payout amount.
     double min_payout_amount = 35;
     // @inject_tag: json:"rolling_reserve_amount" bson:"rolling_reserve_amount" validate:"numeric,gte=0,lte=100"
-    //
-    // The rolling reserve threshold.
     double rolling_reserve_threshold = 36;
     // @inject_tag: json:"rolling_reserve_days" bson:"rolling_reserve_days" validate:"numeric,gte=0"
-    //
-    // The rolling reserve period.
     int32 rolling_reserve_days = 37;
     // @inject_tag: json:"rolling_reserve_chargeback_transactions_threshold" bson:"rolling_reserve_chargeback_transactions_threshold" validate:"numeric,gte=0,lte=100"
-    //
-    // The rolling reserve threshold for the chargeback transactions.
     double rolling_reserve_chargeback_transactions_threshold = 38;
     // @inject_tag: json:"item_min_cost_amount" bson:"item_min_cost_amount" validate:"numeric,gte=0"
-    //
-    // The minimum cost of the item.
     double item_min_cost_amount = 39;
-    //@inject_tag: json:"item_min_cost_currency" bson:"item_min_cost_currency" validate:"required,alpha,len=3" required:"true"
-    //
-    // The currency of the minimum cost of the item.
+    //@inject_tag: json:"item_min_cost_currency" bson:"item_min_cost_currency" validate:"required,alpha,len=3"
     string item_min_cost_currency = 40;
-    // The merchant authorisation token to connect to the Centrifugo channel.
     string centrifugo_token = 41;
     //@inject_tag: json:"-"
     MerchantAgreementSignatureData agreement_signature_data = 43;
     //@inject_tag: json:"-"
     MerchantCompletedSteps steps = 46;
     //@inject_tag: json:"agreement_template"
-    //
-    // The unique identifier for the template of the license agreement stored in HelloSign.
     string agreement_template = 47;
     // @inject_tag: json:"received_date"
-    //
-    // The date when the merchant owner has signed the license agreement.
     google.protobuf.Timestamp received_date = 48;
     // @inject_tag: json:"status_last_updated_at"
-    //
-    // The date when the merchant's status has been last updated.
     google.protobuf.Timestamp status_last_updated_at = 49;
     // @inject_tag: json:"has_projects"
-    //
-    // Has a true value if the merchant has created projects.
     bool has_projects = 50;
     // @inject_tag: json:"agreement_number"
-    //
-    // The license agreement number.
     string agreement_number = 51;
     // @inject_tag: json:"minimal_payout_limit"
-    //
-    // The minimum payout limit.
     float minimal_payout_limit = 52;
     // @inject_tag: json:"tariff"
-    //
-    // The merchant's tariff.
     MerchantTariff tariff = 53;
     // @inject_tag: json:"manual_payouts_enabled"
-    //
-    // Has a true value if the merchant can manually make a payout.
     bool manual_payouts_enabled = 54;
     // @inject_tag: json:"mcc_code"
-    //
-    // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 55;
-    // @inject_tag: json:"operating_company_id"
-    //
-    // The unique identifier for the operation company.
+    // @inject_tag: json:"operating_company_id" faker:"objectIdString"
     string operating_company_id = 56;
     // @inject_tag: json:"merchant_operations_type" validate:"oneof=high-risk low-risk"
-    //
-    // The merchant's operations type. Available values: low-risk, high-risk.
     string merchant_operations_type = 57;
     // @inject_tag: json:"dont_charge_vat"
-    //
-    // Has a true value if the merchant doesn't pay any taxes.
     bool dont_charge_vat = 58;
 }
 
@@ -792,51 +522,29 @@ message MerchantCommon {
 
 message SystemNotificationStatuses {
     // @inject_tag: json:"from"
-    //
-    // The before changes status.
     int32 from = 1;
     // @inject_tag: json:"to"
-    //
-    // The after changes status.
     int32 to = 2;
 }
 
 message Notification {
     // @inject_tag: json:"id"
-    //
-    // The unique identifier for the notification.
     string id = 1;
     // @inject_tag: json:"message"
-    //
-    // The notification message.
     string message = 3;
     // @inject_tag: json:"merchant_id"
-    //
-    // The unique identifier for the merchant who is the recipient of the notification.
     string merchant_id = 4;
     // @inject_tag: json:"user_id"
-    //
-    // The unique identifier for the user who is the sender of the notification.
     string user_id = 5;
     // @inject_tag: json:"is_system"
-    //
-    // Has a true value if the notification is generated automatically.
     bool is_system = 6;
     // @inject_tag: json:"is_read"
-    //
-    // Has a true value if the recipient has read the notification.
     bool is_read = 7;
     // @inject_tag: json:"statuses"
-    //
-    // The system notification statuses. Has a null value if it's not the system notification.
     SystemNotificationStatuses statuses = 8;
     // @inject_tag: json:"created_at"
-    //
-    // The date of the notification creation.
     google.protobuf.Timestamp created_at = 9;
     // @inject_tag: json:"updated_at"
-    //
-    // The date of the notification last update.
     google.protobuf.Timestamp updated_at = 10;
 }
 
@@ -927,12 +635,8 @@ message OrderUser {
 
 message OrderNotificationCancellation {
     //@inject_tag: json:"code" bson:"code"
-    //
-    // The internal identity for the cancellation reason in PaySuper.
     string code = 1;
     //@inject_tag: json:"reason" bson:"reason"
-    //
-    // The cancellation reason.
     string reason = 2;
 }
 
@@ -1093,12 +797,8 @@ message Order {
 
 message ParentOrder {
     // @inject_tag: json:"id"
-    //
-    // The internal unique identifier for the order in PaySuper.
     string id = 51;
     // @inject_tag: json:"uuid"
-    //
-    // The public unique identifier for the order in PaySuper.
     string uuid = 52;
 }
 
@@ -1122,7 +822,7 @@ message OrderItem {
     string object = 2;
     //@inject_tag: validate:"required" json:"sku" bson:"sku" required:"true"
     //
-    // The SKU of the product.
+    // SKU of the item.
     string sku = 3;
     //@inject_tag: validate:"required" json:"name" bson:"name" required:"true"
     //
@@ -1154,11 +854,11 @@ message OrderItem {
     map<string, string> metadata = 10;
     //@inject_tag: json:"created_at" bson:"created_at"
     //
-    // The date of the product creation.
+    // Date of the object creation.
     google.protobuf.Timestamp created_at = 11;
     //@inject_tag: json:"updated_at" bson:"updated_at"
     //
-    // The date of the product last update.
+    // Date of the object update.
     google.protobuf.Timestamp updated_at = 12;
     //@inject_tag: validate:"omitempty,min=3" json:"platform_id" bson:"platform_id"
     //
@@ -1166,7 +866,7 @@ message OrderItem {
     string platform_id = 13;
     //@inject_tag: validate:"omitempty,min=5" json:"code" bson:"code"
     //
-    // The activation code.
+    // The game code.
     string code = 14;
 }
 
@@ -1181,46 +881,26 @@ message PaymentMethodOrder {
     // @inject_tag: json:"-" bson:"_id"
     string id = 1;
     // @inject_tag: json:"title" bson:"name"
-    //
-    // The payment method's name.
     string name = 2;
     // @inject_tag: bson:"external_id" json:"external_id"
-    //
-    // The unique identifier for the payment method in the payment system.
     string external_id = 3;
     // @inject_tag: json:"-" bson:"params"
     PaymentMethodParams params = 4;
     // @inject_tag: bson:"payment_system_id" json:"payment_system_id"
-    //
-    // The unique identifier for the payment method in PaySuper.
     string payment_system_id = 5;
     // @inject_tag: json:"type" bson:"group_alias"
-    //
-    // The payment method's group alias.
     string group = 6;
     // @inject_tag: json:"saved" bson:"saved"
-    //
-    // Has a true value if contains a saved card as a payment method.
     bool saved = 7;
     //@inject_tag: json:"card" bson:"card"
-    //
-    // Information about the card payment method.
     PaymentMethodCard card = 8;
     //@inject_tag: json:"wallet" bson:"wallet"
-    //
-    // Information about the wallet payment method.
     PaymentMethodWallet wallet = 9;
     //@inject_tag: json:"crypto_currency" bson:"crypto_currency"
-    //
-    // Information about the crypto payment method.
     PaymentMethodCrypto crypto_currency = 10;
-    // @inject_tag: json:"handler" bson:"handler"
-    //
-    // The internal unique identifier for the payment method in PaySuper.
+    // @inject_tag: json:"type" bson:"handler"
     string handler = 11;
     // @inject_tag: json:"refund_allowed" bson:"refund_allowed"
-    //
-    // Has a true value if the payment method allows a refund.
     bool refund_allowed = 12;
 }
 
@@ -1244,7 +924,7 @@ message PaymentMethodParams {
 }
 
 message PaymentSystem {
-    // @inject_tag: bson:"_id" structure:"_id,bsonobjectid"
+    // @inject_tag: bson:"_id" structure:"_id,bsonobjectid" faker:"objectIdString"
     string id = 1;
     string name = 2;
     // @inject_tag: bson:"country" structure:"country"
@@ -1265,58 +945,34 @@ message PaymentSystem {
 
 message PaymentMethodCard {
     //@inject_tag: json:"first6" bson:"first6"
-    //
-    // The first 6 digits of the card number.
     string first6 = 1;
     //@inject_tag: json:"last4" bson:"last4"
-    //
-    // The last 4 digits of the card number.
     string last4 = 2;
     //@inject_tag: json:"masked" bson:"masked"
-    //
-    // The mask for a customer’s card number.
     string masked = 3;
     //@inject_tag: json:"expiry_month" bson:"expiry_month"
-    //
-    // The validity month of the card.
     string expiry_month = 4;
     //@inject_tag: json:"expiry_year" bson:"expiry_year"
-    //
-    // The validity year of the card.
     string expiry_year = 5;
     //@inject_tag: json:"brand" bson:"brand"
-    //
-    // The brand of the card issuer.
     string brand = 6;
     //@inject_tag: json:"fingerprint" bson:"fingerprint"
-    //
-    // The internal fingerprint for given card.
     string fingerprint = 7;
     //@inject_tag: json:"secure3d" bson:"secure3d"
-    //
-    // Has a true value if 3D-secure is used for the payment.
     bool secure3d = 8;
 }
 
 message PaymentMethodWallet {
     //@inject_tag: json:"brand" bson:"brand"
-    //
-    // The name of the wallet.
     string brand = 1;
     //@inject_tag: json:"account" bson:"account"
-    //
-    // The customer identity in the wallet.
     string account = 2;
 }
 
 message PaymentMethodCrypto {
     //@inject_tag: json:"brand" bson:"brand"
-    //
-    // The name of the crypto currency.
     string brand = 1;
     //@inject_tag: json:"address" bson:"address"
-    //
-    // The customer’s address in the crypto currency.
     string address = 2;
 }
 
@@ -1334,7 +990,7 @@ message ProjectPaymentMethod {
 }
 
 message PaymentMethod {
-    // @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24"
+    // @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
     // @inject_tag: bson:"name" json:"name" validate:"required,omitempty,alphanum"
     string name = 2;
@@ -1352,7 +1008,7 @@ message PaymentMethod {
     string account_regexp = 10;
     // @inject_tag: bson:"is_active" json:"is_active" validate:"omitempty"
     bool is_active = 11;
-    // @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24"
+    // @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string payment_system_id = 12;
     // @inject_tag: bson:"test_settings" json:"test_settings" validate:"omitempty"
     map<string, PaymentMethodParams> test_settings = 13;
@@ -1434,23 +1090,15 @@ message PaymentFormPaymentMethod {
 
 message MerchantPaymentMethodPerTransactionCommission {
     // @inject_tag: validate:"omitempty,numeric,gte=0" json:"fee"
-    //
-    // The transaction commission.
     double fee = 1;
     // @inject_tag: json:"currency"
-    //
-    // The currency of the transaction commission.
     string currency = 2;
 }
 
 message MerchantPaymentMethodCommissions {
-    // @inject_tag: validate:"omitempty,numeric,gte=0,lte=100" json:"fee"
-    //
-    // The payment method commission.
+    // @inject_tag: validate:"omitempty,numeric,gte=0,lte=100" json:"fee" 
     double fee = 1;
-    // @inject_tag: validate:"required" json:"per_transaction" required:"true"
-    //
-    // Information about the transaction commission.
+    // @inject_tag: validate:"required" json:"per_transaction"
     MerchantPaymentMethodPerTransactionCommission per_transaction = 2;
 }
 
@@ -1466,24 +1114,16 @@ message MerchantPaymentMethodIntegration {
 }
 
 message MerchantPaymentMethodIdentification {
-    // @inject_tag: validate:"required,hexadecimal,len=24" json:"id" required:"true"
-    //
-    // The unique identifier for the merchant payment method.
+    // @inject_tag: validate:"required,hexadecimal,len=24" json:"id" faker:"objectIdString"
     string id = 1;
-    // @inject_tag: validate:"required" json:"name" required:"true"
-    //
-    // The merchant payment method's name.
+    // @inject_tag: validate:"required" json:"name"
     string name = 2;
 }
 
 message MerchantPaymentMethod {
-    // The merchant's payment method data.
     MerchantPaymentMethodIdentification payment_method = 3;
-    // The merchant's payment method commissions.
     MerchantPaymentMethodCommissions commission = 4;
-    //@inject_tag: json:"-"
     MerchantPaymentMethodIntegration integration = 5;
-    // Has a true value if the payment method is active.
     bool is_active = 6;
 }
 
@@ -1516,15 +1156,15 @@ message Refund {
 }
 
 message MerchantPaymentMethodHistory {
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string merchant_id = 2;
     // @inject_tag: validate:"required"
     MerchantPaymentMethod paymentMethod = 3;
     // @inject_tag: json:"created_at" validate:"required"
     google.protobuf.Timestamp created_at = 4;
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string user_id = 5;
 }
 
@@ -1680,7 +1320,7 @@ message TokenSettingsItem {
 message TokenSettings {
     //@inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" required:"true"
     //
-    // The unique identifier for the Project found in the merchant account in the PaySuper Dashboard.
+    // The ID of the Project found in your merchant account in the PaySuper Dashboard.
     string project_id = 2;
     //@inject_tag: json:"return_url"
     //
@@ -1728,63 +1368,35 @@ message TokenSettings {
 
 message OrderIssuer {
     //@inject_tag: bson:"url" json:"url"
-    //
-    // The referrer URL.
     string url = 1;
     //@inject_tag: bson:"embedded" json:"embedded"
-    //
-    // Has a true value if the form is embedded.
     bool embedded = 2;
     //@inject_tag: bson:"reference" json:"reference"
-    //
-    // The unique identifier for the reference.
     string reference = 3;
     //@inject_tag: bson:"reference_type" json:"reference_type"
-    //
-    // The reference type.
     string reference_type = 4;
     //@inject_tag: bson:"utm_source" json:"utm_source"
-    //
-    // The UTM-tag of the advertising system, for example: Bing Ads, Google Adwords.
     string utm_source = 5;
     //@inject_tag: bson:"utm_medium" json:"utm_medium"
-    //
-    // The UTM-tag of the traffic type, e.g.: cpc, cpm, email newsletter.
     string utm_medium = 6;
     //@inject_tag: bson:"utm_campaign" json:"utm_campaign"
-    //
-    // The UTM-tag of the advertising campaign, for example: Online games, Simulation game.
     string utm_campaign = 7;
     //@inject_tag: bson:"referrer_host" json:"referrer_host"
-    //
-    // The referrer's host.
     string referrer_host = 8;
 }
 
 message OrderNotificationRefund {
     //@inject_tag: validate:"required,numeric,gt=0" json:"amount"
-    //
-    // The refund amount.
     double amount = 1;
     //@inject_tag: validate:"required,alpha,len=3" json:"currency"
-    //
-    // The refund's currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 2;
     //@inject_tag: json:"reason"
-    //
-    // The refund reason. Available values: Customer's request, Redeem chargeback, Purchase not provided, Card data was stolen.
     string reason = 3;
     //@inject_tag: json:"code"
-    //
-    // The internal identity for the refund reason in PaySuper.
     string code = 4;
     //@inject_tag: json:"receipt_number"
-    //
-    // The unique identifier for the refund's receipt.
     string receipt_number = 5;
     //@inject_tag: json:"receipt_url"
-    //
-    // The URL in PaySuper service for online access to the refund's receipt.
     string receipt_url = 6;
 }
 
@@ -1892,7 +1504,7 @@ message GetPriceGroupRequest {
 }
 
 message PriceGroup {
-    //@inject_tag: json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true"
+    //@inject_tag: json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the price group.
     string id = 1;
@@ -2389,7 +2001,7 @@ message VatTransaction {
 }
 
 message VatReport {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
     //@inject_tag: json:"country" bson:"country" validate:"required,alpha,len=2"
     string country = 2;
@@ -2429,7 +2041,7 @@ message VatReport {
     google.protobuf.Timestamp updated_at = 19;
     //@inject_tag: json:"paid_at" bson:"paid_at"
     google.protobuf.Timestamp paid_at = 20;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     string operating_company_id = 21;
 }
 
@@ -2448,12 +2060,8 @@ message AnnualTurnover {
 
 message OrderViewMoney {
     //@inject_tag: json:"amount" bson:"amount"
-    //
-    // The amount value.
     double amount = 1;
     //@inject_tag: json:"currency" bson:"currency"
-    //
-    // Three-letter currency code in ISO 4217, in uppercase.
     string currency = 2;
 }
 
@@ -2468,202 +2076,103 @@ message OrderViewPublic {
     // @inject_tag: json:"-" bson:"_id"
     string id = 1; // unique internal order identifier in Protocol One
     // @inject_tag: json:"uuid" bson:"uuid"
-    //
-    // The unique identifier for the order.
-    string uuid = 2;
+    string uuid = 2; // unique public order identifier in Protocol One
     // @inject_tag: json:"total_payment_amount" bson:"total_payment_amount"
-    //
-    // The total payment amount.
     double total_payment_amount = 3;
     // @inject_tag: json:"currency" bson:"currency"
-    //
-    // The currency of the payment. Three-letter currency code ISO 4217, in uppercase.
     string currency = 4;
     // @inject_tag: json:"project" bson:"project"
-    //
-    // The project data.
     ProjectOrder project = 5;
     // @inject_tag: bson:"created_at" bson:"created_at"
-    //
-    // The date in ISO 8601 of the order creation.
     google.protobuf.Timestamp created_at = 6;
     // @inject_tag: json:"transaction" bson:"pm_order_id"
-    //
-    // The unique identifier for the order in the payment system.
-    string transaction = 7;
+    string transaction = 7; // unique order id in payment system
     // @inject_tag: json:"payment_method" bson:"payment_method"
-    //
-    // The payment method data.
     PaymentMethodOrder payment_method = 8;
     // @inject_tag: json:"country_code" bson:"country_code"
-    //
-    // Two-letter country code by ISO 3166-1, in uppercase.
     string country_code = 9;
     // @inject_tag: json:"merchant_id" bson:"merchant_id"
-    //
-    // The unique identifier for the merchant.
     string merchant_id = 10;
     // @inject_tag: json:"locale" bson:"locale"
-    //
-    // The customer’s locale name. Four-letter language code by ISO 639, for instance en-US.
     string locale = 11;
     // @inject_tag: json:"status" bson:"status"
-    //
-    // The current status of the order.
     string status = 12;
     // @inject_tag: json:"transaction_date" bson:"pm_order_close_date"
-    //
-    // The date in ISO 8601 of the processed transaction.
     google.protobuf.Timestamp transaction_date = 13;
     // @inject_tag: json:"user" bson:"user"
-    //
-    // The customer data.
     OrderUser user = 14;
     // @inject_tag: json:"billing_address" bson:"billing_address"
-    //
-    // The customer's billing address.
     OrderBillingAddress billing_address = 15;
     // @inject_tag: json:"type" bson:"type"
-    //
-    // The order type. It depends on your sales option (Game Keys, Virtual Items, Virtual Currency, the simple checkout). Available values: key, product, simple.
     string type = 16;
     // @inject_tag: json:"is_vat_deduction" bson:"is_vat_deduction"
-    //
-    // Has a true value if VAT can be deducted.
     bool is_vat_deduction = 17;
     // @inject_tag: json:"gross_revenue" bson:"gross_revenue"
-    //
-    // The gross revenue.
     OrderViewMoney gross_revenue = 18;
     // @inject_tag: json:"tax_fee" bson:"tax_fee"
-    //
-    // The tax fee.
     OrderViewMoney tax_fee = 19;
     // @inject_tag: json:"tax_fee_currency_exchange_fee" bson:"tax_fee_currency_exchange_fee"
-    //
-    // The tax fee for the currency exchange.
     OrderViewMoney tax_fee_currency_exchange_fee = 20;
     // @inject_tag: json:"tax_fee_total" bson:"tax_fee_total"
-    //
-    // The total tax fee.
     OrderViewMoney tax_fee_total = 21;
     // @inject_tag: json:"method_fee_total" bson:"method_fee_total"
-    //
-    // The tax fee total.
     OrderViewMoney method_fee_total = 22;
     // @inject_tag: json:"method_fee_tariff" bson:"method_fee_tariff"
-    //
-    // The tariff for the tax fee.
     OrderViewMoney method_fee_tariff = 23;
     // @inject_tag: json:"method_fixed_fee_tariff" bson:"method_fixed_fee_tariff"
-    //
-    // The tariff for the fixed tax fee.
     OrderViewMoney method_fixed_fee_tariff = 24;
     // @inject_tag: json:"paysuper_fixed_fee" bson:"paysuper_fixed_fee"
-    //
-    // The tariff for the PaySuper tax fee.
     OrderViewMoney paysuper_fixed_fee = 25;
     // @inject_tag: json:"fees_total" bson:"fees_total"
-    //
-    // The total fees.
     OrderViewMoney fees_total = 26;
     // @inject_tag: json:"fees_total_local" bson:"fees_total_local"
-    //
-    // The local total fees.
     OrderViewMoney fees_total_local = 27;
     // @inject_tag: json:"net_revenue" bson:"net_revenue"
-    //
-    // The net revenue.
     OrderViewMoney net_revenue = 28;
     // @inject_tag: json:"refund_gross_revenue" bson:"refund_gross_revenue"
-    //
-    // The gross revenue refund.
     OrderViewMoney refund_gross_revenue = 29;
     // @inject_tag: json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"
-    //
-    // The tariff for the fee method refund.
     OrderViewMoney method_refund_fee_tariff = 30;
     // @inject_tag: json:"merchant_refund_fixed_fee_tariff" bson:"merchant_refund_fixed_fee_tariff"
-    //
-    // The tariff for the fixed fee method refund.
     OrderViewMoney merchant_refund_fixed_fee_tariff = 31;
     // @inject_tag: json:"refund_tax_fee" bson:"refund_tax_fee"
-    //
-    // The tax fee refund.
     OrderViewMoney refund_tax_fee = 32;
     // @inject_tag: json:"refund_tax_fee_currency_exchange_fee" bson:"refund_tax_fee_currency_exchange_fee"
-    //
-    // The refund of the tax fee for the currency exchange.
     OrderViewMoney refund_tax_fee_currency_exchange_fee = 33;
     // @inject_tag: json:"paysuper_refund_tax_fee_currency_exchange_fee" bson:"paysuper_refund_tax_fee_currency_exchange_fee"
-    //
-    // The PaySuper tax fee for the currency exchange refund.
     OrderViewMoney paysuper_refund_tax_fee_currency_exchange_fee = 34;
     // @inject_tag: json:"refund_reverse_revenue" bson:"refund_reverse_revenue"
-    //
-    // The reverse revenue refund.
     OrderViewMoney refund_reverse_revenue = 35;
     // @inject_tag: json:"refund_fees_total" bson:"refund_fees_total"
-    //
-    // The total fees refund.
     OrderViewMoney refund_fees_total = 36;
     // @inject_tag: json:"refund_fees_total_local" bson:"refund_fees_total_local"
-    //
-    // The  local total fees refund.
     OrderViewMoney refund_fees_total_local = 37;
-    // The order issuer data.
     OrderIssuer issuer = 38;
     // @inject_tag: json:"items" bson:"items"
-    //
-    // The list of the products.
     repeated OrderItem items = 39;
     //@inject_tag: json:"merchant_payout_currency" bson:"merchant_payout_currency"
-    //
-    // The merchant's payout currency.
     string merchant_payout_currency = 40;
     //@inject_tag: json:"parent_order" bson:"parent_order"
-    //
-    // The parent order data (for refunds only).
     ParentOrder parent_order = 41;
     //@inject_tag: json:"refund" bson:"refund"
-    //
-    // The refund's notification. Has a null value if the order is not refunded.
     OrderNotificationRefund refund = 42;
     //@inject_tag: json:"cancellation" bson:"cancellation"
-    //
-    // The cancellation's notification. Has a null value if the order is not cancelled.
     OrderNotificationCancellation cancellation = 43;
     // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
-    //
-    // The unique identifier for the merchant's operating company.
     string operating_company_id = 44;
     // @inject_tag: json:"refund_allowed" bson:"refund_allowed"
-    //
-    // Has a true value if the refund is allowed.
     bool refund_allowed = 45;
     // @inject_tag: json:"order_charge" bson:"order_charge"
-    //
-    // The order charge.
     OrderViewMoney order_charge = 46;
     // @inject_tag: json:"payment_ip_country"
-    //
-    // The IP address of the country where the order was paid for.
     string payment_ip_country = 47;
     // @inject_tag: json:"is_ip_country_mismatch_bin" bson:"is_ip_country_mismatch_bin"
-    //
-    // Has a true value if the country from the card's BIN has not been matched to the country defined by the IP address (for card payments only).
     bool is_ip_country_mismatch_bin = 48;
     // @inject_tag: json:"billing_country_changed_by_user" bson:"billing_country_changed_by_user"
-    //
-    // Has a true value if the country's name was selected by the customer.
     bool billing_country_changed_by_user = 49;
     // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
-    //
-    // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
     string vat_payer = 50;
     // @inject_tag: json:"is_production" bson:"is_production"
-    //
-    // Has a true value for a production payment and false for a test payment that goes through a test sandbox.
     bool is_production = 51;
 }
 
@@ -2893,90 +2402,50 @@ message Id {
 
 message RangeInt {
     //@inject_tag: json:"from"
-    //
-    // The lower boundary value of the range.
     int32 from = 1;
     //@inject_tag: json:"to"
-    //
-    // The upper boundary value of the range.
     int32 to = 2;
 }
 
 message MerchantTariffRatesPayment {
     //@inject_tag: json:"min_amount" bson:"min_amount"
-    //
-    // The minimum payment amount.
     double min_amount = 1;
     //@inject_tag: json:"max_amount" bson:"max_amount"
-    //
-    // The maximum payment amount.
     double max_amount = 2;
     //@inject_tag: json:"method_name" bson:"method_name"
-    //
-    // The payment method's name.
     string method_name = 3;
     //@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
-    //
-    // The fee of the payment method in per cent.
     double method_percent_fee = 4;
     //@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
-    //
-    // The fixed fee of the payment method in the particular currency.
     double method_fixed_fee = 5;
     //@inject_tag: json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"
-    //
-    // The currency of the fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
     string method_fixed_fee_currency = 6;
     //@inject_tag: json:"ps_percent_fee" bson:"ps_percent_fee"
-    //
-    // The PaySuper fee in per cent.
     double ps_percent_fee = 7;
     //@inject_tag: json:"ps_fixed_fee" bson:"ps_fixed_fee"
-    //
-    // The PaySuper fixed fee in a particular currency.
     double ps_fixed_fee = 8;
     //@inject_tag: json:"ps_fixed_fee_currency" bson:"ps_fixed_fee_currency"
-    //
-    // The currency of the PaySuper fixed fee of the payment method. Three-letter currency code ISO 4217, in uppercase.
     string ps_fixed_fee_currency = 9;
     //@inject_tag: json:"merchant_home_region" bson:"merchant_home_region"
-    //
-    // The merchant's home region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
     string merchant_home_region = 10;
     //@inject_tag: json:"payer_region" bson:"payer_region"
-    //
-    // The payer's region name. Available values: asia, europe, latin_america, russia_and_cis, worldwide.
     string payer_region = 11;
     // @inject_tag: json:"mcc_code" bson:"mcc_code"
-    //
-    // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 12;
     // @inject_tag: json:"is_active" bson:"is_active"
-    //
-    // Has a true value if the payment method is active.
     bool is_active = 13;
 }
 
 message MerchantTariffRatesSettingsItem {
     //@inject_tag: json:"method_name" bson:"method_name"
-    //
-    // The method's name.
     string method_name = 1;
     //@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
-    //
-    // The fee of the method in per cent.
     double method_percent_fee = 2;
     //@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
-    //
-    // The fixed fee of the method in the particular currency.
     double method_fixed_fee = 3;
     //@inject_tag: json:"method_fixed_fee_currency" bson:"method_fixed_fee_currency"
-    //
-    // The currency of the fixed fee of the method. Three-letter currency code ISO 4217, in uppercase.
     string method_fixed_fee_currency = 4;
     //@inject_tag: json:"is_paid_by_merchant" bson:"is_paid_by_merchant"
-    //
-    // Has a true value if the method is paid by the merchant.
     bool is_paid_by_merchant = 5;
 }
 
@@ -2995,41 +2464,27 @@ message MerchantTariffRatesSettings {
 
 message Key {
     //@inject_tag: json:"id" bson:"_id"
-    //
-    // The unique identifier for the key.
     string id = 1;
     //@inject_tag: json:"code" validate:"required,max=50"
-    //
-    // The activation code.
     string code = 2;
     //@inject_tag: validate:"required,hexadecimal,len=24"
-    //
-    // The unique identifier for the key's product.
     string key_product_id = 3;
     //@inject_tag: validate:"required,max=255"
-    //
-    // The unique identifier for the platform.
     string platform_id = 5;
     //@inject_tag: validate:"omitempty,hexadecimal,len=24"
-    //
-    // The unique identifier for the order when redeeming the code (can be empty).
     string order_id = 6;
-    // The date the key has been created.
+
     google.protobuf.Timestamp created_at = 7;
     //@inject_tag: validate:"omitempty"
-    //
-    // The date the key has been reserved.
     google.protobuf.Timestamp reserved_to = 8;
     //@inject_tag: validate:"omitempty"
-    //
-    // The date the key has been redeemed.
     google.protobuf.Timestamp redeemed_at = 9;
 }
 
 message PayoutDocument {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
-    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string merchant_id = 2;
     //@inject_tag: json:"source_id"
     repeated string source_id = 3;
@@ -3071,12 +2526,14 @@ message PayoutDocument {
     google.protobuf.Timestamp arrival_date = 26;
     //@inject_tag: json:"paid_at"
     google.protobuf.Timestamp paid_at = 27;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     string operating_company_id = 28;
 }
 
 message PayoutDocumentChanges {
+    // @inject_tag: faker:"objectIdString"
     string id = 1;
+    // @inject_tag: faker:"objectIdString"
     string payout_document_id = 2;
     string source = 3;
     string ip = 4;
@@ -3141,7 +2598,7 @@ message OrderReceipt {
     string payment_partner = 9;
     // @inject_tag: json:"vat_payer"
     //
-    // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
+    // Responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
     string vat_payer = 10;
     //@inject_tag: json:"vat_in_order_currency"
     //
@@ -3190,164 +2647,90 @@ message OrderReceiptItem {
 
 message HasCurrencyItem {
     //@inject_tag: json:"currency" validate:"required,alpha,len=3"
-    //
-    // Three-letter currency code ISO 4217, in uppercase.
     string currency = 1;
     //@inject_tag: json:"region" validate:"required,region_price"
-    //
-    // The region of the price.
     string region = 2;
 }
 
 message LocalizedUrl {
     //@inject_tag: validate:"omitempty,uri" json:"en"
-    //
-    // The URL for EN localization.
     string en = 1;
     //@inject_tag: validate:"omitempty,uri" json:"ru"
-    //
-    // The URL for RU localization.
     string ru = 2;
     //@inject_tag: validate:"omitempty,uri" json:"es"
-    //
-    // The URL for ES localization.
     string es = 3;
     //@inject_tag: validate:"omitempty,uri" json:"de"
-    //
-    // The URL for DE localization.
     string de = 4;
     //@inject_tag: validate:"omitempty,uri" json:"zh"
-    //
-    // The URL for ZH localization.
     string zh = 5;
     //@inject_tag: validate:"omitempty,uri" json:"fr"
-    //
-    // The URL for FR localization.
     string fr = 6;
     //@inject_tag: validate:"omitempty,uri" json:"ar"
-    //
-    // The URL for AR localization.
     string ar = 7;
     //@inject_tag: validate:"omitempty,uri" json:"pt"
-    //
-    // The URL for PT localization.
     string pt = 8;
     //@inject_tag: validate:"omitempty,uri" json:"it"
-    //
-    // The URL for IT localization.
     string it = 9;
     //@inject_tag: validate:"omitempty,uri" json:"pl"
-    //
-    // The URL for PL localization.
     string pl = 10;
     //@inject_tag: validate:"omitempty,uri" json:"el"
-    //
-    // The URL for EL localization.
     string el = 11;
     //@inject_tag: validate:"omitempty,uri" json:"ko"
-    //
-    // The URL for KO localization.
     string ko = 12;
     //@inject_tag: validate:"omitempty,uri" json:"ja"
-    //
-    // The URL for JA localization.
     string ja = 13;
     //@inject_tag: validate:"omitempty,uri" json:"vl"
-    //
-    // The URL for VL localization.
     string vl = 14;
     //@inject_tag: validate:"omitempty,uri" json:"he"
-    //
-    // The URL for HE localization.
     string he = 15;
     //@inject_tag: validate:"omitempty,uri" json:"th"
-    //
-    // The URL for TH localization.
     string th = 16;
     //@inject_tag: validate:"omitempty,uri" json:"cs"
-    //
-    // The URL for CS localization.
     string cs = 17;
     //@inject_tag: validate:"omitempty,uri" json:"bg"
-    //
-    // The URL for BG localization.
     string bg = 18;
     //@inject_tag: validate:"omitempty,uri" json:"fi"
-    //
-    // The URL for FI localization.
     string fi = 19;
     //@inject_tag: validate:"omitempty,uri" json:"sv"
-    //
-    // The URL for SV localization.
     string sv = 20;
     //@inject_tag: validate:"omitempty,uri" json:"da"
-    //
-    // The URL for DA localization.
     string da = 21;
     //@inject_tag: validate:"omitempty,uri" json:"tr"
-    //
-    // The URL for TR localization.
     string tr = 22;
 }
 
 message ImageCollection {
     //@inject_tag: json:"images"
-    //
-    // The list of URLs for covers for each localization.
     LocalizedUrl images = 1;
     //@inject_tag: json:"use_one_for_all"
-    //
-    // Has a true value if the single cover is used for all localizations.
     bool use_one_for_all = 2;
 }
 
 message ProductPrice {
     // @inject_tag: json:"amount" validate:"required,numeric,gt=0"
-    //
-    // The product's price.
     double amount = 1;
     //@inject_tag: json:"currency" validate:"omitempty,alpha,len=3"
-    //
-    // The product's price currency. Three-letter Currency Code ISO 4217, in uppercase.
     string currency = 2;
     //@inject_tag: json:"region" validate:"omitempty,region_price"
-    //
-    // The product's price region.
     string region = 3;
     //@inject_tag: json:"is_virtual_currency" bson:"is_virtual_currency"
-    //
-    // Has a true value if the product has the virtual currency.
     bool is_virtual_currency = 4;
 }
 
 message ProjectVirtualCurrency {
     //@inject_tag: json:"logo" validate:"omitempty,url"
-    //
-    // The logo URL for the virtual currency.
     string logo = 1;
     // @inject_tag: json:"name" validate:"required,min=1"
-    //
-    // The virtual currency name.
     map<string, string> name = 2;
     // @inject_tag: json:"success_message" validate:"required,min=1"
-    //
-    // The virtual currency's name.
     map<string, string> success_message = 3;
     //@inject_tag: json:"prices" validate:"required,min=1,currency_price,dive"
-    //
-    // The list of product's prices.
     repeated ProductPrice prices = 4;
     //@inject_tag: json:"min_purchase_value"
-    //
-    // The minimum limit of the virtual currency.
     double min_purchase_value = 5;
     //@inject_tag: json:"max_purchase_value"
-    //
-    // The maximum limit of the virtual currency.
     double max_purchase_value = 6;
     //@inject_tag: json:"sell_count_type" validate:"omitempty,oneof=fractional integral"
-    //
-    // The number representation of the virtual currency amount. Available values: fractional (for example: 1,58), integral (1, 2, 5 etc).
     string sell_count_type = 7;
 }
 message OrderCreateByPaylink {
@@ -3489,45 +2872,25 @@ message PaymentMinLimitSystem {
 }
 
 message UserRole {
-    //@inject_tag: json:"id" validate:"required,hexadecimal,len=24" required:"true"
-    //
-    // The unique identifier for the user's role.
+    //@inject_tag: json:"id" validate:"required,hexadecimal,len=24"
     string id = 1;
-    //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
-    //
-    // The unique identifier for the merchant (only for merchant users).
+    //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
     string merchant_id = 3;
-    //@inject_tag: json:"role" validate:"required" required:"true"
-    //
-    // The user's role.
+    //@inject_tag: json:"role" validate:"required"
     string role = 4;
     //@inject_tag: json:"status" bson:"status" validate="oneof=invited accepted"
-    //
-    // The user's invitation status. Available values: invited, approved.
     string status = 5;
-    //@inject_tag: json:"user_id" bson:"user_id" validate:"required,hexadecimal,len=24" required:"true"
-    //
-    // The unique identifier for the user.
+    //@inject_tag: json:"user_id" bson:"user_id" validate:"required,hexadecimal,len=24"
     string user_id = 6;
-    //@inject_tag: json:"first_name" bson:"first_name"  validate:"required" required:"true"
-    //
-    // The user's first name.
+    //@inject_tag: json:"first_name" bson:"first_name"  validate:"required"
     string first_name = 7;
-    //@inject_tag: json:"last_name" bson:"last_name" validate:"required" required:"true"
-    //
-    // The user's last name.
+    //@inject_tag: json:"last_name" bson:"last_name" validate:"required"
     string last_name = 8;
-    //@inject_tag: json:"email" bson:"email" validate:"required,email" required:"true"
-    //
-    // The user's email address.
+    //@inject_tag: json:"email" bson:"email" validate:"required,email"
     string email = 9;
     // @inject_tag: json:"created_at"
-    //
-    // The date of the user's role creation.
     google.protobuf.Timestamp created_at = 10;
     // @inject_tag: json:"updated_at"
-    //
-    // The date of the user's role last update.
     google.protobuf.Timestamp updated_at = 11;
 }
 
