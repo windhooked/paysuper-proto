@@ -7990,8 +7990,8 @@ func (m *ZipCode) GetCreatedAt() *timestamp.Timestamp {
 }
 
 type PaymentChannelCostSystem struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
+	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,alpha"
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required,alpha"`
 	//@inject_tag: json:"region" bson:"region" validate:"required"
@@ -8012,8 +8012,8 @@ type PaymentChannelCostSystem struct {
 	IsActive bool `protobuf:"varint,10,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
 	MccCode string `protobuf:"bytes,11,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
-	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
-	OperatingCompanyId   string   `protobuf:"bytes,12,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
+	// @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
+	OperatingCompanyId   string   `protobuf:"bytes,12,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
