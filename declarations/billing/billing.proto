@@ -528,13 +528,13 @@ message SystemNotificationStatuses {
 }
 
 message Notification {
-    // @inject_tag: json:"id"
+    // @inject_tag: json:"id" faker:"objectIdString"
     string id = 1;
     // @inject_tag: json:"message"
     string message = 3;
-    // @inject_tag: json:"merchant_id"
+    // @inject_tag: json:"merchant_id" faker:"objectIdString"
     string merchant_id = 4;
-    // @inject_tag: json:"user_id"
+    // @inject_tag: json:"user_id" faker:"objectIdString"
     string user_id = 5;
     // @inject_tag: json:"is_system"
     bool is_system = 6;
