@@ -2175,8 +2175,8 @@ func (m *MerchantTariff) GetHomeRegion() string {
 }
 
 type Merchant struct {
-	// @inject_tag: bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"_id"`
+	// @inject_tag: bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: json:"user"
 	User *MerchantUser `protobuf:"bytes,2,opt,name=user,proto3" json:"user"`
 	// @inject_tag: json:"company"
@@ -2254,8 +2254,8 @@ type Merchant struct {
 	ManualPayoutsEnabled bool `protobuf:"varint,54,opt,name=manual_payouts_enabled,json=manualPayoutsEnabled,proto3" json:"manual_payouts_enabled"`
 	// @inject_tag: json:"mcc_code"
 	MccCode string `protobuf:"bytes,55,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code"`
-	// @inject_tag: json:"operating_company_id"
-	OperatingCompanyId string `protobuf:"bytes,56,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id"`
+	// @inject_tag: json:"operating_company_id" faker:"objectIdString"
+	OperatingCompanyId string `protobuf:"bytes,56,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" faker:"objectIdString"`
 	// @inject_tag: json:"merchant_operations_type" validate:"oneof=high-risk low-risk"
 	MerchantOperationsType string `protobuf:"bytes,57,opt,name=merchant_operations_type,json=merchantOperationsType,proto3" json:"merchant_operations_type" validate:"oneof=high-risk low-risk"`
 	// @inject_tag: json:"dont_charge_vat"
@@ -5603,8 +5603,8 @@ func (m *MerchantPaymentMethodIntegration) GetIntegrated() bool {
 }
 
 type MerchantPaymentMethodIdentification struct {
-	// @inject_tag: validate:"required,hexadecimal,len=24" json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" json:"id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	// @inject_tag: validate:"required" json:"name"
 	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name" validate:"required"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -5960,16 +5960,16 @@ func (m *Refund) GetCreatedOrderId() string {
 }
 
 type MerchantPaymentMethodHistory struct {
-	// @inject_tag: validate:"required,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" validate:"required,hexadecimal,len=24"`
-	// @inject_tag: validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	// @inject_tag: validate:"required"
 	PaymentMethod *MerchantPaymentMethod `protobuf:"bytes,3,opt,name=paymentMethod,proto3" json:"paymentMethod,omitempty" validate:"required"`
 	// @inject_tag: json:"created_at" validate:"required"
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,4,opt,name=created_at,json=createdAt,proto3" json:"created_at" validate:"required"`
-	// @inject_tag: validate:"required,hexadecimal,len=24"
-	UserId               string   `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	UserId               string   `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
