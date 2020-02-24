@@ -7372,7 +7372,7 @@ func (m *GetPaymentMethodSettingsRequest) GetOperatingCompanyId() string {
 type GetPaymentMethodSettingsResponse struct {
 	// @inject_tag: json:"params"
 	//
-	// The testing settings.
+	// The payment method settings.
 	Params               []*PaymentMethodParams `protobuf:"bytes,1,rep,name=params,proto3" json:"params"`
 	XXX_NoUnkeyedLiteral struct{}               `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                 `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -12306,11 +12306,11 @@ func (m *GetDashboardRevenueDynamicsReportResponse) GetItem() *DashboardRevenueD
 type DashboardAmountItemWithChart struct {
 	//@inject_tag: json:"amount_current"
 	//
-	// The total amount calculated for the current report.
+	// The total amount calculated for the current period.
 	AmountCurrent float64 `protobuf:"fixed64,1,opt,name=amount_current,json=amountCurrent,proto3" json:"amount_current"`
 	//@inject_tag: json:"amount_previous"
 	//
-	// The total amount calculated for the previous report.
+	// The total amount calculated for the previous period.
 	AmountPrevious float64 `protobuf:"fixed64,2,opt,name=amount_previous,json=amountPrevious,proto3" json:"amount_previous"`
 	//@inject_tag: json:"currency"
 	//
@@ -12434,11 +12434,11 @@ func (m *DashboardChartItemFloat) GetValue() float64 {
 type DashboardMainReportTotalTransactions struct {
 	//@inject_tag: json:"count_current" bson:"count"
 	//
-	// The total amount calculated for the current report.
+	// The total amount calculated for the current period.
 	CountCurrent int64 `protobuf:"varint,1,opt,name=count_current,json=countCurrent,proto3" json:"count_current" bson:"count"`
 	//@inject_tag: json:"count_previous"
 	//
-	// The total amount calculated for the previous report.
+	// The total amount calculated for the previous period.
 	CountPrevious int64 `protobuf:"varint,2,opt,name=count_previous,json=countPrevious,proto3" json:"count_previous"`
 	//@inject_tag: json:"chart"
 	//
@@ -12893,11 +12893,11 @@ func (m *DashboardRevenueByCountryReport) GetChart() []*DashboardRevenueByCountr
 type DashboardSalesTodayReportTop struct {
 	//@inject_tag: json:"name" bson:"name"
 	//
-	// The sold product's name.
+	// The name of the sold item (product or project).
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name" bson:"name"`
 	//@inject_tag: json:"count" bson:"count"
 	//
-	// The total number of products which were sold for the specified period.
+	// The total number of items (products or projects) which were sold for the specified period.
 	Count                int64    `protobuf:"varint,2,opt,name=count,proto3" json:"count" bson:"count"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -13003,11 +13003,11 @@ type DashboardSalesTodayReport struct {
 	Top []*DashboardSalesTodayReportTop `protobuf:"bytes,1,rep,name=top,proto3" json:"top" bson:"top"`
 	//@inject_tag: json:"total_current" bson:"total"
 	//
-	// The total number of products which were sold for the specified period.
+	// The total number of items (products or projects) which were sold for the specified period.
 	TotalCurrent int64 `protobuf:"varint,2,opt,name=total_current,json=totalCurrent,proto3" json:"total_current" bson:"total"`
 	//@inject_tag: json:"total_previous"
 	//
-	// The total number of products which were sold for the previous period.
+	// The total number of items (products or projects) which were sold for the previous period.
 	TotalPrevious int64 `protobuf:"varint,3,opt,name=total_previous,json=totalPrevious,proto3" json:"total_previous"`
 	//@inject_tag: json:"chart" bson:"chart"
 	//
@@ -13221,7 +13221,7 @@ type CreatePayoutDocumentRequest struct {
 	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"`
 	//@inject_tag: json:"ip" validate:"required" required:"true"
 	//
-	// The merchant's IP address.
+	// The IP address of the user which created the payout document.
 	Ip string `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip" validate:"required" required:"true"`
 	//@inject_tag: json:"-" validate:"required"
 	Initiator string `protobuf:"bytes,4,opt,name=initiator,proto3" json:"-" validate:"required"`
@@ -13435,7 +13435,7 @@ type UpdatePayoutDocumentRequest struct {
 	FailureTransaction string `protobuf:"bytes,6,opt,name=failure_transaction,json=failureTransaction,proto3" json:"failure_transaction" validate:"omitempty,max=255"`
 	//@inject_tag: json:"ip"
 	//
-	// The merchant's IP address.
+	// The IP address of the user which updated the payout document.
 	Ip                   string   `protobuf:"bytes,7,opt,name=ip,proto3" json:"ip"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -15888,11 +15888,11 @@ type InviteUserMerchantRequest struct {
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24" required:"true"`
 	//@inject_tag: validate:"required,email" required:"true"
 	//
-	// The merchant user's email address.
+	// The user's email address to obtain an invitation about the merchant role.
 	Email string `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty" validate:"required,email" required:"true"`
 	//@inject_tag: validate:"required" required:"true"
 	//
-	// The merchant user's role. Available values: merchant_developer, merchant_accounting, merchant_support, merchant_view_only.
+	// The merchant role for the invited user. Available values: merchant_developer, merchant_accounting, merchant_support, merchant_view_only.
 	Role                 string   `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty" validate:"required" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -15950,7 +15950,7 @@ type InviteUserMerchantResponse struct {
 	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
 	// The response error message (if any).
 	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	// The merchant user's role data.
+	// The merchant role data for the invited user.
 	Role                 *UserRole `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte    `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -16006,11 +16006,11 @@ func (m *InviteUserMerchantResponse) GetRole() *UserRole {
 type InviteUserAdminRequest struct {
 	//@inject_tag: validate:"required,email" required:"true"
 	//
-	// The user's email.
+	// The user's email address to obtain an invitation about the admin role.
 	Email string `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty" validate:"required,email" required:"true"`
 	//@inject_tag: validate:"required" required:"true"
 	//
-	// The user role's name.
+	// The admin role for the invited user.
 	Role                 string   `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty" validate:"required" required:"true"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -16799,7 +16799,7 @@ type MerchantForUserInfo struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// The merchant's name.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// The merchant's role.
+	// The user's role in the merchant.
 	Role                 string   `protobuf:"bytes,3,opt,name=role,proto3" json:"role,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
