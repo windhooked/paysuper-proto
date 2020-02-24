@@ -23,7 +23,7 @@ type MgoCommission struct {
 	Id struct {
 		PaymentMethodId primitive.ObjectID `bson:"pm_id"`
 		ProjectId       primitive.ObjectID `bson:"project_id"`
-	} `bson:"_id"` 
+	} `bson:"_id"`
 	PaymentMethodCommission float64   `bson:"pm_commission"`
 	PspCommission           float64   `bson:"psp_commission"`
 	ToUserCommission        float64   `bson:"total_commission_to_user"`
@@ -287,26 +287,6 @@ type MgoPayoutCostSystem struct {
 	InterbankCostCurrency string             `bson:"interbank_cost_currency"`
 	IsActive              bool               `bson:"is_active"`
 	CreatedAt             time.Time          `bson:"created_at"`
-}
-
-type MgoPaymentChannelCostMerchant struct {
-	Id                      primitive.ObjectID `bson:"_id"`
-	MerchantId              primitive.ObjectID `bson:"merchant_id"`
-	Name                    string             `bson:"name"`
-	PayoutCurrency          string             `bson:"payout_currency"`
-	MinAmount               float64            `bson:"min_amount"`
-	Region                  string             `bson:"region"`
-	Country                 string             `bson:"country"`
-	MethodPercent           float64            `bson:"method_percent"`
-	MethodFixAmount         float64            `bson:"method_fix_amount"`
-	MethodFixAmountCurrency string             `bson:"method_fix_amount_currency"`
-	PsPercent               float64            `bson:"ps_percent"`
-	PsFixedFee              float64            `bson:"ps_fixed_fee"`
-	PsFixedFeeCurrency      string             `bson:"ps_fixed_fee_currency"`
-	CreatedAt               time.Time          `bson:"created_at"`
-	UpdatedAt               time.Time          `bson:"updated_at"`
-	IsActive                bool               `bson:"is_active"`
-	MccCode                 string             `bson:"mcc_code"`
 }
 
 type MgoMoneyBackCostSystem struct {
@@ -1665,100 +1645,6 @@ func (m *Customer) UnmarshalBSON(raw []byte) error {
 
 	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
 
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func (m *PaymentChannelCostMerchant) MarshalBSON() ([]byte, error) {
-	oid, err := primitive.ObjectIDFromHex(m.MerchantId)
-
-	if err != nil {
-		return nil, err
-	}
-
-	st := &MgoPaymentChannelCostMerchant{
-		MerchantId:              oid,
-		Name:                    m.Name,
-		PayoutCurrency:          m.PayoutCurrency,
-		MinAmount:               m.MinAmount,
-		Region:                  m.Region,
-		Country:                 m.Country,
-		MethodPercent:           m.MethodPercent,
-		MethodFixAmount:         m.MethodFixAmount,
-		MethodFixAmountCurrency: m.MethodFixAmountCurrency,
-		PsPercent:               m.PsPercent,
-		PsFixedFee:              m.PsFixedFee,
-		PsFixedFeeCurrency:      m.PsFixedFeeCurrency,
-		IsActive:                m.IsActive,
-		MccCode:                 m.MccCode,
-	}
-
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err = primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-		st.Id = oid
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-		if err != nil {
-			return nil, err
-		}
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-		if err != nil {
-			return nil, err
-		}
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-	return bson.Marshal(st)
-}
-
-func (m *PaymentChannelCostMerchant) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoPaymentChannelCostMerchant)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.MerchantId = decoded.MerchantId.Hex()
-	m.Name = decoded.Name
-	m.PayoutCurrency = decoded.PayoutCurrency
-	m.MinAmount = decoded.MinAmount
-	m.Region = decoded.Region
-	m.Country = decoded.Country
-	m.MethodPercent = decoded.MethodPercent
-	m.MethodFixAmount = decoded.MethodFixAmount
-	m.MethodFixAmountCurrency = decoded.MethodFixAmountCurrency
-	m.PsPercent = decoded.PsPercent
-	m.PsFixedFee = decoded.PsFixedFee
-	m.PsFixedFeeCurrency = decoded.PsFixedFeeCurrency
-	m.IsActive = decoded.IsActive
-	m.MccCode = decoded.MccCode
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
 	if err != nil {
 		return err
 	}
