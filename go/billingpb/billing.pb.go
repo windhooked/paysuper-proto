@@ -2717,14 +2717,14 @@ func (m *SystemNotificationStatuses) GetTo() int32 {
 }
 
 type Notification struct {
-	// @inject_tag: json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	// @inject_tag: json:"id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" faker:"objectIdString"`
 	// @inject_tag: json:"message"
 	Message string `protobuf:"bytes,3,opt,name=message,proto3" json:"message"`
-	// @inject_tag: json:"merchant_id"
-	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id"`
-	// @inject_tag: json:"user_id"
-	UserId string `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id"`
+	// @inject_tag: json:"merchant_id" faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,4,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" faker:"objectIdString"`
+	// @inject_tag: json:"user_id" faker:"objectIdString"
+	UserId string `protobuf:"bytes,5,opt,name=user_id,json=userId,proto3" json:"user_id" faker:"objectIdString"`
 	// @inject_tag: json:"is_system"
 	IsSystem bool `protobuf:"varint,6,opt,name=is_system,json=isSystem,proto3" json:"is_system"`
 	// @inject_tag: json:"is_read"
@@ -7990,8 +7990,8 @@ func (m *ZipCode) GetCreatedAt() *timestamp.Timestamp {
 }
 
 type PaymentChannelCostSystem struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
+	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,alpha"
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required,alpha"`
 	//@inject_tag: json:"region" bson:"region" validate:"required"
@@ -8012,8 +8012,8 @@ type PaymentChannelCostSystem struct {
 	IsActive bool `protobuf:"varint,10,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
 	MccCode string `protobuf:"bytes,11,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
-	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
-	OperatingCompanyId   string   `protobuf:"bytes,12,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
+	// @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
+	OperatingCompanyId   string   `protobuf:"bytes,12,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`

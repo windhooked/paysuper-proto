@@ -528,13 +528,13 @@ message SystemNotificationStatuses {
 }
 
 message Notification {
-    // @inject_tag: json:"id"
+    // @inject_tag: json:"id" faker:"objectIdString"
     string id = 1;
     // @inject_tag: json:"message"
     string message = 3;
-    // @inject_tag: json:"merchant_id"
+    // @inject_tag: json:"merchant_id" faker:"objectIdString"
     string merchant_id = 4;
-    // @inject_tag: json:"user_id"
+    // @inject_tag: json:"user_id" faker:"objectIdString"
     string user_id = 5;
     // @inject_tag: json:"is_system"
     bool is_system = 6;
@@ -1555,7 +1555,7 @@ message ZipCode {
 }
 
 message PaymentChannelCostSystem {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
     //@inject_tag: json:"name" bson:"name" validate:"required,alpha"
     string name = 2;
@@ -1577,7 +1577,7 @@ message PaymentChannelCostSystem {
     bool is_active = 10;
     // @inject_tag: json:"mcc_code" bson:"mcc_code"
     string mcc_code = 11;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     string operating_company_id = 12;
 }
 
