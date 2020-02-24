@@ -159,8 +159,6 @@ const (
 
 	ErrorInvalidObjectId = "invalid bson object id"
 
-	PaymentMethodKey = "%s:%s:%s:%s" // currency:mcc_code:operating_company_id:brand, for example: "USD:5816:5dc3f70deb494903d835f28a:VISA"
-
 	TariffRegionRussiaAndCis = "russia_and_cis"
 	TariffRegionEurope       = "europe"
 	TariffRegionAsia         = "asia"
