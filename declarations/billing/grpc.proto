@@ -1607,7 +1607,7 @@ message GetPaymentMethodSettingsRequest {
 message GetPaymentMethodSettingsResponse {
     // @inject_tag: json:"params"
     //
-    // The testing settings.
+    // The payment method settings.
     repeated billing.PaymentMethodParams params = 1;
 }
 
@@ -2450,11 +2450,11 @@ message GetDashboardRevenueDynamicsReportResponse {
 message DashboardAmountItemWithChart {
     //@inject_tag: json:"amount_current"
     //
-    // The total amount calculated for the current report.
+    // The total amount calculated for the current period.
     double amount_current = 1;
     //@inject_tag: json:"amount_previous"
     //
-    // The total amount calculated for the previous report.
+    // The total amount calculated for the previous period.
     double amount_previous = 2;
     //@inject_tag: json:"currency"
     //
@@ -2480,11 +2480,11 @@ message DashboardChartItemFloat {
 message DashboardMainReportTotalTransactions {
     //@inject_tag: json:"count_current" bson:"count"
     //
-    // The total amount calculated for the current report.
+    // The total amount calculated for the current period.
     int64 count_current = 1;
     //@inject_tag: json:"count_previous"
     //
-    // The total amount calculated for the previous report.
+    // The total amount calculated for the previous period.
     int64 count_previous = 2;
     //@inject_tag: json:"chart"
     //
@@ -2587,11 +2587,11 @@ message DashboardRevenueByCountryReport {
 message DashboardSalesTodayReportTop {
     //@inject_tag: json:"name" bson:"name"
     //
-    // The sold product's name.
+    // The name of the sold item (product or project).
     string name = 1;
     //@inject_tag: json:"count" bson:"count"
     //
-    // The total number of products which were sold for the specified period.
+    // The total number of items (products or projects) which were sold for the specified period.
     int64 count = 2;
 }
 
@@ -2613,11 +2613,11 @@ message DashboardSalesTodayReport {
     repeated DashboardSalesTodayReportTop top = 1;
     //@inject_tag: json:"total_current" bson:"total"
     //
-    // The total number of products which were sold for the specified period.
+    // The total number of items (products or projects) which were sold for the specified period.
     int64 total_current = 2;
     //@inject_tag: json:"total_previous"
     //
-    // The total number of products which were sold for the previous period.
+    // The total number of items (products or projects) which were sold for the previous period.
     int64 total_previous = 3;
     //@inject_tag: json:"chart" bson:"chart"
     //
@@ -2670,7 +2670,7 @@ message CreatePayoutDocumentRequest {
     string merchant_id = 2;
     //@inject_tag: json:"ip" validate:"required" required:"true"
     //
-    // The merchant's IP address.
+    // The IP address of the user which created the payout document.
     string ip = 3;
     //@inject_tag: json:"-" validate:"required"
     string initiator = 4;
@@ -2723,7 +2723,7 @@ message UpdatePayoutDocumentRequest {
     string failure_transaction = 6;
     //@inject_tag: json:"ip"
     //
-    // The merchant's IP address.
+    // The IP address of the user which updated the payout document.
     string ip = 7;
 }
 
@@ -3076,11 +3076,11 @@ message InviteUserMerchantRequest {
     string merchant_id = 1;
     //@inject_tag: validate:"required,email" required:"true"
     //
-    // The merchant user's email address.
+    // The user's email address to obtain an invitation about the merchant role.
     string email = 2;
     //@inject_tag: validate:"required" required:"true"
     //
-    // The merchant user's role. Available values: merchant_developer, merchant_accounting, merchant_support, merchant_view_only.
+    // The merchant role for the invited user. Available values: merchant_developer, merchant_accounting, merchant_support, merchant_view_only.
     string role = 3;
 }
 
@@ -3089,18 +3089,18 @@ message InviteUserMerchantResponse {
     int32 status = 1;
     // The response error message (if any).
     ResponseErrorMessage message = 2;
-    // The merchant user's role data.
+    // The merchant role data for the invited user.
     billing.UserRole role = 3;
 }
 
 message InviteUserAdminRequest {
     //@inject_tag: validate:"required,email" required:"true"
     //
-    // The user's email.
+    // The user's email address to obtain an invitation about the admin role.
     string email = 1;
     //@inject_tag: validate:"required" required:"true"
     //
-    // The user role's name.
+    // The admin role for the invited user.
     string role = 2;
 }
 
@@ -3224,7 +3224,7 @@ message MerchantForUserInfo {
     string id = 1;
     // The merchant's name.
     string name = 2;
-    // The merchant's role.
+    // The user's role in the merchant.
     string role = 3;
 }
 

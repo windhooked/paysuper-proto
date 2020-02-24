@@ -191,33 +191,21 @@ message Project {
     //
     // The maximum order amount.
     double max_payment_amount = 12;
-    // @inject_tag: json:"notify_emails" validate:"omitempty,dive,email"
-    //
-    // The list of emails to send notifications about successfully completed payment operations.
+    // @inject_tag: json:"-" validate:"omitempty,dive,email"
     repeated string notify_emails = 13;
-    // @inject_tag: json:"is_products_checkout"
-    //
-    // Has a true value if it's allowed to create the order only with amounts from the products' pricing list.
+    // @inject_tag: json:"-"
     bool is_products_checkout = 14;
-    // @inject_tag: json:"secret_key" validate:"omitempty,max=255"
-    //
-    // The secret key to create a checking hash. It's used in a request about the order status change.
+    // @inject_tag: json:"-" validate:"omitempty,max=255"
     string secret_key = 15;
-    // @inject_tag: json:"signature_required"
-    //
-    // Has a true value if it's required to have the secret key to check the notification request.
+    // @inject_tag: json:"-"
     bool signature_required = 16;
-    // @inject_tag: json:"send_notify_email"
-    //
-    // Has a true value if it's allowed to send notifications about successfully completed payment operations to user's emails.
+    // @inject_tag: json:"-"
     bool send_notify_email = 17;
-    // @inject_tag: json:"url_check_account" validate:"omitempty,url"
-    //
-    // The default URL to send a request to the merchant project for the payment data verification.
+    // @inject_tag: json:"-" validate:"omitempty,url"
     string url_check_account = 18;
     // @inject_tag: json:"url_process_payment" validate:"omitempty,url"
     //
-    // The default URL to send a notification request to the merchant project about the successfully completed payment.
+    // The URL configured on the merchant project to get webhooks from PaySuper.
     string url_process_payment = 19;
     // @inject_tag: json:"url_redirect_fail" validate:"omitempty,url"
     //
@@ -245,23 +233,15 @@ message Project {
     google.protobuf.Timestamp updated_at = 24;
     // @inject_tag: json:"products_count"
     //
-    // The number of projects products.
+    // The number of products in the project.
     int64 products_count = 25;
-    // @inject_tag: json:"url_chargeback_payment" validate:"omitempty,url"
-    //
-    // The URL for the chargeback.
+    // @inject_tag: json:"-" validate:"omitempty,url"
     string url_chargeback_payment = 26;
-    // @inject_tag: json:"url_cancel_payment" validate:"omitempty,url"
-    //
-    // The URL for the payment cancellation.
+    // @inject_tag: json:"-" validate:"omitempty,url"
     string url_cancel_payment = 27;
-    // @inject_tag: json:"url_fraud_payment" validate:"omitempty,url"
-    //
-    // The URL to redirect to in case of suspected fraud.
+    // @inject_tag: json:"-" validate:"omitempty,url"
     string url_fraud_payment = 28;
-    // @inject_tag: json:"url_refund_payment" validate:"omitempty,url"
-    //
-    // The URL for the payment refund.
+    // @inject_tag: json:"-" validate:"omitempty,url"
     string url_refund_payment = 29;
     //@inject_tag: json:"localizations"
     //
@@ -285,7 +265,7 @@ message Project {
     ImageCollection cover = 34;
     //@inject_tag: json:"virtual_currency" validate:"omitempty,dive"
     //
-    // The virtual currency data.
+    // The virtual currency settings.
     ProjectVirtualCurrency virtual_currency = 35;
     // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
     //
@@ -297,7 +277,7 @@ message Project {
     ProjectRedirectSettings redirect_settings = 37;
     //@inject_tag: json:"webhook_testing"
     //
-    // The testing parameters for webhooks.
+    // The object contains webhooks' tests results of various test cases.
     WebHookTesting webhook_testing = 38;
     //@inject_tag: json:"webhook_mode" validate:"omitempty,oneof=default pre_approval"
     //
@@ -308,60 +288,60 @@ message Project {
 message WebHookTesting {
     //@inject_tag: json:"products" bson:"products"
     //
-    // The testing parameters for product.
+    // The webhooks' testing results for the product.
     ProductsTesting products = 1;
     //@inject_tag: json:"virtual_currency" bson:"virtual_currency"
     //
-    // The testing parameters for virtual currency.
+    // The webhooks' testing results for the virtual currency.
     VirtualCurrencyTesting virtual_currency = 2;
     //@inject_tag: json:"keys" bson:"keys"
     //
-    // The testing parameters for key.
+    // The webhooks' testing results for the key.
     KeysTesting keys = 3;
 }
 
 message ProductsTesting {
     //@inject_tag: json:"non_existing_user" bson:"non_existing_user"
     //
-    // Has a true value if the user does not exist in the storage.
+    // Has a true value if the webhook's test case for the user that does not exist in the merchant's storage has passed.
     bool non_existing_user = 1;
     //@inject_tag: json:"existing_user" bson:"existing_user"
     //
-    // Has a true value if the user exists in the storage.
+    // Has a true value if the webhook's test case for the user that exists in the merchant's storage has passed.
     bool existing_user = 2;
     //@inject_tag: json:"correct_payment" bson:"correct_payment"
     //
-    // Has a true value if the payment correctly completed.
+    // Has a true value if the webhook's test case for the correctly completed payment has passed.
     bool correct_payment = 3;
     //@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
     //
-    // Has a true value if the payment not correctly completed.
+    // Has a true value if the webhook's test case for the incorrectly completed payment has passed.
     bool incorrect_payment = 4;
 }
 
 message VirtualCurrencyTesting {
     //@inject_tag: json:"non_existing_user" bson:"non_existing_user"
     //
-    // Has a true value if the user does not exist in the storage.
+    // Has a true value if the webhook's test case for the user that does not exist in the merchant's storage has passed.
     bool non_existing_user = 1;
     //@inject_tag: json:"existing_user" bson:"existing_user"
     //
-    // Has a true value if the user exists in the storage.
+    // Has a true value if the webhook's test case for the user that exists in the merchant's storage has passed.
     bool existing_user = 2;
     //@inject_tag: json:"correct_payment" bson:"correct_payment"
     //
-    // Has a true value if the payment correctly completed.
+    // Has a true value if the webhook's test case for the correctly completed payment has passed.
     bool correct_payment = 3;
     //@inject_tag: json:"incorrect_payment" bson:"incorrect_payment"
     //
-    // Has a true value if the payment not correctly completed.
+    // Has a true value if the webhook's test case for the incorrectly completed payment has passed.
     bool incorrect_payment = 4;
 }
 
 message KeysTesting  {
     //@inject_tag: json:"is_passed" bson:"is_passed"
     //
-    // Has a true value if the key has been passed.
+    // Has a true value if the webhook's test case for the key has passed.
     bool is_passed = 1;
 }
 
@@ -372,29 +352,29 @@ message ProjectOrder {
     string merchant_id = 2;
     // The list of the project's localized names.
     map<string, string> name = 3;
-    // The redirect URL for the successful payment. You need to enable the dynamic notify URLs option in the Project Settings to use this field.
+    // The redirect URL for the successful payment.
     string url_success = 4;
-    // The redirect URL for the failed payment. You need to enable the dynamic notify URLs option in the Project Settings to use this field.
+    // The redirect URL for the failed payment.
     string url_fail = 5;
-    // The list of emails to send notifications about successfully completed payment operations.
+    // @inject_tag: json:"-"
     repeated string notify_emails = 6;
-    // The secret key to create a checking hash. It's used in a request about the order status change.
+    // @inject_tag: json:"-"
     string secret_key = 7;
-    // Has a true value if it's allowed to send notifications about successfully completed payment operations to user's emails.
+    // @inject_tag: json:"-"
     bool send_notify_email = 8;
     // The default URL to send a request to the merchant project for the payment data verification.
     string url_check_account = 9;
-    // The default URL to send a notification request to the merchant project about the successfully completed payment.
+    // The default URL to send a notification request to the merchant project.
     string url_process_payment = 10;
     // The protocol of the payment notification. Available values: default - the webhook protocol that is set in the Project notification settings, empty - the webhook is not sent and the payment is immediately marked as successful in the PaySuper system.
     string callback_protocol = 11;
-    // The URL for the chargeback.
+    // @inject_tag: json:"-"
     string url_chargeback_payment = 12;
-    // The URL for the payment cancellation.
+    // @inject_tag: json:"-"
     string url_cancel_payment = 13;
-    // The URL to redirect to in case of suspected fraud.
+    // @inject_tag: json:"-"
     string url_fraud_payment = 14;
-    // The URL for the payment refund.
+    // @inject_tag: json:"-"
     string url_refund_payment = 15;
     // The project's status. Available values: 0 - the new project,
     //1 - the project successfully completed integration tests,
@@ -480,9 +460,7 @@ message MerchantBanking {
     //
     // Additional details about the merchant's bank account.
     string details = 6;
-    // @inject_tag: json:"correspondent_account" bson:"correspondent_account" validate:"omitempty,numeric,max=30"
-    //
-    // The bank correspondent account.
+    // @inject_tag: json:"-" bson:"correspondent_account" validate:"omitempty,numeric,max=30"
     string correspondent_account = 7;
 }
 
@@ -500,27 +478,27 @@ message MerchantLastPayout {
 message MerchantUser {
     // @inject_tag: json:"id" validate:"required" required:"true"
     //
-    // The unique identifier for the merchant user.
+    // The unique identifier for the merchant's owner.
     string id = 1;
     // @inject_tag: json:"email" validate:"required,email" required:"true"
     //
-    // The merchant's email address.
+    // The merchant's owner email address.
     string email = 2;
     // @inject_tag: json:"first_name"
     //
-    // The merchant's first name.
+    // The merchant's owner first name.
     string first_name = 3;
     // @inject_tag: json:"last_name"
     //
-    // The merchant's last name.
+    // The merchant's owner last name.
     string last_name = 4;
     // @inject_tag: json:"profile_id"
     //
-    // The primary onboarding profile identifier for the merchant.
+    // The primary onboarding profile identifier for the merchant's owner.
     string profile_id = 5;
     // @inject_tag: json:"registration_date"
     //
-    // The date of the merchant's confirmation.
+    // The confirmation date of the merchant's owner email.
     google.protobuf.Timestamp registration_date = 6;
 }
 
@@ -567,7 +545,7 @@ message MerchantCompanyInfo {
     string registration_number = 10;
     // @inject_tag: json:"tax_id" bson:"tax_id"
     //
-    // The unique identifier for the merchant's company tax.
+    // The merchant's company tax number.
     string tax_id = 11;
 }
 
@@ -647,9 +625,7 @@ message Merchant {
     //
     // The date of the merchant last update.
     google.protobuf.Timestamp updated_at = 19;
-    // @inject_tag: json:"first_payment_at"
-    //
-    // The date when the first payment has been made to one of the merchant's projects.
+    // @inject_tag: json:"-"
     google.protobuf.Timestamp first_payment_at = 20;
     // @inject_tag: json:"-"
     bool is_vat_enabled = 21;
@@ -663,29 +639,19 @@ message Merchant {
     //
     // Has a true value if PaySuper has signed the license agreement.
     bool has_psp_signature = 24;
-    // @inject_tag: json:"last_payout"
-    //
-    // The date of the last payout to the merchant.
+    // @inject_tag: json:"-"
     MerchantLastPayout last_payout = 25;
     // @inject_tag: json:"is_signed"
     //
     // Has a true value if the license agreement is completely signed.
     bool is_signed = 26;
-    // @inject_tag: json:"payment_methods"
-    //
-    // The list of the merchant's payment methods.
+    // @inject_tag: json:"-"
     map<string, MerchantPaymentMethod> payment_methods = 28;
-    // @inject_tag: json:"agreement_type"
-    //
-    // The type of the agreement selected by the merchant. Available values: 0 - not selected, 1 - paper agreement, 2 - e-sign agreement.
+    // @inject_tag: json:"-"
     int32 agreement_type = 29;
-    // @inject_tag: json:"agreement_sent_via_mail"
-    //
-    // Has a true value if the license agreement is sent via post.
+    // @inject_tag: json:"-"
     bool agreement_sent_via_mail = 30;
-    // @inject_tag: json:"mail_tracking_link"
-    //
-    // The post link to the tracking package with the license agreement.
+    // @inject_tag: json:"-"
     string mail_tracking_link = 31;
     // @inject_tag: json:"-"
     string s3_agreement_name = 32;
@@ -729,7 +695,7 @@ message Merchant {
     MerchantCompletedSteps steps = 46;
     //@inject_tag: json:"agreement_template"
     //
-    // The unique identifier for the template of the license agreement stored in HelloSign.
+    // The unique identifier for the HelloSign template of the license agreement.
     string agreement_template = 47;
     // @inject_tag: json:"received_date"
     //
@@ -753,7 +719,7 @@ message Merchant {
     float minimal_payout_limit = 52;
     // @inject_tag: json:"tariff"
     //
-    // The merchant's tariff.
+    // The merchant's tariff data selected in the Onboarding.
     MerchantTariff tariff = 53;
     // @inject_tag: json:"manual_payouts_enabled"
     //
@@ -1009,7 +975,7 @@ message Order {
     string receipt_number = 17;
     // @inject_tag: json:"receipt_url" bson:"receipt_url"
     //
-    // The URL in PaySuper service for online access to the refund's receipt.
+    // The URL in PaySuper service for online access to the receipt.
     string receipt_url = 18;
     //@inject_tag: json:"agreement_version" bson:"agreement_version" validate:"required"
     //
@@ -1065,7 +1031,7 @@ message Order {
     OrderNotificationRefund refund = 31;
     // @inject_tag: json:"metadata" bson:"metadata"
     //
-    // A string-value description for the order.
+    // Additional information that was sent as a string-value description from the merchant's project while the payment order creation.
     map<string, string> metadata = 32;
     // @inject_tag: json:"-" bson:"private_metadata"
     map<string, string> private_metadata = 33;
@@ -1133,11 +1099,11 @@ message Order {
     string receipt_id = 73;
     // @inject_tag: json:"virtual_currency_amount" bson:"virtual_currency_amount"
     //
-    // The virtual currency amount.
+    // The amount in the project's virtual currency.
     double virtual_currency_amount = 74;
     // @inject_tag: json:"is_buy_for_virtual_currency" bson:"is_buy_for_virtual_currency"
     //
-    // Has a true value if the order is paid for the virtual currency.
+    // Has a true value if the order amount was in the project's virtual currency.
     bool is_buy_for_virtual_currency = 75;
     // @inject_tag: json:"-"
     string mcc_code = 76;
@@ -1240,7 +1206,7 @@ message OrderItem {
     string url = 9;
     //@inject_tag: json:"metadata" bson:"metadata"
     //
-    // A string-value description for the item.
+    // The string-value description for the item.
     map<string, string> metadata = 10;
     //@inject_tag: json:"created_at" bson:"created_at"
     //
@@ -1282,7 +1248,7 @@ message PaymentMethodOrder {
     PaymentMethodParams params = 4;
     // @inject_tag: bson:"payment_system_id" json:"payment_system_id"
     //
-    // The unique identifier for the payment method in PaySuper.
+    // The unique identifier for the payment system in PaySuper.
     string payment_system_id = 5;
     // @inject_tag: json:"type" bson:"group_alias"
     //
@@ -1306,7 +1272,7 @@ message PaymentMethodOrder {
     PaymentMethodCrypto crypto_currency = 10;
     // @inject_tag: json:"handler" bson:"handler"
     //
-    // The internal unique identifier for the payment method in PaySuper.
+    // The unique identifier for handler of the payment system in PaySuper.
     string handler = 11;
     // @inject_tag: json:"refund_allowed" bson:"refund_allowed"
     //
@@ -1319,17 +1285,11 @@ message PaymentMethodParams {
     //
     // The currency of the payment method. Three-letter Currency Code ISO 4217, in uppercase.
     string currency = 1;
-    // @inject_tag: bson:"terminal_id" json:"terminal_id" validate:"omitempty,alphanum"
-    //
-    // The unique identifier for the terminal.
+    // @inject_tag: bson:"terminal_id" json:"-" validate:"omitempty,alphanum"
     string terminal_id = 2;
-    // @inject_tag: bson:"secret" json:"secret" validate:"omitempty"
-    //
-    // The secret key to create a checking hash for an update request.
+    // @inject_tag: bson:"secret" json:"-" validate:"omitempty"
     string secret = 3;
-    // @inject_tag: bson:"secret_callback" json:"secret_callback" validate:"omitempty"
-    //
-    // The secret key to create a checking hash for a callback request.
+    // @inject_tag: bson:"secret_callback" json:"-" validate:"omitempty"
     string secret_callback = 5;
     // @inject_tag: bson:"api_url" json:"-"
     string api_url = 6;
@@ -1480,11 +1440,11 @@ message PaymentMethod {
     string payment_system_id = 12;
     // @inject_tag: bson:"test_settings" json:"test_settings" validate:"omitempty"
     //
-    // The testing payment parameters.
+    // The payment method's parameters for projects with payments in the test mode.
     map<string, PaymentMethodParams> test_settings = 13;
     // @inject_tag: bson:"production_settings" json:"production_settings" validate:"omitempty"
     //
-    // The production payment parameters.
+    // The payment method's parameters for projects with payments in the production mode.
     map<string, PaymentMethodParams> production_settings = 14;
     // @inject_tag: bson:"created_at" json:"created_at" validate:"omitempty"
     //
@@ -1567,24 +1527,16 @@ message PaymentFormPaymentMethod {
 }
 
 message MerchantPaymentMethodPerTransactionCommission {
-    // @inject_tag: validate:"omitempty,numeric,gte=0" json:"fee"
-    //
-    // The transaction commission.
+    // @inject_tag: validate:"omitempty,numeric,gte=0" json:"-"
     double fee = 1;
-    // @inject_tag: json:"currency"
-    //
-    // The currency of the transaction commission.
+    // @inject_tag: json:"-"
     string currency = 2;
 }
 
 message MerchantPaymentMethodCommissions {
-    // @inject_tag: validate:"omitempty,numeric,gte=0,lte=100" json:"fee"
-    //
-    // The payment method commission.
+    // @inject_tag: validate:"omitempty,numeric,gte=0,lte=100" json:"-"
     double fee = 1;
-    // @inject_tag: validate:"required" json:"per_transaction" required:"true"
-    //
-    // Information about the transaction commission.
+    // @inject_tag: validate:"required" json:"-"
     MerchantPaymentMethodPerTransactionCommission per_transaction = 2;
 }
 
@@ -1600,24 +1552,16 @@ message MerchantPaymentMethodIntegration {
 }
 
 message MerchantPaymentMethodIdentification {
-    // @inject_tag: validate:"required,hexadecimal,len=24" json:"id" required:"true"
-    //
-    // The unique identifier for the merchant payment method.
+    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string id = 1;
-    // @inject_tag: validate:"required" json:"name" required:"true"
-    //
-    // The merchant payment method's name.
+    // @inject_tag: validate:"required" json:"-"
     string name = 2;
 }
 
 message MerchantPaymentMethod {
-    // The merchant's payment method data.
     MerchantPaymentMethodIdentification payment_method = 3;
-    // The merchant's payment method commissions.
     MerchantPaymentMethodCommissions commission = 4;
-    //@inject_tag: json:"-"
     MerchantPaymentMethodIntegration integration = 5;
-    // Has a true value if the payment method is active.
     bool is_active = 6;
 }
 
@@ -1673,7 +1617,7 @@ message MerchantPaymentMethodHistory {
     string id = 1;
     // @inject_tag: validate:"required,hexadecimal,len=24"
     string merchant_id = 2;
-    // @inject_tag: validate:"required"
+    // @inject_tag: validate:"required" json:"-"
     MerchantPaymentMethod paymentMethod = 3;
     // @inject_tag: json:"created_at" validate:"required"
     google.protobuf.Timestamp created_at = 4;
@@ -1859,7 +1803,7 @@ message TokenSettings {
     repeated string products_ids = 9;
     //@inject_tag: json:"metadata"
     //
-    // A string-value description that you can attach to the customer's object. It can be useful for storing additional information about your customer’s payment.
+    // The string-value description that you can attach to the customer's object. It can be useful for storing additional information about your customer’s payment.
     map<string, string> metadata = 10;
     //@inject_tag: json:"platform_id"
     //
@@ -2106,15 +2050,15 @@ message PaymentChannelCostSystem {
     string name = 2;
     //@inject_tag: json:"region" bson:"region" validate:"required"
     //
-    // The payment method's region.
+    // The customer's region.
     string region = 3;
     //@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
     //
-    // The payment method's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
+    // The customer's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
     string country = 4;
     // @inject_tag: json:"percent" bson:"percent" validate:"required,numeric,gte=0,lte=1"
     //
-    // The fee of the payment method in per cent.
+    // The fee of the payment method in percent.
     double percent = 5;
     // @inject_tag: json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"
     //
@@ -2169,7 +2113,7 @@ message PaymentChannelCostSystemList {
 message PaymentChannelCostMerchant {
     //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
     //
-    // The unique identifier for the payment method.
+    // The unique identifier for the record about the merchant's tariffs.
     string id = 1;
     //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
     //
@@ -2189,15 +2133,15 @@ message PaymentChannelCostMerchant {
     double min_amount = 5;
     //@inject_tag: json:"region" bson:"region" validate:"required"
     //
-    // The payment method's region.
+    // The customer's region.
     string region = 6;
     //@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
     //
-    // The payment method's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
+    // The customer's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
     string country = 7;
     // @inject_tag: json:"method_percent" bson:"method_percent" validate:"required,numeric,gte=0,lte=1"
     //
-    // The fee of the payment method in per cent.
+    // The fee of the payment method in percent.
     double method_percent = 8;
     // @inject_tag: json:"method_fix_amount" bson:"method_fix_amount" validate:"numeric,gte=0"
     //
@@ -2209,7 +2153,7 @@ message PaymentChannelCostMerchant {
     string method_fix_amount_currency = 10;
     // @inject_tag: json:"ps_percent" bson:"ps_percent" validate:"required,numeric,gte=0,lte=1"
     //
-    // The PaySuper fee in per cent.
+    // The PaySuper fee in percent.
     double ps_percent = 11;
     // @inject_tag: json:"ps_fixed_fee" bson:"ps_fixed_fee" validate:"numeric,gte=0"
     //
@@ -2269,7 +2213,7 @@ message PaymentChannelCostMerchantListRequest {
 message MoneyBackCostSystem {
     //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
     //
-    // The unique identifier for the payment method.
+    // The unique identifier for the record about the merchant's tariffs.
     string id = 1;
     //@inject_tag: json:"name" bson:"name" validate:"required,alpha"
     //
@@ -2285,11 +2229,11 @@ message MoneyBackCostSystem {
     string undo_reason = 4;
     //@inject_tag: json:"region" bson:"region" validate:"required"
     //
-    // The payment method's region.
+    // The customer's region.
     string region = 5;
     //@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
     //
-    // The payment method's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
+    // The customer's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
     string country = 6;
     // @inject_tag: json:"days_from" bson:"days_from" validate:"numeric,gte=0"
     //
@@ -2301,7 +2245,7 @@ message MoneyBackCostSystem {
     int32 payment_stage = 8;
     // @inject_tag: json:"percent" bson:"percent" validate:"numeric,gte=0,lte=1"
     //
-    // The fee of the payment method in per cent.
+    // The fee of the payment method in percent.
     double percent = 9;
     // @inject_tag: json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"
     //
@@ -2364,7 +2308,7 @@ message MoneyBackCostSystemList {
 message MoneyBackCostMerchant {
     //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
     //
-    // The unique identifier for the payment method.
+    // The unique identifier for the record about the merchant's tariffs.
     string id = 1;
     //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
     //
@@ -2384,11 +2328,11 @@ message MoneyBackCostMerchant {
     string undo_reason = 5;
     //@inject_tag: json:"region" bson:"region" validate:"required"
     //
-    // The payment method's region.
+    // The customer's region.
     string region = 6;
     //@inject_tag: json:"country" bson:"country" validate:"omitempty,alpha,len=2"
     //
-    // The payment method's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
+    // The customer's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
     string country = 7;
     // @inject_tag: json:"days_from" bson:"days_from" validate:"numeric,gte=0"
     //
@@ -2400,7 +2344,7 @@ message MoneyBackCostMerchant {
     int32 payment_stage = 9;
     // @inject_tag: json:"percent" bson:"percent" validate:"numeric,gte=0,lte=1"
     //
-    // The fee of the payment method in per cent.
+    // The fee of the payment method in percent.
     double percent = 10;
     // @inject_tag: json:"fix_amount" bson:"fix_amount" validate:"numeric,gte=0"
     //
@@ -2412,7 +2356,7 @@ message MoneyBackCostMerchant {
     string fix_amount_currency = 12;
     // @inject_tag: json:"is_paid_by_merchant" bson:"is_paid_by_merchant"
     //
-    // Has a true value if the method is paid by the merchant.
+    // Has a true value if the commission was paid by the merchant.
     bool is_paid_by_merchant = 13;
     //@inject_tag: json:"created_at" bson:"created_at"
     //
@@ -2870,18 +2814,18 @@ message OrderViewMoney {
     double amount = 1;
     //@inject_tag: json:"currency" bson:"currency"
     //
-    // Three-letter currency code in ISO 4217, in uppercase.
+    // The amount currency. Three-letter currency code in ISO 4217, in uppercase.
     string currency = 2;
 }
 
 message OrderViewMerchantInfo {
     //@inject_tag: json:"company_name" bson:"company_name"
     //
-    // The company's name.
+    // The merchant's company name.
     string company_name = 1;
     //@inject_tag: json:"agreement_number" bson:"agreement_number"
     //
-    // The license agreement number.
+    // The merchant's license agreement number.
     string agreement_number = 2;
 }
 
@@ -2946,7 +2890,7 @@ message OrderViewPublic {
     OrderBillingAddress billing_address = 15;
     // @inject_tag: json:"type" bson:"type"
     //
-    // The order type. It depends on your sales option (Game Keys, Virtual Items, Virtual Currency, the simple checkout). Available values: key, product, simple.
+    // The order type. It depends on your sales option (Game Keys, Virtual Items, Virtual Currency, the simple checkout). Available values: key, product, virtual_currency, simple.
     string type = 16;
     // @inject_tag: json:"is_vat_deduction" bson:"is_vat_deduction"
     //
@@ -2990,7 +2934,7 @@ message OrderViewPublic {
     OrderViewMoney fees_total = 26;
     // @inject_tag: json:"fees_total_local" bson:"fees_total_local"
     //
-    // The local total fees.
+    // The total fees in the customer's region currency.
     OrderViewMoney fees_total_local = 27;
     // @inject_tag: json:"net_revenue" bson:"net_revenue"
     //
@@ -2998,7 +2942,7 @@ message OrderViewPublic {
     OrderViewMoney net_revenue = 28;
     // @inject_tag: json:"refund_gross_revenue" bson:"refund_gross_revenue"
     //
-    // The gross revenue refund.
+    // The gross revenue from the refund.
     OrderViewMoney refund_gross_revenue = 29;
     // @inject_tag: json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"
     //
@@ -3030,7 +2974,7 @@ message OrderViewPublic {
     OrderViewMoney refund_fees_total = 36;
     // @inject_tag: json:"refund_fees_total_local" bson:"refund_fees_total_local"
     //
-    // The refund local total fees.
+    // The total fees of the refund in the customer's region currency.
     OrderViewMoney refund_fees_total_local = 37;
     // The order issuer data.
     OrderIssuer issuer = 38;
@@ -3068,7 +3012,7 @@ message OrderViewPublic {
     OrderViewMoney order_charge = 46;
     // @inject_tag: json:"payment_ip_country"
     //
-    // The IP address of the country where the order was paid.
+    // The customer's country code by the customer's IP address.
     string payment_ip_country = 47;
     // @inject_tag: json:"is_ip_country_mismatch_bin" bson:"is_ip_country_mismatch_bin"
     //
@@ -3076,7 +3020,7 @@ message OrderViewPublic {
     bool is_ip_country_mismatch_bin = 48;
     // @inject_tag: json:"billing_country_changed_by_user" bson:"billing_country_changed_by_user"
     //
-    // Has a true value if the country's name was selected by the customer.
+    // Has a true value if the country was selected by the customer.
     bool billing_country_changed_by_user = 49;
     // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
     //
@@ -3157,15 +3101,15 @@ message OrderViewPrivate {
     bool is_vat_deduction = 17;
     // @inject_tag: json:"payment_gross_revenue_local" bson:"payment_gross_revenue_local"
     //
-    // The local gross revenue of the payment.
+    // The gross revenue from the payment in the customer's region currency.
     OrderViewMoney payment_gross_revenue_local = 18;
     // @inject_tag: json:"payment_gross_revenue_origin" bson:"payment_gross_revenue_origin"
     //
-    // The origin gross revenue of the payment.
+    // The origin gross revenue from the payment.
     OrderViewMoney payment_gross_revenue_origin = 19;
     // @inject_tag: json:"payment_gross_revenue" bson:"payment_gross_revenue"
     //
-    // The gross revenue of the payment.
+    // The gross revenue from the payment.
     OrderViewMoney payment_gross_revenue = 20;
     // @inject_tag: json:"payment_tax_fee" bson:"payment_tax_fee"
     //
@@ -3173,7 +3117,7 @@ message OrderViewPrivate {
     OrderViewMoney payment_tax_fee = 21;
     // @inject_tag: json:"payment_tax_fee_local" bson:"payment_tax_fee_local"
     //
-    // The local tax fee of the payment.
+    // The tax fee of the payment in the customer's region currency.
     OrderViewMoney payment_tax_fee_local = 22;
     // @inject_tag: json:"payment_tax_fee_origin" bson:"payment_tax_fee_origin"
     //
@@ -3189,15 +3133,15 @@ message OrderViewPrivate {
     OrderViewMoney payment_tax_fee_total = 25;
     // @inject_tag: json:"payment_gross_revenue_fx" bson:"payment_gross_revenue_fx"
     //
-    // The gross FX revenue of the payment.
+    // The gross revenue from the foreign exchange of the payment.
     OrderViewMoney payment_gross_revenue_fx = 26;
     // @inject_tag: json:"payment_gross_revenue_fx_tax_fee" bson:"payment_gross_revenue_fx_tax_fee"
     //
-    // The tax fee for the gross FX revenue of the payment.
+    // The gross revenue from the foreign exchange of the payment tax fee.
     OrderViewMoney payment_gross_revenue_fx_tax_fee = 27;
     // @inject_tag: json:"payment_gross_revenue_fx_profit" bson:"payment_gross_revenue_fx_profit"
     //
-    // The gross FX revenue of the payment profit.
+    // The gross revenue from the foreign exchange of the profit.
     OrderViewMoney payment_gross_revenue_fx_profit = 28;
     // @inject_tag: json:"gross_revenue" bson:"gross_revenue"
     //
@@ -3237,7 +3181,7 @@ message OrderViewPrivate {
     OrderViewMoney method_fixed_fee_tariff = 37;
     // @inject_tag: json:"paysuper_method_fixed_fee_tariff_fx_profit" bson:"paysuper_method_fixed_fee_tariff_fx_profit"
     //
-    // The FX profit of the PaySuper fixed method fee tariff.
+    // The PaySuper fixed method fee tariff for the foreign exchange of the profit.
     OrderViewMoney paysuper_method_fixed_fee_tariff_fx_profit = 38;
     // @inject_tag: json:"paysuper_method_fixed_fee_tariff_self_cost" bson:"paysuper_method_fixed_fee_tariff_self_cost"
     //
@@ -3261,7 +3205,7 @@ message OrderViewPrivate {
     OrderViewMoney fees_total = 43;
     // @inject_tag: json:"fees_total_local" bson:"fees_total_local"
     //
-    // The local total fees.
+    // The total fees in the customer's region currency.
     OrderViewMoney fees_total_local = 44;
     // @inject_tag: json:"net_revenue" bson:"net_revenue"
     //
@@ -3277,7 +3221,7 @@ message OrderViewPrivate {
     OrderViewMoney paysuper_total_profit = 47;
     // @inject_tag: json:"payment_refund_gross_revenue_local" bson:"payment_refund_gross_revenue_local"
     //
-    // The local gross revenue of the payment refund.
+    // The gross revenue of the payment refund in the customer's region currency.
     OrderViewMoney payment_refund_gross_revenue_local = 48;
     // @inject_tag: json:"payment_refund_gross_revenue_origin" bson:"payment_refund_gross_revenue_origin"
     //
@@ -3293,7 +3237,7 @@ message OrderViewPrivate {
     OrderViewMoney payment_refund_tax_fee = 51;
     // @inject_tag: json:"payment_refund_tax_fee_local" bson:"payment_refund_tax_fee_local"
     //
-    // The local tax fee of the payment refund.
+    // The tax fee of the payment refund in the customer's region currency.
     OrderViewMoney payment_refund_tax_fee_local = 52;
     // @inject_tag: json:"payment_refund_tax_fee_origin" bson:"payment_refund_tax_fee_origin"
     //
@@ -3309,11 +3253,11 @@ message OrderViewPrivate {
     OrderViewMoney method_refund_fixed_fee_tariff = 55;
     // @inject_tag: json:"refund_gross_revenue" bson:"refund_gross_revenue"
     //
-    // The gross revenue refund.
+    // The gross revenue from the refund.
     OrderViewMoney refund_gross_revenue = 56;
     // @inject_tag: json:"refund_gross_revenue_fx" bson:"refund_gross_revenue_fx"
     //
-    // The gross RX revenue refund.
+    // The gross revenue from the foreign exchange of the refund.
     OrderViewMoney refund_gross_revenue_fx = 57;
     // @inject_tag: json:"method_refund_fee_tariff" bson:"method_refund_fee_tariff"
     //
@@ -3361,7 +3305,7 @@ message OrderViewPrivate {
     OrderViewMoney refund_fees_total = 68;
     // @inject_tag: json:"refund_fees_total_local" bson:"refund_fees_total_local"
     //
-    // The refund local total fees.
+    // The total fees in the customer's region currency.
     OrderViewMoney refund_fees_total_local = 69;
     // @inject_tag: json:"paysuper_refund_total_profit" bson:"paysuper_refund_total_profit"
     //
@@ -3421,7 +3365,7 @@ message OrderViewPrivate {
     bool is_ip_country_mismatch_bin = 83;
     // @inject_tag: json:"billing_country_changed_by_user" bson:"billing_country_changed_by_user"
     //
-    // Has a true value if the country's name was selected by the customer.
+    // Has a true value if the country was selected by the customer.
     bool billing_country_changed_by_user = 84;
     // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
     //
@@ -3514,7 +3458,7 @@ message MerchantTariffRatesPayment {
     string method_name = 3;
     //@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
     //
-    // The fee of the payment method in per cent.
+    // The fee of the payment method in percent.
     double method_percent_fee = 4;
     //@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
     //
@@ -3526,7 +3470,7 @@ message MerchantTariffRatesPayment {
     string method_fixed_fee_currency = 6;
     //@inject_tag: json:"ps_percent_fee" bson:"ps_percent_fee"
     //
-    // The PaySuper fee in per cent.
+    // The PaySuper fee in percent.
     double ps_percent_fee = 7;
     //@inject_tag: json:"ps_fixed_fee" bson:"ps_fixed_fee"
     //
@@ -3561,7 +3505,7 @@ message MerchantTariffRatesSettingsItem {
     string method_name = 1;
     //@inject_tag: json:"method_percent_fee" bson:"method_percent_fee"
     //
-    // The fee of the method in per cent.
+    // The fee of the method in percent.
     double method_percent_fee = 2;
     //@inject_tag: json:"method_fixed_fee" bson:"method_fixed_fee"
     //
@@ -3605,7 +3549,7 @@ message Key {
     string key_product_id = 3;
     //@inject_tag: validate:"required,max=255"
     //
-    // The unique identifier for the platform.
+    // The unique identifier for the platform. Available values: steam, gog, uplay, origin, psn, xbox, nintendo, itch, egs.
     string platform_id = 5;
     //@inject_tag: validate:"omitempty,hexadecimal,len=24"
     //
@@ -3974,7 +3918,7 @@ message ProductPrice {
     string region = 3;
     //@inject_tag: json:"is_virtual_currency" bson:"is_virtual_currency"
     //
-    // Has a true value if the product has the virtual currency.
+    // Has a true value if the product's amount in the virtual currency.
     bool is_virtual_currency = 4;
 }
 
@@ -3985,15 +3929,15 @@ message ProjectVirtualCurrency {
     string logo = 1;
     // @inject_tag: json:"name" validate:"required,min=1"
     //
-    // The virtual currency name.
+    // The list of localized names for the virtual currency.
     map<string, string> name = 2;
     // @inject_tag: json:"success_message" validate:"required,min=1"
     //
-    // The virtual currency's name.
+    // The list of localized notifications about the successful virtual currency purchase.
     map<string, string> success_message = 3;
     //@inject_tag: json:"prices" validate:"required,min=1,currency_price,dive"
     //
-    // The list of product's prices.
+    // The list of the virtual currency pricing based on regions.
     repeated ProductPrice prices = 4;
     //@inject_tag: json:"min_purchase_value"
     //
