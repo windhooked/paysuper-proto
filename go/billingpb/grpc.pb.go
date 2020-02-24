@@ -10100,12 +10100,12 @@ func (m *UserProfileEmail) GetIsConfirmationEmailSent() bool {
 }
 
 type UserProfile struct {
-	//@inject_tag: json:"id"
+	//@inject_tag: json:"id" faker:"objectIdString"
 	//
 	// The unique identifier for the PaySuper user.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	//@inject_tag: json:"-" validate:"required,hexadecimal,len=24" required:"true"
-	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"-" validate:"required,hexadecimal,len=24" required:"true"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" faker:"objectIdString"`
+	//@inject_tag: json:"-" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"-" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"email"
 	//
 	// The user's email data.
