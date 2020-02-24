@@ -2100,11 +2100,11 @@ message UserProfileEmail {
 }
 
 message UserProfile {
-    //@inject_tag: json:"id"
+    //@inject_tag: json:"id" faker:"objectIdString"
     //
     // The unique identifier for the PaySuper user.
     string id = 1;
-    //@inject_tag: json:"-" validate:"required,hexadecimal,len=24" required:"true"
+    //@inject_tag: json:"-" validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string user_id = 2;
     //@inject_tag: json:"email"
     //

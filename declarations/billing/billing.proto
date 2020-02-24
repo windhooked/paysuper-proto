@@ -587,7 +587,7 @@ message MerchantTariff {
 }
 
 message Merchant {
-    // @inject_tag: bson:"_id"
+    // @inject_tag: bson:"_id" faker:"objectIdString"
     //
     // The unique identifier for the merchant.
     string id = 1;
@@ -729,7 +729,7 @@ message Merchant {
     //
     // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 55;
-    // @inject_tag: json:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" faker:"objectIdString"
     //
     // The unique identifier for the operating company.
     string operating_company_id = 56;
@@ -768,7 +768,7 @@ message SystemNotificationStatuses {
 }
 
 message Notification {
-    // @inject_tag: json:"id"
+    // @inject_tag: json:"id" faker:"objectIdString"
     //
     // The unique identifier for the notification.
     string id = 1;
@@ -776,11 +776,11 @@ message Notification {
     //
     // The notification message.
     string message = 3;
-    // @inject_tag: json:"merchant_id"
+    // @inject_tag: json:"merchant_id" faker:"objectIdString"
     //
     // The unique identifier for the merchant who is the recipient of the notification.
     string merchant_id = 4;
-    // @inject_tag: json:"user_id"
+    // @inject_tag: json:"user_id" faker:"objectIdString"
     //
     // The unique identifier for the user who is the sender of the notification.
     string user_id = 5;
@@ -1308,7 +1308,7 @@ message PaymentMethodParams {
 }
 
 message PaymentSystem {
-    // @inject_tag: bson:"_id" structure:"_id,bsonobjectid"
+    // @inject_tag: bson:"_id" structure:"_id,bsonobjectid" faker:"objectIdString"
     string id = 1;
     string name = 2;
     // @inject_tag: bson:"country" structure:"country"
@@ -1398,7 +1398,7 @@ message ProjectPaymentMethod {
 }
 
 message PaymentMethod {
-    // @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24"
+    // @inject_tag: bson:"_id" json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the payment method.
     string id = 1;
@@ -1434,7 +1434,7 @@ message PaymentMethod {
     //
     // Has a true value if the payment method is active.
     bool is_active = 11;
-    // @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24"
+    // @inject_tag: bson:"payment_system_id" json:"payment_system_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the payment method in PaySuper.
     string payment_system_id = 12;
@@ -1552,7 +1552,7 @@ message MerchantPaymentMethodIntegration {
 }
 
 message MerchantPaymentMethodIdentification {
-    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-" faker:"objectIdString"
     string id = 1;
     // @inject_tag: validate:"required" json:"-"
     string name = 2;
@@ -1613,15 +1613,15 @@ message Refund {
 }
 
 message MerchantPaymentMethodHistory {
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string merchant_id = 2;
     // @inject_tag: validate:"required" json:"-"
     MerchantPaymentMethod paymentMethod = 3;
     // @inject_tag: json:"created_at" validate:"required"
     google.protobuf.Timestamp created_at = 4;
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string user_id = 5;
 }
 
@@ -1989,7 +1989,7 @@ message GetPriceGroupRequest {
 }
 
 message PriceGroup {
-    //@inject_tag: json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true"
+    //@inject_tag: json:"id" bson:"_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the price group.
     string id = 1;
@@ -2040,7 +2040,7 @@ message ZipCode {
 }
 
 message PaymentChannelCostSystem {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the payment method.
     string id = 1;
@@ -2084,7 +2084,7 @@ message PaymentChannelCostSystem {
     //
     // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 11;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     //
     // The unique identifier for the operating company.
     string operating_company_id = 12;
@@ -2708,7 +2708,7 @@ message VatTransaction {
 }
 
 message VatReport {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the VAT report.
     string id = 1;
@@ -2788,7 +2788,7 @@ message VatReport {
     //
     // The payment date.
     google.protobuf.Timestamp paid_at = 20;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     //
     // The unique identifier for the operating company.
     string operating_company_id = 21;
@@ -3568,11 +3568,11 @@ message Key {
 }
 
 message PayoutDocument {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the payout document.
     string id = 1;
-    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the merchant who is the owner of the payout document.
     string merchant_id = 2;
@@ -3656,14 +3656,16 @@ message PayoutDocument {
     //
     // The payout date.
     google.protobuf.Timestamp paid_at = 27;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     //
     // The unique identifier for the operating company.
     string operating_company_id = 28;
 }
 
 message PayoutDocumentChanges {
+    // @inject_tag: faker:"objectIdString"
     string id = 1;
+    // @inject_tag: faker:"objectIdString"
     string payout_document_id = 2;
     string source = 3;
     string ip = 4;
