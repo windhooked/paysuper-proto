@@ -23,7 +23,7 @@ type MgoCommission struct {
 	Id struct {
 		PaymentMethodId primitive.ObjectID `bson:"pm_id"`
 		ProjectId       primitive.ObjectID `bson:"project_id"`
-	} `bson:"_id"`
+	} `bson:"_id"` 
 	PaymentMethodCommission float64   `bson:"pm_commission"`
 	PspCommission           float64   `bson:"psp_commission"`
 	ToUserCommission        float64   `bson:"total_commission_to_user"`
