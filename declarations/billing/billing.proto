@@ -1169,7 +1169,9 @@ message MerchantPaymentMethodHistory {
 }
 
 message CustomerIdentity {
+    // @inject_tag: faker:"objectIdString"
     string merchant_id = 1;
+    // @inject_tag: faker:"objectIdString"
     string project_id = 2;
     string type = 3;
     string value = 4;
@@ -1196,6 +1198,7 @@ message CustomerStringValueHistory {
 }
 
 message Customer {
+    // @inject_tag: faker:"objectIdString"
     string id = 1;
     string tech_email = 2;
     string external_id = 3;
@@ -1600,9 +1603,9 @@ message PaymentChannelCostSystemList {
 }
 
 message PaymentChannelCostMerchant {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
-    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string merchant_id = 2;
     //@inject_tag: json:"name" bson:"name" validate:"required,name"
     string name = 3;
@@ -1664,7 +1667,7 @@ message PaymentChannelCostMerchantListRequest {
 }
 
 message MoneyBackCostSystem {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
     //@inject_tag: json:"name" bson:"name" validate:"required,alpha"
     string name = 2;
@@ -1692,7 +1695,7 @@ message MoneyBackCostSystem {
     bool is_active = 13;
     // @inject_tag: json:"mcc_code" bson:"mcc_code"
     string mcc_code = 14;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     string operating_company_id = 15;
     // @inject_tag: json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"
     string fix_amount_currency = 16;
@@ -2826,7 +2829,7 @@ message PaymentFormDataChangeResponseItem {
 }
 
 message OperatingCompany {
-    // @inject_tag: bson:"_id" json:"id"
+    // @inject_tag: bson:"_id" json:"id" faker:"objectIdString"
     string id = 1;
     // @inject_tag: bson:"name" json:"name" validate:"required"
     string name = 2;

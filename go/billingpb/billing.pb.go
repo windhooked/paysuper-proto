@@ -6036,8 +6036,10 @@ func (m *MerchantPaymentMethodHistory) GetUserId() string {
 }
 
 type CustomerIdentity struct {
-	MerchantId           string               `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
-	ProjectId            string               `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	// @inject_tag: faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" faker:"objectIdString"`
+	// @inject_tag: faker:"objectIdString"
+	ProjectId            string               `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty" faker:"objectIdString"`
 	Type                 string               `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	Value                string               `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
 	Verified             bool                 `protobuf:"varint,5,opt,name=verified,proto3" json:"verified,omitempty"`
@@ -6280,7 +6282,8 @@ func (m *CustomerStringValueHistory) GetCreatedAt() *timestamp.Timestamp {
 }
 
 type Customer struct {
-	Id             string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// @inject_tag: faker:"objectIdString"
+	Id             string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
 	TechEmail      string `protobuf:"bytes,2,opt,name=tech_email,json=techEmail,proto3" json:"tech_email,omitempty"`
 	ExternalId     string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
 	Email          string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
@@ -8245,10 +8248,10 @@ func (m *PaymentChannelCostSystemList) GetItems() []*PaymentChannelCostSystem {
 }
 
 type PaymentChannelCostMerchant struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
-	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"`
+	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
+	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,name"
 	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name" bson:"name" validate:"required,name"`
 	//@inject_tag: json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"
@@ -8603,8 +8606,8 @@ func (m *PaymentChannelCostMerchantListRequest) GetMerchantId() string {
 }
 
 type MoneyBackCostSystem struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
+	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,alpha"
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required,alpha"`
 	//@inject_tag: json:"payout_currency" bson:"payout_currency" validate:"required,alpha,len=3"
@@ -8631,8 +8634,8 @@ type MoneyBackCostSystem struct {
 	IsActive bool `protobuf:"varint,13,opt,name=is_active,json=isActive,proto3" json:"is_active" bson:"is_active"`
 	// @inject_tag: json:"mcc_code" bson:"mcc_code"
 	MccCode string `protobuf:"bytes,14,opt,name=mcc_code,json=mccCode,proto3" json:"mcc_code" bson:"mcc_code"`
-	// @inject_tag: json:"operating_company_id" bson:"operating_company_id"
-	OperatingCompanyId string `protobuf:"bytes,15,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id"`
+	// @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
+	OperatingCompanyId string `protobuf:"bytes,15,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"`
 	// @inject_tag: json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"
 	FixAmountCurrency    string   `protobuf:"bytes,16,opt,name=fix_amount_currency,json=fixAmountCurrency,proto3" json:"fix_amount_currency" bson:"fix_amount_currency" validate:"required,alpha,len=3"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -14462,8 +14465,8 @@ func (m *PaymentFormDataChangeResponseItem) GetVatRate() float64 {
 }
 
 type OperatingCompany struct {
-	// @inject_tag: bson:"_id" json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
+	// @inject_tag: bson:"_id" json:"id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: bson:"name" json:"name" validate:"required"
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required"`
 	// @inject_tag: bson:"country" json:"country" validate:"required,alpha,len=2"
