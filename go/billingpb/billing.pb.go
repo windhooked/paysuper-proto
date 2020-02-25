@@ -6036,8 +6036,10 @@ func (m *MerchantPaymentMethodHistory) GetUserId() string {
 }
 
 type CustomerIdentity struct {
-	MerchantId           string               `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
-	ProjectId            string               `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	// @inject_tag: faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" faker:"objectIdString"`
+	// @inject_tag: faker:"objectIdString"
+	ProjectId            string               `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty" faker:"objectIdString"`
 	Type                 string               `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	Value                string               `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
 	Verified             bool                 `protobuf:"varint,5,opt,name=verified,proto3" json:"verified,omitempty"`
@@ -6280,7 +6282,8 @@ func (m *CustomerStringValueHistory) GetCreatedAt() *timestamp.Timestamp {
 }
 
 type Customer struct {
-	Id             string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// @inject_tag: faker:"objectIdString"
+	Id             string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
 	TechEmail      string `protobuf:"bytes,2,opt,name=tech_email,json=techEmail,proto3" json:"tech_email,omitempty"`
 	ExternalId     string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
 	Email          string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`

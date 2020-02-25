@@ -1169,7 +1169,9 @@ message MerchantPaymentMethodHistory {
 }
 
 message CustomerIdentity {
+    // @inject_tag: faker:"objectIdString"
     string merchant_id = 1;
+    // @inject_tag: faker:"objectIdString"
     string project_id = 2;
     string type = 3;
     string value = 4;
@@ -1196,6 +1198,7 @@ message CustomerStringValueHistory {
 }
 
 message Customer {
+    // @inject_tag: faker:"objectIdString"
     string id = 1;
     string tech_email = 2;
     string external_id = 3;
