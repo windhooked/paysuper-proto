@@ -234,25 +234,6 @@ type MgoPayoutCostSystem struct {
 	CreatedAt             time.Time          `bson:"created_at"`
 }
 
-type MgoMoneyBackCostSystem struct {
-	Id                 primitive.ObjectID `bson:"_id"`
-	Name               string             `bson:"name"`
-	PayoutCurrency     string             `bson:"payout_currency"`
-	UndoReason         string             `bson:"undo_reason"`
-	Region             string             `bson:"region"`
-	Country            string             `bson:"country"`
-	DaysFrom           int32              `bson:"days_from"`
-	PaymentStage       int32              `bson:"payment_stage"`
-	Percent            float64            `bson:"percent"`
-	FixAmount          float64            `bson:"fix_amount"`
-	CreatedAt          time.Time          `bson:"created_at"`
-	UpdatedAt          time.Time          `bson:"updated_at"`
-	IsActive           bool               `bson:"is_active"`
-	MccCode            string             `bson:"mcc_code"`
-	OperatingCompanyId string             `bson:"operating_company_id"`
-	FixAmountCurrency  string             `bson:"fix_amount_currency"`
-}
-
 type MgoMoneyBackCostMerchant struct {
 	Id                primitive.ObjectID `bson:"_id"`
 	MerchantId        primitive.ObjectID `bson:"merchant_id"`
@@ -1392,90 +1373,6 @@ func (m *PaymentMethodOrder) IsBankCard() bool {
 
 func (m *PaymentMethodOrder) IsCryptoCurrency() bool {
 	return m.Group == recurringpb.PaymentSystemGroupAliasBitcoin
-}
-
-func (m *MoneyBackCostSystem) MarshalBSON() ([]byte, error) {
-	st := &MgoMoneyBackCostSystem{
-		Name:               m.Name,
-		PayoutCurrency:     m.PayoutCurrency,
-		UndoReason:         m.UndoReason,
-		Region:             m.Region,
-		Country:            m.Country,
-		DaysFrom:           m.DaysFrom,
-		PaymentStage:       m.PaymentStage,
-		Percent:            m.Percent,
-		FixAmount:          m.FixAmount,
-		IsActive:           m.IsActive,
-		MccCode:            m.MccCode,
-		OperatingCompanyId: m.OperatingCompanyId,
-		FixAmountCurrency:  m.FixAmountCurrency,
-	}
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-		st.Id = oid
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-		if err != nil {
-			return nil, err
-		}
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-		if err != nil {
-			return nil, err
-		}
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-	return bson.Marshal(st)
-}
-
-func (m *MoneyBackCostSystem) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoMoneyBackCostSystem)
-	err := bson.Unmarshal(raw, decoded)
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Name = decoded.Name
-	m.PayoutCurrency = decoded.PayoutCurrency
-	m.UndoReason = decoded.UndoReason
-	m.Region = decoded.Region
-	m.Country = decoded.Country
-	m.DaysFrom = decoded.DaysFrom
-	m.PaymentStage = decoded.PaymentStage
-	m.Percent = decoded.Percent
-	m.FixAmount = decoded.FixAmount
-	m.IsActive = decoded.IsActive
-	m.MccCode = decoded.MccCode
-	m.OperatingCompanyId = decoded.OperatingCompanyId
-	m.FixAmountCurrency = decoded.FixAmountCurrency
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-	if err != nil {
-		return err
-	}
-
-	return nil
 }
 
 func (m *MoneyBackCostMerchant) MarshalBSON() ([]byte, error) {
