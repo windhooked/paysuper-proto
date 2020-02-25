@@ -10211,7 +10211,8 @@ func (m *GetUserProfileResponse) GetItem() *UserProfile {
 }
 
 type PageReview struct {
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	//@inject_tag: faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
 	//@inject_tag: json:"user_id" bson:"user_id"
 	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id" bson:"user_id"`
 	Review string `protobuf:"bytes,3,opt,name=review,proto3" json:"review,omitempty"`

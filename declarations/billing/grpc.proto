@@ -1875,6 +1875,7 @@ message GetUserProfileResponse {
 }
 
 message PageReview {
+    //@inject_tag: faker:"objectIdString"
     string id = 1;
     //@inject_tag: json:"user_id" bson:"user_id"
     string user_id = 2;

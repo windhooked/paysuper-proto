@@ -62,16 +62,6 @@ type MgoProduct struct {
 	BillingType     string                `bson:"billing_type" json:"billing_type"`
 }
 
-type MgoPageReview struct {
-	Id        primitive.ObjectID `bson:"_id"`
-	UserId    string             `bson:"user_id"`
-	Review    string             `bson:"review"`
-	Url       string             `bson:"url"`
-	IsRead    bool               `bson:"is_read"`
-	CreatedAt time.Time          `bson:"created_at"`
-	UpdatedAt time.Time          `bson:"updated_at"`
-}
-
 type MgoDashboardAmountItemWithChart struct {
 	Amount   float64                    `bson:"amount"`
 	Currency string                     `bson:"currency"`
@@ -241,71 +231,6 @@ func (p *Product) MarshalBSON() ([]byte, error) {
 	}
 
 	return bson.Marshal(st)
-}
-
-func (m *PageReview) MarshalBSON() ([]byte, error) {
-	oid, _ := primitive.ObjectIDFromHex(m.Id)
-	st := &MgoPageReview{
-		Id:     oid,
-		UserId: m.UserId,
-		Review: m.Review,
-		Url:    m.Url,
-		IsRead: m.IsRead,
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *PageReview) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoPageReview)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.UserId = decoded.UserId
-	m.Review = decoded.Review
-	m.Url = decoded.Url
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	return nil
 }
 
 func (p *KeyProduct) UnmarshalBSON(raw []byte) error {
