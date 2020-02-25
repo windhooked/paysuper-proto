@@ -12814,16 +12814,16 @@ func (m *MerchantTariffRatesSettings) GetMccCode() string {
 }
 
 type Key struct {
-	//@inject_tag: json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
+	//@inject_tag: json:"id" bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" faker:"objectIdString"`
 	//@inject_tag: json:"code" validate:"required,max=50"
 	Code string `protobuf:"bytes,2,opt,name=code,proto3" json:"code" validate:"required,max=50"`
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	KeyProductId string `protobuf:"bytes,3,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	KeyProductId string `protobuf:"bytes,3,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: validate:"required,max=255"
 	PlatformId string `protobuf:"bytes,5,opt,name=platform_id,json=platformId,proto3" json:"platform_id,omitempty" validate:"required,max=255"`
-	//@inject_tag: validate:"omitempty,hexadecimal,len=24"
-	OrderId   string               `protobuf:"bytes,6,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
+	//@inject_tag: validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	OrderId   string               `protobuf:"bytes,6,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	//@inject_tag: validate:"omitempty"
 	ReservedTo *timestamp.Timestamp `protobuf:"bytes,8,opt,name=reserved_to,json=reservedTo,proto3" json:"reserved_to,omitempty" validate:"omitempty"`
