@@ -2829,7 +2829,7 @@ message PaymentFormDataChangeResponseItem {
 }
 
 message OperatingCompany {
-    // @inject_tag: bson:"_id" json:"id"
+    // @inject_tag: bson:"_id" json:"id" faker:"objectIdString"
     string id = 1;
     // @inject_tag: bson:"name" json:"name" validate:"required"
     string name = 2;
