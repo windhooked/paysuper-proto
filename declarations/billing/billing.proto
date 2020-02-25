@@ -1626,7 +1626,9 @@ message MerchantPaymentMethodHistory {
 }
 
 message CustomerIdentity {
+    // @inject_tag: faker:"objectIdString"
     string merchant_id = 1;
+    // @inject_tag: faker:"objectIdString"
     string project_id = 2;
     string type = 3;
     string value = 4;
@@ -1653,6 +1655,7 @@ message CustomerStringValueHistory {
 }
 
 message Customer {
+    // @inject_tag: faker:"objectIdString"
     string id = 1;
     string tech_email = 2;
     string external_id = 3;
@@ -2111,11 +2114,11 @@ message PaymentChannelCostSystemList {
 }
 
 message PaymentChannelCostMerchant {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the record about the merchant's tariffs.
     string id = 1;
-    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the merchant.
     string merchant_id = 2;
@@ -2211,7 +2214,7 @@ message PaymentChannelCostMerchantListRequest {
 }
 
 message MoneyBackCostSystem {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the record about the merchant's tariffs.
     string id = 1;
@@ -2267,7 +2270,7 @@ message MoneyBackCostSystem {
     //
     // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 14;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id"
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
     //
     // The unique identifier for the operating company.
     string operating_company_id = 15;
@@ -4047,7 +4050,7 @@ message PaymentFormDataChangeResponseItem {
 }
 
 message OperatingCompany {
-    // @inject_tag: bson:"_id" json:"id"
+    // @inject_tag: bson:"_id" json:"id" faker:"objectIdString"
     //
     // The unique identifier for the operating company.
     string id = 1;
