@@ -495,24 +495,6 @@ type MgoMerchantBalance struct {
 	CreatedAt      time.Time          `bson:"created_at"`
 }
 
-type MgoOperatingCompany struct {
-	Id                 primitive.ObjectID `bson:"_id"`
-	Name               string             `bson:"name"`
-	Country            string             `bson:"country"`
-	RegistrationNumber string             `bson:"registration_number"`
-	RegistrationDate   string             `bson:"registration_date"`
-	VatNumber          string             `bson:"vat_number"`
-	Email              string             `bson:"email"`
-	Address            string             `bson:"address"`
-	VatAddress         string             `bson:"vat_address"`
-	SignatoryName      string             `bson:"signatory_name"`
-	SignatoryPosition  string             `bson:"signatory_position"`
-	BankingDetails     string             `bson:"banking_details"`
-	PaymentCountries   []string           `bson:"payment_countries"`
-	CreatedAt          time.Time          `bson:"created_at"`
-	UpdatedAt          time.Time          `bson:"updated_at"`
-}
-
 type MgoPaymentMinLimitSystem struct {
 	Id        primitive.ObjectID `bson:"_id"`
 	Currency  string             `bson:"currency"`
@@ -2377,89 +2359,6 @@ func (m *Key) MarshalBSON() ([]byte, error) {
 	}
 
 	return bson.Marshal(st)
-}
-
-func (m *OperatingCompany) MarshalBSON() ([]byte, error) {
-	st := &MgoOperatingCompany{
-		Name:               m.Name,
-		Country:            m.Country,
-		RegistrationNumber: m.RegistrationNumber,
-		RegistrationDate:   m.RegistrationDate,
-		VatNumber:          m.VatNumber,
-		Email:              m.Email,
-		Address:            m.Address,
-		VatAddress:         m.VatAddress,
-		SignatoryName:      m.SignatoryName,
-		SignatoryPosition:  m.SignatoryPosition,
-		BankingDetails:     m.BankingDetails,
-		PaymentCountries:   m.PaymentCountries,
-	}
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-
-		st.Id = oid
-	}
-
-	var err error
-
-	if m.CreatedAt != nil {
-		if st.CreatedAt, err = ptypes.Timestamp(m.CreatedAt); err != nil {
-			return nil, err
-		}
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		if st.UpdatedAt, err = ptypes.Timestamp(m.UpdatedAt); err != nil {
-			return nil, err
-		}
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *OperatingCompany) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoOperatingCompany)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Name = decoded.Name
-	m.Country = decoded.Country
-	m.RegistrationNumber = decoded.RegistrationNumber
-	m.RegistrationDate = decoded.RegistrationDate
-	m.VatNumber = decoded.VatNumber
-	m.Email = decoded.Email
-	m.Address = decoded.Address
-	m.VatAddress = decoded.VatAddress
-	m.SignatoryName = decoded.SignatoryName
-	m.SignatoryPosition = decoded.SignatoryPosition
-	m.BankingDetails = decoded.BankingDetails
-	m.PaymentCountries = decoded.PaymentCountries
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-	if err != nil {
-		return err
-	}
-
-	return nil
 }
 
 func (m *PaymentMinLimitSystem) MarshalBSON() ([]byte, error) {

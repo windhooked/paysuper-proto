@@ -14465,8 +14465,8 @@ func (m *PaymentFormDataChangeResponseItem) GetVatRate() float64 {
 }
 
 type OperatingCompany struct {
-	// @inject_tag: bson:"_id" json:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
+	// @inject_tag: bson:"_id" json:"id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: bson:"name" json:"name" validate:"required"
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" bson:"name" validate:"required"`
 	// @inject_tag: bson:"country" json:"country" validate:"required,alpha,len=2"
