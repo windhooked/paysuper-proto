@@ -10063,7 +10063,8 @@ func (m *PayoutCostSystem) GetCreatedAt() *timestamp.Timestamp {
 }
 
 type AccountingEntrySource struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	//@inject_tag: faker:"objectIdString"
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
 	Type                 string   `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -10110,26 +10111,28 @@ func (m *AccountingEntrySource) GetType() string {
 }
 
 type AccountingEntry struct {
-	Id                   string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Object               string                 `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
-	Type                 string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	Source               *AccountingEntrySource `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
-	MerchantId           string                 `protobuf:"bytes,5,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
-	Amount               float64                `protobuf:"fixed64,6,opt,name=amount,proto3" json:"amount,omitempty"`
-	Currency             string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
-	Reason               string                 `protobuf:"bytes,8,opt,name=reason,proto3" json:"reason,omitempty"`
-	Status               string                 `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
-	Country              string                 `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
-	OriginalAmount       float64                `protobuf:"fixed64,11,opt,name=original_amount,json=originalAmount,proto3" json:"original_amount,omitempty"`
-	OriginalCurrency     string                 `protobuf:"bytes,12,opt,name=original_currency,json=originalCurrency,proto3" json:"original_currency,omitempty"`
-	LocalAmount          float64                `protobuf:"fixed64,13,opt,name=local_amount,json=localAmount,proto3" json:"local_amount,omitempty"`
-	LocalCurrency        string                 `protobuf:"bytes,14,opt,name=local_currency,json=localCurrency,proto3" json:"local_currency,omitempty"`
-	CreatedAt            *timestamp.Timestamp   `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	AvailableOn          *timestamp.Timestamp   `protobuf:"bytes,16,opt,name=available_on,json=availableOn,proto3" json:"available_on,omitempty"`
-	OperatingCompanyId   string                 `protobuf:"bytes,17,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                 `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                  `json:"-" bson:"-" structure:"-" validate:"-"`
+	//@inject_tag: faker:"objectIdString"
+	Id     string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
+	Object string                 `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
+	Type   string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	Source *AccountingEntrySource `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
+	//@inject_tag: faker:"objectIdString"
+	MerchantId           string               `protobuf:"bytes,5,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" faker:"objectIdString"`
+	Amount               float64              `protobuf:"fixed64,6,opt,name=amount,proto3" json:"amount,omitempty"`
+	Currency             string               `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`
+	Reason               string               `protobuf:"bytes,8,opt,name=reason,proto3" json:"reason,omitempty"`
+	Status               string               `protobuf:"bytes,9,opt,name=status,proto3" json:"status,omitempty"`
+	Country              string               `protobuf:"bytes,10,opt,name=country,proto3" json:"country,omitempty"`
+	OriginalAmount       float64              `protobuf:"fixed64,11,opt,name=original_amount,json=originalAmount,proto3" json:"original_amount,omitempty"`
+	OriginalCurrency     string               `protobuf:"bytes,12,opt,name=original_currency,json=originalCurrency,proto3" json:"original_currency,omitempty"`
+	LocalAmount          float64              `protobuf:"fixed64,13,opt,name=local_amount,json=localAmount,proto3" json:"local_amount,omitempty"`
+	LocalCurrency        string               `protobuf:"bytes,14,opt,name=local_currency,json=localCurrency,proto3" json:"local_currency,omitempty"`
+	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,15,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	AvailableOn          *timestamp.Timestamp `protobuf:"bytes,16,opt,name=available_on,json=availableOn,proto3" json:"available_on,omitempty"`
+	OperatingCompanyId   string               `protobuf:"bytes,17,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32                `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *AccountingEntry) Reset()         { *m = AccountingEntry{} }
