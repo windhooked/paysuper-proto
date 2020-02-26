@@ -231,21 +231,27 @@ message EmptyResponse {
 }
 
 message EmptyResponseWithStatus {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
 }
 
 message CheckSkuAndKeyProjectRequest {
     //@inject_tag: validate:"required,max=255"
+    //
+    // The SKU of the project's product.
     string sku = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24" param:"project_id"
+    //@inject_tag: validate:"required,hexadecimal,len=24" param:"project_id" json:"-"
     string project_id = 2;
 }
 
 message ChangeCodeInOrderRequest {
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" json:"-"
     string order_id = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the key-activated product.
     string key_product_id = 2;
 }
 
@@ -256,9 +262,13 @@ message ChangeCodeInOrderResponse {
 }
 
 message GetPlatformKeyCountResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
     //@inject_tag: json:"count"
+    //
+    // The total number of keys for products.
     int32 count = 3;
 }
 
@@ -295,20 +305,26 @@ message PlatformKeyReserveRequest {
 }
 
 message PlatformKeysFileResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The number of the processed keys.
     int32 keys_processed = 3;
+    // The total number of keys.
     int32 total_count = 4;
 }
 
 message PlatformKeysFileRequest {
-    //@inject_tag: validate:"required,max=10485760"
+    //@inject_tag: validate:"required,max=10485760" required:"true"
+    //
+    // The file with keys.
     bytes file = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string key_product_id = 2;
-    //@inject_tag: validate:"hexadecimal,len=24" json:"merchant_id"
+    //@inject_tag: validate:"hexadecimal,len=24" json:"-"
     string merchant_id = 3;
-    //@inject_tag: validate:"required,max=255"
+    //@inject_tag: validate:"required,max=255" json:"-"
     string platform_id = 4;
 }
 
@@ -338,33 +354,61 @@ message KeyProductResponse {
 }
 
 message CreateOrUpdateKeyProductRequest {
-    //@inject_tag: validate:"required,min=1"
+    //@inject_tag: validate:"required,min=1" required:"true"
+    //
+    // The list of the product's localized names.
     map<string, string> name = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the project.
     string project_id = 2;
-    //@inject_tag: validate:"required,min=1"
+    //@inject_tag: validate:"required,min=1" required:"true"
+    //
+    // The list of the product's localized concise descriptions.
     map<string, string> description = 3;
     //@inject_tag: json:"long_description"
+    //
+    // The list of the product's localized extended descriptions.
     map<string, string> long_description = 4;
-    //@inject_tag: validate:"required,max=255"
+    //@inject_tag: validate:"required,max=255" required:"true"
+    //
+    // The SKU of the product.
     string sku = 5;
     //@inject_tag: json:"cover"
+    //
+    // The product's covers for each localization.
     billing.ImageCollection cover = 6;
     //@inject_tag: validate:"omitempty,url" json:"url"
+    //
+    // The product's URL in the merchant project.
     string url = 7;
-    //@inject_tag: validate:"required,alpha,len=3" json:"default_currency"
+    //@inject_tag: validate:"required,alpha,len=3" json:"default_currency" required:"true"
+    //
+    // The product's default currency. Three-letter Currency Code ISO 4217, in uppercase.
     string default_currency = 8;
     //@inject_tag: validate:"hexadecimal,len=24" json:"merchant_id"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 9;
     //@inject_tag: validate:"omitempty,hexadecimal,len=24"
+    //
+    // The unique identifier for the key-activated product.
     string id = 10;
-    //@inject_tag: json:"object" validate:"required"
+    //@inject_tag: json:"object" validate:"required" required:"true"
+    //
+    // The system constant that contains the returned object's type.
     string object = 11;
     //@inject_tag: json:"metadata"
+    //
+    // The string-value description for the product.
     map<string, string> metadata = 12;
     //@inject_tag: validate:"dive" json:"platforms"
+    //
+    // The list of the platforms.
     repeated PlatformPrice platforms = 13;
-    // @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default"
+    // @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default" required:"true"
+    //
+    // The pricing mode. Available values: currency, manual, steam, default.
     string pricing = 14;
 }
 
@@ -390,28 +434,48 @@ message ListPlatformsRequest {
 }
 
 message ListPlatformsResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
     // @inject_tag: json:"limit"
+    //
+    // The number of platforms returned in one page.
     int32 limit = 3;
     // @inject_tag: json:"offset"
+    //
+    // The ranking number of the first item on the page.
     int32 offset = 4;
     // @inject_tag: json:"count"
+    //
+    // The total number of found products.
     int32 count = 5;
     // @inject_tag: json:"platforms"
+    //
+    // The list of platforms.
     repeated Platform platforms = 6;
 }
 
 message ListKeyProductsResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
     // @inject_tag: json:"limit"
+    //
+    // The number of products returned in one page.
     int64 limit = 3;
     // @inject_tag: json:"offset"
+    //
+    // The ranking number of the first item on the page.
     int64 offset = 4;
     // @inject_tag: json:"count"
+    //
+    // The total number of found products.
     int64 count = 5;
     // @inject_tag: json:"products"
+    //
+    // The list of key-activated products.
     repeated KeyProduct products = 6;
 }
 
@@ -433,7 +497,8 @@ message ListKeyProductsRequest {
 }
 
 message PaymentCreateRequest {
-    // required:"true"
+    // @inject_tag: required:"true"
+    //
     // The customer's payment requisites.
     map<string, string> data = 1;
     // @inject_tag: json:"-"
@@ -585,7 +650,7 @@ message PaymentFormJsonData {
     double vat_rate = 28;
     // @inject_tag: json:"vat_payer"
     //
-    // Responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
+    // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
     string vat_payer = 29;
     // @inject_tag: json:"is_production"
     //
@@ -661,34 +726,51 @@ message MerchantListingRequest {
 
 message MerchantListingResponse {
     // @inject_tag: json:"count"
+    //
+    // The total number of the merchants.
     int64 count = 1;
     // @inject_tag: json:"items"
+    //
+    // The merchants list.
     repeated billing.Merchant items = 2;
 }
 
 message MerchantChangeStatusRequest {
-    // @inject_tag: validate:"required,hexadecimal"
+    // @inject_tag: validate:"required,hexadecimal" json:"-"
     string merchant_id = 1;
+    // @inject_tag: json:"-"
     string user_id = 2;
     // @inject_tag: validate:"omitempty,numeric,oneof=5 6"
+    //
+    // The merchant's status. Available values: 5 - removed, 6 - rejected.
     int32 status = 3;
+    // The information about changes.
     string message = 4;
 }
 
 message NotificationRequest {
-    // @inject_tag: validate:"required,hexadecimal"
+    // @inject_tag: validate:"required,hexadecimal" json:"-"
     string merchant_id = 1;
+    // @inject_tag: json:"-"
     string user_id = 2;
-    // @inject_tag: validate:"required"
+    // @inject_tag: validate:"required" required:"true"
+    //
+    // The notification title.
     string title = 3;
-    // @inject_tag: validate:"required"
+    // @inject_tag: validate:"required" required:"true"
+    //
+    // The notification message.
     string message = 4;
 }
 
 message Notifications {
     // @inject_tag: json:"count"
+    //
+    // The total number of found notifications.
     int64 count = 1;
     // @inject_tag: json:"items"
+    //
+    // The list of notifications.
     repeated billing.Notification items = 2;
 }
 
@@ -697,7 +779,7 @@ message ListingNotificationRequest {
     string merchant_id = 1;
     // @inject_tag: query:"user" validate:"omitempty,hexadecimal,len=24"
     string user_id = 2;
-    // @inject_tag: validate:"omitempty,numeric,oneof=1 2"
+    // @inject_tag: query:"is_system" validate:"omitempty,numeric,oneof=1 2"
     int32 is_system = 3;
     // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
     int64 limit = 4;
@@ -768,14 +850,19 @@ message GetNotificationRequest {
 }
 
 message CreateRefundRequest {
-    // @inject_tag: validate:"required,uuid"
+    // @inject_tag: validate:"required,uuid" json:"-"
     string order_id = 1;
-    // @inject_tag: validate:"required,numeric,gt=0"
+    // @inject_tag: validate:"required,numeric,gt=0" required:"true"
+    //
+    // The refund amount.
     double amount = 2;
+    // The unique identifier for the user initiated an action on the return.
     string creator_id = 3;
+    // The refund reason. Available values: Customer's request, Redeem chargeback, Purchase not provided, Card data was stolen.
     string reason = 4;
+    // Has a true value if this refund is a chargeback.
     bool is_chargeback = 5;
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 6;
 }
 
@@ -798,8 +885,12 @@ message ListRefundsRequest {
 
 message ListRefundsResponse {
     // @inject_tag: json:"count"
+    //
+    // The total number of found refunds.
     int64 count = 1;
     // @inject_tag: json:"items"
+    //
+    // The list of the refunds.
     repeated billing.Refund items = 2;
 }
 
@@ -960,8 +1051,12 @@ message GetMerchantByRequest {
 
 message ChangeMerchantDataRequest {
     // @inject_tag: validate:"required,hexadecimal,len=24"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 1;
+    // Has a true value if the merchant has signed the license agreement.
     bool has_merchant_signature = 3;
+    // Has a true value if PaySuper has signed the license agreement.
     bool has_psp_signature = 4;
 }
 
@@ -1003,82 +1098,141 @@ message SetMerchantS3AgreementRequest {
 }
 
 message KeyProductInfo {
+    // The unique identifier for the product.
     string id = 1;
+    // The unique identifier for the product's project.
     string project_id = 2;
+    // The localized name of the product.
     string name = 3;
+    // The localized concise description of the product.
     string description = 4;
+    // The localized extended description of the product.
     string long_description = 5;
+    // The list of the URL images of the product.
     repeated string images = 6;
+    // The list of the platforms data.
     repeated PlatformPriceInfo platforms = 7;
 }
 
 message PlatformPriceInfo {
+    // The unique identifier for the platform.
     string id = 1;
+    // The platform's name.
     string name = 2;
+    // The product price data.
     ProductPriceInfo price = 3;
 }
 
 message ProductPriceInfo {
+    // The product's price.
     double amount = 1;
+    // The product's price currency.
     string currency = 2;
+    // The product's region.
     string region = 3;
+    // Has a true value if the price was calculated in the default currency instead of the specified.
     bool is_fallback = 4;
 }
 
 message KeyProduct {
-    //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id"
+    //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" faker:"objectIdString"
+    //
+    // The unique identifier for the key-activated product.
     string id = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-" faker:"objectIdString"
     string merchant_id = 2;
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" faker:"objectIdString"
+    //
+    // The unique identifier for the project.
     string project_id = 3;
     //@inject_tag: validate:"omitempty" json:"object"
+    //
+    // The system constant that contains the returned object's type.
     string object = 4;
     //@inject_tag: validate:"required" json:"sku"
+    //
+    // The SKU of the product.
     string sku = 5;
     //@inject_tag: validate:"required" json:"name"
+    //
+    // The list of the product's localized names.
     map<string, string> name = 6;
     //@inject_tag: validate:"required,alpha,len=3" json:"default_currency"
+    //
+    // The product's default currency. Three-letter Currency Code ISO 4217, in uppercase.
     string default_currency = 7;
     //@inject_tag: json:"enabled"
+    //
+    // Has a true value if the product is enabled.
     bool enabled = 8;
     //@inject_tag: validate:"required,min=1,dive" json:"platforms"
+    //
+    // The list of the platforms.
     repeated PlatformPrice platforms = 9;
     //@inject_tag: validate:"required" json:"description"
+    //
+    // The list of the product's localized concise descriptions.
     map<string, string> description = 10;
     //@inject_tag: validate:"omitempty" json:"long_description"
+    //
+    // The list of the product's localized extended descriptions.
     map<string, string> long_description = 11;
     //@inject_tag: json:"created_at"
+    //
+    // The date of the product creation.
     google.protobuf.Timestamp created_at = 12;
     //@inject_tag: json:"updated_at"
+    //
+    // The date of the product last update.
     google.protobuf.Timestamp updated_at = 13;
     //@inject_tag: json:"cover"
+    //
+    // The product's covers for each localization.
     billing.ImageCollection cover = 14;
     //@inject_tag: validate:"omitempty,url" json:"url"
+    //
+    // The product's URL in the merchant project.
     string url = 15;
     //@inject_tag: json:"metadata"
+    //
+    // The string-value description for the product.
     map<string, string> metadata = 16;
     //@inject_tag: json:"-"
     bool deleted = 17;
     //@inject_tag: json:"published_at"
+    //
+    // Tha date of the product publishing.
     google.protobuf.Timestamp published_at = 18;
     // @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default"
+    //
+    // The pricing mode. Available values: currency, manual, steam, default.
     string pricing = 19;
 }
 
 message PlatformPrice {
     //@inject_tag: validate:"required" json:"id"
+    //
+    // The unique name of the platform. Available values: steam, gog, uplay, origin, psn, xbox, nintendo, itch, egs.
     string id = 1;
     //@inject_tag: json:"name"
+    //
+    // The full name of the platform. (for instance for gog - Good old games.com)
     string name = 2;
     //@inject_tag: validate:"required,min=1,currency_price,dive" json:"prices"
+    //
+    // The list of the key pricing for all platforms.
     repeated billing.ProductPrice prices = 3;
     //@inject_tag: validate:"omitempty,url" json:"eula_url"
+    //
+    // The license agreement link of the platform.
     string eula_url = 4;
     //@inject_tag: validate:"omitempty,url" json:"activation_url"
+    //
+    // The link of the key's activation rules for the platform.
     string activation_url = 5;
-    // count is used only in listing of key products for merchant. in all other keys will be empty always
     //@inject_tag: validate:"omitempty" json:"count"
+    //
+    // The number of created keys for the platform.
     int32 count = 6;
 }
 
@@ -1100,45 +1254,83 @@ message Platform {
 }
 
 message Product {
-    //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" bson:"_id"
+    //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" bson:"_id" faker:"objectIdString"
+    //
+    // The unique identifier for the product.
     string id = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-" bson:"merchant_id"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-" bson:"merchant_id" required:"true" faker:"objectIdString"
+    //
+    // The unique identifier for the product's merchant.
     string merchant_id = 2;
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" bson:"project_id"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" bson:"project_id" required:"true" faker:"objectIdString"
+    //
+    // The unique identifier for the product's project.
     string project_id = 3;
-    //@inject_tag: validate:"required" json:"object"
+    //@inject_tag: validate:"required" json:"object" required:"true"
+    //
+    // The system constant that contains the returned object's type. Const value: product.
     string object = 4;
-    //@inject_tag: validate:"required" json:"type"
+    //@inject_tag: validate:"required" json:"type" required:"true"
+    //
+    // The product's type.
     string type = 5;
-    //@inject_tag: validate:"required" json:"sku" bson:"sku"
+    //@inject_tag: validate:"required" json:"sku" bson:"sku" required:"true"
+    //
+    // The SKU of the product.
     string sku = 6;
-    //@inject_tag: validate:"required" json:"name"
+    //@inject_tag: validate:"required" json:"name" required:"true"
+    //
+    // The list of the product's localized names.
     map<string, string> name = 7;
-    //@inject_tag: validate:"required,alpha,len=3" json:"default_currency"
+    //@inject_tag: validate:"required,alpha,len=3" json:"default_currency" required:"true"
+    //
+    // The product's default currency.
     string default_currency = 8;
     //@inject_tag: json:"enabled"
+    //
+    // Has a true value if the product is enabled.
     bool enabled = 9;
     //@inject_tag: validate:"required,min=1,currency_price,dive" json:"prices"
+    //
+    // The product's price.
     repeated billing.ProductPrice prices = 10;
     //@inject_tag: validate:"required" json:"description"
+    //
+    // The list of the product's localized concise descriptions.
     map<string, string> description = 11;
     //@inject_tag: validate:"omitempty" json:"long_description"
+    //
+    // The list of the product's localized extended descriptions.
     map<string, string> long_description = 12;
     //@inject_tag: json:"created_at"
+    //
+    // The date the product has been created.
     google.protobuf.Timestamp created_at = 13;
     //@inject_tag: json:"updated_at"
+    //
+    // The date the product has been updated.
     google.protobuf.Timestamp updated_at = 14;
     //@inject_tag: validate:"dive,omitempty,uri" json:"images"
+    //
+    // The product's images URL list.
     repeated string images = 15;
     //@inject_tag: validate:"omitempty,url" json:"url"
+    //
+    // The product's URL in the merchant project.
     string url = 16;
     //@inject_tag: json:"metadata"
+    //
+    // The string-value description for the product's object.
     map<string, string> metadata = 17;
     //@inject_tag: json:"-" bson:"deleted"
     bool deleted = 18;
-    // @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default"
+    // @inject_tag: json:"pricing" validate:"required,oneof=currency manual steam default" required:"true"
+    //
+    // The pricing mode. Available values: currency, manual, steam, default.
     string pricing = 19;
-    // @inject_tag: json:"billing_type" validate:"required,oneof=real virtual"
+    // @inject_tag: json:"billing_type" validate:"required,oneof=real virtual" required:"true"
+    //
+    // The billing type. Available values: real, virtual.
     string billing_type = 20;
 }
 
@@ -1192,12 +1384,20 @@ message GetKeyProductsForOrderRequest {
 
 message ListProductsResponse {
     // @inject_tag: json:"limit"
+    //
+    // The number of products returned in one page.
     int64 limit = 1;
     // @inject_tag: json:"offset"
+    //
+    // The ranking number of the first item on the page.
     int64 offset = 2;
     // @inject_tag: json:"count"
+    //
+    // The total number of found items.
     int64 total = 3;
     // @inject_tag: json:"items"
+    //
+    // The list of products.
     repeated Product products = 5;
 }
 
@@ -1228,8 +1428,11 @@ message I18NTextSearchable {
 }
 
 message ChangeProjectResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The project data.
     billing.Project item = 3;
 }
 
@@ -1257,8 +1460,12 @@ message ListProjectsRequest {
 
 message ListProjectsResponse {
     //@inject_tag: json:"count"
+    //
+    // The total number of found projects.
     int64 count = 1;
     //@inject_tag: json:"items"
+    //
+    // The list of the projects.
     repeated billing.Project items = 2;
 }
 
@@ -1399,6 +1606,8 @@ message GetPaymentMethodSettingsRequest {
 
 message GetPaymentMethodSettingsResponse {
     // @inject_tag: json:"params"
+    //
+    // The payment method settings.
     repeated billing.PaymentMethodParams params = 1;
 }
 
@@ -1417,12 +1626,16 @@ message ChangePaymentMethodParamsRequest {
 }
 
 message ChangePaymentMethodResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     string message = 2;
 }
 
 message ChangePaymentMethodParamsResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     string message = 2;
 }
 
@@ -1440,11 +1653,11 @@ message FindByZipCodeRequest {
 message FindByZipCodeResponse {
     // @inject_tag: json:"count"
     //
-    // The number of cities.
+    // The total number of found cities.
     int32 count = 1;
     // @inject_tag: json:"items"
     //
-    // The data found by ZIP code.
+    // The data found by the ZIP code.
     repeated billing.ZipCode items = 2;
 }
 
@@ -1520,9 +1733,13 @@ message ListRoyaltyReportsRequest {
 
 message RoyaltyReportsPaginate {
     // @inject_tag: json:"count"
-    int64 count = 1; // total count of selected orders
+    //
+    // The total number of reports.
+    int64 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.RoyaltyReport items = 2; // array of selected orders
+    //
+    // The royalty reports list.
+    repeated billing.RoyaltyReport items = 2;
 }
 
 message ListRoyaltyReportsResponse {
@@ -1545,7 +1762,9 @@ message ListRoyaltyReportOrdersRequest {
 }
 
 message ChangeRoyaltyReportCorrection {
+    // The correction amount.
     double amount = 1;
+    // The correction reason.
     string reason = 2;
 }
 
@@ -1566,26 +1785,34 @@ message GetRoyaltyReportResponse {
 }
 
 message ChangeRoyaltyReportRequest {
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 1;
-    // @inject_tag: json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
+    // @inject_tag: json:"-" validate:"required,hexadecimal,len=24" param:"report_id"
     string report_id = 2;
     // @inject_tag: json:"status" validate:"omitempty,oneof=pending skipped accepted canceled dispute ready_for_invoice payment_in_progress payment_done payment_error"
+    //
+    // The report status. Available values: pending, skipped, accepted, canceled, dispute, ready_for_invoice, payment_in_progress, payment_done, payment_error.
     string status = 3;
     // @inject_tag: json:"correction"
+    //
+    // The report correction.
     ChangeRoyaltyReportCorrection correction = 4;
+    // @inject_tag: json:"-"
     string ip = 5;
 }
 
 message MerchantReviewRoyaltyReportRequest {
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 1;
-    // @inject_tag: validate:"required,hexadecimal,len=24" param:"report_id"
+    // @inject_tag: validate:"required,hexadecimal,len=24" param:"report_id" json:"-"
     string report_id = 2;
-    //@inject_tag: json:"is_accepted"
+    //@inject_tag: json:"is_accepted" json:"-"
     bool is_accepted = 3;
+    // @inject_tag: json:"-"
     string ip = 4;
     //@inject_tag: json:"dispute_reason"
+    //
+    // The dispute reason.
     string dispute_reason = 5;
 }
 
@@ -1743,74 +1970,128 @@ message UpdateProductPricesRequest {
 }
 
 message UserProfilePersonal {
-    //@inject_tag: json:"first_name" bson:"first_name" validate:"required,name,max=30"
+    //@inject_tag: json:"first_name" bson:"first_name" validate:"required,name,max=30" required:"true"
+    //
+    // The user's first name.
     string first_name = 1;
-    //@inject_tag: json:"last_name" bson:"last_name" validate:"required,name,max=30"
+    //@inject_tag: json:"last_name" bson:"last_name" validate:"required,name,max=30" required:"true"
+    //
+    // The user's last name.
     string last_name = 2;
-    //@inject_tag: json:"position" bson:"position" validate:"required,position"
+    //@inject_tag: json:"position" bson:"position" validate:"required,position" required:"true"
+    //
+    // The user's position in the company.
     string position = 3;
 }
 
 message UserProfileHelp {
     //@inject_tag: json:"product_promotion_and_development" bson:"product_promotion_and_development"
+    //
+    // Has a true value if the user needs help with product promotion and development.
     bool product_promotion_and_development = 1;
     //@inject_tag: json:"released_game_promotion" bson:"released_game_promotion"
+    //
+    // Has a true value if the user needs help with games promotion that have already been released.
     bool released_game_promotion = 2;
     //@inject_tag: json:"international_sales" bson:"international_sales"
+    //
+    // Has a true value if the user needs help with international sales.
     bool international_sales = 3;
     //@inject_tag: json:"other" bson:"other"
+    //
+    // Has a true value if the user needs help with other problems.
     bool other = 4;
 }
 
 message UserProfileCompanyMonetization {
     //@inject_tag: json:"paid_subscription" bson:"paid_subscription"
+    //
+    // Has a true value if the monetization strategy is buying the paid subscription by company's users.
     bool paid_subscription = 1;
     //@inject_tag: json:"in_game_advertising" bson:"in_game_advertising"
+    //
+    // Has a true value if the monetization strategy is buying the in-game advertising.
     bool in_game_advertising = 2;
     //@inject_tag: json:"in_game_purchases" bson:"in_game_purchases"
+    //
+    // Has a true value if the monetization strategy is buying in-game purchases by company's users.
     bool in_game_purchases = 3;
     //@inject_tag: json:"premium_access" bson:"premium_access"
+    //
+    // Has a true value if the monetization strategy is buying the premium access by company's users.
     bool premium_access = 4;
     //@inject_tag: json:"other" bson:"other"
+    //
+    // Has a true value if the monetization has the other strategy.
     bool other = 5;
 }
 
 message UserProfileCompanyPlatforms {
     //@inject_tag: json:"pc_mac" bson:"pc_mac"
+    //
+    // Has a true value if the platform is PC/MacOs.
     bool pc_mac = 1;
     //@inject_tag: json:"game_console" bson:"game_console"
+    //
+    // Has a true value if the platform is the game console.
     bool game_console = 2;
     //@inject_tag: json:"mobile_device" bson:"mobile_device"
+    //
+    // Has a true value if the platform is the mobile device.
     bool mobile_device = 3;
     //@inject_tag: json:"web_browser" bson:"web_browser"
+    //
+    // Has a true value if the platform is the web browser.
     bool web_browser = 4;
     //@inject_tag: json:"other" bson:"other"
+    //
+    // Has a true value if the platform has the other value.
     bool other = 5;
 }
 
 message UserProfileCompany {
-    //@inject_tag: json:"company_name" bson:"company_name" validate:"required,company_name,max=60"
+    //@inject_tag: json:"company_name" bson:"company_name" validate:"required,company_name,max=60" required:"true"
+    //
+    // The company's name.
     string company_name = 1;
-    //@inject_tag: json:"website" validate:"required,url" bson:"website"
+    //@inject_tag: json:"website" validate:"required,url" bson:"website" required:"true"
+    //
+    // The company's website.
     string website = 2;
-    //@inject_tag: json:"annual_income" bson:"annual_income" validate:"required"
+    //@inject_tag: json:"annual_income" bson:"annual_income" validate:"required" required:"true"
+    //
+    // The company's annual income.
     billing.RangeInt annual_income = 3;
-    //@inject_tag: json:"number_of_employees" bson:"number_of_employees" validate:"required"
+    //@inject_tag: json:"number_of_employees" bson:"number_of_employees" validate:"required" required:"true"
+    //
+    // The company's number of employees.
     billing.RangeInt number_of_employees = 4;
     //@inject_tag: json:"kind_of_activity" validate:"omitempty,oneof=develop_and_publish_your_games publish_games_of_other_companies publish_your_games_through_other_publishers other" bson:"kind_of_activity"
+    //
+    // The company's kind of activity. Available values: develop_and_publish_your_games, publish_games_of_other_companies, publish_your_games_through_other_publishers, other.
     string kind_of_activity = 5;
     //@inject_tag: json:"monetization" bson:"monetization"
+    //
+    // The company's monetization activities.
     UserProfileCompanyMonetization monetization = 6;
     //@inject_tag: json:"platforms" bson:"platforms"
+    //
+    // The company's platforms.
     UserProfileCompanyPlatforms platforms = 7;
 }
 
 message UserProfileEmail {
-    //@inject_tag: json:"email" validate:"required,email"
+    //@inject_tag: json:"email" validate:"required,email" required:"true"
+    //
+    // The user's email address.
     string email = 1;
     //@inject_tag: json:"confirmed"
+    //
+    // Whether the user's email address has been verified.
     bool confirmed = 2;
     //@inject_tag: json:"confirmed_at"
+    //
+    // The date of the user's email confirmation.
     google.protobuf.Timestamp confirmed_at = 3;
     //@inject_tag: json:"-" bson:"-"
     string confirmation_url = 4;
@@ -1820,24 +2101,42 @@ message UserProfileEmail {
 
 message UserProfile {
     //@inject_tag: json:"id" faker:"objectIdString"
+    //
+    // The unique identifier for the PaySuper user.
     string id = 1;
     //@inject_tag: json:"-" validate:"required,hexadecimal,len=24" faker:"objectIdString"
     string user_id = 2;
     //@inject_tag: json:"email"
+    //
+    // The user's email data.
     UserProfileEmail email = 3;
     //@inject_tag: json:"personal"
+    //
+    // The user personal information.
     UserProfilePersonal personal = 4;
     //@inject_tag: json:"help"
+    //
+    // Information about the user's problem.
     UserProfileHelp help = 5;
     //@inject_tag: json:"company"
+    //
+    // Information about the user's company.
     UserProfileCompany company = 6;
     //@inject_tag: json:"last_step" bson:"last_step"
+    //
+    // The identifier for the last step of the wizard that the user need to finish.
     string last_step = 7;
     //@inject_tag: json:"centrifugo_token" bson:"centrifugo_token"
+    //
+    // The user authorisation token to connect to the Centrifugo channel.
     string centrifugo_token = 8;
     // @inject_tag: json:"created_at"
+    //
+    // The date of the user creation.
     google.protobuf.Timestamp created_at = 9;
     // @inject_tag: json:"updated_at"
+    //
+    // The date of the user last update.
     google.protobuf.Timestamp updated_at = 10;
 }
 
@@ -1855,9 +2154,13 @@ message CommonUserProfileResponse {
 }
 
 message CommonUserProfile {
+    // The user profile data.
     UserProfile profile = 1;
+    // The user's role.
     billing.UserRole role = 2;
+    // The user permissions.
     repeated Permission permissions = 3;
+    // Information about the merchant (the full list of parameters returns only for the owner and the short list for others).
     billing.Merchant merchant = 4;
 }
 
@@ -1875,6 +2178,7 @@ message GetUserProfileResponse {
 }
 
 message PageReview {
+    //@inject_tag: faker:"objectIdString"
     string id = 1;
     //@inject_tag: json:"user_id" bson:"user_id"
     string user_id = 2;
@@ -1888,11 +2192,15 @@ message PageReview {
 }
 
 message CreatePageReviewRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
     string user_id = 1;
-    //@inject_tag: validate:"required,max=500"
+    //@inject_tag: validate:"required,max=500" required:"true"
+    //
+    // The feedback message.
     string review = 2;
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The feedback page URL.
     string url = 3;
 }
 
@@ -1922,9 +2230,13 @@ message VatTransactionsRequest {
 
 message TransactionsPaginate {
     // @inject_tag: json:"count"
-    int32 count = 1; // total count of selected transactions
+    //
+    // The total number of found transactions.
+    int32 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.OrderViewPublic items = 2; // array of selected transactions
+    //
+    // The list of the transactions.
+    repeated billing.OrderViewPublic items = 2;
 }
 
 message TransactionsResponse {
@@ -1948,9 +2260,13 @@ message VatReportsRequest {
 
 message VatReportsPaginate {
     // @inject_tag: json:"count"
-    int32 count = 1; // total count of selected orders
+    //
+    // The total number of the found reports.
+    int32 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.VatReport items = 2; // array of selected orders
+    //
+    // The VAT reports list.
+    repeated billing.VatReport items = 2;
 }
 
 message VatReportsResponse {
@@ -1966,18 +2282,26 @@ message ProcessVatReportsRequest {
 }
 
 message UpdateVatReportStatusRequest {
-    //@inject_tag: json:"id" bson:"_id" validate:"hexadecimal,len=24"
+    //@inject_tag: json:"-" bson:"_id" validate:"hexadecimal,len=24"
     string id = 1;
     //@inject_tag: json:"status" bson:"status" validate:"required,alpha,oneof=paid canceled"
+    //
+    // The VAT report status. Available values: paid, canceled.
     string status = 2;
 }
 
 message GetMerchantOnboardingCompleteDataResponseItem {
     //@inject_tag: json:"status"
+    //
+    // The filling out status. Available values: draft, life.
     string status = 1;
     //@inject_tag: json:"steps"
+    //
+    // The list of the steps completed.
     billing.MerchantCompletedSteps steps = 2;
     //@inject_tag: json:"complete_steps_count"
+    //
+    // The number of steps completed.
     int32 complete_steps_count = 3;
 }
 
@@ -2001,16 +2325,25 @@ message GetMerchantTariffRatesRequest {
 }
 
 message GetMerchantTariffRatesResponseItems {
+    // The payment tariffs.
     repeated billing.MerchantTariffRatesPayment payment = 1;
     //@inject_tag: json:"-"
     repeated billing.MerchantTariffRatesSettingsItem refund = 2;
     //@inject_tag: json:"chargeback"
+    //
+    // The chargeback tariffs.
     repeated billing.MerchantTariffRatesSettingsItem chargeback = 3;
     //@inject_tag: json:"payout"
+    //
+    // The payout tariffs.
     map<string, billing.MerchantTariffRatesSettingsItem> payout = 4;
     //@inject_tag: json:"minimal_payout"
+    //
+    // The minimum payout limits.
     map<string, float> minimal_payout = 5;
     //@inject_tag: json:"mcc_code"
+    //
+    // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 6;
 }
 
@@ -2031,8 +2364,12 @@ message SetMerchantTariffRatesRequest {
 
 message ListOrdersPublicResponseItem {
     // @inject_tag: json:"count"
+    //
+    // The total number of found orders.
     int64 count = 1;
     // @inject_tag: json:"items"
+    //
+    // The list of the orders.
     repeated billing.OrderViewPublic items = 2;
 }
 
@@ -2113,138 +2450,228 @@ message GetDashboardRevenueDynamicsReportResponse {
 
 message DashboardAmountItemWithChart {
     //@inject_tag: json:"amount_current"
+    //
+    // The total amount calculated for the current period.
     double amount_current = 1;
     //@inject_tag: json:"amount_previous"
+    //
+    // The total amount calculated for the previous period.
     double amount_previous = 2;
     //@inject_tag: json:"currency"
+    //
+    // The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 3;
     //@inject_tag: json:"chart"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardChartItemFloat chart = 4;
 }
 
 message DashboardChartItemFloat {
     //@inject_tag: json:"label" bson:"label"
+    //
+    // The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
     int64 label = 1;
     //@inject_tag: json:"value" bson:"value"
+    //
+    // The point value.
     double value = 2;
 }
 
 message DashboardMainReportTotalTransactions {
     //@inject_tag: json:"count_current" bson:"count"
+    //
+    // The total amount calculated for the current period.
     int64 count_current = 1;
     //@inject_tag: json:"count_previous"
+    //
+    // The total amount calculated for the previous period.
     int64 count_previous = 2;
     //@inject_tag: json:"chart"
+    //
+    // The list of data for drawing the chart.
     repeated DashboardChartItemFloat chart = 3;
 }
 
 message DashboardMainReport {
     //@inject_tag: json:"gross_revenue" bson:"gross_revenue"
+    //
+    // The gross revenue data.
     DashboardAmountItemWithChart gross_revenue = 1;
     //@inject_tag: json:"vat" bson:"vat"
+    //
+    // VAT data.
     DashboardAmountItemWithChart vat = 2;
     //@inject_tag: json:"total_transactions" bson:"total_transactions"
+    //
+    // The transactions data.
     DashboardMainReportTotalTransactions total_transactions = 3;
     //@inject_tag: json:"arpu" bson:"arpu"
+    //
+    // ARPU data.
     DashboardAmountItemWithChart arpu = 4;
 }
 
 message DashboardRevenueDynamicReport {
     //@inject_tag: json:"currency"
+    //
+    // The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 1;
     //@inject_tag: json:"items"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardRevenueDynamicReportItem items = 2;
 }
 
 message DashboardRevenueDynamicReportItem {
     //@inject_tag: json:"label"
+    //
+    // The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
     int64 label = 1;
     //@inject_tag: json:"amount"
+    //
+    // The revenue amount.
     double amount = 2;
     //@inject_tag: json:"-"
     string currency = 3;
     //@inject_tag: json:"count"
+    //
+    // The total number of transactions.
     int64 count = 4;
 }
 
 message DashboardRevenueByCountryReportTop {
     //@inject_tag: json:"country"
+    //
+    // The country's name.
     string country = 1;
     //@inject_tag: json:"amount"
+    //
+    // The revenue amount for this country.
     double amount = 2;
 }
 
 message DashboardRevenueByCountryReportChartItem {
     //@inject_tag: json:"label"
+    //
+    // The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
     int64 label = 1;
     //@inject_tag: json:"amount"
+    //
+    // The amount by country.
     double amount = 2;
 }
 
 message DashboardRevenueByCountryReport {
     //@inject_tag: json:"currency"
+    //
+    // The current report amount currency. Three-letter currency code ISO 4217, in uppercase.
     string currency = 1;
     //@inject_tag: json:"top" bson:"top"
+    //
+    // The list of data about top 5 revenue countries for the specified period.
     repeated DashboardRevenueByCountryReportTop top = 2;
     //@inject_tag: json:"total_current" bson:"total"
+    //
+    // The total revenue amount for the specified period.
     double total_current = 3;
     //@inject_tag: json:"total_previous"
+    //
+    // The total revenue amount for the previous period.
     double total_previous = 4;
     //@inject_tag: json:"chart" bson:"chart"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardRevenueByCountryReportChartItem chart = 5;
 }
 
 message DashboardSalesTodayReportTop {
     //@inject_tag: json:"name" bson:"name"
+    //
+    // The name of the sold item (product or project).
     string name = 1;
     //@inject_tag: json:"count" bson:"count"
+    //
+    // The total number of items (products or projects) which were sold for the specified period.
     int64 count = 2;
 }
 
 message DashboardChartItemInt {
     //@inject_tag: json:"label" bson:"label"
+    //
+    // The point label. For example, if the period of the report equals to month then the point label will be equal to one day.
     int64 label = 1;
     //@inject_tag: json:"value" bson:"value"
+    //
+    // The point value.
     int64 value = 2;
 }
 
 message DashboardSalesTodayReport {
     //@inject_tag: json:"top" bson:"top"
+    //
+    // The list of data about top 5 merchant's products (projects) which were sold for the specified period.
     repeated DashboardSalesTodayReportTop top = 1;
     //@inject_tag: json:"total_current" bson:"total"
+    //
+    // The total number of items (products or projects) which were sold for the specified period.
     int64 total_current = 2;
     //@inject_tag: json:"total_previous"
+    //
+    // The total number of items (products or projects) which were sold for the previous period.
     int64 total_previous = 3;
     //@inject_tag: json:"chart" bson:"chart"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardChartItemInt chart = 4;
 }
 
 message DashboardSourcesReport {
     //@inject_tag: json:"top" bson:"top"
+    //
+    // The list of data about top 5 source URLs for the specified period.
     repeated DashboardSalesTodayReportTop top = 1;
     //@inject_tag: json:"total_current" bson:"total"
+    //
+    // The total number of transactions for the specified period.
     int64 total_current = 2;
     //@inject_tag: json:"total_previous"
+    //
+    // The total number of transactions for the previous period.
     int64 total_previous = 3;
     //@inject_tag: json:"chart" bson:"chart"
+    //
+    // The list of points for drawing the chart.
     repeated DashboardChartItemInt chart = 4;
 }
 
 message DashboardBaseReports {
     //@inject_tag: json:"revenue_by_country"
+    //
+    // The data for the Dashboard block Revenue by country.
     DashboardRevenueByCountryReport revenue_by_country = 1;
     //@inject_tag: json:"sales_today"
+    //
+    // The data for the Dashboard block Sales today.
     DashboardSalesTodayReport sales_today = 2;
     //@inject_tag: json:"sources"
+    //
+    // The data for the Dashboard block Sources.
     DashboardSourcesReport sources = 4;
 }
 
 message CreatePayoutDocumentRequest {
     //@inject_tag: json:"description" validate:"max=255"
+    //
+    // The description of the payout document.
     string description = 1;
-    //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
+    //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 2;
-    //@inject_tag: json:"ip" validate:"required"
+    //@inject_tag: json:"ip" validate:"required" required:"true"
+    //
+    // The IP address of the user which created the payout document.
     string ip = 3;
     //@inject_tag: json:"-" validate:"required"
     string initiator = 4;
@@ -2272,18 +2699,32 @@ message CreatePayoutDocumentResponse {
 
 message UpdatePayoutDocumentRequest {
     //@inject_tag: json:"payout_document_id" validate:"required,hexadecimal,len=24" param:"payout_document_id"
+    //
+    // The unique identifier for the payout document.
     string payout_document_id = 1;
     //@inject_tag: json:"transaction" validate:"omitempty,max=255"
+    //
+    // The unique identifier for the payout transaction.
     string transaction = 2;
     //@inject_tag: json:"status" validate:"required,oneof=skip pending in_progress paid canceled failed"
+    //
+    // The document status. Available values: skip, pending, in_progress, paid, canceled, failed.
     string status = 3;
     //@inject_tag: json:"failure_code" validate:"omitempty,oneof=account_closed account_frozen account_restricted destination_bank_invalid could_not_process declined insufficient_funds invalid_account_number incorrect_account_holder_name invalid_currency"
+    //
+    // The payout's failure code. Available values: account_closed, account_frozen, account_restricted, destination_bank_invalid, could_not_process, declined, insufficient_funds, invalid_account_number, incorrect_account_holder_name, invalid_currency.
     string failure_code = 4;
     //@inject_tag: json:"failure_message" validate:"omitempty,max=255"
+    //
+    // The payout's failure message.
     string failure_message = 5;
     //@inject_tag: json:"failure_transaction" validate:"omitempty,max=255"
+    //
+    // The unique identifier for the payout failure transaction.
     string failure_transaction = 6;
     //@inject_tag: json:"ip"
+    //
+    // The IP address of the user which updated the payout document.
     string ip = 7;
 }
 
@@ -2313,9 +2754,13 @@ message GetPayoutDocumentsRequest {
 
 message PayoutDocumentsPaginate {
     // @inject_tag: json:"count"
-    int32 count = 1; // total count of selected orders
+    //
+    // The total number of the payout documents.
+    int32 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.PayoutDocument items = 2; // array of selected docs
+    //
+    // The list of the payout documents.
+    repeated billing.PayoutDocument items = 2;
 }
 
 message GetPayoutDocumentsResponse {
@@ -2379,8 +2824,11 @@ message OrderReceiptResponse {
 }
 
 message GetProductResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The product data.
     Product item = 3;
 }
 
@@ -2420,16 +2868,23 @@ message GetPaylinksRequest {
 }
 
 message SendWebhookToMerchantResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The unique identifier for the order.
     string order_id = 3;
 }
 
 message PaylinksPaginate {
     // @inject_tag: json:"count"
-    int32 count = 1; // total count of selected orders
+    //
+    // The total number of found paylinks.
+    int32 count = 1;
     // @inject_tag: json:"items"
-    repeated paylink.Paylink items = 2; // array of selected docs
+    //
+    // The list of paylinks.
+    repeated paylink.Paylink items = 2;
 }
 
 message NotifyWebhookTestResultsRequest {
@@ -2570,11 +3025,15 @@ message GetPaymentMinLimitsSystemResponse {
 }
 
 message SetMerchantOperatingCompanyRequest {
-    // @inject_tag: json:"id" validate:"required,hexadecimal,len=24"
+    // @inject_tag: json:"id" validate:"required,hexadecimal,len=24" json:"-"
     string merchant_id = 1;
     // @inject_tag: json:"operating_company_id" validate:"required,hexadecimal,len=24"
+    //
+    // The unique identifier for the operating company.
     string operating_company_id = 2;
     // @inject_tag: json:"dont_charge_vat"
+    //
+    // Has a true value if the merchant doesn't pay VAT.
     bool dont_charge_vat = 3;
 }
 
@@ -2612,42 +3071,64 @@ message GetMerchantUsersResponse {
 }
 
 message InviteUserMerchantRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 1;
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email address to obtain an invitation about the merchant role.
     string email = 2;
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The merchant role for the invited user. Available values: merchant_developer, merchant_accounting, merchant_support, merchant_view_only.
     string role = 3;
 }
 
 message InviteUserMerchantResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The merchant role data for the invited user.
     billing.UserRole role = 3;
 }
 
 message InviteUserAdminRequest {
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email address to obtain an invitation about the admin role.
     string email = 1;
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The admin role for the invited user.
     string role = 2;
 }
 
 message InviteUserAdminResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The user role data.
     billing.UserRole role = 3;
 }
 
 message ResendInviteMerchantRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the merchant.
     string merchant_id = 1;
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email address.
     string email = 2;
 }
 
 message ResendInviteAdminRequest {
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email.
     string email = 1;
 }
 
@@ -2674,31 +3155,48 @@ message GetAdminUserResponse {
 }
 
 message CheckInviteTokenRequest {
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The invitation token.
     string token = 1;
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email address.
     string email = 2;
 }
 
 message CheckInviteTokenResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The unique identifier for the role.
     string role_id = 3;
+    // The type of the invitation. Available values: admin, merchant.
     string role_type = 4;
 }
 
 message AcceptInviteRequest {
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The invitation token.
     string token = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" required:"true"
+    //
+    // The unique identifier for the user.
     string user_id = 2;
-    //@inject_tag: validate:"required,email"
+    //@inject_tag: validate:"required,email" required:"true"
+    //
+    // The user's email address.
     string email = 5;
 }
 
 message AcceptInviteResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The user's role data.
     billing.UserRole role = 3;
 }
 
@@ -2714,14 +3212,20 @@ message GetMerchantsForUserRequest {
 }
 
 message GetMerchantsForUserResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The list of merchants.
     repeated MerchantForUserInfo merchants = 3;
 }
 
 message MerchantForUserInfo {
+    // The unique identifier for the merchant.
     string id = 1;
+    // The merchant's name.
     string name = 2;
+    // The user's role in the merchant.
     string role = 3;
 }
 
@@ -2735,9 +3239,11 @@ message ChangeRoleForMerchantUserRequest {
 }
 
 message ChangeRoleForAdminUserRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24" param:"role_id"
+    //@inject_tag: validate:"required,hexadecimal,len=24" param:"role_id" json:"-"
     string role_id = 1;
-    //@inject_tag: validate:"required"
+    //@inject_tag: validate:"required" required:"true"
+    //
+    // The user role's name.
     string role = 3;
 }
 
@@ -2747,6 +3253,7 @@ message GetRoleListRequest {
 }
 
 message GetRoleListResponse {
+    // The list of the roles.
     repeated billing.RoleListItem items = 1;
 }
 
@@ -2763,13 +3270,18 @@ message MerchantRoleRequest {
 }
 
 message Permission {
+    // The permission's name that stored in the Casbin server.
     string name = 1;
+    // The URL that is accessable by this permission.
     string access = 2;
 }
 
 message UserRoleResponse {
+    // The response status code.
     int32 status = 1;
+    // The response error message (if any).
     ResponseErrorMessage message = 2;
+    // The user's role.
     billing.UserRole user_role = 3;
 }
 
@@ -2791,9 +3303,13 @@ message VatReportRequest {
 
 message PrivateTransactionsPaginate {
     // @inject_tag: json:"count"
-    int32 count = 1; // total count of selected transactions
+    //
+    // The total number of transactions.
+    int32 count = 1;
     // @inject_tag: json:"items"
-    repeated billing.OrderViewPrivate items = 2; // array of selected transactions
+    //
+    // The transactions list.
+    repeated billing.OrderViewPrivate items = 2;
 }
 
 message VatReportResponse {

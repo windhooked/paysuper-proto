@@ -234,25 +234,6 @@ type MgoPayoutCostSystem struct {
 	CreatedAt             time.Time          `bson:"created_at"`
 }
 
-type MgoMoneyBackCostSystem struct {
-	Id                 primitive.ObjectID `bson:"_id"`
-	Name               string             `bson:"name"`
-	PayoutCurrency     string             `bson:"payout_currency"`
-	UndoReason         string             `bson:"undo_reason"`
-	Region             string             `bson:"region"`
-	Country            string             `bson:"country"`
-	DaysFrom           int32              `bson:"days_from"`
-	PaymentStage       int32              `bson:"payment_stage"`
-	Percent            float64            `bson:"percent"`
-	FixAmount          float64            `bson:"fix_amount"`
-	CreatedAt          time.Time          `bson:"created_at"`
-	UpdatedAt          time.Time          `bson:"updated_at"`
-	IsActive           bool               `bson:"is_active"`
-	MccCode            string             `bson:"mcc_code"`
-	OperatingCompanyId string             `bson:"operating_company_id"`
-	FixAmountCurrency  string             `bson:"fix_amount_currency"`
-}
-
 type MgoMoneyBackCostMerchant struct {
 	Id                primitive.ObjectID `bson:"_id"`
 	MerchantId        primitive.ObjectID `bson:"merchant_id"`
@@ -283,31 +264,6 @@ type MgoPriceTableRange struct {
 	From     float64 `bson:"from"`
 	To       float64 `bson:"to"`
 	Position int32   `bson:"position"`
-}
-
-type MgoAccountingEntrySource struct {
-	Id   primitive.ObjectID `bson:"id"`
-	Type string             `bson:"type"`
-}
-
-type MgoAccountingEntry struct {
-	Id                 primitive.ObjectID        `bson:"_id"`
-	Object             string                    `bson:"object"`
-	Type               string                    `bson:"type"`
-	Source             *MgoAccountingEntrySource `bson:"source"`
-	MerchantId         primitive.ObjectID        `bson:"merchant_id"`
-	Amount             float64                   `bson:"amount"`
-	Currency           string                    `bson:"currency"`
-	Reason             string                    `bson:"reason"`
-	Status             string                    `bson:"status"`
-	Country            string                    `bson:"country"`
-	OriginalAmount     float64                   `bson:"original_amount"`
-	OriginalCurrency   string                    `bson:"original_currency"`
-	LocalAmount        float64                   `bson:"local_amount"`
-	LocalCurrency      string                    `bson:"local_currency"`
-	CreatedAt          time.Time                 `bson:"created_at"`
-	AvailableOn        time.Time                 `bson:"available_on"`
-	OperatingCompanyId string                    `bson:"operating_company_id"`
 }
 
 type MgoRoyaltyReport struct {
@@ -501,24 +457,6 @@ type MgoMerchantBalance struct {
 	RollingReserve float64            `bson:"rolling_reserve"`
 	Total          float64            `bson:"total"`
 	CreatedAt      time.Time          `bson:"created_at"`
-}
-
-type MgoOperatingCompany struct {
-	Id                 primitive.ObjectID `bson:"_id"`
-	Name               string             `bson:"name"`
-	Country            string             `bson:"country"`
-	RegistrationNumber string             `bson:"registration_number"`
-	RegistrationDate   string             `bson:"registration_date"`
-	VatNumber          string             `bson:"vat_number"`
-	Email              string             `bson:"email"`
-	Address            string             `bson:"address"`
-	VatAddress         string             `bson:"vat_address"`
-	SignatoryName      string             `bson:"signatory_name"`
-	SignatoryPosition  string             `bson:"signatory_position"`
-	BankingDetails     string             `bson:"banking_details"`
-	PaymentCountries   []string           `bson:"payment_countries"`
-	CreatedAt          time.Time          `bson:"created_at"`
-	UpdatedAt          time.Time          `bson:"updated_at"`
 }
 
 type MgoPaymentMinLimitSystem struct {
@@ -1383,90 +1321,6 @@ func (m *PaymentMethodOrder) IsCryptoCurrency() bool {
 	return m.Group == recurringpb.PaymentSystemGroupAliasBitcoin
 }
 
-func (m *MoneyBackCostSystem) MarshalBSON() ([]byte, error) {
-	st := &MgoMoneyBackCostSystem{
-		Name:               m.Name,
-		PayoutCurrency:     m.PayoutCurrency,
-		UndoReason:         m.UndoReason,
-		Region:             m.Region,
-		Country:            m.Country,
-		DaysFrom:           m.DaysFrom,
-		PaymentStage:       m.PaymentStage,
-		Percent:            m.Percent,
-		FixAmount:          m.FixAmount,
-		IsActive:           m.IsActive,
-		MccCode:            m.MccCode,
-		OperatingCompanyId: m.OperatingCompanyId,
-		FixAmountCurrency:  m.FixAmountCurrency,
-	}
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-		st.Id = oid
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-		if err != nil {
-			return nil, err
-		}
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-		if err != nil {
-			return nil, err
-		}
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-	return bson.Marshal(st)
-}
-
-func (m *MoneyBackCostSystem) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoMoneyBackCostSystem)
-	err := bson.Unmarshal(raw, decoded)
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Name = decoded.Name
-	m.PayoutCurrency = decoded.PayoutCurrency
-	m.UndoReason = decoded.UndoReason
-	m.Region = decoded.Region
-	m.Country = decoded.Country
-	m.DaysFrom = decoded.DaysFrom
-	m.PaymentStage = decoded.PaymentStage
-	m.Percent = decoded.Percent
-	m.FixAmount = decoded.FixAmount
-	m.IsActive = decoded.IsActive
-	m.MccCode = decoded.MccCode
-	m.OperatingCompanyId = decoded.OperatingCompanyId
-	m.FixAmountCurrency = decoded.FixAmountCurrency
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (m *MoneyBackCostMerchant) MarshalBSON() ([]byte, error) {
 	oid, err := primitive.ObjectIDFromHex(m.MerchantId)
 
@@ -1656,113 +1510,6 @@ func (m *PriceTable) UnmarshalBSON(raw []byte) error {
 				Position: v.Position,
 			}
 		}
-	}
-
-	return nil
-}
-
-func (m *AccountingEntry) MarshalBSON() ([]byte, error) {
-	oid, err := primitive.ObjectIDFromHex(m.Id)
-
-	if err != nil {
-		return nil, err
-	}
-
-	sourceOid, err := primitive.ObjectIDFromHex(m.Source.Id)
-
-	if err != nil {
-		return nil, err
-	}
-
-	merchantOid, err := primitive.ObjectIDFromHex(m.MerchantId)
-
-	if err != nil {
-		return nil, err
-	}
-
-	st := &MgoAccountingEntry{
-		Id:     oid,
-		Object: m.Object,
-		Type:   m.Type,
-		Source: &MgoAccountingEntrySource{
-			Id:   sourceOid,
-			Type: m.Source.Type,
-		},
-		MerchantId:         merchantOid,
-		Amount:             m.Amount,
-		Currency:           m.Currency,
-		OriginalAmount:     m.OriginalAmount,
-		OriginalCurrency:   m.OriginalCurrency,
-		LocalAmount:        m.LocalAmount,
-		LocalCurrency:      m.LocalCurrency,
-		Country:            m.Country,
-		Reason:             m.Reason,
-		Status:             m.Status,
-		OperatingCompanyId: m.OperatingCompanyId,
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.AvailableOn != nil {
-		t, err := ptypes.Timestamp(m.AvailableOn)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.AvailableOn = t
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *AccountingEntry) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoAccountingEntry)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Object = decoded.Object
-	m.Type = decoded.Type
-	m.Source = &AccountingEntrySource{
-		Id:   decoded.Source.Id.Hex(),
-		Type: decoded.Source.Type,
-	}
-	m.MerchantId = decoded.MerchantId.Hex()
-	m.Amount = decoded.Amount
-	m.Currency = decoded.Currency
-	m.OriginalAmount = decoded.OriginalAmount
-	m.OriginalCurrency = decoded.OriginalCurrency
-	m.LocalAmount = decoded.LocalAmount
-	m.LocalCurrency = decoded.LocalCurrency
-	m.Country = decoded.Country
-	m.Reason = decoded.Reason
-	m.Status = decoded.Status
-	m.OperatingCompanyId = decoded.OperatingCompanyId
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	m.AvailableOn, err = ptypes.TimestampProto(decoded.AvailableOn)
-
-	if err != nil {
-		return err
 	}
 
 	return nil
@@ -2378,89 +2125,6 @@ func (m *Id) UnmarshalBSON(raw []byte) error {
 	}
 
 	m.Id = decoded.Id.Hex()
-	return nil
-}
-
-func (m *OperatingCompany) MarshalBSON() ([]byte, error) {
-	st := &MgoOperatingCompany{
-		Name:               m.Name,
-		Country:            m.Country,
-		RegistrationNumber: m.RegistrationNumber,
-		RegistrationDate:   m.RegistrationDate,
-		VatNumber:          m.VatNumber,
-		Email:              m.Email,
-		Address:            m.Address,
-		VatAddress:         m.VatAddress,
-		SignatoryName:      m.SignatoryName,
-		SignatoryPosition:  m.SignatoryPosition,
-		BankingDetails:     m.BankingDetails,
-		PaymentCountries:   m.PaymentCountries,
-	}
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-
-		st.Id = oid
-	}
-
-	var err error
-
-	if m.CreatedAt != nil {
-		if st.CreatedAt, err = ptypes.Timestamp(m.CreatedAt); err != nil {
-			return nil, err
-		}
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		if st.UpdatedAt, err = ptypes.Timestamp(m.UpdatedAt); err != nil {
-			return nil, err
-		}
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *OperatingCompany) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoOperatingCompany)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Name = decoded.Name
-	m.Country = decoded.Country
-	m.RegistrationNumber = decoded.RegistrationNumber
-	m.RegistrationDate = decoded.RegistrationDate
-	m.VatNumber = decoded.VatNumber
-	m.Email = decoded.Email
-	m.Address = decoded.Address
-	m.VatAddress = decoded.VatAddress
-	m.SignatoryName = decoded.SignatoryName
-	m.SignatoryPosition = decoded.SignatoryPosition
-	m.BankingDetails = decoded.BankingDetails
-	m.PaymentCountries = decoded.PaymentCountries
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-	if err != nil {
-		return err
-	}
-
 	return nil
 }
 
