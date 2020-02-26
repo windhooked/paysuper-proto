@@ -1135,13 +1135,13 @@ message ProductPriceInfo {
 }
 
 message KeyProduct {
-    //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id"
+    //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" faker:"objectIdString"
     //
     // The unique identifier for the key-activated product.
     string id = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-" faker:"objectIdString"
     string merchant_id = 2;
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" faker:"objectIdString"
     //
     // The unique identifier for the project.
     string project_id = 3;
