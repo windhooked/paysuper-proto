@@ -13892,26 +13892,26 @@ func (m *MerchantTariffRatesSettings) GetMccCode() string {
 }
 
 type Key struct {
-	//@inject_tag: json:"id" bson:"_id"
+	//@inject_tag: json:"id" bson:"_id" faker:"objectIdString"
 	//
 	// The unique identifier for the key.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" faker:"objectIdString"`
 	//@inject_tag: json:"code" validate:"required,max=50"
 	//
 	// The activation code.
 	Code string `protobuf:"bytes,2,opt,name=code,proto3" json:"code" validate:"required,max=50"`
-	//@inject_tag: validate:"required,hexadecimal,len=24"
+	//@inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
 	//
 	// The unique identifier for the key's product.
-	KeyProductId string `protobuf:"bytes,3,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24"`
+	KeyProductId string `protobuf:"bytes,3,opt,name=key_product_id,json=keyProductId,proto3" json:"key_product_id,omitempty" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: validate:"required,max=255"
 	//
 	// The unique identifier for the platform. Available values: steam, gog, uplay, origin, psn, xbox, nintendo, itch, egs.
 	PlatformId string `protobuf:"bytes,5,opt,name=platform_id,json=platformId,proto3" json:"platform_id,omitempty" validate:"required,max=255"`
-	//@inject_tag: validate:"omitempty,hexadecimal,len=24"
+	//@inject_tag: validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
 	//
 	// The unique identifier for the order when redeeming the code (can be empty).
-	OrderId string `protobuf:"bytes,6,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
+	OrderId string `protobuf:"bytes,6,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	// The date the key has been created.
 	CreatedAt *timestamp.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	//@inject_tag: validate:"omitempty"

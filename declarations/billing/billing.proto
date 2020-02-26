@@ -3541,7 +3541,7 @@ message MerchantTariffRatesSettings {
 }
 
 message Key {
-    //@inject_tag: json:"id" bson:"_id"
+    //@inject_tag: json:"id" bson:"_id" faker:"objectIdString"
     //
     // The unique identifier for the key.
     string id = 1;
@@ -3549,7 +3549,7 @@ message Key {
     //
     // The activation code.
     string code = 2;
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the key's product.
     string key_product_id = 3;
@@ -3557,7 +3557,7 @@ message Key {
     //
     // The unique identifier for the platform. Available values: steam, gog, uplay, origin, psn, xbox, nintendo, itch, egs.
     string platform_id = 5;
-    //@inject_tag: validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the order when redeeming the code (can be empty).
     string order_id = 6;
