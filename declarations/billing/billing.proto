@@ -3541,7 +3541,7 @@ message MerchantTariffRatesSettings {
 }
 
 message Key {
-    //@inject_tag: json:"id" bson:"_id" faker:"objectIdString" 
+    //@inject_tag: faker:"objectIdString" json:"id" bson:"_id"
     //
     // The unique identifier for the key.
     string id = 1;
