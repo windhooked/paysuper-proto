@@ -5059,16 +5059,16 @@ func (m *ProductPriceInfo) GetIsFallback() bool {
 }
 
 type KeyProduct struct {
-	//@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id"
+	//@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" faker:"objectIdString"
 	//
 	// The unique identifier for the key-activated product.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24"`
-	//@inject_tag: validate:"required,hexadecimal,len=24" json:"-"
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"-" faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" faker:"objectIdString"
 	//
 	// The unique identifier for the project.
-	ProjectId string `protobuf:"bytes,3,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24"`
+	ProjectId string `protobuf:"bytes,3,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: validate:"omitempty" json:"object"
 	//
 	// The system constant that contains the returned object's type.
