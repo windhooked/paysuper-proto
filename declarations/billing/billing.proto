@@ -2445,7 +2445,7 @@ message AccountingEntry {
     string id = 1;
     string object = 2;
     string type = 3;
-    AccountingEntrySource source = 4;{
+    AccountingEntrySource source = 4;
     //@inject_tag: faker:"objectIdString"
     string merchant_id = 5;
     double amount = 6; // in royalty_currency
