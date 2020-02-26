@@ -5318,12 +5318,12 @@ func (m *Platform) GetActivationInstructionUrl() string {
 }
 
 type Product struct {
-	//@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24" bson:"_id"`
-	//@inject_tag: validate:"required,hexadecimal,len=24" json:"-" bson:"merchant_id"
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24" bson:"merchant_id"`
-	//@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" bson:"project_id"
-	ProjectId string `protobuf:"bytes,3,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24" bson:"project_id"`
+	//@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24" bson:"_id" faker:"objectIdString"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"-" bson:"merchant_id" faker:"objectIdString"
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24" bson:"merchant_id" faker:"objectIdString"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" bson:"project_id" faker:"objectIdString"
+	ProjectId string `protobuf:"bytes,3,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24" bson:"project_id" faker:"objectIdString"`
 	//@inject_tag: validate:"required" json:"object"
 	Object string `protobuf:"bytes,4,opt,name=object,proto3" json:"object" validate:"required"`
 	//@inject_tag: validate:"required" json:"type"
