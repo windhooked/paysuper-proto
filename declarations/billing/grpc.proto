@@ -1254,15 +1254,15 @@ message Platform {
 }
 
 message Product {
-    //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" bson:"_id"
+    //@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"id" bson:"_id" faker:"objectIdString"
     //
     // The unique identifier for the product.
     string id = 1;
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-" bson:"merchant_id" required:"true"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"-" bson:"merchant_id" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the product's merchant.
     string merchant_id = 2;
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" bson:"project_id" required:"true"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"project_id" bson:"project_id" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the product's project.
     string project_id = 3;
