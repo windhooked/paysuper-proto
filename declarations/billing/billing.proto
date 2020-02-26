@@ -2435,15 +2435,18 @@ message PayoutCostSystem {
 }
 
 message AccountingEntrySource {
+    //@inject_tag: faker:"objectIdString"
     string id = 1;
     string type = 2;
 }
 
 message AccountingEntry {
+    //@inject_tag: faker:"objectIdString"
     string id = 1;
     string object = 2;
     string type = 3;
-    AccountingEntrySource source = 4;
+    AccountingEntrySource source = 4;{
+    //@inject_tag: faker:"objectIdString"
     string merchant_id = 5;
     double amount = 6; // in royalty_currency
     string currency = 7; // royalty_currency (merchant payout currency)
