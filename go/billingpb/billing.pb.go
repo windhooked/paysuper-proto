@@ -15889,8 +15889,8 @@ func (m *OperatingCompany) GetEmail() string {
 }
 
 type PaymentMinLimitSystem struct {
-	// @inject_tag: bson:"_id" json:"-"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	// @inject_tag: bson:"_id" json:"-" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" faker:"objectIdString"`
 	//@inject_tag: validate:"required,alpha,len=3" json:"currency" bson:"currency" required:"true"
 	//
 	// The system limit currency.
