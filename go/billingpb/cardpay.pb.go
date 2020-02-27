@@ -1143,7 +1143,9 @@ func init() {
 	proto.RegisterType((*CardPayRefundCallback)(nil), "billing.CardPayRefundCallback")
 }
 
-func init() { proto.RegisterFile("cardpay.proto", fileDescriptor_25bf4307d2315c21) }
+func init() {
+	proto.RegisterFile("cardpay.proto", fileDescriptor_25bf4307d2315c21)
+}
 
 var fileDescriptor_25bf4307d2315c21 = []byte{
 	// 1086 bytes of a gzipped FileDescriptorProto

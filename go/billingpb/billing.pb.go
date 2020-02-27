@@ -15889,8 +15889,8 @@ func (m *OperatingCompany) GetEmail() string {
 }
 
 type PaymentMinLimitSystem struct {
-	// @inject_tag: bson:"_id" json:"-"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	// @inject_tag: bson:"_id" json:"-" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" faker:"objectIdString"`
 	//@inject_tag: validate:"required,alpha,len=3" json:"currency" bson:"currency" required:"true"
 	//
 	// The system limit currency.
@@ -16331,7 +16331,9 @@ func init() {
 	proto.RegisterType((*RoleListItem)(nil), "billing.RoleListItem")
 }
 
-func init() { proto.RegisterFile("billing.proto", fileDescriptor_958db8ba491a6b57) }
+func init() {
+	proto.RegisterFile("billing.proto", fileDescriptor_958db8ba491a6b57)
+}
 
 var fileDescriptor_958db8ba491a6b57 = []byte{
 	// 13493 bytes of a gzipped FileDescriptorProto

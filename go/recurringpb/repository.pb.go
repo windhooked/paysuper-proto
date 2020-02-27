@@ -319,7 +319,9 @@ func init() {
 	proto.RegisterType((*DeleteSavedCardResponse)(nil), "repository.DeleteSavedCardResponse")
 }
 
-func init() { proto.RegisterFile("repository.proto", fileDescriptor_10d86afa5a89ec9d) }
+func init() {
+	proto.RegisterFile("repository.proto", fileDescriptor_10d86afa5a89ec9d)
+}
 
 var fileDescriptor_10d86afa5a89ec9d = []byte{
 	// 452 bytes of a gzipped FileDescriptorProto

@@ -388,7 +388,9 @@ func init() {
 	proto.RegisterType((*DeleteRateRequest)(nil), "tax_service.DeleteRateRequest")
 }
 
-func init() { proto.RegisterFile("tax_service.proto", fileDescriptor_2410b1a60417f8a5) }
+func init() {
+	proto.RegisterFile("tax_service.proto", fileDescriptor_2410b1a60417f8a5)
+}
 
 var fileDescriptor_2410b1a60417f8a5 = []byte{
 	// 379 bytes of a gzipped FileDescriptorProto

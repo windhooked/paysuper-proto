@@ -1478,7 +1478,9 @@ func init() {
 	proto.RegisterMapType((map[string]int32)(nil), "currencies.CurrenciesPrecisionResponse.ValuesEntry")
 }
 
-func init() { proto.RegisterFile("currencies.proto", fileDescriptor_1988b70e90d5a630) }
+func init() {
+	proto.RegisterFile("currencies.proto", fileDescriptor_1988b70e90d5a630)
+}
 
 var fileDescriptor_1988b70e90d5a630 = []byte{
 	// 1162 bytes of a gzipped FileDescriptorProto
