@@ -2309,11 +2309,11 @@ message MoneyBackCostSystemList {
 }
 
 message MoneyBackCostMerchant {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the record about the merchant's tariffs.
     string id = 1;
-    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the merchant.
     string merchant_id = 2;
