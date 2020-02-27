@@ -205,7 +205,9 @@ func init() {
 	proto.RegisterMapType((map[string]string)(nil), "notifier.User.MetadataEntry")
 }
 
-func init() { proto.RegisterFile("notifier.proto", fileDescriptor_1c0fc606bc4470de) }
+func init() {
+	proto.RegisterFile("notifier.proto", fileDescriptor_1c0fc606bc4470de)
+}
 
 var fileDescriptor_1c0fc606bc4470de = []byte{
 	// 335 bytes of a gzipped FileDescriptorProto

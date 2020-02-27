@@ -254,18 +254,6 @@ type MgoMoneyBackCostMerchant struct {
 	MccCode           string             `bson:"mcc_code"`
 }
 
-type MgoPriceTable struct {
-	Id       primitive.ObjectID    `bson:"_id"`
-	Currency string                `bson:"currency"`
-	Ranges   []*MgoPriceTableRange `bson:"range"`
-}
-
-type MgoPriceTableRange struct {
-	From     float64 `bson:"from"`
-	To       float64 `bson:"to"`
-	Position int32   `bson:"position"`
-}
-
 type MgoRoyaltyReport struct {
 	Id                 primitive.ObjectID    `bson:"_id"`
 	MerchantId         primitive.ObjectID    `bson:"merchant_id"`
@@ -1461,55 +1449,6 @@ func (m *PayoutCostSystem) UnmarshalBSON(raw []byte) error {
 	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
 	if err != nil {
 		return err
-	}
-
-	return nil
-}
-
-func (m *PriceTable) MarshalBSON() ([]byte, error) {
-	oid, err := primitive.ObjectIDFromHex(m.Id)
-
-	if err != nil {
-		return nil, err
-	}
-
-	st := &MgoPriceTable{
-		Id:       oid,
-		Currency: m.Currency,
-	}
-
-	if len(m.Ranges) > 0 {
-		for _, v := range m.Ranges {
-			st.Ranges = append(st.Ranges, &MgoPriceTableRange{From: v.From, To: v.To, Position: v.Position})
-		}
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *PriceTable) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoPriceTable)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Currency = decoded.Currency
-
-	rangesLen := len(decoded.Ranges)
-
-	if rangesLen > 0 {
-		m.Ranges = make([]*PriceTableRange, rangesLen)
-
-		for i, v := range decoded.Ranges {
-			m.Ranges[i] = &PriceTableRange{
-				From:     v.From,
-				To:       v.To,
-				Position: v.Position,
-			}
-		}
 	}
 
 	return nil

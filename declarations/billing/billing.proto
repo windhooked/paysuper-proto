@@ -3411,7 +3411,7 @@ message RecommendedPrice {
 }
 
 message PriceTable {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
     //@inject_tag: json:"currency" bson:"currency" validate:"required,alpha,len=3"
     string currency = 2;

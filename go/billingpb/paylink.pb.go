@@ -730,7 +730,9 @@ func init() {
 	proto.RegisterType((*GroupStatCommon)(nil), "paylink.GroupStatCommon")
 }
 
-func init() { proto.RegisterFile("paylink.proto", fileDescriptor_e42f0d9b8e247bea) }
+func init() {
+	proto.RegisterFile("paylink.proto", fileDescriptor_e42f0d9b8e247bea)
+}
 
 var fileDescriptor_e42f0d9b8e247bea = []byte{
 	// 775 bytes of a gzipped FileDescriptorProto
