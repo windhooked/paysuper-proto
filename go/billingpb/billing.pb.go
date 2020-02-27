@@ -13342,8 +13342,8 @@ func (m *RecommendedPrice) GetAmount() float64 {
 }
 
 type PriceTable struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
+	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"currency" bson:"currency" validate:"required,alpha,len=3"
 	Currency string `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency" bson:"currency" validate:"required,alpha,len=3"`
 	// @inject_tag: json:"ranges"
@@ -16331,7 +16331,9 @@ func init() {
 	proto.RegisterType((*RoleListItem)(nil), "billing.RoleListItem")
 }
 
-func init() { proto.RegisterFile("billing.proto", fileDescriptor_958db8ba491a6b57) }
+func init() {
+	proto.RegisterFile("billing.proto", fileDescriptor_958db8ba491a6b57)
+}
 
 var fileDescriptor_958db8ba491a6b57 = []byte{
 	// 13493 bytes of a gzipped FileDescriptorProto

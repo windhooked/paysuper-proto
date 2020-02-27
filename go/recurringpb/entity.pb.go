@@ -197,7 +197,9 @@ func init() {
 	proto.RegisterType((*CardExpire)(nil), "entity.CardExpire")
 }
 
-func init() { proto.RegisterFile("entity.proto", fileDescriptor_cf50d946d740d100) }
+func init() {
+	proto.RegisterFile("entity.proto", fileDescriptor_cf50d946d740d100)
+}
 
 var fileDescriptor_cf50d946d740d100 = []byte{
 	// 340 bytes of a gzipped FileDescriptorProto

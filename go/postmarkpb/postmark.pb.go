@@ -311,7 +311,9 @@ func init() {
 	proto.RegisterMapType((map[string]string)(nil), "postmark.Payload.TemplateModelEntry")
 }
 
-func init() { proto.RegisterFile("postmark.proto", fileDescriptor_e023c86970429eaa) }
+func init() {
+	proto.RegisterFile("postmark.proto", fileDescriptor_e023c86970429eaa)
+}
 
 var fileDescriptor_e023c86970429eaa = []byte{
 	// 504 bytes of a gzipped FileDescriptorProto

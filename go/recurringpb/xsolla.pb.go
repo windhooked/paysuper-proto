@@ -1016,7 +1016,9 @@ func init() {
 	proto.RegisterMapType((map[string]string)(nil), "entity.XSollaPaymentNotification.CustomParametersEntry")
 }
 
-func init() { proto.RegisterFile("xsolla.proto", fileDescriptor_fe4ce368bf1defec) }
+func init() {
+	proto.RegisterFile("xsolla.proto", fileDescriptor_fe4ce368bf1defec)
+}
 
 var fileDescriptor_fe4ce368bf1defec = []byte{
 	// 882 bytes of a gzipped FileDescriptorProto

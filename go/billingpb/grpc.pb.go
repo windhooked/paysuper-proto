@@ -17836,7 +17836,9 @@ func init() {
 	proto.RegisterType((*PrivateTransactionsResponse)(nil), "grpc.PrivateTransactionsResponse")
 }
 
-func init() { proto.RegisterFile("grpc.proto", fileDescriptor_bedfbfc9b54e5600) }
+func init() {
+	proto.RegisterFile("grpc.proto", fileDescriptor_bedfbfc9b54e5600)
+}
 
 var fileDescriptor_bedfbfc9b54e5600 = []byte{
 	// 12357 bytes of a gzipped FileDescriptorProto

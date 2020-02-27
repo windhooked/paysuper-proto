@@ -897,7 +897,9 @@ func init() {
 	proto.RegisterType((*GetSignatureUrlResponseEmbedded)(nil), "document_signer.GetSignatureUrlResponseEmbedded")
 }
 
-func init() { proto.RegisterFile("signer.proto", fileDescriptor_df2490657d73dbfd) }
+func init() {
+	proto.RegisterFile("signer.proto", fileDescriptor_df2490657d73dbfd)
+}
 
 var fileDescriptor_df2490657d73dbfd = []byte{
 	// 1031 bytes of a gzipped FileDescriptorProto
