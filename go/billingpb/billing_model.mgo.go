@@ -459,14 +459,6 @@ type MgoMerchantBalance struct {
 	CreatedAt      time.Time          `bson:"created_at"`
 }
 
-type MgoPaymentMinLimitSystem struct {
-	Id        primitive.ObjectID `bson:"_id"`
-	Currency  string             `bson:"currency"`
-	Amount    float64            `bson:"amount"`
-	CreatedAt time.Time          `bson:"created_at"`
-	UpdatedAt time.Time          `bson:"updated_at"`
-}
-
 type MgoUserRole struct {
 	Id         primitive.ObjectID  `bson:"_id"`
 	MerchantId *primitive.ObjectID `bson:"merchant_id"`
@@ -2125,70 +2117,6 @@ func (m *Id) UnmarshalBSON(raw []byte) error {
 	}
 
 	m.Id = decoded.Id.Hex()
-	return nil
-}
-
-func (m *PaymentMinLimitSystem) MarshalBSON() ([]byte, error) {
-	st := &MgoPaymentMinLimitSystem{
-		Currency: m.Currency,
-		Amount:   m.Amount,
-	}
-
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-
-		st.Id = oid
-	}
-
-	var err error
-
-	if m.CreatedAt != nil {
-		if st.CreatedAt, err = ptypes.Timestamp(m.CreatedAt); err != nil {
-			return nil, err
-		}
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		if st.UpdatedAt, err = ptypes.Timestamp(m.UpdatedAt); err != nil {
-			return nil, err
-		}
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *PaymentMinLimitSystem) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoPaymentMinLimitSystem)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.Currency = decoded.Currency
-	m.Amount = decoded.Amount
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-	if err != nil {
-		return err
-	}
-
 	return nil
 }
 
