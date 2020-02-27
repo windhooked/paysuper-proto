@@ -4137,11 +4137,11 @@ message PaymentMinLimitSystem {
 }
 
 message UserRole {
-    //@inject_tag: json:"id" validate:"required,hexadecimal,len=24" required:"true"
+    //@inject_tag: json:"id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the user's role.
     string id = 1;
-    //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
+    //@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the merchant (only for merchant users).
     string merchant_id = 3;
@@ -4153,7 +4153,7 @@ message UserRole {
     //
     // The user's invitation status. Available values: invited, approved.
     string status = 5;
-    //@inject_tag: json:"user_id" bson:"user_id" validate:"required,hexadecimal,len=24" required:"true"
+    //@inject_tag: json:"user_id" bson:"user_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the user.
     string user_id = 6;

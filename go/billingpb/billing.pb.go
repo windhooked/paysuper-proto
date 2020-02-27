@@ -15973,14 +15973,14 @@ func (m *PaymentMinLimitSystem) GetUpdatedAt() *timestamp.Timestamp {
 }
 
 type UserRole struct {
-	//@inject_tag: json:"id" validate:"required,hexadecimal,len=24" required:"true"
+	//@inject_tag: json:"id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
 	//
 	// The unique identifier for the user's role.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" required:"true"`
-	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"`
+	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
 	//
 	// The unique identifier for the merchant (only for merchant users).
-	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"`
+	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"`
 	//@inject_tag: json:"role" validate:"required" required:"true"
 	//
 	// The user's role.
@@ -15989,10 +15989,10 @@ type UserRole struct {
 	//
 	// The user's invitation status. Available values: invited, approved.
 	Status string `protobuf:"bytes,5,opt,name=status,proto3" json:"status" bson:"status"`
-	//@inject_tag: json:"user_id" bson:"user_id" validate:"required,hexadecimal,len=24" required:"true"
+	//@inject_tag: json:"user_id" bson:"user_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
 	//
 	// The unique identifier for the user.
-	UserId string `protobuf:"bytes,6,opt,name=user_id,json=userId,proto3" json:"user_id" bson:"user_id" validate:"required,hexadecimal,len=24" required:"true"`
+	UserId string `protobuf:"bytes,6,opt,name=user_id,json=userId,proto3" json:"user_id" bson:"user_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"`
 	//@inject_tag: json:"first_name" bson:"first_name"  validate:"required" required:"true"
 	//
 	// The user's first name.

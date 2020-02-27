@@ -447,19 +447,6 @@ type MgoMerchantBalance struct {
 	CreatedAt      time.Time          `bson:"created_at"`
 }
 
-type MgoUserRole struct {
-	Id         primitive.ObjectID  `bson:"_id"`
-	MerchantId *primitive.ObjectID `bson:"merchant_id"`
-	Role       string              `bson:"role"`
-	Status     string              `bson:"status"`
-	UserId     *primitive.ObjectID `bson:"user_id"`
-	FirstName  string              `bson:"first_name"`
-	LastName   string              `bson:"last_name"`
-	Email      string              `bson:"email"`
-	CreatedAt  time.Time           `bson:"created_at"`
-	UpdatedAt  time.Time           `bson:"updated_at"`
-}
-
 func (m *MerchantBalance) MarshalBSON() ([]byte, error) {
 	st := &MgoMerchantBalance{
 		Currency:       m.Currency,
@@ -2056,89 +2043,6 @@ func (m *Id) UnmarshalBSON(raw []byte) error {
 	}
 
 	m.Id = decoded.Id.Hex()
-	return nil
-}
-
-func (m *UserRole) MarshalBSON() ([]byte, error) {
-	oid, err := primitive.ObjectIDFromHex(m.Id)
-
-	if err != nil {
-		return nil, err
-	}
-
-	st := &MgoUserRole{
-		Id:        oid,
-		Role:      m.Role,
-		Status:    m.Status,
-		Email:     m.Email,
-		FirstName: m.FirstName,
-		LastName:  m.LastName,
-	}
-
-	oid, err = primitive.ObjectIDFromHex(m.MerchantId)
-
-	if err == nil {
-		hex := oid
-		st.MerchantId = &hex
-	}
-
-	oid, err = primitive.ObjectIDFromHex(m.UserId)
-
-	if err == nil {
-		hex := oid
-		st.UserId = &hex
-	}
-
-	if m.CreatedAt != nil {
-		if st.CreatedAt, err = ptypes.Timestamp(m.CreatedAt); err != nil {
-			return nil, err
-		}
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		if st.UpdatedAt, err = ptypes.Timestamp(m.UpdatedAt); err != nil {
-			return nil, err
-		}
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	return bson.Marshal(st)
-}
-
-func (k *UserRole) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoUserRole)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	k.Id = decoded.Id.Hex()
-	k.Role = decoded.Role
-	k.Status = decoded.Status
-	k.Email = decoded.Email
-	k.FirstName = decoded.FirstName
-	k.LastName = decoded.LastName
-
-	if decoded.MerchantId != nil {
-		k.MerchantId = decoded.MerchantId.Hex()
-	}
-
-	if decoded.UserId != nil {
-		k.UserId = decoded.UserId.Hex()
-	}
-
-	if k.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt); err != nil {
-		return err
-	}
-
-	if k.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt); err != nil {
-		return err
-	}
-
 	return nil
 }
 
