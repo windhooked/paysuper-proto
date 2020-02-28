@@ -2537,7 +2537,7 @@ message RoyaltyReportProductSummaryItem {
 }
 
 message RoyaltyReportCorrectionItem {
-    //@inject_tag: bson:"accounting_entry_id" json:"accounting_entry_id"
+    //@inject_tag: bson:"accounting_entry_id" json:"accounting_entry_id" faker:"objectIdString"
     //
     // The unique identifier for the linked accounting entry.
     string accounting_entry_id = 1;
@@ -2579,11 +2579,11 @@ message RoyaltyReportSummary {
 }
 
 message RoyaltyReport {
-    //@inject_tag: bson:"_id" json:"id"
+    //@inject_tag: bson:"_id" json:"id" faker:"objectIdString"
     //
     // The unique identifier for the royalty report.
     string id = 1;
-    //@inject_tag: bson:"merchant_id" json:"merchant_id"
+    //@inject_tag: bson:"merchant_id" json:"merchant_id" faker:"objectIdString"
     //
     // The unique identifier for the merchant.
     string merchant_id = 2;
@@ -2658,7 +2658,9 @@ message RoyaltyReport {
 }
 
 message RoyaltyReportChanges {
+    //@inject_tag: faker:"objectIdString"
     string id = 1;
+    //@inject_tag: faker:"objectIdString"
     string royalty_report_id = 2;
     string source = 3;
     string ip = 4;
