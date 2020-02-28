@@ -2658,7 +2658,9 @@ message RoyaltyReport {
 }
 
 message RoyaltyReportChanges {
+    //@inject_tag: faker:"objectIdString"
     string id = 1;
+    //@inject_tag: faker:"objectIdString"
     string royalty_report_id = 2;
     string source = 3;
     string ip = 4;
