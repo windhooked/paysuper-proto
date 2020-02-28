@@ -10529,10 +10529,10 @@ func (m *RoyaltyReportProductSummaryItem) GetPayoutAmount() float64 {
 }
 
 type RoyaltyReportCorrectionItem struct {
-	//@inject_tag: bson:"accounting_entry_id" json:"accounting_entry_id"
+	//@inject_tag: bson:"accounting_entry_id" json:"accounting_entry_id" faker:"objectIdString"
 	//
 	// The unique identifier for the linked accounting entry.
-	AccountingEntryId string `protobuf:"bytes,1,opt,name=accounting_entry_id,json=accountingEntryId,proto3" json:"accounting_entry_id" bson:"accounting_entry_id"`
+	AccountingEntryId string `protobuf:"bytes,1,opt,name=accounting_entry_id,json=accountingEntryId,proto3" json:"accounting_entry_id" bson:"accounting_entry_id" faker:"objectIdString"`
 	//@inject_tag: bson:"amount" json:"amount"
 	//
 	// The amount of the correction.
@@ -10690,14 +10690,14 @@ func (m *RoyaltyReportSummary) GetRollingReserves() []*RoyaltyReportCorrectionIt
 }
 
 type RoyaltyReport struct {
-	//@inject_tag: bson:"_id" json:"id"
+	//@inject_tag: bson:"_id" json:"id" faker:"objectIdString"
 	//
 	// The unique identifier for the royalty report.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id"`
-	//@inject_tag: bson:"merchant_id" json:"merchant_id"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" faker:"objectIdString"`
+	//@inject_tag: bson:"merchant_id" json:"merchant_id" faker:"objectIdString"
 	//
 	// The unique identifier for the merchant.
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id"`
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" faker:"objectIdString"`
 	//@inject_tag: bson:"created_at" json:"created_at"
 	//
 	// The date of the royalty report creation.
