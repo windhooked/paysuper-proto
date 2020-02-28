@@ -114,7 +114,7 @@ message OrderCreateRequest {
     bool is_buy_for_virtual_currency = 39;
     // @inject_tag: json:"-"
     string cookie = 40;
-    //@inject_tag: json:"-" bson:"-"
+    //@inject_tag: json:"-" bson:"-" 
     //
     //The redirect button messages after the successful or failed payment. If it has an empty value the redirect message will be set at OK.
     string button_caption = 41;
