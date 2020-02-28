@@ -1905,7 +1905,7 @@ message CountryVatThreshold {
 }
 
 message Country {
-    //@inject_tag: json:"-" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+    //@inject_tag: json:"-" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     string id = 1;
     //@inject_tag: json:"iso_code_a2" bson:"iso_code_a2" validate:"required,alpha,len=2"
     //
