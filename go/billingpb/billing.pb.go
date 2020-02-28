@@ -9517,14 +9517,14 @@ func (m *MoneyBackCostSystemList) GetItems() []*MoneyBackCostSystem {
 }
 
 type MoneyBackCostMerchant struct {
-	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
+	//@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
 	//
 	// The unique identifier for the record about the merchant's tariffs.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
-	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
+	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
 	//
 	// The unique identifier for the merchant.
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24"`
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"name" bson:"name" validate:"required,name"
 	//
 	// The payment method's name.
