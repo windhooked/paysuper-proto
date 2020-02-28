@@ -10930,8 +10930,10 @@ func (m *RoyaltyReport) GetOperatingCompanyId() string {
 }
 
 type RoyaltyReportChanges struct {
-	Id                   string               `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	RoyaltyReportId      string               `protobuf:"bytes,2,opt,name=royalty_report_id,json=royaltyReportId,proto3" json:"royalty_report_id,omitempty"`
+	//@inject_tag: faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
+	//@inject_tag: faker:"objectIdString"
+	RoyaltyReportId      string               `protobuf:"bytes,2,opt,name=royalty_report_id,json=royaltyReportId,proto3" json:"royalty_report_id,omitempty" faker:"objectIdString"`
 	Source               string               `protobuf:"bytes,3,opt,name=source,proto3" json:"source,omitempty"`
 	Ip                   string               `protobuf:"bytes,4,opt,name=ip,proto3" json:"ip,omitempty"`
 	Hash                 string               `protobuf:"bytes,7,opt,name=hash,proto3" json:"hash,omitempty"`
