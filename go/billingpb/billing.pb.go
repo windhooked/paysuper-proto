@@ -6214,8 +6214,10 @@ func (m *RefundPayerData) GetState() string {
 }
 
 type RefundOrder struct {
+	// @inject_tag: faker:"objectIdString"
+	//
 	// The unique identifier for the refund in PaySuper.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
 	// The public unique identifier for the refund in PaySuper.
 	Uuid                 string   `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
@@ -6263,16 +6265,20 @@ func (m *RefundOrder) GetUuid() string {
 }
 
 type Refund struct {
+	// @inject_tag: faker:"objectIdString"
+	//
 	// The unique identifier for the refund in PaySuper.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" faker:"objectIdString"`
 	// The initial order data.
 	OriginalOrder *RefundOrder `protobuf:"bytes,2,opt,name=original_order,json=originalOrder,proto3" json:"original_order,omitempty"`
 	// The unique identifier for the refund in the payment system.
 	ExternalId string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
 	// The refund amount.
 	Amount float64 `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
+	// @inject_tag: faker:"objectIdString"
+	//
 	// The unique identifier for the user initiated an action on the return.
-	CreatorId string `protobuf:"bytes,5,opt,name=creatorId,proto3" json:"creatorId,omitempty"`
+	CreatorId string `protobuf:"bytes,5,opt,name=creatorId,proto3" json:"creatorId,omitempty" faker:"objectIdString"`
 	// The refund reason. Available values: Customer's request, Redeem chargeback, Purchase not provided, Card data was stolen.
 	Reason string `protobuf:"bytes,6,opt,name=reason,proto3" json:"reason,omitempty"`
 	// The refund's currency. Three-letter currency code ISO 4217, in uppercase.
@@ -6289,8 +6295,10 @@ type Refund struct {
 	SalesTax float32 `protobuf:"fixed32,12,opt,name=sales_tax,json=salesTax,proto3" json:"sales_tax,omitempty"`
 	// Has a true value if this refund is a chargeback.
 	IsChargeback bool `protobuf:"varint,13,opt,name=is_chargeback,json=isChargeback,proto3" json:"is_chargeback,omitempty"`
+	// @inject_tag: faker:"objectIdString"
+	//
 	// The unique identifier for the original order for which the refund was made.
-	CreatedOrderId       string   `protobuf:"bytes,14,opt,name=created_order_id,json=createdOrderId,proto3" json:"created_order_id,omitempty"`
+	CreatedOrderId       string   `protobuf:"bytes,14,opt,name=created_order_id,json=createdOrderId,proto3" json:"created_order_id,omitempty" faker:"objectIdString"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
