@@ -7916,8 +7916,8 @@ func (m *CountryVatThreshold) GetWorld() float64 {
 }
 
 type Country struct {
-	//@inject_tag: json:"-" bson:"_id" validate:"omitempty,hexadecimal,len=24"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" validate:"omitempty,hexadecimal,len=24"`
+	//@inject_tag: json:"-" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"iso_code_a2" bson:"iso_code_a2" validate:"required,alpha,len=2"
 	//
 	// Two-letter country code in ISO 3166, in uppercase (for instance US).
