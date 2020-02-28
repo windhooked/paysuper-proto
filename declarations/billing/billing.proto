@@ -153,11 +153,11 @@ message ProjectRedirectSettings {
 }
 
 message Project {
-    // @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24"
+    // @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
     //
     // The unique identifier for the project.
     string id = 1;
-    // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true"
+    // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the project's merchant.
     string merchant_id = 2;
