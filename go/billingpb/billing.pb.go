@@ -1285,10 +1285,14 @@ func (m *KeysTesting) GetIsPassed() bool {
 }
 
 type ProjectOrder struct {
+	// @inject_tag: json:"id" faker:"objectIdString"
+	//
 	// The unique identifier for the project.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" faker:"objectIdString"`
+	// @inject_tag: json:"merchant_id" faker:"objectIdString"
+	//
 	// The unique identifier for the merchant.
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" faker:"objectIdString"`
 	// The list of the project's localized names.
 	Name map[string]string `protobuf:"bytes,3,rep,name=name,proto3" json:"name,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// The redirect URL for the successful payment.
@@ -3291,8 +3295,8 @@ func (m *OrderBillingAddress) GetState() string {
 }
 
 type OrderUser struct {
-	// @inject_tag: json:"-"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-"`
+	// @inject_tag: json:"-" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" faker:"objectIdString"`
 	// @inject_tag: json:"-"
 	Object string `protobuf:"bytes,2,opt,name=object,proto3" json:"-"`
 	// @inject_tag: json:"external_id" bson:"external_id"
@@ -11580,8 +11584,8 @@ func (m *OrderViewMerchantInfo) GetAgreementNumber() string {
 }
 
 type OrderViewPublic struct {
-	// @inject_tag: json:"-" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	// @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: json:"uuid" bson:"uuid"
 	//
 	// The unique identifier for the order.
@@ -11614,10 +11618,10 @@ type OrderViewPublic struct {
 	//
 	// Two-letter country code in ISO 3166-1, in uppercase.
 	CountryCode string `protobuf:"bytes,9,opt,name=country_code,json=countryCode,proto3" json:"country_code" bson:"country_code"`
-	// @inject_tag: json:"merchant_id" bson:"merchant_id"
+	// @inject_tag: json:"merchant_id" bson:"merchant_id" faker:"objectIdString"
 	//
 	// The unique identifier for the merchant.
-	MerchantId string `protobuf:"bytes,10,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id"`
+	MerchantId string `protobuf:"bytes,10,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" faker:"objectIdString"`
 	// @inject_tag: json:"locale" bson:"locale"
 	//
 	// The customer’s locale name. Four-letter language code in ISO 639, for instance en-US.
@@ -12168,8 +12172,8 @@ func (m *OrderViewPublic) GetIsProduction() bool {
 }
 
 type OrderViewPrivate struct {
-	// @inject_tag: json:"-" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	// @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: json:"uuid" bson:"uuid"
 	//
 	// The public unique identifier for the order in PaySuper.
@@ -12202,10 +12206,10 @@ type OrderViewPrivate struct {
 	//
 	// The customer's country code. Two-letter country code in ISO 3166-1, in uppercase.
 	CountryCode string `protobuf:"bytes,9,opt,name=country_code,json=countryCode,proto3" json:"country_code" bson:"country_code"`
-	// @inject_tag: json:"merchant_id" bson:"merchant_id"
+	// @inject_tag: json:"merchant_id" bson:"merchant_id" faker:"objectIdString"
 	//
 	// The unique identifier for the merchant.
-	MerchantId string `protobuf:"bytes,10,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id"`
+	MerchantId string `protobuf:"bytes,10,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" faker:"objectIdString"`
 	// @inject_tag: json:"locale" bson:"locale"
 	//
 	// The customer's locale name. The language code in ISO 639-1 (for instance en-US).
