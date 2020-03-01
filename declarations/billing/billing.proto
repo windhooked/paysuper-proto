@@ -1460,27 +1460,6 @@ message PaymentMethod {
     bool refund_allowed = 17;
 }
 
-message Commission {
-    // @inject_tag: bson:"_id"
-    string id = 1;
-    // @inject_tag: bson:"pm_id"
-    string payment_method_id = 2;
-    // @inject_tag: bson:"project_id"
-    string project_id = 3;
-    // @inject_tag: bson:"pm_commission"
-    double payment_method_commission = 4;
-    // @inject_tag: bson:"psp_commission"
-    double psp_commission = 5;
-    // @inject_tag: bson:"total_commission_to_user"
-    double total_commission_to_user = 6;
-    // @inject_tag: bson:"start_date"
-    google.protobuf.Timestamp start_date = 7;
-    // @inject_tag: bson:"created_at"
-    google.protobuf.Timestamp created_at = 8;
-    // @inject_tag: bson:"updated_at"
-    google.protobuf.Timestamp updated_at = 9;
-}
-
 message CardExpire {
     // @inject_tag: bson:"month"
     //

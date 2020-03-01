@@ -19,29 +19,6 @@ type MgoMultiLang struct {
 	Value string `bson:"value"`
 }
 
-type MgoCommission struct {
-	Id struct {
-		PaymentMethodId primitive.ObjectID `bson:"pm_id"`
-		ProjectId       primitive.ObjectID `bson:"project_id"`
-	} `bson:"_id"`
-	PaymentMethodCommission float64   `bson:"pm_commission"`
-	PspCommission           float64   `bson:"psp_commission"`
-	ToUserCommission        float64   `bson:"total_commission_to_user"`
-	StartDate               time.Time `bson:"start_date"`
-}
-
-type MgoCommissionBilling struct {
-	Id                      primitive.ObjectID `bson:"_id"`
-	PaymentMethodId         primitive.ObjectID `bson:"pm_id"`
-	ProjectId               primitive.ObjectID `bson:"project_id"`
-	PaymentMethodCommission float64            `bson:"pm_commission"`
-	PspCommission           float64            `bson:"psp_commission"`
-	TotalCommissionToUser   float64            `bson:"total_commission_to_user"`
-	StartDate               time.Time          `bson:"start_date"`
-	CreatedAt               time.Time          `bson:"created_at"`
-	UpdatedAt               time.Time          `bson:"updated_at"`
-}
-
 type MgoOrderProject struct {
 	Id                      primitive.ObjectID       `bson:"_id"`
 	MerchantId              primitive.ObjectID       `bson:"merchant_id"`
@@ -408,106 +385,6 @@ func (m *MerchantBalance) UnmarshalBSON(raw []byte) error {
 	}
 
 	return nil
-}
-
-func (m *Commission) MarshalBSON() ([]byte, error) {
-	paymentMethodOid, err := primitive.ObjectIDFromHex(m.PaymentMethodId)
-
-	if err != nil {
-		return nil, err
-	}
-
-	projectOid, err := primitive.ObjectIDFromHex(m.ProjectId)
-
-	if err != nil {
-		return nil, err
-	}
-
-	st := &MgoCommissionBilling{
-		PaymentMethodId:         paymentMethodOid,
-		ProjectId:               projectOid,
-		PaymentMethodCommission: m.PaymentMethodCommission,
-		PspCommission:           m.PspCommission,
-		TotalCommissionToUser:   m.TotalCommissionToUser,
-	}
-
-	t, err := ptypes.Timestamp(m.StartDate)
-
-	if err != nil {
-		return nil, err
-	}
-
-	st.StartDate = t
-
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-
-		st.Id = oid
-	}
-
-	if m.CreatedAt != nil {
-		t, err := ptypes.Timestamp(m.CreatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.CreatedAt = t
-	} else {
-		st.CreatedAt = time.Now()
-	}
-
-	if m.UpdatedAt != nil {
-		t, err := ptypes.Timestamp(m.UpdatedAt)
-
-		if err != nil {
-			return nil, err
-		}
-
-		st.UpdatedAt = t
-	} else {
-		st.UpdatedAt = time.Now()
-	}
-
-	return bson.Marshal(st)
-}
-
-func (m *Commission) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoCommissionBilling)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-
-	m.Id = decoded.Id.Hex()
-	m.PaymentMethodId = decoded.PaymentMethodId.Hex()
-	m.ProjectId = decoded.ProjectId.Hex()
-	m.PaymentMethodCommission = decoded.PaymentMethodCommission
-	m.PspCommission = decoded.PspCommission
-	m.TotalCommissionToUser = decoded.TotalCommissionToUser
-
-	m.StartDate, err = ptypes.TimestampProto(decoded.StartDate)
-
-	if err != nil {
-		return err
-	}
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-
-	if err != nil {
-		return err
-	}
-
-	m.UpdatedAt, err = ptypes.TimestampProto(decoded.UpdatedAt)
-
-	return err
 }
 
 func (m *Order) MarshalBSON() ([]byte, error) {
