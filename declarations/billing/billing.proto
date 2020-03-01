@@ -346,8 +346,12 @@ message KeysTesting  {
 }
 
 message ProjectOrder {
+    // @inject_tag: json:"id" faker:"objectIdString"
+    //
     // The unique identifier for the project.
     string id = 1;
+    // @inject_tag: json:"merchant_id" faker:"objectIdString"
+    //
     // The unique identifier for the merchant.
     string merchant_id = 2;
     // The list of the project's localized names.
@@ -847,7 +851,7 @@ message OrderBillingAddress {
 }
 
 message OrderUser {
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"-" faker:"objectIdString"
     string id = 1;
     // @inject_tag: json:"-"
     string object = 2;
@@ -2825,7 +2829,7 @@ message OrderViewMerchantInfo {
 }
 
 message OrderViewPublic {
-    // @inject_tag: json:"-" bson:"_id"
+    // @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
     string id = 1; // unique internal order identifier in Protocol One
     // @inject_tag: json:"uuid" bson:"uuid"
     //
@@ -2859,7 +2863,7 @@ message OrderViewPublic {
     //
     // Two-letter country code in ISO 3166-1, in uppercase.
     string country_code = 9;
-    // @inject_tag: json:"merchant_id" bson:"merchant_id"
+    // @inject_tag: json:"merchant_id" bson:"merchant_id" faker:"objectIdString"
     //
     // The unique identifier for the merchant.
     string merchant_id = 10;
@@ -3028,7 +3032,7 @@ message OrderViewPublic {
 }
 
 message OrderViewPrivate {
-    // @inject_tag: json:"-" bson:"_id"
+    // @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
     string id = 1; // unique internal order identifier in Protocol One
     // @inject_tag: json:"uuid" bson:"uuid"
     //
@@ -3062,7 +3066,7 @@ message OrderViewPrivate {
     //
     // The customer's country code. Two-letter country code in ISO 3166-1, in uppercase.
     string country_code = 9;
-    // @inject_tag: json:"merchant_id" bson:"merchant_id"
+    // @inject_tag: json:"merchant_id" bson:"merchant_id" faker:"objectIdString"
     //
     // The unique identifier for the merchant.
     string merchant_id = 10;
