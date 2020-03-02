@@ -2408,23 +2408,6 @@ message MoneyBackCostMerchantListRequest {
     string merchant_id = 1;
 }
 
-message PayoutCostSystem {
-    //@inject_tag: json:"id" bson:"_id" validate:"omitempty,hexadecimal,len=24"
-    string id = 1;
-    // @inject_tag: json:"intrabank_cost_amount" bson:"intrabank_cost_amount" validate:"numeric,gte=0"
-    double intrabank_cost_amount = 2;
-    //@inject_tag: json:"intrabank_cost_currency" bson:"intrabank_cost_currency" validate:"required,alpha,len=3"
-    string intrabank_cost_currency = 3;
-    // @inject_tag: json:"interbank_cost_amount" bson:"interbank_cost_amount" validate:"numeric,gte=0"
-    double interbank_cost_amount = 4;
-    //@inject_tag: json:"interbank_cost_currency" bson:"interbank_cost_currency" validate:"required,alpha,len=3"
-    string interbank_cost_currency = 5;
-    // @inject_tag: json:"is_active" bson:"is_active"
-    bool is_active = 6;
-    //@inject_tag: json:"-" bson:"created_at"
-    google.protobuf.Timestamp created_at = 7;
-}
-
 message AccountingEntrySource {
     //@inject_tag: faker:"objectIdString"
     string id = 1;

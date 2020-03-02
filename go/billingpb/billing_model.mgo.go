@@ -156,16 +156,6 @@ type MgoOrderItem struct {
 	PlatformId  string             `bson:"platform_id"`
 }
 
-type MgoPayoutCostSystem struct {
-	Id                    primitive.ObjectID `bson:"_id"`
-	IntrabankCostAmount   float64            `bson:"intrabank_cost_amount"`
-	IntrabankCostCurrency string             `bson:"intrabank_cost_currency"`
-	InterbankCostAmount   float64            `bson:"interbank_cost_amount"`
-	InterbankCostCurrency string             `bson:"interbank_cost_currency"`
-	IsActive              bool               `bson:"is_active"`
-	CreatedAt             time.Time          `bson:"created_at"`
-}
-
 func (m *Order) MarshalBSON() ([]byte, error) {
 	projectOid, err := primitive.ObjectIDFromHex(m.Project.Id)
 
@@ -618,59 +608,6 @@ func (m *PaymentMethodOrder) IsBankCard() bool {
 
 func (m *PaymentMethodOrder) IsCryptoCurrency() bool {
 	return m.Group == recurringpb.PaymentSystemGroupAliasBitcoin
-}
-
-func (m *PayoutCostSystem) MarshalBSON() ([]byte, error) {
-	st := &MgoPayoutCostSystem{
-		IntrabankCostAmount:   m.IntrabankCostAmount,
-		IntrabankCostCurrency: m.IntrabankCostCurrency,
-		InterbankCostAmount:   m.InterbankCostAmount,
-		InterbankCostCurrency: m.InterbankCostCurrency,
-		IsActive:              m.IsActive,
-	}
-
-	if len(m.Id) <= 0 {
-		st.Id = primitive.NewObjectID()
-	} else {
-		oid, err := primitive.ObjectIDFromHex(m.Id)
-
-		if err != nil {
-			return nil, errors.New(ErrorInvalidObjectId)
-		}
-		st.Id = oid
-	}
-
-	t, err := ptypes.Timestamp(m.CreatedAt)
-
-	if err != nil {
-		return nil, err
-	}
-
-	st.CreatedAt = t
-
-	return bson.Marshal(st)
-}
-
-func (m *PayoutCostSystem) UnmarshalBSON(raw []byte) error {
-	decoded := new(MgoPayoutCostSystem)
-	err := bson.Unmarshal(raw, decoded)
-
-	if err != nil {
-		return err
-	}
-	m.Id = decoded.Id.Hex()
-	m.IntrabankCostAmount = decoded.IntrabankCostAmount
-	m.IntrabankCostCurrency = decoded.IntrabankCostCurrency
-	m.InterbankCostAmount = decoded.InterbankCostAmount
-	m.InterbankCostCurrency = decoded.InterbankCostCurrency
-	m.IsActive = decoded.IsActive
-
-	m.CreatedAt, err = ptypes.TimestampProto(decoded.CreatedAt)
-	if err != nil {
-		return err
-	}
-
-	return nil
 }
 
 func getPaymentMethodOrder(in *MgoOrderPaymentMethod) *PaymentMethodOrder {
