@@ -1250,7 +1250,7 @@ message PaymentMethodOrder {
     string external_id = 3;
     // @inject_tag: json:"-" bson:"params"
     PaymentMethodParams params = 4;
-    // @inject_tag: bson:"payment_system_id" json:"payment_system_id"
+    // @inject_tag: bson:"payment_system_id" json:"payment_system_id" faker:"objectIdString"
     //
     // The unique identifier for the payment system in PaySuper.
     string payment_system_id = 5;
@@ -1389,7 +1389,7 @@ message PaymentMethodCrypto {
 }
 
 message ProjectPaymentMethod {
-    // @inject_tag: bson:"_id"
+    // @inject_tag: bson:"_id" faker:"objectIdString"
     string id = 1;
     // @inject_tag: bson:"terminal"
     string terminal = 2;
