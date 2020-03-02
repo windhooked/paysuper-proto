@@ -4435,10 +4435,10 @@ func (m *CountryRestriction) GetChangeAllowed() bool {
 }
 
 type OrderItem struct {
-	//@inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id" required:"true"
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id" required:"true" faker:"objectIdString"
 	//
 	// The unique identifier for the item.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" bson:"_id" required:"true"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" bson:"_id" required:"true" faker:"objectIdString"`
 	//@inject_tag: validate:"required" json:"object" bson:"object" required:"true"
 	//
 	// String representing the item’s type.
@@ -4669,8 +4669,8 @@ func (m *OrderPaginate) GetItems() []*Order {
 }
 
 type PaymentMethodOrder struct {
-	// @inject_tag: json:"-" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	// @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: json:"title" bson:"name"
 	//
 	// The payment method's name.
