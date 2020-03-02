@@ -3534,8 +3534,8 @@ func (m *OrderNotificationCancellation) GetReason() string {
 }
 
 type Order struct {
-	// @inject_tag: json:"-" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	// @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: json:"id" bson:"uuid"
 	//
 	// The public unique identifier for the order in PaySuper.
@@ -3660,8 +3660,8 @@ type Order struct {
 	PrivateMetadata map[string]string `protobuf:"bytes,33,rep,name=private_metadata,json=privateMetadata,proto3" json:"-" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"private_metadata"`
 	// @inject_tag: json:"-" bson:"project"
 	Project *ProjectOrder `protobuf:"bytes,34,opt,name=project,proto3" json:"-" bson:"project"`
-	// @inject_tag: json:"-" bson:"project_order_id"
-	ProjectOrderId string `protobuf:"bytes,35,opt,name=project_order_id,json=projectOrderId,proto3" json:"-" bson:"project_order_id"`
+	// @inject_tag: json:"-" bson:"project_order_id" faker:"objectIdString"
+	ProjectOrderId string `protobuf:"bytes,35,opt,name=project_order_id,json=projectOrderId,proto3" json:"-" bson:"project_order_id" faker:"objectIdString"`
 	// @inject_tag: json:"-" bson:"project_account"
 	ProjectAccount string `protobuf:"bytes,36,opt,name=project_account,json=projectAccount,proto3" json:"-" bson:"project_account"`
 	// @inject_tag: json:"-" bson:"project_last_requested_at"
@@ -4324,10 +4324,10 @@ func (m *Order) GetFormMode() string {
 }
 
 type ParentOrder struct {
-	// @inject_tag: json:"id"
+	// @inject_tag: json:"id" faker:"objectIdString"
 	//
 	// The internal unique identifier for the order in PaySuper.
-	Id string `protobuf:"bytes,51,opt,name=id,proto3" json:"id"`
+	Id string `protobuf:"bytes,51,opt,name=id,proto3" json:"id" faker:"objectIdString"`
 	// @inject_tag: json:"uuid"
 	//
 	// The public unique identifier for the order in PaySuper.
