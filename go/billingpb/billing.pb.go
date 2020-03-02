@@ -14272,14 +14272,14 @@ func (m *PayoutDocumentChanges) GetCreatedAt() *timestamp.Timestamp {
 }
 
 type MerchantBalance struct {
-	//@inject_tag: json:"id" validate:"required,hexadecimal,len=24"
+	//@inject_tag: json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
 	//
 	// The unique identifier for the merchant's balance.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
+	//@inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
 	//
 	// The unique identifier for the merchant.
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
 	//@inject_tag: json:"currency" validate:"required,alpha,len=3"
 	//
 	// The balance currency. Three-letter currency code ISO 4217, in uppercase.
