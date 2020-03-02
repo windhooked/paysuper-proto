@@ -4681,10 +4681,10 @@ type PaymentMethodOrder struct {
 	ExternalId string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id" bson:"external_id"`
 	// @inject_tag: json:"-" bson:"params"
 	Params *PaymentMethodParams `protobuf:"bytes,4,opt,name=params,proto3" json:"-" bson:"params"`
-	// @inject_tag: bson:"payment_system_id" json:"payment_system_id"
+	// @inject_tag: bson:"payment_system_id" json:"payment_system_id" faker:"objectIdString"
 	//
 	// The unique identifier for the payment system in PaySuper.
-	PaymentSystemId string `protobuf:"bytes,5,opt,name=payment_system_id,json=paymentSystemId,proto3" json:"payment_system_id" bson:"payment_system_id"`
+	PaymentSystemId string `protobuf:"bytes,5,opt,name=payment_system_id,json=paymentSystemId,proto3" json:"payment_system_id" bson:"payment_system_id" faker:"objectIdString"`
 	// @inject_tag: json:"type" bson:"group_alias"
 	//
 	// The payment method's group alias.
@@ -5275,8 +5275,8 @@ func (m *PaymentMethodCrypto) GetAddress() string {
 }
 
 type ProjectPaymentMethod struct {
-	// @inject_tag: bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"_id"`
+	// @inject_tag: bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: bson:"terminal"
 	Terminal string `protobuf:"bytes,2,opt,name=terminal,proto3" json:"terminal,omitempty" bson:"terminal"`
 	// @inject_tag: bson:"password"
