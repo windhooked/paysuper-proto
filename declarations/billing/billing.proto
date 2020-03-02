@@ -1172,7 +1172,7 @@ message CountryRestriction {
 }
 
 message OrderItem {
-    //@inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id" required:"true"
+    //@inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id" required:"true" faker:"objectIdString"
     //
     // The unique identifier for the item.
     string id = 1;
@@ -1238,7 +1238,7 @@ message OrderPaginate {
 }
 
 message PaymentMethodOrder {
-    // @inject_tag: json:"-" bson:"_id"
+    // @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
     string id = 1;
     // @inject_tag: json:"title" bson:"name"
     //
