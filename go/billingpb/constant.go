@@ -194,6 +194,13 @@ const (
 	TestCaseNonExistingUser  = "non_existing_user"
 	TestCaseExistingUser     = "existing_user"
 	TestCaseIncorrectPayment = "invalid_signature"
+
+	PaymentSystemGroupAliasBankCard = "BANKCARD"
+	PaymentSystemGroupAliasWebMoney = "WEBMONEY"
+	PaymentSystemGroupAliasQiwi     = "QIWI"
+	PaymentSystemGroupAliasNeteller = "NETELLER"
+	PaymentSystemGroupAliasAlipay   = "ALIPAY"
+	PaymentSystemGroupAliasBitcoin  = "BITCOIN"
 )
 
 var (
