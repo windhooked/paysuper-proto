@@ -146,10 +146,6 @@ message ProjectRedirectSettings {
     //
     //The redirect button messages after the successful or failed payment. If it has an empty value the redirect message will be set at OK.
     string button_caption = 4;
-    //@inject_tag: json:"form_mode"
-    //
-    //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
-    string form_mode = 43;
 }
 
 message Project {
