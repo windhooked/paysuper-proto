@@ -3534,8 +3534,8 @@ func (m *OrderNotificationCancellation) GetReason() string {
 }
 
 type Order struct {
-	// @inject_tag: json:"-" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	// @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: json:"id" bson:"uuid"
 	//
 	// The public unique identifier for the order in PaySuper.
@@ -3660,8 +3660,8 @@ type Order struct {
 	PrivateMetadata map[string]string `protobuf:"bytes,33,rep,name=private_metadata,json=privateMetadata,proto3" json:"-" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" bson:"private_metadata"`
 	// @inject_tag: json:"-" bson:"project"
 	Project *ProjectOrder `protobuf:"bytes,34,opt,name=project,proto3" json:"-" bson:"project"`
-	// @inject_tag: json:"-" bson:"project_order_id"
-	ProjectOrderId string `protobuf:"bytes,35,opt,name=project_order_id,json=projectOrderId,proto3" json:"-" bson:"project_order_id"`
+	// @inject_tag: json:"-" bson:"project_order_id" faker:"objectIdString"
+	ProjectOrderId string `protobuf:"bytes,35,opt,name=project_order_id,json=projectOrderId,proto3" json:"-" bson:"project_order_id" faker:"objectIdString"`
 	// @inject_tag: json:"-" bson:"project_account"
 	ProjectAccount string `protobuf:"bytes,36,opt,name=project_account,json=projectAccount,proto3" json:"-" bson:"project_account"`
 	// @inject_tag: json:"-" bson:"project_last_requested_at"
@@ -4324,10 +4324,10 @@ func (m *Order) GetFormMode() string {
 }
 
 type ParentOrder struct {
-	// @inject_tag: json:"id"
+	// @inject_tag: json:"id" faker:"objectIdString"
 	//
 	// The internal unique identifier for the order in PaySuper.
-	Id string `protobuf:"bytes,51,opt,name=id,proto3" json:"id"`
+	Id string `protobuf:"bytes,51,opt,name=id,proto3" json:"id" faker:"objectIdString"`
 	// @inject_tag: json:"uuid"
 	//
 	// The public unique identifier for the order in PaySuper.
@@ -4435,10 +4435,10 @@ func (m *CountryRestriction) GetChangeAllowed() bool {
 }
 
 type OrderItem struct {
-	//@inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id" required:"true"
+	//@inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id" required:"true" faker:"objectIdString"
 	//
 	// The unique identifier for the item.
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" bson:"_id" required:"true"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" bson:"_id" required:"true" faker:"objectIdString"`
 	//@inject_tag: validate:"required" json:"object" bson:"object" required:"true"
 	//
 	// String representing the item’s type.
@@ -4669,8 +4669,8 @@ func (m *OrderPaginate) GetItems() []*Order {
 }
 
 type PaymentMethodOrder struct {
-	// @inject_tag: json:"-" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
+	// @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: json:"title" bson:"name"
 	//
 	// The payment method's name.
@@ -4681,10 +4681,10 @@ type PaymentMethodOrder struct {
 	ExternalId string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id" bson:"external_id"`
 	// @inject_tag: json:"-" bson:"params"
 	Params *PaymentMethodParams `protobuf:"bytes,4,opt,name=params,proto3" json:"-" bson:"params"`
-	// @inject_tag: bson:"payment_system_id" json:"payment_system_id"
+	// @inject_tag: bson:"payment_system_id" json:"payment_system_id" faker:"objectIdString"
 	//
 	// The unique identifier for the payment system in PaySuper.
-	PaymentSystemId string `protobuf:"bytes,5,opt,name=payment_system_id,json=paymentSystemId,proto3" json:"payment_system_id" bson:"payment_system_id"`
+	PaymentSystemId string `protobuf:"bytes,5,opt,name=payment_system_id,json=paymentSystemId,proto3" json:"payment_system_id" bson:"payment_system_id" faker:"objectIdString"`
 	// @inject_tag: json:"type" bson:"group_alias"
 	//
 	// The payment method's group alias.
@@ -5275,8 +5275,8 @@ func (m *PaymentMethodCrypto) GetAddress() string {
 }
 
 type ProjectPaymentMethod struct {
-	// @inject_tag: bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"_id"`
+	// @inject_tag: bson:"_id" faker:"objectIdString"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"_id" faker:"objectIdString"`
 	// @inject_tag: bson:"terminal"
 	Terminal string `protobuf:"bytes,2,opt,name=terminal,proto3" json:"terminal,omitempty" bson:"terminal"`
 	// @inject_tag: bson:"password"
