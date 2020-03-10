@@ -18,8 +18,6 @@ message OrderCreateRequest {
     //
     // The unique identifier for the Project found in the merchant account in the PaySuper Dashboard.
     string project_id = 1;
-    // @inject_tag: query:"PO_SIGNATURE" form:"PO_SIGNATURE" json:"-" validate:"omitempty,alphanum"
-    string signature = 2;
     // @inject_tag: query:"PO_AMOUNT" form:"PO_AMOUNT" json:"amount" validate:"omitempty,numeric,gte=0"
     //
     // The order amount as a positive number. It is required for a simple checkout payment.
@@ -32,10 +30,6 @@ message OrderCreateRequest {
     //
     // The customer account in the merchant project.
     string account = 5;
-    // @inject_tag: query:"PO_ORDER_ID" form:"PO_ORDER_ID" json:"order_id" validate:"omitempty,max=255"
-    //
-    // The unique identifier for the order in the merchant project. This field is not required, but we recommend always sending this field.
-    string order_id = 6;
     // @inject_tag: query:"PO_DESCRIPTION" form:"PO_DESCRIPTION" json:"description" validate:"omitempty,max=255"
     //
     // The arbitrary order description.
@@ -58,12 +52,6 @@ message OrderCreateRequest {
     string payer_email = 13;
     // @inject_tag: query:"PO_PAYER_PHONE" form:"PO_PAYER_PHONE" json:"-" validate:"omitempty,max=255"
     string payer_phone = 14;
-    // @inject_tag: query:"PO_REGION" form:"PO_REGION" json:"-" validate:"omitempty,alpha,len=2"
-    string region = 15;
-    // @inject_tag: json:"-"
-    map<string, string> other = 17;
-    // @inject_tag: json:"-"
-    map<string, string> raw_params = 18;
     // @inject_tag: json:"-"
     string raw_body = 19;
     // @inject_tag: json:"-"
@@ -74,7 +62,9 @@ message OrderCreateRequest {
     //
     // The list of unique identifiers of Products being in the Project. It is required if a payment type is equal to product or key.
     repeated string products = 22;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"metadata" validate:"omitempty,dive,endkeys,max=255"
+    //
+    // A string-value description that you can attach to the customer's object. It can be useful for storing additional information about your customer's payment.
     map<string, string> metadata = 23;
     // @inject_tag: json:"-"
     map<string, string> private_metadata = 24;
