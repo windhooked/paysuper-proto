@@ -22,3 +22,11 @@ func (m *Merchant) GetOwnerEmail() string {
 
 	return m.User.Email
 }
+
+func (m *Merchant) GetProcessingDefaultCurrency() string {
+	if m.Banking == nil {
+		return ""
+	}
+
+	return m.Banking.ProcessingDefaultCurrency
+}
