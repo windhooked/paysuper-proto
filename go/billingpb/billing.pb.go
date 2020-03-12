@@ -1695,10 +1695,10 @@ type MerchantBanking struct {
 	Details string `protobuf:"bytes,6,opt,name=details,proto3" json:"details"`
 	// @inject_tag: json:"-" bson:"correspondent_account" validate:"omitempty,numeric,max=30"
 	CorrespondentAccount string `protobuf:"bytes,7,opt,name=correspondent_account,json=correspondentAccount,proto3" json:"-" bson:"correspondent_account" validate:"omitempty,numeric,max=30"`
-	// @inject_tag: json:"processing_default_currency"
+	// @inject_tag: json:"processing_default_currency" bson:"processing_default_currency"
 	//
 	// The merchant's default processing currency, used as fallback currency for prices in virtual item, virtual currency, game key and other.
-	ProcessingDefaultCurrency string   `protobuf:"bytes,8,opt,name=processing_default_currency,json=processingDefaultCurrency,proto3" json:"processing_default_currency"`
+	ProcessingDefaultCurrency string   `protobuf:"bytes,8,opt,name=processing_default_currency,json=processingDefaultCurrency,proto3" json:"processing_default_currency" bson:"processing_default_currency"`
 	XXX_NoUnkeyedLiteral      struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized          []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache             int32    `json:"-" bson:"-" structure:"-" validate:"-"`
