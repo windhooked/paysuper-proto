@@ -1693,8 +1693,10 @@ type MerchantBanking struct {
 	//
 	// Additional details about the merchant's bank account.
 	Details string `protobuf:"bytes,6,opt,name=details,proto3" json:"details"`
-	// @inject_tag: json:"-" bson:"correspondent_account" validate:"omitempty,numeric,max=30"
-	CorrespondentAccount string `protobuf:"bytes,7,opt,name=correspondent_account,json=correspondentAccount,proto3" json:"-" bson:"correspondent_account" validate:"omitempty,numeric,max=30"`
+	// @inject_tag: json:"correspondent_account" bson:"correspondent_account" validate:"omitempty,numeric,max=30"
+	//
+	// The merchant's bank's correspondent account number.
+	CorrespondentAccount string `protobuf:"bytes,7,opt,name=correspondent_account,json=correspondentAccount,proto3" json:"correspondent_account" bson:"correspondent_account" validate:"omitempty,numeric,max=30"`
 	// @inject_tag: json:"processing_default_currency" bson:"processing_default_currency"
 	//
 	// The merchant's default processing currency, used as fallback currency for prices in virtual item, virtual currency, game key and other.
