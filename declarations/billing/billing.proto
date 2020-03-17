@@ -460,8 +460,14 @@ message MerchantBanking {
     //
     // Additional details about the merchant's bank account.
     string details = 6;
-    // @inject_tag: json:"-" bson:"correspondent_account" validate:"omitempty,numeric,max=30"
+    // @inject_tag: json:"correspondent_account" bson:"correspondent_account" validate:"omitempty,numeric,max=30"
+    //
+    // The merchant's bank's correspondent account number.
     string correspondent_account = 7;
+    // @inject_tag: json:"processing_default_currency" bson:"processing_default_currency"
+    //
+    // The merchant's default processing currency, used as fallback currency for prices in virtual item, virtual currency, game key and other.
+    string processing_default_currency = 8;
 }
 
 message MerchantLastPayout {
