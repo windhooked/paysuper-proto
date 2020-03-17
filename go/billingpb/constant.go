@@ -265,4 +265,9 @@ var (
 	}
 
 	ProductNoPriceInCurrencyError = errors.New("No product price in requested currency")
+
+	productNoPriceInCurrency           = "no price in currency %s"
+	productNoNameInLanguage            = "no name in language %s"
+	productNoDescriptionInLanguage     = "no description in language %s"
+	productNoLongDescriptionInLanguage = "no long description in language %s"
 )
