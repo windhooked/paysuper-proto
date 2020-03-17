@@ -8474,8 +8474,8 @@ func (m *GetRoyaltyReportResponse) GetItem() *RoyaltyReport {
 }
 
 type ChangeRoyaltyReportRequest struct {
-	// @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"required,hexadecimal,len=24" json:"merchant_id"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: json:"-" validate:"required,hexadecimal,len=24" param:"report_id"
 	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"-" validate:"required,hexadecimal,len=24" param:"report_id"`
 	// @inject_tag: json:"status" validate:"omitempty,oneof=pending skipped accepted canceled dispute ready_for_invoice payment_in_progress payment_done payment_error"
