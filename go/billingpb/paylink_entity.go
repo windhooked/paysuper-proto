@@ -3,7 +3,6 @@ package billingpb
 import (
 	"github.com/golang/protobuf/ptypes"
 	tools "github.com/paysuper/paysuper-tools/number"
-	"go.mongodb.org/mongo-driver/bson"
 	"time"
 )
 
@@ -26,16 +25,6 @@ func (pl *Paylink) IsPaylinkExpired() bool {
 
 func (pl *Paylink) UpdateConversion() {
 	pl.Conversion = conversion(pl.SalesCount, pl.Visits)
-}
-
-func (pl *Paylink) GetMgoPaylink() (result *MgoPaylink, err error) {
-	plBson, err := pl.MarshalBSON()
-	if err != nil {
-		return
-	}
-	result = &MgoPaylink{}
-	err = bson.Unmarshal(plBson, result)
-	return
 }
 
 func (pl *StatCommon) UpdateConversion() {

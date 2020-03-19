@@ -1,6 +1,9 @@
 package billingpb
 
-import "github.com/paysuper/paysuper-proto/go/recurringpb"
+import (
+	"errors"
+	"github.com/paysuper/paysuper-proto/go/recurringpb"
+)
 
 const (
 	ServiceName    = "p1paybilling"
@@ -201,6 +204,11 @@ const (
 	PaymentSystemGroupAliasNeteller = "NETELLER"
 	PaymentSystemGroupAliasAlipay   = "ALIPAY"
 	PaymentSystemGroupAliasBitcoin  = "BITCOIN"
+
+	VirtualCurrencyPriceGroup = "virtual"
+
+	orderBankCardBrandNotFound = "brand for bank card not found"
+	orderPaymentMethodNotSet   = "payment method not set"
 )
 
 var (
@@ -255,4 +263,11 @@ var (
 		TariffRegionRussiaAndCis: "Russia & CIS",
 		TariffRegionWorldwide:    "Worldwide",
 	}
+
+	ProductNoPriceInCurrencyError = errors.New("No product price in requested currency")
+
+	productNoPriceInCurrency           = "no price in currency %s"
+	productNoNameInLanguage            = "no name in language %s"
+	productNoDescriptionInLanguage     = "no description in language %s"
+	productNoLongDescriptionInLanguage = "no long description in language %s"
 )
