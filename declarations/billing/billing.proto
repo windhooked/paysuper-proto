@@ -191,7 +191,9 @@ message Project {
     repeated string notify_emails = 13;
     // @inject_tag: json:"-"
     bool is_products_checkout = 14;
-    // @inject_tag: json:"-" validate:"omitempty,max=255"
+    // @inject_tag: json:"secret_key" validate:"omitempty,max=255"
+    //
+    // The project's secret key for sign notification requests
     string secret_key = 15;
     // @inject_tag: json:"-"
     bool signature_required = 16;
