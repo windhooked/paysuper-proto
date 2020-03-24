@@ -88,13 +88,24 @@ func (m *Merchant) HasPrimaryOnboardingUserName() bool {
 }
 
 func (m *Merchant) GetAddress() string {
-	address := m.Company.Address + ", " + m.Company.AddressAdditional
-
-	if m.Company.State != "" {
-		address += ", " + m.Company.State
+	address := ""
+	addressParts := []string{
+		m.Company.Address,
+		m.Company.AddressAdditional,
+		m.Company.State,
+		m.Company.City,
+		m.Company.Country,
+		m.Company.Zip,
 	}
 
-	address += ", " + m.Company.City + ", " + m.Company.Country + ", " + m.Company.Zip
+	for _, part := range addressParts {
+		if len(part) > 0 {
+			if len(address) > 0 {
+				address += ", "
+			}
+			address += part
+		}
+	}
 
 	return address
 }
