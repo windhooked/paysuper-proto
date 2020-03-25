@@ -2305,12 +2305,12 @@ type MerchantTariff struct {
 	//
 	// The merchant's region name.
 	HomeRegion string `protobuf:"bytes,3,opt,name=home_region,json=homeRegion,proto3" json:"home_region"`
-	// @inject_tag: json:"chargeback"
+	// @inject_tag: json:"chargeback" bson:"chargeback"
 	//
 	// The merchant's tariffs for chargeback.
-	Chargeback []*MerchantTariffRatesSettingsItem `protobuf:"bytes,4,rep,name=chargeback,proto3" json:"chargeback"`
-	// @inject_tag: json:"-"
-	Refund               []*MerchantTariffRatesSettingsItem `protobuf:"bytes,5,rep,name=refund,proto3" json:"-"`
+	Chargeback []*MerchantTariffRatesSettingsItem `protobuf:"bytes,4,rep,name=chargeback,proto3" json:"chargeback" bson:"chargeback"`
+	// @inject_tag: json:"-" bson:"refund"
+	Refund               []*MerchantTariffRatesSettingsItem `protobuf:"bytes,5,rep,name=refund,proto3" json:"-" bson:"refund"`
 	XXX_NoUnkeyedLiteral struct{}                           `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_unrecognized     []byte                             `json:"-" bson:"-" structure:"-" validate:"-"`
 	XXX_sizecache        int32                              `json:"-" bson:"-" structure:"-" validate:"-"`
