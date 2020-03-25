@@ -596,11 +596,11 @@ message MerchantTariff {
     //
     // The merchant's region name.
     string home_region = 3;
-    // @inject_tag: json:"chargeback"
+    // @inject_tag: json:"chargeback" bson:"chargeback"
     //
     // The merchant's tariffs for chargeback.
     repeated MerchantTariffRatesSettingsItem chargeback = 4;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"-" bson:"refund"
     repeated MerchantTariffRatesSettingsItem refund = 5;
 }
 
