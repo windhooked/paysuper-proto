@@ -626,8 +626,10 @@ type Project struct {
 	NotifyEmails []string `protobuf:"bytes,13,rep,name=notify_emails,json=notifyEmails,proto3" json:"-" validate:"omitempty,dive,email"`
 	// @inject_tag: json:"-"
 	IsProductsCheckout bool `protobuf:"varint,14,opt,name=is_products_checkout,json=isProductsCheckout,proto3" json:"-"`
-	// @inject_tag: json:"-" validate:"omitempty,max=255"
-	SecretKey string `protobuf:"bytes,15,opt,name=secret_key,json=secretKey,proto3" json:"-" validate:"omitempty,max=255"`
+	// @inject_tag: json:"secret_key" validate:"omitempty,max=255"
+	//
+	// The project's secret key for sign notification requests
+	SecretKey string `protobuf:"bytes,15,opt,name=secret_key,json=secretKey,proto3" json:"secret_key" validate:"omitempty,max=255"`
 	// @inject_tag: json:"-"
 	SignatureRequired bool `protobuf:"varint,16,opt,name=signature_required,json=signatureRequired,proto3" json:"-"`
 	// @inject_tag: json:"-"
