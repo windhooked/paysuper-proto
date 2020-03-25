@@ -602,6 +602,10 @@ message MerchantTariff {
     repeated MerchantTariffRatesSettingsItem chargeback = 4;
     // @inject_tag: json:"-" bson:"refund"
     repeated MerchantTariffRatesSettingsItem refund = 5;
+    //@inject_tag: json:"minimal_payout" bson:"minimal_payout"
+    //
+    // The merchant's minimal payout amounts.
+    map<string, float> minimal_payout = 6;
 }
 
 message Merchant {
