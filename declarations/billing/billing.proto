@@ -585,13 +585,27 @@ message MerchantAgreementSignatureData {
 
 message MerchantTariff {
     // @inject_tag: json:"payment"
+    //
+    // The merchant's tariffs for payments.
     repeated billing.MerchantTariffRatesPayment payment = 1;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"payout"
+    //
+    // The merchant's tariffs for payout.
     MerchantTariffRatesSettingsItem payout = 2;
     // @inject_tag: json:"home_region"
     //
     // The merchant's region name.
     string home_region = 3;
+    // @inject_tag: json:"chargeback" bson:"chargeback"
+    //
+    // The merchant's tariffs for chargeback.
+    repeated MerchantTariffRatesSettingsItem chargeback = 4;
+    // @inject_tag: json:"-" bson:"refund"
+    repeated MerchantTariffRatesSettingsItem refund = 5;
+    //@inject_tag: json:"minimal_payout" bson:"minimal_payout"
+    //
+    // The merchant's minimal payout amounts.
+    map<string, float> minimal_payout = 6;
 }
 
 message Merchant {
