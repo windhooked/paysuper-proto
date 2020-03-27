@@ -23,18 +23,18 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type GetRateCurrentCommonRequest struct {
 	//@inject_tag: validate:"required,alpha,len=3"
-	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,alpha,len=3"
-	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbank stock cardpay"
-	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbank stock cardpay"`
 	//@inject_tag: validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"
-	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty" validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,5,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,5,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *GetRateCurrentCommonRequest) Reset()         { *m = GetRateCurrentCommonRequest{} }
@@ -99,20 +99,20 @@ func (m *GetRateCurrentCommonRequest) GetExchangeDirection() string {
 
 type GetRateByDateCommonRequest struct {
 	//@inject_tag: validate:"required,alpha,len=3"
-	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,alpha,len=3"
-	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbank stock cardpay"
-	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbank stock cardpay"`
 	//@inject_tag: validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"
-	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty" validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"`
 	//@inject_tag: validate:"required"
-	Datetime *timestamp.Timestamp `protobuf:"bytes,5,opt,name=datetime,proto3" json:"datetime,omitempty"`
+	Datetime *timestamp.Timestamp `protobuf:"bytes,5,opt,name=datetime,proto3" json:"datetime,omitempty" validate:"required"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,6,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,6,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *GetRateByDateCommonRequest) Reset()         { *m = GetRateByDateCommonRequest{} }
@@ -184,20 +184,20 @@ func (m *GetRateByDateCommonRequest) GetExchangeDirection() string {
 
 type GetRateCurrentForMerchantRequest struct {
 	//@inject_tag: validate:"required,alpha,len=3"
-	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,alpha,len=3"
-	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbank stock cardpay"
-	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbank stock cardpay"`
 	//@inject_tag: validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"
-	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty" validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"`
 	//@inject_tag: validate:"omitempty,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,5,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	MerchantId string `protobuf:"bytes,5,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,6,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,6,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *GetRateCurrentForMerchantRequest) Reset()         { *m = GetRateCurrentForMerchantRequest{} }
@@ -269,22 +269,22 @@ func (m *GetRateCurrentForMerchantRequest) GetExchangeDirection() string {
 
 type GetRateByDateForMerchantRequest struct {
 	//@inject_tag: validate:"required,alpha,len=3"
-	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,alpha,len=3"
-	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbank stock cardpay"
-	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbank stock cardpay"`
 	//@inject_tag: validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"
-	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty" validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"`
 	//@inject_tag: validate:"required"
-	Datetime *timestamp.Timestamp `protobuf:"bytes,5,opt,name=datetime,proto3" json:"datetime,omitempty"`
+	Datetime *timestamp.Timestamp `protobuf:"bytes,5,opt,name=datetime,proto3" json:"datetime,omitempty" validate:"required"`
 	//@inject_tag: validate:"omitempty,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,7,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,7,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *GetRateByDateForMerchantRequest) Reset()         { *m = GetRateByDateForMerchantRequest{} }
@@ -363,20 +363,20 @@ func (m *GetRateByDateForMerchantRequest) GetExchangeDirection() string {
 
 type RateData struct {
 	//@inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" bson:"_id"`
 	//@inject_tag: validate:"required" json:"created_at" bson:"created_at"
-	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at" validate:"required" bson:"created_at"`
 	//@inject_tag: validate:"required,alpha,len=6" json:"pair" bson:"pair"
-	Pair string `protobuf:"bytes,3,opt,name=pair,proto3" json:"pair,omitempty"`
+	Pair string `protobuf:"bytes,3,opt,name=pair,proto3" json:"pair" validate:"required,alpha,len=6" bson:"pair"`
 	//@inject_tag: validate:"required,numeric,gt=0" json:"rate" bson:"rate"
-	Rate float64 `protobuf:"fixed64,4,opt,name=rate,proto3" json:"rate,omitempty"`
+	Rate float64 `protobuf:"fixed64,4,opt,name=rate,proto3" json:"rate" validate:"required,numeric,gt=0" bson:"rate"`
 	//@inject_tag: validate:"required,alpha" json:"source" bson:"source"
-	Source string `protobuf:"bytes,5,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,5,opt,name=source,proto3" json:"source" validate:"required,alpha" bson:"source"`
 	//@inject_tag: validate:"numeric" json:"volume" bson:"volume"
-	Volume               float64  `protobuf:"fixed64,6,opt,name=volume,proto3" json:"volume,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Volume               float64  `protobuf:"fixed64,6,opt,name=volume,proto3" json:"volume" validate:"numeric" bson:"volume"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *RateData) Reset()         { *m = RateData{} }
@@ -448,20 +448,20 @@ func (m *RateData) GetVolume() float64 {
 
 type CardpayRate struct {
 	//@inject_tag: validate:"required" json:"created_at" bson:"created_at"
-	CreatedAt *timestamp.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,1,opt,name=created_at,json=createdAt,proto3" json:"created_at" validate:"required" bson:"created_at"`
 	//@inject_tag: validate:"required,alpha,len=3" json:"from" bson:"from"
-	From string `protobuf:"bytes,2,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,2,opt,name=from,proto3" json:"from" validate:"required,alpha,len=3" bson:"from"`
 	//@inject_tag: validate:"required,alpha,len=3" json:"to" bson:"to"
-	To string `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,3,opt,name=to,proto3" json:"to" validate:"required,alpha,len=3" bson:"to"`
 	//@inject_tag: validate:"required,numeric,gt=0" json:"rate" bson:"rate"
-	Rate float64 `protobuf:"fixed64,4,opt,name=rate,proto3" json:"rate,omitempty"`
+	Rate float64 `protobuf:"fixed64,4,opt,name=rate,proto3" json:"rate" validate:"required,numeric,gt=0" bson:"rate"`
 	//@inject_tag: validate:"required,alpha" json:"source" bson:"source"
-	Source string `protobuf:"bytes,5,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,5,opt,name=source,proto3" json:"source" validate:"required,alpha" bson:"source"`
 	//@inject_tag: validate:"numeric" json:"volume" bson:"volume"
-	Volume               float64  `protobuf:"fixed64,6,opt,name=volume,proto3" json:"volume,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Volume               float64  `protobuf:"fixed64,6,opt,name=volume,proto3" json:"volume" validate:"numeric" bson:"volume"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *CardpayRate) Reset()         { *m = CardpayRate{} }
@@ -532,9 +532,9 @@ func (m *CardpayRate) GetVolume() float64 {
 }
 
 type EmptyResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *EmptyResponse) Reset()         { *m = EmptyResponse{} }
@@ -563,9 +563,9 @@ func (m *EmptyResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_EmptyResponse proto.InternalMessageInfo
 
 type EmptyRequest struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *EmptyRequest) Reset()         { *m = EmptyRequest{} }
@@ -595,10 +595,10 @@ var xxx_messageInfo_EmptyRequest proto.InternalMessageInfo
 
 type CorrectionCorridor struct {
 	//@inject_tag: validate:"required,numeric,gte=0,lte=1"
-	Value                float64  `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Value                float64  `protobuf:"fixed64,1,opt,name=value,proto3" json:"value,omitempty" validate:"required,numeric,gte=0,lte=1"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *CorrectionCorridor) Reset()         { *m = CorrectionCorridor{} }
@@ -635,22 +635,22 @@ func (m *CorrectionCorridor) GetValue() float64 {
 
 type CorrectionRule struct {
 	// @inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" bson:"_id"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbanks stock cardpay" json:"rate_type" bson:"rate_type"
-	RateType string `protobuf:"bytes,2,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,2,opt,name=rate_type,json=rateType,proto3" json:"rate_type" validate:"required,oneof=oxr paysuper centralbanks stock cardpay" bson:"rate_type"`
 	// @inject_tag: validate:"omitempty,numeric,gte=0,lte=100" json:"common_correction" bson:"common_correction"
-	CommonCorrection float64 `protobuf:"fixed64,3,opt,name=common_correction,json=commonCorrection,proto3" json:"common_correction,omitempty"`
+	CommonCorrection float64 `protobuf:"fixed64,3,opt,name=common_correction,json=commonCorrection,proto3" json:"common_correction" validate:"omitempty,numeric,gte=0,lte=100" bson:"common_correction"`
 	// @inject_tag: validate:"omitempty,dive,keys,alpha,len=6,endkeys,gte=0,lte=100" json:"pair_correction" bson:"pair_correction"
-	PairCorrection map[string]float64 `protobuf:"bytes,4,rep,name=pair_correction,json=pairCorrection,proto3" json:"pair_correction,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3"`
+	PairCorrection map[string]float64 `protobuf:"bytes,4,rep,name=pair_correction,json=pairCorrection,proto3" json:"pair_correction" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3" validate:"omitempty,dive,keys,alpha,len=6,endkeys,gte=0,lte=100" bson:"pair_correction"`
 	// @inject_tag: validate:"required" json:"created_at"  bson:"created_at"
-	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at" validate:"required" bson:"created_at"`
 	//@inject_tag: validate:"omitempty,hexadecimal,len=24" json:"merchant_id" bson:"merchant_id"
-	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"omitempty,hexadecimal,len=24" bson:"merchant_id"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,7,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,7,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *CorrectionRule) Reset()         { *m = CorrectionRule{} }
@@ -729,20 +729,20 @@ func (m *CorrectionRule) GetExchangeDirection() string {
 
 type CommonCorrectionRule struct {
 	// @inject_tag: validate:"required,hexadecimal,len=24" json:"id" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" bson:"_id"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbanks stock cardpay" json:"rate_type" bson:"rate_type"
-	RateType string `protobuf:"bytes,2,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,2,opt,name=rate_type,json=rateType,proto3" json:"rate_type" validate:"required,oneof=oxr paysuper centralbanks stock cardpay" bson:"rate_type"`
 	// @inject_tag: validate:"omitempty,numeric,gte=0,lte=100" json:"common_correction" bson:"common_correction"
-	CommonCorrection float64 `protobuf:"fixed64,3,opt,name=common_correction,json=commonCorrection,proto3" json:"common_correction,omitempty"`
+	CommonCorrection float64 `protobuf:"fixed64,3,opt,name=common_correction,json=commonCorrection,proto3" json:"common_correction" validate:"omitempty,numeric,gte=0,lte=100" bson:"common_correction"`
 	// @inject_tag: validate:"omitempty,dive,keys,alpha,len=6,endkeys,gte=0,lte=100" json:"pair_correction" bson:"pair_correction"
-	PairCorrection map[string]float64 `protobuf:"bytes,4,rep,name=pair_correction,json=pairCorrection,proto3" json:"pair_correction,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3"`
+	PairCorrection map[string]float64 `protobuf:"bytes,4,rep,name=pair_correction,json=pairCorrection,proto3" json:"pair_correction" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"fixed64,2,opt,name=value,proto3" validate:"omitempty,dive,keys,alpha,len=6,endkeys,gte=0,lte=100" bson:"pair_correction"`
 	// @inject_tag: validate:"required" json:"created_at"  bson:"created_at"
-	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at" validate:"required" bson:"created_at"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,6,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,6,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *CommonCorrectionRule) Reset()         { *m = CommonCorrectionRule{} }
@@ -814,12 +814,12 @@ func (m *CommonCorrectionRule) GetExchangeDirection() string {
 
 type CommonCorrectionRuleRequest struct {
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbank stock cardpay"
-	RateType string `protobuf:"bytes,1,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,1,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbank stock cardpay"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,2,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,2,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *CommonCorrectionRuleRequest) Reset()         { *m = CommonCorrectionRuleRequest{} }
@@ -863,14 +863,14 @@ func (m *CommonCorrectionRuleRequest) GetExchangeDirection() string {
 
 type MerchantCorrectionRuleRequest struct {
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbank stock cardpay"
-	RateType string `protobuf:"bytes,1,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,1,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbank stock cardpay"`
 	//@inject_tag: validate:"omitempty,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,3,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,3,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *MerchantCorrectionRuleRequest) Reset()         { *m = MerchantCorrectionRuleRequest{} }
@@ -921,19 +921,19 @@ func (m *MerchantCorrectionRuleRequest) GetExchangeDirection() string {
 
 type ExchangeCurrencyCurrentCommonRequest struct {
 	//@inject_tag: validate:"required,alpha,len=3"
-	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,alpha,len=3"
-	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbanks stock cardpay"
-	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbanks stock cardpay"`
 	Source   string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
 	// @inject_tag: validate:"numeric,gte=0"
-	Amount float64 `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount float64 `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty" validate:"numeric,gte=0"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,6,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,6,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *ExchangeCurrencyCurrentCommonRequest) Reset()         { *m = ExchangeCurrencyCurrentCommonRequest{} }
@@ -1005,22 +1005,22 @@ func (m *ExchangeCurrencyCurrentCommonRequest) GetExchangeDirection() string {
 
 type ExchangeCurrencyCurrentForMerchantRequest struct {
 	//@inject_tag: validate:"required,alpha,len=3"
-	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,alpha,len=3"
-	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbanks stock cardpay"
-	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbanks stock cardpay"`
 	//@inject_tag: validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"
-	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty" validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"`
 	// @inject_tag: validate:"numeric,gte=0"
-	Amount float64 `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount float64 `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty" validate:"numeric,gte=0"`
 	//@inject_tag: validate:"omitempty,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,7,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,7,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *ExchangeCurrencyCurrentForMerchantRequest) Reset() {
@@ -1101,22 +1101,22 @@ func (m *ExchangeCurrencyCurrentForMerchantRequest) GetExchangeDirection() strin
 
 type ExchangeCurrencyByDateCommonRequest struct {
 	//@inject_tag: validate:"required,alpha,len=3"
-	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,alpha,len=3"
-	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbanks stock cardpay"
-	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbanks stock cardpay"`
 	//@inject_tag: validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"
-	Source string `protobuf:"bytes,5,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,5,opt,name=source,proto3" json:"source,omitempty" validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"`
 	// @inject_tag: validate:"numeric,gte=0"
-	Amount float64 `protobuf:"fixed64,6,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount float64 `protobuf:"fixed64,6,opt,name=amount,proto3" json:"amount,omitempty" validate:"numeric,gte=0"`
 	//@inject_tag: validate:"required"
-	Datetime *timestamp.Timestamp `protobuf:"bytes,7,opt,name=datetime,proto3" json:"datetime,omitempty"`
+	Datetime *timestamp.Timestamp `protobuf:"bytes,7,opt,name=datetime,proto3" json:"datetime,omitempty" validate:"required"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,8,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,8,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *ExchangeCurrencyByDateCommonRequest) Reset()         { *m = ExchangeCurrencyByDateCommonRequest{} }
@@ -1195,24 +1195,24 @@ func (m *ExchangeCurrencyByDateCommonRequest) GetExchangeDirection() string {
 
 type ExchangeCurrencyByDateForMerchantRequest struct {
 	//@inject_tag: validate:"required,alpha,len=3"
-	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	From string `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,alpha,len=3"
-	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	To string `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty" validate:"required,alpha,len=3"`
 	//@inject_tag: validate:"required,oneof=oxr paysuper centralbanks stock cardpay"
-	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty"`
+	RateType string `protobuf:"bytes,3,opt,name=rate_type,json=rateType,proto3" json:"rate_type,omitempty" validate:"required,oneof=oxr paysuper centralbanks stock cardpay"`
 	//@inject_tag: validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"
-	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty"`
+	Source string `protobuf:"bytes,4,opt,name=source,proto3" json:"source,omitempty" validate:"omitempty,oneof=CBAU CBPL CBCA CBEU CBRF"`
 	// @inject_tag: validate:"numeric,gte=0"
-	Amount float64 `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty"`
+	Amount float64 `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty" validate:"numeric,gte=0"`
 	//@inject_tag: validate:"omitempty,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
 	//@inject_tag: validate:"required"
-	Datetime *timestamp.Timestamp `protobuf:"bytes,7,opt,name=datetime,proto3" json:"datetime,omitempty"`
+	Datetime *timestamp.Timestamp `protobuf:"bytes,7,opt,name=datetime,proto3" json:"datetime,omitempty" validate:"required"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,9,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,9,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *ExchangeCurrencyByDateForMerchantRequest) Reset() {
@@ -1300,18 +1300,18 @@ func (m *ExchangeCurrencyByDateForMerchantRequest) GetExchangeDirection() string
 
 type ExchangeCurrencyResponse struct {
 	// @inject_tag: validate:"numeric,gte=0"
-	ExchangedAmount float64 `protobuf:"fixed64,1,opt,name=exchanged_amount,json=exchangedAmount,proto3" json:"exchanged_amount,omitempty"`
+	ExchangedAmount float64 `protobuf:"fixed64,1,opt,name=exchanged_amount,json=exchangedAmount,proto3" json:"exchanged_amount,omitempty" validate:"numeric,gte=0"`
 	//@inject_tag: validate:"required,numeric,gt=0" json:"rate" bson:"exchange_rate"
-	ExchangeRate float64 `protobuf:"fixed64,2,opt,name=exchange_rate,json=exchangeRate,proto3" json:"exchange_rate,omitempty"`
+	ExchangeRate float64 `protobuf:"fixed64,2,opt,name=exchange_rate,json=exchangeRate,proto3" json:"rate" validate:"required,numeric,gt=0" bson:"exchange_rate"`
 	// @inject_tag: validate:"omitempty,numeric,gte=-100,lte=100" json:"correction"
-	Correction float64 `protobuf:"fixed64,3,opt,name=correction,proto3" json:"correction,omitempty"`
+	Correction float64 `protobuf:"fixed64,3,opt,name=correction,proto3" json:"correction" validate:"omitempty,numeric,gte=-100,lte=100"`
 	//@inject_tag: validate:"required,numeric,gt=0" json:"original_rate"
-	OriginalRate float64 `protobuf:"fixed64,4,opt,name=original_rate,json=originalRate,proto3" json:"original_rate,omitempty"`
+	OriginalRate float64 `protobuf:"fixed64,4,opt,name=original_rate,json=originalRate,proto3" json:"original_rate" validate:"required,numeric,gt=0"`
 	// @inject_tag: validate:"required,oneof=sell buy" json:"exchange_direction" bson:"exchange_direction"
-	ExchangeDirection    string   `protobuf:"bytes,5,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ExchangeDirection    string   `protobuf:"bytes,5,opt,name=exchange_direction,json=exchangeDirection,proto3" json:"exchange_direction" validate:"required,oneof=sell buy" bson:"exchange_direction"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *ExchangeCurrencyResponse) Reset()         { *m = ExchangeCurrencyResponse{} }
@@ -1376,9 +1376,9 @@ func (m *ExchangeCurrencyResponse) GetExchangeDirection() string {
 
 type CurrenciesList struct {
 	Currencies           []string `protobuf:"bytes,1,rep,name=currencies,proto3" json:"currencies,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *CurrenciesList) Reset()         { *m = CurrenciesList{} }
@@ -1415,9 +1415,9 @@ func (m *CurrenciesList) GetCurrencies() []string {
 
 type CurrenciesPrecisionResponse struct {
 	Values               map[string]int32 `protobuf:"bytes,1,rep,name=values,proto3" json:"values,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"varint,2,opt,name=value,proto3"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte           `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32            `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *CurrenciesPrecisionResponse) Reset()         { *m = CurrenciesPrecisionResponse{} }
@@ -1478,7 +1478,9 @@ func init() {
 	proto.RegisterMapType((map[string]int32)(nil), "currencies.CurrenciesPrecisionResponse.ValuesEntry")
 }
 
-func init() { proto.RegisterFile("currencies.proto", fileDescriptor_1988b70e90d5a630) }
+func init() {
+	proto.RegisterFile("currencies.proto", fileDescriptor_1988b70e90d5a630)
+}
 
 var fileDescriptor_1988b70e90d5a630 = []byte{
 	// 1162 bytes of a gzipped FileDescriptorProto
