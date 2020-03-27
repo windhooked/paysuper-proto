@@ -27,9 +27,9 @@ type XSollaUser struct {
 	Email                string   `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
 	Name                 string   `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
 	Country              string   `protobuf:"bytes,6,opt,name=country,proto3" json:"country,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaUser) Reset()         { *m = XSollaUser{} }
@@ -105,9 +105,9 @@ type XSollaVirtualCurrency struct {
 	Quantity             int32    `protobuf:"varint,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	Currency             string   `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,5,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaVirtualCurrency) Reset()         { *m = XSollaVirtualCurrency{} }
@@ -175,9 +175,9 @@ type XSollaPurchase struct {
 	Checkout             *XSollaCheckout        `protobuf:"bytes,2,opt,name=checkout,proto3" json:"checkout,omitempty"`
 	VirtualItems         *XSollaVirtualItems    `protobuf:"bytes,3,opt,name=virtual_items,json=virtualItems,proto3" json:"virtual_items,omitempty"`
 	Total                *XSollaTotal           `protobuf:"bytes,4,opt,name=total,proto3" json:"total,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}               `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                 `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                  `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
 func (m *XSollaPurchase) Reset()         { *m = XSollaPurchase{} }
@@ -236,9 +236,9 @@ func (m *XSollaPurchase) GetTotal() *XSollaTotal {
 type XSollaCheckout struct {
 	Currency             string   `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaCheckout) Reset()         { *m = XSollaCheckout{} }
@@ -283,9 +283,9 @@ func (m *XSollaCheckout) GetAmount() float64 {
 type XSollaItem struct {
 	Sku                  string   `protobuf:"bytes,1,opt,name=sku,proto3" json:"sku,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaItem) Reset()         { *m = XSollaItem{} }
@@ -331,9 +331,9 @@ type XSollaVirtualItems struct {
 	Items                []*XSollaItem `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
 	Currency             string        `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64       `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte        `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32         `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
 }
 
 func (m *XSollaVirtualItems) Reset()         { *m = XSollaVirtualItems{} }
@@ -385,9 +385,9 @@ func (m *XSollaVirtualItems) GetAmount() float64 {
 type XSollaTotal struct {
 	Currency             string   `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaTotal) Reset()         { *m = XSollaTotal{} }
@@ -432,9 +432,9 @@ func (m *XSollaTotal) GetAmount() float64 {
 type XSollaCheckNotification struct {
 	NotificationType     string      `protobuf:"bytes,1,opt,name=notification_type,json=notificationType,proto3" json:"notification_type,omitempty"`
 	User                 *XSollaUser `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte      `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32       `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
 func (m *XSollaCheckNotification) Reset()         { *m = XSollaCheckNotification{} }
@@ -482,9 +482,9 @@ type XSollaTransaction struct {
 	PaymentDate          string   `protobuf:"bytes,3,opt,name=payment_date,json=paymentDate,proto3" json:"payment_date,omitempty"`
 	PaymentMethod        string   `protobuf:"bytes,4,opt,name=payment_method,json=paymentMethod,proto3" json:"payment_method,omitempty"`
 	DryRun               int32    `protobuf:"varint,5,opt,name=dry_run,json=dryRun,proto3" json:"dry_run,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaTransaction) Reset()         { *m = XSollaTransaction{} }
@@ -550,9 +550,9 @@ func (m *XSollaTransaction) GetDryRun() int32 {
 type XSollaPayment struct {
 	Currency             string   `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaPayment) Reset()         { *m = XSollaPayment{} }
@@ -597,9 +597,9 @@ func (m *XSollaPayment) GetAmount() float64 {
 type XSollaVat struct {
 	Currency             string   `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaVat) Reset()         { *m = XSollaVat{} }
@@ -644,9 +644,9 @@ func (m *XSollaVat) GetAmount() float64 {
 type XSollaPayout struct {
 	Currency             string   `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaPayout) Reset()         { *m = XSollaPayout{} }
@@ -691,9 +691,9 @@ func (m *XSollaPayout) GetAmount() float64 {
 type XSollaXsollaFee struct {
 	Currency             string   `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaXsollaFee) Reset()         { *m = XSollaXsollaFee{} }
@@ -738,9 +738,9 @@ func (m *XSollaXsollaFee) GetAmount() float64 {
 type XSollaPaymentMethodFee struct {
 	Currency             string   `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaPaymentMethodFee) Reset()         { *m = XSollaPaymentMethodFee{} }
@@ -785,9 +785,9 @@ func (m *XSollaPaymentMethodFee) GetAmount() float64 {
 type XSollaRepatriationCommission struct {
 	Currency             string   `protobuf:"bytes,1,opt,name=currency,proto3" json:"currency,omitempty"`
 	Amount               float64  `protobuf:"fixed64,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
 func (m *XSollaRepatriationCommission) Reset()         { *m = XSollaRepatriationCommission{} }
@@ -837,9 +837,9 @@ type XSollaPaymentDetails struct {
 	XsollaFee              *XSollaXsollaFee              `protobuf:"bytes,5,opt,name=xsolla_fee,json=xsollaFee,proto3" json:"xsolla_fee,omitempty"`
 	PaymentMethodFee       *XSollaPaymentMethodFee       `protobuf:"bytes,6,opt,name=payment_method_fee,json=paymentMethodFee,proto3" json:"payment_method_fee,omitempty"`
 	RepatriationCommission *XSollaRepatriationCommission `protobuf:"bytes,7,opt,name=repatriation_commission,json=repatriationCommission,proto3" json:"repatriation_commission,omitempty"`
-	XXX_NoUnkeyedLiteral   struct{}                      `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized       []byte                        `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache          int32                         `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral   struct{}                      `json:"-"`
+	XXX_unrecognized       []byte                        `json:"-"`
+	XXX_sizecache          int32                         `json:"-"`
 }
 
 func (m *XSollaPaymentDetails) Reset()         { *m = XSollaPaymentDetails{} }
@@ -923,9 +923,9 @@ type XSollaPaymentNotification struct {
 	Transaction          *XSollaTransaction    `protobuf:"bytes,4,opt,name=transaction,proto3" json:"transaction,omitempty"`
 	PaymentDetails       *XSollaPaymentDetails `protobuf:"bytes,5,opt,name=payment_details,json=paymentDetails,proto3" json:"payment_details,omitempty"`
 	CustomParameters     map[string]string     `protobuf:"bytes,6,rep,name=custom_parameters,json=customParameters,proto3" json:"custom_parameters,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	XXX_NoUnkeyedLiteral struct{}              `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_unrecognized     []byte                `json:"-" bson:"-" structure:"-" validate:"-"`
-	XXX_sizecache        int32                 `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
 }
 
 func (m *XSollaPaymentNotification) Reset()         { *m = XSollaPaymentNotification{} }
@@ -1016,9 +1016,7 @@ func init() {
 	proto.RegisterMapType((map[string]string)(nil), "entity.XSollaPaymentNotification.CustomParametersEntry")
 }
 
-func init() {
-	proto.RegisterFile("xsolla.proto", fileDescriptor_fe4ce368bf1defec)
-}
+func init() { proto.RegisterFile("xsolla.proto", fileDescriptor_fe4ce368bf1defec) }
 
 var fileDescriptor_fe4ce368bf1defec = []byte{
 	// 882 bytes of a gzipped FileDescriptorProto
