@@ -3,14 +3,17 @@ syntax = "proto3";
 option go_package = "notifierpb";
 package notifier;
 
+import "billing/billing.proto";
+
 service NotifierService {
     rpc CheckUser(CheckUserRequest) returns (CheckUserResponse) {}
 }
 
 message CheckUserRequest {
     string url = 1;
-    User user = 2;
+    billing.OrderUser user = 2;
     string secret_key = 3;
+    bool is_live_project = 4;
 }
 
 message CheckUserResponse {
