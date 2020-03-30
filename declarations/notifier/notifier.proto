@@ -12,6 +12,7 @@ message CheckUserRequest {
     User user = 2;
     string secret_key = 3;
     bool is_live_project = 4;
+    string testing_case = 5;
 }
 
 message CheckUserResponse {
