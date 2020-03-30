@@ -25,7 +25,7 @@ type CreateFileResponse struct {
 	// @inject_tag: json:"status"
 	//
 	// The response status code.
-	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status"`
 	// @inject_tag: json:"message,omitempty"
 	//
 	// The response error message (if any).
@@ -33,10 +33,10 @@ type CreateFileResponse struct {
 	// @inject_tag: json:"file_id"
 	//
 	// The unique identifier for the file.
-	FileId               string   `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	FileId               string   `protobuf:"bytes,3,opt,name=file_id,json=fileId,proto3" json:"file_id"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *CreateFileResponse) Reset()         { *m = CreateFileResponse{} }
@@ -89,18 +89,18 @@ type ResponseErrorMessage struct {
 	//@inject_tag: json:"code"
 	//
 	// The response code.
-	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Code string `protobuf:"bytes,1,opt,name=code,proto3" json:"code"`
 	//@inject_tag: json:"message"
 	//
 	// The response message.
-	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message"`
 	//@inject_tag: json:"details,omitempty"
 	//
 	// The response details.
 	Details              string   `protobuf:"bytes,3,opt,name=details,proto3" json:"details,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *ResponseErrorMessage) Reset()         { *m = ResponseErrorMessage{} }
@@ -151,40 +151,40 @@ func (m *ResponseErrorMessage) GetDetails() string {
 
 type ReportFile struct {
 	//@inject_tag: json:"-" bson:"_id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"-" bson:"_id"`
 	// @inject_tag: json:"-" validate:"required,hexadecimal,len=24"
-	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: json:"-" validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
+	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement"
 	//
 	// The report type. Available values: transactions, vat, vat_transactions, royalty, royalty_transactions, payout, agreement.
-	ReportType string `protobuf:"bytes,4,opt,name=report_type,json=reportType,proto3" json:"report_type,omitempty"`
+	ReportType string `protobuf:"bytes,4,opt,name=report_type,json=reportType,proto3" json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement"`
 	// @inject_tag: json:"file_type" validate:"required,alpha"
 	//
 	// The report file type. Available values: pdf, xlsx, csv.
-	FileType string `protobuf:"bytes,5,opt,name=file_type,json=fileType,proto3" json:"file_type,omitempty"`
+	FileType string `protobuf:"bytes,5,opt,name=file_type,json=fileType,proto3" json:"file_type" validate:"required,alpha"`
 	// @inject_tag: json:"-"
-	Params []byte `protobuf:"bytes,6,opt,name=params,proto3" json:"params,omitempty"`
+	Params []byte `protobuf:"bytes,6,opt,name=params,proto3" json:"-"`
 	// @inject_tag: json:"template" validate:"omitempty,hexadecimal"
 	//
 	// The unique identifier for the report template.
-	Template string `protobuf:"bytes,7,opt,name=template,proto3" json:"template,omitempty"`
+	Template string `protobuf:"bytes,7,opt,name=template,proto3" json:"template" validate:"omitempty,hexadecimal"`
 	// @inject_tag: json:"retention_time"
 	//
 	// Retention time for the report.
-	RetentionTime int32 `protobuf:"varint,8,opt,name=retention_time,json=retentionTime,proto3" json:"retention_time,omitempty"`
+	RetentionTime int32 `protobuf:"varint,8,opt,name=retention_time,json=retentionTime,proto3" json:"retention_time"`
 	// @inject_tag: json:"send_notification"
 	//
 	// Has a true value if it's required to send a notification about the report file to the user.
-	SendNotification bool `protobuf:"varint,9,opt,name=send_notification,json=sendNotification,proto3" json:"send_notification,omitempty"`
+	SendNotification bool `protobuf:"varint,9,opt,name=send_notification,json=sendNotification,proto3" json:"send_notification"`
 	// @inject_tag: json:"created_at"
 	//
 	// The date of the report file creation.
-	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}             `json:"-"`
-	XXX_unrecognized     []byte               `json:"-"`
-	XXX_sizecache        int32                `json:"-"`
+	CreatedAt            *timestamp.Timestamp `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	XXX_NoUnkeyedLiteral struct{}             `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte               `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32                `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *ReportFile) Reset()         { *m = ReportFile{} }
@@ -287,9 +287,9 @@ type PostProcessRequest struct {
 	FileName             string      `protobuf:"bytes,2,opt,name=file_name,json=fileName,proto3" json:"file_name,omitempty"`
 	RetentionTime        int64       `protobuf:"varint,3,opt,name=retention_time,json=retentionTime,proto3" json:"retention_time,omitempty"`
 	File                 []byte      `protobuf:"bytes,4,opt,name=file,proto3" json:"file,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_unrecognized     []byte      `json:"-" bson:"-" structure:"-" validate:"-"`
+	XXX_sizecache        int32       `json:"-" bson:"-" structure:"-" validate:"-"`
 }
 
 func (m *PostProcessRequest) Reset()         { *m = PostProcessRequest{} }
@@ -352,7 +352,9 @@ func init() {
 	proto.RegisterType((*PostProcessRequest)(nil), "reporter.PostProcessRequest")
 }
 
-func init() { proto.RegisterFile("reporter.proto", fileDescriptor_47040e06999d0d97) }
+func init() {
+	proto.RegisterFile("reporter.proto", fileDescriptor_47040e06999d0d97)
+}
 
 var fileDescriptor_47040e06999d0d97 = []byte{
 	// 494 bytes of a gzipped FileDescriptorProto
