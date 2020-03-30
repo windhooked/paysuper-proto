@@ -1,3 +1,6 @@
 package notifierpb
 
-const ServiceName = "p1paynotifier"
+const (
+	ServiceName                 = "p1paynotifier"
+	PayOneTopicNameValidateUser = "validate-user"
+)
