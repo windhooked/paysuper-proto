@@ -14,6 +14,7 @@ message CheckUserRequest {
     bool is_live_project = 4;
     string testing_case = 5;
     string order_uuid = 6;
+    string merchant_id = 7;
 }
 
 message CheckUserResponse {
