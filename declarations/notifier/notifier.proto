@@ -11,6 +11,10 @@ message CheckUserRequest {
     string url = 1;
     User user = 2;
     string secret_key = 3;
+    bool is_live_project = 4;
+    string testing_case = 5;
+    string order_uuid = 6;
+    string merchant_id = 7;
 }
 
 message CheckUserResponse {
@@ -19,14 +23,79 @@ message CheckUserResponse {
 }
 
 message User {
-    // @inject_tag: json:"project_account"
-    string project_account = 1;
+    // @inject_tag: json:"id"
+    //
+    // The unique identifier for the customer in the paysuper.
+    string id = 1;
+    // @inject_tag: json:"object"
+    //
+    // The system constant that contains the returned object's type.
+    string object = 2;
+    // @inject_tag: json:"external_id"
+    //
+    // The unique identifier for the customer in the merchant project.
+    string external_id = 3;
     // @inject_tag: json:"name"
-    string name = 2;
+    //
+    // The customer's name.
+    string name = 4;
     // @inject_tag: json:"email"
-    string email = 3;
+    //
+    // The customer's email address.
+    string email = 5;
+    // @inject_tag: json:"email_verified"
+    //
+    // Whether the customer's email address has been verified on the merchant side.
+    bool email_verified = 6;
     // @inject_tag: json:"phone"
-    string phone = 4;
+    //
+    // The customer's phone number.
+    string phone = 7;
+    // @inject_tag: json:"phone_verified"
+    //
+    // Whether the customer's phone number has been verified on the merchant side.
+    bool phone_verified = 8;
+    // @inject_tag: json:"ip"
+    //
+    // The customer's IP address.
+    string ip = 9;
+    // @inject_tag: json:"locale"
+    //
+    // The customer's locale name. The language code in ISO 639-1 (for instance en-US).
+    string locale = 10;
+    // @inject_tag: json:"address"
+    //
+    // The customer's address details.
+    BillingAddress address = 11;
     // @inject_tag: json:"metadata"
-    map<string, string> metadata = 5;
+    //
+    // A string-value description that you can attach to the customer's object. It can be useful for storing additional information about your customer's payment.
+    map<string, string> metadata = 12;
+    // @inject_tag: json:"notify_new_region"
+    //
+    // Has the value true if the customer confirmed to receive the PaySuper newsletter about the beginning of payment acceptance in new regions.
+    bool notify_new_region = 13;
+    // @inject_tag: json:"notify_new_region_email"
+    //
+    // The customer’s email for a newsletter about the beginning of payment acceptance in new regions.
+    string notify_new_region_email = 14;
+}
+
+message BillingAddress {
+    // @inject_tag: json:"country"
+    //
+    // The customer's country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
+    string country = 1;
+    // @inject_tag: json:"city"
+    //
+    // The customer’s city.
+    string city = 2;
+    // @inject_tag: json:"postal_code"
+    //
+    // The customer's postal code.
+    string postal_code = 3;
+    // @inject_tag: json:"state"
+    //
+    // The customer's state code in ISO 3166-2.
+    string state = 4;
 }
