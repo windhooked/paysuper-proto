@@ -1055,8 +1055,6 @@ message Order {
     map<string, string> private_metadata = 33;
     // @inject_tag: json:"-" bson:"project"
     ProjectOrder project = 34; // object described main entities of project in Protocol One payment solution
-    // @inject_tag: json:"-" bson:"project_order_id" faker:"objectIdString"
-    string project_order_id = 35; // unique order identifier in project. if was send in create order process
     // @inject_tag: json:"-" bson:"project_account"
     string project_account = 36; // user unique account in project
     // @inject_tag: json:"-" bson:"project_last_requested_at"
