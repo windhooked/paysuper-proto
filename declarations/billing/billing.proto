@@ -1161,10 +1161,6 @@ message Order {
     //
     //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 89;
-    // @inject_tag: json:"-" bson:"metadata_values"
-    //
-    // array of metadata values received from project
-    repeated string metadata_values = 90;
 }
 
 message ParentOrder {
