@@ -1161,6 +1161,10 @@ message Order {
     //
     //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 89;
+    // @inject_tag: json:"merchant_info" bson:"merchant_info"
+    //
+    // The merchant's company data.
+    OrderViewMerchantInfo merchant_info = 90;
 }
 
 message ParentOrder {
