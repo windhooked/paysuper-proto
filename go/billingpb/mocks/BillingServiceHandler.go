@@ -739,6 +739,20 @@ func (_m *BillingServiceHandler) FinishRedeemKeyForOrder(_a0 context.Context, _a
 	return r0
 }
 
+// GetAdminByUserId provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetAdminByUserId(_a0 context.Context, _a1 *billingpb.CommonUserProfileRequest, _a2 *billingpb.UserRoleResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.CommonUserProfileRequest, *billingpb.UserRoleResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetAdminUserRole provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetAdminUserRole(_a0 context.Context, _a1 *billingpb.AdminRoleRequest, _a2 *billingpb.UserRoleResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
