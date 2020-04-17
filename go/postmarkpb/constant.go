@@ -1,5 +1,6 @@
 package postmarkpb
 
 const (
-	PostmarkSenderTopicName = "postmark-sender"
+	PostmarkSenderTopicName          = "postmark-sender"
+	PostmarkAnalyticsSenderTopicName = "postmark-analytics-sender"
 )
