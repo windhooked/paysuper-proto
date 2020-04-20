@@ -54,6 +54,5 @@ message Payload {
     map<string, string> metadata = 15;
     //@inject_tag: protobuf:"bytes,16,opt,name=template_object_model,json=TemplateModel,proto3"
     google.protobuf.Struct template_object_model = 16;
-    //@inject_tag: protobuf:"bytes,17,opt,name=postmark_api_token,json=PostmarkApiToken,proto3"
     string postmark_api_token = 17;
 }
