@@ -52,7 +52,6 @@ message Payload {
     repeated PayloadAttachment attachments = 14;
     //@inject_tag: protobuf:"bytes,15,rep,name=metadata,json=Metadata,proto3" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"
     map<string, string> metadata = 15;
-    //@inject_tag: protobuf:"bytes,16,opt,name=template_object_model,json=TemplateModel,proto3"
     google.protobuf.Struct template_object_model = 16;
     string postmark_api_token = 17;
 }
