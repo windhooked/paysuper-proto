@@ -3028,6 +3028,10 @@ message OrderViewPublic {
     //
     // Has a true value for a production payment and false for a test payment that goes through a test sandbox.
     bool is_production = 51;
+    // @inject_tag: json:"merchant_info" bson:"merchant_info"
+    //
+    // The merchant's company data.
+    OrderViewMerchantInfo merchant_info = 52;
 }
 
 message OrderViewPrivate {
