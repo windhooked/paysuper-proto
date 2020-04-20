@@ -183,10 +183,9 @@ type Payload struct {
 	//@inject_tag: protobuf:"bytes,14,rep,name=Attachments,json=Attachments,proto3"
 	Attachments []*PayloadAttachment `protobuf:"bytes,14,rep,name=Attachments,json=Attachments,proto3" json:"attachments,omitempty"`
 	//@inject_tag: protobuf:"bytes,15,rep,name=metadata,json=Metadata,proto3" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"
-	Metadata map[string]string `protobuf:"bytes,15,rep,name=metadata,json=Metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
-	//@inject_tag: protobuf:"bytes,16,opt,name=template_object_model,json=TemplateModel,proto3"
-	TemplateObjectModel *_struct.Struct `protobuf:"bytes,16,opt,name=template_object_model,json=TemplateModel,proto3" json:"template_object_model,omitempty"`
-	PostmarkApiToken    string          `protobuf:"bytes,17,opt,name=postmark_api_token,json=postmarkApiToken,proto3" json:"postmark_api_token,omitempty"`
+	Metadata            map[string]string `protobuf:"bytes,15,rep,name=metadata,json=Metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	TemplateObjectModel *_struct.Struct   `protobuf:"bytes,16,opt,name=template_object_model,json=templateObjectModel,proto3" json:"template_object_model,omitempty"`
+	PostmarkApiToken    string            `protobuf:"bytes,17,opt,name=postmark_api_token,json=postmarkApiToken,proto3" json:"postmark_api_token,omitempty"`
 }
 
 func (x *Payload) Reset() {
