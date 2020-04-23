@@ -863,7 +863,7 @@ message CreateRefundRequest {
     string reason = 4;
     // Has a true value if this refund is a chargeback.
     bool is_chargeback = 5;
-    // @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
+    // @inject_tag: validate:"omitempty,hexadecimal,len=24" json:"-"
     string merchant_id = 6;
 }
 
@@ -900,7 +900,7 @@ message GetRefundRequest {
     string order_id = 1;
     // @inject_tag: validate:"required,hexadecimal,len=24" param:"refund_id"
     string refund_id = 2;
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"omitempty,hexadecimal,len=24"
     string merchant_id = 3;
 }
 
