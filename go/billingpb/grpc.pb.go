@@ -3793,8 +3793,8 @@ type CreateRefundRequest struct {
 	Reason string `protobuf:"bytes,4,opt,name=reason,proto3" json:"reason,omitempty"`
 	// Has a true value if this refund is a chargeback.
 	IsChargeback bool `protobuf:"varint,5,opt,name=is_chargeback,json=isChargeback,proto3" json:"is_chargeback,omitempty"`
-	// @inject_tag: validate:"required,hexadecimal,len=24" json:"-"
-	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"omitempty,hexadecimal,len=24" json:"-"
+	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"omitempty,hexadecimal,len=24"`
 }
 
 func (x *CreateRefundRequest) Reset() {
@@ -4079,8 +4079,8 @@ type GetRefundRequest struct {
 	OrderId string `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty" validate:"required,uuid" param:"order_id"`
 	// @inject_tag: validate:"required,hexadecimal,len=24" param:"refund_id"
 	RefundId string `protobuf:"bytes,2,opt,name=refund_id,json=refundId,proto3" json:"refund_id,omitempty" validate:"required,hexadecimal,len=24" param:"refund_id"`
-	// @inject_tag: validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: validate:"omitempty,hexadecimal,len=24"
+	MerchantId string `protobuf:"bytes,3,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
 }
 
 func (x *GetRefundRequest) Reset() {
