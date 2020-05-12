@@ -7519,14 +7519,14 @@ type ListOrdersRequest struct {
 	Status []string `protobuf:"bytes,5,rep,name=status,proto3" json:"status,omitempty" query:"status[]" validate:"omitempty,dive,alpha,oneof=created processed canceled rejected refunded chargeback pending"`
 	// @inject_tag: query:"account"
 	Account string `protobuf:"bytes,6,opt,name=account,proto3" json:"account,omitempty" query:"account"`
-	// @inject_tag: query:"pm_date_from" validate:"omitempty,date"
-	PmDateFrom string `protobuf:"bytes,7,opt,name=pm_date_from,json=pmDateFrom,proto3" json:"pm_date_from,omitempty" query:"pm_date_from" validate:"omitempty,date"`
-	// @inject_tag: query:"pm_date_to" validate:"omitempty,date"
-	PmDateTo string `protobuf:"bytes,8,opt,name=pm_date_to,json=pmDateTo,proto3" json:"pm_date_to,omitempty" query:"pm_date_to" validate:"omitempty,date"`
-	// @inject_tag: query:"project_date_from" validate:"omitempty,date"
-	ProjectDateFrom string `protobuf:"bytes,9,opt,name=project_date_from,json=projectDateFrom,proto3" json:"project_date_from,omitempty" query:"project_date_from" validate:"omitempty,date"`
-	// @inject_tag: query:"project_date_to" validate:"omitempty,date"
-	ProjectDateTo string `protobuf:"bytes,10,opt,name=project_date_to,json=projectDateTo,proto3" json:"project_date_to,omitempty" query:"project_date_to" validate:"omitempty,date"`
+	// @inject_tag: query:"pm_date_from" validate:"omitempty,datetime"
+	PmDateFrom string `protobuf:"bytes,7,opt,name=pm_date_from,json=pmDateFrom,proto3" json:"pm_date_from,omitempty" query:"pm_date_from" validate:"omitempty,datetime"`
+	// @inject_tag: query:"pm_date_to" validate:"omitempty,datetime"
+	PmDateTo string `protobuf:"bytes,8,opt,name=pm_date_to,json=pmDateTo,proto3" json:"pm_date_to,omitempty" query:"pm_date_to" validate:"omitempty,datetime"`
+	// @inject_tag: query:"project_date_from" validate:"omitempty,datetime"
+	ProjectDateFrom string `protobuf:"bytes,9,opt,name=project_date_from,json=projectDateFrom,proto3" json:"project_date_from,omitempty" query:"project_date_from" validate:"omitempty,datetime"`
+	// @inject_tag: query:"project_date_to" validate:"omitempty,datetime"
+	ProjectDateTo string `protobuf:"bytes,10,opt,name=project_date_to,json=projectDateTo,proto3" json:"project_date_to,omitempty" query:"project_date_to" validate:"omitempty,datetime"`
 	// @inject_tag: query:"quick_search"
 	QuickSearch string `protobuf:"bytes,11,opt,name=quick_search,json=quickSearch,proto3" json:"quick_search,omitempty" query:"quick_search"`
 	// @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0,lte=1000"
