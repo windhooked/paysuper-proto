@@ -209,6 +209,9 @@ const (
 
 	orderBankCardBrandNotFound = "brand for bank card not found"
 	orderPaymentMethodNotSet   = "payment method not set"
+
+	FilterDateFormat     = "2006-01-02"
+	FilterDatetimeFormat = "2006-01-02T15:04:05"
 )
 
 var (
