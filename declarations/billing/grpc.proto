@@ -1512,13 +1512,13 @@ message ListOrdersRequest {
     // @inject_tag: query:"account"
     string account = 6;
     // @inject_tag: query:"pm_date_from" validate:"omitempty,date"
-    int64 pm_date_from = 7;
+    string pm_date_from = 7;
     // @inject_tag: query:"pm_date_to" validate:"omitempty,date"
-    int64 pm_date_to = 8;
+    string pm_date_to = 8;
     // @inject_tag: query:"project_date_from" validate:"omitempty,date"
-    int64 project_date_from = 9;
+    string project_date_from = 9;
     // @inject_tag: query:"project_date_to" validate:"omitempty,date"
-    int64 project_date_to = 10;
+    string project_date_to = 10;
     // @inject_tag: query:"quick_search"
     string quick_search = 11;
     // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0,lte=1000"
