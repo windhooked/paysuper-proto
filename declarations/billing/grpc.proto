@@ -1511,13 +1511,13 @@ message ListOrdersRequest {
     repeated string status = 5;
     // @inject_tag: query:"account"
     string account = 6;
-    // @inject_tag: query:"pm_date_from" validate:"omitempty,date"
+    // @inject_tag: query:"pm_date_from" validate:"omitempty,datetime"
     string pm_date_from = 7;
-    // @inject_tag: query:"pm_date_to" validate:"omitempty,date"
+    // @inject_tag: query:"pm_date_to" validate:"omitempty,datetime"
     string pm_date_to = 8;
-    // @inject_tag: query:"project_date_from" validate:"omitempty,date"
+    // @inject_tag: query:"project_date_from" validate:"omitempty,datetime"
     string project_date_from = 9;
-    // @inject_tag: query:"project_date_to" validate:"omitempty,date"
+    // @inject_tag: query:"project_date_to" validate:"omitempty,datetime"
     string project_date_to = 10;
     // @inject_tag: query:"quick_search"
     string quick_search = 11;
