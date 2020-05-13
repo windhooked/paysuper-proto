@@ -699,10 +699,10 @@ message MerchantListingRequest {
     // @inject_tag: query:"name"
     string name = 1;
     int32 is_signed = 2;
-    // @inject_tag: query:"last_payout_date_from" validate:"omitempty,numeric,gt=0"
-    int64 last_payout_date_from = 3;
-    // @inject_tag: query:"last_payout_date_to" validate:"omitempty,numeric,gt=0"
-    int64 last_payout_date_to = 4;
+    // @inject_tag: query:"last_payout_date_from" validate:"omitempty,datetime"
+    string last_payout_date_from = 3;
+    // @inject_tag: query:"last_payout_date_to" validate:"omitempty,datetime"
+    string last_payout_date_to = 4;
     // @inject_tag: query:"last_payout_amount" validate:"omitempty,numeric"
     double last_payout_amount = 5;
     // @inject_tag: query:"sort[]"
@@ -715,14 +715,14 @@ message MerchantListingRequest {
     string quick_search = 9;
     // @inject_tag: query:"status[]"
     repeated int32 statuses = 10;
-    // @inject_tag: query:"registration_date_from" validate:"omitempty,numeric,gt=0"
-    int64 registration_date_from = 11;
-    // @inject_tag: query:"registration_date_to" validate:"omitempty,numeric,gt=0"
-    int64 registration_date_to = 12;
-    // @inject_tag: query:"received_date_from" validate:"omitempty,numeric,gt=0"
-    int64 received_date_from = 13;
-    // @inject_tag: query:"received_date_to" validate:"omitempty,numeric,gt=0"
-    int64 received_date_to = 14;
+    // @inject_tag: query:"registration_date_from" validate:"omitempty,datetime"
+    string registration_date_from = 11;
+    // @inject_tag: query:"registration_date_to" validate:"omitempty,datetime"
+    string registration_date_to = 12;
+    // @inject_tag: query:"received_date_from" validate:"omitempty,datetime"
+    string received_date_from = 13;
+    // @inject_tag: query:"received_date_to" validate:"omitempty,datetime"
+    string received_date_to = 14;
 }
 
 message MerchantListingResponse {
