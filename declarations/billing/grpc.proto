@@ -1537,6 +1537,8 @@ message ListOrdersRequest {
     bool hide_test = 18;
     // @inject_tag: query:"merchant_name" validate:"omitempty,company_name,max=60"
     string merchant_name = 19;
+    // @inject_tag: query:"royalty_report_id"
+    string royalty_report_id = 20;
 }
 
 message GetOrderRequest {
