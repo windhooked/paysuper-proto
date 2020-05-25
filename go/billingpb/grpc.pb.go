@@ -7545,8 +7545,8 @@ type ListOrdersRequest struct {
 	HideTest bool `protobuf:"varint,18,opt,name=hide_test,json=hideTest,proto3" json:"hide_test,omitempty" query:"hide_test"`
 	// @inject_tag: query:"merchant_name" validate:"omitempty,company_name,max=60"
 	MerchantName string `protobuf:"bytes,19,opt,name=merchant_name,json=merchantName,proto3" json:"merchant_name,omitempty" query:"merchant_name" validate:"omitempty,company_name,max=60"`
-	// @inject_tag: query:"royalty_report_id"
-	RoyaltyReportId string `protobuf:"bytes,20,opt,name=royalty_report_id,json=royaltyReportId,proto3" json:"royalty_report_id,omitempty" query:"royalty_report_id"`
+	// @inject_tag: query:"royalty_report_id" validate:"omitempty,hexadecimal,len=24"
+	RoyaltyReportId string `protobuf:"bytes,20,opt,name=royalty_report_id,json=royaltyReportId,proto3" json:"royalty_report_id,omitempty" query:"royalty_report_id" validate:"omitempty,hexadecimal,len=24"`
 }
 
 func (x *ListOrdersRequest) Reset() {
