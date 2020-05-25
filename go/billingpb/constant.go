@@ -159,6 +159,11 @@ const (
 	PaySuperDeclineCodeConfirmationsPaymentTimeout      = "ps000019"
 
 	ErrorGrpcServiceCallFailed = "gRPC call failed"
+	ErrorFieldService          = "service"
+	ErrorFieldMethod           = "method"
+	ErrorFieldRequest          = "request"
+	errorFieldStatus           = "status"
+	errorFieldResponse         = "response"
 
 	ErrorInvalidObjectId = "invalid bson object id"
 
