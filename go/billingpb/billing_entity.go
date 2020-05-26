@@ -717,3 +717,11 @@ func (m *RoyaltyReport) ChangesAvailable(newStatus string) bool {
 
 	return true
 }
+
+func (m *OrderViewPrivate) GetOrderType() string {
+	if m.Refund != nil {
+		return OrderTypeRefund
+	}
+
+	return OrderTypePayment
+}
