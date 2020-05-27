@@ -725,3 +725,11 @@ func (m *OrderViewPrivate) GetOrderType() string {
 
 	return OrderTypePayment
 }
+
+func (m *OrderViewPrivate) GetCardNumber() string {
+	if m.PaymentMethod != nil && m.PaymentMethod.Card != nil {
+		return m.PaymentMethod.Card.Masked
+	}
+
+	return ""
+}
