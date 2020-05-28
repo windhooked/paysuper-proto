@@ -224,7 +224,7 @@ service BillingService {
 
     rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
     rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
-    rpc RoyaltyReportFinanceDone(RoyaltyReportPdfUploadedRequest) returns (EmptyResponseWithStatus) {}
+    rpc RoyaltyReportFinanceDone(RoyaltyReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3331,4 +3331,15 @@ message PrivateTransactionsResponse {
     ResponseErrorMessage message = 2;
     // @inject_tag: json:"data"
     PrivateTransactionsPaginate data = 3;
+}
+
+message RoyaltyReportFinanceDoneRequest {
+    string royalty_report_id = 1;
+    string merchant_id = 2;
+    string period_from = 3;
+    string period_to = 4;
+    string license_agreement_number = 5;
+    string operating_company_name = 6;
+    string file_name = 7;
+    bytes file_content = 8;
 }
