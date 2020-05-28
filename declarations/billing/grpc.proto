@@ -224,12 +224,11 @@ service BillingService {
 
     rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
     rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
+    rpc RoyaltyReportFinanceDone(RoyaltyReportPdfUploadedRequest) returns (EmptyResponseWithStatus) {}
 }
 
-message EmptyRequest {
-}
-message EmptyResponse {
-}
+message EmptyRequest {}
+message EmptyResponse {}
 
 message EmptyResponseWithStatus {
     // The response status code.
