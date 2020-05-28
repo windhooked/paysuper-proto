@@ -213,7 +213,7 @@ type BillingService interface {
 	GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, opts ...client.CallOption) (*UserRoleResponse, error)
 	SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, opts ...client.CallOption) (*SendWebhookToMerchantResponse, error)
 	NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	RoyaltyReportFinanceDone(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	RoyaltyReportFinanceDone(ctx context.Context, in *RoyaltyReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 }
 
 type billingService struct {
@@ -2014,7 +2014,7 @@ func (c *billingService) NotifyWebhookTestResults(ctx context.Context, in *Notif
 	return out, nil
 }
 
-func (c *billingService) RoyaltyReportFinanceDone(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+func (c *billingService) RoyaltyReportFinanceDone(ctx context.Context, in *RoyaltyReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
 	req := c.c.NewRequest(c.name, "BillingService.RoyaltyReportFinanceDone", in)
 	out := new(EmptyResponseWithStatus)
 	err := c.c.Call(ctx, req, out, opts...)
@@ -2205,7 +2205,7 @@ type BillingServiceHandler interface {
 	GetAdminByUserId(context.Context, *CommonUserProfileRequest, *UserRoleResponse) error
 	SendWebhookToMerchant(context.Context, *OrderCreateRequest, *SendWebhookToMerchantResponse) error
 	NotifyWebhookTestResults(context.Context, *NotifyWebhookTestResultsRequest, *EmptyResponseWithStatus) error
-	RoyaltyReportFinanceDone(context.Context, *RoyaltyReportPdfUploadedRequest, *EmptyResponseWithStatus) error
+	RoyaltyReportFinanceDone(context.Context, *RoyaltyReportFinanceDoneRequest, *EmptyResponseWithStatus) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2388,7 +2388,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, out *UserRoleResponse) error
 		SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, out *SendWebhookToMerchantResponse) error
 		NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, out *EmptyResponseWithStatus) error
-		RoyaltyReportFinanceDone(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, out *EmptyResponseWithStatus) error
+		RoyaltyReportFinanceDone(ctx context.Context, in *RoyaltyReportFinanceDoneRequest, out *EmptyResponseWithStatus) error
 	}
 	type BillingService struct {
 		billingService
@@ -3113,6 +3113,6 @@ func (h *billingServiceHandler) NotifyWebhookTestResults(ctx context.Context, in
 	return h.BillingServiceHandler.NotifyWebhookTestResults(ctx, in, out)
 }
 
-func (h *billingServiceHandler) RoyaltyReportFinanceDone(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, out *EmptyResponseWithStatus) error {
+func (h *billingServiceHandler) RoyaltyReportFinanceDone(ctx context.Context, in *RoyaltyReportFinanceDoneRequest, out *EmptyResponseWithStatus) error {
 	return h.BillingServiceHandler.RoyaltyReportFinanceDone(ctx, in, out)
 }
