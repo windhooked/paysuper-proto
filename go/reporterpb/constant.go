@@ -41,6 +41,7 @@ const (
 	RequestParameterAgreementOperatingCompanyRegistrationNumber = "oc_registration_number"
 	RequestParameterAgreementOperatingCompanyAuthorizedName     = "oc_authorized_name"
 	RequestParameterAgreementOperatingCompanyAuthorizedPosition = "oc_authorized_position"
+	RequestParameterAccountantExport                            = "accountant_export"
 
 	FileMask          = "report_%s_%s.%s"
 	FileMaskAgreement = "License Agreement_%s_#%s.%s"
