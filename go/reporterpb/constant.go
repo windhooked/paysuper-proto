@@ -12,6 +12,7 @@ const (
 	ReportTypeRoyaltyAccountant             = "royalty_accountant"
 	ReportTypeRoyaltyTransactionsAccountant = "royalty_transactions_accountant"
 	ReportTypePayout                        = "payout"
+	ReportTypePayoutFinance                 = "payout_finance"
 	ReportTypeAgreement                     = "agreement"
 
 	OutputExtensionXlsx = "xlsx"

@@ -224,7 +224,8 @@ service BillingService {
 
     rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
     rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
-    rpc RoyaltyReportFinanceDone(RoyaltyReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
+    rpc RoyaltyReportFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
+    rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3333,7 +3334,7 @@ message PrivateTransactionsResponse {
     PrivateTransactionsPaginate data = 3;
 }
 
-message RoyaltyReportFinanceDoneRequest {
+message ReportFinanceDoneRequest {
     string royalty_report_id = 1;
     string merchant_id = 2;
     string period_from = 3;
