@@ -3337,11 +3337,12 @@ message PrivateTransactionsResponse {
 message ReportFinanceDoneRequest {
     string royalty_report_id = 1;
     string merchant_id = 2;
-    string period_from = 3;
-    string period_to = 4;
-    string license_agreement_number = 5;
-    string operating_company_name = 6;
-    string file_name = 7;
-    bytes file_content = 8;
-    string payout_id = 9;
+    string merchant_name = 3;
+    string period_from = 4;
+    string period_to = 5;
+    string license_agreement_number = 6;
+    string operating_company_name = 7;
+    string file_name = 8;
+    bytes file_content = 9;
+    string payout_id = 10;
 }
