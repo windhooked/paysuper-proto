@@ -718,18 +718,10 @@ func (m *RoyaltyReport) ChangesAvailable(newStatus string) bool {
 	return true
 }
 
-func (m *OrderViewPrivate) GetOrderType() string {
-	if m.Refund != nil {
-		return OrderTypeRefund
+func (m *OrderViewMoney) getAmount() float64 {
+	if m == nil {
+		return 0
 	}
 
-	return OrderTypePayment
-}
-
-func (m *OrderViewPrivate) GetCardNumber() string {
-	if m.PaymentMethod != nil && m.PaymentMethod.Card != nil {
-		return m.PaymentMethod.Card.Masked
-	}
-
-	return ""
+	return m.Amount
 }
