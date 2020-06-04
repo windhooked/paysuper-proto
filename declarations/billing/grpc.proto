@@ -224,12 +224,12 @@ service BillingService {
 
     rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
     rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
+    rpc RoyaltyReportFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
+    rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
 }
 
-message EmptyRequest {
-}
-message EmptyResponse {
-}
+message EmptyRequest {}
+message EmptyResponse {}
 
 message EmptyResponseWithStatus {
     // The response status code.
@@ -1537,6 +1537,8 @@ message ListOrdersRequest {
     bool hide_test = 18;
     // @inject_tag: query:"merchant_name" validate:"omitempty,company_name,max=60"
     string merchant_name = 19;
+    // @inject_tag: query:"royalty_report_id" validate:"omitempty,hexadecimal,len=24"
+    string royalty_report_id = 20;
 }
 
 message GetOrderRequest {
@@ -3330,4 +3332,17 @@ message PrivateTransactionsResponse {
     ResponseErrorMessage message = 2;
     // @inject_tag: json:"data"
     PrivateTransactionsPaginate data = 3;
+}
+
+message ReportFinanceDoneRequest {
+    string royalty_report_id = 1;
+    string merchant_id = 2;
+    string merchant_name = 3;
+    string period_from = 4;
+    string period_to = 5;
+    string license_agreement_number = 6;
+    string operating_company_name = 7;
+    string file_name = 8;
+    bytes file_content = 9;
+    string payout_id = 10;
 }

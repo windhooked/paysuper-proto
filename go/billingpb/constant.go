@@ -31,8 +31,9 @@ const (
 	ResponseStatusSystemError = int32(500)
 	ResponseStatusTemporary   = int32(410)
 
-	OrderTypeOrder  = "order"
-	OrderTypeRefund = "refund"
+	OrderTypeOrder   = "order"
+	OrderTypeRefund  = "refund"
+	OrderTypePayment = "payment"
 
 	VatReportStatusThreshold = "threshold"
 	VatReportStatusExpired   = "expired"
@@ -159,6 +160,11 @@ const (
 	PaySuperDeclineCodeConfirmationsPaymentTimeout      = "ps000019"
 
 	ErrorGrpcServiceCallFailed = "gRPC call failed"
+	ErrorFieldService          = "service"
+	ErrorFieldMethod           = "method"
+	ErrorFieldRequest          = "request"
+	errorFieldStatus           = "status"
+	errorFieldResponse         = "response"
 
 	ErrorInvalidObjectId = "invalid bson object id"
 

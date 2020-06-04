@@ -717,3 +717,11 @@ func (m *RoyaltyReport) ChangesAvailable(newStatus string) bool {
 
 	return true
 }
+
+func (m *OrderViewMoney) getAmount() float64 {
+	if m == nil {
+		return 0
+	}
+
+	return m.Amount
+}
