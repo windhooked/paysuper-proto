@@ -717,3 +717,68 @@ func (m *RoyaltyReport) ChangesAvailable(newStatus string) bool {
 
 	return true
 }
+
+// Return count of non zero fields for struct OrderUser
+func (m *OrderUser) CountNonZeroFields() int {
+	count := 0
+
+	if m == nil {
+		return count
+	}
+
+	if m.ExternalId != "" {
+		count++
+	}
+
+	if m.Name != "" {
+		count++
+	}
+
+	if m.Email != "" {
+		count++
+	}
+
+	if m.EmailVerified {
+		count++
+	}
+
+	if m.Phone != "" {
+		count++
+	}
+
+	if m.PhoneVerified {
+		count++
+	}
+
+	if m.Ip != "" {
+		count++
+	}
+
+	if m.Locale != "" {
+		count++
+	}
+
+	if m.Address != nil {
+		if m.Address.Country != "" {
+			count++
+		}
+
+		if m.Address.State != "" {
+			count++
+		}
+
+		if m.Address.City != "" {
+			count++
+		}
+
+		if m.Address.PostalCode != "" {
+			count++
+		}
+	}
+
+	if len(m.Metadata) > 0 {
+		count++
+	}
+
+	return count
+}
