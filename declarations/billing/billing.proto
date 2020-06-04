@@ -3383,6 +3383,10 @@ message OrderViewPrivate {
     //
     // The tax rate.
     double tax_rate = 89;
+    // @inject_tag: json:"payment_method_terminal_id" bson:"payment_method_terminal_id"
+    //
+    // The unique identifier of terminal of payment method
+    string payment_method_terminal_id = 90;
 }
 
 message RecommendedPrice {

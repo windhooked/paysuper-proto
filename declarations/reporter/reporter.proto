@@ -78,4 +78,5 @@ message PostProcessRequest {
     string file_name = 2;
     int64 retention_time = 3;
     bytes file = 4;
+    map<string, string> params = 5;
 }
