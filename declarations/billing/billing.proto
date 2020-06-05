@@ -1055,8 +1055,6 @@ message Order {
     map<string, string> private_metadata = 33;
     // @inject_tag: json:"-" bson:"project"
     ProjectOrder project = 34; // object described main entities of project in Protocol One payment solution
-    // @inject_tag: json:"-" bson:"project_account"
-    string project_account = 36; // user unique account in project
     // @inject_tag: json:"-" bson:"project_last_requested_at"
     google.protobuf.Timestamp project_last_requested_at = 37; // date of last notification request to project
     // @inject_tag: json:"-" bson:"project_params"
