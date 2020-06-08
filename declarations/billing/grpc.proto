@@ -2363,8 +2363,10 @@ message SetMerchantTariffRatesRequest {
     string merchant_id = 1;
     // @inject_tag: json:"home_region" validate:"required,tariff_region"
     string home_region = 2;
-    // @inject_tag: query:"merchant_operations_type" json:"merchant_operations_type" validate:"oneof=high-risk low-risk"
+    // @inject_tag: json:"merchant_operations_type" validate:"oneof=high-risk low-risk"
     string merchant_operations_type = 3;
+    // @inject_tag: json:"-"
+    bool is_default_tariffs = 4;
 }
 
 message ListOrdersPublicResponseItem {
