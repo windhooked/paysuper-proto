@@ -221,6 +221,7 @@ const (
 
 	DefaultMerchantBankingCurrency = "EUR"
 	DefaultMerchantTariffsRegion   = TariffRegionEurope
+	DefaultMerchantOperationsType  = "low-risk"
 )
 
 var (
