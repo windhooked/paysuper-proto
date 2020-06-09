@@ -12942,8 +12942,8 @@ type SetMerchantTariffRatesRequest struct {
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
 	// @inject_tag: json:"home_region" validate:"required,tariff_region"
 	HomeRegion string `protobuf:"bytes,2,opt,name=home_region,json=homeRegion,proto3" json:"home_region" validate:"required,tariff_region"`
-	// @inject_tag: query:"merchant_operations_type" json:"merchant_operations_type" validate:"oneof=high-risk low-risk"
-	MerchantOperationsType string `protobuf:"bytes,3,opt,name=merchant_operations_type,json=merchantOperationsType,proto3" json:"merchant_operations_type" query:"merchant_operations_type" validate:"oneof=high-risk low-risk"`
+	// @inject_tag: json:"merchant_operations_type" validate:"oneof=high-risk low-risk"
+	MerchantOperationsType string `protobuf:"bytes,3,opt,name=merchant_operations_type,json=merchantOperationsType,proto3" json:"merchant_operations_type" validate:"oneof=high-risk low-risk"`
 }
 
 func (x *SetMerchantTariffRatesRequest) Reset() {
