@@ -45,7 +45,7 @@ func (m *Merchant) GetPrintableStatus() string {
 	status := "draft"
 
 	if m.Status == MerchantStatusAgreementSigned {
-		status = "life"
+		status = "live"
 	}
 
 	return status

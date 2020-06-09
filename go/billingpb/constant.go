@@ -218,10 +218,6 @@ const (
 
 	FilterDateFormat     = "2006-01-02"
 	FilterDatetimeFormat = "2006-01-02T15:04:05"
-
-	DefaultMerchantBankingCurrency = "EUR"
-	DefaultMerchantTariffsRegion   = TariffRegionEurope
-	DefaultMerchantOperationsType  = "low-risk"
 )
 
 var (
