@@ -167,6 +167,9 @@ const (
 	errorFieldResponse         = "response"
 
 	ErrorInvalidObjectId = "invalid bson object id"
+	ErrorUnableRound     = "Unable to round amount to selected precision"
+	ErrorFieldKey        = "key"
+	ErrorFieldValue      = "value"
 
 	TariffRegionRussiaAndCis = "russia_and_cis"
 	TariffRegionEurope       = "europe"
