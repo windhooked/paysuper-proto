@@ -780,7 +780,7 @@ message ListingNotificationRequest {
     string merchant_id = 1;
     // @inject_tag: query:"user" validate:"omitempty,hexadecimal,len=24"
     string user_id = 2;
-    // @inject_tag: query:"is_system" validate:"omitempty,numeric,oneof=1 2"
+    // @inject_tag: query:"-"
     int32 is_system = 3;
     // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
     int64 limit = 4;
@@ -788,6 +788,8 @@ message ListingNotificationRequest {
     int64 offset = 5;
     // @inject_tag: query:"sort[]"
     repeated string sort = 6;
+    // @inject_tag: query:"is_system"
+    bool query_is_system = 7;
 }
 
 message ListingMerchantPaymentMethod {
