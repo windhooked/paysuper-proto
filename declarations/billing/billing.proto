@@ -1163,6 +1163,10 @@ message Order {
     //
     // The merchant's company data.
     OrderViewMerchantInfo merchant_info = 90;
+    // @inject_tag: json:"-"
+    //
+    // The royalty report's identifier which include this order
+    string royalty_report_id = 91;
 }
 
 message ParentOrder {
