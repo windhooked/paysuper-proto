@@ -1776,7 +1776,7 @@ message ChangeRoyaltyReportCorrection {
 }
 
 message GetRoyaltyReportRequest {
-    // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
+    // @inject_tag: json:"merchant_id" validate:"omitempty,hexadecimal,len=24"
     string merchant_id = 1;
     // @inject_tag: json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
     string report_id = 2;
