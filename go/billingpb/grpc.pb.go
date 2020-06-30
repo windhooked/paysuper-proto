@@ -9349,8 +9349,8 @@ type GetRoyaltyReportRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24"`
+	// @inject_tag: json:"merchant_id" validate:"omitempty,hexadecimal,len=24"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
 	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"`
 }
