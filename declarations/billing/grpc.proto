@@ -1758,7 +1758,7 @@ message ListRoyaltyReportsResponse {
 }
 
 message ListRoyaltyReportOrdersRequest {
-    // @inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
+    // @inject_tag: validate:"omitempty,hexadecimal,len=24" param:"merchant_id"
     string merchant_id = 1;
     // @inject_tag: query:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
     string report_id = 2;
