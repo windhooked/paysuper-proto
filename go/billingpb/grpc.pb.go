@@ -9217,8 +9217,8 @@ type ListRoyaltyReportOrdersRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24" param:"merchant_id"`
+	// @inject_tag: validate:"omitempty,hexadecimal,len=24" param:"merchant_id"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"omitempty,hexadecimal,len=24" param:"merchant_id"`
 	// @inject_tag: query:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"
 	ReportId string `protobuf:"bytes,2,opt,name=report_id,json=reportId,proto3" json:"report_id,omitempty" query:"report_id" validate:"required,hexadecimal,len=24" param:"report_id"`
 	// @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
