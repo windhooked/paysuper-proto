@@ -75,6 +75,10 @@ message ReportFile {
     //
     // Merchant's or user's identifier to send notification in correct channel
     string notification_channel_id = 11;
+    // @inject_tag: json:"skip_post_process"
+    //
+    // Has a true value if need to skip post process method call after the report file exported.
+    bool skip_post_process = 12;
 }
 
 message PostProcessRequest {
