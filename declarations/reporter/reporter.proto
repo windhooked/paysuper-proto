@@ -71,6 +71,10 @@ message ReportFile {
     //
     // The date of the report file creation.
     google.protobuf.Timestamp created_at = 10;
+    // @inject_tag: json:"notification_channel_id"
+    //
+    // Merchant's or user's identifier to send notification in correct channel
+    bool notification_channel_id = 11;
 }
 
 message PostProcessRequest {
