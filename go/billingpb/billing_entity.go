@@ -735,10 +735,10 @@ func (m *OrderViewPrivate) GetCardNumber() string {
 	return ""
 }
 
-func (m *Merchant) GetBankRequisites() string {
-	if m.Banking == nil {
+func (m *MerchantBanking) GetBankingRequisites() string {
+	if m == nil {
 		return ""
 	}
 
-	return m.Banking.Name + "; " + m.Banking.Address + "; " + m.Banking.AccountNumber + "; " + m.Banking.Swift
+	return m.Name + "; " + m.Address + "; " + m.AccountNumber + "; " + m.Swift
 }
