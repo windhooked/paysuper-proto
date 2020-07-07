@@ -734,3 +734,11 @@ func (m *OrderViewPrivate) GetCardNumber() string {
 
 	return ""
 }
+
+func (m *MerchantBanking) GetBankingRequisites() string {
+	if m == nil {
+		return ""
+	}
+
+	return m.Name + "; " + m.Address + "; " + m.AccountNumber + "; " + m.Swift
+}
