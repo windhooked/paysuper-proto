@@ -3668,6 +3668,10 @@ message PayoutDocument {
     //
     // The unique identifier for the operating company.
     string operating_company_id = 28;
+    //@inject_tag: json:"increment_id" bson:"increment_id" validate:"omitempty,numeric,gt=0"
+    //
+    // The autoincrement unique identifier for the payout document.
+    string increment_id = 29;
 }
 
 message PayoutDocumentChanges {
