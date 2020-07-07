@@ -3671,7 +3671,7 @@ message PayoutDocument {
     //@inject_tag: json:"increment_id" bson:"autoincrement_id" validate:"omitempty,numeric,gt=0"
     //
     // The autoincrement unique identifier for the payout document.
-    string autoincrement_id = 29;
+    int64 autoincrement_id = 29;
 }
 
 message PayoutDocumentChanges {
