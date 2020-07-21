@@ -39,3 +39,59 @@ func TestMerchant_GetAddress(t *testing.T) {
 		})
 	}
 }
+
+func TestOrderViewPrivate_GetCustomerAddress(t *testing.T) {
+	billingAddress := &OrderBillingAddress{
+		Country:    "US",
+		City:       "ELMIRA",
+		State:      "NY",
+		PostalCode: "14901",
+	}
+	geoLocationAddress := &OrderBillingAddress{
+		Country:    "US",
+		City:       "CUBA",
+		State:      "AL",
+		PostalCode: "36907",
+	}
+
+	tests := []struct {
+		name   string
+		entity *OrderViewPrivate
+		want   *OrderBillingAddress
+	}{
+		{
+			name:   "Object is null",
+			entity: nil,
+			want:   nil,
+		},
+		{
+			name:   "User.Address and BillingAddress is null",
+			entity: &OrderViewPrivate{},
+			want:   nil,
+		},
+		{
+			name: "Return BillingAddress",
+			entity: &OrderViewPrivate{
+				BillingAddress: billingAddress,
+			},
+			want: billingAddress,
+		},
+		{
+			name: "Return User.Address",
+			entity: &OrderViewPrivate{
+				User: &OrderUser{
+					Address: geoLocationAddress,
+				},
+			},
+			want: geoLocationAddress,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.entity.GetCustomerAddress(); got != tt.want {
+				t.Errorf("GetCustomerAddress() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

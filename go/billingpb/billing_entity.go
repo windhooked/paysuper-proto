@@ -735,6 +735,18 @@ func (m *OrderViewPrivate) GetCardNumber() string {
 	return ""
 }
 
+func (m *OrderViewPrivate) GetCustomerAddress() *OrderBillingAddress {
+	if m == nil || ((m.User == nil || m.User.Address == nil) && m.BillingAddress == nil) {
+		return nil
+	}
+
+	if m.BillingAddress != nil {
+		return m.BillingAddress
+	}
+
+	return m.User.Address
+}
+
 func (m *MerchantBanking) GetBankingRequisites() string {
 	if m == nil {
 		return ""
