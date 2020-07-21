@@ -163,8 +163,8 @@ const (
 	ErrorFieldService          = "service"
 	ErrorFieldMethod           = "method"
 	ErrorFieldRequest          = "request"
-	errorFieldStatus           = "status"
-	errorFieldResponse         = "response"
+	ErrorFieldStatus           = "status"
+	ErrorFieldResponse         = "response"
 
 	ErrorInvalidObjectId = "invalid bson object id"
 	ErrorUnableRound     = "Unable to round amount to selected precision"
