@@ -1895,10 +1895,6 @@ message OrderNotificationRefund {
     //
     // The URL in PaySuper service for online access to the refund's receipt.
     string receipt_url = 6;
-    //@inject_tag: json:"-"
-    //
-    // The unique identifier for the refund in payment system.
-    string external_id = 7;
 }
 
 message GetCountryRequest {
