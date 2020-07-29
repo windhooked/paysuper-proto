@@ -1709,6 +1709,42 @@ message Customer {
     string notify_new_region_email = 25;
     //@inject_tag: json:"-" bson:"ip_string"
     string ip_string = 26;
+    //@inject_tag: json:"-" bson:"payment_activity"
+    repeated PaymentActivityItem payment_activity = 27;
+}
+
+message PaymentActivityItem {
+    //@inject_tag: bson:"merchant_id"
+    string merchant_id = 1;
+    //@inject_tag: bson:"count"
+    PaymentActivityItemCount count = 2;
+    //@inject_tag: bson:"last_txn_at"
+    PaymentActivityItemLastTxnAt last_txn_at = 3;
+    //@inject_tag: bson:"revenue"
+    PaymentActivityItemRevenue revenue = 4;
+}
+
+message PaymentActivityItemCount {
+    //@inject_tag: bson:"payment"
+    int64 payment = 1;
+    //@inject_tag: bson:"refund"
+    int64 refund = 2;
+}
+
+message PaymentActivityItemLastTxnAt {
+    //@inject_tag: bson:"payment"
+    google.protobuf.Timestamp payment = 1;
+    //@inject_tag: bson:"refund"
+    google.protobuf.Timestamp refund = 2;
+}
+
+message PaymentActivityItemRevenue {
+    //@inject_tag: bson:"payment"
+    double payment = 1;
+    //@inject_tag: bson:"refund"
+    double refund = 2;
+    //@inject_tag: bson:"total"
+    double total = 3;
 }
 
 message TokenUserEmailValue {
