@@ -1710,12 +1710,10 @@ message Customer {
     //@inject_tag: json:"-" bson:"ip_string"
     string ip_string = 26;
     //@inject_tag: json:"-" bson:"payment_activity"
-    repeated PaymentActivityItem payment_activity = 27;
+    map<string, PaymentActivityItem> payment_activity = 27;
 }
 
 message PaymentActivityItem {
-    //@inject_tag: bson:"merchant_id"
-    string merchant_id = 1;
     //@inject_tag: bson:"count"
     PaymentActivityItemCount count = 2;
     //@inject_tag: bson:"last_txn_at"
