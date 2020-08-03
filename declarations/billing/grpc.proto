@@ -226,6 +226,8 @@ service BillingService {
     rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
     rpc RoyaltyReportFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
+
+    rpc SetCustomerPaymentActivity(SetCustomerPaymentActivityRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3347,4 +3349,12 @@ message ReportFinanceDoneRequest {
     string file_name = 8;
     bytes file_content = 9;
     string payout_id = 10;
+}
+
+message SetCustomerPaymentActivityRequest {
+    string customer_id = 1;
+    string merchant_id = 2;
+    string type = 3;
+    google.protobuf.Timestamp processing_at = 4;
+    double amount = 5;
 }
