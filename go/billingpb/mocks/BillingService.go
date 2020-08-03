@@ -4876,6 +4876,36 @@ func (_m *BillingService) SendWebhookToMerchant(ctx context.Context, in *billing
 	return r0, r1
 }
 
+// SetCustomerPaymentActivity provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) SetCustomerPaymentActivity(ctx context.Context, in *billingpb.SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.EmptyResponseWithStatus
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.SetCustomerPaymentActivityRequest, ...client.CallOption) *billingpb.EmptyResponseWithStatus); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.EmptyResponseWithStatus)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.SetCustomerPaymentActivityRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // SetMerchantOperatingCompany provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) SetMerchantOperatingCompany(ctx context.Context, in *billingpb.SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*billingpb.SetMerchantOperatingCompanyResponse, error) {
 	_va := make([]interface{}, len(opts))
