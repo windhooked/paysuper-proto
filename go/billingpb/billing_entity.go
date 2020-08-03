@@ -7,6 +7,7 @@ import (
 	"github.com/jinzhu/copier"
 	"github.com/paysuper/paysuper-proto/go/recurringpb"
 	tools "github.com/paysuper/paysuper-tools/number"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"time"
 )
 
@@ -753,4 +754,13 @@ func (m *MerchantBanking) GetBankingRequisites() string {
 	}
 
 	return m.Name + "; " + m.Address + "; " + m.AccountNumber + "; " + m.Swift
+}
+
+func (m *Order) IsIdentifiedUser() bool {
+	if m == nil || m.User == nil {
+		return false
+	}
+
+	_, err := primitive.ObjectIDFromHex(m.User.Id)
+	return err == nil
 }
