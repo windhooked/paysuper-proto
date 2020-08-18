@@ -14,6 +14,7 @@ const (
 	ReportTypePayout                        = "payout"
 	ReportTypePayoutFinance                 = "payout_finance"
 	ReportTypeAgreement                     = "agreement"
+	ReportTypeActOfCompletion               = "act_of_completion"
 
 	OutputExtensionXlsx = "xlsx"
 	OutputExtensionCsv  = "csv"
