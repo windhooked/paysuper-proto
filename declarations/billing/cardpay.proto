@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 option go_package = "billingpb";
-package billing;
+package cardpay;
 
 message CardPayAddress {
     string country = 1;

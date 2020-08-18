@@ -3348,3 +3348,12 @@ message ReportFinanceDoneRequest {
     bytes file_content = 9;
     string payout_id = 10;
 }
+
+message ActOfCompletionRequest {
+    //@inject_tag: validate:"required,hexadecimal,len=24"
+    string merchant_id = 3;
+    // @inject_tag: json:"date_from" validate:"required,date"
+    string date_from = 4;
+    // @inject_tag: json:"date_to" validate:"required,date"
+    string date_to = 5;
+}
