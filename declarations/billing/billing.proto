@@ -4202,3 +4202,30 @@ message RoleListItem {
     // The role's name.
     string name = 2;
 }
+
+message ActOfCompletionDocument {
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+    //
+    // The unique identifier for the merchant who is the owner of the payout document.
+    string merchant_id = 1;
+    // @inject_tag: json:"total_fees" validate:"numeric,gte=0"
+    //
+    // The total amount of fees.
+    double total_fees = 2;
+    // @inject_tag: json:"balance" validate:"numeric,gte=0"
+    //
+    // The payout amount.
+    double balance = 3;
+    //@inject_tag: json:"currency" validate:"required,alpha,len=3"
+    //
+    // The payout amount currency. Three-letter Currency Code ISO 4217, in uppercase.
+    string currency = 4;
+    // @inject_tag: json:"total_transactions"
+    //
+    // The total number of transactions.
+    int32 total_transactions = 5;
+    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
+    //
+    // The unique identifier for the operating company.
+    string operating_company_id = 6;
+}

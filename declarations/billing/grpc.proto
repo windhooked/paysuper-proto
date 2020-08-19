@@ -226,6 +226,7 @@ service BillingService {
     rpc NotifyWebhookTestResults(NotifyWebhookTestResultsRequest) returns (EmptyResponseWithStatus) {}
     rpc RoyaltyReportFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
+    rpc GetActOfCompletion(ActOfCompletionRequest) returns (ActOfCompletionResponse) {}
 }
 
 message EmptyRequest {}
@@ -3356,4 +3357,13 @@ message ActOfCompletionRequest {
     string date_from = 4;
     // @inject_tag: json:"date_to" validate:"required,date"
     string date_to = 5;
+}
+
+message ActOfCompletionResponse {
+    //@inject_tag: json:"status"
+    int32 status = 1;
+    //@inject_tag: json:"message"
+    ResponseErrorMessage message = 2;
+    //@inject_tag: json:"item"
+    billing.ActOfCompletionDocument item = 3;
 }
