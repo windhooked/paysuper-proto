@@ -388,7 +388,7 @@ message ProjectOrder {
     ProjectRedirectSettings redirect_settings = 18;
     //@inject_tag: json:"first_payment_at" bson:"first_payment_at"
     //
-    // Date of first payment for merchant
+    // Date of first payment for merchant.
     google.protobuf.Timestamp first_payment_at = 19;
 }
 
