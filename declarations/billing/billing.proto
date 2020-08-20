@@ -4216,16 +4216,8 @@ message ActOfCompletionDocument {
     //
     // The payout amount.
     double balance = 3;
-    //@inject_tag: json:"currency" validate:"required,alpha,len=3"
-    //
-    // The payout amount currency. Three-letter Currency Code ISO 4217, in uppercase.
-    string currency = 4;
     // @inject_tag: json:"total_transactions"
     //
     // The total number of transactions.
-    int32 total_transactions = 5;
-    // @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
-    //
-    // The unique identifier for the operating company.
-    string operating_company_id = 6;
+    int32 total_transactions = 4;
 }
