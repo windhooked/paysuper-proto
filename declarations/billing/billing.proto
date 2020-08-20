@@ -386,6 +386,10 @@ message ProjectOrder {
     //
     //The customer's redirection settings for the successful or failed payment.
     ProjectRedirectSettings redirect_settings = 18;
+    //@inject_tag: json:"first_payment_at" bson:"first_payment_at"
+    //
+    // Date of first payment for merchant
+    string first_payment_at = 19;
 }
 
 message MerchantContact {
