@@ -17133,6 +17133,111 @@ func (x *RoleListItem) GetName() string {
 	return ""
 }
 
+type ActOfCompletionDocument struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	//@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	//
+	// The unique identifier for the merchant who is the owner of the payout document.
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
+	// @inject_tag: json:"total_fees" validate:"numeric,gte=0"
+	//
+	// The total amount of fees.
+	TotalFees float64 `protobuf:"fixed64,2,opt,name=total_fees,json=totalFees,proto3" json:"total_fees" validate:"numeric,gte=0"`
+	// @inject_tag: json:"balance" validate:"numeric,gte=0"
+	//
+	// The payout amount.
+	Balance float64 `protobuf:"fixed64,3,opt,name=balance,proto3" json:"balance" validate:"numeric,gte=0"`
+	//@inject_tag: json:"currency" validate:"required,alpha,len=3"
+	//
+	// The payout amount currency. Three-letter Currency Code ISO 4217, in uppercase.
+	Currency string `protobuf:"bytes,4,opt,name=currency,proto3" json:"currency" validate:"required,alpha,len=3"`
+	// @inject_tag: json:"total_transactions"
+	//
+	// The total number of transactions.
+	TotalTransactions int32 `protobuf:"varint,5,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions"`
+	// @inject_tag: json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"
+	//
+	// The unique identifier for the operating company.
+	OperatingCompanyId string `protobuf:"bytes,6,opt,name=operating_company_id,json=operatingCompanyId,proto3" json:"operating_company_id" bson:"operating_company_id" faker:"objectIdString"`
+}
+
+func (x *ActOfCompletionDocument) Reset() {
+	*x = ActOfCompletionDocument{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_billing_proto_msgTypes[134]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ActOfCompletionDocument) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActOfCompletionDocument) ProtoMessage() {}
+
+func (x *ActOfCompletionDocument) ProtoReflect() protoreflect.Message {
+	mi := &file_billing_proto_msgTypes[134]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActOfCompletionDocument.ProtoReflect.Descriptor instead.
+func (*ActOfCompletionDocument) Descriptor() ([]byte, []int) {
+	return file_billing_proto_rawDescGZIP(), []int{134}
+}
+
+func (x *ActOfCompletionDocument) GetMerchantId() string {
+	if x != nil {
+		return x.MerchantId
+	}
+	return ""
+}
+
+func (x *ActOfCompletionDocument) GetTotalFees() float64 {
+	if x != nil {
+		return x.TotalFees
+	}
+	return 0
+}
+
+func (x *ActOfCompletionDocument) GetBalance() float64 {
+	if x != nil {
+		return x.Balance
+	}
+	return 0
+}
+
+func (x *ActOfCompletionDocument) GetCurrency() string {
+	if x != nil {
+		return x.Currency
+	}
+	return ""
+}
+
+func (x *ActOfCompletionDocument) GetTotalTransactions() int32 {
+	if x != nil {
+		return x.TotalTransactions
+	}
+	return 0
+}
+
+func (x *ActOfCompletionDocument) GetOperatingCompanyId() string {
+	if x != nil {
+		return x.OperatingCompanyId
+	}
+	return ""
+}
+
 var File_billing_proto protoreflect.FileDescriptor
 
 var file_billing_proto_rawDesc = []byte{
@@ -20447,9 +20552,24 @@ var file_billing_proto_rawDesc = []byte{
 	0x75, 0x70, 0x64, 0x61, 0x74, 0x65, 0x64, 0x41, 0x74, 0x22, 0x32, 0x0a, 0x0c, 0x52, 0x6f, 0x6c,
 	0x65, 0x4c, 0x69, 0x73, 0x74, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x42, 0x0b, 0x5a,
-	0x09, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0xf0, 0x01,
+	0x0a, 0x17, 0x41, 0x63, 0x74, 0x4f, 0x66, 0x43, 0x6f, 0x6d, 0x70, 0x6c, 0x65, 0x74, 0x69, 0x6f,
+	0x6e, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x6d, 0x65, 0x72,
+	0x63, 0x68, 0x61, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a,
+	0x6d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x74, 0x6f,
+	0x74, 0x61, 0x6c, 0x5f, 0x66, 0x65, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x01, 0x52, 0x09,
+	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x46, 0x65, 0x65, 0x73, 0x12, 0x18, 0x0a, 0x07, 0x62, 0x61, 0x6c,
+	0x61, 0x6e, 0x63, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x01, 0x52, 0x07, 0x62, 0x61, 0x6c, 0x61,
+	0x6e, 0x63, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x18,
+	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x63, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x63, 0x79, 0x12,
+	0x2d, 0x0a, 0x12, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x05, 0x52, 0x11, 0x74, 0x6f, 0x74,
+	0x61, 0x6c, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x30,
+	0x0a, 0x14, 0x6f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x5f, 0x63, 0x6f, 0x6d, 0x70,
+	0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x6f, 0x70,
+	0x65, 0x72, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64,
+	0x42, 0x0b, 0x5a, 0x09, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x70, 0x62, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -20464,7 +20584,7 @@ func file_billing_proto_rawDescGZIP() []byte {
 	return file_billing_proto_rawDescData
 }
 
-var file_billing_proto_msgTypes = make([]protoimpl.MessageInfo, 160)
+var file_billing_proto_msgTypes = make([]protoimpl.MessageInfo, 161)
 var file_billing_proto_goTypes = []interface{}{
 	(*Name)(nil),                                          // 0: billing.Name
 	(*OrderCreateRequest)(nil),                            // 1: billing.OrderCreateRequest
@@ -20600,44 +20720,45 @@ var file_billing_proto_goTypes = []interface{}{
 	(*PaymentMinLimitSystem)(nil),                         // 131: billing.PaymentMinLimitSystem
 	(*UserRole)(nil),                                      // 132: billing.UserRole
 	(*RoleListItem)(nil),                                  // 133: billing.RoleListItem
-	nil,                                                   // 134: billing.OrderCreateRequest.RawParamsEntry
-	nil,                                                   // 135: billing.OrderCreateRequest.MetadataEntry
-	nil,                                                   // 136: billing.OrderCreateRequest.PrivateMetadataEntry
-	nil,                                                   // 137: billing.Project.NameEntry
-	nil,                                                   // 138: billing.Project.FullDescriptionEntry
-	nil,                                                   // 139: billing.Project.ShortDescriptionEntry
-	nil,                                                   // 140: billing.ProjectOrder.NameEntry
-	nil,                                                   // 141: billing.MerchantTariff.MinimalPayoutEntry
-	nil,                                                   // 142: billing.Merchant.PaymentMethodsEntry
-	nil,                                                   // 143: billing.OrderUser.MetadataEntry
-	nil,                                                   // 144: billing.Order.MetadataEntry
-	nil,                                                   // 145: billing.Order.PrivateMetadataEntry
-	nil,                                                   // 146: billing.Order.ProjectParamsEntry
-	nil,                                                   // 147: billing.Order.PaymentMethodTxnParamsEntry
-	nil,                                                   // 148: billing.Order.PaymentRequisitesEntry
-	nil,                                                   // 149: billing.Order.IsNotificationsSentEntry
-	nil,                                                   // 150: billing.OrderItem.MetadataEntry
-	nil,                                                   // 151: billing.PaymentMethod.TestSettingsEntry
-	nil,                                                   // 152: billing.PaymentMethod.ProductionSettingsEntry
-	nil,                                                   // 153: billing.Customer.MetadataEntry
-	nil,                                                   // 154: billing.TokenUser.MetadataEntry
-	nil,                                                   // 155: billing.TokenSettings.MetadataEntry
-	nil,                                                   // 156: billing.MerchantTariffRatesSettings.PayoutEntry
-	nil,                                                   // 157: billing.MerchantTariffRatesSettings.MinimalPayoutEntry
-	nil,                                                   // 158: billing.ProjectVirtualCurrency.NameEntry
-	nil,                                                   // 159: billing.ProjectVirtualCurrency.SuccessMessageEntry
-	(*timestamp.Timestamp)(nil),                           // 160: google.protobuf.Timestamp
+	(*ActOfCompletionDocument)(nil),                       // 134: billing.ActOfCompletionDocument
+	nil,                                                   // 135: billing.OrderCreateRequest.RawParamsEntry
+	nil,                                                   // 136: billing.OrderCreateRequest.MetadataEntry
+	nil,                                                   // 137: billing.OrderCreateRequest.PrivateMetadataEntry
+	nil,                                                   // 138: billing.Project.NameEntry
+	nil,                                                   // 139: billing.Project.FullDescriptionEntry
+	nil,                                                   // 140: billing.Project.ShortDescriptionEntry
+	nil,                                                   // 141: billing.ProjectOrder.NameEntry
+	nil,                                                   // 142: billing.MerchantTariff.MinimalPayoutEntry
+	nil,                                                   // 143: billing.Merchant.PaymentMethodsEntry
+	nil,                                                   // 144: billing.OrderUser.MetadataEntry
+	nil,                                                   // 145: billing.Order.MetadataEntry
+	nil,                                                   // 146: billing.Order.PrivateMetadataEntry
+	nil,                                                   // 147: billing.Order.ProjectParamsEntry
+	nil,                                                   // 148: billing.Order.PaymentMethodTxnParamsEntry
+	nil,                                                   // 149: billing.Order.PaymentRequisitesEntry
+	nil,                                                   // 150: billing.Order.IsNotificationsSentEntry
+	nil,                                                   // 151: billing.OrderItem.MetadataEntry
+	nil,                                                   // 152: billing.PaymentMethod.TestSettingsEntry
+	nil,                                                   // 153: billing.PaymentMethod.ProductionSettingsEntry
+	nil,                                                   // 154: billing.Customer.MetadataEntry
+	nil,                                                   // 155: billing.TokenUser.MetadataEntry
+	nil,                                                   // 156: billing.TokenSettings.MetadataEntry
+	nil,                                                   // 157: billing.MerchantTariffRatesSettings.PayoutEntry
+	nil,                                                   // 158: billing.MerchantTariffRatesSettings.MinimalPayoutEntry
+	nil,                                                   // 159: billing.ProjectVirtualCurrency.NameEntry
+	nil,                                                   // 160: billing.ProjectVirtualCurrency.SuccessMessageEntry
+	(*timestamp.Timestamp)(nil),                           // 161: google.protobuf.Timestamp
 }
 var file_billing_proto_depIdxs = []int32{
-	134, // 0: billing.OrderCreateRequest.raw_params:type_name -> billing.OrderCreateRequest.RawParamsEntry
-	135, // 1: billing.OrderCreateRequest.metadata:type_name -> billing.OrderCreateRequest.MetadataEntry
-	136, // 2: billing.OrderCreateRequest.private_metadata:type_name -> billing.OrderCreateRequest.PrivateMetadataEntry
+	135, // 0: billing.OrderCreateRequest.raw_params:type_name -> billing.OrderCreateRequest.RawParamsEntry
+	136, // 1: billing.OrderCreateRequest.metadata:type_name -> billing.OrderCreateRequest.MetadataEntry
+	137, // 2: billing.OrderCreateRequest.private_metadata:type_name -> billing.OrderCreateRequest.PrivateMetadataEntry
 	27,  // 3: billing.OrderCreateRequest.user:type_name -> billing.OrderUser
-	137, // 4: billing.Project.name:type_name -> billing.Project.NameEntry
-	160, // 5: billing.Project.created_at:type_name -> google.protobuf.Timestamp
-	160, // 6: billing.Project.updated_at:type_name -> google.protobuf.Timestamp
-	138, // 7: billing.Project.full_description:type_name -> billing.Project.FullDescriptionEntry
-	139, // 8: billing.Project.short_description:type_name -> billing.Project.ShortDescriptionEntry
+	138, // 4: billing.Project.name:type_name -> billing.Project.NameEntry
+	161, // 5: billing.Project.created_at:type_name -> google.protobuf.Timestamp
+	161, // 6: billing.Project.updated_at:type_name -> google.protobuf.Timestamp
+	139, // 7: billing.Project.full_description:type_name -> billing.Project.FullDescriptionEntry
+	140, // 8: billing.Project.short_description:type_name -> billing.Project.ShortDescriptionEntry
 	122, // 9: billing.Project.currencies:type_name -> billing.HasCurrencyItem
 	124, // 10: billing.Project.cover:type_name -> billing.ImageCollection
 	126, // 11: billing.Project.virtual_currency:type_name -> billing.ProjectVirtualCurrency
@@ -20646,44 +20767,44 @@ var file_billing_proto_depIdxs = []int32{
 	5,   // 14: billing.WebHookTesting.products:type_name -> billing.ProductsTesting
 	6,   // 15: billing.WebHookTesting.virtual_currency:type_name -> billing.VirtualCurrencyTesting
 	7,   // 16: billing.WebHookTesting.keys:type_name -> billing.KeysTesting
-	140, // 17: billing.ProjectOrder.name:type_name -> billing.ProjectOrder.NameEntry
+	141, // 17: billing.ProjectOrder.name:type_name -> billing.ProjectOrder.NameEntry
 	2,   // 18: billing.ProjectOrder.redirect_settings:type_name -> billing.ProjectRedirectSettings
 	11,  // 19: billing.MerchantContact.authorized:type_name -> billing.MerchantContactAuthorized
 	10,  // 20: billing.MerchantContact.technical:type_name -> billing.MerchantContactTechnical
-	160, // 21: billing.MerchantLastPayout.date:type_name -> google.protobuf.Timestamp
-	160, // 22: billing.MerchantUser.registration_date:type_name -> google.protobuf.Timestamp
-	160, // 23: billing.MerchantAgreementSignatureDataSignUrl.expires_at:type_name -> google.protobuf.Timestamp
+	161, // 21: billing.MerchantLastPayout.date:type_name -> google.protobuf.Timestamp
+	161, // 22: billing.MerchantUser.registration_date:type_name -> google.protobuf.Timestamp
+	161, // 23: billing.MerchantAgreementSignatureDataSignUrl.expires_at:type_name -> google.protobuf.Timestamp
 	17,  // 24: billing.MerchantAgreementSignatureData.merchant_sign_url:type_name -> billing.MerchantAgreementSignatureDataSignUrl
 	17,  // 25: billing.MerchantAgreementSignatureData.ps_sign_url:type_name -> billing.MerchantAgreementSignatureDataSignUrl
 	113, // 26: billing.MerchantTariff.payment:type_name -> billing.MerchantTariffRatesPayment
 	114, // 27: billing.MerchantTariff.payout:type_name -> billing.MerchantTariffRatesSettingsItem
 	114, // 28: billing.MerchantTariff.chargeback:type_name -> billing.MerchantTariffRatesSettingsItem
 	114, // 29: billing.MerchantTariff.refund:type_name -> billing.MerchantTariffRatesSettingsItem
-	141, // 30: billing.MerchantTariff.minimal_payout:type_name -> billing.MerchantTariff.MinimalPayoutEntry
+	142, // 30: billing.MerchantTariff.minimal_payout:type_name -> billing.MerchantTariff.MinimalPayoutEntry
 	14,  // 31: billing.Merchant.user:type_name -> billing.MerchantUser
 	15,  // 32: billing.Merchant.company:type_name -> billing.MerchantCompanyInfo
 	9,   // 33: billing.Merchant.contacts:type_name -> billing.MerchantContact
 	12,  // 34: billing.Merchant.banking:type_name -> billing.MerchantBanking
-	160, // 35: billing.Merchant.created_at:type_name -> google.protobuf.Timestamp
-	160, // 36: billing.Merchant.updated_at:type_name -> google.protobuf.Timestamp
-	160, // 37: billing.Merchant.first_payment_at:type_name -> google.protobuf.Timestamp
+	161, // 35: billing.Merchant.created_at:type_name -> google.protobuf.Timestamp
+	161, // 36: billing.Merchant.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 37: billing.Merchant.first_payment_at:type_name -> google.protobuf.Timestamp
 	13,  // 38: billing.Merchant.last_payout:type_name -> billing.MerchantLastPayout
-	142, // 39: billing.Merchant.payment_methods:type_name -> billing.Merchant.PaymentMethodsEntry
+	143, // 39: billing.Merchant.payment_methods:type_name -> billing.Merchant.PaymentMethodsEntry
 	18,  // 40: billing.Merchant.agreement_signature_data:type_name -> billing.MerchantAgreementSignatureData
 	16,  // 41: billing.Merchant.steps:type_name -> billing.MerchantCompletedSteps
-	160, // 42: billing.Merchant.received_date:type_name -> google.protobuf.Timestamp
-	160, // 43: billing.Merchant.status_last_updated_at:type_name -> google.protobuf.Timestamp
+	161, // 42: billing.Merchant.received_date:type_name -> google.protobuf.Timestamp
+	161, // 43: billing.Merchant.status_last_updated_at:type_name -> google.protobuf.Timestamp
 	19,  // 44: billing.Merchant.tariff:type_name -> billing.MerchantTariff
 	22,  // 45: billing.Notification.statuses:type_name -> billing.SystemNotificationStatuses
-	160, // 46: billing.Notification.created_at:type_name -> google.protobuf.Timestamp
-	160, // 47: billing.Notification.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 46: billing.Notification.created_at:type_name -> google.protobuf.Timestamp
+	161, // 47: billing.Notification.updated_at:type_name -> google.protobuf.Timestamp
 	26,  // 48: billing.OrderUser.address:type_name -> billing.OrderBillingAddress
-	143, // 49: billing.OrderUser.metadata:type_name -> billing.OrderUser.MetadataEntry
-	160, // 50: billing.Order.created_at:type_name -> google.protobuf.Timestamp
-	160, // 51: billing.Order.updated_at:type_name -> google.protobuf.Timestamp
-	160, // 52: billing.Order.canceled_at:type_name -> google.protobuf.Timestamp
+	144, // 49: billing.OrderUser.metadata:type_name -> billing.OrderUser.MetadataEntry
+	161, // 50: billing.Order.created_at:type_name -> google.protobuf.Timestamp
+	161, // 51: billing.Order.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 52: billing.Order.canceled_at:type_name -> google.protobuf.Timestamp
 	28,  // 53: billing.Order.cancellation:type_name -> billing.OrderNotificationCancellation
-	160, // 54: billing.Order.refunded_at:type_name -> google.protobuf.Timestamp
+	161, // 54: billing.Order.refunded_at:type_name -> google.protobuf.Timestamp
 	68,  // 55: billing.Order.issuer:type_name -> billing.OrderIssuer
 	27,  // 56: billing.Order.user:type_name -> billing.OrderUser
 	26,  // 57: billing.Order.billing_address:type_name -> billing.OrderBillingAddress
@@ -20691,35 +20812,35 @@ var file_billing_proto_depIdxs = []int32{
 	34,  // 59: billing.Order.payment_method:type_name -> billing.PaymentMethodOrder
 	32,  // 60: billing.Order.items:type_name -> billing.OrderItem
 	69,  // 61: billing.Order.refund:type_name -> billing.OrderNotificationRefund
-	144, // 62: billing.Order.metadata:type_name -> billing.Order.MetadataEntry
-	145, // 63: billing.Order.private_metadata:type_name -> billing.Order.PrivateMetadataEntry
+	145, // 62: billing.Order.metadata:type_name -> billing.Order.MetadataEntry
+	146, // 63: billing.Order.private_metadata:type_name -> billing.Order.PrivateMetadataEntry
 	8,   // 64: billing.Order.project:type_name -> billing.ProjectOrder
-	160, // 65: billing.Order.project_last_requested_at:type_name -> google.protobuf.Timestamp
-	146, // 66: billing.Order.project_params:type_name -> billing.Order.ProjectParamsEntry
-	160, // 67: billing.Order.payment_method_order_closed_at:type_name -> google.protobuf.Timestamp
-	147, // 68: billing.Order.payment_method_txn_params:type_name -> billing.Order.PaymentMethodTxnParamsEntry
-	148, // 69: billing.Order.payment_requisites:type_name -> billing.Order.PaymentRequisitesEntry
-	160, // 70: billing.Order.expire_date_to_form_input:type_name -> google.protobuf.Timestamp
-	149, // 71: billing.Order.is_notifications_sent:type_name -> billing.Order.IsNotificationsSentEntry
+	161, // 65: billing.Order.project_last_requested_at:type_name -> google.protobuf.Timestamp
+	147, // 66: billing.Order.project_params:type_name -> billing.Order.ProjectParamsEntry
+	161, // 67: billing.Order.payment_method_order_closed_at:type_name -> google.protobuf.Timestamp
+	148, // 68: billing.Order.payment_method_txn_params:type_name -> billing.Order.PaymentMethodTxnParamsEntry
+	149, // 69: billing.Order.payment_requisites:type_name -> billing.Order.PaymentRequisitesEntry
+	161, // 70: billing.Order.expire_date_to_form_input:type_name -> google.protobuf.Timestamp
+	150, // 71: billing.Order.is_notifications_sent:type_name -> billing.Order.IsNotificationsSentEntry
 	31,  // 72: billing.Order.country_restriction:type_name -> billing.CountryRestriction
 	30,  // 73: billing.Order.parent_order:type_name -> billing.ParentOrder
-	160, // 74: billing.Order.parent_payment_at:type_name -> google.protobuf.Timestamp
+	161, // 74: billing.Order.parent_payment_at:type_name -> google.protobuf.Timestamp
 	105, // 75: billing.Order.merchant_info:type_name -> billing.OrderViewMerchantInfo
-	150, // 76: billing.OrderItem.metadata:type_name -> billing.OrderItem.MetadataEntry
-	160, // 77: billing.OrderItem.created_at:type_name -> google.protobuf.Timestamp
-	160, // 78: billing.OrderItem.updated_at:type_name -> google.protobuf.Timestamp
+	151, // 76: billing.OrderItem.metadata:type_name -> billing.OrderItem.MetadataEntry
+	161, // 77: billing.OrderItem.created_at:type_name -> google.protobuf.Timestamp
+	161, // 78: billing.OrderItem.updated_at:type_name -> google.protobuf.Timestamp
 	29,  // 79: billing.OrderPaginate.items:type_name -> billing.Order
 	35,  // 80: billing.PaymentMethodOrder.params:type_name -> billing.PaymentMethodParams
 	37,  // 81: billing.PaymentMethodOrder.card:type_name -> billing.PaymentMethodCard
 	38,  // 82: billing.PaymentMethodOrder.wallet:type_name -> billing.PaymentMethodWallet
 	39,  // 83: billing.PaymentMethodOrder.crypto_currency:type_name -> billing.PaymentMethodCrypto
-	160, // 84: billing.PaymentSystem.created_at:type_name -> google.protobuf.Timestamp
-	160, // 85: billing.PaymentSystem.updated_at:type_name -> google.protobuf.Timestamp
-	160, // 86: billing.ProjectPaymentMethod.created_at:type_name -> google.protobuf.Timestamp
-	151, // 87: billing.PaymentMethod.test_settings:type_name -> billing.PaymentMethod.TestSettingsEntry
-	152, // 88: billing.PaymentMethod.production_settings:type_name -> billing.PaymentMethod.ProductionSettingsEntry
-	160, // 89: billing.PaymentMethod.created_at:type_name -> google.protobuf.Timestamp
-	160, // 90: billing.PaymentMethod.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 84: billing.PaymentSystem.created_at:type_name -> google.protobuf.Timestamp
+	161, // 85: billing.PaymentSystem.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 86: billing.ProjectPaymentMethod.created_at:type_name -> google.protobuf.Timestamp
+	152, // 87: billing.PaymentMethod.test_settings:type_name -> billing.PaymentMethod.TestSettingsEntry
+	153, // 88: billing.PaymentMethod.production_settings:type_name -> billing.PaymentMethod.ProductionSettingsEntry
+	161, // 89: billing.PaymentMethod.created_at:type_name -> google.protobuf.Timestamp
+	161, // 90: billing.PaymentMethod.updated_at:type_name -> google.protobuf.Timestamp
 	42,  // 91: billing.SavedCard.expire:type_name -> billing.CardExpire
 	43,  // 92: billing.PaymentFormPaymentMethod.saved_cards:type_name -> billing.SavedCard
 	45,  // 93: billing.MerchantPaymentMethodCommissions.per_transaction:type_name -> billing.MerchantPaymentMethodPerTransactionCommission
@@ -20727,86 +20848,86 @@ var file_billing_proto_depIdxs = []int32{
 	46,  // 95: billing.MerchantPaymentMethod.commission:type_name -> billing.MerchantPaymentMethodCommissions
 	47,  // 96: billing.MerchantPaymentMethod.integration:type_name -> billing.MerchantPaymentMethodIntegration
 	51,  // 97: billing.Refund.original_order:type_name -> billing.RefundOrder
-	160, // 98: billing.Refund.created_at:type_name -> google.protobuf.Timestamp
-	160, // 99: billing.Refund.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 98: billing.Refund.created_at:type_name -> google.protobuf.Timestamp
+	161, // 99: billing.Refund.updated_at:type_name -> google.protobuf.Timestamp
 	50,  // 100: billing.Refund.payer_data:type_name -> billing.RefundPayerData
 	49,  // 101: billing.MerchantPaymentMethodHistory.paymentMethod:type_name -> billing.MerchantPaymentMethod
-	160, // 102: billing.MerchantPaymentMethodHistory.created_at:type_name -> google.protobuf.Timestamp
-	160, // 103: billing.CustomerIdentity.created_at:type_name -> google.protobuf.Timestamp
-	160, // 104: billing.CustomerIpHistory.created_at:type_name -> google.protobuf.Timestamp
+	161, // 102: billing.MerchantPaymentMethodHistory.created_at:type_name -> google.protobuf.Timestamp
+	161, // 103: billing.CustomerIdentity.created_at:type_name -> google.protobuf.Timestamp
+	161, // 104: billing.CustomerIpHistory.created_at:type_name -> google.protobuf.Timestamp
 	26,  // 105: billing.CustomerIpHistory.address:type_name -> billing.OrderBillingAddress
-	160, // 106: billing.CustomerAddressHistory.created_at:type_name -> google.protobuf.Timestamp
-	160, // 107: billing.CustomerStringValueHistory.created_at:type_name -> google.protobuf.Timestamp
+	161, // 106: billing.CustomerAddressHistory.created_at:type_name -> google.protobuf.Timestamp
+	161, // 107: billing.CustomerStringValueHistory.created_at:type_name -> google.protobuf.Timestamp
 	26,  // 108: billing.Customer.address:type_name -> billing.OrderBillingAddress
 	54,  // 109: billing.Customer.identity:type_name -> billing.CustomerIdentity
 	55,  // 110: billing.Customer.ip_history:type_name -> billing.CustomerIpHistory
 	56,  // 111: billing.Customer.address_history:type_name -> billing.CustomerAddressHistory
 	57,  // 112: billing.Customer.locale_history:type_name -> billing.CustomerStringValueHistory
 	57,  // 113: billing.Customer.accept_language_history:type_name -> billing.CustomerStringValueHistory
-	153, // 114: billing.Customer.metadata:type_name -> billing.Customer.MetadataEntry
-	160, // 115: billing.Customer.created_at:type_name -> google.protobuf.Timestamp
-	160, // 116: billing.Customer.updated_at:type_name -> google.protobuf.Timestamp
+	154, // 114: billing.Customer.metadata:type_name -> billing.Customer.MetadataEntry
+	161, // 115: billing.Customer.created_at:type_name -> google.protobuf.Timestamp
+	161, // 116: billing.Customer.updated_at:type_name -> google.protobuf.Timestamp
 	59,  // 117: billing.TokenUser.email:type_name -> billing.TokenUserEmailValue
 	60,  // 118: billing.TokenUser.phone:type_name -> billing.TokenUserPhoneValue
 	63,  // 119: billing.TokenUser.name:type_name -> billing.TokenUserValue
 	61,  // 120: billing.TokenUser.ip:type_name -> billing.TokenUserIpValue
 	62,  // 121: billing.TokenUser.locale:type_name -> billing.TokenUserLocaleValue
 	26,  // 122: billing.TokenUser.address:type_name -> billing.OrderBillingAddress
-	154, // 123: billing.TokenUser.metadata:type_name -> billing.TokenUser.MetadataEntry
+	155, // 123: billing.TokenUser.metadata:type_name -> billing.TokenUser.MetadataEntry
 	65,  // 124: billing.TokenSettings.return_url:type_name -> billing.TokenSettingsReturnUrl
-	155, // 125: billing.TokenSettings.metadata:type_name -> billing.TokenSettings.MetadataEntry
+	156, // 125: billing.TokenSettings.metadata:type_name -> billing.TokenSettings.MetadataEntry
 	71,  // 126: billing.Country.vat_threshold:type_name -> billing.CountryVatThreshold
-	160, // 127: billing.Country.created_at:type_name -> google.protobuf.Timestamp
-	160, // 128: billing.Country.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 127: billing.Country.created_at:type_name -> google.protobuf.Timestamp
+	161, // 128: billing.Country.updated_at:type_name -> google.protobuf.Timestamp
 	72,  // 129: billing.CountriesList.countries:type_name -> billing.Country
-	160, // 130: billing.PriceGroup.created_at:type_name -> google.protobuf.Timestamp
-	160, // 131: billing.PriceGroup.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 130: billing.PriceGroup.created_at:type_name -> google.protobuf.Timestamp
+	161, // 131: billing.PriceGroup.updated_at:type_name -> google.protobuf.Timestamp
 	76,  // 132: billing.ZipCode.state:type_name -> billing.ZipCodeState
-	160, // 133: billing.ZipCode.created_at:type_name -> google.protobuf.Timestamp
-	160, // 134: billing.PaymentChannelCostSystem.created_at:type_name -> google.protobuf.Timestamp
-	160, // 135: billing.PaymentChannelCostSystem.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 133: billing.ZipCode.created_at:type_name -> google.protobuf.Timestamp
+	161, // 134: billing.PaymentChannelCostSystem.created_at:type_name -> google.protobuf.Timestamp
+	161, // 135: billing.PaymentChannelCostSystem.updated_at:type_name -> google.protobuf.Timestamp
 	78,  // 136: billing.PaymentChannelCostSystemList.items:type_name -> billing.PaymentChannelCostSystem
-	160, // 137: billing.PaymentChannelCostMerchant.created_at:type_name -> google.protobuf.Timestamp
-	160, // 138: billing.PaymentChannelCostMerchant.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 137: billing.PaymentChannelCostMerchant.created_at:type_name -> google.protobuf.Timestamp
+	161, // 138: billing.PaymentChannelCostMerchant.updated_at:type_name -> google.protobuf.Timestamp
 	81,  // 139: billing.PaymentChannelCostMerchantList.items:type_name -> billing.PaymentChannelCostMerchant
-	160, // 140: billing.MoneyBackCostSystem.created_at:type_name -> google.protobuf.Timestamp
-	160, // 141: billing.MoneyBackCostSystem.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 140: billing.MoneyBackCostSystem.created_at:type_name -> google.protobuf.Timestamp
+	161, // 141: billing.MoneyBackCostSystem.updated_at:type_name -> google.protobuf.Timestamp
 	85,  // 142: billing.MoneyBackCostSystemList.items:type_name -> billing.MoneyBackCostSystem
-	160, // 143: billing.MoneyBackCostMerchant.created_at:type_name -> google.protobuf.Timestamp
-	160, // 144: billing.MoneyBackCostMerchant.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 143: billing.MoneyBackCostMerchant.created_at:type_name -> google.protobuf.Timestamp
+	161, // 144: billing.MoneyBackCostMerchant.updated_at:type_name -> google.protobuf.Timestamp
 	88,  // 145: billing.MoneyBackCostMerchantList.items:type_name -> billing.MoneyBackCostMerchant
 	93,  // 146: billing.AccountingEntry.source:type_name -> billing.AccountingEntrySource
-	160, // 147: billing.AccountingEntry.created_at:type_name -> google.protobuf.Timestamp
-	160, // 148: billing.AccountingEntry.available_on:type_name -> google.protobuf.Timestamp
-	160, // 149: billing.RoyaltyReportCorrectionItem.entry_date:type_name -> google.protobuf.Timestamp
+	161, // 147: billing.AccountingEntry.created_at:type_name -> google.protobuf.Timestamp
+	161, // 148: billing.AccountingEntry.available_on:type_name -> google.protobuf.Timestamp
+	161, // 149: billing.RoyaltyReportCorrectionItem.entry_date:type_name -> google.protobuf.Timestamp
 	96,  // 150: billing.RoyaltyReportSummary.products_items:type_name -> billing.RoyaltyReportProductSummaryItem
 	96,  // 151: billing.RoyaltyReportSummary.products_total:type_name -> billing.RoyaltyReportProductSummaryItem
 	97,  // 152: billing.RoyaltyReportSummary.corrections:type_name -> billing.RoyaltyReportCorrectionItem
 	97,  // 153: billing.RoyaltyReportSummary.rolling_reserves:type_name -> billing.RoyaltyReportCorrectionItem
-	160, // 154: billing.RoyaltyReport.created_at:type_name -> google.protobuf.Timestamp
-	160, // 155: billing.RoyaltyReport.updated_at:type_name -> google.protobuf.Timestamp
-	160, // 156: billing.RoyaltyReport.payout_date:type_name -> google.protobuf.Timestamp
-	160, // 157: billing.RoyaltyReport.period_from:type_name -> google.protobuf.Timestamp
-	160, // 158: billing.RoyaltyReport.period_to:type_name -> google.protobuf.Timestamp
-	160, // 159: billing.RoyaltyReport.accept_expire_at:type_name -> google.protobuf.Timestamp
-	160, // 160: billing.RoyaltyReport.accepted_at:type_name -> google.protobuf.Timestamp
+	161, // 154: billing.RoyaltyReport.created_at:type_name -> google.protobuf.Timestamp
+	161, // 155: billing.RoyaltyReport.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 156: billing.RoyaltyReport.payout_date:type_name -> google.protobuf.Timestamp
+	161, // 157: billing.RoyaltyReport.period_from:type_name -> google.protobuf.Timestamp
+	161, // 158: billing.RoyaltyReport.period_to:type_name -> google.protobuf.Timestamp
+	161, // 159: billing.RoyaltyReport.accept_expire_at:type_name -> google.protobuf.Timestamp
+	161, // 160: billing.RoyaltyReport.accepted_at:type_name -> google.protobuf.Timestamp
 	95,  // 161: billing.RoyaltyReport.totals:type_name -> billing.RoyaltyReportTotals
 	98,  // 162: billing.RoyaltyReport.summary:type_name -> billing.RoyaltyReportSummary
-	160, // 163: billing.RoyaltyReport.dispute_started_at:type_name -> google.protobuf.Timestamp
-	160, // 164: billing.RoyaltyReport.dispute_closed_at:type_name -> google.protobuf.Timestamp
-	160, // 165: billing.RoyaltyReportChanges.created_at:type_name -> google.protobuf.Timestamp
+	161, // 163: billing.RoyaltyReport.dispute_started_at:type_name -> google.protobuf.Timestamp
+	161, // 164: billing.RoyaltyReport.dispute_closed_at:type_name -> google.protobuf.Timestamp
+	161, // 165: billing.RoyaltyReportChanges.created_at:type_name -> google.protobuf.Timestamp
 	26,  // 166: billing.VatTransaction.billing_address:type_name -> billing.OrderBillingAddress
-	160, // 167: billing.VatTransaction.date_time:type_name -> google.protobuf.Timestamp
-	160, // 168: billing.VatReport.date_from:type_name -> google.protobuf.Timestamp
-	160, // 169: billing.VatReport.date_to:type_name -> google.protobuf.Timestamp
-	160, // 170: billing.VatReport.pay_until_date:type_name -> google.protobuf.Timestamp
-	160, // 171: billing.VatReport.created_at:type_name -> google.protobuf.Timestamp
-	160, // 172: billing.VatReport.updated_at:type_name -> google.protobuf.Timestamp
-	160, // 173: billing.VatReport.paid_at:type_name -> google.protobuf.Timestamp
+	161, // 167: billing.VatTransaction.date_time:type_name -> google.protobuf.Timestamp
+	161, // 168: billing.VatReport.date_from:type_name -> google.protobuf.Timestamp
+	161, // 169: billing.VatReport.date_to:type_name -> google.protobuf.Timestamp
+	161, // 170: billing.VatReport.pay_until_date:type_name -> google.protobuf.Timestamp
+	161, // 171: billing.VatReport.created_at:type_name -> google.protobuf.Timestamp
+	161, // 172: billing.VatReport.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 173: billing.VatReport.paid_at:type_name -> google.protobuf.Timestamp
 	8,   // 174: billing.OrderViewPublic.project:type_name -> billing.ProjectOrder
-	160, // 175: billing.OrderViewPublic.created_at:type_name -> google.protobuf.Timestamp
+	161, // 175: billing.OrderViewPublic.created_at:type_name -> google.protobuf.Timestamp
 	34,  // 176: billing.OrderViewPublic.payment_method:type_name -> billing.PaymentMethodOrder
-	160, // 177: billing.OrderViewPublic.transaction_date:type_name -> google.protobuf.Timestamp
+	161, // 177: billing.OrderViewPublic.transaction_date:type_name -> google.protobuf.Timestamp
 	27,  // 178: billing.OrderViewPublic.user:type_name -> billing.OrderUser
 	26,  // 179: billing.OrderViewPublic.billing_address:type_name -> billing.OrderBillingAddress
 	104, // 180: billing.OrderViewPublic.gross_revenue:type_name -> billing.OrderViewMoney
@@ -20837,9 +20958,9 @@ var file_billing_proto_depIdxs = []int32{
 	104, // 205: billing.OrderViewPublic.order_charge:type_name -> billing.OrderViewMoney
 	105, // 206: billing.OrderViewPublic.merchant_info:type_name -> billing.OrderViewMerchantInfo
 	8,   // 207: billing.OrderViewPrivate.project:type_name -> billing.ProjectOrder
-	160, // 208: billing.OrderViewPrivate.created_at:type_name -> google.protobuf.Timestamp
+	161, // 208: billing.OrderViewPrivate.created_at:type_name -> google.protobuf.Timestamp
 	34,  // 209: billing.OrderViewPrivate.payment_method:type_name -> billing.PaymentMethodOrder
-	160, // 210: billing.OrderViewPrivate.transaction_date:type_name -> google.protobuf.Timestamp
+	161, // 210: billing.OrderViewPrivate.transaction_date:type_name -> google.protobuf.Timestamp
 	27,  // 211: billing.OrderViewPrivate.user:type_name -> billing.OrderUser
 	26,  // 212: billing.OrderViewPrivate.billing_address:type_name -> billing.OrderBillingAddress
 	104, // 213: billing.OrderViewPrivate.payment_gross_revenue_local:type_name -> billing.OrderViewMoney
@@ -20906,34 +21027,34 @@ var file_billing_proto_depIdxs = []int32{
 	110, // 274: billing.PriceTable.ranges:type_name -> billing.PriceTableRange
 	114, // 275: billing.MerchantTariffRatesSettings.refund:type_name -> billing.MerchantTariffRatesSettingsItem
 	114, // 276: billing.MerchantTariffRatesSettings.chargeback:type_name -> billing.MerchantTariffRatesSettingsItem
-	156, // 277: billing.MerchantTariffRatesSettings.payout:type_name -> billing.MerchantTariffRatesSettings.PayoutEntry
-	157, // 278: billing.MerchantTariffRatesSettings.minimal_payout:type_name -> billing.MerchantTariffRatesSettings.MinimalPayoutEntry
-	160, // 279: billing.Key.created_at:type_name -> google.protobuf.Timestamp
-	160, // 280: billing.Key.reserved_to:type_name -> google.protobuf.Timestamp
-	160, // 281: billing.Key.redeemed_at:type_name -> google.protobuf.Timestamp
-	160, // 282: billing.PayoutDocument.period_from:type_name -> google.protobuf.Timestamp
-	160, // 283: billing.PayoutDocument.period_to:type_name -> google.protobuf.Timestamp
+	157, // 277: billing.MerchantTariffRatesSettings.payout:type_name -> billing.MerchantTariffRatesSettings.PayoutEntry
+	158, // 278: billing.MerchantTariffRatesSettings.minimal_payout:type_name -> billing.MerchantTariffRatesSettings.MinimalPayoutEntry
+	161, // 279: billing.Key.created_at:type_name -> google.protobuf.Timestamp
+	161, // 280: billing.Key.reserved_to:type_name -> google.protobuf.Timestamp
+	161, // 281: billing.Key.redeemed_at:type_name -> google.protobuf.Timestamp
+	161, // 282: billing.PayoutDocument.period_from:type_name -> google.protobuf.Timestamp
+	161, // 283: billing.PayoutDocument.period_to:type_name -> google.protobuf.Timestamp
 	12,  // 284: billing.PayoutDocument.destination:type_name -> billing.MerchantBanking
 	15,  // 285: billing.PayoutDocument.company:type_name -> billing.MerchantCompanyInfo
-	160, // 286: billing.PayoutDocument.created_at:type_name -> google.protobuf.Timestamp
-	160, // 287: billing.PayoutDocument.updated_at:type_name -> google.protobuf.Timestamp
-	160, // 288: billing.PayoutDocument.arrival_date:type_name -> google.protobuf.Timestamp
-	160, // 289: billing.PayoutDocument.paid_at:type_name -> google.protobuf.Timestamp
-	160, // 290: billing.PayoutDocumentChanges.created_at:type_name -> google.protobuf.Timestamp
-	160, // 291: billing.MerchantBalance.created_at:type_name -> google.protobuf.Timestamp
+	161, // 286: billing.PayoutDocument.created_at:type_name -> google.protobuf.Timestamp
+	161, // 287: billing.PayoutDocument.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 288: billing.PayoutDocument.arrival_date:type_name -> google.protobuf.Timestamp
+	161, // 289: billing.PayoutDocument.paid_at:type_name -> google.protobuf.Timestamp
+	161, // 290: billing.PayoutDocumentChanges.created_at:type_name -> google.protobuf.Timestamp
+	161, // 291: billing.MerchantBalance.created_at:type_name -> google.protobuf.Timestamp
 	121, // 292: billing.OrderReceipt.items:type_name -> billing.OrderReceiptItem
 	123, // 293: billing.ImageCollection.images:type_name -> billing.LocalizedUrl
-	158, // 294: billing.ProjectVirtualCurrency.name:type_name -> billing.ProjectVirtualCurrency.NameEntry
-	159, // 295: billing.ProjectVirtualCurrency.success_message:type_name -> billing.ProjectVirtualCurrency.SuccessMessageEntry
+	159, // 294: billing.ProjectVirtualCurrency.name:type_name -> billing.ProjectVirtualCurrency.NameEntry
+	160, // 295: billing.ProjectVirtualCurrency.success_message:type_name -> billing.ProjectVirtualCurrency.SuccessMessageEntry
 	125, // 296: billing.ProjectVirtualCurrency.prices:type_name -> billing.ProductPrice
 	128, // 297: billing.PaymentFormDataChangeResponseItem.user_ip_data:type_name -> billing.UserIpData
 	32,  // 298: billing.PaymentFormDataChangeResponseItem.items:type_name -> billing.OrderItem
-	160, // 299: billing.OperatingCompany.created_at:type_name -> google.protobuf.Timestamp
-	160, // 300: billing.OperatingCompany.updated_at:type_name -> google.protobuf.Timestamp
-	160, // 301: billing.PaymentMinLimitSystem.created_at:type_name -> google.protobuf.Timestamp
-	160, // 302: billing.PaymentMinLimitSystem.updated_at:type_name -> google.protobuf.Timestamp
-	160, // 303: billing.UserRole.created_at:type_name -> google.protobuf.Timestamp
-	160, // 304: billing.UserRole.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 299: billing.OperatingCompany.created_at:type_name -> google.protobuf.Timestamp
+	161, // 300: billing.OperatingCompany.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 301: billing.PaymentMinLimitSystem.created_at:type_name -> google.protobuf.Timestamp
+	161, // 302: billing.PaymentMinLimitSystem.updated_at:type_name -> google.protobuf.Timestamp
+	161, // 303: billing.UserRole.created_at:type_name -> google.protobuf.Timestamp
+	161, // 304: billing.UserRole.updated_at:type_name -> google.protobuf.Timestamp
 	49,  // 305: billing.Merchant.PaymentMethodsEntry.value:type_name -> billing.MerchantPaymentMethod
 	35,  // 306: billing.PaymentMethod.TestSettingsEntry.value:type_name -> billing.PaymentMethodParams
 	35,  // 307: billing.PaymentMethod.ProductionSettingsEntry.value:type_name -> billing.PaymentMethodParams
@@ -22559,6 +22680,18 @@ func file_billing_proto_init() {
 				return nil
 			}
 		}
+		file_billing_proto_msgTypes[134].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ActOfCompletionDocument); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -22566,7 +22699,7 @@ func file_billing_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_billing_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   160,
+			NumMessages:   161,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
