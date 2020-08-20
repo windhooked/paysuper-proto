@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "currenciespb";
+option go_package = ".;currenciespb";
 package currencies;
 
 import "google/protobuf/timestamp.proto";

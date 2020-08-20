@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "billingpb";
+option go_package = ".;billingpb";
 package billing;
 
 import "google/protobuf/timestamp.proto";
