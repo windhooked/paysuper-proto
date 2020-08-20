@@ -389,7 +389,7 @@ message ProjectOrder {
     //@inject_tag: json:"first_payment_at" bson:"first_payment_at"
     //
     // Date of first payment for merchant
-    string first_payment_at = 19;
+    google.protobuf.Timestamp first_payment_at = 19;
 }
 
 message MerchantContact {
