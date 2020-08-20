@@ -1379,7 +1379,7 @@ type ProjectOrder struct {
 	RedirectSettings *ProjectRedirectSettings `protobuf:"bytes,18,opt,name=redirect_settings,json=redirectSettings,proto3" json:"redirect_settings" bson:"redirect_settings" validate:"required,dive"`
 	//@inject_tag: json:"first_payment_at" bson:"first_payment_at"
 	//
-	// Date of first payment for merchant
+	// Date of first payment for merchant.
 	FirstPaymentAt *timestamp.Timestamp `protobuf:"bytes,19,opt,name=first_payment_at,json=firstPaymentAt,proto3" json:"first_payment_at" bson:"first_payment_at"`
 }
 
