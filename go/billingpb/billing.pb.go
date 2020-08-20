@@ -2588,8 +2588,8 @@ type Merchant struct {
 	//
 	// The date of the merchant last update.
 	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
-	// @inject_tag: json:"-"
-	FirstPaymentAt *timestamp.Timestamp `protobuf:"bytes,20,opt,name=first_payment_at,json=firstPaymentAt,proto3" json:"-"`
+	// @inject_tag: json:"first_payment_at"
+	FirstPaymentAt *timestamp.Timestamp `protobuf:"bytes,20,opt,name=first_payment_at,json=firstPaymentAt,proto3" json:"first_payment_at"`
 	// @inject_tag: json:"-"
 	IsVatEnabled bool `protobuf:"varint,21,opt,name=is_vat_enabled,json=isVatEnabled,proto3" json:"-"`
 	// @inject_tag: json:"-"
