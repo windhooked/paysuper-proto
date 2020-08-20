@@ -1,12 +1,12 @@
 language: go
 sudo: false
 go:
-- 1.13.x
+- 1.14.x
 
 env:
   global:
   - GO111MODULE=on
-  - PROTOBUF_VERSION=3.11.2
+  - PROTOBUF_VERSION=3.13.0
 
 install:
   - wget "https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip"
