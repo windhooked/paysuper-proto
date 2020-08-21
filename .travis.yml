@@ -13,13 +13,14 @@ install:
   - unzip "protoc-${PROTOBUF_VERSION}-linux-x86_64.zip" -d protoc
   - export PATH="$(pwd)/protoc/bin:$GOPATH/bin:$PATH"
   - export GOBIN=$GOPATH/bin && export PATH=$PATH:$GOROOT:$GOPATH:$GOBIN
-  - go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+  - go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v1.14.7
   - go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-  - go get -u github.com/unistack-org/protoc-gen-microrest
   - go get -u github.com/golang/protobuf/protoc-gen-go
   - go get -u github.com/micro/protoc-gen-micro
+  - go get github.com/googleapis/googleapis
+  - go get github.com/envoyproxy/protoc-gen-validate
   - go get github.com/favadi/protoc-go-inject-tag
-  - go get github.com/vektra/mockery/.../
+  - go get github.com/vektra/mockery/v2/.../
 
 script:
 #  - go test ./go/... -coverprofile=coverage.out -covermode=atomic -p=1
