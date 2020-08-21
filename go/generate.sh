@@ -1,6 +1,6 @@
 #!/bin/bash
 
-protoc -I=../declarations/casbin -I=$GOPATH/src/github.com/envoyproxy/ -I=$GOPATH/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/ -I=$GOPATH/src/github.com/googleapis/googleapis/ --micro_out=./casbinpb/ --go_out=./casbinpb/ ../declarations/casbin/casbin.proto
+protoc -I=../declarations/casbin -I=$GOPATH/src/github.com/envoyproxy/ -I=$GOPATH/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/ -I=$GOPATH/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ --micro_out=./casbinpb/ --go_out=./casbinpb/ ../declarations/casbin/casbin.proto
 
 protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/billing.proto
 protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/cardpay.proto
@@ -51,6 +51,6 @@ echo "GENERATING MOCKS"
 
 for d in */ ; do
     echo "GENERATING MOCK FOR " "$d"
-    mockery --all --dir=./"$d" --output=./"$d"/mocks
-    echo "done"
+    cd "$d" && mockery --all --output=./mocks && cd ..
+    echo "Done"
 done

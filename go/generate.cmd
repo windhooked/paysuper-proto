@@ -21,3 +21,33 @@ protoc -I=../declarations/document-signer --micro_out=./document_signerpb/ --go_
 
 protoc -I=../declarations/notifier --micro_out=./notifierpb/ --go_out=./notifierpb/ ../declarations/notifier/notifier.proto
 
+echo "INJECTING TAGS"
+protoc-go-inject-tag -input=./casbinpb/casbin.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./billingpb/billing.pb.go -XXX_skip=bson,json,structure,validate
+protoc-go-inject-tag -input=./billingpb/cardpay.pb.go -XXX_skip=bson,json,structure,validate
+protoc-go-inject-tag -input=./billingpb/grpc.pb.go -XXX_skip=bson,json,structure,validate
+protoc-go-inject-tag -input=./billingpb/paylink.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./currenciespb/currencies.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./document_signerpb/signer.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./postmarkpb/postmark.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./recurringpb/entity.pb.go -XXX_skip=bson,json,structure,validate
+protoc-go-inject-tag -input=./recurringpb/repository.pb.go -XXX_skip=bson,json,structure,validate
+protoc-go-inject-tag -input=./recurringpb/xsolla.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./reporterpb/reporter.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./taxpb/tax_service.pb.go -XXX_skip=bson,json,structure,validate
+
+protoc-go-inject-tag -input=./notifierpb/notifier.pb.go -XXX_skip=bson,json,structure,validate
+
+echo "GENERATING MOCKS"
+
+for /d %%i in ("*") do (
+    ECHO GENERATING MOCK FOR "%%i"
+    cd "%%i" && mockery --all --output=./mocks && cd ..
+)
