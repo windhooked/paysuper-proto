@@ -51,6 +51,6 @@ echo "GENERATING MOCKS"
 
 for d in */ ; do
     echo "GENERATING MOCK FOR " "$d"
-    mockery -all -dir=./"$d" -output=./"$d"/mocks
+    mockery --all --dir=./"$d" --output=./"$d"/mocks
     echo "done"
 done
