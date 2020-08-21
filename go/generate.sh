@@ -1,7 +1,5 @@
 #!/bin/bash
 
-protoc -I=../declarations/casbin -I=$GOPATH/src/github.com/envoyproxy/ -I=$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/ -I=$GOPATH/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis/ --micro_out=./casbinpb/ --go_out=./casbinpb/ ../declarations/casbin/casbin.proto
-
 protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/billing.proto
 protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/cardpay.proto
 protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/grpc.proto
@@ -9,7 +7,6 @@ protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/
 
 protoc -I=../declarations/currencies-service --micro_out=./currenciespb/ --go_out=./currenciespb/ ../declarations/currencies-service/currencies.proto
 
-protoc -I=../declarations/recurring-service --micro_out=./recurringpb/ --go_out=./recurringpb/ ../declarations/recurring-service/cardpay.proto
 protoc -I=../declarations/recurring-service --micro_out=./recurringpb/ --go_out=./recurringpb/ ../declarations/recurring-service/entity.proto
 protoc -I=../declarations/recurring-service --micro_out=./recurringpb/ --go_out=./recurringpb/ ../declarations/recurring-service/repository.proto
 protoc -I=../declarations/recurring-service --micro_out=./recurringpb/ --go_out=./recurringpb/ ../declarations/recurring-service/xsolla.proto
@@ -38,7 +35,6 @@ protoc-go-inject-tag -input=./document_signerpb/signer.pb.go -XXX_skip=bson,json
 
 protoc-go-inject-tag -input=./postmarkpb/postmark.pb.go -XXX_skip=bson,json,structure,validate
 
-protoc-go-inject-tag -input=./recurringpb/cardpay.pb.go -XXX_skip=bson,json,structure,validate
 protoc-go-inject-tag -input=./recurringpb/entity.pb.go -XXX_skip=bson,json,structure,validate
 protoc-go-inject-tag -input=./recurringpb/repository.pb.go -XXX_skip=bson,json,structure,validate
 protoc-go-inject-tag -input=./recurringpb/xsolla.pb.go -XXX_skip=bson,json,structure,validate
