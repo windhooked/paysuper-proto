@@ -19906,12 +19906,12 @@ type FindOrderRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// @inject_tag: validate:"omitempty,uuid" query:"id"
-	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty" validate:"omitempty,uuid" query:"id"`
+	// @inject_tag: validate:"omitempty,uuid" param:"id"
+	Uuid string `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty" validate:"omitempty,uuid" param:"id"`
 	// @inject_tag: validate:"omitempty,hexadecimal,len=24"
 	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"omitempty,hexadecimal,len=24"`
-	// @inject_tag: query:"invoice_id"
-	InvoiceId string `protobuf:"bytes,3,opt,name=invoice_id,json=invoiceId,proto3" json:"invoice_id,omitempty" query:"invoice_id"`
+	// @inject_tag: param:"invoice_id"
+	InvoiceId string `protobuf:"bytes,3,opt,name=invoice_id,json=invoiceId,proto3" json:"invoice_id,omitempty" param:"invoice_id"`
 }
 
 func (x *FindOrderRequest) Reset() {
