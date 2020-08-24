@@ -3366,5 +3366,5 @@ message FindOrderRequest {
 message FindOrderResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
-    billing.OrderViewPublic item = 3;
+    billing.Order item = 3;
 }
