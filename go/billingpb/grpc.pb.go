@@ -13268,7 +13268,8 @@ type ListOrdersResponseItem struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+	// @inject_tag: json:"count"
+	Count int64 `protobuf:"varint,1,opt,name=count,proto3" json:"count"`
 	// @inject_tag: json:"items"
 	Items []*Order `protobuf:"bytes,2,rep,name=items,proto3" json:"items"`
 }
