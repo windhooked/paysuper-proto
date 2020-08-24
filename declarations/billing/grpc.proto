@@ -2404,6 +2404,7 @@ message ListOrdersPrivateResponse {
 }
 
 message ListOrdersResponseItem {
+    // @inject_tag: json:"count"
     int64 count = 1;
     // @inject_tag: json:"items"
     repeated billing.Order items = 2;
