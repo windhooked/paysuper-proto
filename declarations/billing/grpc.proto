@@ -73,7 +73,6 @@ service BillingService {
     rpc FindAllOrdersPublic (ListOrdersRequest) returns (ListOrdersPublicResponse) {}
     rpc FindAllOrdersPrivate (ListOrdersRequest) returns (ListOrdersPrivateResponse) {}
     rpc FindAllOrders (ListOrdersRequest) returns (ListOrdersResponse) {}
-    rpc FindOrder (FindOrderRequest) returns (FindOrderResponse) {}
     rpc IsOrderCanBePaying (IsOrderCanBePayingRequest) returns (IsOrderCanBePayingResponse) {}
 
     rpc GetPriceGroup (billing.GetPriceGroupRequest) returns (billing.PriceGroup) {}
@@ -3352,19 +3351,4 @@ message ReportFinanceDoneRequest {
     string file_name = 8;
     bytes file_content = 9;
     string payout_id = 10;
-}
-
-message FindOrderRequest {
-    // @inject_tag: validate:"omitempty,uuid" param:"id"
-    string uuid = 1;
-    // @inject_tag: validate:"omitempty,hexadecimal,len=24"
-    string merchant_id = 2;
-    // @inject_tag: param:"invoice_id"
-    string invoice_id = 3;
-}
-
-message FindOrderResponse {
-    int32 status = 1;
-    ResponseErrorMessage message = 2;
-    billing.Order item = 3;
 }
