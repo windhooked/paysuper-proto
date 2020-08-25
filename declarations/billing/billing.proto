@@ -386,6 +386,10 @@ message ProjectOrder {
     //
     //The customer's redirection settings for the successful or failed payment.
     ProjectRedirectSettings redirect_settings = 18;
+    //@inject_tag: json:"first_payment_at" bson:"first_payment_at"
+    //
+    // Date of first payment for merchant.
+    google.protobuf.Timestamp first_payment_at = 19;
 }
 
 message MerchantContact {
@@ -643,7 +647,7 @@ message Merchant {
     //
     // The date of the merchant last update.
     google.protobuf.Timestamp updated_at = 19;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"first_payment_at"
     google.protobuf.Timestamp first_payment_at = 20;
     // @inject_tag: json:"-"
     bool is_vat_enabled = 21;
