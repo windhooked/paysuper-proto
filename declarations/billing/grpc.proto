@@ -1543,6 +1543,10 @@ message ListOrdersRequest {
     string merchant_name = 19;
     // @inject_tag: query:"royalty_report_id" validate:"omitempty,hexadecimal,len=24"
     string royalty_report_id = 20;
+    // @inject_tag: query:"invoice_id"
+    //
+    // Unique identifier of order in merchant's billing system
+    string invoice_id = 21;
 }
 
 message GetOrderRequest {
@@ -2402,6 +2406,7 @@ message ListOrdersPrivateResponse {
 }
 
 message ListOrdersResponseItem {
+    // @inject_tag: json:"count"
     int64 count = 1;
     // @inject_tag: json:"items"
     repeated billing.Order items = 2;
