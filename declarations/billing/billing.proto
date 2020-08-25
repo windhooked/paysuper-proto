@@ -1176,7 +1176,7 @@ message Order {
     // Net revenue for order
     OrderViewMoney net_revenue = 92;
     // @inject_tag: json:"fee"
-    //
+    // 
     // Fee for order
     OrderViewMoney fee = 93;
 }
