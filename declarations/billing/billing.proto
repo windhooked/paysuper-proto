@@ -1167,6 +1167,14 @@ message Order {
     //
     // The royalty report's identifier which include this order
     string royalty_report_id = 91;
+    // @inject_tag: json:"net_revenue"
+    //
+    // Net revenue for order
+    OrderViewMoney net_revenue = 92;
+    // @inject_tag: json:"fee"
+    //
+    // Fee for order
+    OrderViewMoney fee = 93;
 }
 
 message ParentOrder {
