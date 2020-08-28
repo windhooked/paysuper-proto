@@ -3357,11 +3357,13 @@ message ReportFinanceDoneRequest {
 
 message ActOfCompletionRequest {
     //@inject_tag: validate:"required,hexadecimal,len=24"
-    string merchant_id = 3;
+    string merchant_id = 1;
     // @inject_tag: json:"date_from" validate:"required,date"
-    string date_from = 4;
+    string date_from = 2;
     // @inject_tag: json:"date_to" validate:"required,date"
-    string date_to = 5;
+    string date_to = 3;
+    // @inject_tag: json:"format" validate:"omitempty,oneof=pdf xslx"
+    string format = 4;
 }
 
 message ActOfCompletionResponse {
