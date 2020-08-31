@@ -3362,6 +3362,7 @@ message SetCustomerPaymentActivityRequest {
     string type = 3;
     google.protobuf.Timestamp processing_at = 4;
     double amount = 5;
+}
 
 message ActOfCompletionRequest {
     //@inject_tag: validate:"required,hexadecimal,len=24"
