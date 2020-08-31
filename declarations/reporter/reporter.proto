@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "reporterpb";
+option go_package = ".;reporterpb";
 package reporter;
 
 import "google/protobuf/timestamp.proto";
@@ -45,7 +45,7 @@ message ReportFile {
     string user_id = 2;
     // @inject_tag: json:"-" validate:"required,hexadecimal,len=24"
     string merchant_id = 3;
-    // @inject_tag: json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement"
+    // @inject_tag: json:"report_type" validate:"required,oneof=transactions vat vat_transactions royalty royalty_transactions payout agreement act_of_completion"
     //
     // The report type. Available values: transactions, vat, vat_transactions, royalty, royalty_transactions, payout, agreement.
     string report_type = 4;

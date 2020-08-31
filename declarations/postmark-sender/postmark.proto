@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "postmarkpb";
+option go_package = ".;postmarkpb";
 package postmark;
 
 import "google/protobuf/struct.proto";

@@ -16,10 +16,10 @@ syntax = "proto3";
 
 package casbinpb;
 
-option go_package = "casbinpb";
+option go_package = ".;casbinpb";
 import "protoc-gen-swagger/options/annotations.proto";
 import "google/api/annotations.proto";
-import "protoc-gen-validate/validate/validate.proto";
+import "validate/validate.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
   info: {

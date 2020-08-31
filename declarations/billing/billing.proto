@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "billingpb";
+option go_package = ".;billingpb";
 package billing;
 
 import "google/protobuf/timestamp.proto";
@@ -4247,4 +4247,23 @@ message RoleListItem {
     //
     // The role's name.
     string name = 2;
+}
+
+message ActOfCompletionDocument {
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+    //
+    // The unique identifier for the merchant who is the owner of the payout document.
+    string merchant_id = 1;
+    // @inject_tag: json:"total_fees" validate:"numeric,gte=0"
+    //
+    // The total amount of fees.
+    double total_fees = 2;
+    // @inject_tag: json:"balance" validate:"numeric,gte=0"
+    //
+    // The payout amount.
+    double balance = 3;
+    // @inject_tag: json:"total_transactions"
+    //
+    // The total number of transactions.
+    int32 total_transactions = 4;
 }
