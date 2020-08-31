@@ -215,6 +215,7 @@ type BillingService interface {
 	NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	RoyaltyReportFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, opts ...client.CallOption) (*ActOfCompletionResponse, error)
 	SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 }
 
@@ -2036,6 +2037,16 @@ func (c *billingService) PayoutFinanceDone(ctx context.Context, in *ReportFinanc
 	return out, nil
 }
 
+func (c *billingService) GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, opts ...client.CallOption) (*ActOfCompletionResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetActOfCompletion", in)
+	out := new(ActOfCompletionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
 	req := c.c.NewRequest(c.name, "BillingService.SetCustomerPaymentActivity", in)
 	out := new(EmptyResponseWithStatus)
@@ -2229,6 +2240,7 @@ type BillingServiceHandler interface {
 	NotifyWebhookTestResults(context.Context, *NotifyWebhookTestResultsRequest, *EmptyResponseWithStatus) error
 	RoyaltyReportFinanceDone(context.Context, *ReportFinanceDoneRequest, *EmptyResponseWithStatus) error
 	PayoutFinanceDone(context.Context, *ReportFinanceDoneRequest, *EmptyResponseWithStatus) error
+	GetActOfCompletion(context.Context, *ActOfCompletionRequest, *ActOfCompletionResponse) error
 	SetCustomerPaymentActivity(context.Context, *SetCustomerPaymentActivityRequest, *EmptyResponseWithStatus) error
 }
 
@@ -2414,6 +2426,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, out *EmptyResponseWithStatus) error
 		RoyaltyReportFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error
 		PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error
+		GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, out *ActOfCompletionResponse) error
 		SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error
 	}
 	type BillingService struct {
@@ -3145,6 +3158,10 @@ func (h *billingServiceHandler) RoyaltyReportFinanceDone(ctx context.Context, in
 
 func (h *billingServiceHandler) PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error {
 	return h.BillingServiceHandler.PayoutFinanceDone(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, out *ActOfCompletionResponse) error {
+	return h.BillingServiceHandler.GetActOfCompletion(ctx, in, out)
 }
 
 func (h *billingServiceHandler) SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error {

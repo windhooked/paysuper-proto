@@ -1576,6 +1576,36 @@ func (_m *BillingService) FinishRedeemKeyForOrder(ctx context.Context, in *billi
 	return r0, r1
 }
 
+// GetActOfCompletion provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetActOfCompletion(ctx context.Context, in *billingpb.ActOfCompletionRequest, opts ...client.CallOption) (*billingpb.ActOfCompletionResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.ActOfCompletionResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.ActOfCompletionRequest, ...client.CallOption) *billingpb.ActOfCompletionResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.ActOfCompletionResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.ActOfCompletionRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetAdminByUserId provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) GetAdminByUserId(ctx context.Context, in *billingpb.CommonUserProfileRequest, opts ...client.CallOption) (*billingpb.UserRoleResponse, error) {
 	_va := make([]interface{}, len(opts))
