@@ -95,3 +95,40 @@ func TestOrderViewPrivate_GetCustomerAddress(t *testing.T) {
 		})
 	}
 }
+
+func TestOrder_IsIdentifiedUser(t *testing.T) {
+	tests := []struct {
+		name   string
+		entity *Order
+		want   bool
+	}{
+		{
+			name:   "order is nil",
+			entity: nil,
+			want:   false,
+		},
+		{
+			name:   "order.user is nil",
+			entity: &Order{},
+			want:   false,
+		},
+		{
+			name:   "user is not identified",
+			entity: &Order{User: &OrderUser{Id: "abcdefghijklmn1234567890"}},
+			want:   false,
+		},
+		{
+			name:   "user is identified",
+			entity: &Order{User: &OrderUser{Id: "ffffffffffffffffffffffff"}},
+			want:   true,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.entity.IsIdentifiedUser(); got != tt.want {
+				t.Errorf("IsIdentifiedUser() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

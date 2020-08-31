@@ -221,6 +221,8 @@ const (
 
 	FilterDateFormat     = "2006-01-02"
 	FilterDatetimeFormat = "2006-01-02T15:04:05"
+
+	AmountPrecisionDefault = 2
 )
 
 var (

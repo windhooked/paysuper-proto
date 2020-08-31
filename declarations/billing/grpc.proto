@@ -227,6 +227,7 @@ service BillingService {
     rpc RoyaltyReportFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc GetActOfCompletion(ActOfCompletionRequest) returns (ActOfCompletionResponse) {}
+    rpc SetCustomerPaymentActivity(SetCustomerPaymentActivityRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3354,6 +3355,13 @@ message ReportFinanceDoneRequest {
     bytes file_content = 9;
     string payout_id = 10;
 }
+
+message SetCustomerPaymentActivityRequest {
+    string customer_id = 1;
+    string merchant_id = 2;
+    string type = 3;
+    google.protobuf.Timestamp processing_at = 4;
+    double amount = 5;
 
 message ActOfCompletionRequest {
     //@inject_tag: validate:"required,hexadecimal,len=24"
