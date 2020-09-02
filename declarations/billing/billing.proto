@@ -1515,6 +1515,10 @@ message PaymentMethod {
     //
     // Has a true value if the payment method allows a refund.
     bool refund_allowed = 17;
+    // @inject_tag: json:"recurring_allowed" bson:"recurring_allowed"
+    //
+    // Has a true value if the payment method allows a recurring.
+    bool recurring_allowed = 18;
 }
 
 message CardExpire {
