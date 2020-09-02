@@ -919,6 +919,8 @@ message OrderUser {
     bool notify_new_region = 14;
     //@inject_tag: json:"-" bson:"notify_new_region_email"
     string notify_new_region_email = 15;
+    // @inject_tag: json:"id" bson:"uuid"
+    string uuid = 16;
 }
 
 message OrderNotificationCancellation {
@@ -1750,6 +1752,8 @@ message Customer {
     string ip_string = 26;
     //@inject_tag: json:"-" bson:"payment_activity"
     map<string, PaymentActivityItem> payment_activity = 27;
+    //@inject_tag: json:"uuid" bson:"uuid"
+    string uuid = 28;
 }
 
 message PaymentActivityItem {
