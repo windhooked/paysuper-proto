@@ -4664,14 +4664,14 @@ type OrderRecurringSettings struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	//@inject_tag: json:"period" validate:"required,oneof=day week month" required:"true"
+	//@inject_tag: json:"period" validate:"required,oneof=day week month" required:"true" bson:"period"
 	//
 	// Recurring period of order. Available values: day, week, month.
-	Period string `protobuf:"bytes,1,opt,name=period,proto3" json:"period" validate:"required,oneof=day week month" required:"true"`
-	//@inject_tag: json:"date_end" validate:"omitempty,date"
+	Period string `protobuf:"bytes,1,opt,name=period,proto3" json:"period" validate:"required,oneof=day week month" required:"true" bson:"period"`
+	//@inject_tag: json:"date_end" validate:"omitempty,date" bson:"date_end"
 	//
 	// End date of recurring period for order.
-	DateEnd *timestamp.Timestamp `protobuf:"bytes,2,opt,name=date_end,json=dateEnd,proto3" json:"date_end" validate:"omitempty,date"`
+	DateEnd *timestamp.Timestamp `protobuf:"bytes,2,opt,name=date_end,json=dateEnd,proto3" json:"date_end" validate:"omitempty,date" bson:"date_end"`
 }
 
 func (x *OrderRecurringSettings) Reset() {
