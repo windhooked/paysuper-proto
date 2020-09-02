@@ -1194,11 +1194,11 @@ message Order {
 }
 
 message OrderRecurringSettings {
-    //@inject_tag: json:"period" validate:"required,oneof=day week month" required:"true"
+    //@inject_tag: json:"period" validate:"required,oneof=day week month" required:"true" bson:"period"
     //
     // Recurring period of order. Available values: day, week, month.
     string period = 1;
-    //@inject_tag: json:"date_end" validate:"omitempty,date"
+    //@inject_tag: json:"date_end" validate:"omitempty,date" bson:"date_end"
     //
     // End date of recurring period for order.
     google.protobuf.Timestamp date_end = 2;
