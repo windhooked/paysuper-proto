@@ -1179,6 +1179,29 @@ message Order {
     // 
     // Fee for order
     OrderViewMoney fee = 93;
+    // @inject_tag: json:"-"
+    //
+    // Recurring settings for order
+    OrderRecurringSettings recurring_settings = 94;
+    // @inject_tag: json:"-"
+    //
+    // Exists recurring for order
+    bool recurring = 95;
+    // @inject_tag: json:"-"
+    //
+    // Recurring identity for order
+    string recurring_id = 96;
+}
+
+message OrderRecurringSettings {
+    //@inject_tag: json:"period" validate:"required,oneof=day week month" required:"true" bson:"period"
+    //
+    // Recurring period of order. Available values: day, week, month.
+    string period = 1;
+    //@inject_tag: json:"date_end" validate:"omitempty,date" bson:"date_end"
+    //
+    // End date of recurring period for order.
+    google.protobuf.Timestamp date_end = 2;
 }
 
 message ParentOrder {
@@ -3087,6 +3110,14 @@ message OrderViewPublic {
     //
     // The merchant's company data.
     OrderViewMerchantInfo merchant_info = 52;
+    // @inject_tag: json:"-"
+    //
+    // Exists recurring for order
+    bool recurring = 53;
+    // @inject_tag: json:"-"
+    //
+    // Recurring identity for order
+    string recurring_id = 54;
 }
 
 message OrderViewPrivate {
@@ -3448,6 +3479,14 @@ message OrderViewPrivate {
     //
     // The unique identifier of terminal of payment method
     string payment_method_terminal_id = 90;
+    // @inject_tag: json:"-"
+    //
+    // Exists recurring for order
+    bool recurring = 91;
+    // @inject_tag: json:"-"
+    //
+    // Recurring identity for order
+    string recurring_id = 92;
 }
 
 message RecommendedPrice {
