@@ -1996,6 +1996,66 @@ func (_m *BillingService) GetDashboardBaseReport(ctx context.Context, in *billin
 	return r0, r1
 }
 
+// GetDashboardCustomerArpu provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetDashboardCustomerArpu(ctx context.Context, in *billingpb.DashboardCustomerReportArpuRequest, opts ...client.CallOption) (*billingpb.DashboardCustomerReportArpuResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.DashboardCustomerReportArpuResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DashboardCustomerReportArpuRequest, ...client.CallOption) *billingpb.DashboardCustomerReportArpuResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.DashboardCustomerReportArpuResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.DashboardCustomerReportArpuRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// GetDashboardCustomersReport provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetDashboardCustomersReport(ctx context.Context, in *billingpb.DashboardCustomerReportRequest, opts ...client.CallOption) (*billingpb.GetDashboardCustomerReportResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.GetDashboardCustomerReportResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DashboardCustomerReportRequest, ...client.CallOption) *billingpb.GetDashboardCustomerReportResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.GetDashboardCustomerReportResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.DashboardCustomerReportRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetDashboardMainReport provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) GetDashboardMainReport(ctx context.Context, in *billingpb.GetDashboardMainRequest, opts ...client.CallOption) (*billingpb.GetDashboardMainResponse, error) {
 	_va := make([]interface{}, len(opts))

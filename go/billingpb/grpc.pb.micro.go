@@ -165,6 +165,8 @@ type BillingService interface {
 	GetDashboardMainReport(ctx context.Context, in *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardMainResponse, error)
 	GetDashboardRevenueDynamicsReport(ctx context.Context, in *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardRevenueDynamicsReportResponse, error)
 	GetDashboardBaseReport(ctx context.Context, in *GetDashboardBaseReportRequest, opts ...client.CallOption) (*GetDashboardBaseReportResponse, error)
+	GetDashboardCustomersReport(ctx context.Context, in *DashboardCustomerReportRequest, opts ...client.CallOption) (*GetDashboardCustomerReportResponse, error)
+	GetDashboardCustomerArpu(ctx context.Context, in *DashboardCustomerReportArpuRequest, opts ...client.CallOption) (*DashboardCustomerReportArpuResponse, error)
 	CreatePayoutDocument(ctx context.Context, in *CreatePayoutDocumentRequest, opts ...client.CallOption) (*CreatePayoutDocumentResponse, error)
 	UpdatePayoutDocument(ctx context.Context, in *UpdatePayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error)
 	GetPayoutDocuments(ctx context.Context, in *GetPayoutDocumentsRequest, opts ...client.CallOption) (*GetPayoutDocumentsResponse, error)
@@ -1537,6 +1539,26 @@ func (c *billingService) GetDashboardBaseReport(ctx context.Context, in *GetDash
 	return out, nil
 }
 
+func (c *billingService) GetDashboardCustomersReport(ctx context.Context, in *DashboardCustomerReportRequest, opts ...client.CallOption) (*GetDashboardCustomerReportResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetDashboardCustomersReport", in)
+	out := new(GetDashboardCustomerReportResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetDashboardCustomerArpu(ctx context.Context, in *DashboardCustomerReportArpuRequest, opts ...client.CallOption) (*DashboardCustomerReportArpuResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetDashboardCustomerArpu", in)
+	out := new(DashboardCustomerReportArpuResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) CreatePayoutDocument(ctx context.Context, in *CreatePayoutDocumentRequest, opts ...client.CallOption) (*CreatePayoutDocumentResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.CreatePayoutDocument", in)
 	out := new(CreatePayoutDocumentResponse)
@@ -2190,6 +2212,8 @@ type BillingServiceHandler interface {
 	GetDashboardMainReport(context.Context, *GetDashboardMainRequest, *GetDashboardMainResponse) error
 	GetDashboardRevenueDynamicsReport(context.Context, *GetDashboardMainRequest, *GetDashboardRevenueDynamicsReportResponse) error
 	GetDashboardBaseReport(context.Context, *GetDashboardBaseReportRequest, *GetDashboardBaseReportResponse) error
+	GetDashboardCustomersReport(context.Context, *DashboardCustomerReportRequest, *GetDashboardCustomerReportResponse) error
+	GetDashboardCustomerArpu(context.Context, *DashboardCustomerReportArpuRequest, *DashboardCustomerReportArpuResponse) error
 	CreatePayoutDocument(context.Context, *CreatePayoutDocumentRequest, *CreatePayoutDocumentResponse) error
 	UpdatePayoutDocument(context.Context, *UpdatePayoutDocumentRequest, *PayoutDocumentResponse) error
 	GetPayoutDocuments(context.Context, *GetPayoutDocumentsRequest, *GetPayoutDocumentsResponse) error
@@ -2376,6 +2400,8 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetDashboardMainReport(ctx context.Context, in *GetDashboardMainRequest, out *GetDashboardMainResponse) error
 		GetDashboardRevenueDynamicsReport(ctx context.Context, in *GetDashboardMainRequest, out *GetDashboardRevenueDynamicsReportResponse) error
 		GetDashboardBaseReport(ctx context.Context, in *GetDashboardBaseReportRequest, out *GetDashboardBaseReportResponse) error
+		GetDashboardCustomersReport(ctx context.Context, in *DashboardCustomerReportRequest, out *GetDashboardCustomerReportResponse) error
+		GetDashboardCustomerArpu(ctx context.Context, in *DashboardCustomerReportArpuRequest, out *DashboardCustomerReportArpuResponse) error
 		CreatePayoutDocument(ctx context.Context, in *CreatePayoutDocumentRequest, out *CreatePayoutDocumentResponse) error
 		UpdatePayoutDocument(ctx context.Context, in *UpdatePayoutDocumentRequest, out *PayoutDocumentResponse) error
 		GetPayoutDocuments(ctx context.Context, in *GetPayoutDocumentsRequest, out *GetPayoutDocumentsResponse) error
@@ -2958,6 +2984,14 @@ func (h *billingServiceHandler) GetDashboardRevenueDynamicsReport(ctx context.Co
 
 func (h *billingServiceHandler) GetDashboardBaseReport(ctx context.Context, in *GetDashboardBaseReportRequest, out *GetDashboardBaseReportResponse) error {
 	return h.BillingServiceHandler.GetDashboardBaseReport(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetDashboardCustomersReport(ctx context.Context, in *DashboardCustomerReportRequest, out *GetDashboardCustomerReportResponse) error {
+	return h.BillingServiceHandler.GetDashboardCustomersReport(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetDashboardCustomerArpu(ctx context.Context, in *DashboardCustomerReportArpuRequest, out *DashboardCustomerReportArpuResponse) error {
+	return h.BillingServiceHandler.GetDashboardCustomerArpu(ctx, in, out)
 }
 
 func (h *billingServiceHandler) CreatePayoutDocument(ctx context.Context, in *CreatePayoutDocumentRequest, out *CreatePayoutDocumentResponse) error {
