@@ -3371,8 +3371,8 @@ message ActOfCompletionRequest {
     string date_from = 2;
     // @inject_tag: json:"date_to" validate:"required,date"
     string date_to = 3;
-    // @inject_tag: json:"format" validate:"omitempty,oneof=pdf xslx"
-    string format = 4;
+    // @inject_tag: json:"file_type" validate:"omitempty,oneof=pdf xslx"
+    string file_type = 4;
 }
 
 message ActOfCompletionResponse {
