@@ -19992,8 +19992,8 @@ type ActOfCompletionRequest struct {
 	DateFrom string `protobuf:"bytes,2,opt,name=date_from,json=dateFrom,proto3" json:"date_from" validate:"required,date"`
 	// @inject_tag: json:"date_to" validate:"required,date"
 	DateTo string `protobuf:"bytes,3,opt,name=date_to,json=dateTo,proto3" json:"date_to" validate:"required,date"`
-	// @inject_tag: json:"file_type" validate:"omitempty,oneof=pdf xslx"
-	FileType string `protobuf:"bytes,4,opt,name=file_type,json=fileType,proto3" json:"file_type" validate:"omitempty,oneof=pdf xslx"`
+	// @inject_tag: json:"file_type" validate:"omitempty,oneof=pdf xlsx"
+	FileType string `protobuf:"bytes,4,opt,name=file_type,json=fileType,proto3" json:"file_type" validate:"omitempty,oneof=pdf xlsx"`
 }
 
 func (x *ActOfCompletionRequest) Reset() {
