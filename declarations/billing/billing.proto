@@ -2898,7 +2898,7 @@ message AnnualTurnover {
 }
 
 message OrderViewMoney {
-    //@inject_tag: json:"amount" bson:"amount"
+    //@inject_tag: json:"-" bson:"amount"
     //
     // The amount value.
     double amount = 1;
@@ -2906,6 +2906,10 @@ message OrderViewMoney {
     //
     // The amount currency. Three-letter currency code in ISO 4217, in uppercase.
     string currency = 2;
+    //@inject_tag: json:"amount" bson:"amount_rounded"
+    //
+    // The amount value.
+    double amount_rounded = 3;
 }
 
 message OrderViewMerchantInfo {
