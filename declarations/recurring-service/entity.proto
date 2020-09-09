@@ -29,3 +29,26 @@ message CardExpire {
     // @inject_tag: json:"year"
     string year = 2;
 }
+
+message Subscription {
+    // @inject_tag: json:"id"
+    string id = 1;
+    string customer_id = 2;
+    // @inject_tag: json:"id"
+    string customer_uuid = 3;
+    string period = 4;
+    string merchant_id = 5;
+    string project_id = 6;
+    double amount = 7;
+    string currency = 8;
+    string item_type = 9;
+    repeated string item_list = 10;
+    bool is_active = 11;
+    // @inject_tag: json:"-"
+    string masked_pan = 12;
+    // @inject_tag: json:"-"
+    string cardpay_subscription_id = 13;
+    google.protobuf.Timestamp expire_at = 14;
+    google.protobuf.Timestamp created_at = 15;
+    google.protobuf.Timestamp updated_at = 16;
+}
