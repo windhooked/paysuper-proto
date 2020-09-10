@@ -510,6 +510,7 @@ message PaymentCreateRequest {
     string accept_language = 4;
     // @inject_tag: json:"-"
     string user_agent = 5;
+    string cookie = 6;
 }
 
 message PaymentCreateResponse {
@@ -517,6 +518,8 @@ message PaymentCreateResponse {
     ResponseErrorMessage message = 2;
     string redirect_url = 3;
     bool need_redirect = 4;
+    // @inject_tag: json:"-"
+    string cookie = 5;
 }
 
 message PaymentFormJsonDataRequest {
