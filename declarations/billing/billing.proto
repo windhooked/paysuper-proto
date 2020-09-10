@@ -332,7 +332,7 @@ message VirtualCurrencyTesting {
     bool incorrect_payment = 4;
 }
 
-message KeysTesting  {
+message KeysTesting {
     //@inject_tag: json:"is_passed" bson:"is_passed"
     //
     // Has a true value if the webhook's test case for the key has passed.
@@ -2536,6 +2536,12 @@ message AccountingEntry {
     google.protobuf.Timestamp created_at = 15;
     google.protobuf.Timestamp available_on = 16;
     string operating_company_id = 17;
+    // The transaction amount in royalty currency rounded to 2 digits after decimal point
+    double amount_rounded = 18;
+    // The transaction amount in currency of accounting entry creation rounded to 2 digits after decimal point
+    double original_amount_rounded = 19;
+    // The transaction amount in customer's region currency rounded to 2 digits after decimal point
+    double local_amount_rounded = 20;
 }
 
 message RoyaltyReportTotals {
@@ -2892,7 +2898,7 @@ message AnnualTurnover {
 }
 
 message OrderViewMoney {
-    //@inject_tag: json:"amount" bson:"amount"
+    //@inject_tag: json:"-" bson:"amount"
     //
     // The amount value.
     double amount = 1;
@@ -2900,6 +2906,10 @@ message OrderViewMoney {
     //
     // The amount currency. Three-letter currency code in ISO 4217, in uppercase.
     string currency = 2;
+    //@inject_tag: json:"amount" bson:"amount_rounded"
+    //
+    // The amount value.
+    double amount_rounded = 3;
 }
 
 message OrderViewMerchantInfo {
