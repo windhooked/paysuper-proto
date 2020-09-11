@@ -3412,7 +3412,7 @@ message DashboardCustomerReportArpuResponse {
 message DashboardCustomerReportRequest {
     //@inject_tag: validate:"required,hexadecimal,len=24"
     string merchant_id = 1;
-    //@inject_tag: query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year"
+    //@inject_tag: query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year current_week previous_week two_weeks_ago two_months_ago two_quarter_ago two_years_ago"
     string period = 2;
 }
 
@@ -3434,6 +3434,10 @@ message DashboardCustomerReport {
 
     //@inject_tag: json:"top20_customers"
     Top20Customers top20Customers = 6;
+    //@inject_tag: json:"chart" bson:"chart"
+    //
+    // The list of points for drawing the chart.
+    repeated DashboardChartItemInt chart = 7;
 }
 
 message Top20Customers {
