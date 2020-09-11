@@ -662,6 +662,14 @@ message PaymentFormJsonData {
     //
     // Has a true value for a production payment and false for a test payment that goes through a test sandbox.
     bool is_production = 30;
+    //@inject_tag: json:"recurring_settings"
+    //
+    //Settings for recurring payments.
+    billing.OrderRecurringSettings recurring_settings = 31;
+    //@inject_tag: json:"recurring_management_url"
+    //
+    //URL for managing customer recurring subscriptions.
+    string recurring_management_url = 32;
 }
 
 message PaymentFormJsonDataResponse {

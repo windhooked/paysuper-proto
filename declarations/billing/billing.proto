@@ -118,11 +118,14 @@ message OrderCreateRequest {
     //
     // The webhook testing mode. Available values: correct_payment, non_existing_user, existing_user, invalid_signature.
     string testing_case = 42;
-
     //@inject_tag: json:"form_mode"
     //
     //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 43;
+    //@inject_tag: json:"recurring_settings"
+    //
+    //Settings for recurring payments
+    OrderRecurringSettings recurring_settings = 44;
 }
 
 message ProjectRedirectSettings {
@@ -1203,7 +1206,7 @@ message OrderRecurringSettings {
     //@inject_tag: json:"date_end" validate:"omitempty,date" bson:"date_end"
     //
     // End date of recurring period for order.
-    google.protobuf.Timestamp date_end = 2;
+    string date_end = 2;
 }
 
 message ParentOrder {
