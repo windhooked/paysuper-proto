@@ -167,6 +167,9 @@ service BillingService {
     rpc GetDashboardRevenueDynamicsReport (GetDashboardMainRequest) returns (GetDashboardRevenueDynamicsReportResponse) {}
     rpc GetDashboardBaseReport (GetDashboardBaseReportRequest) returns (GetDashboardBaseReportResponse) {}
 
+    rpc GetDashboardCustomersReport(DashboardCustomerReportRequest) returns (GetDashboardCustomerReportResponse) {}
+    rpc GetDashboardCustomerArpu(DashboardCustomerReportArpuRequest) returns (DashboardCustomerReportArpuResponse) {}
+
     rpc CreatePayoutDocument (CreatePayoutDocumentRequest) returns (CreatePayoutDocumentResponse) {}
     rpc UpdatePayoutDocument (UpdatePayoutDocumentRequest) returns (PayoutDocumentResponse) {}
     rpc GetPayoutDocuments (GetPayoutDocumentsRequest) returns (GetPayoutDocumentsResponse) {}
@@ -3385,4 +3388,65 @@ message ActOfCompletionResponse {
     ResponseErrorMessage message = 2;
     //@inject_tag: json:"item"
     billing.ActOfCompletionDocument item = 3;
+}
+
+message GetDashboardCustomerReportResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    DashboardCustomerReport item = 3;
+}
+
+message DashboardCustomerReportArpuRequest {
+    //@inject_tag: validate:"required,hexadecimal,len=24"
+    string merchant_id = 1;
+
+    //@inject_tag: validate:"required"
+    string customer_id = 2;
+}
+
+message DashboardCustomerReportArpuResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+
+    //@inject_tag: json:"item"
+    DashboardAmountItemWithChart item = 3;
+}
+
+message DashboardCustomerReportRequest {
+    //@inject_tag: validate:"required,hexadecimal,len=24"
+    string merchant_id = 1;
+    //@inject_tag: query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year current_week previous_week two_weeks_ago two_months_ago two_quarter_ago two_years_ago"
+    string period = 2;
+}
+
+message DashboardCustomerReport {
+    //@inject_tag: json:"new_customers_percentage"
+    float newCustomersPercentage = 1;
+
+    //@inject_tag: json:"returning_customers_percentage"
+    float returningCustomersPercentage = 2;
+
+    //@inject_tag: json:"lost_customers_percentage"
+    float lostCustomersPercentage = 3;
+
+    //@inject_tag: json:"avg_ltv_customer"
+    float avgLtvCustomer = 4;
+
+    //@inject_tag: json:"avg_orders_count"
+    float avgOrdersCount = 5;
+
+    //@inject_tag: json:"top20_customers"
+    Top20Customers top20Customers = 6;
+    //@inject_tag: json:"chart" bson:"chart"
+    //
+    // The list of points for drawing the chart.
+    repeated DashboardChartItemInt chart = 7;
+}
+
+message Top20Customers {
+    //@inject_tag: json:"revenue"
+    float revenue = 1;
+
+    //@inject_tag: json:"count"
+    int32 count = 2;
 }
