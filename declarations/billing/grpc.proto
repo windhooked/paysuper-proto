@@ -3501,9 +3501,9 @@ message ShortCustomerInfo {
     //@inject_tag: json:"language"
     string language = 4;
     //@inject_tag: json:"last_order"
-    string last_order = 5;
+    google.protobuf.Timestamp last_order = 5;
     //@inject_tag: json:"orders"
     int64 orders = 6;
     //@inject_tag: json:"revenue"
-    float revenue = 7;
+    double revenue = 7;
 }
