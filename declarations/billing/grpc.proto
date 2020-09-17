@@ -231,6 +231,8 @@ service BillingService {
     rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc GetActOfCompletion(ActOfCompletionRequest) returns (ActOfCompletionResponse) {}
     rpc SetCustomerPaymentActivity(SetCustomerPaymentActivityRequest) returns (EmptyResponseWithStatus) {}
+
+    rpc GetCustomerList(ListCustomersRequest) returns (ListCustomersResponse) {}
 }
 
 message EmptyRequest {}
