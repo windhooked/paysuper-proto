@@ -36,7 +36,7 @@ message OrderCreateRequest {
     //
     // The arbitrary order description.
     string description = 7;
-    // @inject_tag: query:"PO_PAYMENT_METHOD" form:"PO_PAYMENT_METHOD" json:"-" validate:"omitempty,max=255"
+    // @inject_tag: query:"PO_PAYMENT_METHOD" form:"PO_PAYMENT_METHOD" json:"payment_method" validate:"omitempty,max=255"
     string payment_method = 8;
     // @inject_tag: query:"PO_URL_VERIFY" form:"PO_URL_VERIFY" json:"-" validate:"omitempty,url"
     string url_verify = 9;
@@ -122,7 +122,7 @@ message OrderCreateRequest {
     //
     //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 43;
-    //@inject_tag: json:"recurring_settings"
+    //@inject_tag: json:"recurring"
     //
     //Settings for recurring payments
     OrderRecurringSettings recurring_settings = 44;
@@ -1340,6 +1340,10 @@ message PaymentMethodOrder {
     //
     // Has a true value if the payment method allows a refund.
     bool refund_allowed = 12;
+    // @inject_tag: json:"recurring_allowed" bson:"recurring_allowed"
+    //
+    // Has a true value if the payment method allows a recurring.
+    bool recurring_allowed = 13;
 }
 
 message PaymentMethodParams {
