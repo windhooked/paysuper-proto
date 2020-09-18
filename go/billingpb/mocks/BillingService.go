@@ -1966,6 +1966,36 @@ func (_m *BillingService) GetCountry(ctx context.Context, in *billingpb.GetCount
 	return r0, r1
 }
 
+// GetCustomerInfo provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetCustomerInfo(ctx context.Context, in *billingpb.GetCustomerInfoRequest, opts ...client.CallOption) (*billingpb.GetCustomerInfoResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.GetCustomerInfoResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetCustomerInfoRequest, ...client.CallOption) *billingpb.GetCustomerInfoResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.GetCustomerInfoResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.GetCustomerInfoRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetDashboardBaseReport provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) GetDashboardBaseReport(ctx context.Context, in *billingpb.GetDashboardBaseReportRequest, opts ...client.CallOption) (*billingpb.GetDashboardBaseReportResponse, error) {
 	_va := make([]interface{}, len(opts))
