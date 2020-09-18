@@ -231,6 +231,8 @@ service BillingService {
     rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc GetActOfCompletion(ActOfCompletionRequest) returns (ActOfCompletionResponse) {}
     rpc SetCustomerPaymentActivity(SetCustomerPaymentActivityRequest) returns (EmptyResponseWithStatus) {}
+
+    rpc GetCustomerInfo(GetCustomerInfoRequest) returns (GetCustomerInfoResponse) {}
 }
 
 message EmptyRequest {}
@@ -3449,4 +3451,15 @@ message Top20Customers {
 
     //@inject_tag: json:"count"
     int32 count = 2;
+}
+
+message GetCustomerInfoRequest {
+    string merchant_id = 1;
+    string user_id = 2;
+}
+
+message GetCustomerInfoResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    billing.Customer item = 3;
 }
