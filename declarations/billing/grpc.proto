@@ -233,6 +233,7 @@ service BillingService {
     rpc SetCustomerPaymentActivity(SetCustomerPaymentActivityRequest) returns (EmptyResponseWithStatus) {}
 
     rpc GetCustomerList(ListCustomersRequest) returns (ListCustomersResponse) {}
+    rpc GetCustomerInfo(GetCustomerInfoRequest) returns (GetCustomerInfoResponse) {}
 }
 
 message EmptyRequest {}
@@ -3506,4 +3507,15 @@ message ShortCustomerInfo {
     int64 orders = 6;
     //@inject_tag: json:"revenue"
     double revenue = 7;
+}
+
+message GetCustomerInfoRequest {
+    string merchant_id = 1;
+    string user_id = 2;
+}
+
+message GetCustomerInfoResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    billing.Customer item = 3;
 }
