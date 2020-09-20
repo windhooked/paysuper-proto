@@ -122,11 +122,11 @@ message OrderCreateRequest {
     //
     //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 43;
-    //@inject_tag: json:"period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"omitempty,oneof=minute day week month" required:"true" bson:"period"
+    //@inject_tag: json:"recurring_period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"omitempty,oneof=minute day week month"
     //
     // Recurring period of order. Available values: day, week, month.
     string recurring_period = 44;
-    //@inject_tag: json:"date_end" query:"PO_RECURRING_DATE_END" form:"PO_RECURRING_DATE_END" validate:"omitempty,date" bson:"date_end"
+    //@inject_tag: json:"recurring_date_end" query:"PO_RECURRING_DATE_END" form:"PO_RECURRING_DATE_END" validate:"omitempty,date"
     //
     // End date of recurring period for order.
     string recurring_date_end = 45;
