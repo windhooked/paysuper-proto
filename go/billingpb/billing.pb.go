@@ -197,14 +197,14 @@ type OrderCreateRequest struct {
 	//
 	//The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
 	FormMode string `protobuf:"bytes,43,opt,name=form_mode,json=formMode,proto3" json:"form_mode"`
-	//@inject_tag: json:"period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"required,oneof=minute day week month" required:"true" bson:"period"
+	//@inject_tag: json:"recurring_period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"omitempty,oneof=minute day week month"
 	//
 	// Recurring period of order. Available values: day, week, month.
-	RecurringPeriod string `protobuf:"bytes,44,opt,name=recurring_period,json=recurringPeriod,proto3" json:"period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"required,oneof=minute day week month" required:"true" bson:"period"`
-	//@inject_tag: json:"date_end" query:"PO_RECURRING_DATE_END" form:"PO_RECURRING_DATE_END" validate:"omitempty,date" bson:"date_end"
+	RecurringPeriod string `protobuf:"bytes,44,opt,name=recurring_period,json=recurringPeriod,proto3" json:"recurring_period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"omitempty,oneof=minute day week month"`
+	//@inject_tag: json:"recurring_date_end" query:"PO_RECURRING_DATE_END" form:"PO_RECURRING_DATE_END" validate:"omitempty,date"
 	//
 	// End date of recurring period for order.
-	RecurringDateEnd string `protobuf:"bytes,45,opt,name=recurring_date_end,json=recurringDateEnd,proto3" json:"date_end" query:"PO_RECURRING_DATE_END" form:"PO_RECURRING_DATE_END" validate:"omitempty,date" bson:"date_end"`
+	RecurringDateEnd string `protobuf:"bytes,45,opt,name=recurring_date_end,json=recurringDateEnd,proto3" json:"recurring_date_end" query:"PO_RECURRING_DATE_END" form:"PO_RECURRING_DATE_END" validate:"omitempty,date"`
 }
 
 func (x *OrderCreateRequest) Reset() {
