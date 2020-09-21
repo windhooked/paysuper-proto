@@ -219,6 +219,8 @@ type BillingService interface {
 	PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, opts ...client.CallOption) (*ActOfCompletionResponse, error)
 	SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error)
+	GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
 }
 
 type billingService struct {
@@ -2079,6 +2081,26 @@ func (c *billingService) SetCustomerPaymentActivity(ctx context.Context, in *Set
 	return out, nil
 }
 
+func (c *billingService) GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetCustomerList", in)
+	out := new(ListCustomersResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetCustomerInfo", in)
+	out := new(GetCustomerInfoResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for BillingService service
 
 type BillingServiceHandler interface {
@@ -2266,6 +2288,8 @@ type BillingServiceHandler interface {
 	PayoutFinanceDone(context.Context, *ReportFinanceDoneRequest, *EmptyResponseWithStatus) error
 	GetActOfCompletion(context.Context, *ActOfCompletionRequest, *ActOfCompletionResponse) error
 	SetCustomerPaymentActivity(context.Context, *SetCustomerPaymentActivityRequest, *EmptyResponseWithStatus) error
+	GetCustomerList(context.Context, *ListCustomersRequest, *ListCustomersResponse) error
+	GetCustomerInfo(context.Context, *GetCustomerInfoRequest, *GetCustomerInfoResponse) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2454,6 +2478,8 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error
 		GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, out *ActOfCompletionResponse) error
 		SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error
+		GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error
+		GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error
 	}
 	type BillingService struct {
 		billingService
@@ -3200,4 +3226,12 @@ func (h *billingServiceHandler) GetActOfCompletion(ctx context.Context, in *ActO
 
 func (h *billingServiceHandler) SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error {
 	return h.BillingServiceHandler.SetCustomerPaymentActivity(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error {
+	return h.BillingServiceHandler.GetCustomerList(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error {
+	return h.BillingServiceHandler.GetCustomerInfo(ctx, in, out)
 }
