@@ -221,6 +221,7 @@ type BillingService interface {
 	SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error)
 	GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
+	DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error)
 }
 
 type billingService struct {
@@ -2101,6 +2102,16 @@ func (c *billingService) GetCustomerInfo(ctx context.Context, in *GetCustomerInf
 	return out, nil
 }
 
+func (c *billingService) DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.DeserializeCookie", in)
+	out := new(DeserializeCookieResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for BillingService service
 
 type BillingServiceHandler interface {
@@ -2290,6 +2301,7 @@ type BillingServiceHandler interface {
 	SetCustomerPaymentActivity(context.Context, *SetCustomerPaymentActivityRequest, *EmptyResponseWithStatus) error
 	GetCustomerList(context.Context, *ListCustomersRequest, *ListCustomersResponse) error
 	GetCustomerInfo(context.Context, *GetCustomerInfoRequest, *GetCustomerInfoResponse) error
+	DeserializeCookie(context.Context, *DeserializeCookieRequest, *DeserializeCookieResponse) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2480,6 +2492,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error
 		GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error
 		GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error
+		DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error
 	}
 	type BillingService struct {
 		billingService
@@ -3234,4 +3247,8 @@ func (h *billingServiceHandler) GetCustomerList(ctx context.Context, in *ListCus
 
 func (h *billingServiceHandler) GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error {
 	return h.BillingServiceHandler.GetCustomerInfo(ctx, in, out)
+}
+
+func (h *billingServiceHandler) DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error {
+	return h.BillingServiceHandler.DeserializeCookie(ctx, in, out)
 }
