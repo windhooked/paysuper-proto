@@ -83,6 +83,7 @@ message FindSubscriptionsRequest {
   entity.CustomerInfo customer = 4;
   string masked_pan = 5;
   string quick_filter = 6;
+  string merchant_id = 7;
 }
 
 message FindSubscriptionsResponse {

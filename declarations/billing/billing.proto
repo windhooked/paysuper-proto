@@ -36,7 +36,7 @@ message OrderCreateRequest {
     //
     // The arbitrary order description.
     string description = 7;
-    // @inject_tag: query:"PO_PAYMENT_METHOD" form:"PO_PAYMENT_METHOD" json:"-" validate:"omitempty,max=255"
+    // @inject_tag: query:"PO_PAYMENT_METHOD" form:"PO_PAYMENT_METHOD" json:"payment_method" validate:"omitempty,max=255"
     string payment_method = 8;
     // @inject_tag: query:"PO_URL_VERIFY" form:"PO_URL_VERIFY" json:"-" validate:"omitempty,url"
     string url_verify = 9;
@@ -118,11 +118,18 @@ message OrderCreateRequest {
     //
     // The webhook testing mode. Available values: correct_payment, non_existing_user, existing_user, invalid_signature.
     string testing_case = 42;
-
     //@inject_tag: json:"form_mode"
     //
     //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 43;
+    //@inject_tag: json:"recurring_period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"omitempty,oneof=minute day week month"
+    //
+    // Recurring period of order. Available values: day, week, month.
+    string recurring_period = 44;
+    //@inject_tag: json:"recurring_date_end" query:"PO_RECURRING_DATE_END" form:"PO_RECURRING_DATE_END" validate:"omitempty,date"
+    //
+    // End date of recurring period for order.
+    string recurring_date_end = 45;
 }
 
 message ProjectRedirectSettings {
@@ -1203,7 +1210,7 @@ message OrderRecurringSettings {
     //@inject_tag: json:"date_end" validate:"omitempty,date" bson:"date_end"
     //
     // End date of recurring period for order.
-    google.protobuf.Timestamp date_end = 2;
+    string date_end = 2;
 }
 
 message ParentOrder {
@@ -1337,6 +1344,10 @@ message PaymentMethodOrder {
     //
     // Has a true value if the payment method allows a refund.
     bool refund_allowed = 12;
+    // @inject_tag: json:"recurring_allowed" bson:"recurring_allowed"
+    //
+    // Has a true value if the payment method allows a recurring.
+    bool recurring_allowed = 13;
 }
 
 message PaymentMethodParams {
@@ -4323,4 +4334,15 @@ message ActOfCompletionDocument {
     //
     // The total number of transactions.
     int32 total_transactions = 4;
+}
+
+message BrowserCookie {
+    string customer_id = 1;
+    string virtual_customer_id = 2;
+    string ip = 3;
+    string ip_country = 4;
+    string selected_country = 5;
+    string user_agent = 6;
+    string accept_language = 7;
+    int32 session_count = 8;
 }

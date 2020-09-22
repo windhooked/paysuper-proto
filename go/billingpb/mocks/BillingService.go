@@ -1426,6 +1426,36 @@ func (_m *BillingService) DeleteSavedCard(ctx context.Context, in *billingpb.Del
 	return r0, r1
 }
 
+// DeserializeCookie provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) DeserializeCookie(ctx context.Context, in *billingpb.DeserializeCookieRequest, opts ...client.CallOption) (*billingpb.DeserializeCookieResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.DeserializeCookieResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DeserializeCookieRequest, ...client.CallOption) *billingpb.DeserializeCookieResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.DeserializeCookieResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.DeserializeCookieRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // FindAllOrders provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) FindAllOrders(ctx context.Context, in *billingpb.ListOrdersRequest, opts ...client.CallOption) (*billingpb.ListOrdersResponse, error) {
 	_va := make([]interface{}, len(opts))

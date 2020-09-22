@@ -71,6 +71,10 @@ message CardPayCallbackRecurringDataFilling {
     string id = 1;
 }
 
+message CardPayCallbackRecurringDataSubscription {
+    string id = 1;
+}
+
 message CardPayCallbackRecurringData {
     string id = 1;
     double amount = 2;
@@ -85,6 +89,7 @@ message CardPayCallbackRecurringData {
     string rrn = 11;
     string status = 12;
     CardPayCallbackRecurringDataFilling filing = 13;
+    CardPayCallbackRecurringDataSubscription subscription = 14;
 }
 
 message CardPayPaymentCallback {
