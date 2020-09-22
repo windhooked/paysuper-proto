@@ -526,6 +526,7 @@ message PaymentCreateResponse {
     bool need_redirect = 4;
     // @inject_tag: json:"-"
     string cookie = 5;
+    google.protobuf.Timestamp recurring_expire_date = 6;
 }
 
 message PaymentFormJsonDataRequest {
