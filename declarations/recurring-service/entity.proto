@@ -47,12 +47,14 @@ message Subscription {
   // @inject_tag: json:"-"
   string masked_pan = 12;
   // @inject_tag: json:"-"
-  string cardpay_subscription_id = 13;
-  CustomerInfo customer_info = 14;
-  google.protobuf.Timestamp expire_at = 15;
-  google.protobuf.Timestamp last_payment_at = 16;
-  google.protobuf.Timestamp created_at = 17;
-  google.protobuf.Timestamp updated_at = 18;
+  string cardpay_plan_id = 13;
+  // @inject_tag: json:"-"
+  string cardpay_subscription_id = 14;
+  CustomerInfo customer_info = 15;
+  google.protobuf.Timestamp expire_at = 16;
+  google.protobuf.Timestamp last_payment_at = 17;
+  google.protobuf.Timestamp created_at = 18;
+  google.protobuf.Timestamp updated_at = 19;
 }
 
 message CustomerInfo {
