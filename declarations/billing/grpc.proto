@@ -3545,5 +3545,5 @@ message DeserializeCookieResponse {
 
 message DeleteCustomerCardRequest {
     string id = 1;
-    string token = 2;
+    string customer_id = 2;
 }
