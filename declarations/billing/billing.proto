@@ -1214,7 +1214,7 @@ message OrderRecurringSettings {
     //@inject_tag: json:"interval" bson:"interval"
     //
     // he frequency interval of recurring period.
-    string interval = 3;
+    int32 interval = 3;
 }
 
 message ParentOrder {
