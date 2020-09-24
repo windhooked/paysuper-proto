@@ -45,8 +45,9 @@ const (
 	TaxjarNotificationStatusPayment  = "taxjar-payment"
 	TaxjarNotificationStatusRefund   = "taxjar-refund"
 
-	RecurringPeriodDay   = "day"
-	RecurringPeriodWeek  = "week"
-	RecurringPeriodMonth = "month"
-	RecurringPeriodYear  = "year"
+	RecurringPeriodMinute = "minute"
+	RecurringPeriodDay    = "day"
+	RecurringPeriodWeek   = "week"
+	RecurringPeriodMonth  = "month"
+	RecurringPeriodYear   = "year"
 )
