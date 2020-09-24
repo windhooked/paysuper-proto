@@ -1211,6 +1211,10 @@ message OrderRecurringSettings {
     //
     // End date of recurring period for order.
     string date_end = 2;
+    //@inject_tag: json:"interval" bson:"interval"
+    //
+    // he frequency interval of recurring period.
+    string interval = 3;
 }
 
 message ParentOrder {
