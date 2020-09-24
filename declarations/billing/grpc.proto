@@ -236,6 +236,8 @@ service BillingService {
     rpc GetCustomerInfo(GetCustomerInfoRequest) returns (GetCustomerInfoResponse) {}
 
     rpc DeserializeCookie(DeserializeCookieRequest) returns (DeserializeCookieResponse) {}
+
+    rpc DeleteCustomerCard(DeleteCustomerCardRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3544,9 +3546,4 @@ message DeserializeCookieResponse {
 message DeleteCustomerCardRequest {
     string id = 1;
     string token = 2;
-}
-
-message DeleteCustomerCardResponse {
-    int32 status = 1;
-    ResponseErrorMessage message = 2;
 }
