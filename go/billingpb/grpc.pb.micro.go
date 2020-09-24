@@ -222,7 +222,7 @@ type BillingService interface {
 	GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error)
 	GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
 	DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error)
-	DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*DeleteCustomerCardResponse, error)
+	DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 }
 
 type billingService struct {
@@ -2113,9 +2113,9 @@ func (c *billingService) DeserializeCookie(ctx context.Context, in *DeserializeC
 	return out, nil
 }
 
-func (c *billingService) DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*DeleteCustomerCardResponse, error) {
+func (c *billingService) DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
 	req := c.c.NewRequest(c.name, "BillingService.DeleteCustomerCard", in)
-	out := new(DeleteCustomerCardResponse)
+	out := new(EmptyResponseWithStatus)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2313,7 +2313,7 @@ type BillingServiceHandler interface {
 	GetCustomerList(context.Context, *ListCustomersRequest, *ListCustomersResponse) error
 	GetCustomerInfo(context.Context, *GetCustomerInfoRequest, *GetCustomerInfoResponse) error
 	DeserializeCookie(context.Context, *DeserializeCookieRequest, *DeserializeCookieResponse) error
-	DeleteCustomerCard(context.Context, *DeleteCustomerCardRequest, *DeleteCustomerCardResponse) error
+	DeleteCustomerCard(context.Context, *DeleteCustomerCardRequest, *EmptyResponseWithStatus) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2505,7 +2505,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error
 		GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error
 		DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error
-		DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *DeleteCustomerCardResponse) error
+		DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *EmptyResponseWithStatus) error
 	}
 	type BillingService struct {
 		billingService
@@ -3266,6 +3266,6 @@ func (h *billingServiceHandler) DeserializeCookie(ctx context.Context, in *Deser
 	return h.BillingServiceHandler.DeserializeCookie(ctx, in, out)
 }
 
-func (h *billingServiceHandler) DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *DeleteCustomerCardResponse) error {
+func (h *billingServiceHandler) DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *EmptyResponseWithStatus) error {
 	return h.BillingServiceHandler.DeleteCustomerCard(ctx, in, out)
 }

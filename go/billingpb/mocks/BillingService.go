@@ -1067,7 +1067,7 @@ func (_m *BillingService) DeleteAdminUser(ctx context.Context, in *billingpb.Adm
 }
 
 // DeleteCustomerCard provides a mock function with given fields: ctx, in, opts
-func (_m *BillingService) DeleteCustomerCard(ctx context.Context, in *billingpb.DeleteCustomerCardRequest, opts ...client.CallOption) (*billingpb.DeleteCustomerCardResponse, error) {
+func (_m *BillingService) DeleteCustomerCard(ctx context.Context, in *billingpb.DeleteCustomerCardRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
 	_va := make([]interface{}, len(opts))
 	for _i := range opts {
 		_va[_i] = opts[_i]
@@ -1077,12 +1077,12 @@ func (_m *BillingService) DeleteCustomerCard(ctx context.Context, in *billingpb.
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
-	var r0 *billingpb.DeleteCustomerCardResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DeleteCustomerCardRequest, ...client.CallOption) *billingpb.DeleteCustomerCardResponse); ok {
+	var r0 *billingpb.EmptyResponseWithStatus
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DeleteCustomerCardRequest, ...client.CallOption) *billingpb.EmptyResponseWithStatus); ok {
 		r0 = rf(ctx, in, opts...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*billingpb.DeleteCustomerCardResponse)
+			r0 = ret.Get(0).(*billingpb.EmptyResponseWithStatus)
 		}
 	}
 
