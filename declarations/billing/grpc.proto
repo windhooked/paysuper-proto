@@ -3553,6 +3553,7 @@ message DeleteCustomerCardRequest {
 
 message GetSubscriptionRequest {
     string id = 1;
+    string cookie = 2;
 }
 
 message GetSubscriptionResponse {
@@ -3562,13 +3563,7 @@ message GetSubscriptionResponse {
 }
 
 message FindSubscriptionsRequest {
-    string customer_id = 1;
-    string customer_uuid = 2;
-    string created_at = 3;
-    billing.CustomerInfo customer = 4;
-    string masked_pan = 5;
-    string quick_filter = 6;
-    string merchant_id = 7;
+    string cookie = 1;
 }
 
 message FindSubscriptionsResponse {
