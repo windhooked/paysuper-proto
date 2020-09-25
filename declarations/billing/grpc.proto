@@ -3573,4 +3573,6 @@ message FindSubscriptionsRequest {
 
 message FindSubscriptionsResponse {
     repeated billing.Subscription list = 1;
+    ResponseErrorMessage message = 2;
+    billing.Subscription subscription = 3;
 }
