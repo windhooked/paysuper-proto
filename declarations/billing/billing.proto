@@ -1192,11 +1192,11 @@ message Order {
     //
     // Recurring settings for order
     OrderRecurringSettings recurring_settings = 94;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"recurring"
     //
     // Exists recurring for order
     bool recurring = 95;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"recurring_id"
     //
     // Recurring identity for order
     string recurring_id = 96;
