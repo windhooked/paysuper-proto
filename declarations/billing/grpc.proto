@@ -238,6 +238,9 @@ service BillingService {
     rpc DeserializeCookie(DeserializeCookieRequest) returns (DeserializeCookieResponse) {}
 
     rpc DeleteCustomerCard(DeleteCustomerCardRequest) returns (EmptyResponseWithStatus) {}
+
+    rpc GetCustomerSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
+    rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
 }
 
 message EmptyRequest {}
@@ -3546,4 +3549,25 @@ message DeserializeCookieResponse {
 message DeleteCustomerCardRequest {
     string id = 1;
     string customer_id = 2;
+}
+
+message GetSubscriptionRequest {
+    string id = 1;
+    string cookie = 2;
+}
+
+message GetSubscriptionResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    billing.Subscription subscription = 3;
+}
+
+message FindSubscriptionsRequest {
+    string cookie = 1;
+}
+
+message FindSubscriptionsResponse {
+    repeated billing.Subscription list = 1;
+    ResponseErrorMessage message = 2;
+    int32 status = 3;
 }
