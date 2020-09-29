@@ -122,7 +122,7 @@ message OrderCreateRequest {
     //
     //The opening mode of the payment form on the project side. Available values: embed, iframe, standalone. Default value: embed.
     string form_mode = 43;
-    //@inject_tag: json:"recurring_period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"omitempty,oneof=minute day week month"
+    //@inject_tag: json:"recurring_period" query:"PO_RECURRING_PERIOD" form:"PO_RECURRING_PERIOD" validate:"omitempty,oneof=minute day week month year"
     //
     // Recurring period of order. Available values: day, week, month.
     string recurring_period = 44;
@@ -1932,6 +1932,14 @@ message TokenSettings {
     //
     //The redirect button messages after the successful or failed payment. If it has an empty value the redirect message will be set at OK.
     string button_caption = 14;
+    //@inject_tag: json:"recurring_period" validate:"omitempty,oneof=minute day week month year"
+    //
+    // Recurring period of order. Available values: day, week, month.
+    string recurring_period = 15;
+    //@inject_tag: json:"recurring_date_end" validate:"omitempty,date"
+    //
+    // End date of recurring period for order.
+    string recurring_date_end = 16;
 }
 
 message OrderIssuer {
