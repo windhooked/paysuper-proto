@@ -4088,14 +4088,14 @@ type Order struct {
 	//
 	// Recurring settings for order
 	RecurringSettings *OrderRecurringSettings `protobuf:"bytes,94,opt,name=recurring_settings,json=recurringSettings,proto3" json:"-"`
-	// @inject_tag: json:"-"
+	// @inject_tag: json:"recurring"
 	//
 	// Exists recurring for order
-	Recurring bool `protobuf:"varint,95,opt,name=recurring,proto3" json:"-"`
-	// @inject_tag: json:"-"
+	Recurring bool `protobuf:"varint,95,opt,name=recurring,proto3" json:"recurring"`
+	// @inject_tag: json:"recurring_id"
 	//
 	// Recurring identity for order
-	RecurringId string `protobuf:"bytes,96,opt,name=recurring_id,json=recurringId,proto3" json:"-"`
+	RecurringId string `protobuf:"bytes,96,opt,name=recurring_id,json=recurringId,proto3" json:"recurring_id"`
 }
 
 func (x *Order) Reset() {
