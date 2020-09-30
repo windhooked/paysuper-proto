@@ -241,6 +241,7 @@ service BillingService {
 
     rpc GetCustomerSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
     rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
+    rpc FindPublicSubscriptions(FindPublicSubscriptionsRequest) returns (FindPublicSubscriptionsResponse) {}
 }
 
 message EmptyRequest {}
@@ -3572,4 +3573,36 @@ message FindSubscriptionsResponse {
     repeated billing.Subscription list = 1;
     ResponseErrorMessage message = 2;
     int32 status = 3;
+}
+
+message FindPublicSubscriptionsRequest {
+    //@inject_tag: validate:"required"
+    string cookie = 1;
+}
+
+message FindPublicSubscriptionsResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    CheckoutShortSubscriptionInfo item = 3;
+}
+
+message CheckoutShortSubscriptionInfo {
+    // @inject_tag: json:"id"
+    string id = 1;
+    // @inject_tag: json:"project_id"
+    string project_id = 2;
+    // @inject_tag: json:"period"
+    string period = 3;
+    // @inject_tag: json:"merchant_id"
+    string merchant_id = 4;
+    // @inject_tag: json:"amount"
+    double amount = 5;
+    // @inject_tag: json:"currency"
+    string currency = 6;
+    // @inject_tag: json:"is_active"
+    bool is_active = 7;
+    // @inject_tag: json:"masked_pan"
+    string masked_pan = 8;
+    // @inject_tag: json:"project_name"
+    string project_name = 9;
 }
