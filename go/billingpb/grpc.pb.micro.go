@@ -227,6 +227,7 @@ type BillingService interface {
 	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
 	FindPublicSubscriptions(ctx context.Context, in *FindPublicSubscriptionsRequest, opts ...client.CallOption) (*FindPublicSubscriptionsResponse, error)
 	GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error)
+	GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error)
 }
 
 type billingService struct {
@@ -2167,6 +2168,16 @@ func (c *billingService) GetCustomerShortInfo(ctx context.Context, in *GetCustom
 	return out, nil
 }
 
+func (c *billingService) GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetSubscriptionOrders", in)
+	out := new(GetSubscriptionOrdersResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for BillingService service
 
 type BillingServiceHandler interface {
@@ -2362,6 +2373,7 @@ type BillingServiceHandler interface {
 	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
 	FindPublicSubscriptions(context.Context, *FindPublicSubscriptionsRequest, *FindPublicSubscriptionsResponse) error
 	GetCustomerShortInfo(context.Context, *GetCustomerShortInfoRequest, *GetCustomerShortInfoResponse) error
+	GetSubscriptionOrders(context.Context, *GetSubscriptionOrdersRequest, *GetSubscriptionOrdersResponse) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2558,6 +2570,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
 		FindPublicSubscriptions(ctx context.Context, in *FindPublicSubscriptionsRequest, out *FindPublicSubscriptionsResponse) error
 		GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error
+		GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error
 	}
 	type BillingService struct {
 		billingService
@@ -3336,4 +3349,8 @@ func (h *billingServiceHandler) FindPublicSubscriptions(ctx context.Context, in 
 
 func (h *billingServiceHandler) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error {
 	return h.BillingServiceHandler.GetCustomerShortInfo(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error {
+	return h.BillingServiceHandler.GetSubscriptionOrders(ctx, in, out)
 }

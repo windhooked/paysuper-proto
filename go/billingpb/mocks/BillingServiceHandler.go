@@ -1849,6 +1849,20 @@ func (_m *BillingServiceHandler) GetRoyaltyReport(_a0 context.Context, _a1 *bill
 	return r0
 }
 
+// GetSubscriptionOrders provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetSubscriptionOrders(_a0 context.Context, _a1 *billingpb.GetSubscriptionOrdersRequest, _a2 *billingpb.GetSubscriptionOrdersResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionOrdersRequest, *billingpb.GetSubscriptionOrdersResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetUserProfile provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetUserProfile(_a0 context.Context, _a1 *billingpb.GetUserProfileRequest, _a2 *billingpb.GetUserProfileResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
