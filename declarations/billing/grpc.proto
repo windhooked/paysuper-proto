@@ -242,6 +242,8 @@ service BillingService {
     rpc GetCustomerSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
     rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
     rpc FindPublicSubscriptions(FindPublicSubscriptionsRequest) returns (FindPublicSubscriptionsResponse) {}
+
+    rpc GetCustomerShortInfo(GetCustomerShortInfoRequest) returns (GetCustomerShortInfoResponse) {}
 }
 
 message EmptyRequest {}
@@ -3583,7 +3585,7 @@ message FindPublicSubscriptionsRequest {
 message FindPublicSubscriptionsResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
-    CheckoutShortSubscriptionInfo item = 3;
+    repeated CheckoutShortSubscriptionInfo item = 3;
 }
 
 message CheckoutShortSubscriptionInfo {
@@ -3605,4 +3607,21 @@ message CheckoutShortSubscriptionInfo {
     string masked_pan = 8;
     // @inject_tag: json:"project_name"
     string project_name = 9;
+}
+
+message GetCustomerShortInfoRequest {
+    //@inject_tag: validate:"required"
+    string cookie = 1;
+}
+
+message GetCustomerShortInfoResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    CustomerShortInfo item = 3;
+}
+
+message CustomerShortInfo {
+    string email = 1;
+    string name = 2;
+    string id = 3;
 }
