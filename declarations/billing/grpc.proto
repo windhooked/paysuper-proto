@@ -244,6 +244,7 @@ service BillingService {
     rpc FindPublicSubscriptions(FindPublicSubscriptionsRequest) returns (FindPublicSubscriptionsResponse) {}
 
     rpc GetCustomerShortInfo(GetCustomerShortInfoRequest) returns (GetCustomerShortInfoResponse) {}
+    rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
 }
 
 message EmptyRequest {}
@@ -3585,7 +3586,7 @@ message FindPublicSubscriptionsRequest {
 message FindPublicSubscriptionsResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
-    repeated CheckoutShortSubscriptionInfo item = 3;
+    repeated CheckoutShortSubscriptionInfo list = 3;
 }
 
 message CheckoutShortSubscriptionInfo {
@@ -3615,7 +3616,7 @@ message GetCustomerShortInfoRequest {
 }
 
 message GetCustomerShortInfoResponse {
-    int32 status = 1; 
+    int32 status = 1;
     ResponseErrorMessage message = 2;
     CustomerShortInfo item = 3;
 }
@@ -3624,4 +3625,24 @@ message CustomerShortInfo {
     string email = 1;
     string name = 2;
     string id = 3;
+}
+
+message GetSubscriptionOrdersRequest {
+    string cookie = 1;
+    string customer_id = 2;
+    string subscription_id = 3;
+}
+
+message GetSubscriptionOrdersResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    repeated ShortOrder list = 3;
+}
+
+message ShortOrder {
+    string id = 1;
+    float amount = 2;
+    string currency = 3;
+    google.protobuf.Timestamp date = 4;
+    string card_number = 5;
 }
