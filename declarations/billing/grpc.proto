@@ -3570,6 +3570,8 @@ message GetSubscriptionResponse {
 message FindSubscriptionsRequest {
     string cookie = 1;
     string customer_id = 2;
+    int32 limit = 3;
+    int32 offset = 4;
 }
 
 message FindSubscriptionsResponse {
