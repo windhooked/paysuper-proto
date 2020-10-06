@@ -44,7 +44,6 @@ type RepositoryService interface {
 	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
 	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
 	DeleteSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*DeleteSubscriptionResponse, error)
-	FindSubscriptionsForDelete(ctx context.Context, in *FindSubscriptionsForDeleteRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
 }
 
 type repositoryService struct {
@@ -155,16 +154,6 @@ func (c *repositoryService) DeleteSubscription(ctx context.Context, in *Subscrip
 	return out, nil
 }
 
-func (c *repositoryService) FindSubscriptionsForDelete(ctx context.Context, in *FindSubscriptionsForDeleteRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
-	req := c.c.NewRequest(c.name, "Repository.FindSubscriptionsForDelete", in)
-	out := new(FindSubscriptionsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for Repository service
 
 type RepositoryHandler interface {
@@ -177,7 +166,6 @@ type RepositoryHandler interface {
 	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
 	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
 	DeleteSubscription(context.Context, *Subscription, *DeleteSubscriptionResponse) error
-	FindSubscriptionsForDelete(context.Context, *FindSubscriptionsForDeleteRequest, *FindSubscriptionsResponse) error
 }
 
 func RegisterRepositoryHandler(s server.Server, hdlr RepositoryHandler, opts ...server.HandlerOption) error {
@@ -191,7 +179,6 @@ func RegisterRepositoryHandler(s server.Server, hdlr RepositoryHandler, opts ...
 		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
 		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
 		DeleteSubscription(ctx context.Context, in *Subscription, out *DeleteSubscriptionResponse) error
-		FindSubscriptionsForDelete(ctx context.Context, in *FindSubscriptionsForDeleteRequest, out *FindSubscriptionsResponse) error
 	}
 	type Repository struct {
 		repository
@@ -238,8 +225,4 @@ func (h *repositoryHandler) FindSubscriptions(ctx context.Context, in *FindSubsc
 
 func (h *repositoryHandler) DeleteSubscription(ctx context.Context, in *Subscription, out *DeleteSubscriptionResponse) error {
 	return h.RepositoryHandler.DeleteSubscription(ctx, in, out)
-}
-
-func (h *repositoryHandler) FindSubscriptionsForDelete(ctx context.Context, in *FindSubscriptionsForDeleteRequest, out *FindSubscriptionsResponse) error {
-	return h.RepositoryHandler.FindSubscriptionsForDelete(ctx, in, out)
 }

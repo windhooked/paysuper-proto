@@ -1426,6 +1426,36 @@ func (_m *BillingService) DeleteProject(ctx context.Context, in *billingpb.GetPr
 	return r0, r1
 }
 
+// DeleteRecurringSubscription provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) DeleteRecurringSubscription(ctx context.Context, in *billingpb.DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.EmptyResponseWithStatus
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DeleteRecurringSubscriptionRequest, ...client.CallOption) *billingpb.EmptyResponseWithStatus); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.EmptyResponseWithStatus)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.DeleteRecurringSubscriptionRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // DeleteSavedCard provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) DeleteSavedCard(ctx context.Context, in *billingpb.DeleteSavedCardRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
 	_va := make([]interface{}, len(opts))
