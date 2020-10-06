@@ -17,7 +17,6 @@ service Repository {
   rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
   rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
   rpc DeleteSubscription(entity.Subscription) returns (DeleteSubscriptionResponse) {}
-  rpc FindSubscriptionsForDelete(FindSubscriptionsForDeleteRequest) returns (FindSubscriptionsResponse) {}
 }
 
 message Result {}
@@ -85,10 +84,7 @@ message FindSubscriptionsRequest {
   string masked_pan = 5;
   string quick_filter = 6;
   string merchant_id = 7;
-}
-
-message FindSubscriptionsForDeleteRequest {
-  google.protobuf.Timestamp expire_at = 1;
+  string expire_at = 8;
 }
 
 message FindSubscriptionsResponse {

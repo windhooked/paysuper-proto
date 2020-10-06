@@ -241,6 +241,8 @@ service BillingService {
 
     rpc GetCustomerSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
     rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
+
+    rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3572,4 +3574,8 @@ message FindSubscriptionsResponse {
     repeated billing.Subscription list = 1;
     ResponseErrorMessage message = 2;
     int32 status = 3;
+}
+
+message DeleteRecurringSubscriptionRequest {
+    string order_id = 1;
 }
