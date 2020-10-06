@@ -757,6 +757,20 @@ func (_m *BillingServiceHandler) FindByZipCode(_a0 context.Context, _a1 *billing
 	return r0
 }
 
+// FindPublicSubscriptions provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) FindPublicSubscriptions(_a0 context.Context, _a1 *billingpb.FindPublicSubscriptionsRequest, _a2 *billingpb.FindPublicSubscriptionsResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindPublicSubscriptionsRequest, *billingpb.FindPublicSubscriptionsResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // FindSubscriptions provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) FindSubscriptions(_a0 context.Context, _a1 *billingpb.FindSubscriptionsRequest, _a2 *billingpb.FindSubscriptionsResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -987,6 +1001,20 @@ func (_m *BillingServiceHandler) GetCustomerList(_a0 context.Context, _a1 *billi
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.ListCustomersRequest, *billingpb.ListCustomersResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// GetCustomerShortInfo provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetCustomerShortInfo(_a0 context.Context, _a1 *billingpb.GetCustomerShortInfoRequest, _a2 *billingpb.GetCustomerShortInfoResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetCustomerShortInfoRequest, *billingpb.GetCustomerShortInfoResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
@@ -1813,6 +1841,20 @@ func (_m *BillingServiceHandler) GetRoyaltyReport(_a0 context.Context, _a1 *bill
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetRoyaltyReportRequest, *billingpb.GetRoyaltyReportResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// GetSubscriptionOrders provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetSubscriptionOrders(_a0 context.Context, _a1 *billingpb.GetSubscriptionOrdersRequest, _a2 *billingpb.GetSubscriptionOrdersResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionOrdersRequest, *billingpb.GetSubscriptionOrdersResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)

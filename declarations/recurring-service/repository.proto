@@ -84,6 +84,8 @@ message FindSubscriptionsRequest {
   string masked_pan = 5;
   string quick_filter = 6;
   string merchant_id = 7;
+  int32 limit = 8;
+  int32 offset = 9;
 }
 
 message FindSubscriptionsResponse {
