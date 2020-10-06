@@ -112,4 +112,6 @@ message GetMerchantSubscriptionsRequest {
 
 message GetMerchantSubscriptionsResponse {
   repeated entity.Subscription list = 1;
+  int32 status = 2;
+  string message = 3;
 }
