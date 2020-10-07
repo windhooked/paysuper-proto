@@ -3670,7 +3670,7 @@ message GetMerchantSubscriptionsRequest {
 message GetMerchantSubscriptionsResponse {
     repeated MerchantSubscription list = 1;
     int32 status = 2;
-    string message = 3;
+    ResponseErrorMessage message = 3;
 }
 
 message MerchantSubscription {
