@@ -245,6 +245,8 @@ service BillingService {
 
     rpc GetCustomerShortInfo(GetCustomerShortInfoRequest) returns (GetCustomerShortInfoResponse) {}
     rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
+
+    rpc GetMerchantSubscriptions(GetMerchantSubscriptionsRequest) returns (GetMerchantSubscriptionsResponse) {}
 }
 
 message EmptyRequest {}
@@ -3656,4 +3658,27 @@ message ShortOrder {
     string currency = 3;
     google.protobuf.Timestamp date = 4;
     string card_number = 5;
+}
+
+message GetMerchantSubscriptionsRequest {
+    string merchant_id = 1;
+    string quick_filter = 2;
+    int32 limit = 3;
+    int32 offset = 4;
+}
+
+message GetMerchantSubscriptionsResponse {
+    repeated MerchantSubscription list = 1;
+    int32 status = 2;
+    ResponseErrorMessage message = 3;
+}
+
+message MerchantSubscription {
+    string email = 1;
+    string project_id = 2;
+    string currency = 3;
+    float amount = 4;
+    string start = 5;
+    string subscription_id = 6;
+    string project_name = 7;
 }
