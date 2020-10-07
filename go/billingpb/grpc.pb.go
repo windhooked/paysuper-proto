@@ -21894,8 +21894,9 @@ type GetSubscriptionOrdersRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Cookie     string `protobuf:"bytes,1,opt,name=cookie,proto3" json:"cookie,omitempty"`
-	CustomerId string `protobuf:"bytes,2,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty"`
+	Cookie string `protobuf:"bytes,1,opt,name=cookie,proto3" json:"cookie,omitempty"`
+	// @inject_tag: query:"customer_id"
+	CustomerId string `protobuf:"bytes,2,opt,name=customer_id,json=customerId,proto3" json:"customer_id,omitempty" query:"customer_id"`
 	// @inject_tag: validate:"required"
 	SubscriptionId string `protobuf:"bytes,3,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty" validate:"required"`
 	// @inject_tag: query:"limit" validate:"required,numeric,gt=0"
@@ -22118,10 +22119,14 @@ type GetMerchantSubscriptionsRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MerchantId  string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
-	QuickFilter string `protobuf:"bytes,2,opt,name=quick_filter,json=quickFilter,proto3" json:"quick_filter,omitempty"`
-	Limit       int32  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
-	Offset      int32  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
+	// @inject_tag: query:"merchant_id"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" query:"merchant_id"`
+	// @inject_tag: query:"quick_filter"
+	QuickFilter string `protobuf:"bytes,2,opt,name=quick_filter,json=quickFilter,proto3" json:"quick_filter,omitempty" query:"quick_filter"`
+	// @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
+	Limit int32 `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty" query:"limit" validate:"omitempty,numeric,gt=0"`
+	// @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
+	Offset int32 `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty" query:"offset" validate:"omitempty,numeric,gte=0"`
 }
 
 func (x *GetMerchantSubscriptionsRequest) Reset() {
