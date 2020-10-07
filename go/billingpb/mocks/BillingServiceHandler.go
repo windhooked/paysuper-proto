@@ -1233,6 +1233,20 @@ func (_m *BillingServiceHandler) GetMerchantPaymentMethod(_a0 context.Context, _
 	return r0
 }
 
+// GetMerchantSubscriptions provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetMerchantSubscriptions(_a0 context.Context, _a1 *billingpb.GetMerchantSubscriptionsRequest, _a2 *billingpb.GetMerchantSubscriptionsResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetMerchantSubscriptionsRequest, *billingpb.GetMerchantSubscriptionsResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetMerchantTariffRates provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetMerchantTariffRates(_a0 context.Context, _a1 *billingpb.GetMerchantTariffRatesRequest, _a2 *billingpb.GetMerchantTariffRatesResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
