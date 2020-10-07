@@ -3637,6 +3637,7 @@ message CustomerShortInfo {
 
 message GetSubscriptionOrdersRequest {
     string cookie = 1;
+    // @inject_tag: query:"customer_id"
     string customer_id = 2;
     // @inject_tag: validate:"required"
     string subscription_id = 3;
@@ -3661,9 +3662,13 @@ message ShortOrder {
 }
 
 message GetMerchantSubscriptionsRequest {
+    // @inject_tag: query:"merchant_id"
     string merchant_id = 1;
+    // @inject_tag: query:"quick_filter"
     string quick_filter = 2;
+    // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
     int32 limit = 3;
+    // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int32 offset = 4;
 }
 
