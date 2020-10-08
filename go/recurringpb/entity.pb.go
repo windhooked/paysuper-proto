@@ -242,7 +242,8 @@ type Subscription struct {
 	LastPaymentAt         *timestamp.Timestamp `protobuf:"bytes,17,opt,name=last_payment_at,json=lastPaymentAt,proto3" json:"last_payment_at,omitempty"`
 	CreatedAt             *timestamp.Timestamp `protobuf:"bytes,18,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt             *timestamp.Timestamp `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	OrderId               string               `protobuf:"bytes,20,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
+	// @inject_tag: json:"-"
+	OrderId string `protobuf:"bytes,20,opt,name=order_id,json=orderId,proto3" json:"-"`
 }
 
 func (x *Subscription) Reset() {
