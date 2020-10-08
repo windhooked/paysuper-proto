@@ -3498,6 +3498,8 @@ message ListCustomersRequest {
     int64 limit = 9;
     // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int64 offset = 10;
+    //@inject_tag: json:"quick_search"
+    string quick_search = 11;
 }
 
 message AmountFilter {
