@@ -241,8 +241,13 @@ service BillingService {
 
     rpc GetCustomerSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
     rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
+    rpc FindPublicSubscriptions(FindPublicSubscriptionsRequest) returns (FindPublicSubscriptionsResponse) {}
 
-    rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
+    rpc GetCustomerShortInfo(GetCustomerShortInfoRequest) returns (GetCustomerShortInfoResponse) {}
+    rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
+
+    rpc GetMerchantSubscriptions(GetMerchantSubscriptionsRequest) returns (GetMerchantSubscriptionsResponse) {}
+  rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3568,6 +3573,8 @@ message GetSubscriptionResponse {
 message FindSubscriptionsRequest {
     string cookie = 1;
     string customer_id = 2;
+    int32 limit = 3;
+    int32 offset = 4;
 }
 
 message FindSubscriptionsResponse {
@@ -3576,6 +3583,112 @@ message FindSubscriptionsResponse {
     int32 status = 3;
 }
 
+message FindPublicSubscriptionsRequest {
+    //@inject_tag: validate:"required"
+    string cookie = 1;
+    // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
+    int32 limit = 2;
+    // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
+    int32 offset = 3;
+}
+
+message FindPublicSubscriptionsResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    repeated CheckoutShortSubscriptionInfo list = 3;
+}
+
+message CheckoutShortSubscriptionInfo {
+    // @inject_tag: json:"id"
+    string id = 1;
+    // @inject_tag: json:"project_id"
+    string project_id = 2;
+    // @inject_tag: json:"period"
+    string period = 3;
+    // @inject_tag: json:"merchant_id"
+    string merchant_id = 4;
+    // @inject_tag: json:"amount"
+    double amount = 5;
+    // @inject_tag: json:"currency"
+    string currency = 6;
+    // @inject_tag: json:"is_active"
+    bool is_active = 7;
+    // @inject_tag: json:"masked_pan"
+    string masked_pan = 8;
+    // @inject_tag: json:"project_name"
+    string project_name = 9;
+}
+
+message GetCustomerShortInfoRequest {
+    //@inject_tag: validate:"required"
+    string cookie = 1;
+}
+
+message GetCustomerShortInfoResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    CustomerShortInfo item = 3;
+}
+
+message CustomerShortInfo {
+    string email = 1;
+    string name = 2;
+    string id = 3;
+}
+
+message GetSubscriptionOrdersRequest {
+    string cookie = 1;
+    // @inject_tag: query:"customer_id"
+    string customer_id = 2;
+    // @inject_tag: validate:"required"
+    string subscription_id = 3;
+    // @inject_tag: query:"limit" validate:"required,numeric,gt=0"
+    int32 limit = 4;
+    // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
+    int32 offset = 5;
+}
+
+message GetSubscriptionOrdersResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    repeated ShortOrder list = 3;
+}
+
+message ShortOrder {
+    string id = 1;
+    float amount = 2;
+    string currency = 3;
+    google.protobuf.Timestamp date = 4;
+    string card_number = 5;
+}
+
+message GetMerchantSubscriptionsRequest {
+    // @inject_tag: query:"merchant_id"
+    string merchant_id = 1;
+    // @inject_tag: query:"quick_filter"
+    string quick_filter = 2;
+    // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
+    int32 limit = 3;
+    // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
+    int32 offset = 4;
+}
+
+message GetMerchantSubscriptionsResponse {
+    repeated MerchantSubscription list = 1;
+    int32 status = 2;
+    ResponseErrorMessage message = 3;
+}
+
+message MerchantSubscription {
+    string email = 1;
+    string project_id = 2;
+    string currency = 3;
+    float amount = 4;
+    string start = 5;
+    string subscription_id = 6;
+    string project_name = 7;
+}
+
 message DeleteRecurringSubscriptionRequest {
-    string order_id = 1;
+  string order_id = 1;
 }

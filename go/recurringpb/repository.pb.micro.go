@@ -44,6 +44,7 @@ type RepositoryService interface {
 	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
 	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
 	DeleteSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*DeleteSubscriptionResponse, error)
+	GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, opts ...client.CallOption) (*GetMerchantSubscriptionsResponse, error)
 }
 
 type repositoryService struct {
@@ -154,6 +155,16 @@ func (c *repositoryService) DeleteSubscription(ctx context.Context, in *Subscrip
 	return out, nil
 }
 
+func (c *repositoryService) GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, opts ...client.CallOption) (*GetMerchantSubscriptionsResponse, error) {
+	req := c.c.NewRequest(c.name, "Repository.GetMerchantSubscriptions", in)
+	out := new(GetMerchantSubscriptionsResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Repository service
 
 type RepositoryHandler interface {
@@ -166,6 +177,7 @@ type RepositoryHandler interface {
 	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
 	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
 	DeleteSubscription(context.Context, *Subscription, *DeleteSubscriptionResponse) error
+	GetMerchantSubscriptions(context.Context, *GetMerchantSubscriptionsRequest, *GetMerchantSubscriptionsResponse) error
 }
 
 func RegisterRepositoryHandler(s server.Server, hdlr RepositoryHandler, opts ...server.HandlerOption) error {
@@ -179,6 +191,7 @@ func RegisterRepositoryHandler(s server.Server, hdlr RepositoryHandler, opts ...
 		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
 		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
 		DeleteSubscription(ctx context.Context, in *Subscription, out *DeleteSubscriptionResponse) error
+		GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, out *GetMerchantSubscriptionsResponse) error
 	}
 	type Repository struct {
 		repository
@@ -225,4 +238,8 @@ func (h *repositoryHandler) FindSubscriptions(ctx context.Context, in *FindSubsc
 
 func (h *repositoryHandler) DeleteSubscription(ctx context.Context, in *Subscription, out *DeleteSubscriptionResponse) error {
 	return h.RepositoryHandler.DeleteSubscription(ctx, in, out)
+}
+
+func (h *repositoryHandler) GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, out *GetMerchantSubscriptionsResponse) error {
+	return h.RepositoryHandler.GetMerchantSubscriptions(ctx, in, out)
 }
