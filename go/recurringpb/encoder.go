@@ -122,6 +122,7 @@ type MgoCustomerInfo struct {
 
 type MgoSubscription struct {
 	Id                    primitive.ObjectID `bson:"_id"`
+	OrderId               primitive.ObjectID `bson:"order_id"`
 	CustomerId            primitive.ObjectID `bson:"customer_id"`
 	CustomerUuid          string             `bson:"customer_uuid"`
 	Period                string             `bson:"period"`
@@ -148,6 +149,12 @@ func (s *Subscription) MarshalBSON() ([]byte, error) {
 		return nil, err
 	}
 
+	orderOid, err := primitive.ObjectIDFromHex(s.OrderId)
+
+	if err != nil {
+		return nil, err
+	}
+
 	customerOid, err := primitive.ObjectIDFromHex(s.CustomerId)
 
 	if err != nil {
@@ -168,6 +175,7 @@ func (s *Subscription) MarshalBSON() ([]byte, error) {
 
 	st := &MgoSubscription{
 		Id:                    oid,
+		OrderId:               orderOid,
 		CustomerId:            customerOid,
 		CustomerUuid:          s.CustomerUuid,
 		Period:                s.Period,
@@ -236,6 +244,7 @@ func (s *Subscription) UnmarshalBSON(raw []byte) error {
 	}
 
 	s.Id = decoded.Id.Hex()
+	s.OrderId = decoded.OrderId.Hex()
 	s.CustomerId = decoded.CustomerId.Hex()
 	s.CustomerUuid = decoded.CustomerUuid
 	s.Period = decoded.Period

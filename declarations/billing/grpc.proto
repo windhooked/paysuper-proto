@@ -247,6 +247,7 @@ service BillingService {
     rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
 
     rpc GetMerchantSubscriptions(GetMerchantSubscriptionsRequest) returns (GetMerchantSubscriptionsResponse) {}
+  rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3686,4 +3687,8 @@ message MerchantSubscription {
     string start = 5;
     string subscription_id = 6;
     string project_name = 7;
+}
+
+message DeleteRecurringSubscriptionRequest {
+  string order_id = 1;
 }

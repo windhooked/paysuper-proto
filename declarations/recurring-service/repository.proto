@@ -88,6 +88,7 @@ message FindSubscriptionsRequest {
   string merchant_id = 7;
   int32 limit = 8;
   int32 offset = 9;
+  string expire_at = 10;
 }
 
 message FindSubscriptionsResponse {
