@@ -3575,8 +3575,12 @@ message GetSubscriptionResponse {
 message FindSubscriptionsRequest {
     string cookie = 1;
     string customer_id = 2;
+    // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
     int32 limit = 3;
+    // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int32 offset = 4;
+    // @inject_tag: json:"merchant_id"
+    string merchant_id = 5;
 }
 
 message FindSubscriptionsResponse {
