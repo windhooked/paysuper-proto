@@ -229,6 +229,7 @@ type BillingService interface {
 	GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error)
 	GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error)
 	GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, opts ...client.CallOption) (*GetMerchantSubscriptionsResponse, error)
+	DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 }
 
 type billingService struct {
@@ -2189,6 +2190,16 @@ func (c *billingService) GetMerchantSubscriptions(ctx context.Context, in *GetMe
 	return out, nil
 }
 
+func (c *billingService) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	req := c.c.NewRequest(c.name, "BillingService.DeleteRecurringSubscription", in)
+	out := new(EmptyResponseWithStatus)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for BillingService service
 
 type BillingServiceHandler interface {
@@ -2386,6 +2397,7 @@ type BillingServiceHandler interface {
 	GetCustomerShortInfo(context.Context, *GetCustomerShortInfoRequest, *GetCustomerShortInfoResponse) error
 	GetSubscriptionOrders(context.Context, *GetSubscriptionOrdersRequest, *GetSubscriptionOrdersResponse) error
 	GetMerchantSubscriptions(context.Context, *GetMerchantSubscriptionsRequest, *GetMerchantSubscriptionsResponse) error
+	DeleteRecurringSubscription(context.Context, *DeleteRecurringSubscriptionRequest, *EmptyResponseWithStatus) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2584,6 +2596,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error
 		GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error
 		GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, out *GetMerchantSubscriptionsResponse) error
+		DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error
 	}
 	type BillingService struct {
 		billingService
@@ -3370,4 +3383,8 @@ func (h *billingServiceHandler) GetSubscriptionOrders(ctx context.Context, in *G
 
 func (h *billingServiceHandler) GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, out *GetMerchantSubscriptionsResponse) error {
 	return h.BillingServiceHandler.GetMerchantSubscriptions(ctx, in, out)
+}
+
+func (h *billingServiceHandler) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.DeleteRecurringSubscription(ctx, in, out)
 }
