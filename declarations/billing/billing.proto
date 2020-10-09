@@ -3944,6 +3944,10 @@ message OrderReceipt {
     //
     //The last day for recurring payments.
     string recurring_date_end = 23;
+    //@inject_tag: json:"exists_recurring_subscriptions"
+    //
+    //True if exists recurring subscription for customer.
+    bool exists_recurring_subscriptions = 24;
 }
 
 message OrderReceiptItem {
