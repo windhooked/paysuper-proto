@@ -3500,6 +3500,8 @@ message ListCustomersRequest {
     int64 offset = 10;
     //@inject_tag: json:"quick_search"
     string quick_search = 11;
+    //@inject_tag: json:"project_id"
+    string project_id = 12;
 }
 
 message AmountFilter {
