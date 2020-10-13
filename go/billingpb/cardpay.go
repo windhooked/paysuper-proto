@@ -72,6 +72,10 @@ func (m *CardPayPaymentCallback) IsRecurring() bool {
 	return m.RecurringData != nil
 }
 
+func (m *CardPayPaymentCallback) IsRecurringWithFiling() bool {
+	return m.RecurringData != nil && m.RecurringData.Filing != nil
+}
+
 func (m *CardPayPaymentCallback) GetId() string {
 	if m.PaymentData != nil {
 		return m.PaymentData.Id
