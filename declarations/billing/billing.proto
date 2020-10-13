@@ -3924,6 +3924,30 @@ message OrderReceipt {
     //
     //The customer's email.
     string customer_email = 18;
+    //@inject_tag: json:"customer_uuid"
+    //
+    //The customer's public identifier.
+    string customer_uuid = 19;
+    //@inject_tag: json:"is_recurring"
+    //
+    //True if the order contains recurring subscription.
+    string is_recurring = 20;
+    //@inject_tag: json:"recurring_period"
+    //
+    //The period alias for recurring payments.
+    string recurring_period = 21;
+    //@inject_tag: json:"recurring_interval"
+    //
+    //The interval for recurring period.
+    string recurring_interval = 22;
+    //@inject_tag: json:"recurring_date_end"
+    //
+    //The last day for recurring payments.
+    string recurring_date_end = 23;
+    //@inject_tag: json:"exists_recurring_subscriptions"
+    //
+    //True if exists recurring subscription for customer.
+    string exists_recurring_subscriptions = 24;
 }
 
 message OrderReceiptItem {
