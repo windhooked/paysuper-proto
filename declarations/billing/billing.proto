@@ -3931,7 +3931,7 @@ message OrderReceipt {
     //@inject_tag: json:"is_recurring"
     //
     //True if the order contains recurring subscription.
-    bool is_recurring = 20;
+    string is_recurring = 20;
     //@inject_tag: json:"recurring_period"
     //
     //The period alias for recurring payments.
@@ -3939,7 +3939,7 @@ message OrderReceipt {
     //@inject_tag: json:"recurring_interval"
     //
     //The interval for recurring period.
-    int32 recurring_interval = 22;
+    string recurring_interval = 22;
     //@inject_tag: json:"recurring_date_end"
     //
     //The last day for recurring payments.
@@ -3947,7 +3947,7 @@ message OrderReceipt {
     //@inject_tag: json:"exists_recurring_subscriptions"
     //
     //True if exists recurring subscription for customer.
-    bool exists_recurring_subscriptions = 24;
+    string exists_recurring_subscriptions = 24;
 }
 
 message OrderReceiptItem {
