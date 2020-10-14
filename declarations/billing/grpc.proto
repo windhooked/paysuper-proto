@@ -3498,10 +3498,6 @@ message ListCustomersRequest {
     int64 limit = 9;
     // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int64 offset = 10;
-    //@inject_tag: json:"quick_search"
-    string quick_search = 11;
-    //@inject_tag: json:"project_id"
-    string project_id = 12;
 }
 
 message AmountFilter {
@@ -3577,12 +3573,8 @@ message GetSubscriptionResponse {
 message FindSubscriptionsRequest {
     string cookie = 1;
     string customer_id = 2;
-    // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
     int32 limit = 3;
-    // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int32 offset = 4;
-    // @inject_tag: json:"merchant_id"
-    string merchant_id = 5;
 }
 
 message FindSubscriptionsResponse {
@@ -3698,5 +3690,5 @@ message MerchantSubscription {
 }
 
 message DeleteRecurringSubscriptionRequest {
-  string subscription_id = 1;
+  string order_id = 1;
 }
