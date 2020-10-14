@@ -3698,5 +3698,9 @@ message MerchantSubscription {
 }
 
 message DeleteRecurringSubscriptionRequest {
+  // @inject_tag: validate:"required"
   string subscription_id = 1;
+  // @inject_tag: query:"customer_id"
+  string customer_id = 2;
+  string cookie = 3;
 }
