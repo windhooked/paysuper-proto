@@ -3690,5 +3690,5 @@ message MerchantSubscription {
 }
 
 message DeleteRecurringSubscriptionRequest {
-  string order_id = 1;
+  string subscription_id = 1;
 }
