@@ -3589,6 +3589,7 @@ message FindSubscriptionsResponse {
     repeated billing.Subscription list = 1;
     ResponseErrorMessage message = 2;
     int32 status = 3;
+    int32 count = 4;
 }
 
 message FindPublicSubscriptionsRequest {
@@ -3604,6 +3605,7 @@ message FindPublicSubscriptionsResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
     repeated CheckoutShortSubscriptionInfo list = 3;
+    int32 count = 4;
 }
 
 message CheckoutShortSubscriptionInfo {
@@ -3662,6 +3664,7 @@ message GetSubscriptionOrdersResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
     repeated ShortOrder list = 3;
+    int32 count = 4;
 }
 
 message ShortOrder {
@@ -3690,6 +3693,7 @@ message GetMerchantSubscriptionsResponse {
     repeated MerchantSubscription list = 1;
     int32 status = 2;
     ResponseErrorMessage message = 3;
+    int32 count = 4;
 }
 
 message MerchantSubscription {
