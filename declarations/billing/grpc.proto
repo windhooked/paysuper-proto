@@ -3625,6 +3625,8 @@ message CheckoutShortSubscriptionInfo {
     string masked_pan = 8;
     // @inject_tag: json:"project_name"
     string project_name = 9;
+    // @inject_tag: json:"start_date"
+    google.protobuf.Timestamp start_date = 10;
 }
 
 message GetCustomerShortInfoRequest {
@@ -3667,7 +3669,10 @@ message ShortOrder {
     float amount = 2;
     string currency = 3;
     google.protobuf.Timestamp date = 4;
+    // @inject_tag: json:"card_number"
     string card_number = 5;
+    // @inject_tag: json:"product_name"
+    string product_name = 6;
 }
 
 message GetMerchantSubscriptionsRequest {
