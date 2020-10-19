@@ -79,6 +79,11 @@ message ReportFile {
     //
     // Has a true value if need to skip post process method call after the report file exported.
     bool skip_post_process = 12;
+
+    // @inject_tag: json:"hide_test_transactions"
+    //
+    // Has a true value if need to hide test transactions
+    bool hide_test_transactions = 13;
 }
 
 message PostProcessRequest {
