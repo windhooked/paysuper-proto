@@ -3658,6 +3658,8 @@ message GetSubscriptionOrdersRequest {
     int32 limit = 4;
     // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int32 offset = 5;
+
+    string merchant_id = 6;
 }
 
 message GetSubscriptionOrdersResponse {
