@@ -124,6 +124,6 @@ message MerchantSubscription {
   string project_id = 2;
   string currency = 3;
   float amount = 4;
-  string start = 5;
+  google.protobuf.Timestamp start = 5;
   string subscription_id = 6;
 }

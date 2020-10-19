@@ -3701,9 +3701,10 @@ message MerchantSubscription {
     string project_id = 2;
     string currency = 3;
     float amount = 4;
-    string start = 5;
+    google.protobuf.Timestamp start = 5;
     string subscription_id = 6;
     string project_name = 7;
+    string masked_pan = 8;
 }
 
 message DeleteRecurringSubscriptionRequest {
