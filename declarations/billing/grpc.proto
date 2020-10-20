@@ -3707,6 +3707,7 @@ message MerchantSubscription {
     string subscription_id = 6;
     string project_name = 7;
     string masked_pan = 8;
+    string customer_id = 9;
 }
 
 message DeleteRecurringSubscriptionRequest {
