@@ -127,4 +127,5 @@ message MerchantSubscription {
   google.protobuf.Timestamp start = 5;
   string subscription_id = 6;
   string masked_pan = 7;
+  string customer_id = 8;
 }
