@@ -196,6 +196,12 @@ func (s *Subscription) MarshalBSON() ([]byte, error) {
 		CardpaySubscriptionId: s.CardpaySubscriptionId,
 	}
 
+	if s.ProjectName != nil {
+		for k, v := range s.ProjectName {
+			st.ProjectName = append(st.ProjectName, &MgoMultiLang{Lang: k, Value: v})
+		}
+	}
+
 	if s.CustomerInfo != nil {
 		st.CustomerInfo = &MgoCustomerInfo{
 			ExternalId: s.CustomerInfo.ExternalId,
@@ -263,6 +269,17 @@ func (s *Subscription) UnmarshalBSON(raw []byte) error {
 	s.MaskedPan = decoded.MaskedPan
 	s.CardpaySubscriptionId = decoded.CardpaySubscriptionId
 	s.IsActive = decoded.IsActive
+
+	if decoded.ProjectName != nil {
+		nameLen := len(decoded.ProjectName)
+		if nameLen > 0 {
+			s.ProjectName = make(map[string]string, nameLen)
+
+			for _, v := range decoded.ProjectName {
+				s.ProjectName[v.Lang] = v.Value
+			}
+		}
+	}
 
 	if decoded.CustomerInfo != nil {
 		s.CustomerInfo = &CustomerInfo{
