@@ -12,6 +12,11 @@ type MgoExpire struct {
 	Year  string `bson:"year" json:"year"`
 }
 
+type MgoMultiLang struct {
+	Lang  string `bson:"lang"`
+	Value string `bson:"value"`
+}
+
 type MgoSavedCard struct {
 	Id          primitive.ObjectID `bson:"_id"`
 	Token       string             `bson:"token"`
@@ -140,6 +145,7 @@ type MgoSubscription struct {
 	LastPaymentAt         time.Time          `bson:"last_payment_at"`
 	CreatedAt             time.Time          `bson:"created_at"`
 	UpdatedAt             time.Time          `bson:"updated_at"`
+	ProjectName           []*MgoMultiLang    `bson:"project_name"`
 }
 
 func (s *Subscription) MarshalBSON() ([]byte, error) {

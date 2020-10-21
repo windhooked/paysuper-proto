@@ -247,7 +247,7 @@ service BillingService {
     rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
 
     rpc GetMerchantSubscriptions(GetMerchantSubscriptionsRequest) returns (GetMerchantSubscriptionsResponse) {}
-  rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
+    rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
 }
 
 message EmptyRequest {}
@@ -3563,15 +3563,17 @@ message DeleteCustomerCardRequest {
 }
 
 message GetSubscriptionRequest {
+    // @inject_tag: param:"id"
     string id = 1;
     string cookie = 2;
-    string customer_id = 3;
+    // @inject_tag: param:"merchant_id"
+    string merchant_id = 4;
 }
 
 message GetSubscriptionResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
-    billing.Subscription subscription = 3;
+    billing.RecurringSubscription subscription = 3;
 }
 
 message FindSubscriptionsRequest {
@@ -3650,38 +3652,25 @@ message CustomerShortInfo {
 
 message GetSubscriptionOrdersRequest {
     string cookie = 1;
-    // @inject_tag: query:"customer_id"
-    string customer_id = 2;
-    // @inject_tag: validate:"required"
-    string subscription_id = 3;
+    // @inject_tag: validate:"required" param:"id"
+    string id = 3;
     // @inject_tag: query:"limit" validate:"required,numeric,gt=0"
     int32 limit = 4;
     // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int32 offset = 5;
-
+    // @inject_tag: param:"merchant_id"
     string merchant_id = 6;
 }
 
 message GetSubscriptionOrdersResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
-    repeated ShortOrder list = 3;
+    repeated billing.SubscriptionOrder list = 3;
     int32 count = 4;
 }
 
-message ShortOrder {
-    string id = 1;
-    float amount = 2;
-    string currency = 3;
-    google.protobuf.Timestamp date = 4;
-    // @inject_tag: json:"card_number"
-    string card_number = 5;
-    // @inject_tag: json:"product_name"
-    string product_name = 6;
-}
-
 message GetMerchantSubscriptionsRequest {
-    // @inject_tag: query:"merchant_id"
+    // @inject_tag: param:"merchant_id"
     string merchant_id = 1;
     // @inject_tag: query:"quick_filter"
     string quick_filter = 2;
@@ -3692,28 +3681,16 @@ message GetMerchantSubscriptionsRequest {
 }
 
 message GetMerchantSubscriptionsResponse {
-    repeated MerchantSubscription list = 1;
+    repeated billing.RecurringSubscription list = 1;
     int32 status = 2;
     ResponseErrorMessage message = 3;
     int32 count = 4;
 }
 
-message MerchantSubscription {
-    string email = 1;
-    string project_id = 2;
-    string currency = 3;
-    float amount = 4;
-    google.protobuf.Timestamp start = 5;
-    string subscription_id = 6;
-    string project_name = 7;
-    string masked_pan = 8;
-    string customer_id = 9;
-}
-
 message DeleteRecurringSubscriptionRequest {
-  // @inject_tag: validate:"required"
-  string subscription_id = 1;
-  // @inject_tag: query:"customer_id"
-  string customer_id = 2;
+  // @inject_tag: validate:"required" param:"id"
+  string id = 1;
   string cookie = 3;
+  // @inject_tag: param:"merchant_id"
+  string merchant_id = 4;
 }
