@@ -134,6 +134,7 @@ type MgoSubscription struct {
 	MerchantId            primitive.ObjectID `bson:"merchant_id"`
 	ProjectId             primitive.ObjectID `bson:"project_id"`
 	Amount                float64            `bson:"amount"`
+	TotalAmount           float64            `bson:"total_amount"`
 	Currency              string             `bson:"currency"`
 	ItemType              string             `bson:"item_type"`
 	ItemList              []string           `bson:"item_list"`
@@ -188,6 +189,7 @@ func (s *Subscription) MarshalBSON() ([]byte, error) {
 		MerchantId:            merchantOid,
 		ProjectId:             projectOid,
 		Amount:                s.Amount,
+		TotalAmount:           s.TotalAmount,
 		Currency:              s.Currency,
 		ItemType:              s.ItemType,
 		ItemList:              s.ItemList,
@@ -263,6 +265,7 @@ func (s *Subscription) UnmarshalBSON(raw []byte) error {
 	s.MerchantId = decoded.MerchantId.Hex()
 	s.ProjectId = decoded.ProjectId.Hex()
 	s.Amount = decoded.Amount
+	s.TotalAmount = decoded.TotalAmount
 	s.Currency = decoded.Currency
 	s.ItemType = decoded.ItemType
 	s.ItemList = decoded.ItemList
