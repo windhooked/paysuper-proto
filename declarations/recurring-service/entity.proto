@@ -58,6 +58,7 @@ message Subscription {
   // @inject_tag: json:"-"
   string order_id = 20;
   map<string, string> project_name = 21;
+  double total_amount = 22;
 }
 
 message CustomerInfo {
