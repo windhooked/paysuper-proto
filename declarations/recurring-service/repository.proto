@@ -17,8 +17,6 @@ service Repository {
   rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
   rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
   rpc DeleteSubscription(entity.Subscription) returns (DeleteSubscriptionResponse) {}
-
-  rpc GetMerchantSubscriptions(GetMerchantSubscriptionsRequest) returns (GetMerchantSubscriptionsResponse) {}
 }
 
 message Result {}
@@ -105,16 +103,3 @@ message DeleteSubscriptionResponse {
   string message = 2;
 }
 
-message GetMerchantSubscriptionsRequest {
-  string merchant_id = 1;
-  string quick_filter = 2;
-  int32 limit = 3;
-  int32 offset = 4;
-}
-
-message GetMerchantSubscriptionsResponse {
-  repeated entity.Subscription list = 1;
-  int32 status = 2;
-  string message = 3;
-  int32 count = 4;
-}
