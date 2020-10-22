@@ -4398,6 +4398,7 @@ message RecurringSubscription {
     google.protobuf.Timestamp created_at = 12;
     google.protobuf.Timestamp expire_at = 13;
     google.protobuf.Timestamp last_payment_at = 14;
+    double total_amount = 15;
 }
 
 message SubscriptionOrder {
