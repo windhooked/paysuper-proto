@@ -12,6 +12,11 @@ type MgoExpire struct {
 	Year  string `bson:"year" json:"year"`
 }
 
+type MgoMultiLang struct {
+	Lang  string `bson:"lang"`
+	Value string `bson:"value"`
+}
+
 type MgoSavedCard struct {
 	Id          primitive.ObjectID `bson:"_id"`
 	Token       string             `bson:"token"`
@@ -129,6 +134,7 @@ type MgoSubscription struct {
 	MerchantId            primitive.ObjectID `bson:"merchant_id"`
 	ProjectId             primitive.ObjectID `bson:"project_id"`
 	Amount                float64            `bson:"amount"`
+	TotalAmount           float64            `bson:"total_amount"`
 	Currency              string             `bson:"currency"`
 	ItemType              string             `bson:"item_type"`
 	ItemList              []string           `bson:"item_list"`
@@ -140,6 +146,7 @@ type MgoSubscription struct {
 	LastPaymentAt         time.Time          `bson:"last_payment_at"`
 	CreatedAt             time.Time          `bson:"created_at"`
 	UpdatedAt             time.Time          `bson:"updated_at"`
+	ProjectName           []*MgoMultiLang    `bson:"project_name"`
 }
 
 func (s *Subscription) MarshalBSON() ([]byte, error) {
@@ -182,12 +189,19 @@ func (s *Subscription) MarshalBSON() ([]byte, error) {
 		MerchantId:            merchantOid,
 		ProjectId:             projectOid,
 		Amount:                s.Amount,
+		TotalAmount:           s.TotalAmount,
 		Currency:              s.Currency,
 		ItemType:              s.ItemType,
 		ItemList:              s.ItemList,
 		IsActive:              s.IsActive,
 		MaskedPan:             s.MaskedPan,
 		CardpaySubscriptionId: s.CardpaySubscriptionId,
+	}
+
+	if s.ProjectName != nil {
+		for k, v := range s.ProjectName {
+			st.ProjectName = append(st.ProjectName, &MgoMultiLang{Lang: k, Value: v})
+		}
 	}
 
 	if s.CustomerInfo != nil {
@@ -251,12 +265,24 @@ func (s *Subscription) UnmarshalBSON(raw []byte) error {
 	s.MerchantId = decoded.MerchantId.Hex()
 	s.ProjectId = decoded.ProjectId.Hex()
 	s.Amount = decoded.Amount
+	s.TotalAmount = decoded.TotalAmount
 	s.Currency = decoded.Currency
 	s.ItemType = decoded.ItemType
 	s.ItemList = decoded.ItemList
 	s.MaskedPan = decoded.MaskedPan
 	s.CardpaySubscriptionId = decoded.CardpaySubscriptionId
 	s.IsActive = decoded.IsActive
+
+	if decoded.ProjectName != nil {
+		nameLen := len(decoded.ProjectName)
+		if nameLen > 0 {
+			s.ProjectName = make(map[string]string, nameLen)
+
+			for _, v := range decoded.ProjectName {
+				s.ProjectName[v.Lang] = v.Value
+			}
+		}
+	}
 
 	if decoded.CustomerInfo != nil {
 		s.CustomerInfo = &CustomerInfo{

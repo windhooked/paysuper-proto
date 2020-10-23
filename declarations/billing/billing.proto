@@ -4383,31 +4383,33 @@ message BrowserCookie {
     int32 session_count = 8;
 }
 
-message Subscription {
-    // @inject_tag: json:"id"
+message RecurringSubscription {
     string id = 1;
-    string customer_id = 2;
-    // @inject_tag: json:"customer_id"
-    string customer_uuid = 3;
-    string period = 4;
-    string merchant_id = 5;
-    string project_id = 6;
-    double amount = 7;
-    string currency = 8;
-    string item_type = 9;
-    repeated string item_list = 10;
-    bool is_active = 11;
-    // @inject_tag: json:"-"
-    string masked_pan = 12;
-    // @inject_tag: json:"-"
-    string cardpay_plan_id = 13;
-    // @inject_tag: json:"-"
-    string cardpay_subscription_id = 14;
-    CustomerInfo customer_info = 15;
-    google.protobuf.Timestamp expire_at = 16;
-    google.protobuf.Timestamp last_payment_at = 17;
-    google.protobuf.Timestamp created_at = 18;
-    google.protobuf.Timestamp updated_at = 19;
+    string period = 2;
+    string merchant_id = 3;
+    string project_id = 4;
+    map<string, string> project_name = 5;
+    double amount = 6;
+    string currency = 7;
+    bool is_active = 8;
+    string masked_pan = 9;
+    string customer_id = 10;
+    string customer_email = 11;
+    google.protobuf.Timestamp created_at = 12;
+    google.protobuf.Timestamp expire_at = 13;
+    google.protobuf.Timestamp last_payment_at = 14;
+    double total_amount = 15;
+}
+
+message SubscriptionOrder {
+    string id = 1;
+    float amount = 2;
+    string currency = 3;
+    google.protobuf.Timestamp date = 4;
+    // @inject_tag: json:"card_number"
+    string card_number = 5;
+    // @inject_tag: json:"product_name"
+    repeated string product_name = 6;
 }
 
 message CustomerInfo {
