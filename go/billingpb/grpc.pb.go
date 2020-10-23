@@ -21688,8 +21688,8 @@ type GetSubscriptionOrdersRequest struct {
 	Cookie string `protobuf:"bytes,1,opt,name=cookie,proto3" json:"cookie,omitempty"`
 	// @inject_tag: validate:"required" param:"id"
 	Id string `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty" validate:"required" param:"id"`
-	// @inject_tag: query:"limit" validate:"required,numeric,gt=0"
-	Limit int32 `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty" query:"limit" validate:"required,numeric,gt=0"`
+	// @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
+	Limit int32 `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty" query:"limit" validate:"omitempty,numeric,gt=0"`
 	// @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
 	Offset int32 `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty" query:"offset" validate:"omitempty,numeric,gte=0"`
 	// @inject_tag: param:"merchant_id"
