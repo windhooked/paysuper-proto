@@ -239,15 +239,11 @@ service BillingService {
 
     rpc DeleteCustomerCard(DeleteCustomerCardRequest) returns (EmptyResponseWithStatus) {}
 
-    rpc GetCustomerSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
-    rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
-    rpc FindPublicSubscriptions(FindPublicSubscriptionsRequest) returns (FindPublicSubscriptionsResponse) {}
-
+    rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
     rpc GetCustomerShortInfo(GetCustomerShortInfoRequest) returns (GetCustomerShortInfoResponse) {}
     rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
-
-    rpc GetMerchantSubscriptions(GetMerchantSubscriptionsRequest) returns (GetMerchantSubscriptionsResponse) {}
     rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
+    rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
 }
 
 message EmptyRequest {}
@@ -3578,13 +3574,14 @@ message GetSubscriptionResponse {
 
 message FindSubscriptionsRequest {
     string cookie = 1;
-    string customer_id = 2;
     // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
     int32 limit = 3;
     // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int32 offset = 4;
-    // @inject_tag: json:"merchant_id"
+    // @inject_tag: json:"merchant_id" param:"merchant_id"
     string merchant_id = 5;
+    // @inject_tag: query:"quick_filter"
+    string quick_filter = 6;
 }
 
 message FindSubscriptionsResponse {
@@ -3592,45 +3589,6 @@ message FindSubscriptionsResponse {
     ResponseErrorMessage message = 2;
     int32 status = 3;
     int32 count = 4;
-}
-
-message FindPublicSubscriptionsRequest {
-    //@inject_tag: validate:"required"
-    string cookie = 1;
-    // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
-    int32 limit = 2;
-    // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
-    int32 offset = 3;
-}
-
-message FindPublicSubscriptionsResponse {
-    int32 status = 1;
-    ResponseErrorMessage message = 2;
-    repeated CheckoutShortSubscriptionInfo list = 3;
-    int32 count = 4;
-}
-
-message CheckoutShortSubscriptionInfo {
-    // @inject_tag: json:"id"
-    string id = 1;
-    // @inject_tag: json:"project_id"
-    string project_id = 2;
-    // @inject_tag: json:"period"
-    string period = 3;
-    // @inject_tag: json:"merchant_id"
-    string merchant_id = 4;
-    // @inject_tag: json:"amount"
-    double amount = 5;
-    // @inject_tag: json:"currency"
-    string currency = 6;
-    // @inject_tag: json:"is_active"
-    bool is_active = 7;
-    // @inject_tag: json:"masked_pan"
-    string masked_pan = 8;
-    // @inject_tag: json:"project_name"
-    string project_name = 9;
-    // @inject_tag: json:"start_date"
-    google.protobuf.Timestamp start_date = 10;
 }
 
 message GetCustomerShortInfoRequest {
@@ -3666,24 +3624,6 @@ message GetSubscriptionOrdersResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
     repeated billing.SubscriptionOrder list = 3;
-    int32 count = 4;
-}
-
-message GetMerchantSubscriptionsRequest {
-    // @inject_tag: param:"merchant_id"
-    string merchant_id = 1;
-    // @inject_tag: query:"quick_filter"
-    string quick_filter = 2;
-    // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
-    int32 limit = 3;
-    // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
-    int32 offset = 4;
-}
-
-message GetMerchantSubscriptionsResponse {
-    repeated billing.RecurringSubscription list = 1;
-    int32 status = 2;
-    ResponseErrorMessage message = 3;
     int32 count = 4;
 }
 
