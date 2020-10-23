@@ -223,13 +223,11 @@ type BillingService interface {
 	GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
 	DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error)
 	DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetCustomerSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
-	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
-	FindPublicSubscriptions(ctx context.Context, in *FindPublicSubscriptionsRequest, opts ...client.CallOption) (*FindPublicSubscriptionsResponse, error)
+	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
 	GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error)
 	GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error)
-	GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, opts ...client.CallOption) (*GetMerchantSubscriptionsResponse, error)
 	DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
 }
 
 type billingService struct {
@@ -2130,29 +2128,9 @@ func (c *billingService) DeleteCustomerCard(ctx context.Context, in *DeleteCusto
 	return out, nil
 }
 
-func (c *billingService) GetCustomerSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCustomerSubscription", in)
+func (c *billingService) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetSubscription", in)
 	out := new(GetSubscriptionResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *billingService) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.FindSubscriptions", in)
-	out := new(FindSubscriptionsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *billingService) FindPublicSubscriptions(ctx context.Context, in *FindPublicSubscriptionsRequest, opts ...client.CallOption) (*FindPublicSubscriptionsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.FindPublicSubscriptions", in)
-	out := new(FindPublicSubscriptionsResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2180,9 +2158,9 @@ func (c *billingService) GetSubscriptionOrders(ctx context.Context, in *GetSubsc
 	return out, nil
 }
 
-func (c *billingService) GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, opts ...client.CallOption) (*GetMerchantSubscriptionsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantSubscriptions", in)
-	out := new(GetMerchantSubscriptionsResponse)
+func (c *billingService) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	req := c.c.NewRequest(c.name, "BillingService.DeleteRecurringSubscription", in)
+	out := new(EmptyResponseWithStatus)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2190,9 +2168,9 @@ func (c *billingService) GetMerchantSubscriptions(ctx context.Context, in *GetMe
 	return out, nil
 }
 
-func (c *billingService) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteRecurringSubscription", in)
-	out := new(EmptyResponseWithStatus)
+func (c *billingService) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.FindSubscriptions", in)
+	out := new(FindSubscriptionsResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2391,13 +2369,11 @@ type BillingServiceHandler interface {
 	GetCustomerInfo(context.Context, *GetCustomerInfoRequest, *GetCustomerInfoResponse) error
 	DeserializeCookie(context.Context, *DeserializeCookieRequest, *DeserializeCookieResponse) error
 	DeleteCustomerCard(context.Context, *DeleteCustomerCardRequest, *EmptyResponseWithStatus) error
-	GetCustomerSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
-	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
-	FindPublicSubscriptions(context.Context, *FindPublicSubscriptionsRequest, *FindPublicSubscriptionsResponse) error
+	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
 	GetCustomerShortInfo(context.Context, *GetCustomerShortInfoRequest, *GetCustomerShortInfoResponse) error
 	GetSubscriptionOrders(context.Context, *GetSubscriptionOrdersRequest, *GetSubscriptionOrdersResponse) error
-	GetMerchantSubscriptions(context.Context, *GetMerchantSubscriptionsRequest, *GetMerchantSubscriptionsResponse) error
 	DeleteRecurringSubscription(context.Context, *DeleteRecurringSubscriptionRequest, *EmptyResponseWithStatus) error
+	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2590,13 +2566,11 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error
 		DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error
 		DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *EmptyResponseWithStatus) error
-		GetCustomerSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
-		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
-		FindPublicSubscriptions(ctx context.Context, in *FindPublicSubscriptionsRequest, out *FindPublicSubscriptionsResponse) error
+		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
 		GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error
 		GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error
-		GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, out *GetMerchantSubscriptionsResponse) error
 		DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error
+		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
 	}
 	type BillingService struct {
 		billingService
@@ -3361,16 +3335,8 @@ func (h *billingServiceHandler) DeleteCustomerCard(ctx context.Context, in *Dele
 	return h.BillingServiceHandler.DeleteCustomerCard(ctx, in, out)
 }
 
-func (h *billingServiceHandler) GetCustomerSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error {
-	return h.BillingServiceHandler.GetCustomerSubscription(ctx, in, out)
-}
-
-func (h *billingServiceHandler) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error {
-	return h.BillingServiceHandler.FindSubscriptions(ctx, in, out)
-}
-
-func (h *billingServiceHandler) FindPublicSubscriptions(ctx context.Context, in *FindPublicSubscriptionsRequest, out *FindPublicSubscriptionsResponse) error {
-	return h.BillingServiceHandler.FindPublicSubscriptions(ctx, in, out)
+func (h *billingServiceHandler) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error {
+	return h.BillingServiceHandler.GetSubscription(ctx, in, out)
 }
 
 func (h *billingServiceHandler) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error {
@@ -3381,10 +3347,10 @@ func (h *billingServiceHandler) GetSubscriptionOrders(ctx context.Context, in *G
 	return h.BillingServiceHandler.GetSubscriptionOrders(ctx, in, out)
 }
 
-func (h *billingServiceHandler) GetMerchantSubscriptions(ctx context.Context, in *GetMerchantSubscriptionsRequest, out *GetMerchantSubscriptionsResponse) error {
-	return h.BillingServiceHandler.GetMerchantSubscriptions(ctx, in, out)
-}
-
 func (h *billingServiceHandler) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error {
 	return h.BillingServiceHandler.DeleteRecurringSubscription(ctx, in, out)
+}
+
+func (h *billingServiceHandler) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error {
+	return h.BillingServiceHandler.FindSubscriptions(ctx, in, out)
 }

@@ -771,20 +771,6 @@ func (_m *BillingServiceHandler) FindByZipCode(_a0 context.Context, _a1 *billing
 	return r0
 }
 
-// FindPublicSubscriptions provides a mock function with given fields: _a0, _a1, _a2
-func (_m *BillingServiceHandler) FindPublicSubscriptions(_a0 context.Context, _a1 *billingpb.FindPublicSubscriptionsRequest, _a2 *billingpb.FindPublicSubscriptionsResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindPublicSubscriptionsRequest, *billingpb.FindPublicSubscriptionsResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // FindSubscriptions provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) FindSubscriptions(_a0 context.Context, _a1 *billingpb.FindSubscriptionsRequest, _a2 *billingpb.FindSubscriptionsResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -1037,20 +1023,6 @@ func (_m *BillingServiceHandler) GetCustomerShortInfo(_a0 context.Context, _a1 *
 	return r0
 }
 
-// GetCustomerSubscription provides a mock function with given fields: _a0, _a1, _a2
-func (_m *BillingServiceHandler) GetCustomerSubscription(_a0 context.Context, _a1 *billingpb.GetSubscriptionRequest, _a2 *billingpb.GetSubscriptionResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionRequest, *billingpb.GetSubscriptionResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // GetDashboardBaseReport provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetDashboardBaseReport(_a0 context.Context, _a1 *billingpb.GetDashboardBaseReportRequest, _a2 *billingpb.GetDashboardBaseReportResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -1239,20 +1211,6 @@ func (_m *BillingServiceHandler) GetMerchantPaymentMethod(_a0 context.Context, _
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetMerchantPaymentMethodRequest, *billingpb.GetMerchantPaymentMethodResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
-// GetMerchantSubscriptions provides a mock function with given fields: _a0, _a1, _a2
-func (_m *BillingServiceHandler) GetMerchantSubscriptions(_a0 context.Context, _a1 *billingpb.GetMerchantSubscriptionsRequest, _a2 *billingpb.GetMerchantSubscriptionsResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetMerchantSubscriptionsRequest, *billingpb.GetMerchantSubscriptionsResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
@@ -1869,6 +1827,20 @@ func (_m *BillingServiceHandler) GetRoyaltyReport(_a0 context.Context, _a1 *bill
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetRoyaltyReportRequest, *billingpb.GetRoyaltyReportResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// GetSubscription provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetSubscription(_a0 context.Context, _a1 *billingpb.GetSubscriptionRequest, _a2 *billingpb.GetSubscriptionResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionRequest, *billingpb.GetSubscriptionResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
