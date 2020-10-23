@@ -33,6 +33,7 @@ message CardExpire {
 message Subscription {
   // @inject_tag: json:"id"
   string id = 1;
+  // @inject_tag: json:"-"
   string customer_id = 2;
   // @inject_tag: json:"customer_id"
   string customer_uuid = 3;
@@ -44,7 +45,6 @@ message Subscription {
   string item_type = 9;
   repeated string item_list = 10;
   bool is_active = 11;
-  // @inject_tag: json:"-"
   string masked_pan = 12;
   // @inject_tag: json:"-"
   string cardpay_plan_id = 13;
@@ -57,6 +57,8 @@ message Subscription {
   google.protobuf.Timestamp updated_at = 19;
   // @inject_tag: json:"-"
   string order_id = 20;
+  map<string, string> project_name = 21;
+  double total_amount = 22;
 }
 
 message CustomerInfo {
