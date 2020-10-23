@@ -48,6 +48,7 @@ type BillingService interface {
 	ChangeMerchant(ctx context.Context, in *OnboardingRequest, opts ...client.CallOption) (*ChangeMerchantResponse, error)
 	ChangeMerchantStatus(ctx context.Context, in *MerchantChangeStatusRequest, opts ...client.CallOption) (*ChangeMerchantStatusResponse, error)
 	SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*SetMerchantOperatingCompanyResponse, error)
+	SetMerchantAcceptedStatus(ctx context.Context, in *SetMerchantAcceptedStatusRequest, opts ...client.CallOption) (*SetMerchantAcceptedStatusResponse, error)
 	ChangeMerchantData(ctx context.Context, in *ChangeMerchantDataRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error)
 	SetMerchantS3Agreement(ctx context.Context, in *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error)
 	GetMerchantTariffRates(ctx context.Context, in *GetMerchantTariffRatesRequest, opts ...client.CallOption) (*GetMerchantTariffRatesResponse, error)
@@ -371,6 +372,16 @@ func (c *billingService) ChangeMerchantStatus(ctx context.Context, in *MerchantC
 func (c *billingService) SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*SetMerchantOperatingCompanyResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.SetMerchantOperatingCompany", in)
 	out := new(SetMerchantOperatingCompanyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) SetMerchantAcceptedStatus(ctx context.Context, in *SetMerchantAcceptedStatusRequest, opts ...client.CallOption) (*SetMerchantAcceptedStatusResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.SetMerchantAcceptedStatus", in)
+	out := new(SetMerchantAcceptedStatusResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2194,6 +2205,7 @@ type BillingServiceHandler interface {
 	ChangeMerchant(context.Context, *OnboardingRequest, *ChangeMerchantResponse) error
 	ChangeMerchantStatus(context.Context, *MerchantChangeStatusRequest, *ChangeMerchantStatusResponse) error
 	SetMerchantOperatingCompany(context.Context, *SetMerchantOperatingCompanyRequest, *SetMerchantOperatingCompanyResponse) error
+	SetMerchantAcceptedStatus(context.Context, *SetMerchantAcceptedStatusRequest, *SetMerchantAcceptedStatusResponse) error
 	ChangeMerchantData(context.Context, *ChangeMerchantDataRequest, *ChangeMerchantDataResponse) error
 	SetMerchantS3Agreement(context.Context, *SetMerchantS3AgreementRequest, *ChangeMerchantDataResponse) error
 	GetMerchantTariffRates(context.Context, *GetMerchantTariffRatesRequest, *GetMerchantTariffRatesResponse) error
@@ -2391,6 +2403,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		ChangeMerchant(ctx context.Context, in *OnboardingRequest, out *ChangeMerchantResponse) error
 		ChangeMerchantStatus(ctx context.Context, in *MerchantChangeStatusRequest, out *ChangeMerchantStatusResponse) error
 		SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, out *SetMerchantOperatingCompanyResponse) error
+		SetMerchantAcceptedStatus(ctx context.Context, in *SetMerchantAcceptedStatusRequest, out *SetMerchantAcceptedStatusResponse) error
 		ChangeMerchantData(ctx context.Context, in *ChangeMerchantDataRequest, out *ChangeMerchantDataResponse) error
 		SetMerchantS3Agreement(ctx context.Context, in *SetMerchantS3AgreementRequest, out *ChangeMerchantDataResponse) error
 		GetMerchantTariffRates(ctx context.Context, in *GetMerchantTariffRatesRequest, out *GetMerchantTariffRatesResponse) error
@@ -2633,6 +2646,10 @@ func (h *billingServiceHandler) ChangeMerchantStatus(ctx context.Context, in *Me
 
 func (h *billingServiceHandler) SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, out *SetMerchantOperatingCompanyResponse) error {
 	return h.BillingServiceHandler.SetMerchantOperatingCompany(ctx, in, out)
+}
+
+func (h *billingServiceHandler) SetMerchantAcceptedStatus(ctx context.Context, in *SetMerchantAcceptedStatusRequest, out *SetMerchantAcceptedStatusResponse) error {
+	return h.BillingServiceHandler.SetMerchantAcceptedStatus(ctx, in, out)
 }
 
 func (h *billingServiceHandler) ChangeMerchantData(ctx context.Context, in *ChangeMerchantDataRequest, out *ChangeMerchantDataResponse) error {
