@@ -2465,6 +2465,20 @@ func (_m *BillingServiceHandler) SetCustomerPaymentActivity(_a0 context.Context,
 	return r0
 }
 
+// SetMerchantAcceptedStatus provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) SetMerchantAcceptedStatus(_a0 context.Context, _a1 *billingpb.SetMerchantAcceptedStatusRequest, _a2 *billingpb.SetMerchantAcceptedStatusResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.SetMerchantAcceptedStatusRequest, *billingpb.SetMerchantAcceptedStatusResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // SetMerchantOperatingCompany provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) SetMerchantOperatingCompany(_a0 context.Context, _a1 *billingpb.SetMerchantOperatingCompanyRequest, _a2 *billingpb.SetMerchantOperatingCompanyResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)

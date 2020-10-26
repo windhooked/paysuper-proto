@@ -17645,6 +17645,117 @@ func (x *SetMerchantOperatingCompanyResponse) GetItem() *Merchant {
 	return nil
 }
 
+type SetMerchantAcceptedStatusRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// @inject_tag: json:"id" validate:"required,hexadecimal,len=24" json:"-"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"id" validate:"required,hexadecimal,len=24" json:"-"`
+}
+
+func (x *SetMerchantAcceptedStatusRequest) Reset() {
+	*x = SetMerchantAcceptedStatusRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_grpc_proto_msgTypes[240]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetMerchantAcceptedStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetMerchantAcceptedStatusRequest) ProtoMessage() {}
+
+func (x *SetMerchantAcceptedStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_grpc_proto_msgTypes[240]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetMerchantAcceptedStatusRequest.ProtoReflect.Descriptor instead.
+func (*SetMerchantAcceptedStatusRequest) Descriptor() ([]byte, []int) {
+	return file_grpc_proto_rawDescGZIP(), []int{240}
+}
+
+func (x *SetMerchantAcceptedStatusRequest) GetMerchantId() string {
+	if x != nil {
+		return x.MerchantId
+	}
+	return ""
+}
+
+type SetMerchantAcceptedStatusResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Status  int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Item    *Merchant             `protobuf:"bytes,3,opt,name=item,proto3" json:"item,omitempty"`
+}
+
+func (x *SetMerchantAcceptedStatusResponse) Reset() {
+	*x = SetMerchantAcceptedStatusResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_grpc_proto_msgTypes[241]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetMerchantAcceptedStatusResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetMerchantAcceptedStatusResponse) ProtoMessage() {}
+
+func (x *SetMerchantAcceptedStatusResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_grpc_proto_msgTypes[241]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetMerchantAcceptedStatusResponse.ProtoReflect.Descriptor instead.
+func (*SetMerchantAcceptedStatusResponse) Descriptor() ([]byte, []int) {
+	return file_grpc_proto_rawDescGZIP(), []int{241}
+}
+
+func (x *SetMerchantAcceptedStatusResponse) GetStatus() int32 {
+	if x != nil {
+		return x.Status
+	}
+	return 0
+}
+
+func (x *SetMerchantAcceptedStatusResponse) GetMessage() *ResponseErrorMessage {
+	if x != nil {
+		return x.Message
+	}
+	return nil
+}
+
+func (x *SetMerchantAcceptedStatusResponse) GetItem() *Merchant {
+	if x != nil {
+		return x.Item
+	}
+	return nil
+}
+
 type GetOperatingCompanyRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -17657,7 +17768,7 @@ type GetOperatingCompanyRequest struct {
 func (x *GetOperatingCompanyRequest) Reset() {
 	*x = GetOperatingCompanyRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[240]
+		mi := &file_grpc_proto_msgTypes[242]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -17670,7 +17781,7 @@ func (x *GetOperatingCompanyRequest) String() string {
 func (*GetOperatingCompanyRequest) ProtoMessage() {}
 
 func (x *GetOperatingCompanyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[240]
+	mi := &file_grpc_proto_msgTypes[242]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17683,7 +17794,7 @@ func (x *GetOperatingCompanyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOperatingCompanyRequest.ProtoReflect.Descriptor instead.
 func (*GetOperatingCompanyRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{240}
+	return file_grpc_proto_rawDescGZIP(), []int{242}
 }
 
 func (x *GetOperatingCompanyRequest) GetId() string {
@@ -17706,7 +17817,7 @@ type GetOperatingCompanyResponse struct {
 func (x *GetOperatingCompanyResponse) Reset() {
 	*x = GetOperatingCompanyResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[241]
+		mi := &file_grpc_proto_msgTypes[243]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -17719,7 +17830,7 @@ func (x *GetOperatingCompanyResponse) String() string {
 func (*GetOperatingCompanyResponse) ProtoMessage() {}
 
 func (x *GetOperatingCompanyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[241]
+	mi := &file_grpc_proto_msgTypes[243]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17732,7 +17843,7 @@ func (x *GetOperatingCompanyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOperatingCompanyResponse.ProtoReflect.Descriptor instead.
 func (*GetOperatingCompanyResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{241}
+	return file_grpc_proto_rawDescGZIP(), []int{243}
 }
 
 func (x *GetOperatingCompanyResponse) GetStatus() int32 {
@@ -17768,7 +17879,7 @@ type OrderReCreateProcessRequest struct {
 func (x *OrderReCreateProcessRequest) Reset() {
 	*x = OrderReCreateProcessRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[242]
+		mi := &file_grpc_proto_msgTypes[244]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -17781,7 +17892,7 @@ func (x *OrderReCreateProcessRequest) String() string {
 func (*OrderReCreateProcessRequest) ProtoMessage() {}
 
 func (x *OrderReCreateProcessRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[242]
+	mi := &file_grpc_proto_msgTypes[244]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17794,7 +17905,7 @@ func (x *OrderReCreateProcessRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OrderReCreateProcessRequest.ProtoReflect.Descriptor instead.
 func (*OrderReCreateProcessRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{242}
+	return file_grpc_proto_rawDescGZIP(), []int{244}
 }
 
 func (x *OrderReCreateProcessRequest) GetOrderId() string {
@@ -17816,7 +17927,7 @@ type GetMerchantUsersRequest struct {
 func (x *GetMerchantUsersRequest) Reset() {
 	*x = GetMerchantUsersRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[243]
+		mi := &file_grpc_proto_msgTypes[245]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -17829,7 +17940,7 @@ func (x *GetMerchantUsersRequest) String() string {
 func (*GetMerchantUsersRequest) ProtoMessage() {}
 
 func (x *GetMerchantUsersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[243]
+	mi := &file_grpc_proto_msgTypes[245]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17842,7 +17953,7 @@ func (x *GetMerchantUsersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMerchantUsersRequest.ProtoReflect.Descriptor instead.
 func (*GetMerchantUsersRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{243}
+	return file_grpc_proto_rawDescGZIP(), []int{245}
 }
 
 func (x *GetMerchantUsersRequest) GetMerchantId() string {
@@ -17865,7 +17976,7 @@ type GetMerchantUsersResponse struct {
 func (x *GetMerchantUsersResponse) Reset() {
 	*x = GetMerchantUsersResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[244]
+		mi := &file_grpc_proto_msgTypes[246]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -17878,7 +17989,7 @@ func (x *GetMerchantUsersResponse) String() string {
 func (*GetMerchantUsersResponse) ProtoMessage() {}
 
 func (x *GetMerchantUsersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[244]
+	mi := &file_grpc_proto_msgTypes[246]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17891,7 +18002,7 @@ func (x *GetMerchantUsersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMerchantUsersResponse.ProtoReflect.Descriptor instead.
 func (*GetMerchantUsersResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{244}
+	return file_grpc_proto_rawDescGZIP(), []int{246}
 }
 
 func (x *GetMerchantUsersResponse) GetStatus() int32 {
@@ -17937,7 +18048,7 @@ type InviteUserMerchantRequest struct {
 func (x *InviteUserMerchantRequest) Reset() {
 	*x = InviteUserMerchantRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[245]
+		mi := &file_grpc_proto_msgTypes[247]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -17950,7 +18061,7 @@ func (x *InviteUserMerchantRequest) String() string {
 func (*InviteUserMerchantRequest) ProtoMessage() {}
 
 func (x *InviteUserMerchantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[245]
+	mi := &file_grpc_proto_msgTypes[247]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17963,7 +18074,7 @@ func (x *InviteUserMerchantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InviteUserMerchantRequest.ProtoReflect.Descriptor instead.
 func (*InviteUserMerchantRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{245}
+	return file_grpc_proto_rawDescGZIP(), []int{247}
 }
 
 func (x *InviteUserMerchantRequest) GetMerchantId() string {
@@ -18003,7 +18114,7 @@ type InviteUserMerchantResponse struct {
 func (x *InviteUserMerchantResponse) Reset() {
 	*x = InviteUserMerchantResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[246]
+		mi := &file_grpc_proto_msgTypes[248]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18016,7 +18127,7 @@ func (x *InviteUserMerchantResponse) String() string {
 func (*InviteUserMerchantResponse) ProtoMessage() {}
 
 func (x *InviteUserMerchantResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[246]
+	mi := &file_grpc_proto_msgTypes[248]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18029,7 +18140,7 @@ func (x *InviteUserMerchantResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InviteUserMerchantResponse.ProtoReflect.Descriptor instead.
 func (*InviteUserMerchantResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{246}
+	return file_grpc_proto_rawDescGZIP(), []int{248}
 }
 
 func (x *InviteUserMerchantResponse) GetStatus() int32 {
@@ -18071,7 +18182,7 @@ type InviteUserAdminRequest struct {
 func (x *InviteUserAdminRequest) Reset() {
 	*x = InviteUserAdminRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[247]
+		mi := &file_grpc_proto_msgTypes[249]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18084,7 +18195,7 @@ func (x *InviteUserAdminRequest) String() string {
 func (*InviteUserAdminRequest) ProtoMessage() {}
 
 func (x *InviteUserAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[247]
+	mi := &file_grpc_proto_msgTypes[249]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18097,7 +18208,7 @@ func (x *InviteUserAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InviteUserAdminRequest.ProtoReflect.Descriptor instead.
 func (*InviteUserAdminRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{247}
+	return file_grpc_proto_rawDescGZIP(), []int{249}
 }
 
 func (x *InviteUserAdminRequest) GetEmail() string {
@@ -18130,7 +18241,7 @@ type InviteUserAdminResponse struct {
 func (x *InviteUserAdminResponse) Reset() {
 	*x = InviteUserAdminResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[248]
+		mi := &file_grpc_proto_msgTypes[250]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18143,7 +18254,7 @@ func (x *InviteUserAdminResponse) String() string {
 func (*InviteUserAdminResponse) ProtoMessage() {}
 
 func (x *InviteUserAdminResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[248]
+	mi := &file_grpc_proto_msgTypes[250]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18156,7 +18267,7 @@ func (x *InviteUserAdminResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InviteUserAdminResponse.ProtoReflect.Descriptor instead.
 func (*InviteUserAdminResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{248}
+	return file_grpc_proto_rawDescGZIP(), []int{250}
 }
 
 func (x *InviteUserAdminResponse) GetStatus() int32 {
@@ -18198,7 +18309,7 @@ type ResendInviteMerchantRequest struct {
 func (x *ResendInviteMerchantRequest) Reset() {
 	*x = ResendInviteMerchantRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[249]
+		mi := &file_grpc_proto_msgTypes[251]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18211,7 +18322,7 @@ func (x *ResendInviteMerchantRequest) String() string {
 func (*ResendInviteMerchantRequest) ProtoMessage() {}
 
 func (x *ResendInviteMerchantRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[249]
+	mi := &file_grpc_proto_msgTypes[251]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18224,7 +18335,7 @@ func (x *ResendInviteMerchantRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResendInviteMerchantRequest.ProtoReflect.Descriptor instead.
 func (*ResendInviteMerchantRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{249}
+	return file_grpc_proto_rawDescGZIP(), []int{251}
 }
 
 func (x *ResendInviteMerchantRequest) GetMerchantId() string {
@@ -18255,7 +18366,7 @@ type ResendInviteAdminRequest struct {
 func (x *ResendInviteAdminRequest) Reset() {
 	*x = ResendInviteAdminRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[250]
+		mi := &file_grpc_proto_msgTypes[252]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18268,7 +18379,7 @@ func (x *ResendInviteAdminRequest) String() string {
 func (*ResendInviteAdminRequest) ProtoMessage() {}
 
 func (x *ResendInviteAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[250]
+	mi := &file_grpc_proto_msgTypes[252]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18281,7 +18392,7 @@ func (x *ResendInviteAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResendInviteAdminRequest.ProtoReflect.Descriptor instead.
 func (*ResendInviteAdminRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{250}
+	return file_grpc_proto_rawDescGZIP(), []int{252}
 }
 
 func (x *ResendInviteAdminRequest) GetEmail() string {
@@ -18303,7 +18414,7 @@ type GetMerchantUserRequest struct {
 func (x *GetMerchantUserRequest) Reset() {
 	*x = GetMerchantUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[251]
+		mi := &file_grpc_proto_msgTypes[253]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18316,7 +18427,7 @@ func (x *GetMerchantUserRequest) String() string {
 func (*GetMerchantUserRequest) ProtoMessage() {}
 
 func (x *GetMerchantUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[251]
+	mi := &file_grpc_proto_msgTypes[253]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18329,7 +18440,7 @@ func (x *GetMerchantUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMerchantUserRequest.ProtoReflect.Descriptor instead.
 func (*GetMerchantUserRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{251}
+	return file_grpc_proto_rawDescGZIP(), []int{253}
 }
 
 func (x *GetMerchantUserRequest) GetId() string {
@@ -18352,7 +18463,7 @@ type GetMerchantUserResponse struct {
 func (x *GetMerchantUserResponse) Reset() {
 	*x = GetMerchantUserResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[252]
+		mi := &file_grpc_proto_msgTypes[254]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18365,7 +18476,7 @@ func (x *GetMerchantUserResponse) String() string {
 func (*GetMerchantUserResponse) ProtoMessage() {}
 
 func (x *GetMerchantUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[252]
+	mi := &file_grpc_proto_msgTypes[254]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18378,7 +18489,7 @@ func (x *GetMerchantUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMerchantUserResponse.ProtoReflect.Descriptor instead.
 func (*GetMerchantUserResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{252}
+	return file_grpc_proto_rawDescGZIP(), []int{254}
 }
 
 func (x *GetMerchantUserResponse) GetStatus() int32 {
@@ -18414,7 +18525,7 @@ type GetAdminUserRequest struct {
 func (x *GetAdminUserRequest) Reset() {
 	*x = GetAdminUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[253]
+		mi := &file_grpc_proto_msgTypes[255]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18427,7 +18538,7 @@ func (x *GetAdminUserRequest) String() string {
 func (*GetAdminUserRequest) ProtoMessage() {}
 
 func (x *GetAdminUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[253]
+	mi := &file_grpc_proto_msgTypes[255]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18440,7 +18551,7 @@ func (x *GetAdminUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAdminUserRequest.ProtoReflect.Descriptor instead.
 func (*GetAdminUserRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{253}
+	return file_grpc_proto_rawDescGZIP(), []int{255}
 }
 
 func (x *GetAdminUserRequest) GetId() string {
@@ -18463,7 +18574,7 @@ type GetAdminUserResponse struct {
 func (x *GetAdminUserResponse) Reset() {
 	*x = GetAdminUserResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[254]
+		mi := &file_grpc_proto_msgTypes[256]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18476,7 +18587,7 @@ func (x *GetAdminUserResponse) String() string {
 func (*GetAdminUserResponse) ProtoMessage() {}
 
 func (x *GetAdminUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[254]
+	mi := &file_grpc_proto_msgTypes[256]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18489,7 +18600,7 @@ func (x *GetAdminUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAdminUserResponse.ProtoReflect.Descriptor instead.
 func (*GetAdminUserResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{254}
+	return file_grpc_proto_rawDescGZIP(), []int{256}
 }
 
 func (x *GetAdminUserResponse) GetStatus() int32 {
@@ -18531,7 +18642,7 @@ type CheckInviteTokenRequest struct {
 func (x *CheckInviteTokenRequest) Reset() {
 	*x = CheckInviteTokenRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[255]
+		mi := &file_grpc_proto_msgTypes[257]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18544,7 +18655,7 @@ func (x *CheckInviteTokenRequest) String() string {
 func (*CheckInviteTokenRequest) ProtoMessage() {}
 
 func (x *CheckInviteTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[255]
+	mi := &file_grpc_proto_msgTypes[257]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18557,7 +18668,7 @@ func (x *CheckInviteTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckInviteTokenRequest.ProtoReflect.Descriptor instead.
 func (*CheckInviteTokenRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{255}
+	return file_grpc_proto_rawDescGZIP(), []int{257}
 }
 
 func (x *CheckInviteTokenRequest) GetToken() string {
@@ -18592,7 +18703,7 @@ type CheckInviteTokenResponse struct {
 func (x *CheckInviteTokenResponse) Reset() {
 	*x = CheckInviteTokenResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[256]
+		mi := &file_grpc_proto_msgTypes[258]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18605,7 +18716,7 @@ func (x *CheckInviteTokenResponse) String() string {
 func (*CheckInviteTokenResponse) ProtoMessage() {}
 
 func (x *CheckInviteTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[256]
+	mi := &file_grpc_proto_msgTypes[258]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18618,7 +18729,7 @@ func (x *CheckInviteTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckInviteTokenResponse.ProtoReflect.Descriptor instead.
 func (*CheckInviteTokenResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{256}
+	return file_grpc_proto_rawDescGZIP(), []int{258}
 }
 
 func (x *CheckInviteTokenResponse) GetStatus() int32 {
@@ -18671,7 +18782,7 @@ type AcceptInviteRequest struct {
 func (x *AcceptInviteRequest) Reset() {
 	*x = AcceptInviteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[257]
+		mi := &file_grpc_proto_msgTypes[259]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18684,7 +18795,7 @@ func (x *AcceptInviteRequest) String() string {
 func (*AcceptInviteRequest) ProtoMessage() {}
 
 func (x *AcceptInviteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[257]
+	mi := &file_grpc_proto_msgTypes[259]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18697,7 +18808,7 @@ func (x *AcceptInviteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AcceptInviteRequest.ProtoReflect.Descriptor instead.
 func (*AcceptInviteRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{257}
+	return file_grpc_proto_rawDescGZIP(), []int{259}
 }
 
 func (x *AcceptInviteRequest) GetToken() string {
@@ -18737,7 +18848,7 @@ type AcceptInviteResponse struct {
 func (x *AcceptInviteResponse) Reset() {
 	*x = AcceptInviteResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[258]
+		mi := &file_grpc_proto_msgTypes[260]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18750,7 +18861,7 @@ func (x *AcceptInviteResponse) String() string {
 func (*AcceptInviteResponse) ProtoMessage() {}
 
 func (x *AcceptInviteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[258]
+	mi := &file_grpc_proto_msgTypes[260]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18763,7 +18874,7 @@ func (x *AcceptInviteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AcceptInviteResponse.ProtoReflect.Descriptor instead.
 func (*AcceptInviteResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{258}
+	return file_grpc_proto_rawDescGZIP(), []int{260}
 }
 
 func (x *AcceptInviteResponse) GetStatus() int32 {
@@ -18800,7 +18911,7 @@ type GetAdminUsersResponse struct {
 func (x *GetAdminUsersResponse) Reset() {
 	*x = GetAdminUsersResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[259]
+		mi := &file_grpc_proto_msgTypes[261]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18813,7 +18924,7 @@ func (x *GetAdminUsersResponse) String() string {
 func (*GetAdminUsersResponse) ProtoMessage() {}
 
 func (x *GetAdminUsersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[259]
+	mi := &file_grpc_proto_msgTypes[261]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18826,7 +18937,7 @@ func (x *GetAdminUsersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAdminUsersResponse.ProtoReflect.Descriptor instead.
 func (*GetAdminUsersResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{259}
+	return file_grpc_proto_rawDescGZIP(), []int{261}
 }
 
 func (x *GetAdminUsersResponse) GetStatus() int32 {
@@ -18862,7 +18973,7 @@ type GetMerchantsForUserRequest struct {
 func (x *GetMerchantsForUserRequest) Reset() {
 	*x = GetMerchantsForUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[260]
+		mi := &file_grpc_proto_msgTypes[262]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18875,7 +18986,7 @@ func (x *GetMerchantsForUserRequest) String() string {
 func (*GetMerchantsForUserRequest) ProtoMessage() {}
 
 func (x *GetMerchantsForUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[260]
+	mi := &file_grpc_proto_msgTypes[262]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18888,7 +18999,7 @@ func (x *GetMerchantsForUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMerchantsForUserRequest.ProtoReflect.Descriptor instead.
 func (*GetMerchantsForUserRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{260}
+	return file_grpc_proto_rawDescGZIP(), []int{262}
 }
 
 func (x *GetMerchantsForUserRequest) GetUserId() string {
@@ -18914,7 +19025,7 @@ type GetMerchantsForUserResponse struct {
 func (x *GetMerchantsForUserResponse) Reset() {
 	*x = GetMerchantsForUserResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[261]
+		mi := &file_grpc_proto_msgTypes[263]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18927,7 +19038,7 @@ func (x *GetMerchantsForUserResponse) String() string {
 func (*GetMerchantsForUserResponse) ProtoMessage() {}
 
 func (x *GetMerchantsForUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[261]
+	mi := &file_grpc_proto_msgTypes[263]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18940,7 +19051,7 @@ func (x *GetMerchantsForUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMerchantsForUserResponse.ProtoReflect.Descriptor instead.
 func (*GetMerchantsForUserResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{261}
+	return file_grpc_proto_rawDescGZIP(), []int{263}
 }
 
 func (x *GetMerchantsForUserResponse) GetStatus() int32 {
@@ -18980,7 +19091,7 @@ type MerchantForUserInfo struct {
 func (x *MerchantForUserInfo) Reset() {
 	*x = MerchantForUserInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[262]
+		mi := &file_grpc_proto_msgTypes[264]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -18993,7 +19104,7 @@ func (x *MerchantForUserInfo) String() string {
 func (*MerchantForUserInfo) ProtoMessage() {}
 
 func (x *MerchantForUserInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[262]
+	mi := &file_grpc_proto_msgTypes[264]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19006,7 +19117,7 @@ func (x *MerchantForUserInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MerchantForUserInfo.ProtoReflect.Descriptor instead.
 func (*MerchantForUserInfo) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{262}
+	return file_grpc_proto_rawDescGZIP(), []int{264}
 }
 
 func (x *MerchantForUserInfo) GetId() string {
@@ -19046,7 +19157,7 @@ type ChangeRoleForMerchantUserRequest struct {
 func (x *ChangeRoleForMerchantUserRequest) Reset() {
 	*x = ChangeRoleForMerchantUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[263]
+		mi := &file_grpc_proto_msgTypes[265]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19059,7 +19170,7 @@ func (x *ChangeRoleForMerchantUserRequest) String() string {
 func (*ChangeRoleForMerchantUserRequest) ProtoMessage() {}
 
 func (x *ChangeRoleForMerchantUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[263]
+	mi := &file_grpc_proto_msgTypes[265]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19072,7 +19183,7 @@ func (x *ChangeRoleForMerchantUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeRoleForMerchantUserRequest.ProtoReflect.Descriptor instead.
 func (*ChangeRoleForMerchantUserRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{263}
+	return file_grpc_proto_rawDescGZIP(), []int{265}
 }
 
 func (x *ChangeRoleForMerchantUserRequest) GetRoleId() string {
@@ -19112,7 +19223,7 @@ type ChangeRoleForAdminUserRequest struct {
 func (x *ChangeRoleForAdminUserRequest) Reset() {
 	*x = ChangeRoleForAdminUserRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[264]
+		mi := &file_grpc_proto_msgTypes[266]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19125,7 +19236,7 @@ func (x *ChangeRoleForAdminUserRequest) String() string {
 func (*ChangeRoleForAdminUserRequest) ProtoMessage() {}
 
 func (x *ChangeRoleForAdminUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[264]
+	mi := &file_grpc_proto_msgTypes[266]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19138,7 +19249,7 @@ func (x *ChangeRoleForAdminUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeRoleForAdminUserRequest.ProtoReflect.Descriptor instead.
 func (*ChangeRoleForAdminUserRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{264}
+	return file_grpc_proto_rawDescGZIP(), []int{266}
 }
 
 func (x *ChangeRoleForAdminUserRequest) GetRoleId() string {
@@ -19167,7 +19278,7 @@ type GetRoleListRequest struct {
 func (x *GetRoleListRequest) Reset() {
 	*x = GetRoleListRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[265]
+		mi := &file_grpc_proto_msgTypes[267]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19180,7 +19291,7 @@ func (x *GetRoleListRequest) String() string {
 func (*GetRoleListRequest) ProtoMessage() {}
 
 func (x *GetRoleListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[265]
+	mi := &file_grpc_proto_msgTypes[267]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19193,7 +19304,7 @@ func (x *GetRoleListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRoleListRequest.ProtoReflect.Descriptor instead.
 func (*GetRoleListRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{265}
+	return file_grpc_proto_rawDescGZIP(), []int{267}
 }
 
 func (x *GetRoleListRequest) GetType() string {
@@ -19215,7 +19326,7 @@ type GetRoleListResponse struct {
 func (x *GetRoleListResponse) Reset() {
 	*x = GetRoleListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[266]
+		mi := &file_grpc_proto_msgTypes[268]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19228,7 +19339,7 @@ func (x *GetRoleListResponse) String() string {
 func (*GetRoleListResponse) ProtoMessage() {}
 
 func (x *GetRoleListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[266]
+	mi := &file_grpc_proto_msgTypes[268]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19241,7 +19352,7 @@ func (x *GetRoleListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRoleListResponse.ProtoReflect.Descriptor instead.
 func (*GetRoleListResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{266}
+	return file_grpc_proto_rawDescGZIP(), []int{268}
 }
 
 func (x *GetRoleListResponse) GetItems() []*RoleListItem {
@@ -19263,7 +19374,7 @@ type AdminRoleRequest struct {
 func (x *AdminRoleRequest) Reset() {
 	*x = AdminRoleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[267]
+		mi := &file_grpc_proto_msgTypes[269]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19276,7 +19387,7 @@ func (x *AdminRoleRequest) String() string {
 func (*AdminRoleRequest) ProtoMessage() {}
 
 func (x *AdminRoleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[267]
+	mi := &file_grpc_proto_msgTypes[269]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19289,7 +19400,7 @@ func (x *AdminRoleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AdminRoleRequest.ProtoReflect.Descriptor instead.
 func (*AdminRoleRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{267}
+	return file_grpc_proto_rawDescGZIP(), []int{269}
 }
 
 func (x *AdminRoleRequest) GetRoleId() string {
@@ -19313,7 +19424,7 @@ type MerchantRoleRequest struct {
 func (x *MerchantRoleRequest) Reset() {
 	*x = MerchantRoleRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[268]
+		mi := &file_grpc_proto_msgTypes[270]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19326,7 +19437,7 @@ func (x *MerchantRoleRequest) String() string {
 func (*MerchantRoleRequest) ProtoMessage() {}
 
 func (x *MerchantRoleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[268]
+	mi := &file_grpc_proto_msgTypes[270]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19339,7 +19450,7 @@ func (x *MerchantRoleRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MerchantRoleRequest.ProtoReflect.Descriptor instead.
 func (*MerchantRoleRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{268}
+	return file_grpc_proto_rawDescGZIP(), []int{270}
 }
 
 func (x *MerchantRoleRequest) GetRoleId() string {
@@ -19370,7 +19481,7 @@ type Permission struct {
 func (x *Permission) Reset() {
 	*x = Permission{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[269]
+		mi := &file_grpc_proto_msgTypes[271]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19383,7 +19494,7 @@ func (x *Permission) String() string {
 func (*Permission) ProtoMessage() {}
 
 func (x *Permission) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[269]
+	mi := &file_grpc_proto_msgTypes[271]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19396,7 +19507,7 @@ func (x *Permission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Permission.ProtoReflect.Descriptor instead.
 func (*Permission) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{269}
+	return file_grpc_proto_rawDescGZIP(), []int{271}
 }
 
 func (x *Permission) GetName() string {
@@ -19429,7 +19540,7 @@ type UserRoleResponse struct {
 func (x *UserRoleResponse) Reset() {
 	*x = UserRoleResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[270]
+		mi := &file_grpc_proto_msgTypes[272]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19442,7 +19553,7 @@ func (x *UserRoleResponse) String() string {
 func (*UserRoleResponse) ProtoMessage() {}
 
 func (x *UserRoleResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[270]
+	mi := &file_grpc_proto_msgTypes[272]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19455,7 +19566,7 @@ func (x *UserRoleResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserRoleResponse.ProtoReflect.Descriptor instead.
 func (*UserRoleResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{270}
+	return file_grpc_proto_rawDescGZIP(), []int{272}
 }
 
 func (x *UserRoleResponse) GetStatus() int32 {
@@ -19491,7 +19602,7 @@ type GetCountriesListForOrderRequest struct {
 func (x *GetCountriesListForOrderRequest) Reset() {
 	*x = GetCountriesListForOrderRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[271]
+		mi := &file_grpc_proto_msgTypes[273]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19504,7 +19615,7 @@ func (x *GetCountriesListForOrderRequest) String() string {
 func (*GetCountriesListForOrderRequest) ProtoMessage() {}
 
 func (x *GetCountriesListForOrderRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[271]
+	mi := &file_grpc_proto_msgTypes[273]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19517,7 +19628,7 @@ func (x *GetCountriesListForOrderRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCountriesListForOrderRequest.ProtoReflect.Descriptor instead.
 func (*GetCountriesListForOrderRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{271}
+	return file_grpc_proto_rawDescGZIP(), []int{273}
 }
 
 func (x *GetCountriesListForOrderRequest) GetOrderId() string {
@@ -19540,7 +19651,7 @@ type GetCountriesListForOrderResponse struct {
 func (x *GetCountriesListForOrderResponse) Reset() {
 	*x = GetCountriesListForOrderResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[272]
+		mi := &file_grpc_proto_msgTypes[274]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19553,7 +19664,7 @@ func (x *GetCountriesListForOrderResponse) String() string {
 func (*GetCountriesListForOrderResponse) ProtoMessage() {}
 
 func (x *GetCountriesListForOrderResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[272]
+	mi := &file_grpc_proto_msgTypes[274]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19566,7 +19677,7 @@ func (x *GetCountriesListForOrderResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCountriesListForOrderResponse.ProtoReflect.Descriptor instead.
 func (*GetCountriesListForOrderResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{272}
+	return file_grpc_proto_rawDescGZIP(), []int{274}
 }
 
 func (x *GetCountriesListForOrderResponse) GetStatus() int32 {
@@ -19602,7 +19713,7 @@ type VatReportRequest struct {
 func (x *VatReportRequest) Reset() {
 	*x = VatReportRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[273]
+		mi := &file_grpc_proto_msgTypes[275]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19615,7 +19726,7 @@ func (x *VatReportRequest) String() string {
 func (*VatReportRequest) ProtoMessage() {}
 
 func (x *VatReportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[273]
+	mi := &file_grpc_proto_msgTypes[275]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19628,7 +19739,7 @@ func (x *VatReportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VatReportRequest.ProtoReflect.Descriptor instead.
 func (*VatReportRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{273}
+	return file_grpc_proto_rawDescGZIP(), []int{275}
 }
 
 func (x *VatReportRequest) GetId() string {
@@ -19656,7 +19767,7 @@ type PrivateTransactionsPaginate struct {
 func (x *PrivateTransactionsPaginate) Reset() {
 	*x = PrivateTransactionsPaginate{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[274]
+		mi := &file_grpc_proto_msgTypes[276]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19669,7 +19780,7 @@ func (x *PrivateTransactionsPaginate) String() string {
 func (*PrivateTransactionsPaginate) ProtoMessage() {}
 
 func (x *PrivateTransactionsPaginate) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[274]
+	mi := &file_grpc_proto_msgTypes[276]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19682,7 +19793,7 @@ func (x *PrivateTransactionsPaginate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PrivateTransactionsPaginate.ProtoReflect.Descriptor instead.
 func (*PrivateTransactionsPaginate) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{274}
+	return file_grpc_proto_rawDescGZIP(), []int{276}
 }
 
 func (x *PrivateTransactionsPaginate) GetCount() int32 {
@@ -19715,7 +19826,7 @@ type VatReportResponse struct {
 func (x *VatReportResponse) Reset() {
 	*x = VatReportResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[275]
+		mi := &file_grpc_proto_msgTypes[277]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19728,7 +19839,7 @@ func (x *VatReportResponse) String() string {
 func (*VatReportResponse) ProtoMessage() {}
 
 func (x *VatReportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[275]
+	mi := &file_grpc_proto_msgTypes[277]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19741,7 +19852,7 @@ func (x *VatReportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VatReportResponse.ProtoReflect.Descriptor instead.
 func (*VatReportResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{275}
+	return file_grpc_proto_rawDescGZIP(), []int{277}
 }
 
 func (x *VatReportResponse) GetStatus() int32 {
@@ -19780,7 +19891,7 @@ type PrivateTransactionsResponse struct {
 func (x *PrivateTransactionsResponse) Reset() {
 	*x = PrivateTransactionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[276]
+		mi := &file_grpc_proto_msgTypes[278]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19793,7 +19904,7 @@ func (x *PrivateTransactionsResponse) String() string {
 func (*PrivateTransactionsResponse) ProtoMessage() {}
 
 func (x *PrivateTransactionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[276]
+	mi := &file_grpc_proto_msgTypes[278]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19806,7 +19917,7 @@ func (x *PrivateTransactionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PrivateTransactionsResponse.ProtoReflect.Descriptor instead.
 func (*PrivateTransactionsResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{276}
+	return file_grpc_proto_rawDescGZIP(), []int{278}
 }
 
 func (x *PrivateTransactionsResponse) GetStatus() int32 {
@@ -19850,7 +19961,7 @@ type ReportFinanceDoneRequest struct {
 func (x *ReportFinanceDoneRequest) Reset() {
 	*x = ReportFinanceDoneRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[277]
+		mi := &file_grpc_proto_msgTypes[279]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19863,7 +19974,7 @@ func (x *ReportFinanceDoneRequest) String() string {
 func (*ReportFinanceDoneRequest) ProtoMessage() {}
 
 func (x *ReportFinanceDoneRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[277]
+	mi := &file_grpc_proto_msgTypes[279]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19876,7 +19987,7 @@ func (x *ReportFinanceDoneRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReportFinanceDoneRequest.ProtoReflect.Descriptor instead.
 func (*ReportFinanceDoneRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{277}
+	return file_grpc_proto_rawDescGZIP(), []int{279}
 }
 
 func (x *ReportFinanceDoneRequest) GetRoyaltyReportId() string {
@@ -19964,7 +20075,7 @@ type SetCustomerPaymentActivityRequest struct {
 func (x *SetCustomerPaymentActivityRequest) Reset() {
 	*x = SetCustomerPaymentActivityRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[278]
+		mi := &file_grpc_proto_msgTypes[280]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -19977,7 +20088,7 @@ func (x *SetCustomerPaymentActivityRequest) String() string {
 func (*SetCustomerPaymentActivityRequest) ProtoMessage() {}
 
 func (x *SetCustomerPaymentActivityRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[278]
+	mi := &file_grpc_proto_msgTypes[280]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19990,7 +20101,7 @@ func (x *SetCustomerPaymentActivityRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use SetCustomerPaymentActivityRequest.ProtoReflect.Descriptor instead.
 func (*SetCustomerPaymentActivityRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{278}
+	return file_grpc_proto_rawDescGZIP(), []int{280}
 }
 
 func (x *SetCustomerPaymentActivityRequest) GetCustomerId() string {
@@ -20046,7 +20157,7 @@ type ActOfCompletionRequest struct {
 func (x *ActOfCompletionRequest) Reset() {
 	*x = ActOfCompletionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[279]
+		mi := &file_grpc_proto_msgTypes[281]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20059,7 +20170,7 @@ func (x *ActOfCompletionRequest) String() string {
 func (*ActOfCompletionRequest) ProtoMessage() {}
 
 func (x *ActOfCompletionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[279]
+	mi := &file_grpc_proto_msgTypes[281]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20072,7 +20183,7 @@ func (x *ActOfCompletionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActOfCompletionRequest.ProtoReflect.Descriptor instead.
 func (*ActOfCompletionRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{279}
+	return file_grpc_proto_rawDescGZIP(), []int{281}
 }
 
 func (x *ActOfCompletionRequest) GetMerchantId() string {
@@ -20119,7 +20230,7 @@ type ActOfCompletionResponse struct {
 func (x *ActOfCompletionResponse) Reset() {
 	*x = ActOfCompletionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[280]
+		mi := &file_grpc_proto_msgTypes[282]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20132,7 +20243,7 @@ func (x *ActOfCompletionResponse) String() string {
 func (*ActOfCompletionResponse) ProtoMessage() {}
 
 func (x *ActOfCompletionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[280]
+	mi := &file_grpc_proto_msgTypes[282]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20145,7 +20256,7 @@ func (x *ActOfCompletionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActOfCompletionResponse.ProtoReflect.Descriptor instead.
 func (*ActOfCompletionResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{280}
+	return file_grpc_proto_rawDescGZIP(), []int{282}
 }
 
 func (x *ActOfCompletionResponse) GetStatus() int32 {
@@ -20182,7 +20293,7 @@ type GetDashboardCustomerReportResponse struct {
 func (x *GetDashboardCustomerReportResponse) Reset() {
 	*x = GetDashboardCustomerReportResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[281]
+		mi := &file_grpc_proto_msgTypes[283]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20195,7 +20306,7 @@ func (x *GetDashboardCustomerReportResponse) String() string {
 func (*GetDashboardCustomerReportResponse) ProtoMessage() {}
 
 func (x *GetDashboardCustomerReportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[281]
+	mi := &file_grpc_proto_msgTypes[283]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20208,7 +20319,7 @@ func (x *GetDashboardCustomerReportResponse) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetDashboardCustomerReportResponse.ProtoReflect.Descriptor instead.
 func (*GetDashboardCustomerReportResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{281}
+	return file_grpc_proto_rawDescGZIP(), []int{283}
 }
 
 func (x *GetDashboardCustomerReportResponse) GetStatus() int32 {
@@ -20246,7 +20357,7 @@ type DashboardCustomerReportArpuRequest struct {
 func (x *DashboardCustomerReportArpuRequest) Reset() {
 	*x = DashboardCustomerReportArpuRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[282]
+		mi := &file_grpc_proto_msgTypes[284]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20259,7 +20370,7 @@ func (x *DashboardCustomerReportArpuRequest) String() string {
 func (*DashboardCustomerReportArpuRequest) ProtoMessage() {}
 
 func (x *DashboardCustomerReportArpuRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[282]
+	mi := &file_grpc_proto_msgTypes[284]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20272,7 +20383,7 @@ func (x *DashboardCustomerReportArpuRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DashboardCustomerReportArpuRequest.ProtoReflect.Descriptor instead.
 func (*DashboardCustomerReportArpuRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{282}
+	return file_grpc_proto_rawDescGZIP(), []int{284}
 }
 
 func (x *DashboardCustomerReportArpuRequest) GetMerchantId() string {
@@ -20303,7 +20414,7 @@ type DashboardCustomerReportArpuResponse struct {
 func (x *DashboardCustomerReportArpuResponse) Reset() {
 	*x = DashboardCustomerReportArpuResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[283]
+		mi := &file_grpc_proto_msgTypes[285]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20316,7 +20427,7 @@ func (x *DashboardCustomerReportArpuResponse) String() string {
 func (*DashboardCustomerReportArpuResponse) ProtoMessage() {}
 
 func (x *DashboardCustomerReportArpuResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[283]
+	mi := &file_grpc_proto_msgTypes[285]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20329,7 +20440,7 @@ func (x *DashboardCustomerReportArpuResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use DashboardCustomerReportArpuResponse.ProtoReflect.Descriptor instead.
 func (*DashboardCustomerReportArpuResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{283}
+	return file_grpc_proto_rawDescGZIP(), []int{285}
 }
 
 func (x *DashboardCustomerReportArpuResponse) GetStatus() int32 {
@@ -20367,7 +20478,7 @@ type DashboardCustomerReportRequest struct {
 func (x *DashboardCustomerReportRequest) Reset() {
 	*x = DashboardCustomerReportRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[284]
+		mi := &file_grpc_proto_msgTypes[286]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20380,7 +20491,7 @@ func (x *DashboardCustomerReportRequest) String() string {
 func (*DashboardCustomerReportRequest) ProtoMessage() {}
 
 func (x *DashboardCustomerReportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[284]
+	mi := &file_grpc_proto_msgTypes[286]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20393,7 +20504,7 @@ func (x *DashboardCustomerReportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DashboardCustomerReportRequest.ProtoReflect.Descriptor instead.
 func (*DashboardCustomerReportRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{284}
+	return file_grpc_proto_rawDescGZIP(), []int{286}
 }
 
 func (x *DashboardCustomerReportRequest) GetMerchantId() string {
@@ -20436,7 +20547,7 @@ type DashboardCustomerReport struct {
 func (x *DashboardCustomerReport) Reset() {
 	*x = DashboardCustomerReport{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[285]
+		mi := &file_grpc_proto_msgTypes[287]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20449,7 +20560,7 @@ func (x *DashboardCustomerReport) String() string {
 func (*DashboardCustomerReport) ProtoMessage() {}
 
 func (x *DashboardCustomerReport) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[285]
+	mi := &file_grpc_proto_msgTypes[287]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20462,7 +20573,7 @@ func (x *DashboardCustomerReport) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DashboardCustomerReport.ProtoReflect.Descriptor instead.
 func (*DashboardCustomerReport) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{285}
+	return file_grpc_proto_rawDescGZIP(), []int{287}
 }
 
 func (x *DashboardCustomerReport) GetNewCustomersPercentage() float32 {
@@ -20528,7 +20639,7 @@ type Top20Customers struct {
 func (x *Top20Customers) Reset() {
 	*x = Top20Customers{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[286]
+		mi := &file_grpc_proto_msgTypes[288]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20541,7 +20652,7 @@ func (x *Top20Customers) String() string {
 func (*Top20Customers) ProtoMessage() {}
 
 func (x *Top20Customers) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[286]
+	mi := &file_grpc_proto_msgTypes[288]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20554,7 +20665,7 @@ func (x *Top20Customers) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Top20Customers.ProtoReflect.Descriptor instead.
 func (*Top20Customers) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{286}
+	return file_grpc_proto_rawDescGZIP(), []int{288}
 }
 
 func (x *Top20Customers) GetRevenue() float32 {
@@ -20605,7 +20716,7 @@ type ListCustomersRequest struct {
 func (x *ListCustomersRequest) Reset() {
 	*x = ListCustomersRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[287]
+		mi := &file_grpc_proto_msgTypes[289]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20618,7 +20729,7 @@ func (x *ListCustomersRequest) String() string {
 func (*ListCustomersRequest) ProtoMessage() {}
 
 func (x *ListCustomersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[287]
+	mi := &file_grpc_proto_msgTypes[289]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20631,7 +20742,7 @@ func (x *ListCustomersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCustomersRequest.ProtoReflect.Descriptor instead.
 func (*ListCustomersRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{287}
+	return file_grpc_proto_rawDescGZIP(), []int{289}
 }
 
 func (x *ListCustomersRequest) GetMerchantId() string {
@@ -20732,7 +20843,7 @@ type AmountFilter struct {
 func (x *AmountFilter) Reset() {
 	*x = AmountFilter{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[288]
+		mi := &file_grpc_proto_msgTypes[290]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20745,7 +20856,7 @@ func (x *AmountFilter) String() string {
 func (*AmountFilter) ProtoMessage() {}
 
 func (x *AmountFilter) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[288]
+	mi := &file_grpc_proto_msgTypes[290]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20758,7 +20869,7 @@ func (x *AmountFilter) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AmountFilter.ProtoReflect.Descriptor instead.
 func (*AmountFilter) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{288}
+	return file_grpc_proto_rawDescGZIP(), []int{290}
 }
 
 func (x *AmountFilter) GetFrom() float32 {
@@ -20789,7 +20900,7 @@ type ListCustomersResponse struct {
 func (x *ListCustomersResponse) Reset() {
 	*x = ListCustomersResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[289]
+		mi := &file_grpc_proto_msgTypes[291]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20802,7 +20913,7 @@ func (x *ListCustomersResponse) String() string {
 func (*ListCustomersResponse) ProtoMessage() {}
 
 func (x *ListCustomersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[289]
+	mi := &file_grpc_proto_msgTypes[291]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20815,7 +20926,7 @@ func (x *ListCustomersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListCustomersResponse.ProtoReflect.Descriptor instead.
 func (*ListCustomersResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{289}
+	return file_grpc_proto_rawDescGZIP(), []int{291}
 }
 
 func (x *ListCustomersResponse) GetStatus() int32 {
@@ -20863,7 +20974,7 @@ type ShortCustomerInfo struct {
 func (x *ShortCustomerInfo) Reset() {
 	*x = ShortCustomerInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[290]
+		mi := &file_grpc_proto_msgTypes[292]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20876,7 +20987,7 @@ func (x *ShortCustomerInfo) String() string {
 func (*ShortCustomerInfo) ProtoMessage() {}
 
 func (x *ShortCustomerInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[290]
+	mi := &file_grpc_proto_msgTypes[292]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20889,7 +21000,7 @@ func (x *ShortCustomerInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ShortCustomerInfo.ProtoReflect.Descriptor instead.
 func (*ShortCustomerInfo) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{290}
+	return file_grpc_proto_rawDescGZIP(), []int{292}
 }
 
 func (x *ShortCustomerInfo) GetId() string {
@@ -20953,7 +21064,7 @@ type GetCustomerInfoRequest struct {
 func (x *GetCustomerInfoRequest) Reset() {
 	*x = GetCustomerInfoRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[291]
+		mi := &file_grpc_proto_msgTypes[293]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -20966,7 +21077,7 @@ func (x *GetCustomerInfoRequest) String() string {
 func (*GetCustomerInfoRequest) ProtoMessage() {}
 
 func (x *GetCustomerInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[291]
+	mi := &file_grpc_proto_msgTypes[293]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20979,7 +21090,7 @@ func (x *GetCustomerInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCustomerInfoRequest.ProtoReflect.Descriptor instead.
 func (*GetCustomerInfoRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{291}
+	return file_grpc_proto_rawDescGZIP(), []int{293}
 }
 
 func (x *GetCustomerInfoRequest) GetMerchantId() string {
@@ -21009,7 +21120,7 @@ type GetCustomerInfoResponse struct {
 func (x *GetCustomerInfoResponse) Reset() {
 	*x = GetCustomerInfoResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[292]
+		mi := &file_grpc_proto_msgTypes[294]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21022,7 +21133,7 @@ func (x *GetCustomerInfoResponse) String() string {
 func (*GetCustomerInfoResponse) ProtoMessage() {}
 
 func (x *GetCustomerInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[292]
+	mi := &file_grpc_proto_msgTypes[294]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21035,7 +21146,7 @@ func (x *GetCustomerInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCustomerInfoResponse.ProtoReflect.Descriptor instead.
 func (*GetCustomerInfoResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{292}
+	return file_grpc_proto_rawDescGZIP(), []int{294}
 }
 
 func (x *GetCustomerInfoResponse) GetStatus() int32 {
@@ -21070,7 +21181,7 @@ type DeserializeCookieRequest struct {
 func (x *DeserializeCookieRequest) Reset() {
 	*x = DeserializeCookieRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[293]
+		mi := &file_grpc_proto_msgTypes[295]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21083,7 +21194,7 @@ func (x *DeserializeCookieRequest) String() string {
 func (*DeserializeCookieRequest) ProtoMessage() {}
 
 func (x *DeserializeCookieRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[293]
+	mi := &file_grpc_proto_msgTypes[295]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21096,7 +21207,7 @@ func (x *DeserializeCookieRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeserializeCookieRequest.ProtoReflect.Descriptor instead.
 func (*DeserializeCookieRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{293}
+	return file_grpc_proto_rawDescGZIP(), []int{295}
 }
 
 func (x *DeserializeCookieRequest) GetCookie() string {
@@ -21119,7 +21230,7 @@ type DeserializeCookieResponse struct {
 func (x *DeserializeCookieResponse) Reset() {
 	*x = DeserializeCookieResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[294]
+		mi := &file_grpc_proto_msgTypes[296]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21132,7 +21243,7 @@ func (x *DeserializeCookieResponse) String() string {
 func (*DeserializeCookieResponse) ProtoMessage() {}
 
 func (x *DeserializeCookieResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[294]
+	mi := &file_grpc_proto_msgTypes[296]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21145,7 +21256,7 @@ func (x *DeserializeCookieResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeserializeCookieResponse.ProtoReflect.Descriptor instead.
 func (*DeserializeCookieResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{294}
+	return file_grpc_proto_rawDescGZIP(), []int{296}
 }
 
 func (x *DeserializeCookieResponse) GetStatus() int32 {
@@ -21181,7 +21292,7 @@ type DeleteCustomerCardRequest struct {
 func (x *DeleteCustomerCardRequest) Reset() {
 	*x = DeleteCustomerCardRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[295]
+		mi := &file_grpc_proto_msgTypes[297]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21194,7 +21305,7 @@ func (x *DeleteCustomerCardRequest) String() string {
 func (*DeleteCustomerCardRequest) ProtoMessage() {}
 
 func (x *DeleteCustomerCardRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[295]
+	mi := &file_grpc_proto_msgTypes[297]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21207,7 +21318,7 @@ func (x *DeleteCustomerCardRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteCustomerCardRequest.ProtoReflect.Descriptor instead.
 func (*DeleteCustomerCardRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{295}
+	return file_grpc_proto_rawDescGZIP(), []int{297}
 }
 
 func (x *DeleteCustomerCardRequest) GetId() string {
@@ -21239,7 +21350,7 @@ type GetSubscriptionRequest struct {
 func (x *GetSubscriptionRequest) Reset() {
 	*x = GetSubscriptionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[296]
+		mi := &file_grpc_proto_msgTypes[298]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21252,7 +21363,7 @@ func (x *GetSubscriptionRequest) String() string {
 func (*GetSubscriptionRequest) ProtoMessage() {}
 
 func (x *GetSubscriptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[296]
+	mi := &file_grpc_proto_msgTypes[298]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21265,7 +21376,7 @@ func (x *GetSubscriptionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubscriptionRequest.ProtoReflect.Descriptor instead.
 func (*GetSubscriptionRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{296}
+	return file_grpc_proto_rawDescGZIP(), []int{298}
 }
 
 func (x *GetSubscriptionRequest) GetId() string {
@@ -21302,7 +21413,7 @@ type GetSubscriptionResponse struct {
 func (x *GetSubscriptionResponse) Reset() {
 	*x = GetSubscriptionResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[297]
+		mi := &file_grpc_proto_msgTypes[299]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21315,7 +21426,7 @@ func (x *GetSubscriptionResponse) String() string {
 func (*GetSubscriptionResponse) ProtoMessage() {}
 
 func (x *GetSubscriptionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[297]
+	mi := &file_grpc_proto_msgTypes[299]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21328,7 +21439,7 @@ func (x *GetSubscriptionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubscriptionResponse.ProtoReflect.Descriptor instead.
 func (*GetSubscriptionResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{297}
+	return file_grpc_proto_rawDescGZIP(), []int{299}
 }
 
 func (x *GetSubscriptionResponse) GetStatus() int32 {
@@ -21371,7 +21482,7 @@ type FindSubscriptionsRequest struct {
 func (x *FindSubscriptionsRequest) Reset() {
 	*x = FindSubscriptionsRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[298]
+		mi := &file_grpc_proto_msgTypes[300]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21384,7 +21495,7 @@ func (x *FindSubscriptionsRequest) String() string {
 func (*FindSubscriptionsRequest) ProtoMessage() {}
 
 func (x *FindSubscriptionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[298]
+	mi := &file_grpc_proto_msgTypes[300]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21397,7 +21508,7 @@ func (x *FindSubscriptionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindSubscriptionsRequest.ProtoReflect.Descriptor instead.
 func (*FindSubscriptionsRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{298}
+	return file_grpc_proto_rawDescGZIP(), []int{300}
 }
 
 func (x *FindSubscriptionsRequest) GetCookie() string {
@@ -21449,7 +21560,7 @@ type FindSubscriptionsResponse struct {
 func (x *FindSubscriptionsResponse) Reset() {
 	*x = FindSubscriptionsResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[299]
+		mi := &file_grpc_proto_msgTypes[301]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21462,7 +21573,7 @@ func (x *FindSubscriptionsResponse) String() string {
 func (*FindSubscriptionsResponse) ProtoMessage() {}
 
 func (x *FindSubscriptionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[299]
+	mi := &file_grpc_proto_msgTypes[301]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21475,7 +21586,7 @@ func (x *FindSubscriptionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FindSubscriptionsResponse.ProtoReflect.Descriptor instead.
 func (*FindSubscriptionsResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{299}
+	return file_grpc_proto_rawDescGZIP(), []int{301}
 }
 
 func (x *FindSubscriptionsResponse) GetList() []*RecurringSubscription {
@@ -21518,7 +21629,7 @@ type GetCustomerShortInfoRequest struct {
 func (x *GetCustomerShortInfoRequest) Reset() {
 	*x = GetCustomerShortInfoRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[300]
+		mi := &file_grpc_proto_msgTypes[302]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21531,7 +21642,7 @@ func (x *GetCustomerShortInfoRequest) String() string {
 func (*GetCustomerShortInfoRequest) ProtoMessage() {}
 
 func (x *GetCustomerShortInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[300]
+	mi := &file_grpc_proto_msgTypes[302]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21544,7 +21655,7 @@ func (x *GetCustomerShortInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCustomerShortInfoRequest.ProtoReflect.Descriptor instead.
 func (*GetCustomerShortInfoRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{300}
+	return file_grpc_proto_rawDescGZIP(), []int{302}
 }
 
 func (x *GetCustomerShortInfoRequest) GetCookie() string {
@@ -21567,7 +21678,7 @@ type GetCustomerShortInfoResponse struct {
 func (x *GetCustomerShortInfoResponse) Reset() {
 	*x = GetCustomerShortInfoResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[301]
+		mi := &file_grpc_proto_msgTypes[303]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21580,7 +21691,7 @@ func (x *GetCustomerShortInfoResponse) String() string {
 func (*GetCustomerShortInfoResponse) ProtoMessage() {}
 
 func (x *GetCustomerShortInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[301]
+	mi := &file_grpc_proto_msgTypes[303]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21593,7 +21704,7 @@ func (x *GetCustomerShortInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCustomerShortInfoResponse.ProtoReflect.Descriptor instead.
 func (*GetCustomerShortInfoResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{301}
+	return file_grpc_proto_rawDescGZIP(), []int{303}
 }
 
 func (x *GetCustomerShortInfoResponse) GetStatus() int32 {
@@ -21630,7 +21741,7 @@ type CustomerShortInfo struct {
 func (x *CustomerShortInfo) Reset() {
 	*x = CustomerShortInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[302]
+		mi := &file_grpc_proto_msgTypes[304]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21643,7 +21754,7 @@ func (x *CustomerShortInfo) String() string {
 func (*CustomerShortInfo) ProtoMessage() {}
 
 func (x *CustomerShortInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[302]
+	mi := &file_grpc_proto_msgTypes[304]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21656,7 +21767,7 @@ func (x *CustomerShortInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CustomerShortInfo.ProtoReflect.Descriptor instead.
 func (*CustomerShortInfo) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{302}
+	return file_grpc_proto_rawDescGZIP(), []int{304}
 }
 
 func (x *CustomerShortInfo) GetEmail() string {
@@ -21699,7 +21810,7 @@ type GetSubscriptionOrdersRequest struct {
 func (x *GetSubscriptionOrdersRequest) Reset() {
 	*x = GetSubscriptionOrdersRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[303]
+		mi := &file_grpc_proto_msgTypes[305]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21712,7 +21823,7 @@ func (x *GetSubscriptionOrdersRequest) String() string {
 func (*GetSubscriptionOrdersRequest) ProtoMessage() {}
 
 func (x *GetSubscriptionOrdersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[303]
+	mi := &file_grpc_proto_msgTypes[305]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21725,7 +21836,7 @@ func (x *GetSubscriptionOrdersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubscriptionOrdersRequest.ProtoReflect.Descriptor instead.
 func (*GetSubscriptionOrdersRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{303}
+	return file_grpc_proto_rawDescGZIP(), []int{305}
 }
 
 func (x *GetSubscriptionOrdersRequest) GetCookie() string {
@@ -21777,7 +21888,7 @@ type GetSubscriptionOrdersResponse struct {
 func (x *GetSubscriptionOrdersResponse) Reset() {
 	*x = GetSubscriptionOrdersResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[304]
+		mi := &file_grpc_proto_msgTypes[306]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21790,7 +21901,7 @@ func (x *GetSubscriptionOrdersResponse) String() string {
 func (*GetSubscriptionOrdersResponse) ProtoMessage() {}
 
 func (x *GetSubscriptionOrdersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[304]
+	mi := &file_grpc_proto_msgTypes[306]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21803,7 +21914,7 @@ func (x *GetSubscriptionOrdersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSubscriptionOrdersResponse.ProtoReflect.Descriptor instead.
 func (*GetSubscriptionOrdersResponse) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{304}
+	return file_grpc_proto_rawDescGZIP(), []int{306}
 }
 
 func (x *GetSubscriptionOrdersResponse) GetStatus() int32 {
@@ -21849,7 +21960,7 @@ type DeleteRecurringSubscriptionRequest struct {
 func (x *DeleteRecurringSubscriptionRequest) Reset() {
 	*x = DeleteRecurringSubscriptionRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_grpc_proto_msgTypes[305]
+		mi := &file_grpc_proto_msgTypes[307]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -21862,7 +21973,7 @@ func (x *DeleteRecurringSubscriptionRequest) String() string {
 func (*DeleteRecurringSubscriptionRequest) ProtoMessage() {}
 
 func (x *DeleteRecurringSubscriptionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_grpc_proto_msgTypes[305]
+	mi := &file_grpc_proto_msgTypes[307]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21875,7 +21986,7 @@ func (x *DeleteRecurringSubscriptionRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use DeleteRecurringSubscriptionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRecurringSubscriptionRequest) Descriptor() ([]byte, []int) {
-	return file_grpc_proto_rawDescGZIP(), []int{305}
+	return file_grpc_proto_rawDescGZIP(), []int{307}
 }
 
 func (x *DeleteRecurringSubscriptionRequest) GetId() string {
@@ -24363,6 +24474,20 @@ var file_grpc_proto_rawDesc = []byte{
 	0x73, 0x61, 0x67, 0x65, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x25, 0x0a,
 	0x04, 0x69, 0x74, 0x65, 0x6d, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x62, 0x69,
 	0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x52, 0x04,
+	0x69, 0x74, 0x65, 0x6d, 0x22, 0x43, 0x0a, 0x20, 0x53, 0x65, 0x74, 0x4d, 0x65, 0x72, 0x63, 0x68,
+	0x61, 0x6e, 0x74, 0x41, 0x63, 0x63, 0x65, 0x70, 0x74, 0x65, 0x64, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x6d, 0x65, 0x72, 0x63,
+	0x68, 0x61, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x6d,
+	0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x49, 0x64, 0x22, 0x98, 0x01, 0x0a, 0x21, 0x53, 0x65,
+	0x74, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x41, 0x63, 0x63, 0x65, 0x70, 0x74, 0x65,
+	0x64, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x34, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x45, 0x72, 0x72, 0x6f, 0x72, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x25, 0x0a,
+	0x04, 0x69, 0x74, 0x65, 0x6d, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x62, 0x69,
+	0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x52, 0x04,
 	0x69, 0x74, 0x65, 0x6d, 0x22, 0x2c, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61,
 	0x74, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02,
@@ -24879,7 +25004,7 @@ var file_grpc_proto_rawDesc = []byte{
 	0x69, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x63, 0x6f, 0x6f, 0x6b, 0x69, 0x65,
 	0x12, 0x1f, 0x0a, 0x0b, 0x6d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18,
 	0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x6d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x49,
-	0x64, 0x32, 0x8f, 0x87, 0x01, 0x0a, 0x0e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x53, 0x65,
+	0x64, 0x32, 0xff, 0x87, 0x01, 0x0a, 0x0e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x53, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x59, 0x0a, 0x14, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x43, 0x72,
 	0x65, 0x61, 0x74, 0x65, 0x42, 0x79, 0x50, 0x61, 0x79, 0x6c, 0x69, 0x6e, 0x6b, 0x12, 0x1d, 0x2e,
 	0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x43, 0x72, 0x65,
@@ -24949,7 +25074,14 @@ var file_grpc_proto_rawDesc = []byte{
 	0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x1a, 0x29, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e, 0x53, 0x65, 0x74, 0x4d, 0x65, 0x72, 0x63,
 	0x68, 0x61, 0x6e, 0x74, 0x4f, 0x70, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6e, 0x67, 0x43, 0x6f, 0x6d,
-	0x70, 0x61, 0x6e, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x59,
+	0x70, 0x61, 0x6e, 0x79, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x6e,
+	0x0a, 0x19, 0x53, 0x65, 0x74, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x41, 0x63, 0x63,
+	0x65, 0x70, 0x74, 0x65, 0x64, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x26, 0x2e, 0x67, 0x72,
+	0x70, 0x63, 0x2e, 0x53, 0x65, 0x74, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x41, 0x63,
+	0x63, 0x65, 0x70, 0x74, 0x65, 0x64, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e, 0x53, 0x65, 0x74, 0x4d, 0x65,
+	0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x41, 0x63, 0x63, 0x65, 0x70, 0x74, 0x65, 0x64, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x59,
 	0x0a, 0x12, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74,
 	0x44, 0x61, 0x74, 0x61, 0x12, 0x1f, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e, 0x43, 0x68, 0x61, 0x6e,
 	0x67, 0x65, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x61, 0x74, 0x61, 0x52, 0x65,
@@ -25976,7 +26108,7 @@ func file_grpc_proto_rawDescGZIP() []byte {
 	return file_grpc_proto_rawDescData
 }
 
-var file_grpc_proto_msgTypes = make([]protoimpl.MessageInfo, 321)
+var file_grpc_proto_msgTypes = make([]protoimpl.MessageInfo, 323)
 var file_grpc_proto_goTypes = []interface{}{
 	(*EmptyRequest)(nil),                                  // 0: grpc.EmptyRequest
 	(*EmptyResponse)(nil),                                 // 1: grpc.EmptyResponse
@@ -26218,351 +26350,353 @@ var file_grpc_proto_goTypes = []interface{}{
 	(*GetPaymentMinLimitsSystemResponse)(nil),             // 237: grpc.GetPaymentMinLimitsSystemResponse
 	(*SetMerchantOperatingCompanyRequest)(nil),            // 238: grpc.SetMerchantOperatingCompanyRequest
 	(*SetMerchantOperatingCompanyResponse)(nil),           // 239: grpc.SetMerchantOperatingCompanyResponse
-	(*GetOperatingCompanyRequest)(nil),                    // 240: grpc.GetOperatingCompanyRequest
-	(*GetOperatingCompanyResponse)(nil),                   // 241: grpc.GetOperatingCompanyResponse
-	(*OrderReCreateProcessRequest)(nil),                   // 242: grpc.OrderReCreateProcessRequest
-	(*GetMerchantUsersRequest)(nil),                       // 243: grpc.GetMerchantUsersRequest
-	(*GetMerchantUsersResponse)(nil),                      // 244: grpc.GetMerchantUsersResponse
-	(*InviteUserMerchantRequest)(nil),                     // 245: grpc.InviteUserMerchantRequest
-	(*InviteUserMerchantResponse)(nil),                    // 246: grpc.InviteUserMerchantResponse
-	(*InviteUserAdminRequest)(nil),                        // 247: grpc.InviteUserAdminRequest
-	(*InviteUserAdminResponse)(nil),                       // 248: grpc.InviteUserAdminResponse
-	(*ResendInviteMerchantRequest)(nil),                   // 249: grpc.ResendInviteMerchantRequest
-	(*ResendInviteAdminRequest)(nil),                      // 250: grpc.ResendInviteAdminRequest
-	(*GetMerchantUserRequest)(nil),                        // 251: grpc.GetMerchantUserRequest
-	(*GetMerchantUserResponse)(nil),                       // 252: grpc.GetMerchantUserResponse
-	(*GetAdminUserRequest)(nil),                           // 253: grpc.GetAdminUserRequest
-	(*GetAdminUserResponse)(nil),                          // 254: grpc.GetAdminUserResponse
-	(*CheckInviteTokenRequest)(nil),                       // 255: grpc.CheckInviteTokenRequest
-	(*CheckInviteTokenResponse)(nil),                      // 256: grpc.CheckInviteTokenResponse
-	(*AcceptInviteRequest)(nil),                           // 257: grpc.AcceptInviteRequest
-	(*AcceptInviteResponse)(nil),                          // 258: grpc.AcceptInviteResponse
-	(*GetAdminUsersResponse)(nil),                         // 259: grpc.GetAdminUsersResponse
-	(*GetMerchantsForUserRequest)(nil),                    // 260: grpc.GetMerchantsForUserRequest
-	(*GetMerchantsForUserResponse)(nil),                   // 261: grpc.GetMerchantsForUserResponse
-	(*MerchantForUserInfo)(nil),                           // 262: grpc.MerchantForUserInfo
-	(*ChangeRoleForMerchantUserRequest)(nil),              // 263: grpc.ChangeRoleForMerchantUserRequest
-	(*ChangeRoleForAdminUserRequest)(nil),                 // 264: grpc.ChangeRoleForAdminUserRequest
-	(*GetRoleListRequest)(nil),                            // 265: grpc.GetRoleListRequest
-	(*GetRoleListResponse)(nil),                           // 266: grpc.GetRoleListResponse
-	(*AdminRoleRequest)(nil),                              // 267: grpc.AdminRoleRequest
-	(*MerchantRoleRequest)(nil),                           // 268: grpc.MerchantRoleRequest
-	(*Permission)(nil),                                    // 269: grpc.Permission
-	(*UserRoleResponse)(nil),                              // 270: grpc.UserRoleResponse
-	(*GetCountriesListForOrderRequest)(nil),               // 271: grpc.GetCountriesListForOrderRequest
-	(*GetCountriesListForOrderResponse)(nil),              // 272: grpc.GetCountriesListForOrderResponse
-	(*VatReportRequest)(nil),                              // 273: grpc.VatReportRequest
-	(*PrivateTransactionsPaginate)(nil),                   // 274: grpc.PrivateTransactionsPaginate
-	(*VatReportResponse)(nil),                             // 275: grpc.VatReportResponse
-	(*PrivateTransactionsResponse)(nil),                   // 276: grpc.PrivateTransactionsResponse
-	(*ReportFinanceDoneRequest)(nil),                      // 277: grpc.ReportFinanceDoneRequest
-	(*SetCustomerPaymentActivityRequest)(nil),             // 278: grpc.SetCustomerPaymentActivityRequest
-	(*ActOfCompletionRequest)(nil),                        // 279: grpc.ActOfCompletionRequest
-	(*ActOfCompletionResponse)(nil),                       // 280: grpc.ActOfCompletionResponse
-	(*GetDashboardCustomerReportResponse)(nil),            // 281: grpc.GetDashboardCustomerReportResponse
-	(*DashboardCustomerReportArpuRequest)(nil),            // 282: grpc.DashboardCustomerReportArpuRequest
-	(*DashboardCustomerReportArpuResponse)(nil),           // 283: grpc.DashboardCustomerReportArpuResponse
-	(*DashboardCustomerReportRequest)(nil),                // 284: grpc.DashboardCustomerReportRequest
-	(*DashboardCustomerReport)(nil),                       // 285: grpc.DashboardCustomerReport
-	(*Top20Customers)(nil),                                // 286: grpc.Top20Customers
-	(*ListCustomersRequest)(nil),                          // 287: grpc.ListCustomersRequest
-	(*AmountFilter)(nil),                                  // 288: grpc.AmountFilter
-	(*ListCustomersResponse)(nil),                         // 289: grpc.ListCustomersResponse
-	(*ShortCustomerInfo)(nil),                             // 290: grpc.ShortCustomerInfo
-	(*GetCustomerInfoRequest)(nil),                        // 291: grpc.GetCustomerInfoRequest
-	(*GetCustomerInfoResponse)(nil),                       // 292: grpc.GetCustomerInfoResponse
-	(*DeserializeCookieRequest)(nil),                      // 293: grpc.DeserializeCookieRequest
-	(*DeserializeCookieResponse)(nil),                     // 294: grpc.DeserializeCookieResponse
-	(*DeleteCustomerCardRequest)(nil),                     // 295: grpc.DeleteCustomerCardRequest
-	(*GetSubscriptionRequest)(nil),                        // 296: grpc.GetSubscriptionRequest
-	(*GetSubscriptionResponse)(nil),                       // 297: grpc.GetSubscriptionResponse
-	(*FindSubscriptionsRequest)(nil),                      // 298: grpc.FindSubscriptionsRequest
-	(*FindSubscriptionsResponse)(nil),                     // 299: grpc.FindSubscriptionsResponse
-	(*GetCustomerShortInfoRequest)(nil),                   // 300: grpc.GetCustomerShortInfoRequest
-	(*GetCustomerShortInfoResponse)(nil),                  // 301: grpc.GetCustomerShortInfoResponse
-	(*CustomerShortInfo)(nil),                             // 302: grpc.CustomerShortInfo
-	(*GetSubscriptionOrdersRequest)(nil),                  // 303: grpc.GetSubscriptionOrdersRequest
-	(*GetSubscriptionOrdersResponse)(nil),                 // 304: grpc.GetSubscriptionOrdersResponse
-	(*DeleteRecurringSubscriptionRequest)(nil),            // 305: grpc.DeleteRecurringSubscriptionRequest
-	nil,                              // 306: grpc.CreateOrUpdateKeyProductRequest.NameEntry
-	nil,                              // 307: grpc.CreateOrUpdateKeyProductRequest.DescriptionEntry
-	nil,                              // 308: grpc.CreateOrUpdateKeyProductRequest.LongDescriptionEntry
-	nil,                              // 309: grpc.CreateOrUpdateKeyProductRequest.MetadataEntry
-	nil,                              // 310: grpc.PaymentCreateRequest.DataEntry
-	nil,                              // 311: grpc.KeyProduct.NameEntry
-	nil,                              // 312: grpc.KeyProduct.DescriptionEntry
-	nil,                              // 313: grpc.KeyProduct.LongDescriptionEntry
-	nil,                              // 314: grpc.KeyProduct.MetadataEntry
-	nil,                              // 315: grpc.Product.NameEntry
-	nil,                              // 316: grpc.Product.DescriptionEntry
-	nil,                              // 317: grpc.Product.LongDescriptionEntry
-	nil,                              // 318: grpc.Product.MetadataEntry
-	nil,                              // 319: grpc.GetMerchantTariffRatesResponseItems.PayoutEntry
-	nil,                              // 320: grpc.GetMerchantTariffRatesResponseItems.MinimalPayoutEntry
-	(*Order)(nil),                    // 321: billing.Order
-	(*Key)(nil),                      // 322: billing.Key
-	(*ImageCollection)(nil),          // 323: billing.ImageCollection
-	(*timestamp.Timestamp)(nil),      // 324: google.protobuf.Timestamp
-	(*ProjectRedirectSettings)(nil),  // 325: billing.ProjectRedirectSettings
-	(*PaymentFormPaymentMethod)(nil), // 326: billing.PaymentFormPaymentMethod
-	(*UserIpData)(nil),               // 327: billing.UserIpData
-	(*OrderItem)(nil),                // 328: billing.OrderItem
-	(*OrderRecurringSettings)(nil),   // 329: billing.OrderRecurringSettings
-	(*MerchantUser)(nil),             // 330: billing.MerchantUser
-	(*MerchantCompanyInfo)(nil),      // 331: billing.MerchantCompanyInfo
-	(*MerchantContact)(nil),          // 332: billing.MerchantContact
-	(*MerchantBanking)(nil),          // 333: billing.MerchantBanking
-	(*Merchant)(nil),                 // 334: billing.Merchant
-	(*Notification)(nil),             // 335: billing.Notification
-	(*MerchantPaymentMethod)(nil),    // 336: billing.MerchantPaymentMethod
-	(*MerchantPaymentMethodIdentification)(nil),   // 337: billing.MerchantPaymentMethodIdentification
-	(*MerchantPaymentMethodCommissions)(nil),      // 338: billing.MerchantPaymentMethodCommissions
-	(*MerchantPaymentMethodIntegration)(nil),      // 339: billing.MerchantPaymentMethodIntegration
-	(*Refund)(nil),                                // 340: billing.Refund
-	(*PaymentFormDataChangeResponseItem)(nil),     // 341: billing.PaymentFormDataChangeResponseItem
-	(*ProductPrice)(nil),                          // 342: billing.ProductPrice
-	(*Project)(nil),                               // 343: billing.Project
-	(*TokenUser)(nil),                             // 344: billing.TokenUser
-	(*TokenSettings)(nil),                         // 345: billing.TokenSettings
-	(*PaymentMethodParams)(nil),                   // 346: billing.PaymentMethodParams
-	(*PaymentMethod)(nil),                         // 347: billing.PaymentMethod
-	(*ZipCode)(nil),                               // 348: billing.ZipCode
-	(*AccountingEntry)(nil),                       // 349: billing.AccountingEntry
-	(*RoyaltyReport)(nil),                         // 350: billing.RoyaltyReport
-	(*PaymentChannelCostSystemList)(nil),          // 351: billing.PaymentChannelCostSystemList
-	(*PaymentChannelCostSystem)(nil),              // 352: billing.PaymentChannelCostSystem
-	(*PaymentChannelCostMerchantList)(nil),        // 353: billing.PaymentChannelCostMerchantList
-	(*PaymentChannelCostMerchant)(nil),            // 354: billing.PaymentChannelCostMerchant
-	(*MoneyBackCostSystemList)(nil),               // 355: billing.MoneyBackCostSystemList
-	(*MoneyBackCostSystem)(nil),                   // 356: billing.MoneyBackCostSystem
-	(*MoneyBackCostMerchantList)(nil),             // 357: billing.MoneyBackCostMerchantList
-	(*MoneyBackCostMerchant)(nil),                 // 358: billing.MoneyBackCostMerchant
-	(*RecommendedPrice)(nil),                      // 359: billing.RecommendedPrice
-	(*PriceTableRange)(nil),                       // 360: billing.PriceTableRange
-	(*RangeInt)(nil),                              // 361: billing.RangeInt
-	(*UserRole)(nil),                              // 362: billing.UserRole
-	(*OrderViewPublic)(nil),                       // 363: billing.OrderViewPublic
-	(*VatReport)(nil),                             // 364: billing.VatReport
-	(*MerchantCompletedSteps)(nil),                // 365: billing.MerchantCompletedSteps
-	(*MerchantTariffRatesPayment)(nil),            // 366: billing.MerchantTariffRatesPayment
-	(*MerchantTariffRatesSettingsItem)(nil),       // 367: billing.MerchantTariffRatesSettingsItem
-	(*OrderViewPrivate)(nil),                      // 368: billing.OrderViewPrivate
-	(*PayoutDocument)(nil),                        // 369: billing.PayoutDocument
-	(*MerchantBalance)(nil),                       // 370: billing.MerchantBalance
-	(*OrderReceipt)(nil),                          // 371: billing.OrderReceipt
-	(*PriceGroup)(nil),                            // 372: billing.PriceGroup
-	(*Paylink)(nil),                               // 373: paylink.Paylink
-	(*StatCommon)(nil),                            // 374: paylink.StatCommon
-	(*GroupStatCommon)(nil),                       // 375: paylink.GroupStatCommon
-	(*OperatingCompany)(nil),                      // 376: billing.OperatingCompany
-	(*PaymentMinLimitSystem)(nil),                 // 377: billing.PaymentMinLimitSystem
-	(*RoleListItem)(nil),                          // 378: billing.RoleListItem
-	(*CountriesList)(nil),                         // 379: billing.CountriesList
-	(*ActOfCompletionDocument)(nil),               // 380: billing.ActOfCompletionDocument
-	(*Customer)(nil),                              // 381: billing.Customer
-	(*BrowserCookie)(nil),                         // 382: billing.BrowserCookie
-	(*RecurringSubscription)(nil),                 // 383: billing.RecurringSubscription
-	(*SubscriptionOrder)(nil),                     // 384: billing.SubscriptionOrder
-	(*OrderCreateByPaylink)(nil),                  // 385: billing.OrderCreateByPaylink
-	(*OrderCreateRequest)(nil),                    // 386: billing.OrderCreateRequest
-	(*GetCountryRequest)(nil),                     // 387: billing.GetCountryRequest
-	(*Country)(nil),                               // 388: billing.Country
-	(*GetPriceGroupRequest)(nil),                  // 389: billing.GetPriceGroupRequest
-	(*PaymentChannelCostSystemRequest)(nil),       // 390: billing.PaymentChannelCostSystemRequest
-	(*PaymentCostDeleteRequest)(nil),              // 391: billing.PaymentCostDeleteRequest
-	(*PaymentChannelCostMerchantListRequest)(nil), // 392: billing.PaymentChannelCostMerchantListRequest
-	(*PaymentChannelCostMerchantRequest)(nil),     // 393: billing.PaymentChannelCostMerchantRequest
-	(*MoneyBackCostSystemRequest)(nil),            // 394: billing.MoneyBackCostSystemRequest
-	(*MoneyBackCostMerchantListRequest)(nil),      // 395: billing.MoneyBackCostMerchantListRequest
-	(*MoneyBackCostMerchantRequest)(nil),          // 396: billing.MoneyBackCostMerchantRequest
-	(*CreatePaylinkRequest)(nil),                  // 397: paylink.CreatePaylinkRequest
+	(*SetMerchantAcceptedStatusRequest)(nil),              // 240: grpc.SetMerchantAcceptedStatusRequest
+	(*SetMerchantAcceptedStatusResponse)(nil),             // 241: grpc.SetMerchantAcceptedStatusResponse
+	(*GetOperatingCompanyRequest)(nil),                    // 242: grpc.GetOperatingCompanyRequest
+	(*GetOperatingCompanyResponse)(nil),                   // 243: grpc.GetOperatingCompanyResponse
+	(*OrderReCreateProcessRequest)(nil),                   // 244: grpc.OrderReCreateProcessRequest
+	(*GetMerchantUsersRequest)(nil),                       // 245: grpc.GetMerchantUsersRequest
+	(*GetMerchantUsersResponse)(nil),                      // 246: grpc.GetMerchantUsersResponse
+	(*InviteUserMerchantRequest)(nil),                     // 247: grpc.InviteUserMerchantRequest
+	(*InviteUserMerchantResponse)(nil),                    // 248: grpc.InviteUserMerchantResponse
+	(*InviteUserAdminRequest)(nil),                        // 249: grpc.InviteUserAdminRequest
+	(*InviteUserAdminResponse)(nil),                       // 250: grpc.InviteUserAdminResponse
+	(*ResendInviteMerchantRequest)(nil),                   // 251: grpc.ResendInviteMerchantRequest
+	(*ResendInviteAdminRequest)(nil),                      // 252: grpc.ResendInviteAdminRequest
+	(*GetMerchantUserRequest)(nil),                        // 253: grpc.GetMerchantUserRequest
+	(*GetMerchantUserResponse)(nil),                       // 254: grpc.GetMerchantUserResponse
+	(*GetAdminUserRequest)(nil),                           // 255: grpc.GetAdminUserRequest
+	(*GetAdminUserResponse)(nil),                          // 256: grpc.GetAdminUserResponse
+	(*CheckInviteTokenRequest)(nil),                       // 257: grpc.CheckInviteTokenRequest
+	(*CheckInviteTokenResponse)(nil),                      // 258: grpc.CheckInviteTokenResponse
+	(*AcceptInviteRequest)(nil),                           // 259: grpc.AcceptInviteRequest
+	(*AcceptInviteResponse)(nil),                          // 260: grpc.AcceptInviteResponse
+	(*GetAdminUsersResponse)(nil),                         // 261: grpc.GetAdminUsersResponse
+	(*GetMerchantsForUserRequest)(nil),                    // 262: grpc.GetMerchantsForUserRequest
+	(*GetMerchantsForUserResponse)(nil),                   // 263: grpc.GetMerchantsForUserResponse
+	(*MerchantForUserInfo)(nil),                           // 264: grpc.MerchantForUserInfo
+	(*ChangeRoleForMerchantUserRequest)(nil),              // 265: grpc.ChangeRoleForMerchantUserRequest
+	(*ChangeRoleForAdminUserRequest)(nil),                 // 266: grpc.ChangeRoleForAdminUserRequest
+	(*GetRoleListRequest)(nil),                            // 267: grpc.GetRoleListRequest
+	(*GetRoleListResponse)(nil),                           // 268: grpc.GetRoleListResponse
+	(*AdminRoleRequest)(nil),                              // 269: grpc.AdminRoleRequest
+	(*MerchantRoleRequest)(nil),                           // 270: grpc.MerchantRoleRequest
+	(*Permission)(nil),                                    // 271: grpc.Permission
+	(*UserRoleResponse)(nil),                              // 272: grpc.UserRoleResponse
+	(*GetCountriesListForOrderRequest)(nil),               // 273: grpc.GetCountriesListForOrderRequest
+	(*GetCountriesListForOrderResponse)(nil),              // 274: grpc.GetCountriesListForOrderResponse
+	(*VatReportRequest)(nil),                              // 275: grpc.VatReportRequest
+	(*PrivateTransactionsPaginate)(nil),                   // 276: grpc.PrivateTransactionsPaginate
+	(*VatReportResponse)(nil),                             // 277: grpc.VatReportResponse
+	(*PrivateTransactionsResponse)(nil),                   // 278: grpc.PrivateTransactionsResponse
+	(*ReportFinanceDoneRequest)(nil),                      // 279: grpc.ReportFinanceDoneRequest
+	(*SetCustomerPaymentActivityRequest)(nil),             // 280: grpc.SetCustomerPaymentActivityRequest
+	(*ActOfCompletionRequest)(nil),                        // 281: grpc.ActOfCompletionRequest
+	(*ActOfCompletionResponse)(nil),                       // 282: grpc.ActOfCompletionResponse
+	(*GetDashboardCustomerReportResponse)(nil),            // 283: grpc.GetDashboardCustomerReportResponse
+	(*DashboardCustomerReportArpuRequest)(nil),            // 284: grpc.DashboardCustomerReportArpuRequest
+	(*DashboardCustomerReportArpuResponse)(nil),           // 285: grpc.DashboardCustomerReportArpuResponse
+	(*DashboardCustomerReportRequest)(nil),                // 286: grpc.DashboardCustomerReportRequest
+	(*DashboardCustomerReport)(nil),                       // 287: grpc.DashboardCustomerReport
+	(*Top20Customers)(nil),                                // 288: grpc.Top20Customers
+	(*ListCustomersRequest)(nil),                          // 289: grpc.ListCustomersRequest
+	(*AmountFilter)(nil),                                  // 290: grpc.AmountFilter
+	(*ListCustomersResponse)(nil),                         // 291: grpc.ListCustomersResponse
+	(*ShortCustomerInfo)(nil),                             // 292: grpc.ShortCustomerInfo
+	(*GetCustomerInfoRequest)(nil),                        // 293: grpc.GetCustomerInfoRequest
+	(*GetCustomerInfoResponse)(nil),                       // 294: grpc.GetCustomerInfoResponse
+	(*DeserializeCookieRequest)(nil),                      // 295: grpc.DeserializeCookieRequest
+	(*DeserializeCookieResponse)(nil),                     // 296: grpc.DeserializeCookieResponse
+	(*DeleteCustomerCardRequest)(nil),                     // 297: grpc.DeleteCustomerCardRequest
+	(*GetSubscriptionRequest)(nil),                        // 298: grpc.GetSubscriptionRequest
+	(*GetSubscriptionResponse)(nil),                       // 299: grpc.GetSubscriptionResponse
+	(*FindSubscriptionsRequest)(nil),                      // 300: grpc.FindSubscriptionsRequest
+	(*FindSubscriptionsResponse)(nil),                     // 301: grpc.FindSubscriptionsResponse
+	(*GetCustomerShortInfoRequest)(nil),                   // 302: grpc.GetCustomerShortInfoRequest
+	(*GetCustomerShortInfoResponse)(nil),                  // 303: grpc.GetCustomerShortInfoResponse
+	(*CustomerShortInfo)(nil),                             // 304: grpc.CustomerShortInfo
+	(*GetSubscriptionOrdersRequest)(nil),                  // 305: grpc.GetSubscriptionOrdersRequest
+	(*GetSubscriptionOrdersResponse)(nil),                 // 306: grpc.GetSubscriptionOrdersResponse
+	(*DeleteRecurringSubscriptionRequest)(nil),            // 307: grpc.DeleteRecurringSubscriptionRequest
+	nil,                              // 308: grpc.CreateOrUpdateKeyProductRequest.NameEntry
+	nil,                              // 309: grpc.CreateOrUpdateKeyProductRequest.DescriptionEntry
+	nil,                              // 310: grpc.CreateOrUpdateKeyProductRequest.LongDescriptionEntry
+	nil,                              // 311: grpc.CreateOrUpdateKeyProductRequest.MetadataEntry
+	nil,                              // 312: grpc.PaymentCreateRequest.DataEntry
+	nil,                              // 313: grpc.KeyProduct.NameEntry
+	nil,                              // 314: grpc.KeyProduct.DescriptionEntry
+	nil,                              // 315: grpc.KeyProduct.LongDescriptionEntry
+	nil,                              // 316: grpc.KeyProduct.MetadataEntry
+	nil,                              // 317: grpc.Product.NameEntry
+	nil,                              // 318: grpc.Product.DescriptionEntry
+	nil,                              // 319: grpc.Product.LongDescriptionEntry
+	nil,                              // 320: grpc.Product.MetadataEntry
+	nil,                              // 321: grpc.GetMerchantTariffRatesResponseItems.PayoutEntry
+	nil,                              // 322: grpc.GetMerchantTariffRatesResponseItems.MinimalPayoutEntry
+	(*Order)(nil),                    // 323: billing.Order
+	(*Key)(nil),                      // 324: billing.Key
+	(*ImageCollection)(nil),          // 325: billing.ImageCollection
+	(*timestamp.Timestamp)(nil),      // 326: google.protobuf.Timestamp
+	(*ProjectRedirectSettings)(nil),  // 327: billing.ProjectRedirectSettings
+	(*PaymentFormPaymentMethod)(nil), // 328: billing.PaymentFormPaymentMethod
+	(*UserIpData)(nil),               // 329: billing.UserIpData
+	(*OrderItem)(nil),                // 330: billing.OrderItem
+	(*OrderRecurringSettings)(nil),   // 331: billing.OrderRecurringSettings
+	(*MerchantUser)(nil),             // 332: billing.MerchantUser
+	(*MerchantCompanyInfo)(nil),      // 333: billing.MerchantCompanyInfo
+	(*MerchantContact)(nil),          // 334: billing.MerchantContact
+	(*MerchantBanking)(nil),          // 335: billing.MerchantBanking
+	(*Merchant)(nil),                 // 336: billing.Merchant
+	(*Notification)(nil),             // 337: billing.Notification
+	(*MerchantPaymentMethod)(nil),    // 338: billing.MerchantPaymentMethod
+	(*MerchantPaymentMethodIdentification)(nil),   // 339: billing.MerchantPaymentMethodIdentification
+	(*MerchantPaymentMethodCommissions)(nil),      // 340: billing.MerchantPaymentMethodCommissions
+	(*MerchantPaymentMethodIntegration)(nil),      // 341: billing.MerchantPaymentMethodIntegration
+	(*Refund)(nil),                                // 342: billing.Refund
+	(*PaymentFormDataChangeResponseItem)(nil),     // 343: billing.PaymentFormDataChangeResponseItem
+	(*ProductPrice)(nil),                          // 344: billing.ProductPrice
+	(*Project)(nil),                               // 345: billing.Project
+	(*TokenUser)(nil),                             // 346: billing.TokenUser
+	(*TokenSettings)(nil),                         // 347: billing.TokenSettings
+	(*PaymentMethodParams)(nil),                   // 348: billing.PaymentMethodParams
+	(*PaymentMethod)(nil),                         // 349: billing.PaymentMethod
+	(*ZipCode)(nil),                               // 350: billing.ZipCode
+	(*AccountingEntry)(nil),                       // 351: billing.AccountingEntry
+	(*RoyaltyReport)(nil),                         // 352: billing.RoyaltyReport
+	(*PaymentChannelCostSystemList)(nil),          // 353: billing.PaymentChannelCostSystemList
+	(*PaymentChannelCostSystem)(nil),              // 354: billing.PaymentChannelCostSystem
+	(*PaymentChannelCostMerchantList)(nil),        // 355: billing.PaymentChannelCostMerchantList
+	(*PaymentChannelCostMerchant)(nil),            // 356: billing.PaymentChannelCostMerchant
+	(*MoneyBackCostSystemList)(nil),               // 357: billing.MoneyBackCostSystemList
+	(*MoneyBackCostSystem)(nil),                   // 358: billing.MoneyBackCostSystem
+	(*MoneyBackCostMerchantList)(nil),             // 359: billing.MoneyBackCostMerchantList
+	(*MoneyBackCostMerchant)(nil),                 // 360: billing.MoneyBackCostMerchant
+	(*RecommendedPrice)(nil),                      // 361: billing.RecommendedPrice
+	(*PriceTableRange)(nil),                       // 362: billing.PriceTableRange
+	(*RangeInt)(nil),                              // 363: billing.RangeInt
+	(*UserRole)(nil),                              // 364: billing.UserRole
+	(*OrderViewPublic)(nil),                       // 365: billing.OrderViewPublic
+	(*VatReport)(nil),                             // 366: billing.VatReport
+	(*MerchantCompletedSteps)(nil),                // 367: billing.MerchantCompletedSteps
+	(*MerchantTariffRatesPayment)(nil),            // 368: billing.MerchantTariffRatesPayment
+	(*MerchantTariffRatesSettingsItem)(nil),       // 369: billing.MerchantTariffRatesSettingsItem
+	(*OrderViewPrivate)(nil),                      // 370: billing.OrderViewPrivate
+	(*PayoutDocument)(nil),                        // 371: billing.PayoutDocument
+	(*MerchantBalance)(nil),                       // 372: billing.MerchantBalance
+	(*OrderReceipt)(nil),                          // 373: billing.OrderReceipt
+	(*PriceGroup)(nil),                            // 374: billing.PriceGroup
+	(*Paylink)(nil),                               // 375: paylink.Paylink
+	(*StatCommon)(nil),                            // 376: paylink.StatCommon
+	(*GroupStatCommon)(nil),                       // 377: paylink.GroupStatCommon
+	(*OperatingCompany)(nil),                      // 378: billing.OperatingCompany
+	(*PaymentMinLimitSystem)(nil),                 // 379: billing.PaymentMinLimitSystem
+	(*RoleListItem)(nil),                          // 380: billing.RoleListItem
+	(*CountriesList)(nil),                         // 381: billing.CountriesList
+	(*ActOfCompletionDocument)(nil),               // 382: billing.ActOfCompletionDocument
+	(*Customer)(nil),                              // 383: billing.Customer
+	(*BrowserCookie)(nil),                         // 384: billing.BrowserCookie
+	(*RecurringSubscription)(nil),                 // 385: billing.RecurringSubscription
+	(*SubscriptionOrder)(nil),                     // 386: billing.SubscriptionOrder
+	(*OrderCreateByPaylink)(nil),                  // 387: billing.OrderCreateByPaylink
+	(*OrderCreateRequest)(nil),                    // 388: billing.OrderCreateRequest
+	(*GetCountryRequest)(nil),                     // 389: billing.GetCountryRequest
+	(*Country)(nil),                               // 390: billing.Country
+	(*GetPriceGroupRequest)(nil),                  // 391: billing.GetPriceGroupRequest
+	(*PaymentChannelCostSystemRequest)(nil),       // 392: billing.PaymentChannelCostSystemRequest
+	(*PaymentCostDeleteRequest)(nil),              // 393: billing.PaymentCostDeleteRequest
+	(*PaymentChannelCostMerchantListRequest)(nil), // 394: billing.PaymentChannelCostMerchantListRequest
+	(*PaymentChannelCostMerchantRequest)(nil),     // 395: billing.PaymentChannelCostMerchantRequest
+	(*MoneyBackCostSystemRequest)(nil),            // 396: billing.MoneyBackCostSystemRequest
+	(*MoneyBackCostMerchantListRequest)(nil),      // 397: billing.MoneyBackCostMerchantListRequest
+	(*MoneyBackCostMerchantRequest)(nil),          // 398: billing.MoneyBackCostMerchantRequest
+	(*CreatePaylinkRequest)(nil),                  // 399: paylink.CreatePaylinkRequest
 }
 var file_grpc_proto_depIdxs = []int32{
 	110, // 0: grpc.EmptyResponseWithStatus.message:type_name -> grpc.ResponseErrorMessage
 	110, // 1: grpc.ChangeCodeInOrderResponse.message:type_name -> grpc.ResponseErrorMessage
-	321, // 2: grpc.ChangeCodeInOrderResponse.order:type_name -> billing.Order
+	323, // 2: grpc.ChangeCodeInOrderResponse.order:type_name -> billing.Order
 	110, // 3: grpc.GetPlatformKeyCountResponse.message:type_name -> grpc.ResponseErrorMessage
 	110, // 4: grpc.GetKeyForOrderRequestResponse.message:type_name -> grpc.ResponseErrorMessage
-	322, // 5: grpc.GetKeyForOrderRequestResponse.key:type_name -> billing.Key
+	324, // 5: grpc.GetKeyForOrderRequestResponse.key:type_name -> billing.Key
 	110, // 6: grpc.PlatformKeyReserveResponse.message:type_name -> grpc.ResponseErrorMessage
 	110, // 7: grpc.PlatformKeysFileResponse.message:type_name -> grpc.ResponseErrorMessage
 	110, // 8: grpc.KeyProductResponse.message:type_name -> grpc.ResponseErrorMessage
 	72,  // 9: grpc.KeyProductResponse.product:type_name -> grpc.KeyProduct
-	306, // 10: grpc.CreateOrUpdateKeyProductRequest.name:type_name -> grpc.CreateOrUpdateKeyProductRequest.NameEntry
-	307, // 11: grpc.CreateOrUpdateKeyProductRequest.description:type_name -> grpc.CreateOrUpdateKeyProductRequest.DescriptionEntry
-	308, // 12: grpc.CreateOrUpdateKeyProductRequest.long_description:type_name -> grpc.CreateOrUpdateKeyProductRequest.LongDescriptionEntry
-	323, // 13: grpc.CreateOrUpdateKeyProductRequest.cover:type_name -> billing.ImageCollection
-	309, // 14: grpc.CreateOrUpdateKeyProductRequest.metadata:type_name -> grpc.CreateOrUpdateKeyProductRequest.MetadataEntry
+	308, // 10: grpc.CreateOrUpdateKeyProductRequest.name:type_name -> grpc.CreateOrUpdateKeyProductRequest.NameEntry
+	309, // 11: grpc.CreateOrUpdateKeyProductRequest.description:type_name -> grpc.CreateOrUpdateKeyProductRequest.DescriptionEntry
+	310, // 12: grpc.CreateOrUpdateKeyProductRequest.long_description:type_name -> grpc.CreateOrUpdateKeyProductRequest.LongDescriptionEntry
+	325, // 13: grpc.CreateOrUpdateKeyProductRequest.cover:type_name -> billing.ImageCollection
+	311, // 14: grpc.CreateOrUpdateKeyProductRequest.metadata:type_name -> grpc.CreateOrUpdateKeyProductRequest.MetadataEntry
 	73,  // 15: grpc.CreateOrUpdateKeyProductRequest.platforms:type_name -> grpc.PlatformPrice
 	110, // 16: grpc.ListPlatformsResponse.message:type_name -> grpc.ResponseErrorMessage
 	74,  // 17: grpc.ListPlatformsResponse.platforms:type_name -> grpc.Platform
 	110, // 18: grpc.ListKeyProductsResponse.message:type_name -> grpc.ResponseErrorMessage
 	72,  // 19: grpc.ListKeyProductsResponse.products:type_name -> grpc.KeyProduct
-	310, // 20: grpc.PaymentCreateRequest.data:type_name -> grpc.PaymentCreateRequest.DataEntry
+	312, // 20: grpc.PaymentCreateRequest.data:type_name -> grpc.PaymentCreateRequest.DataEntry
 	110, // 21: grpc.PaymentCreateResponse.message:type_name -> grpc.ResponseErrorMessage
-	324, // 22: grpc.PaymentCreateResponse.recurring_expire_date:type_name -> google.protobuf.Timestamp
-	325, // 23: grpc.PaymentFormJsonDataProject.redirect_settings:type_name -> billing.ProjectRedirectSettings
+	326, // 22: grpc.PaymentCreateResponse.recurring_expire_date:type_name -> google.protobuf.Timestamp
+	327, // 23: grpc.PaymentFormJsonDataProject.redirect_settings:type_name -> billing.ProjectRedirectSettings
 	26,  // 24: grpc.PaymentFormJsonData.project:type_name -> grpc.PaymentFormJsonDataProject
-	326, // 25: grpc.PaymentFormJsonData.payment_methods:type_name -> billing.PaymentFormPaymentMethod
-	327, // 26: grpc.PaymentFormJsonData.user_ip_data:type_name -> billing.UserIpData
-	328, // 27: grpc.PaymentFormJsonData.items:type_name -> billing.OrderItem
+	328, // 25: grpc.PaymentFormJsonData.payment_methods:type_name -> billing.PaymentFormPaymentMethod
+	329, // 26: grpc.PaymentFormJsonData.user_ip_data:type_name -> billing.UserIpData
+	330, // 27: grpc.PaymentFormJsonData.items:type_name -> billing.OrderItem
 	74,  // 28: grpc.PaymentFormJsonData.platforms:type_name -> grpc.Platform
-	329, // 29: grpc.PaymentFormJsonData.recurring_settings:type_name -> billing.OrderRecurringSettings
+	331, // 29: grpc.PaymentFormJsonData.recurring_settings:type_name -> billing.OrderRecurringSettings
 	110, // 30: grpc.PaymentFormJsonDataResponse.message:type_name -> grpc.ResponseErrorMessage
 	27,  // 31: grpc.PaymentFormJsonDataResponse.item:type_name -> grpc.PaymentFormJsonData
-	330, // 32: grpc.OnboardingRequest.user:type_name -> billing.MerchantUser
-	331, // 33: grpc.OnboardingRequest.company:type_name -> billing.MerchantCompanyInfo
-	332, // 34: grpc.OnboardingRequest.contacts:type_name -> billing.MerchantContact
-	333, // 35: grpc.OnboardingRequest.banking:type_name -> billing.MerchantBanking
-	334, // 36: grpc.MerchantListingResponse.items:type_name -> billing.Merchant
-	335, // 37: grpc.Notifications.items:type_name -> billing.Notification
-	336, // 38: grpc.ListingMerchantPaymentMethod.payment_methods:type_name -> billing.MerchantPaymentMethod
+	332, // 32: grpc.OnboardingRequest.user:type_name -> billing.MerchantUser
+	333, // 33: grpc.OnboardingRequest.company:type_name -> billing.MerchantCompanyInfo
+	334, // 34: grpc.OnboardingRequest.contacts:type_name -> billing.MerchantContact
+	335, // 35: grpc.OnboardingRequest.banking:type_name -> billing.MerchantBanking
+	336, // 36: grpc.MerchantListingResponse.items:type_name -> billing.Merchant
+	337, // 37: grpc.Notifications.items:type_name -> billing.Notification
+	338, // 38: grpc.ListingMerchantPaymentMethod.payment_methods:type_name -> billing.MerchantPaymentMethod
 	110, // 39: grpc.GetMerchantPaymentMethodResponse.message:type_name -> grpc.ResponseErrorMessage
-	336, // 40: grpc.GetMerchantPaymentMethodResponse.item:type_name -> billing.MerchantPaymentMethod
-	337, // 41: grpc.MerchantPaymentMethodRequest.payment_method:type_name -> billing.MerchantPaymentMethodIdentification
-	338, // 42: grpc.MerchantPaymentMethodRequest.commission:type_name -> billing.MerchantPaymentMethodCommissions
-	339, // 43: grpc.MerchantPaymentMethodRequest.integration:type_name -> billing.MerchantPaymentMethodIntegration
+	338, // 40: grpc.GetMerchantPaymentMethodResponse.item:type_name -> billing.MerchantPaymentMethod
+	339, // 41: grpc.MerchantPaymentMethodRequest.payment_method:type_name -> billing.MerchantPaymentMethodIdentification
+	340, // 42: grpc.MerchantPaymentMethodRequest.commission:type_name -> billing.MerchantPaymentMethodCommissions
+	341, // 43: grpc.MerchantPaymentMethodRequest.integration:type_name -> billing.MerchantPaymentMethodIntegration
 	110, // 44: grpc.MerchantPaymentMethodResponse.message:type_name -> grpc.ResponseErrorMessage
-	336, // 45: grpc.MerchantPaymentMethodResponse.item:type_name -> billing.MerchantPaymentMethod
+	338, // 45: grpc.MerchantPaymentMethodResponse.item:type_name -> billing.MerchantPaymentMethod
 	110, // 46: grpc.GetMerchantResponse.message:type_name -> grpc.ResponseErrorMessage
-	334, // 47: grpc.GetMerchantResponse.item:type_name -> billing.Merchant
+	336, // 47: grpc.GetMerchantResponse.item:type_name -> billing.Merchant
 	110, // 48: grpc.CreateRefundResponse.message:type_name -> grpc.ResponseErrorMessage
-	340, // 49: grpc.CreateRefundResponse.item:type_name -> billing.Refund
-	340, // 50: grpc.ListRefundsResponse.items:type_name -> billing.Refund
+	342, // 49: grpc.CreateRefundResponse.item:type_name -> billing.Refund
+	342, // 50: grpc.ListRefundsResponse.items:type_name -> billing.Refund
 	110, // 51: grpc.PaymentFormDataChangeResponse.message:type_name -> grpc.ResponseErrorMessage
-	341, // 52: grpc.PaymentFormDataChangeResponse.item:type_name -> billing.PaymentFormDataChangeResponseItem
-	328, // 53: grpc.ProcessBillingAddressResponseItem.items:type_name -> billing.OrderItem
+	343, // 52: grpc.PaymentFormDataChangeResponse.item:type_name -> billing.PaymentFormDataChangeResponseItem
+	330, // 53: grpc.ProcessBillingAddressResponseItem.items:type_name -> billing.OrderItem
 	110, // 54: grpc.ProcessBillingAddressResponse.message:type_name -> grpc.ResponseErrorMessage
 	59,  // 55: grpc.ProcessBillingAddressResponse.item:type_name -> grpc.ProcessBillingAddressResponseItem
 	110, // 56: grpc.ChangeMerchantDataResponse.message:type_name -> grpc.ResponseErrorMessage
-	334, // 57: grpc.ChangeMerchantDataResponse.item:type_name -> billing.Merchant
+	336, // 57: grpc.ChangeMerchantDataResponse.item:type_name -> billing.Merchant
 	110, // 58: grpc.ChangeMerchantResponse.message:type_name -> grpc.ResponseErrorMessage
-	334, // 59: grpc.ChangeMerchantResponse.item:type_name -> billing.Merchant
+	336, // 59: grpc.ChangeMerchantResponse.item:type_name -> billing.Merchant
 	110, // 60: grpc.ChangeMerchantStatusResponse.message:type_name -> grpc.ResponseErrorMessage
-	334, // 61: grpc.ChangeMerchantStatusResponse.item:type_name -> billing.Merchant
+	336, // 61: grpc.ChangeMerchantStatusResponse.item:type_name -> billing.Merchant
 	110, // 62: grpc.CreateNotificationResponse.message:type_name -> grpc.ResponseErrorMessage
-	335, // 63: grpc.CreateNotificationResponse.item:type_name -> billing.Notification
+	337, // 63: grpc.CreateNotificationResponse.item:type_name -> billing.Notification
 	110, // 64: grpc.OrderCreateProcessResponse.message:type_name -> grpc.ResponseErrorMessage
-	321, // 65: grpc.OrderCreateProcessResponse.item:type_name -> billing.Order
+	323, // 65: grpc.OrderCreateProcessResponse.item:type_name -> billing.Order
 	70,  // 66: grpc.KeyProductInfo.platforms:type_name -> grpc.PlatformPriceInfo
 	71,  // 67: grpc.PlatformPriceInfo.price:type_name -> grpc.ProductPriceInfo
-	311, // 68: grpc.KeyProduct.name:type_name -> grpc.KeyProduct.NameEntry
+	313, // 68: grpc.KeyProduct.name:type_name -> grpc.KeyProduct.NameEntry
 	73,  // 69: grpc.KeyProduct.platforms:type_name -> grpc.PlatformPrice
-	312, // 70: grpc.KeyProduct.description:type_name -> grpc.KeyProduct.DescriptionEntry
-	313, // 71: grpc.KeyProduct.long_description:type_name -> grpc.KeyProduct.LongDescriptionEntry
-	324, // 72: grpc.KeyProduct.created_at:type_name -> google.protobuf.Timestamp
-	324, // 73: grpc.KeyProduct.updated_at:type_name -> google.protobuf.Timestamp
-	323, // 74: grpc.KeyProduct.cover:type_name -> billing.ImageCollection
-	314, // 75: grpc.KeyProduct.metadata:type_name -> grpc.KeyProduct.MetadataEntry
-	324, // 76: grpc.KeyProduct.published_at:type_name -> google.protobuf.Timestamp
-	342, // 77: grpc.PlatformPrice.prices:type_name -> billing.ProductPrice
-	315, // 78: grpc.Product.name:type_name -> grpc.Product.NameEntry
-	342, // 79: grpc.Product.prices:type_name -> billing.ProductPrice
-	316, // 80: grpc.Product.description:type_name -> grpc.Product.DescriptionEntry
-	317, // 81: grpc.Product.long_description:type_name -> grpc.Product.LongDescriptionEntry
-	324, // 82: grpc.Product.created_at:type_name -> google.protobuf.Timestamp
-	324, // 83: grpc.Product.updated_at:type_name -> google.protobuf.Timestamp
-	318, // 84: grpc.Product.metadata:type_name -> grpc.Product.MetadataEntry
+	314, // 70: grpc.KeyProduct.description:type_name -> grpc.KeyProduct.DescriptionEntry
+	315, // 71: grpc.KeyProduct.long_description:type_name -> grpc.KeyProduct.LongDescriptionEntry
+	326, // 72: grpc.KeyProduct.created_at:type_name -> google.protobuf.Timestamp
+	326, // 73: grpc.KeyProduct.updated_at:type_name -> google.protobuf.Timestamp
+	325, // 74: grpc.KeyProduct.cover:type_name -> billing.ImageCollection
+	316, // 75: grpc.KeyProduct.metadata:type_name -> grpc.KeyProduct.MetadataEntry
+	326, // 76: grpc.KeyProduct.published_at:type_name -> google.protobuf.Timestamp
+	344, // 77: grpc.PlatformPrice.prices:type_name -> billing.ProductPrice
+	317, // 78: grpc.Product.name:type_name -> grpc.Product.NameEntry
+	344, // 79: grpc.Product.prices:type_name -> billing.ProductPrice
+	318, // 80: grpc.Product.description:type_name -> grpc.Product.DescriptionEntry
+	319, // 81: grpc.Product.long_description:type_name -> grpc.Product.LongDescriptionEntry
+	326, // 82: grpc.Product.created_at:type_name -> google.protobuf.Timestamp
+	326, // 83: grpc.Product.updated_at:type_name -> google.protobuf.Timestamp
+	320, // 84: grpc.Product.metadata:type_name -> grpc.Product.MetadataEntry
 	110, // 85: grpc.GetKeyProductInfoResponse.message:type_name -> grpc.ResponseErrorMessage
 	69,  // 86: grpc.GetKeyProductInfoResponse.key_product:type_name -> grpc.KeyProductInfo
 	75,  // 87: grpc.ListProductsResponse.products:type_name -> grpc.Product
 	110, // 88: grpc.ChangeProjectResponse.message:type_name -> grpc.ResponseErrorMessage
-	343, // 89: grpc.ChangeProjectResponse.item:type_name -> billing.Project
-	343, // 90: grpc.ListProjectsResponse.items:type_name -> billing.Project
-	344, // 91: grpc.TokenRequest.user:type_name -> billing.TokenUser
-	345, // 92: grpc.TokenRequest.settings:type_name -> billing.TokenSettings
+	345, // 89: grpc.ChangeProjectResponse.item:type_name -> billing.Project
+	345, // 90: grpc.ListProjectsResponse.items:type_name -> billing.Project
+	346, // 91: grpc.TokenRequest.user:type_name -> billing.TokenUser
+	347, // 92: grpc.TokenRequest.settings:type_name -> billing.TokenSettings
 	110, // 93: grpc.TokenResponse.message:type_name -> grpc.ResponseErrorMessage
 	110, // 94: grpc.CheckProjectRequestSignatureResponse.message:type_name -> grpc.ResponseErrorMessage
 	110, // 95: grpc.IsOrderCanBePayingResponse.message:type_name -> grpc.ResponseErrorMessage
-	321, // 96: grpc.IsOrderCanBePayingResponse.item:type_name -> billing.Order
-	346, // 97: grpc.GetPaymentMethodSettingsResponse.params:type_name -> billing.PaymentMethodParams
-	347, // 98: grpc.ChangePaymentMethodRequest.params:type_name -> billing.PaymentMethod
-	346, // 99: grpc.ChangePaymentMethodParamsRequest.params:type_name -> billing.PaymentMethodParams
-	348, // 100: grpc.FindByZipCodeResponse.items:type_name -> billing.ZipCode
+	323, // 96: grpc.IsOrderCanBePayingResponse.item:type_name -> billing.Order
+	348, // 97: grpc.GetPaymentMethodSettingsResponse.params:type_name -> billing.PaymentMethodParams
+	349, // 98: grpc.ChangePaymentMethodRequest.params:type_name -> billing.PaymentMethod
+	348, // 99: grpc.ChangePaymentMethodParamsRequest.params:type_name -> billing.PaymentMethodParams
+	350, // 100: grpc.FindByZipCodeResponse.items:type_name -> billing.ZipCode
 	110, // 101: grpc.ResponseError.message:type_name -> grpc.ResponseErrorMessage
 	110, // 102: grpc.CreateAccountingEntryResponse.message:type_name -> grpc.ResponseErrorMessage
-	349, // 103: grpc.CreateAccountingEntryResponse.item:type_name -> billing.AccountingEntry
-	350, // 104: grpc.RoyaltyReportsPaginate.items:type_name -> billing.RoyaltyReport
+	351, // 103: grpc.CreateAccountingEntryResponse.item:type_name -> billing.AccountingEntry
+	352, // 104: grpc.RoyaltyReportsPaginate.items:type_name -> billing.RoyaltyReport
 	110, // 105: grpc.ListRoyaltyReportsResponse.message:type_name -> grpc.ResponseErrorMessage
 	115, // 106: grpc.ListRoyaltyReportsResponse.data:type_name -> grpc.RoyaltyReportsPaginate
 	110, // 107: grpc.GetRoyaltyReportResponse.message:type_name -> grpc.ResponseErrorMessage
-	350, // 108: grpc.GetRoyaltyReportResponse.item:type_name -> billing.RoyaltyReport
+	352, // 108: grpc.GetRoyaltyReportResponse.item:type_name -> billing.RoyaltyReport
 	118, // 109: grpc.ChangeRoyaltyReportRequest.correction:type_name -> grpc.ChangeRoyaltyReportCorrection
 	110, // 110: grpc.PaymentChannelCostSystemListResponse.message:type_name -> grpc.ResponseErrorMessage
-	351, // 111: grpc.PaymentChannelCostSystemListResponse.item:type_name -> billing.PaymentChannelCostSystemList
+	353, // 111: grpc.PaymentChannelCostSystemListResponse.item:type_name -> billing.PaymentChannelCostSystemList
 	110, // 112: grpc.PaymentChannelCostSystemResponse.message:type_name -> grpc.ResponseErrorMessage
-	352, // 113: grpc.PaymentChannelCostSystemResponse.item:type_name -> billing.PaymentChannelCostSystem
+	354, // 113: grpc.PaymentChannelCostSystemResponse.item:type_name -> billing.PaymentChannelCostSystem
 	110, // 114: grpc.PaymentChannelCostMerchantListResponse.message:type_name -> grpc.ResponseErrorMessage
-	353, // 115: grpc.PaymentChannelCostMerchantListResponse.item:type_name -> billing.PaymentChannelCostMerchantList
+	355, // 115: grpc.PaymentChannelCostMerchantListResponse.item:type_name -> billing.PaymentChannelCostMerchantList
 	110, // 116: grpc.PaymentChannelCostMerchantResponse.message:type_name -> grpc.ResponseErrorMessage
-	354, // 117: grpc.PaymentChannelCostMerchantResponse.item:type_name -> billing.PaymentChannelCostMerchant
+	356, // 117: grpc.PaymentChannelCostMerchantResponse.item:type_name -> billing.PaymentChannelCostMerchant
 	110, // 118: grpc.MoneyBackCostSystemListResponse.message:type_name -> grpc.ResponseErrorMessage
-	355, // 119: grpc.MoneyBackCostSystemListResponse.item:type_name -> billing.MoneyBackCostSystemList
+	357, // 119: grpc.MoneyBackCostSystemListResponse.item:type_name -> billing.MoneyBackCostSystemList
 	110, // 120: grpc.MoneyBackCostSystemResponse.message:type_name -> grpc.ResponseErrorMessage
-	356, // 121: grpc.MoneyBackCostSystemResponse.item:type_name -> billing.MoneyBackCostSystem
+	358, // 121: grpc.MoneyBackCostSystemResponse.item:type_name -> billing.MoneyBackCostSystem
 	110, // 122: grpc.MoneyBackCostMerchantListResponse.message:type_name -> grpc.ResponseErrorMessage
-	357, // 123: grpc.MoneyBackCostMerchantListResponse.item:type_name -> billing.MoneyBackCostMerchantList
+	359, // 123: grpc.MoneyBackCostMerchantListResponse.item:type_name -> billing.MoneyBackCostMerchantList
 	110, // 124: grpc.MoneyBackCostMerchantResponse.message:type_name -> grpc.ResponseErrorMessage
-	358, // 125: grpc.MoneyBackCostMerchantResponse.item:type_name -> billing.MoneyBackCostMerchant
+	360, // 125: grpc.MoneyBackCostMerchantResponse.item:type_name -> billing.MoneyBackCostMerchant
 	133, // 126: grpc.PriceGroupCurrenciesResponse.region:type_name -> grpc.PriceGroupRegions
 	134, // 127: grpc.PriceGroupRegions.regions:type_name -> grpc.PriceGroupRegion
-	359, // 128: grpc.RecommendedPriceResponse.recommended_price:type_name -> billing.RecommendedPrice
-	360, // 129: grpc.RecommendedPriceTableResponse.ranges:type_name -> billing.PriceTableRange
-	342, // 130: grpc.ProductPricesResponse.product_price:type_name -> billing.ProductPrice
-	342, // 131: grpc.UpdateProductPricesRequest.prices:type_name -> billing.ProductPrice
-	361, // 132: grpc.UserProfileCompany.annual_income:type_name -> billing.RangeInt
-	361, // 133: grpc.UserProfileCompany.number_of_employees:type_name -> billing.RangeInt
+	361, // 128: grpc.RecommendedPriceResponse.recommended_price:type_name -> billing.RecommendedPrice
+	362, // 129: grpc.RecommendedPriceTableResponse.ranges:type_name -> billing.PriceTableRange
+	344, // 130: grpc.ProductPricesResponse.product_price:type_name -> billing.ProductPrice
+	344, // 131: grpc.UpdateProductPricesRequest.prices:type_name -> billing.ProductPrice
+	363, // 132: grpc.UserProfileCompany.annual_income:type_name -> billing.RangeInt
+	363, // 133: grpc.UserProfileCompany.number_of_employees:type_name -> billing.RangeInt
 	144, // 134: grpc.UserProfileCompany.monetization:type_name -> grpc.UserProfileCompanyMonetization
 	145, // 135: grpc.UserProfileCompany.platforms:type_name -> grpc.UserProfileCompanyPlatforms
-	324, // 136: grpc.UserProfileEmail.confirmed_at:type_name -> google.protobuf.Timestamp
+	326, // 136: grpc.UserProfileEmail.confirmed_at:type_name -> google.protobuf.Timestamp
 	147, // 137: grpc.UserProfile.email:type_name -> grpc.UserProfileEmail
 	142, // 138: grpc.UserProfile.personal:type_name -> grpc.UserProfilePersonal
 	143, // 139: grpc.UserProfile.help:type_name -> grpc.UserProfileHelp
 	146, // 140: grpc.UserProfile.company:type_name -> grpc.UserProfileCompany
-	324, // 141: grpc.UserProfile.created_at:type_name -> google.protobuf.Timestamp
-	324, // 142: grpc.UserProfile.updated_at:type_name -> google.protobuf.Timestamp
+	326, // 141: grpc.UserProfile.created_at:type_name -> google.protobuf.Timestamp
+	326, // 142: grpc.UserProfile.updated_at:type_name -> google.protobuf.Timestamp
 	110, // 143: grpc.CommonUserProfileResponse.message:type_name -> grpc.ResponseErrorMessage
 	151, // 144: grpc.CommonUserProfileResponse.profile:type_name -> grpc.CommonUserProfile
 	148, // 145: grpc.CommonUserProfile.profile:type_name -> grpc.UserProfile
-	362, // 146: grpc.CommonUserProfile.role:type_name -> billing.UserRole
-	269, // 147: grpc.CommonUserProfile.permissions:type_name -> grpc.Permission
-	334, // 148: grpc.CommonUserProfile.merchant:type_name -> billing.Merchant
+	364, // 146: grpc.CommonUserProfile.role:type_name -> billing.UserRole
+	271, // 147: grpc.CommonUserProfile.permissions:type_name -> grpc.Permission
+	336, // 148: grpc.CommonUserProfile.merchant:type_name -> billing.Merchant
 	110, // 149: grpc.GetUserProfileResponse.message:type_name -> grpc.ResponseErrorMessage
 	148, // 150: grpc.GetUserProfileResponse.item:type_name -> grpc.UserProfile
-	324, // 151: grpc.PageReview.created_at:type_name -> google.protobuf.Timestamp
-	324, // 152: grpc.PageReview.updated_at:type_name -> google.protobuf.Timestamp
+	326, // 151: grpc.PageReview.created_at:type_name -> google.protobuf.Timestamp
+	326, // 152: grpc.PageReview.updated_at:type_name -> google.protobuf.Timestamp
 	110, // 153: grpc.ConfirmUserEmailResponse.message:type_name -> grpc.ResponseErrorMessage
 	148, // 154: grpc.ConfirmUserEmailResponse.profile:type_name -> grpc.UserProfile
-	363, // 155: grpc.TransactionsPaginate.items:type_name -> billing.OrderViewPublic
+	365, // 155: grpc.TransactionsPaginate.items:type_name -> billing.OrderViewPublic
 	110, // 156: grpc.TransactionsResponse.message:type_name -> grpc.ResponseErrorMessage
 	159, // 157: grpc.TransactionsResponse.data:type_name -> grpc.TransactionsPaginate
-	364, // 158: grpc.VatReportsPaginate.items:type_name -> billing.VatReport
+	366, // 158: grpc.VatReportsPaginate.items:type_name -> billing.VatReport
 	110, // 159: grpc.VatReportsResponse.message:type_name -> grpc.ResponseErrorMessage
 	162, // 160: grpc.VatReportsResponse.data:type_name -> grpc.VatReportsPaginate
-	324, // 161: grpc.ProcessVatReportsRequest.date:type_name -> google.protobuf.Timestamp
-	365, // 162: grpc.GetMerchantOnboardingCompleteDataResponseItem.steps:type_name -> billing.MerchantCompletedSteps
+	326, // 161: grpc.ProcessVatReportsRequest.date:type_name -> google.protobuf.Timestamp
+	367, // 162: grpc.GetMerchantOnboardingCompleteDataResponseItem.steps:type_name -> billing.MerchantCompletedSteps
 	110, // 163: grpc.GetMerchantOnboardingCompleteDataResponse.message:type_name -> grpc.ResponseErrorMessage
 	166, // 164: grpc.GetMerchantOnboardingCompleteDataResponse.item:type_name -> grpc.GetMerchantOnboardingCompleteDataResponseItem
-	366, // 165: grpc.GetMerchantTariffRatesResponseItems.payment:type_name -> billing.MerchantTariffRatesPayment
-	367, // 166: grpc.GetMerchantTariffRatesResponseItems.refund:type_name -> billing.MerchantTariffRatesSettingsItem
-	367, // 167: grpc.GetMerchantTariffRatesResponseItems.chargeback:type_name -> billing.MerchantTariffRatesSettingsItem
-	319, // 168: grpc.GetMerchantTariffRatesResponseItems.payout:type_name -> grpc.GetMerchantTariffRatesResponseItems.PayoutEntry
-	320, // 169: grpc.GetMerchantTariffRatesResponseItems.minimal_payout:type_name -> grpc.GetMerchantTariffRatesResponseItems.MinimalPayoutEntry
+	368, // 165: grpc.GetMerchantTariffRatesResponseItems.payment:type_name -> billing.MerchantTariffRatesPayment
+	369, // 166: grpc.GetMerchantTariffRatesResponseItems.refund:type_name -> billing.MerchantTariffRatesSettingsItem
+	369, // 167: grpc.GetMerchantTariffRatesResponseItems.chargeback:type_name -> billing.MerchantTariffRatesSettingsItem
+	321, // 168: grpc.GetMerchantTariffRatesResponseItems.payout:type_name -> grpc.GetMerchantTariffRatesResponseItems.PayoutEntry
+	322, // 169: grpc.GetMerchantTariffRatesResponseItems.minimal_payout:type_name -> grpc.GetMerchantTariffRatesResponseItems.MinimalPayoutEntry
 	110, // 170: grpc.GetMerchantTariffRatesResponse.message:type_name -> grpc.ResponseErrorMessage
 	169, // 171: grpc.GetMerchantTariffRatesResponse.items:type_name -> grpc.GetMerchantTariffRatesResponseItems
-	363, // 172: grpc.ListOrdersPublicResponseItem.items:type_name -> billing.OrderViewPublic
-	368, // 173: grpc.ListOrdersPrivateResponseItem.items:type_name -> billing.OrderViewPrivate
+	365, // 172: grpc.ListOrdersPublicResponseItem.items:type_name -> billing.OrderViewPublic
+	370, // 173: grpc.ListOrdersPrivateResponseItem.items:type_name -> billing.OrderViewPrivate
 	110, // 174: grpc.ListOrdersPublicResponse.message:type_name -> grpc.ResponseErrorMessage
 	172, // 175: grpc.ListOrdersPublicResponse.Item:type_name -> grpc.ListOrdersPublicResponseItem
 	110, // 176: grpc.ListOrdersPrivateResponse.message:type_name -> grpc.ResponseErrorMessage
 	173, // 177: grpc.ListOrdersPrivateResponse.Item:type_name -> grpc.ListOrdersPrivateResponseItem
-	321, // 178: grpc.ListOrdersResponseItem.items:type_name -> billing.Order
+	323, // 178: grpc.ListOrdersResponseItem.items:type_name -> billing.Order
 	110, // 179: grpc.ListOrdersResponse.message:type_name -> grpc.ResponseErrorMessage
 	176, // 180: grpc.ListOrdersResponse.Item:type_name -> grpc.ListOrdersResponseItem
 	110, // 181: grpc.GetOrderPublicResponse.message:type_name -> grpc.ResponseErrorMessage
-	363, // 182: grpc.GetOrderPublicResponse.item:type_name -> billing.OrderViewPublic
+	365, // 182: grpc.GetOrderPublicResponse.item:type_name -> billing.OrderViewPublic
 	110, // 183: grpc.GetOrderPrivateResponse.message:type_name -> grpc.ResponseErrorMessage
-	368, // 184: grpc.GetOrderPrivateResponse.item:type_name -> billing.OrderViewPrivate
+	370, // 184: grpc.GetOrderPrivateResponse.item:type_name -> billing.OrderViewPrivate
 	110, // 185: grpc.GetDashboardMainResponse.message:type_name -> grpc.ResponseErrorMessage
 	188, // 186: grpc.GetDashboardMainResponse.item:type_name -> grpc.DashboardMainReport
 	110, // 187: grpc.GetDashboardBaseReportResponse.message:type_name -> grpc.ResponseErrorMessage
@@ -26586,487 +26720,491 @@ var file_grpc_proto_depIdxs = []int32{
 	196, // 205: grpc.DashboardBaseReports.sales_today:type_name -> grpc.DashboardSalesTodayReport
 	197, // 206: grpc.DashboardBaseReports.sources:type_name -> grpc.DashboardSourcesReport
 	110, // 207: grpc.PayoutDocumentResponse.message:type_name -> grpc.ResponseErrorMessage
-	369, // 208: grpc.PayoutDocumentResponse.item:type_name -> billing.PayoutDocument
+	371, // 208: grpc.PayoutDocumentResponse.item:type_name -> billing.PayoutDocument
 	110, // 209: grpc.CreatePayoutDocumentResponse.message:type_name -> grpc.ResponseErrorMessage
-	369, // 210: grpc.CreatePayoutDocumentResponse.items:type_name -> billing.PayoutDocument
-	369, // 211: grpc.PayoutDocumentsPaginate.items:type_name -> billing.PayoutDocument
+	371, // 210: grpc.CreatePayoutDocumentResponse.items:type_name -> billing.PayoutDocument
+	371, // 211: grpc.PayoutDocumentsPaginate.items:type_name -> billing.PayoutDocument
 	110, // 212: grpc.GetPayoutDocumentsResponse.message:type_name -> grpc.ResponseErrorMessage
 	205, // 213: grpc.GetPayoutDocumentsResponse.data:type_name -> grpc.PayoutDocumentsPaginate
 	110, // 214: grpc.GetMerchantBalanceResponse.message:type_name -> grpc.ResponseErrorMessage
-	370, // 215: grpc.GetMerchantBalanceResponse.item:type_name -> billing.MerchantBalance
+	372, // 215: grpc.GetMerchantBalanceResponse.item:type_name -> billing.MerchantBalance
 	110, // 216: grpc.PayoutDocumentPdfUploadedResponse.message:type_name -> grpc.ResponseErrorMessage
 	110, // 217: grpc.OrderReceiptResponse.message:type_name -> grpc.ResponseErrorMessage
-	371, // 218: grpc.OrderReceiptResponse.receipt:type_name -> billing.OrderReceipt
+	373, // 218: grpc.OrderReceiptResponse.receipt:type_name -> billing.OrderReceipt
 	110, // 219: grpc.GetProductResponse.message:type_name -> grpc.ResponseErrorMessage
 	75,  // 220: grpc.GetProductResponse.item:type_name -> grpc.Product
 	110, // 221: grpc.GetPriceGroupByRegionResponse.message:type_name -> grpc.ResponseErrorMessage
-	372, // 222: grpc.GetPriceGroupByRegionResponse.Group:type_name -> billing.PriceGroup
+	374, // 222: grpc.GetPriceGroupByRegionResponse.Group:type_name -> billing.PriceGroup
 	110, // 223: grpc.ChangeMerchantManualPayoutsResponse.message:type_name -> grpc.ResponseErrorMessage
-	334, // 224: grpc.ChangeMerchantManualPayoutsResponse.item:type_name -> billing.Merchant
+	336, // 224: grpc.ChangeMerchantManualPayoutsResponse.item:type_name -> billing.Merchant
 	110, // 225: grpc.SendWebhookToMerchantResponse.message:type_name -> grpc.ResponseErrorMessage
-	373, // 226: grpc.PaylinksPaginate.items:type_name -> paylink.Paylink
+	375, // 226: grpc.PaylinksPaginate.items:type_name -> paylink.Paylink
 	110, // 227: grpc.GetPaylinksResponse.message:type_name -> grpc.ResponseErrorMessage
 	221, // 228: grpc.GetPaylinksResponse.data:type_name -> grpc.PaylinksPaginate
 	110, // 229: grpc.GetPaylinkResponse.message:type_name -> grpc.ResponseErrorMessage
-	373, // 230: grpc.GetPaylinkResponse.item:type_name -> paylink.Paylink
+	375, // 230: grpc.GetPaylinkResponse.item:type_name -> paylink.Paylink
 	110, // 231: grpc.GetPaylinkUrlResponse.message:type_name -> grpc.ResponseErrorMessage
 	110, // 232: grpc.GetPaylinkStatCommonResponse.message:type_name -> grpc.ResponseErrorMessage
-	374, // 233: grpc.GetPaylinkStatCommonResponse.item:type_name -> paylink.StatCommon
+	376, // 233: grpc.GetPaylinkStatCommonResponse.item:type_name -> paylink.StatCommon
 	110, // 234: grpc.GetPaylinkStatCommonGroupResponse.message:type_name -> grpc.ResponseErrorMessage
-	375, // 235: grpc.GetPaylinkStatCommonGroupResponse.item:type_name -> paylink.GroupStatCommon
+	377, // 235: grpc.GetPaylinkStatCommonGroupResponse.item:type_name -> paylink.GroupStatCommon
 	110, // 236: grpc.RoyaltyReportPdfUploadedResponse.message:type_name -> grpc.ResponseErrorMessage
 	110, // 237: grpc.GetOperatingCompaniesListResponse.message:type_name -> grpc.ResponseErrorMessage
-	376, // 238: grpc.GetOperatingCompaniesListResponse.items:type_name -> billing.OperatingCompany
+	378, // 238: grpc.GetOperatingCompaniesListResponse.items:type_name -> billing.OperatingCompany
 	110, // 239: grpc.GetPaymentMinLimitsSystemResponse.message:type_name -> grpc.ResponseErrorMessage
-	377, // 240: grpc.GetPaymentMinLimitsSystemResponse.items:type_name -> billing.PaymentMinLimitSystem
+	379, // 240: grpc.GetPaymentMinLimitsSystemResponse.items:type_name -> billing.PaymentMinLimitSystem
 	110, // 241: grpc.SetMerchantOperatingCompanyResponse.message:type_name -> grpc.ResponseErrorMessage
-	334, // 242: grpc.SetMerchantOperatingCompanyResponse.item:type_name -> billing.Merchant
-	110, // 243: grpc.GetOperatingCompanyResponse.message:type_name -> grpc.ResponseErrorMessage
-	376, // 244: grpc.GetOperatingCompanyResponse.company:type_name -> billing.OperatingCompany
-	110, // 245: grpc.GetMerchantUsersResponse.message:type_name -> grpc.ResponseErrorMessage
-	362, // 246: grpc.GetMerchantUsersResponse.users:type_name -> billing.UserRole
-	110, // 247: grpc.InviteUserMerchantResponse.message:type_name -> grpc.ResponseErrorMessage
-	362, // 248: grpc.InviteUserMerchantResponse.role:type_name -> billing.UserRole
-	110, // 249: grpc.InviteUserAdminResponse.message:type_name -> grpc.ResponseErrorMessage
-	362, // 250: grpc.InviteUserAdminResponse.role:type_name -> billing.UserRole
-	110, // 251: grpc.GetMerchantUserResponse.message:type_name -> grpc.ResponseErrorMessage
-	362, // 252: grpc.GetMerchantUserResponse.role:type_name -> billing.UserRole
-	110, // 253: grpc.GetAdminUserResponse.message:type_name -> grpc.ResponseErrorMessage
-	362, // 254: grpc.GetAdminUserResponse.role:type_name -> billing.UserRole
-	110, // 255: grpc.CheckInviteTokenResponse.message:type_name -> grpc.ResponseErrorMessage
-	110, // 256: grpc.AcceptInviteResponse.message:type_name -> grpc.ResponseErrorMessage
-	362, // 257: grpc.AcceptInviteResponse.role:type_name -> billing.UserRole
-	110, // 258: grpc.GetAdminUsersResponse.message:type_name -> grpc.ResponseErrorMessage
-	362, // 259: grpc.GetAdminUsersResponse.users:type_name -> billing.UserRole
-	110, // 260: grpc.GetMerchantsForUserResponse.message:type_name -> grpc.ResponseErrorMessage
-	262, // 261: grpc.GetMerchantsForUserResponse.merchants:type_name -> grpc.MerchantForUserInfo
-	378, // 262: grpc.GetRoleListResponse.items:type_name -> billing.RoleListItem
-	110, // 263: grpc.UserRoleResponse.message:type_name -> grpc.ResponseErrorMessage
-	362, // 264: grpc.UserRoleResponse.user_role:type_name -> billing.UserRole
-	110, // 265: grpc.GetCountriesListForOrderResponse.message:type_name -> grpc.ResponseErrorMessage
-	379, // 266: grpc.GetCountriesListForOrderResponse.item:type_name -> billing.CountriesList
-	368, // 267: grpc.PrivateTransactionsPaginate.items:type_name -> billing.OrderViewPrivate
-	110, // 268: grpc.VatReportResponse.message:type_name -> grpc.ResponseErrorMessage
-	364, // 269: grpc.VatReportResponse.vat:type_name -> billing.VatReport
-	110, // 270: grpc.PrivateTransactionsResponse.message:type_name -> grpc.ResponseErrorMessage
-	274, // 271: grpc.PrivateTransactionsResponse.data:type_name -> grpc.PrivateTransactionsPaginate
-	324, // 272: grpc.SetCustomerPaymentActivityRequest.processing_at:type_name -> google.protobuf.Timestamp
-	110, // 273: grpc.ActOfCompletionResponse.message:type_name -> grpc.ResponseErrorMessage
-	380, // 274: grpc.ActOfCompletionResponse.item:type_name -> billing.ActOfCompletionDocument
-	110, // 275: grpc.GetDashboardCustomerReportResponse.message:type_name -> grpc.ResponseErrorMessage
-	285, // 276: grpc.GetDashboardCustomerReportResponse.item:type_name -> grpc.DashboardCustomerReport
-	110, // 277: grpc.DashboardCustomerReportArpuResponse.message:type_name -> grpc.ResponseErrorMessage
-	185, // 278: grpc.DashboardCustomerReportArpuResponse.item:type_name -> grpc.DashboardAmountItemWithChart
-	286, // 279: grpc.DashboardCustomerReport.top20Customers:type_name -> grpc.Top20Customers
-	195, // 280: grpc.DashboardCustomerReport.chart:type_name -> grpc.DashboardChartItemInt
-	288, // 281: grpc.ListCustomersRequest.amount:type_name -> grpc.AmountFilter
-	110, // 282: grpc.ListCustomersResponse.message:type_name -> grpc.ResponseErrorMessage
-	290, // 283: grpc.ListCustomersResponse.items:type_name -> grpc.ShortCustomerInfo
-	324, // 284: grpc.ShortCustomerInfo.last_order:type_name -> google.protobuf.Timestamp
-	110, // 285: grpc.GetCustomerInfoResponse.message:type_name -> grpc.ResponseErrorMessage
-	381, // 286: grpc.GetCustomerInfoResponse.item:type_name -> billing.Customer
-	110, // 287: grpc.DeserializeCookieResponse.message:type_name -> grpc.ResponseErrorMessage
-	382, // 288: grpc.DeserializeCookieResponse.item:type_name -> billing.BrowserCookie
-	110, // 289: grpc.GetSubscriptionResponse.message:type_name -> grpc.ResponseErrorMessage
-	383, // 290: grpc.GetSubscriptionResponse.subscription:type_name -> billing.RecurringSubscription
-	383, // 291: grpc.FindSubscriptionsResponse.list:type_name -> billing.RecurringSubscription
-	110, // 292: grpc.FindSubscriptionsResponse.message:type_name -> grpc.ResponseErrorMessage
-	110, // 293: grpc.GetCustomerShortInfoResponse.message:type_name -> grpc.ResponseErrorMessage
-	302, // 294: grpc.GetCustomerShortInfoResponse.item:type_name -> grpc.CustomerShortInfo
-	110, // 295: grpc.GetSubscriptionOrdersResponse.message:type_name -> grpc.ResponseErrorMessage
-	384, // 296: grpc.GetSubscriptionOrdersResponse.list:type_name -> billing.SubscriptionOrder
-	367, // 297: grpc.GetMerchantTariffRatesResponseItems.PayoutEntry.value:type_name -> billing.MerchantTariffRatesSettingsItem
-	385, // 298: grpc.BillingService.OrderCreateByPaylink:input_type -> billing.OrderCreateByPaylink
-	386, // 299: grpc.BillingService.OrderCreateProcess:input_type -> billing.OrderCreateRequest
-	25,  // 300: grpc.BillingService.PaymentFormJsonDataProcess:input_type -> grpc.PaymentFormJsonDataRequest
-	23,  // 301: grpc.BillingService.PaymentCreateProcess:input_type -> grpc.PaymentCreateRequest
-	29,  // 302: grpc.BillingService.PaymentCallbackProcess:input_type -> grpc.PaymentNotifyRequest
-	212, // 303: grpc.BillingService.OrderReceipt:input_type -> grpc.OrderReceiptRequest
-	242, // 304: grpc.BillingService.OrderReCreateProcess:input_type -> grpc.OrderReCreateProcessRequest
-	321, // 305: grpc.BillingService.UpdateOrder:input_type -> billing.Order
-	61,  // 306: grpc.BillingService.GetMerchantBy:input_type -> grpc.GetMerchantByRequest
-	33,  // 307: grpc.BillingService.ListMerchants:input_type -> grpc.MerchantListingRequest
-	31,  // 308: grpc.BillingService.ChangeMerchant:input_type -> grpc.OnboardingRequest
-	35,  // 309: grpc.BillingService.ChangeMerchantStatus:input_type -> grpc.MerchantChangeStatusRequest
-	238, // 310: grpc.BillingService.SetMerchantOperatingCompany:input_type -> grpc.SetMerchantOperatingCompanyRequest
-	62,  // 311: grpc.BillingService.ChangeMerchantData:input_type -> grpc.ChangeMerchantDataRequest
-	68,  // 312: grpc.BillingService.SetMerchantS3Agreement:input_type -> grpc.SetMerchantS3AgreementRequest
-	168, // 313: grpc.BillingService.GetMerchantTariffRates:input_type -> grpc.GetMerchantTariffRatesRequest
-	171, // 314: grpc.BillingService.SetMerchantTariffRates:input_type -> grpc.SetMerchantTariffRatesRequest
-	217, // 315: grpc.BillingService.ChangeMerchantManualPayouts:input_type -> grpc.ChangeMerchantManualPayoutsRequest
-	36,  // 316: grpc.BillingService.CreateNotification:input_type -> grpc.NotificationRequest
-	46,  // 317: grpc.BillingService.GetNotification:input_type -> grpc.GetNotificationRequest
-	38,  // 318: grpc.BillingService.ListNotifications:input_type -> grpc.ListingNotificationRequest
-	46,  // 319: grpc.BillingService.MarkNotificationAsRead:input_type -> grpc.GetNotificationRequest
-	42,  // 320: grpc.BillingService.ListMerchantPaymentMethods:input_type -> grpc.ListMerchantPaymentMethodsRequest
-	40,  // 321: grpc.BillingService.GetMerchantPaymentMethod:input_type -> grpc.GetMerchantPaymentMethodRequest
-	43,  // 322: grpc.BillingService.ChangeMerchantPaymentMethod:input_type -> grpc.MerchantPaymentMethodRequest
-	47,  // 323: grpc.BillingService.CreateRefund:input_type -> grpc.CreateRefundRequest
-	49,  // 324: grpc.BillingService.ListRefunds:input_type -> grpc.ListRefundsRequest
-	51,  // 325: grpc.BillingService.GetRefund:input_type -> grpc.GetRefundRequest
-	52,  // 326: grpc.BillingService.ProcessRefundCallback:input_type -> grpc.CallbackRequest
-	55,  // 327: grpc.BillingService.PaymentFormLanguageChanged:input_type -> grpc.PaymentFormUserChangeLangRequest
-	56,  // 328: grpc.BillingService.PaymentFormPaymentAccountChanged:input_type -> grpc.PaymentFormUserChangePaymentAccountRequest
-	58,  // 329: grpc.BillingService.ProcessBillingAddress:input_type -> grpc.ProcessBillingAddressRequest
-	75,  // 330: grpc.BillingService.CreateOrUpdateProduct:input_type -> grpc.Product
-	76,  // 331: grpc.BillingService.ListProducts:input_type -> grpc.ListProductsRequest
-	82,  // 332: grpc.BillingService.GetProduct:input_type -> grpc.RequestProduct
-	82,  // 333: grpc.BillingService.DeleteProduct:input_type -> grpc.RequestProduct
-	77,  // 334: grpc.BillingService.GetProductsForOrder:input_type -> grpc.GetProductsForOrderRequest
-	82,  // 335: grpc.BillingService.GetProductPrices:input_type -> grpc.RequestProduct
-	141, // 336: grpc.BillingService.UpdateProductPrices:input_type -> grpc.UpdateProductPricesRequest
-	343, // 337: grpc.BillingService.ChangeProject:input_type -> billing.Project
-	87,  // 338: grpc.BillingService.GetProject:input_type -> grpc.GetProjectRequest
-	88,  // 339: grpc.BillingService.ListProjects:input_type -> grpc.ListProjectsRequest
-	87,  // 340: grpc.BillingService.DeleteProject:input_type -> grpc.GetProjectRequest
-	90,  // 341: grpc.BillingService.CreateToken:input_type -> grpc.TokenRequest
-	92,  // 342: grpc.BillingService.CheckProjectRequestSignature:input_type -> grpc.CheckProjectRequestSignatureRequest
-	0,   // 343: grpc.BillingService.GetCountriesList:input_type -> grpc.EmptyRequest
-	271, // 344: grpc.BillingService.GetCountriesListForOrder:input_type -> grpc.GetCountriesListForOrderRequest
-	387, // 345: grpc.BillingService.GetCountry:input_type -> billing.GetCountryRequest
-	388, // 346: grpc.BillingService.UpdateCountry:input_type -> billing.Country
-	95,  // 347: grpc.BillingService.GetOrderPublic:input_type -> grpc.GetOrderRequest
-	95,  // 348: grpc.BillingService.GetOrderPrivate:input_type -> grpc.GetOrderRequest
-	94,  // 349: grpc.BillingService.FindAllOrdersPublic:input_type -> grpc.ListOrdersRequest
-	94,  // 350: grpc.BillingService.FindAllOrdersPrivate:input_type -> grpc.ListOrdersRequest
-	94,  // 351: grpc.BillingService.FindAllOrders:input_type -> grpc.ListOrdersRequest
-	96,  // 352: grpc.BillingService.IsOrderCanBePaying:input_type -> grpc.IsOrderCanBePayingRequest
-	389, // 353: grpc.BillingService.GetPriceGroup:input_type -> billing.GetPriceGroupRequest
-	372, // 354: grpc.BillingService.UpdatePriceGroup:input_type -> billing.PriceGroup
-	131, // 355: grpc.BillingService.GetPriceGroupByCountry:input_type -> grpc.PriceGroupByCountryRequest
-	0,   // 356: grpc.BillingService.GetPriceGroupCurrencies:input_type -> grpc.EmptyRequest
-	135, // 357: grpc.BillingService.GetPriceGroupCurrencyByRegion:input_type -> grpc.PriceGroupByRegionRequest
-	136, // 358: grpc.BillingService.GetRecommendedPriceByPriceGroup:input_type -> grpc.RecommendedPriceRequest
-	136, // 359: grpc.BillingService.GetRecommendedPriceByConversion:input_type -> grpc.RecommendedPriceRequest
-	138, // 360: grpc.BillingService.GetRecommendedPriceTable:input_type -> grpc.RecommendedPriceTableRequest
-	216, // 361: grpc.BillingService.GetPriceGroupByRegion:input_type -> grpc.GetPriceGroupByRegionRequest
-	98,  // 362: grpc.BillingService.SetUserNotifySales:input_type -> grpc.SetUserNotifyRequest
-	98,  // 363: grpc.BillingService.SetUserNotifyNewRegion:input_type -> grpc.SetUserNotifyRequest
-	347, // 364: grpc.BillingService.CreateOrUpdatePaymentMethod:input_type -> billing.PaymentMethod
-	104, // 365: grpc.BillingService.CreateOrUpdatePaymentMethodProductionSettings:input_type -> grpc.ChangePaymentMethodParamsRequest
-	101, // 366: grpc.BillingService.GetPaymentMethodProductionSettings:input_type -> grpc.GetPaymentMethodSettingsRequest
-	101, // 367: grpc.BillingService.DeletePaymentMethodProductionSettings:input_type -> grpc.GetPaymentMethodSettingsRequest
-	104, // 368: grpc.BillingService.CreateOrUpdatePaymentMethodTestSettings:input_type -> grpc.ChangePaymentMethodParamsRequest
-	101, // 369: grpc.BillingService.GetPaymentMethodTestSettings:input_type -> grpc.GetPaymentMethodSettingsRequest
-	101, // 370: grpc.BillingService.DeletePaymentMethodTestSettings:input_type -> grpc.GetPaymentMethodSettingsRequest
-	107, // 371: grpc.BillingService.FindByZipCode:input_type -> grpc.FindByZipCodeRequest
-	0,   // 372: grpc.BillingService.GetAllPaymentChannelCostSystem:input_type -> grpc.EmptyRequest
-	390, // 373: grpc.BillingService.GetPaymentChannelCostSystem:input_type -> billing.PaymentChannelCostSystemRequest
-	352, // 374: grpc.BillingService.SetPaymentChannelCostSystem:input_type -> billing.PaymentChannelCostSystem
-	391, // 375: grpc.BillingService.DeletePaymentChannelCostSystem:input_type -> billing.PaymentCostDeleteRequest
-	392, // 376: grpc.BillingService.GetAllPaymentChannelCostMerchant:input_type -> billing.PaymentChannelCostMerchantListRequest
-	393, // 377: grpc.BillingService.GetPaymentChannelCostMerchant:input_type -> billing.PaymentChannelCostMerchantRequest
-	354, // 378: grpc.BillingService.SetPaymentChannelCostMerchant:input_type -> billing.PaymentChannelCostMerchant
-	391, // 379: grpc.BillingService.DeletePaymentChannelCostMerchant:input_type -> billing.PaymentCostDeleteRequest
-	0,   // 380: grpc.BillingService.GetAllMoneyBackCostSystem:input_type -> grpc.EmptyRequest
-	394, // 381: grpc.BillingService.GetMoneyBackCostSystem:input_type -> billing.MoneyBackCostSystemRequest
-	356, // 382: grpc.BillingService.SetMoneyBackCostSystem:input_type -> billing.MoneyBackCostSystem
-	391, // 383: grpc.BillingService.DeleteMoneyBackCostSystem:input_type -> billing.PaymentCostDeleteRequest
-	395, // 384: grpc.BillingService.GetAllMoneyBackCostMerchant:input_type -> billing.MoneyBackCostMerchantListRequest
-	396, // 385: grpc.BillingService.GetMoneyBackCostMerchant:input_type -> billing.MoneyBackCostMerchantRequest
-	358, // 386: grpc.BillingService.SetMoneyBackCostMerchant:input_type -> billing.MoneyBackCostMerchant
-	391, // 387: grpc.BillingService.DeleteMoneyBackCostMerchant:input_type -> billing.PaymentCostDeleteRequest
-	111, // 388: grpc.BillingService.CreateAccountingEntry:input_type -> grpc.CreateAccountingEntryRequest
-	152, // 389: grpc.BillingService.GetUserProfile:input_type -> grpc.GetUserProfileRequest
-	148, // 390: grpc.BillingService.CreateOrUpdateUserProfile:input_type -> grpc.UserProfile
-	156, // 391: grpc.BillingService.ConfirmUserEmail:input_type -> grpc.ConfirmUserEmailRequest
-	155, // 392: grpc.BillingService.CreatePageReview:input_type -> grpc.CreatePageReviewRequest
-	113, // 393: grpc.BillingService.CreateRoyaltyReport:input_type -> grpc.CreateRoyaltyReportRequest
-	114, // 394: grpc.BillingService.ListRoyaltyReports:input_type -> grpc.ListRoyaltyReportsRequest
-	119, // 395: grpc.BillingService.GetRoyaltyReport:input_type -> grpc.GetRoyaltyReportRequest
-	121, // 396: grpc.BillingService.ChangeRoyaltyReport:input_type -> grpc.ChangeRoyaltyReportRequest
-	117, // 397: grpc.BillingService.ListRoyaltyReportOrders:input_type -> grpc.ListRoyaltyReportOrdersRequest
-	122, // 398: grpc.BillingService.MerchantReviewRoyaltyReport:input_type -> grpc.MerchantReviewRoyaltyReportRequest
-	0,   // 399: grpc.BillingService.AutoAcceptRoyaltyReports:input_type -> grpc.EmptyRequest
-	233, // 400: grpc.BillingService.RoyaltyReportPdfUploaded:input_type -> grpc.RoyaltyReportPdfUploadedRequest
-	0,   // 401: grpc.BillingService.GetVatReportsDashboard:input_type -> grpc.EmptyRequest
-	161, // 402: grpc.BillingService.GetVatReportsForCountry:input_type -> grpc.VatReportsRequest
-	158, // 403: grpc.BillingService.GetVatReportTransactions:input_type -> grpc.VatTransactionsRequest
-	164, // 404: grpc.BillingService.ProcessVatReports:input_type -> grpc.ProcessVatReportsRequest
-	165, // 405: grpc.BillingService.UpdateVatReportStatus:input_type -> grpc.UpdateVatReportStatusRequest
-	273, // 406: grpc.BillingService.GetVatReport:input_type -> grpc.VatReportRequest
-	0,   // 407: grpc.BillingService.CalcAnnualTurnovers:input_type -> grpc.EmptyRequest
-	68,  // 408: grpc.BillingService.GetMerchantOnboardingCompleteData:input_type -> grpc.SetMerchantS3AgreementRequest
-	16,  // 409: grpc.BillingService.CreateOrUpdateKeyProduct:input_type -> grpc.CreateOrUpdateKeyProductRequest
-	22,  // 410: grpc.BillingService.GetKeyProducts:input_type -> grpc.ListKeyProductsRequest
-	83,  // 411: grpc.BillingService.GetKeyProduct:input_type -> grpc.RequestKeyProductMerchant
-	83,  // 412: grpc.BillingService.DeleteKeyProduct:input_type -> grpc.RequestKeyProductMerchant
-	18,  // 413: grpc.BillingService.PublishKeyProduct:input_type -> grpc.PublishKeyProductRequest
-	17,  // 414: grpc.BillingService.UnPublishKeyProduct:input_type -> grpc.UnPublishKeyProductRequest
-	80,  // 415: grpc.BillingService.GetKeyProductsForOrder:input_type -> grpc.GetKeyProductsForOrderRequest
-	78,  // 416: grpc.BillingService.GetKeyProductInfo:input_type -> grpc.GetKeyProductInfoRequest
-	19,  // 417: grpc.BillingService.GetPlatforms:input_type -> grpc.ListPlatformsRequest
-	13,  // 418: grpc.BillingService.GetAvailableKeysCount:input_type -> grpc.GetPlatformKeyCountRequest
-	12,  // 419: grpc.BillingService.UploadKeysFile:input_type -> grpc.PlatformKeysFileRequest
-	7,   // 420: grpc.BillingService.GetKeyByID:input_type -> grpc.KeyForOrderRequest
-	10,  // 421: grpc.BillingService.ReserveKeyForOrder:input_type -> grpc.PlatformKeyReserveRequest
-	7,   // 422: grpc.BillingService.FinishRedeemKeyForOrder:input_type -> grpc.KeyForOrderRequest
-	7,   // 423: grpc.BillingService.CancelRedeemKeyForOrder:input_type -> grpc.KeyForOrderRequest
-	4,   // 424: grpc.BillingService.ChangeCodeInOrder:input_type -> grpc.ChangeCodeInOrderRequest
-	180, // 425: grpc.BillingService.GetDashboardMainReport:input_type -> grpc.GetDashboardMainRequest
-	180, // 426: grpc.BillingService.GetDashboardRevenueDynamicsReport:input_type -> grpc.GetDashboardMainRequest
-	182, // 427: grpc.BillingService.GetDashboardBaseReport:input_type -> grpc.GetDashboardBaseReportRequest
-	284, // 428: grpc.BillingService.GetDashboardCustomersReport:input_type -> grpc.DashboardCustomerReportRequest
-	282, // 429: grpc.BillingService.GetDashboardCustomerArpu:input_type -> grpc.DashboardCustomerReportArpuRequest
-	199, // 430: grpc.BillingService.CreatePayoutDocument:input_type -> grpc.CreatePayoutDocumentRequest
-	202, // 431: grpc.BillingService.UpdatePayoutDocument:input_type -> grpc.UpdatePayoutDocumentRequest
-	204, // 432: grpc.BillingService.GetPayoutDocuments:input_type -> grpc.GetPayoutDocumentsRequest
-	203, // 433: grpc.BillingService.GetPayoutDocument:input_type -> grpc.GetPayoutDocumentRequest
-	203, // 434: grpc.BillingService.GetPayoutDocumentRoyaltyReports:input_type -> grpc.GetPayoutDocumentRequest
-	210, // 435: grpc.BillingService.PayoutDocumentPdfUploaded:input_type -> grpc.PayoutDocumentPdfUploadedRequest
-	0,   // 436: grpc.BillingService.AutoCreatePayoutDocuments:input_type -> grpc.EmptyRequest
-	208, // 437: grpc.BillingService.GetMerchantBalance:input_type -> grpc.GetMerchantBalanceRequest
-	54,  // 438: grpc.BillingService.PaymentFormPlatformChanged:input_type -> grpc.PaymentFormUserChangePlatformRequest
-	3,   // 439: grpc.BillingService.CheckSkuAndKeyProject:input_type -> grpc.CheckSkuAndKeyProjectRequest
-	219, // 440: grpc.BillingService.GetPaylinks:input_type -> grpc.GetPaylinksRequest
-	225, // 441: grpc.BillingService.GetPaylink:input_type -> grpc.PaylinkRequest
-	224, // 442: grpc.BillingService.IncrPaylinkVisits:input_type -> grpc.PaylinkRequestById
-	227, // 443: grpc.BillingService.GetPaylinkURL:input_type -> grpc.GetPaylinkURLRequest
-	397, // 444: grpc.BillingService.CreateOrUpdatePaylink:input_type -> paylink.CreatePaylinkRequest
-	225, // 445: grpc.BillingService.DeletePaylink:input_type -> grpc.PaylinkRequest
-	229, // 446: grpc.BillingService.GetPaylinkStatTotal:input_type -> grpc.GetPaylinkStatCommonRequest
-	229, // 447: grpc.BillingService.GetPaylinkStatByCountry:input_type -> grpc.GetPaylinkStatCommonRequest
-	229, // 448: grpc.BillingService.GetPaylinkStatByReferrer:input_type -> grpc.GetPaylinkStatCommonRequest
-	229, // 449: grpc.BillingService.GetPaylinkStatByDate:input_type -> grpc.GetPaylinkStatCommonRequest
-	229, // 450: grpc.BillingService.GetPaylinkStatByUtm:input_type -> grpc.GetPaylinkStatCommonRequest
-	230, // 451: grpc.BillingService.GetPaylinkTransactions:input_type -> grpc.GetPaylinkTransactionsRequest
-	235, // 452: grpc.BillingService.DeleteSavedCard:input_type -> grpc.DeleteSavedCardRequest
-	0,   // 453: grpc.BillingService.GetOperatingCompaniesList:input_type -> grpc.EmptyRequest
-	376, // 454: grpc.BillingService.AddOperatingCompany:input_type -> billing.OperatingCompany
-	240, // 455: grpc.BillingService.GetOperatingCompany:input_type -> grpc.GetOperatingCompanyRequest
-	0,   // 456: grpc.BillingService.GetPaymentMinLimitsSystem:input_type -> grpc.EmptyRequest
-	377, // 457: grpc.BillingService.SetPaymentMinLimitSystem:input_type -> billing.PaymentMinLimitSystem
-	243, // 458: grpc.BillingService.GetMerchantUsers:input_type -> grpc.GetMerchantUsersRequest
-	0,   // 459: grpc.BillingService.GetAdminUsers:input_type -> grpc.EmptyRequest
-	245, // 460: grpc.BillingService.InviteUserMerchant:input_type -> grpc.InviteUserMerchantRequest
-	247, // 461: grpc.BillingService.InviteUserAdmin:input_type -> grpc.InviteUserAdminRequest
-	249, // 462: grpc.BillingService.ResendInviteMerchant:input_type -> grpc.ResendInviteMerchantRequest
-	250, // 463: grpc.BillingService.ResendInviteAdmin:input_type -> grpc.ResendInviteAdminRequest
-	257, // 464: grpc.BillingService.AcceptInvite:input_type -> grpc.AcceptInviteRequest
-	255, // 465: grpc.BillingService.CheckInviteToken:input_type -> grpc.CheckInviteTokenRequest
-	260, // 466: grpc.BillingService.GetMerchantsForUser:input_type -> grpc.GetMerchantsForUserRequest
-	263, // 467: grpc.BillingService.ChangeRoleForMerchantUser:input_type -> grpc.ChangeRoleForMerchantUserRequest
-	264, // 468: grpc.BillingService.ChangeRoleForAdminUser:input_type -> grpc.ChangeRoleForAdminUserRequest
-	265, // 469: grpc.BillingService.GetRoleList:input_type -> grpc.GetRoleListRequest
-	268, // 470: grpc.BillingService.DeleteMerchantUser:input_type -> grpc.MerchantRoleRequest
-	267, // 471: grpc.BillingService.DeleteAdminUser:input_type -> grpc.AdminRoleRequest
-	268, // 472: grpc.BillingService.GetMerchantUserRole:input_type -> grpc.MerchantRoleRequest
-	267, // 473: grpc.BillingService.GetAdminUserRole:input_type -> grpc.AdminRoleRequest
-	149, // 474: grpc.BillingService.GetCommonUserProfile:input_type -> grpc.CommonUserProfileRequest
-	149, // 475: grpc.BillingService.GetAdminByUserId:input_type -> grpc.CommonUserProfileRequest
-	386, // 476: grpc.BillingService.SendWebhookToMerchant:input_type -> billing.OrderCreateRequest
-	222, // 477: grpc.BillingService.NotifyWebhookTestResults:input_type -> grpc.NotifyWebhookTestResultsRequest
-	277, // 478: grpc.BillingService.RoyaltyReportFinanceDone:input_type -> grpc.ReportFinanceDoneRequest
-	277, // 479: grpc.BillingService.PayoutFinanceDone:input_type -> grpc.ReportFinanceDoneRequest
-	279, // 480: grpc.BillingService.GetActOfCompletion:input_type -> grpc.ActOfCompletionRequest
-	278, // 481: grpc.BillingService.SetCustomerPaymentActivity:input_type -> grpc.SetCustomerPaymentActivityRequest
-	287, // 482: grpc.BillingService.GetCustomerList:input_type -> grpc.ListCustomersRequest
-	291, // 483: grpc.BillingService.GetCustomerInfo:input_type -> grpc.GetCustomerInfoRequest
-	293, // 484: grpc.BillingService.DeserializeCookie:input_type -> grpc.DeserializeCookieRequest
-	295, // 485: grpc.BillingService.DeleteCustomerCard:input_type -> grpc.DeleteCustomerCardRequest
-	296, // 486: grpc.BillingService.GetSubscription:input_type -> grpc.GetSubscriptionRequest
-	300, // 487: grpc.BillingService.GetCustomerShortInfo:input_type -> grpc.GetCustomerShortInfoRequest
-	303, // 488: grpc.BillingService.GetSubscriptionOrders:input_type -> grpc.GetSubscriptionOrdersRequest
-	305, // 489: grpc.BillingService.DeleteRecurringSubscription:input_type -> grpc.DeleteRecurringSubscriptionRequest
-	298, // 490: grpc.BillingService.FindSubscriptions:input_type -> grpc.FindSubscriptionsRequest
-	67,  // 491: grpc.BillingService.OrderCreateByPaylink:output_type -> grpc.OrderCreateProcessResponse
-	67,  // 492: grpc.BillingService.OrderCreateProcess:output_type -> grpc.OrderCreateProcessResponse
-	28,  // 493: grpc.BillingService.PaymentFormJsonDataProcess:output_type -> grpc.PaymentFormJsonDataResponse
-	24,  // 494: grpc.BillingService.PaymentCreateProcess:output_type -> grpc.PaymentCreateResponse
-	30,  // 495: grpc.BillingService.PaymentCallbackProcess:output_type -> grpc.PaymentNotifyResponse
-	213, // 496: grpc.BillingService.OrderReceipt:output_type -> grpc.OrderReceiptResponse
-	67,  // 497: grpc.BillingService.OrderReCreateProcess:output_type -> grpc.OrderCreateProcessResponse
-	1,   // 498: grpc.BillingService.UpdateOrder:output_type -> grpc.EmptyResponse
-	45,  // 499: grpc.BillingService.GetMerchantBy:output_type -> grpc.GetMerchantResponse
-	34,  // 500: grpc.BillingService.ListMerchants:output_type -> grpc.MerchantListingResponse
-	64,  // 501: grpc.BillingService.ChangeMerchant:output_type -> grpc.ChangeMerchantResponse
-	65,  // 502: grpc.BillingService.ChangeMerchantStatus:output_type -> grpc.ChangeMerchantStatusResponse
-	239, // 503: grpc.BillingService.SetMerchantOperatingCompany:output_type -> grpc.SetMerchantOperatingCompanyResponse
-	63,  // 504: grpc.BillingService.ChangeMerchantData:output_type -> grpc.ChangeMerchantDataResponse
-	63,  // 505: grpc.BillingService.SetMerchantS3Agreement:output_type -> grpc.ChangeMerchantDataResponse
-	170, // 506: grpc.BillingService.GetMerchantTariffRates:output_type -> grpc.GetMerchantTariffRatesResponse
-	93,  // 507: grpc.BillingService.SetMerchantTariffRates:output_type -> grpc.CheckProjectRequestSignatureResponse
-	218, // 508: grpc.BillingService.ChangeMerchantManualPayouts:output_type -> grpc.ChangeMerchantManualPayoutsResponse
-	66,  // 509: grpc.BillingService.CreateNotification:output_type -> grpc.CreateNotificationResponse
-	335, // 510: grpc.BillingService.GetNotification:output_type -> billing.Notification
-	37,  // 511: grpc.BillingService.ListNotifications:output_type -> grpc.Notifications
-	335, // 512: grpc.BillingService.MarkNotificationAsRead:output_type -> billing.Notification
-	39,  // 513: grpc.BillingService.ListMerchantPaymentMethods:output_type -> grpc.ListingMerchantPaymentMethod
-	41,  // 514: grpc.BillingService.GetMerchantPaymentMethod:output_type -> grpc.GetMerchantPaymentMethodResponse
-	44,  // 515: grpc.BillingService.ChangeMerchantPaymentMethod:output_type -> grpc.MerchantPaymentMethodResponse
-	48,  // 516: grpc.BillingService.CreateRefund:output_type -> grpc.CreateRefundResponse
-	50,  // 517: grpc.BillingService.ListRefunds:output_type -> grpc.ListRefundsResponse
-	48,  // 518: grpc.BillingService.GetRefund:output_type -> grpc.CreateRefundResponse
-	30,  // 519: grpc.BillingService.ProcessRefundCallback:output_type -> grpc.PaymentNotifyResponse
-	57,  // 520: grpc.BillingService.PaymentFormLanguageChanged:output_type -> grpc.PaymentFormDataChangeResponse
-	57,  // 521: grpc.BillingService.PaymentFormPaymentAccountChanged:output_type -> grpc.PaymentFormDataChangeResponse
-	60,  // 522: grpc.BillingService.ProcessBillingAddress:output_type -> grpc.ProcessBillingAddressResponse
-	75,  // 523: grpc.BillingService.CreateOrUpdateProduct:output_type -> grpc.Product
-	81,  // 524: grpc.BillingService.ListProducts:output_type -> grpc.ListProductsResponse
-	214, // 525: grpc.BillingService.GetProduct:output_type -> grpc.GetProductResponse
-	1,   // 526: grpc.BillingService.DeleteProduct:output_type -> grpc.EmptyResponse
-	81,  // 527: grpc.BillingService.GetProductsForOrder:output_type -> grpc.ListProductsResponse
-	140, // 528: grpc.BillingService.GetProductPrices:output_type -> grpc.ProductPricesResponse
-	109, // 529: grpc.BillingService.UpdateProductPrices:output_type -> grpc.ResponseError
-	86,  // 530: grpc.BillingService.ChangeProject:output_type -> grpc.ChangeProjectResponse
-	86,  // 531: grpc.BillingService.GetProject:output_type -> grpc.ChangeProjectResponse
-	89,  // 532: grpc.BillingService.ListProjects:output_type -> grpc.ListProjectsResponse
-	86,  // 533: grpc.BillingService.DeleteProject:output_type -> grpc.ChangeProjectResponse
-	91,  // 534: grpc.BillingService.CreateToken:output_type -> grpc.TokenResponse
-	93,  // 535: grpc.BillingService.CheckProjectRequestSignature:output_type -> grpc.CheckProjectRequestSignatureResponse
-	379, // 536: grpc.BillingService.GetCountriesList:output_type -> billing.CountriesList
-	272, // 537: grpc.BillingService.GetCountriesListForOrder:output_type -> grpc.GetCountriesListForOrderResponse
-	388, // 538: grpc.BillingService.GetCountry:output_type -> billing.Country
-	388, // 539: grpc.BillingService.UpdateCountry:output_type -> billing.Country
-	178, // 540: grpc.BillingService.GetOrderPublic:output_type -> grpc.GetOrderPublicResponse
-	179, // 541: grpc.BillingService.GetOrderPrivate:output_type -> grpc.GetOrderPrivateResponse
-	174, // 542: grpc.BillingService.FindAllOrdersPublic:output_type -> grpc.ListOrdersPublicResponse
-	175, // 543: grpc.BillingService.FindAllOrdersPrivate:output_type -> grpc.ListOrdersPrivateResponse
-	177, // 544: grpc.BillingService.FindAllOrders:output_type -> grpc.ListOrdersResponse
-	97,  // 545: grpc.BillingService.IsOrderCanBePaying:output_type -> grpc.IsOrderCanBePayingResponse
-	372, // 546: grpc.BillingService.GetPriceGroup:output_type -> billing.PriceGroup
-	372, // 547: grpc.BillingService.UpdatePriceGroup:output_type -> billing.PriceGroup
-	372, // 548: grpc.BillingService.GetPriceGroupByCountry:output_type -> billing.PriceGroup
-	132, // 549: grpc.BillingService.GetPriceGroupCurrencies:output_type -> grpc.PriceGroupCurrenciesResponse
-	132, // 550: grpc.BillingService.GetPriceGroupCurrencyByRegion:output_type -> grpc.PriceGroupCurrenciesResponse
-	137, // 551: grpc.BillingService.GetRecommendedPriceByPriceGroup:output_type -> grpc.RecommendedPriceResponse
-	137, // 552: grpc.BillingService.GetRecommendedPriceByConversion:output_type -> grpc.RecommendedPriceResponse
-	139, // 553: grpc.BillingService.GetRecommendedPriceTable:output_type -> grpc.RecommendedPriceTableResponse
-	215, // 554: grpc.BillingService.GetPriceGroupByRegion:output_type -> grpc.GetPriceGroupByRegionResponse
-	1,   // 555: grpc.BillingService.SetUserNotifySales:output_type -> grpc.EmptyResponse
-	1,   // 556: grpc.BillingService.SetUserNotifyNewRegion:output_type -> grpc.EmptyResponse
-	105, // 557: grpc.BillingService.CreateOrUpdatePaymentMethod:output_type -> grpc.ChangePaymentMethodResponse
-	106, // 558: grpc.BillingService.CreateOrUpdatePaymentMethodProductionSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
-	102, // 559: grpc.BillingService.GetPaymentMethodProductionSettings:output_type -> grpc.GetPaymentMethodSettingsResponse
-	106, // 560: grpc.BillingService.DeletePaymentMethodProductionSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
-	106, // 561: grpc.BillingService.CreateOrUpdatePaymentMethodTestSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
-	102, // 562: grpc.BillingService.GetPaymentMethodTestSettings:output_type -> grpc.GetPaymentMethodSettingsResponse
-	106, // 563: grpc.BillingService.DeletePaymentMethodTestSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
-	108, // 564: grpc.BillingService.FindByZipCode:output_type -> grpc.FindByZipCodeResponse
-	123, // 565: grpc.BillingService.GetAllPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemListResponse
-	124, // 566: grpc.BillingService.GetPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemResponse
-	124, // 567: grpc.BillingService.SetPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemResponse
-	109, // 568: grpc.BillingService.DeletePaymentChannelCostSystem:output_type -> grpc.ResponseError
-	125, // 569: grpc.BillingService.GetAllPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantListResponse
-	126, // 570: grpc.BillingService.GetPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantResponse
-	126, // 571: grpc.BillingService.SetPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantResponse
-	109, // 572: grpc.BillingService.DeletePaymentChannelCostMerchant:output_type -> grpc.ResponseError
-	127, // 573: grpc.BillingService.GetAllMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemListResponse
-	128, // 574: grpc.BillingService.GetMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemResponse
-	128, // 575: grpc.BillingService.SetMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemResponse
-	109, // 576: grpc.BillingService.DeleteMoneyBackCostSystem:output_type -> grpc.ResponseError
-	129, // 577: grpc.BillingService.GetAllMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantListResponse
-	130, // 578: grpc.BillingService.GetMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantResponse
-	130, // 579: grpc.BillingService.SetMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantResponse
-	109, // 580: grpc.BillingService.DeleteMoneyBackCostMerchant:output_type -> grpc.ResponseError
-	112, // 581: grpc.BillingService.CreateAccountingEntry:output_type -> grpc.CreateAccountingEntryResponse
-	153, // 582: grpc.BillingService.GetUserProfile:output_type -> grpc.GetUserProfileResponse
-	153, // 583: grpc.BillingService.CreateOrUpdateUserProfile:output_type -> grpc.GetUserProfileResponse
-	157, // 584: grpc.BillingService.ConfirmUserEmail:output_type -> grpc.ConfirmUserEmailResponse
-	93,  // 585: grpc.BillingService.CreatePageReview:output_type -> grpc.CheckProjectRequestSignatureResponse
-	113, // 586: grpc.BillingService.CreateRoyaltyReport:output_type -> grpc.CreateRoyaltyReportRequest
-	116, // 587: grpc.BillingService.ListRoyaltyReports:output_type -> grpc.ListRoyaltyReportsResponse
-	120, // 588: grpc.BillingService.GetRoyaltyReport:output_type -> grpc.GetRoyaltyReportResponse
-	109, // 589: grpc.BillingService.ChangeRoyaltyReport:output_type -> grpc.ResponseError
-	160, // 590: grpc.BillingService.ListRoyaltyReportOrders:output_type -> grpc.TransactionsResponse
-	109, // 591: grpc.BillingService.MerchantReviewRoyaltyReport:output_type -> grpc.ResponseError
-	1,   // 592: grpc.BillingService.AutoAcceptRoyaltyReports:output_type -> grpc.EmptyResponse
-	234, // 593: grpc.BillingService.RoyaltyReportPdfUploaded:output_type -> grpc.RoyaltyReportPdfUploadedResponse
-	163, // 594: grpc.BillingService.GetVatReportsDashboard:output_type -> grpc.VatReportsResponse
-	163, // 595: grpc.BillingService.GetVatReportsForCountry:output_type -> grpc.VatReportsResponse
-	276, // 596: grpc.BillingService.GetVatReportTransactions:output_type -> grpc.PrivateTransactionsResponse
-	1,   // 597: grpc.BillingService.ProcessVatReports:output_type -> grpc.EmptyResponse
-	109, // 598: grpc.BillingService.UpdateVatReportStatus:output_type -> grpc.ResponseError
-	275, // 599: grpc.BillingService.GetVatReport:output_type -> grpc.VatReportResponse
-	1,   // 600: grpc.BillingService.CalcAnnualTurnovers:output_type -> grpc.EmptyResponse
-	167, // 601: grpc.BillingService.GetMerchantOnboardingCompleteData:output_type -> grpc.GetMerchantOnboardingCompleteDataResponse
-	15,  // 602: grpc.BillingService.CreateOrUpdateKeyProduct:output_type -> grpc.KeyProductResponse
-	21,  // 603: grpc.BillingService.GetKeyProducts:output_type -> grpc.ListKeyProductsResponse
-	15,  // 604: grpc.BillingService.GetKeyProduct:output_type -> grpc.KeyProductResponse
-	2,   // 605: grpc.BillingService.DeleteKeyProduct:output_type -> grpc.EmptyResponseWithStatus
-	15,  // 606: grpc.BillingService.PublishKeyProduct:output_type -> grpc.KeyProductResponse
-	15,  // 607: grpc.BillingService.UnPublishKeyProduct:output_type -> grpc.KeyProductResponse
-	21,  // 608: grpc.BillingService.GetKeyProductsForOrder:output_type -> grpc.ListKeyProductsResponse
-	79,  // 609: grpc.BillingService.GetKeyProductInfo:output_type -> grpc.GetKeyProductInfoResponse
-	20,  // 610: grpc.BillingService.GetPlatforms:output_type -> grpc.ListPlatformsResponse
-	6,   // 611: grpc.BillingService.GetAvailableKeysCount:output_type -> grpc.GetPlatformKeyCountResponse
-	11,  // 612: grpc.BillingService.UploadKeysFile:output_type -> grpc.PlatformKeysFileResponse
-	8,   // 613: grpc.BillingService.GetKeyByID:output_type -> grpc.GetKeyForOrderRequestResponse
-	9,   // 614: grpc.BillingService.ReserveKeyForOrder:output_type -> grpc.PlatformKeyReserveResponse
-	8,   // 615: grpc.BillingService.FinishRedeemKeyForOrder:output_type -> grpc.GetKeyForOrderRequestResponse
-	2,   // 616: grpc.BillingService.CancelRedeemKeyForOrder:output_type -> grpc.EmptyResponseWithStatus
-	5,   // 617: grpc.BillingService.ChangeCodeInOrder:output_type -> grpc.ChangeCodeInOrderResponse
-	181, // 618: grpc.BillingService.GetDashboardMainReport:output_type -> grpc.GetDashboardMainResponse
-	184, // 619: grpc.BillingService.GetDashboardRevenueDynamicsReport:output_type -> grpc.GetDashboardRevenueDynamicsReportResponse
-	183, // 620: grpc.BillingService.GetDashboardBaseReport:output_type -> grpc.GetDashboardBaseReportResponse
-	281, // 621: grpc.BillingService.GetDashboardCustomersReport:output_type -> grpc.GetDashboardCustomerReportResponse
-	283, // 622: grpc.BillingService.GetDashboardCustomerArpu:output_type -> grpc.DashboardCustomerReportArpuResponse
-	201, // 623: grpc.BillingService.CreatePayoutDocument:output_type -> grpc.CreatePayoutDocumentResponse
-	200, // 624: grpc.BillingService.UpdatePayoutDocument:output_type -> grpc.PayoutDocumentResponse
-	206, // 625: grpc.BillingService.GetPayoutDocuments:output_type -> grpc.GetPayoutDocumentsResponse
-	200, // 626: grpc.BillingService.GetPayoutDocument:output_type -> grpc.PayoutDocumentResponse
-	116, // 627: grpc.BillingService.GetPayoutDocumentRoyaltyReports:output_type -> grpc.ListRoyaltyReportsResponse
-	211, // 628: grpc.BillingService.PayoutDocumentPdfUploaded:output_type -> grpc.PayoutDocumentPdfUploadedResponse
-	1,   // 629: grpc.BillingService.AutoCreatePayoutDocuments:output_type -> grpc.EmptyResponse
-	209, // 630: grpc.BillingService.GetMerchantBalance:output_type -> grpc.GetMerchantBalanceResponse
-	57,  // 631: grpc.BillingService.PaymentFormPlatformChanged:output_type -> grpc.PaymentFormDataChangeResponse
-	2,   // 632: grpc.BillingService.CheckSkuAndKeyProject:output_type -> grpc.EmptyResponseWithStatus
-	223, // 633: grpc.BillingService.GetPaylinks:output_type -> grpc.GetPaylinksResponse
-	226, // 634: grpc.BillingService.GetPaylink:output_type -> grpc.GetPaylinkResponse
-	1,   // 635: grpc.BillingService.IncrPaylinkVisits:output_type -> grpc.EmptyResponse
-	228, // 636: grpc.BillingService.GetPaylinkURL:output_type -> grpc.GetPaylinkUrlResponse
-	226, // 637: grpc.BillingService.CreateOrUpdatePaylink:output_type -> grpc.GetPaylinkResponse
-	2,   // 638: grpc.BillingService.DeletePaylink:output_type -> grpc.EmptyResponseWithStatus
-	231, // 639: grpc.BillingService.GetPaylinkStatTotal:output_type -> grpc.GetPaylinkStatCommonResponse
-	232, // 640: grpc.BillingService.GetPaylinkStatByCountry:output_type -> grpc.GetPaylinkStatCommonGroupResponse
-	232, // 641: grpc.BillingService.GetPaylinkStatByReferrer:output_type -> grpc.GetPaylinkStatCommonGroupResponse
-	232, // 642: grpc.BillingService.GetPaylinkStatByDate:output_type -> grpc.GetPaylinkStatCommonGroupResponse
-	232, // 643: grpc.BillingService.GetPaylinkStatByUtm:output_type -> grpc.GetPaylinkStatCommonGroupResponse
-	160, // 644: grpc.BillingService.GetPaylinkTransactions:output_type -> grpc.TransactionsResponse
-	2,   // 645: grpc.BillingService.DeleteSavedCard:output_type -> grpc.EmptyResponseWithStatus
-	236, // 646: grpc.BillingService.GetOperatingCompaniesList:output_type -> grpc.GetOperatingCompaniesListResponse
-	2,   // 647: grpc.BillingService.AddOperatingCompany:output_type -> grpc.EmptyResponseWithStatus
-	241, // 648: grpc.BillingService.GetOperatingCompany:output_type -> grpc.GetOperatingCompanyResponse
-	237, // 649: grpc.BillingService.GetPaymentMinLimitsSystem:output_type -> grpc.GetPaymentMinLimitsSystemResponse
-	2,   // 650: grpc.BillingService.SetPaymentMinLimitSystem:output_type -> grpc.EmptyResponseWithStatus
-	244, // 651: grpc.BillingService.GetMerchantUsers:output_type -> grpc.GetMerchantUsersResponse
-	259, // 652: grpc.BillingService.GetAdminUsers:output_type -> grpc.GetAdminUsersResponse
-	246, // 653: grpc.BillingService.InviteUserMerchant:output_type -> grpc.InviteUserMerchantResponse
-	248, // 654: grpc.BillingService.InviteUserAdmin:output_type -> grpc.InviteUserAdminResponse
-	2,   // 655: grpc.BillingService.ResendInviteMerchant:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 656: grpc.BillingService.ResendInviteAdmin:output_type -> grpc.EmptyResponseWithStatus
-	258, // 657: grpc.BillingService.AcceptInvite:output_type -> grpc.AcceptInviteResponse
-	256, // 658: grpc.BillingService.CheckInviteToken:output_type -> grpc.CheckInviteTokenResponse
-	261, // 659: grpc.BillingService.GetMerchantsForUser:output_type -> grpc.GetMerchantsForUserResponse
-	2,   // 660: grpc.BillingService.ChangeRoleForMerchantUser:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 661: grpc.BillingService.ChangeRoleForAdminUser:output_type -> grpc.EmptyResponseWithStatus
-	266, // 662: grpc.BillingService.GetRoleList:output_type -> grpc.GetRoleListResponse
-	2,   // 663: grpc.BillingService.DeleteMerchantUser:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 664: grpc.BillingService.DeleteAdminUser:output_type -> grpc.EmptyResponseWithStatus
-	270, // 665: grpc.BillingService.GetMerchantUserRole:output_type -> grpc.UserRoleResponse
-	270, // 666: grpc.BillingService.GetAdminUserRole:output_type -> grpc.UserRoleResponse
-	150, // 667: grpc.BillingService.GetCommonUserProfile:output_type -> grpc.CommonUserProfileResponse
-	270, // 668: grpc.BillingService.GetAdminByUserId:output_type -> grpc.UserRoleResponse
-	220, // 669: grpc.BillingService.SendWebhookToMerchant:output_type -> grpc.SendWebhookToMerchantResponse
-	2,   // 670: grpc.BillingService.NotifyWebhookTestResults:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 671: grpc.BillingService.RoyaltyReportFinanceDone:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 672: grpc.BillingService.PayoutFinanceDone:output_type -> grpc.EmptyResponseWithStatus
-	280, // 673: grpc.BillingService.GetActOfCompletion:output_type -> grpc.ActOfCompletionResponse
-	2,   // 674: grpc.BillingService.SetCustomerPaymentActivity:output_type -> grpc.EmptyResponseWithStatus
-	289, // 675: grpc.BillingService.GetCustomerList:output_type -> grpc.ListCustomersResponse
-	292, // 676: grpc.BillingService.GetCustomerInfo:output_type -> grpc.GetCustomerInfoResponse
-	294, // 677: grpc.BillingService.DeserializeCookie:output_type -> grpc.DeserializeCookieResponse
-	2,   // 678: grpc.BillingService.DeleteCustomerCard:output_type -> grpc.EmptyResponseWithStatus
-	297, // 679: grpc.BillingService.GetSubscription:output_type -> grpc.GetSubscriptionResponse
-	301, // 680: grpc.BillingService.GetCustomerShortInfo:output_type -> grpc.GetCustomerShortInfoResponse
-	304, // 681: grpc.BillingService.GetSubscriptionOrders:output_type -> grpc.GetSubscriptionOrdersResponse
-	2,   // 682: grpc.BillingService.DeleteRecurringSubscription:output_type -> grpc.EmptyResponseWithStatus
-	299, // 683: grpc.BillingService.FindSubscriptions:output_type -> grpc.FindSubscriptionsResponse
-	491, // [491:684] is the sub-list for method output_type
-	298, // [298:491] is the sub-list for method input_type
-	298, // [298:298] is the sub-list for extension type_name
-	298, // [298:298] is the sub-list for extension extendee
-	0,   // [0:298] is the sub-list for field type_name
+	336, // 242: grpc.SetMerchantOperatingCompanyResponse.item:type_name -> billing.Merchant
+	110, // 243: grpc.SetMerchantAcceptedStatusResponse.message:type_name -> grpc.ResponseErrorMessage
+	336, // 244: grpc.SetMerchantAcceptedStatusResponse.item:type_name -> billing.Merchant
+	110, // 245: grpc.GetOperatingCompanyResponse.message:type_name -> grpc.ResponseErrorMessage
+	378, // 246: grpc.GetOperatingCompanyResponse.company:type_name -> billing.OperatingCompany
+	110, // 247: grpc.GetMerchantUsersResponse.message:type_name -> grpc.ResponseErrorMessage
+	364, // 248: grpc.GetMerchantUsersResponse.users:type_name -> billing.UserRole
+	110, // 249: grpc.InviteUserMerchantResponse.message:type_name -> grpc.ResponseErrorMessage
+	364, // 250: grpc.InviteUserMerchantResponse.role:type_name -> billing.UserRole
+	110, // 251: grpc.InviteUserAdminResponse.message:type_name -> grpc.ResponseErrorMessage
+	364, // 252: grpc.InviteUserAdminResponse.role:type_name -> billing.UserRole
+	110, // 253: grpc.GetMerchantUserResponse.message:type_name -> grpc.ResponseErrorMessage
+	364, // 254: grpc.GetMerchantUserResponse.role:type_name -> billing.UserRole
+	110, // 255: grpc.GetAdminUserResponse.message:type_name -> grpc.ResponseErrorMessage
+	364, // 256: grpc.GetAdminUserResponse.role:type_name -> billing.UserRole
+	110, // 257: grpc.CheckInviteTokenResponse.message:type_name -> grpc.ResponseErrorMessage
+	110, // 258: grpc.AcceptInviteResponse.message:type_name -> grpc.ResponseErrorMessage
+	364, // 259: grpc.AcceptInviteResponse.role:type_name -> billing.UserRole
+	110, // 260: grpc.GetAdminUsersResponse.message:type_name -> grpc.ResponseErrorMessage
+	364, // 261: grpc.GetAdminUsersResponse.users:type_name -> billing.UserRole
+	110, // 262: grpc.GetMerchantsForUserResponse.message:type_name -> grpc.ResponseErrorMessage
+	264, // 263: grpc.GetMerchantsForUserResponse.merchants:type_name -> grpc.MerchantForUserInfo
+	380, // 264: grpc.GetRoleListResponse.items:type_name -> billing.RoleListItem
+	110, // 265: grpc.UserRoleResponse.message:type_name -> grpc.ResponseErrorMessage
+	364, // 266: grpc.UserRoleResponse.user_role:type_name -> billing.UserRole
+	110, // 267: grpc.GetCountriesListForOrderResponse.message:type_name -> grpc.ResponseErrorMessage
+	381, // 268: grpc.GetCountriesListForOrderResponse.item:type_name -> billing.CountriesList
+	370, // 269: grpc.PrivateTransactionsPaginate.items:type_name -> billing.OrderViewPrivate
+	110, // 270: grpc.VatReportResponse.message:type_name -> grpc.ResponseErrorMessage
+	366, // 271: grpc.VatReportResponse.vat:type_name -> billing.VatReport
+	110, // 272: grpc.PrivateTransactionsResponse.message:type_name -> grpc.ResponseErrorMessage
+	276, // 273: grpc.PrivateTransactionsResponse.data:type_name -> grpc.PrivateTransactionsPaginate
+	326, // 274: grpc.SetCustomerPaymentActivityRequest.processing_at:type_name -> google.protobuf.Timestamp
+	110, // 275: grpc.ActOfCompletionResponse.message:type_name -> grpc.ResponseErrorMessage
+	382, // 276: grpc.ActOfCompletionResponse.item:type_name -> billing.ActOfCompletionDocument
+	110, // 277: grpc.GetDashboardCustomerReportResponse.message:type_name -> grpc.ResponseErrorMessage
+	287, // 278: grpc.GetDashboardCustomerReportResponse.item:type_name -> grpc.DashboardCustomerReport
+	110, // 279: grpc.DashboardCustomerReportArpuResponse.message:type_name -> grpc.ResponseErrorMessage
+	185, // 280: grpc.DashboardCustomerReportArpuResponse.item:type_name -> grpc.DashboardAmountItemWithChart
+	288, // 281: grpc.DashboardCustomerReport.top20Customers:type_name -> grpc.Top20Customers
+	195, // 282: grpc.DashboardCustomerReport.chart:type_name -> grpc.DashboardChartItemInt
+	290, // 283: grpc.ListCustomersRequest.amount:type_name -> grpc.AmountFilter
+	110, // 284: grpc.ListCustomersResponse.message:type_name -> grpc.ResponseErrorMessage
+	292, // 285: grpc.ListCustomersResponse.items:type_name -> grpc.ShortCustomerInfo
+	326, // 286: grpc.ShortCustomerInfo.last_order:type_name -> google.protobuf.Timestamp
+	110, // 287: grpc.GetCustomerInfoResponse.message:type_name -> grpc.ResponseErrorMessage
+	383, // 288: grpc.GetCustomerInfoResponse.item:type_name -> billing.Customer
+	110, // 289: grpc.DeserializeCookieResponse.message:type_name -> grpc.ResponseErrorMessage
+	384, // 290: grpc.DeserializeCookieResponse.item:type_name -> billing.BrowserCookie
+	110, // 291: grpc.GetSubscriptionResponse.message:type_name -> grpc.ResponseErrorMessage
+	385, // 292: grpc.GetSubscriptionResponse.subscription:type_name -> billing.RecurringSubscription
+	385, // 293: grpc.FindSubscriptionsResponse.list:type_name -> billing.RecurringSubscription
+	110, // 294: grpc.FindSubscriptionsResponse.message:type_name -> grpc.ResponseErrorMessage
+	110, // 295: grpc.GetCustomerShortInfoResponse.message:type_name -> grpc.ResponseErrorMessage
+	304, // 296: grpc.GetCustomerShortInfoResponse.item:type_name -> grpc.CustomerShortInfo
+	110, // 297: grpc.GetSubscriptionOrdersResponse.message:type_name -> grpc.ResponseErrorMessage
+	386, // 298: grpc.GetSubscriptionOrdersResponse.list:type_name -> billing.SubscriptionOrder
+	369, // 299: grpc.GetMerchantTariffRatesResponseItems.PayoutEntry.value:type_name -> billing.MerchantTariffRatesSettingsItem
+	387, // 300: grpc.BillingService.OrderCreateByPaylink:input_type -> billing.OrderCreateByPaylink
+	388, // 301: grpc.BillingService.OrderCreateProcess:input_type -> billing.OrderCreateRequest
+	25,  // 302: grpc.BillingService.PaymentFormJsonDataProcess:input_type -> grpc.PaymentFormJsonDataRequest
+	23,  // 303: grpc.BillingService.PaymentCreateProcess:input_type -> grpc.PaymentCreateRequest
+	29,  // 304: grpc.BillingService.PaymentCallbackProcess:input_type -> grpc.PaymentNotifyRequest
+	212, // 305: grpc.BillingService.OrderReceipt:input_type -> grpc.OrderReceiptRequest
+	244, // 306: grpc.BillingService.OrderReCreateProcess:input_type -> grpc.OrderReCreateProcessRequest
+	323, // 307: grpc.BillingService.UpdateOrder:input_type -> billing.Order
+	61,  // 308: grpc.BillingService.GetMerchantBy:input_type -> grpc.GetMerchantByRequest
+	33,  // 309: grpc.BillingService.ListMerchants:input_type -> grpc.MerchantListingRequest
+	31,  // 310: grpc.BillingService.ChangeMerchant:input_type -> grpc.OnboardingRequest
+	35,  // 311: grpc.BillingService.ChangeMerchantStatus:input_type -> grpc.MerchantChangeStatusRequest
+	238, // 312: grpc.BillingService.SetMerchantOperatingCompany:input_type -> grpc.SetMerchantOperatingCompanyRequest
+	240, // 313: grpc.BillingService.SetMerchantAcceptedStatus:input_type -> grpc.SetMerchantAcceptedStatusRequest
+	62,  // 314: grpc.BillingService.ChangeMerchantData:input_type -> grpc.ChangeMerchantDataRequest
+	68,  // 315: grpc.BillingService.SetMerchantS3Agreement:input_type -> grpc.SetMerchantS3AgreementRequest
+	168, // 316: grpc.BillingService.GetMerchantTariffRates:input_type -> grpc.GetMerchantTariffRatesRequest
+	171, // 317: grpc.BillingService.SetMerchantTariffRates:input_type -> grpc.SetMerchantTariffRatesRequest
+	217, // 318: grpc.BillingService.ChangeMerchantManualPayouts:input_type -> grpc.ChangeMerchantManualPayoutsRequest
+	36,  // 319: grpc.BillingService.CreateNotification:input_type -> grpc.NotificationRequest
+	46,  // 320: grpc.BillingService.GetNotification:input_type -> grpc.GetNotificationRequest
+	38,  // 321: grpc.BillingService.ListNotifications:input_type -> grpc.ListingNotificationRequest
+	46,  // 322: grpc.BillingService.MarkNotificationAsRead:input_type -> grpc.GetNotificationRequest
+	42,  // 323: grpc.BillingService.ListMerchantPaymentMethods:input_type -> grpc.ListMerchantPaymentMethodsRequest
+	40,  // 324: grpc.BillingService.GetMerchantPaymentMethod:input_type -> grpc.GetMerchantPaymentMethodRequest
+	43,  // 325: grpc.BillingService.ChangeMerchantPaymentMethod:input_type -> grpc.MerchantPaymentMethodRequest
+	47,  // 326: grpc.BillingService.CreateRefund:input_type -> grpc.CreateRefundRequest
+	49,  // 327: grpc.BillingService.ListRefunds:input_type -> grpc.ListRefundsRequest
+	51,  // 328: grpc.BillingService.GetRefund:input_type -> grpc.GetRefundRequest
+	52,  // 329: grpc.BillingService.ProcessRefundCallback:input_type -> grpc.CallbackRequest
+	55,  // 330: grpc.BillingService.PaymentFormLanguageChanged:input_type -> grpc.PaymentFormUserChangeLangRequest
+	56,  // 331: grpc.BillingService.PaymentFormPaymentAccountChanged:input_type -> grpc.PaymentFormUserChangePaymentAccountRequest
+	58,  // 332: grpc.BillingService.ProcessBillingAddress:input_type -> grpc.ProcessBillingAddressRequest
+	75,  // 333: grpc.BillingService.CreateOrUpdateProduct:input_type -> grpc.Product
+	76,  // 334: grpc.BillingService.ListProducts:input_type -> grpc.ListProductsRequest
+	82,  // 335: grpc.BillingService.GetProduct:input_type -> grpc.RequestProduct
+	82,  // 336: grpc.BillingService.DeleteProduct:input_type -> grpc.RequestProduct
+	77,  // 337: grpc.BillingService.GetProductsForOrder:input_type -> grpc.GetProductsForOrderRequest
+	82,  // 338: grpc.BillingService.GetProductPrices:input_type -> grpc.RequestProduct
+	141, // 339: grpc.BillingService.UpdateProductPrices:input_type -> grpc.UpdateProductPricesRequest
+	345, // 340: grpc.BillingService.ChangeProject:input_type -> billing.Project
+	87,  // 341: grpc.BillingService.GetProject:input_type -> grpc.GetProjectRequest
+	88,  // 342: grpc.BillingService.ListProjects:input_type -> grpc.ListProjectsRequest
+	87,  // 343: grpc.BillingService.DeleteProject:input_type -> grpc.GetProjectRequest
+	90,  // 344: grpc.BillingService.CreateToken:input_type -> grpc.TokenRequest
+	92,  // 345: grpc.BillingService.CheckProjectRequestSignature:input_type -> grpc.CheckProjectRequestSignatureRequest
+	0,   // 346: grpc.BillingService.GetCountriesList:input_type -> grpc.EmptyRequest
+	273, // 347: grpc.BillingService.GetCountriesListForOrder:input_type -> grpc.GetCountriesListForOrderRequest
+	389, // 348: grpc.BillingService.GetCountry:input_type -> billing.GetCountryRequest
+	390, // 349: grpc.BillingService.UpdateCountry:input_type -> billing.Country
+	95,  // 350: grpc.BillingService.GetOrderPublic:input_type -> grpc.GetOrderRequest
+	95,  // 351: grpc.BillingService.GetOrderPrivate:input_type -> grpc.GetOrderRequest
+	94,  // 352: grpc.BillingService.FindAllOrdersPublic:input_type -> grpc.ListOrdersRequest
+	94,  // 353: grpc.BillingService.FindAllOrdersPrivate:input_type -> grpc.ListOrdersRequest
+	94,  // 354: grpc.BillingService.FindAllOrders:input_type -> grpc.ListOrdersRequest
+	96,  // 355: grpc.BillingService.IsOrderCanBePaying:input_type -> grpc.IsOrderCanBePayingRequest
+	391, // 356: grpc.BillingService.GetPriceGroup:input_type -> billing.GetPriceGroupRequest
+	374, // 357: grpc.BillingService.UpdatePriceGroup:input_type -> billing.PriceGroup
+	131, // 358: grpc.BillingService.GetPriceGroupByCountry:input_type -> grpc.PriceGroupByCountryRequest
+	0,   // 359: grpc.BillingService.GetPriceGroupCurrencies:input_type -> grpc.EmptyRequest
+	135, // 360: grpc.BillingService.GetPriceGroupCurrencyByRegion:input_type -> grpc.PriceGroupByRegionRequest
+	136, // 361: grpc.BillingService.GetRecommendedPriceByPriceGroup:input_type -> grpc.RecommendedPriceRequest
+	136, // 362: grpc.BillingService.GetRecommendedPriceByConversion:input_type -> grpc.RecommendedPriceRequest
+	138, // 363: grpc.BillingService.GetRecommendedPriceTable:input_type -> grpc.RecommendedPriceTableRequest
+	216, // 364: grpc.BillingService.GetPriceGroupByRegion:input_type -> grpc.GetPriceGroupByRegionRequest
+	98,  // 365: grpc.BillingService.SetUserNotifySales:input_type -> grpc.SetUserNotifyRequest
+	98,  // 366: grpc.BillingService.SetUserNotifyNewRegion:input_type -> grpc.SetUserNotifyRequest
+	349, // 367: grpc.BillingService.CreateOrUpdatePaymentMethod:input_type -> billing.PaymentMethod
+	104, // 368: grpc.BillingService.CreateOrUpdatePaymentMethodProductionSettings:input_type -> grpc.ChangePaymentMethodParamsRequest
+	101, // 369: grpc.BillingService.GetPaymentMethodProductionSettings:input_type -> grpc.GetPaymentMethodSettingsRequest
+	101, // 370: grpc.BillingService.DeletePaymentMethodProductionSettings:input_type -> grpc.GetPaymentMethodSettingsRequest
+	104, // 371: grpc.BillingService.CreateOrUpdatePaymentMethodTestSettings:input_type -> grpc.ChangePaymentMethodParamsRequest
+	101, // 372: grpc.BillingService.GetPaymentMethodTestSettings:input_type -> grpc.GetPaymentMethodSettingsRequest
+	101, // 373: grpc.BillingService.DeletePaymentMethodTestSettings:input_type -> grpc.GetPaymentMethodSettingsRequest
+	107, // 374: grpc.BillingService.FindByZipCode:input_type -> grpc.FindByZipCodeRequest
+	0,   // 375: grpc.BillingService.GetAllPaymentChannelCostSystem:input_type -> grpc.EmptyRequest
+	392, // 376: grpc.BillingService.GetPaymentChannelCostSystem:input_type -> billing.PaymentChannelCostSystemRequest
+	354, // 377: grpc.BillingService.SetPaymentChannelCostSystem:input_type -> billing.PaymentChannelCostSystem
+	393, // 378: grpc.BillingService.DeletePaymentChannelCostSystem:input_type -> billing.PaymentCostDeleteRequest
+	394, // 379: grpc.BillingService.GetAllPaymentChannelCostMerchant:input_type -> billing.PaymentChannelCostMerchantListRequest
+	395, // 380: grpc.BillingService.GetPaymentChannelCostMerchant:input_type -> billing.PaymentChannelCostMerchantRequest
+	356, // 381: grpc.BillingService.SetPaymentChannelCostMerchant:input_type -> billing.PaymentChannelCostMerchant
+	393, // 382: grpc.BillingService.DeletePaymentChannelCostMerchant:input_type -> billing.PaymentCostDeleteRequest
+	0,   // 383: grpc.BillingService.GetAllMoneyBackCostSystem:input_type -> grpc.EmptyRequest
+	396, // 384: grpc.BillingService.GetMoneyBackCostSystem:input_type -> billing.MoneyBackCostSystemRequest
+	358, // 385: grpc.BillingService.SetMoneyBackCostSystem:input_type -> billing.MoneyBackCostSystem
+	393, // 386: grpc.BillingService.DeleteMoneyBackCostSystem:input_type -> billing.PaymentCostDeleteRequest
+	397, // 387: grpc.BillingService.GetAllMoneyBackCostMerchant:input_type -> billing.MoneyBackCostMerchantListRequest
+	398, // 388: grpc.BillingService.GetMoneyBackCostMerchant:input_type -> billing.MoneyBackCostMerchantRequest
+	360, // 389: grpc.BillingService.SetMoneyBackCostMerchant:input_type -> billing.MoneyBackCostMerchant
+	393, // 390: grpc.BillingService.DeleteMoneyBackCostMerchant:input_type -> billing.PaymentCostDeleteRequest
+	111, // 391: grpc.BillingService.CreateAccountingEntry:input_type -> grpc.CreateAccountingEntryRequest
+	152, // 392: grpc.BillingService.GetUserProfile:input_type -> grpc.GetUserProfileRequest
+	148, // 393: grpc.BillingService.CreateOrUpdateUserProfile:input_type -> grpc.UserProfile
+	156, // 394: grpc.BillingService.ConfirmUserEmail:input_type -> grpc.ConfirmUserEmailRequest
+	155, // 395: grpc.BillingService.CreatePageReview:input_type -> grpc.CreatePageReviewRequest
+	113, // 396: grpc.BillingService.CreateRoyaltyReport:input_type -> grpc.CreateRoyaltyReportRequest
+	114, // 397: grpc.BillingService.ListRoyaltyReports:input_type -> grpc.ListRoyaltyReportsRequest
+	119, // 398: grpc.BillingService.GetRoyaltyReport:input_type -> grpc.GetRoyaltyReportRequest
+	121, // 399: grpc.BillingService.ChangeRoyaltyReport:input_type -> grpc.ChangeRoyaltyReportRequest
+	117, // 400: grpc.BillingService.ListRoyaltyReportOrders:input_type -> grpc.ListRoyaltyReportOrdersRequest
+	122, // 401: grpc.BillingService.MerchantReviewRoyaltyReport:input_type -> grpc.MerchantReviewRoyaltyReportRequest
+	0,   // 402: grpc.BillingService.AutoAcceptRoyaltyReports:input_type -> grpc.EmptyRequest
+	233, // 403: grpc.BillingService.RoyaltyReportPdfUploaded:input_type -> grpc.RoyaltyReportPdfUploadedRequest
+	0,   // 404: grpc.BillingService.GetVatReportsDashboard:input_type -> grpc.EmptyRequest
+	161, // 405: grpc.BillingService.GetVatReportsForCountry:input_type -> grpc.VatReportsRequest
+	158, // 406: grpc.BillingService.GetVatReportTransactions:input_type -> grpc.VatTransactionsRequest
+	164, // 407: grpc.BillingService.ProcessVatReports:input_type -> grpc.ProcessVatReportsRequest
+	165, // 408: grpc.BillingService.UpdateVatReportStatus:input_type -> grpc.UpdateVatReportStatusRequest
+	275, // 409: grpc.BillingService.GetVatReport:input_type -> grpc.VatReportRequest
+	0,   // 410: grpc.BillingService.CalcAnnualTurnovers:input_type -> grpc.EmptyRequest
+	68,  // 411: grpc.BillingService.GetMerchantOnboardingCompleteData:input_type -> grpc.SetMerchantS3AgreementRequest
+	16,  // 412: grpc.BillingService.CreateOrUpdateKeyProduct:input_type -> grpc.CreateOrUpdateKeyProductRequest
+	22,  // 413: grpc.BillingService.GetKeyProducts:input_type -> grpc.ListKeyProductsRequest
+	83,  // 414: grpc.BillingService.GetKeyProduct:input_type -> grpc.RequestKeyProductMerchant
+	83,  // 415: grpc.BillingService.DeleteKeyProduct:input_type -> grpc.RequestKeyProductMerchant
+	18,  // 416: grpc.BillingService.PublishKeyProduct:input_type -> grpc.PublishKeyProductRequest
+	17,  // 417: grpc.BillingService.UnPublishKeyProduct:input_type -> grpc.UnPublishKeyProductRequest
+	80,  // 418: grpc.BillingService.GetKeyProductsForOrder:input_type -> grpc.GetKeyProductsForOrderRequest
+	78,  // 419: grpc.BillingService.GetKeyProductInfo:input_type -> grpc.GetKeyProductInfoRequest
+	19,  // 420: grpc.BillingService.GetPlatforms:input_type -> grpc.ListPlatformsRequest
+	13,  // 421: grpc.BillingService.GetAvailableKeysCount:input_type -> grpc.GetPlatformKeyCountRequest
+	12,  // 422: grpc.BillingService.UploadKeysFile:input_type -> grpc.PlatformKeysFileRequest
+	7,   // 423: grpc.BillingService.GetKeyByID:input_type -> grpc.KeyForOrderRequest
+	10,  // 424: grpc.BillingService.ReserveKeyForOrder:input_type -> grpc.PlatformKeyReserveRequest
+	7,   // 425: grpc.BillingService.FinishRedeemKeyForOrder:input_type -> grpc.KeyForOrderRequest
+	7,   // 426: grpc.BillingService.CancelRedeemKeyForOrder:input_type -> grpc.KeyForOrderRequest
+	4,   // 427: grpc.BillingService.ChangeCodeInOrder:input_type -> grpc.ChangeCodeInOrderRequest
+	180, // 428: grpc.BillingService.GetDashboardMainReport:input_type -> grpc.GetDashboardMainRequest
+	180, // 429: grpc.BillingService.GetDashboardRevenueDynamicsReport:input_type -> grpc.GetDashboardMainRequest
+	182, // 430: grpc.BillingService.GetDashboardBaseReport:input_type -> grpc.GetDashboardBaseReportRequest
+	286, // 431: grpc.BillingService.GetDashboardCustomersReport:input_type -> grpc.DashboardCustomerReportRequest
+	284, // 432: grpc.BillingService.GetDashboardCustomerArpu:input_type -> grpc.DashboardCustomerReportArpuRequest
+	199, // 433: grpc.BillingService.CreatePayoutDocument:input_type -> grpc.CreatePayoutDocumentRequest
+	202, // 434: grpc.BillingService.UpdatePayoutDocument:input_type -> grpc.UpdatePayoutDocumentRequest
+	204, // 435: grpc.BillingService.GetPayoutDocuments:input_type -> grpc.GetPayoutDocumentsRequest
+	203, // 436: grpc.BillingService.GetPayoutDocument:input_type -> grpc.GetPayoutDocumentRequest
+	203, // 437: grpc.BillingService.GetPayoutDocumentRoyaltyReports:input_type -> grpc.GetPayoutDocumentRequest
+	210, // 438: grpc.BillingService.PayoutDocumentPdfUploaded:input_type -> grpc.PayoutDocumentPdfUploadedRequest
+	0,   // 439: grpc.BillingService.AutoCreatePayoutDocuments:input_type -> grpc.EmptyRequest
+	208, // 440: grpc.BillingService.GetMerchantBalance:input_type -> grpc.GetMerchantBalanceRequest
+	54,  // 441: grpc.BillingService.PaymentFormPlatformChanged:input_type -> grpc.PaymentFormUserChangePlatformRequest
+	3,   // 442: grpc.BillingService.CheckSkuAndKeyProject:input_type -> grpc.CheckSkuAndKeyProjectRequest
+	219, // 443: grpc.BillingService.GetPaylinks:input_type -> grpc.GetPaylinksRequest
+	225, // 444: grpc.BillingService.GetPaylink:input_type -> grpc.PaylinkRequest
+	224, // 445: grpc.BillingService.IncrPaylinkVisits:input_type -> grpc.PaylinkRequestById
+	227, // 446: grpc.BillingService.GetPaylinkURL:input_type -> grpc.GetPaylinkURLRequest
+	399, // 447: grpc.BillingService.CreateOrUpdatePaylink:input_type -> paylink.CreatePaylinkRequest
+	225, // 448: grpc.BillingService.DeletePaylink:input_type -> grpc.PaylinkRequest
+	229, // 449: grpc.BillingService.GetPaylinkStatTotal:input_type -> grpc.GetPaylinkStatCommonRequest
+	229, // 450: grpc.BillingService.GetPaylinkStatByCountry:input_type -> grpc.GetPaylinkStatCommonRequest
+	229, // 451: grpc.BillingService.GetPaylinkStatByReferrer:input_type -> grpc.GetPaylinkStatCommonRequest
+	229, // 452: grpc.BillingService.GetPaylinkStatByDate:input_type -> grpc.GetPaylinkStatCommonRequest
+	229, // 453: grpc.BillingService.GetPaylinkStatByUtm:input_type -> grpc.GetPaylinkStatCommonRequest
+	230, // 454: grpc.BillingService.GetPaylinkTransactions:input_type -> grpc.GetPaylinkTransactionsRequest
+	235, // 455: grpc.BillingService.DeleteSavedCard:input_type -> grpc.DeleteSavedCardRequest
+	0,   // 456: grpc.BillingService.GetOperatingCompaniesList:input_type -> grpc.EmptyRequest
+	378, // 457: grpc.BillingService.AddOperatingCompany:input_type -> billing.OperatingCompany
+	242, // 458: grpc.BillingService.GetOperatingCompany:input_type -> grpc.GetOperatingCompanyRequest
+	0,   // 459: grpc.BillingService.GetPaymentMinLimitsSystem:input_type -> grpc.EmptyRequest
+	379, // 460: grpc.BillingService.SetPaymentMinLimitSystem:input_type -> billing.PaymentMinLimitSystem
+	245, // 461: grpc.BillingService.GetMerchantUsers:input_type -> grpc.GetMerchantUsersRequest
+	0,   // 462: grpc.BillingService.GetAdminUsers:input_type -> grpc.EmptyRequest
+	247, // 463: grpc.BillingService.InviteUserMerchant:input_type -> grpc.InviteUserMerchantRequest
+	249, // 464: grpc.BillingService.InviteUserAdmin:input_type -> grpc.InviteUserAdminRequest
+	251, // 465: grpc.BillingService.ResendInviteMerchant:input_type -> grpc.ResendInviteMerchantRequest
+	252, // 466: grpc.BillingService.ResendInviteAdmin:input_type -> grpc.ResendInviteAdminRequest
+	259, // 467: grpc.BillingService.AcceptInvite:input_type -> grpc.AcceptInviteRequest
+	257, // 468: grpc.BillingService.CheckInviteToken:input_type -> grpc.CheckInviteTokenRequest
+	262, // 469: grpc.BillingService.GetMerchantsForUser:input_type -> grpc.GetMerchantsForUserRequest
+	265, // 470: grpc.BillingService.ChangeRoleForMerchantUser:input_type -> grpc.ChangeRoleForMerchantUserRequest
+	266, // 471: grpc.BillingService.ChangeRoleForAdminUser:input_type -> grpc.ChangeRoleForAdminUserRequest
+	267, // 472: grpc.BillingService.GetRoleList:input_type -> grpc.GetRoleListRequest
+	270, // 473: grpc.BillingService.DeleteMerchantUser:input_type -> grpc.MerchantRoleRequest
+	269, // 474: grpc.BillingService.DeleteAdminUser:input_type -> grpc.AdminRoleRequest
+	270, // 475: grpc.BillingService.GetMerchantUserRole:input_type -> grpc.MerchantRoleRequest
+	269, // 476: grpc.BillingService.GetAdminUserRole:input_type -> grpc.AdminRoleRequest
+	149, // 477: grpc.BillingService.GetCommonUserProfile:input_type -> grpc.CommonUserProfileRequest
+	149, // 478: grpc.BillingService.GetAdminByUserId:input_type -> grpc.CommonUserProfileRequest
+	388, // 479: grpc.BillingService.SendWebhookToMerchant:input_type -> billing.OrderCreateRequest
+	222, // 480: grpc.BillingService.NotifyWebhookTestResults:input_type -> grpc.NotifyWebhookTestResultsRequest
+	279, // 481: grpc.BillingService.RoyaltyReportFinanceDone:input_type -> grpc.ReportFinanceDoneRequest
+	279, // 482: grpc.BillingService.PayoutFinanceDone:input_type -> grpc.ReportFinanceDoneRequest
+	281, // 483: grpc.BillingService.GetActOfCompletion:input_type -> grpc.ActOfCompletionRequest
+	280, // 484: grpc.BillingService.SetCustomerPaymentActivity:input_type -> grpc.SetCustomerPaymentActivityRequest
+	289, // 485: grpc.BillingService.GetCustomerList:input_type -> grpc.ListCustomersRequest
+	293, // 486: grpc.BillingService.GetCustomerInfo:input_type -> grpc.GetCustomerInfoRequest
+	295, // 487: grpc.BillingService.DeserializeCookie:input_type -> grpc.DeserializeCookieRequest
+	297, // 488: grpc.BillingService.DeleteCustomerCard:input_type -> grpc.DeleteCustomerCardRequest
+	298, // 489: grpc.BillingService.GetSubscription:input_type -> grpc.GetSubscriptionRequest
+	302, // 490: grpc.BillingService.GetCustomerShortInfo:input_type -> grpc.GetCustomerShortInfoRequest
+	305, // 491: grpc.BillingService.GetSubscriptionOrders:input_type -> grpc.GetSubscriptionOrdersRequest
+	307, // 492: grpc.BillingService.DeleteRecurringSubscription:input_type -> grpc.DeleteRecurringSubscriptionRequest
+	300, // 493: grpc.BillingService.FindSubscriptions:input_type -> grpc.FindSubscriptionsRequest
+	67,  // 494: grpc.BillingService.OrderCreateByPaylink:output_type -> grpc.OrderCreateProcessResponse
+	67,  // 495: grpc.BillingService.OrderCreateProcess:output_type -> grpc.OrderCreateProcessResponse
+	28,  // 496: grpc.BillingService.PaymentFormJsonDataProcess:output_type -> grpc.PaymentFormJsonDataResponse
+	24,  // 497: grpc.BillingService.PaymentCreateProcess:output_type -> grpc.PaymentCreateResponse
+	30,  // 498: grpc.BillingService.PaymentCallbackProcess:output_type -> grpc.PaymentNotifyResponse
+	213, // 499: grpc.BillingService.OrderReceipt:output_type -> grpc.OrderReceiptResponse
+	67,  // 500: grpc.BillingService.OrderReCreateProcess:output_type -> grpc.OrderCreateProcessResponse
+	1,   // 501: grpc.BillingService.UpdateOrder:output_type -> grpc.EmptyResponse
+	45,  // 502: grpc.BillingService.GetMerchantBy:output_type -> grpc.GetMerchantResponse
+	34,  // 503: grpc.BillingService.ListMerchants:output_type -> grpc.MerchantListingResponse
+	64,  // 504: grpc.BillingService.ChangeMerchant:output_type -> grpc.ChangeMerchantResponse
+	65,  // 505: grpc.BillingService.ChangeMerchantStatus:output_type -> grpc.ChangeMerchantStatusResponse
+	239, // 506: grpc.BillingService.SetMerchantOperatingCompany:output_type -> grpc.SetMerchantOperatingCompanyResponse
+	241, // 507: grpc.BillingService.SetMerchantAcceptedStatus:output_type -> grpc.SetMerchantAcceptedStatusResponse
+	63,  // 508: grpc.BillingService.ChangeMerchantData:output_type -> grpc.ChangeMerchantDataResponse
+	63,  // 509: grpc.BillingService.SetMerchantS3Agreement:output_type -> grpc.ChangeMerchantDataResponse
+	170, // 510: grpc.BillingService.GetMerchantTariffRates:output_type -> grpc.GetMerchantTariffRatesResponse
+	93,  // 511: grpc.BillingService.SetMerchantTariffRates:output_type -> grpc.CheckProjectRequestSignatureResponse
+	218, // 512: grpc.BillingService.ChangeMerchantManualPayouts:output_type -> grpc.ChangeMerchantManualPayoutsResponse
+	66,  // 513: grpc.BillingService.CreateNotification:output_type -> grpc.CreateNotificationResponse
+	337, // 514: grpc.BillingService.GetNotification:output_type -> billing.Notification
+	37,  // 515: grpc.BillingService.ListNotifications:output_type -> grpc.Notifications
+	337, // 516: grpc.BillingService.MarkNotificationAsRead:output_type -> billing.Notification
+	39,  // 517: grpc.BillingService.ListMerchantPaymentMethods:output_type -> grpc.ListingMerchantPaymentMethod
+	41,  // 518: grpc.BillingService.GetMerchantPaymentMethod:output_type -> grpc.GetMerchantPaymentMethodResponse
+	44,  // 519: grpc.BillingService.ChangeMerchantPaymentMethod:output_type -> grpc.MerchantPaymentMethodResponse
+	48,  // 520: grpc.BillingService.CreateRefund:output_type -> grpc.CreateRefundResponse
+	50,  // 521: grpc.BillingService.ListRefunds:output_type -> grpc.ListRefundsResponse
+	48,  // 522: grpc.BillingService.GetRefund:output_type -> grpc.CreateRefundResponse
+	30,  // 523: grpc.BillingService.ProcessRefundCallback:output_type -> grpc.PaymentNotifyResponse
+	57,  // 524: grpc.BillingService.PaymentFormLanguageChanged:output_type -> grpc.PaymentFormDataChangeResponse
+	57,  // 525: grpc.BillingService.PaymentFormPaymentAccountChanged:output_type -> grpc.PaymentFormDataChangeResponse
+	60,  // 526: grpc.BillingService.ProcessBillingAddress:output_type -> grpc.ProcessBillingAddressResponse
+	75,  // 527: grpc.BillingService.CreateOrUpdateProduct:output_type -> grpc.Product
+	81,  // 528: grpc.BillingService.ListProducts:output_type -> grpc.ListProductsResponse
+	214, // 529: grpc.BillingService.GetProduct:output_type -> grpc.GetProductResponse
+	1,   // 530: grpc.BillingService.DeleteProduct:output_type -> grpc.EmptyResponse
+	81,  // 531: grpc.BillingService.GetProductsForOrder:output_type -> grpc.ListProductsResponse
+	140, // 532: grpc.BillingService.GetProductPrices:output_type -> grpc.ProductPricesResponse
+	109, // 533: grpc.BillingService.UpdateProductPrices:output_type -> grpc.ResponseError
+	86,  // 534: grpc.BillingService.ChangeProject:output_type -> grpc.ChangeProjectResponse
+	86,  // 535: grpc.BillingService.GetProject:output_type -> grpc.ChangeProjectResponse
+	89,  // 536: grpc.BillingService.ListProjects:output_type -> grpc.ListProjectsResponse
+	86,  // 537: grpc.BillingService.DeleteProject:output_type -> grpc.ChangeProjectResponse
+	91,  // 538: grpc.BillingService.CreateToken:output_type -> grpc.TokenResponse
+	93,  // 539: grpc.BillingService.CheckProjectRequestSignature:output_type -> grpc.CheckProjectRequestSignatureResponse
+	381, // 540: grpc.BillingService.GetCountriesList:output_type -> billing.CountriesList
+	274, // 541: grpc.BillingService.GetCountriesListForOrder:output_type -> grpc.GetCountriesListForOrderResponse
+	390, // 542: grpc.BillingService.GetCountry:output_type -> billing.Country
+	390, // 543: grpc.BillingService.UpdateCountry:output_type -> billing.Country
+	178, // 544: grpc.BillingService.GetOrderPublic:output_type -> grpc.GetOrderPublicResponse
+	179, // 545: grpc.BillingService.GetOrderPrivate:output_type -> grpc.GetOrderPrivateResponse
+	174, // 546: grpc.BillingService.FindAllOrdersPublic:output_type -> grpc.ListOrdersPublicResponse
+	175, // 547: grpc.BillingService.FindAllOrdersPrivate:output_type -> grpc.ListOrdersPrivateResponse
+	177, // 548: grpc.BillingService.FindAllOrders:output_type -> grpc.ListOrdersResponse
+	97,  // 549: grpc.BillingService.IsOrderCanBePaying:output_type -> grpc.IsOrderCanBePayingResponse
+	374, // 550: grpc.BillingService.GetPriceGroup:output_type -> billing.PriceGroup
+	374, // 551: grpc.BillingService.UpdatePriceGroup:output_type -> billing.PriceGroup
+	374, // 552: grpc.BillingService.GetPriceGroupByCountry:output_type -> billing.PriceGroup
+	132, // 553: grpc.BillingService.GetPriceGroupCurrencies:output_type -> grpc.PriceGroupCurrenciesResponse
+	132, // 554: grpc.BillingService.GetPriceGroupCurrencyByRegion:output_type -> grpc.PriceGroupCurrenciesResponse
+	137, // 555: grpc.BillingService.GetRecommendedPriceByPriceGroup:output_type -> grpc.RecommendedPriceResponse
+	137, // 556: grpc.BillingService.GetRecommendedPriceByConversion:output_type -> grpc.RecommendedPriceResponse
+	139, // 557: grpc.BillingService.GetRecommendedPriceTable:output_type -> grpc.RecommendedPriceTableResponse
+	215, // 558: grpc.BillingService.GetPriceGroupByRegion:output_type -> grpc.GetPriceGroupByRegionResponse
+	1,   // 559: grpc.BillingService.SetUserNotifySales:output_type -> grpc.EmptyResponse
+	1,   // 560: grpc.BillingService.SetUserNotifyNewRegion:output_type -> grpc.EmptyResponse
+	105, // 561: grpc.BillingService.CreateOrUpdatePaymentMethod:output_type -> grpc.ChangePaymentMethodResponse
+	106, // 562: grpc.BillingService.CreateOrUpdatePaymentMethodProductionSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
+	102, // 563: grpc.BillingService.GetPaymentMethodProductionSettings:output_type -> grpc.GetPaymentMethodSettingsResponse
+	106, // 564: grpc.BillingService.DeletePaymentMethodProductionSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
+	106, // 565: grpc.BillingService.CreateOrUpdatePaymentMethodTestSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
+	102, // 566: grpc.BillingService.GetPaymentMethodTestSettings:output_type -> grpc.GetPaymentMethodSettingsResponse
+	106, // 567: grpc.BillingService.DeletePaymentMethodTestSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
+	108, // 568: grpc.BillingService.FindByZipCode:output_type -> grpc.FindByZipCodeResponse
+	123, // 569: grpc.BillingService.GetAllPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemListResponse
+	124, // 570: grpc.BillingService.GetPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemResponse
+	124, // 571: grpc.BillingService.SetPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemResponse
+	109, // 572: grpc.BillingService.DeletePaymentChannelCostSystem:output_type -> grpc.ResponseError
+	125, // 573: grpc.BillingService.GetAllPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantListResponse
+	126, // 574: grpc.BillingService.GetPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantResponse
+	126, // 575: grpc.BillingService.SetPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantResponse
+	109, // 576: grpc.BillingService.DeletePaymentChannelCostMerchant:output_type -> grpc.ResponseError
+	127, // 577: grpc.BillingService.GetAllMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemListResponse
+	128, // 578: grpc.BillingService.GetMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemResponse
+	128, // 579: grpc.BillingService.SetMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemResponse
+	109, // 580: grpc.BillingService.DeleteMoneyBackCostSystem:output_type -> grpc.ResponseError
+	129, // 581: grpc.BillingService.GetAllMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantListResponse
+	130, // 582: grpc.BillingService.GetMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantResponse
+	130, // 583: grpc.BillingService.SetMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantResponse
+	109, // 584: grpc.BillingService.DeleteMoneyBackCostMerchant:output_type -> grpc.ResponseError
+	112, // 585: grpc.BillingService.CreateAccountingEntry:output_type -> grpc.CreateAccountingEntryResponse
+	153, // 586: grpc.BillingService.GetUserProfile:output_type -> grpc.GetUserProfileResponse
+	153, // 587: grpc.BillingService.CreateOrUpdateUserProfile:output_type -> grpc.GetUserProfileResponse
+	157, // 588: grpc.BillingService.ConfirmUserEmail:output_type -> grpc.ConfirmUserEmailResponse
+	93,  // 589: grpc.BillingService.CreatePageReview:output_type -> grpc.CheckProjectRequestSignatureResponse
+	113, // 590: grpc.BillingService.CreateRoyaltyReport:output_type -> grpc.CreateRoyaltyReportRequest
+	116, // 591: grpc.BillingService.ListRoyaltyReports:output_type -> grpc.ListRoyaltyReportsResponse
+	120, // 592: grpc.BillingService.GetRoyaltyReport:output_type -> grpc.GetRoyaltyReportResponse
+	109, // 593: grpc.BillingService.ChangeRoyaltyReport:output_type -> grpc.ResponseError
+	160, // 594: grpc.BillingService.ListRoyaltyReportOrders:output_type -> grpc.TransactionsResponse
+	109, // 595: grpc.BillingService.MerchantReviewRoyaltyReport:output_type -> grpc.ResponseError
+	1,   // 596: grpc.BillingService.AutoAcceptRoyaltyReports:output_type -> grpc.EmptyResponse
+	234, // 597: grpc.BillingService.RoyaltyReportPdfUploaded:output_type -> grpc.RoyaltyReportPdfUploadedResponse
+	163, // 598: grpc.BillingService.GetVatReportsDashboard:output_type -> grpc.VatReportsResponse
+	163, // 599: grpc.BillingService.GetVatReportsForCountry:output_type -> grpc.VatReportsResponse
+	278, // 600: grpc.BillingService.GetVatReportTransactions:output_type -> grpc.PrivateTransactionsResponse
+	1,   // 601: grpc.BillingService.ProcessVatReports:output_type -> grpc.EmptyResponse
+	109, // 602: grpc.BillingService.UpdateVatReportStatus:output_type -> grpc.ResponseError
+	277, // 603: grpc.BillingService.GetVatReport:output_type -> grpc.VatReportResponse
+	1,   // 604: grpc.BillingService.CalcAnnualTurnovers:output_type -> grpc.EmptyResponse
+	167, // 605: grpc.BillingService.GetMerchantOnboardingCompleteData:output_type -> grpc.GetMerchantOnboardingCompleteDataResponse
+	15,  // 606: grpc.BillingService.CreateOrUpdateKeyProduct:output_type -> grpc.KeyProductResponse
+	21,  // 607: grpc.BillingService.GetKeyProducts:output_type -> grpc.ListKeyProductsResponse
+	15,  // 608: grpc.BillingService.GetKeyProduct:output_type -> grpc.KeyProductResponse
+	2,   // 609: grpc.BillingService.DeleteKeyProduct:output_type -> grpc.EmptyResponseWithStatus
+	15,  // 610: grpc.BillingService.PublishKeyProduct:output_type -> grpc.KeyProductResponse
+	15,  // 611: grpc.BillingService.UnPublishKeyProduct:output_type -> grpc.KeyProductResponse
+	21,  // 612: grpc.BillingService.GetKeyProductsForOrder:output_type -> grpc.ListKeyProductsResponse
+	79,  // 613: grpc.BillingService.GetKeyProductInfo:output_type -> grpc.GetKeyProductInfoResponse
+	20,  // 614: grpc.BillingService.GetPlatforms:output_type -> grpc.ListPlatformsResponse
+	6,   // 615: grpc.BillingService.GetAvailableKeysCount:output_type -> grpc.GetPlatformKeyCountResponse
+	11,  // 616: grpc.BillingService.UploadKeysFile:output_type -> grpc.PlatformKeysFileResponse
+	8,   // 617: grpc.BillingService.GetKeyByID:output_type -> grpc.GetKeyForOrderRequestResponse
+	9,   // 618: grpc.BillingService.ReserveKeyForOrder:output_type -> grpc.PlatformKeyReserveResponse
+	8,   // 619: grpc.BillingService.FinishRedeemKeyForOrder:output_type -> grpc.GetKeyForOrderRequestResponse
+	2,   // 620: grpc.BillingService.CancelRedeemKeyForOrder:output_type -> grpc.EmptyResponseWithStatus
+	5,   // 621: grpc.BillingService.ChangeCodeInOrder:output_type -> grpc.ChangeCodeInOrderResponse
+	181, // 622: grpc.BillingService.GetDashboardMainReport:output_type -> grpc.GetDashboardMainResponse
+	184, // 623: grpc.BillingService.GetDashboardRevenueDynamicsReport:output_type -> grpc.GetDashboardRevenueDynamicsReportResponse
+	183, // 624: grpc.BillingService.GetDashboardBaseReport:output_type -> grpc.GetDashboardBaseReportResponse
+	283, // 625: grpc.BillingService.GetDashboardCustomersReport:output_type -> grpc.GetDashboardCustomerReportResponse
+	285, // 626: grpc.BillingService.GetDashboardCustomerArpu:output_type -> grpc.DashboardCustomerReportArpuResponse
+	201, // 627: grpc.BillingService.CreatePayoutDocument:output_type -> grpc.CreatePayoutDocumentResponse
+	200, // 628: grpc.BillingService.UpdatePayoutDocument:output_type -> grpc.PayoutDocumentResponse
+	206, // 629: grpc.BillingService.GetPayoutDocuments:output_type -> grpc.GetPayoutDocumentsResponse
+	200, // 630: grpc.BillingService.GetPayoutDocument:output_type -> grpc.PayoutDocumentResponse
+	116, // 631: grpc.BillingService.GetPayoutDocumentRoyaltyReports:output_type -> grpc.ListRoyaltyReportsResponse
+	211, // 632: grpc.BillingService.PayoutDocumentPdfUploaded:output_type -> grpc.PayoutDocumentPdfUploadedResponse
+	1,   // 633: grpc.BillingService.AutoCreatePayoutDocuments:output_type -> grpc.EmptyResponse
+	209, // 634: grpc.BillingService.GetMerchantBalance:output_type -> grpc.GetMerchantBalanceResponse
+	57,  // 635: grpc.BillingService.PaymentFormPlatformChanged:output_type -> grpc.PaymentFormDataChangeResponse
+	2,   // 636: grpc.BillingService.CheckSkuAndKeyProject:output_type -> grpc.EmptyResponseWithStatus
+	223, // 637: grpc.BillingService.GetPaylinks:output_type -> grpc.GetPaylinksResponse
+	226, // 638: grpc.BillingService.GetPaylink:output_type -> grpc.GetPaylinkResponse
+	1,   // 639: grpc.BillingService.IncrPaylinkVisits:output_type -> grpc.EmptyResponse
+	228, // 640: grpc.BillingService.GetPaylinkURL:output_type -> grpc.GetPaylinkUrlResponse
+	226, // 641: grpc.BillingService.CreateOrUpdatePaylink:output_type -> grpc.GetPaylinkResponse
+	2,   // 642: grpc.BillingService.DeletePaylink:output_type -> grpc.EmptyResponseWithStatus
+	231, // 643: grpc.BillingService.GetPaylinkStatTotal:output_type -> grpc.GetPaylinkStatCommonResponse
+	232, // 644: grpc.BillingService.GetPaylinkStatByCountry:output_type -> grpc.GetPaylinkStatCommonGroupResponse
+	232, // 645: grpc.BillingService.GetPaylinkStatByReferrer:output_type -> grpc.GetPaylinkStatCommonGroupResponse
+	232, // 646: grpc.BillingService.GetPaylinkStatByDate:output_type -> grpc.GetPaylinkStatCommonGroupResponse
+	232, // 647: grpc.BillingService.GetPaylinkStatByUtm:output_type -> grpc.GetPaylinkStatCommonGroupResponse
+	160, // 648: grpc.BillingService.GetPaylinkTransactions:output_type -> grpc.TransactionsResponse
+	2,   // 649: grpc.BillingService.DeleteSavedCard:output_type -> grpc.EmptyResponseWithStatus
+	236, // 650: grpc.BillingService.GetOperatingCompaniesList:output_type -> grpc.GetOperatingCompaniesListResponse
+	2,   // 651: grpc.BillingService.AddOperatingCompany:output_type -> grpc.EmptyResponseWithStatus
+	243, // 652: grpc.BillingService.GetOperatingCompany:output_type -> grpc.GetOperatingCompanyResponse
+	237, // 653: grpc.BillingService.GetPaymentMinLimitsSystem:output_type -> grpc.GetPaymentMinLimitsSystemResponse
+	2,   // 654: grpc.BillingService.SetPaymentMinLimitSystem:output_type -> grpc.EmptyResponseWithStatus
+	246, // 655: grpc.BillingService.GetMerchantUsers:output_type -> grpc.GetMerchantUsersResponse
+	261, // 656: grpc.BillingService.GetAdminUsers:output_type -> grpc.GetAdminUsersResponse
+	248, // 657: grpc.BillingService.InviteUserMerchant:output_type -> grpc.InviteUserMerchantResponse
+	250, // 658: grpc.BillingService.InviteUserAdmin:output_type -> grpc.InviteUserAdminResponse
+	2,   // 659: grpc.BillingService.ResendInviteMerchant:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 660: grpc.BillingService.ResendInviteAdmin:output_type -> grpc.EmptyResponseWithStatus
+	260, // 661: grpc.BillingService.AcceptInvite:output_type -> grpc.AcceptInviteResponse
+	258, // 662: grpc.BillingService.CheckInviteToken:output_type -> grpc.CheckInviteTokenResponse
+	263, // 663: grpc.BillingService.GetMerchantsForUser:output_type -> grpc.GetMerchantsForUserResponse
+	2,   // 664: grpc.BillingService.ChangeRoleForMerchantUser:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 665: grpc.BillingService.ChangeRoleForAdminUser:output_type -> grpc.EmptyResponseWithStatus
+	268, // 666: grpc.BillingService.GetRoleList:output_type -> grpc.GetRoleListResponse
+	2,   // 667: grpc.BillingService.DeleteMerchantUser:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 668: grpc.BillingService.DeleteAdminUser:output_type -> grpc.EmptyResponseWithStatus
+	272, // 669: grpc.BillingService.GetMerchantUserRole:output_type -> grpc.UserRoleResponse
+	272, // 670: grpc.BillingService.GetAdminUserRole:output_type -> grpc.UserRoleResponse
+	150, // 671: grpc.BillingService.GetCommonUserProfile:output_type -> grpc.CommonUserProfileResponse
+	272, // 672: grpc.BillingService.GetAdminByUserId:output_type -> grpc.UserRoleResponse
+	220, // 673: grpc.BillingService.SendWebhookToMerchant:output_type -> grpc.SendWebhookToMerchantResponse
+	2,   // 674: grpc.BillingService.NotifyWebhookTestResults:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 675: grpc.BillingService.RoyaltyReportFinanceDone:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 676: grpc.BillingService.PayoutFinanceDone:output_type -> grpc.EmptyResponseWithStatus
+	282, // 677: grpc.BillingService.GetActOfCompletion:output_type -> grpc.ActOfCompletionResponse
+	2,   // 678: grpc.BillingService.SetCustomerPaymentActivity:output_type -> grpc.EmptyResponseWithStatus
+	291, // 679: grpc.BillingService.GetCustomerList:output_type -> grpc.ListCustomersResponse
+	294, // 680: grpc.BillingService.GetCustomerInfo:output_type -> grpc.GetCustomerInfoResponse
+	296, // 681: grpc.BillingService.DeserializeCookie:output_type -> grpc.DeserializeCookieResponse
+	2,   // 682: grpc.BillingService.DeleteCustomerCard:output_type -> grpc.EmptyResponseWithStatus
+	299, // 683: grpc.BillingService.GetSubscription:output_type -> grpc.GetSubscriptionResponse
+	303, // 684: grpc.BillingService.GetCustomerShortInfo:output_type -> grpc.GetCustomerShortInfoResponse
+	306, // 685: grpc.BillingService.GetSubscriptionOrders:output_type -> grpc.GetSubscriptionOrdersResponse
+	2,   // 686: grpc.BillingService.DeleteRecurringSubscription:output_type -> grpc.EmptyResponseWithStatus
+	301, // 687: grpc.BillingService.FindSubscriptions:output_type -> grpc.FindSubscriptionsResponse
+	494, // [494:688] is the sub-list for method output_type
+	300, // [300:494] is the sub-list for method input_type
+	300, // [300:300] is the sub-list for extension type_name
+	300, // [300:300] is the sub-list for extension extendee
+	0,   // [0:300] is the sub-list for field type_name
 }
 
 func init() { file_grpc_proto_init() }
@@ -29958,7 +30096,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[240].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetOperatingCompanyRequest); i {
+			switch v := v.(*SetMerchantAcceptedStatusRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -29970,7 +30108,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[241].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetOperatingCompanyResponse); i {
+			switch v := v.(*SetMerchantAcceptedStatusResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -29982,7 +30120,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[242].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OrderReCreateProcessRequest); i {
+			switch v := v.(*GetOperatingCompanyRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -29994,7 +30132,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[243].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetMerchantUsersRequest); i {
+			switch v := v.(*GetOperatingCompanyResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30006,7 +30144,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[244].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetMerchantUsersResponse); i {
+			switch v := v.(*OrderReCreateProcessRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30018,7 +30156,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[245].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InviteUserMerchantRequest); i {
+			switch v := v.(*GetMerchantUsersRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30030,7 +30168,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[246].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InviteUserMerchantResponse); i {
+			switch v := v.(*GetMerchantUsersResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30042,7 +30180,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[247].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InviteUserAdminRequest); i {
+			switch v := v.(*InviteUserMerchantRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30054,7 +30192,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[248].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*InviteUserAdminResponse); i {
+			switch v := v.(*InviteUserMerchantResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30066,7 +30204,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[249].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResendInviteMerchantRequest); i {
+			switch v := v.(*InviteUserAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30078,7 +30216,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[250].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResendInviteAdminRequest); i {
+			switch v := v.(*InviteUserAdminResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30090,7 +30228,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[251].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetMerchantUserRequest); i {
+			switch v := v.(*ResendInviteMerchantRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30102,7 +30240,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[252].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetMerchantUserResponse); i {
+			switch v := v.(*ResendInviteAdminRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30114,7 +30252,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[253].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAdminUserRequest); i {
+			switch v := v.(*GetMerchantUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30126,7 +30264,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[254].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAdminUserResponse); i {
+			switch v := v.(*GetMerchantUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30138,7 +30276,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[255].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckInviteTokenRequest); i {
+			switch v := v.(*GetAdminUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30150,7 +30288,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[256].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CheckInviteTokenResponse); i {
+			switch v := v.(*GetAdminUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30162,7 +30300,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[257].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AcceptInviteRequest); i {
+			switch v := v.(*CheckInviteTokenRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30174,7 +30312,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[258].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AcceptInviteResponse); i {
+			switch v := v.(*CheckInviteTokenResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30186,7 +30324,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[259].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetAdminUsersResponse); i {
+			switch v := v.(*AcceptInviteRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30198,7 +30336,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[260].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetMerchantsForUserRequest); i {
+			switch v := v.(*AcceptInviteResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30210,7 +30348,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[261].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetMerchantsForUserResponse); i {
+			switch v := v.(*GetAdminUsersResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30222,7 +30360,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[262].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MerchantForUserInfo); i {
+			switch v := v.(*GetMerchantsForUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30234,7 +30372,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[263].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangeRoleForMerchantUserRequest); i {
+			switch v := v.(*GetMerchantsForUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30246,7 +30384,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[264].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangeRoleForAdminUserRequest); i {
+			switch v := v.(*MerchantForUserInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30258,7 +30396,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[265].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRoleListRequest); i {
+			switch v := v.(*ChangeRoleForMerchantUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30270,7 +30408,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[266].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRoleListResponse); i {
+			switch v := v.(*ChangeRoleForAdminUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30282,7 +30420,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[267].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AdminRoleRequest); i {
+			switch v := v.(*GetRoleListRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30294,7 +30432,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[268].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MerchantRoleRequest); i {
+			switch v := v.(*GetRoleListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30306,7 +30444,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[269].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Permission); i {
+			switch v := v.(*AdminRoleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30318,7 +30456,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[270].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UserRoleResponse); i {
+			switch v := v.(*MerchantRoleRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30330,7 +30468,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[271].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCountriesListForOrderRequest); i {
+			switch v := v.(*Permission); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30342,7 +30480,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[272].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCountriesListForOrderResponse); i {
+			switch v := v.(*UserRoleResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30354,7 +30492,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[273].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VatReportRequest); i {
+			switch v := v.(*GetCountriesListForOrderRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30366,7 +30504,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[274].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PrivateTransactionsPaginate); i {
+			switch v := v.(*GetCountriesListForOrderResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30378,7 +30516,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[275].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*VatReportResponse); i {
+			switch v := v.(*VatReportRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30390,7 +30528,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[276].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PrivateTransactionsResponse); i {
+			switch v := v.(*PrivateTransactionsPaginate); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30402,7 +30540,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[277].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ReportFinanceDoneRequest); i {
+			switch v := v.(*VatReportResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30414,7 +30552,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[278].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SetCustomerPaymentActivityRequest); i {
+			switch v := v.(*PrivateTransactionsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30426,7 +30564,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[279].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ActOfCompletionRequest); i {
+			switch v := v.(*ReportFinanceDoneRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30438,7 +30576,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[280].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ActOfCompletionResponse); i {
+			switch v := v.(*SetCustomerPaymentActivityRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30450,7 +30588,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[281].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetDashboardCustomerReportResponse); i {
+			switch v := v.(*ActOfCompletionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30462,7 +30600,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[282].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DashboardCustomerReportArpuRequest); i {
+			switch v := v.(*ActOfCompletionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30474,7 +30612,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[283].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DashboardCustomerReportArpuResponse); i {
+			switch v := v.(*GetDashboardCustomerReportResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30486,7 +30624,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[284].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DashboardCustomerReportRequest); i {
+			switch v := v.(*DashboardCustomerReportArpuRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30498,7 +30636,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[285].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DashboardCustomerReport); i {
+			switch v := v.(*DashboardCustomerReportArpuResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30510,7 +30648,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[286].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Top20Customers); i {
+			switch v := v.(*DashboardCustomerReportRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30522,7 +30660,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[287].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListCustomersRequest); i {
+			switch v := v.(*DashboardCustomerReport); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30534,7 +30672,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[288].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AmountFilter); i {
+			switch v := v.(*Top20Customers); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30546,7 +30684,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[289].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListCustomersResponse); i {
+			switch v := v.(*ListCustomersRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30558,7 +30696,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[290].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ShortCustomerInfo); i {
+			switch v := v.(*AmountFilter); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30570,7 +30708,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[291].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCustomerInfoRequest); i {
+			switch v := v.(*ListCustomersResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30582,7 +30720,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[292].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCustomerInfoResponse); i {
+			switch v := v.(*ShortCustomerInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30594,7 +30732,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[293].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeserializeCookieRequest); i {
+			switch v := v.(*GetCustomerInfoRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30606,7 +30744,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[294].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeserializeCookieResponse); i {
+			switch v := v.(*GetCustomerInfoResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30618,7 +30756,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[295].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteCustomerCardRequest); i {
+			switch v := v.(*DeserializeCookieRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30630,7 +30768,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[296].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubscriptionRequest); i {
+			switch v := v.(*DeserializeCookieResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30642,7 +30780,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[297].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubscriptionResponse); i {
+			switch v := v.(*DeleteCustomerCardRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30654,7 +30792,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[298].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindSubscriptionsRequest); i {
+			switch v := v.(*GetSubscriptionRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30666,7 +30804,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[299].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*FindSubscriptionsResponse); i {
+			switch v := v.(*GetSubscriptionResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30678,7 +30816,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[300].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCustomerShortInfoRequest); i {
+			switch v := v.(*FindSubscriptionsRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30690,7 +30828,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[301].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCustomerShortInfoResponse); i {
+			switch v := v.(*FindSubscriptionsResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30702,7 +30840,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[302].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CustomerShortInfo); i {
+			switch v := v.(*GetCustomerShortInfoRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30714,7 +30852,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[303].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubscriptionOrdersRequest); i {
+			switch v := v.(*GetCustomerShortInfoResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30726,7 +30864,7 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[304].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetSubscriptionOrdersResponse); i {
+			switch v := v.(*CustomerShortInfo); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -30738,6 +30876,30 @@ func file_grpc_proto_init() {
 			}
 		}
 		file_grpc_proto_msgTypes[305].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSubscriptionOrdersRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_grpc_proto_msgTypes[306].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetSubscriptionOrdersResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_grpc_proto_msgTypes[307].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteRecurringSubscriptionRequest); i {
 			case 0:
 				return &v.state
@@ -30756,7 +30918,7 @@ func file_grpc_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_grpc_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   321,
+			NumMessages:   323,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

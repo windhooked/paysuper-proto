@@ -23,6 +23,7 @@ service BillingService {
     rpc ChangeMerchant (OnboardingRequest) returns (ChangeMerchantResponse) {}
     rpc ChangeMerchantStatus (MerchantChangeStatusRequest) returns (ChangeMerchantStatusResponse) {}
     rpc SetMerchantOperatingCompany (SetMerchantOperatingCompanyRequest) returns (SetMerchantOperatingCompanyResponse) {}
+    rpc SetMerchantAcceptedStatus (SetMerchantAcceptedStatusRequest) returns (SetMerchantAcceptedStatusResponse) {}
     rpc ChangeMerchantData (ChangeMerchantDataRequest) returns (ChangeMerchantDataResponse) {}
     rpc SetMerchantS3Agreement (SetMerchantS3AgreementRequest) returns (ChangeMerchantDataResponse) {}
     rpc GetMerchantTariffRates (GetMerchantTariffRatesRequest) returns (GetMerchantTariffRatesResponse) {}
@@ -3080,6 +3081,17 @@ message SetMerchantOperatingCompanyRequest {
 }
 
 message SetMerchantOperatingCompanyResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    billing.Merchant item = 3;
+}
+
+message SetMerchantAcceptedStatusRequest {
+    // @inject_tag: json:"id" validate:"required,hexadecimal,len=24" json:"-"
+    string merchant_id = 1;
+}
+
+message SetMerchantAcceptedStatusResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
     billing.Merchant item = 3;
