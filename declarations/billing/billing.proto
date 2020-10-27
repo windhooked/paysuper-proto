@@ -3484,7 +3484,7 @@ message OrderViewPrivate {
     //
     // The order charge.
     OrderViewMoney order_charge = 81;
-    // @inject_tag: json:"payment_ip_country"
+    // @inject_tag: json:"payment_ip_country" bson:"payment_ip_country"
     //
     // The IP address of the country where the order was paid.
     string payment_ip_country = 82;
@@ -3520,18 +3520,26 @@ message OrderViewPrivate {
     //
     // The unique identifier of terminal of payment method
     string payment_method_terminal_id = 90;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"-" bson:"recurring"
     //
     // Exists recurring for order
     bool recurring = 91;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"-" bson:"recurring_id"
     //
     // Recurring identity for order
     string recurring_id = 92;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"-" bson:"royalty_report_id"
     //
     // The royalty report's identifier which include this order
     string royalty_report_id = 93;
+    // @inject_tag: json:"-" bson:"metadata_values"
+    //
+    // Only values from metadata field
+    repeated string metadata_values = 94;
+    // @inject_tag: json:"-" bson:"amount_before_vat"
+    //
+    // The order amount excluding commissions.
+    double amount_before_vat = 95;
 }
 
 message RecommendedPrice {
