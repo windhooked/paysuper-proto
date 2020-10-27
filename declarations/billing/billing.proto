@@ -3528,6 +3528,10 @@ message OrderViewPrivate {
     //
     // Recurring identity for order
     string recurring_id = 92;
+    // @inject_tag: json:"-"
+    //
+    // The royalty report's identifier which include this order
+    string royalty_report_id = 93;
 }
 
 message RecommendedPrice {
