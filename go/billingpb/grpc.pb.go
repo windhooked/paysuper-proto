@@ -21551,10 +21551,12 @@ type FindSubscriptionsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	List    []*RecurringSubscription `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
+	//@inject_tag: json:"list"
+	List    []*RecurringSubscription `protobuf:"bytes,1,rep,name=list,proto3" json:"list"`
 	Message *ResponseErrorMessage    `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 	Status  int32                    `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty"`
-	Count   int32                    `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`
+	//@inject_tag: json:"count"
+	Count int32 `protobuf:"varint,4,opt,name=count,proto3" json:"count"`
 }
 
 func (x *FindSubscriptionsResponse) Reset() {

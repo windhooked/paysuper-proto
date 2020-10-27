@@ -3597,9 +3597,11 @@ message FindSubscriptionsRequest {
 }
 
 message FindSubscriptionsResponse {
+    //@inject_tag: json:"list"
     repeated billing.RecurringSubscription list = 1;
     ResponseErrorMessage message = 2;
     int32 status = 3;
+    //@inject_tag: json:"count"
     int32 count = 4;
 }
 
