@@ -4386,6 +4386,10 @@ message ActOfCompletionDocument {
     //
     // The list of the applied corrections (if any).
     repeated RoyaltyReportCorrectionItem corrections = 5;
+    //@inject_tag: json:"rolling_reserves"
+    //
+    // The list of the applied rolling reserves (if any).
+    repeated RoyaltyReportCorrectionItem rolling_reserves = 6;
 }
 
 message BrowserCookie {
