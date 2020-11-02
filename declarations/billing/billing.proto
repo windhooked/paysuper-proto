@@ -810,7 +810,7 @@ message MerchantShortInfo {
     // @inject_tag: json:"balance"
     //
     // The balance of merchant for payout.
-    float balance = 8;
+    billing.MerchantBalance balance = 8;
 }
 
 message MerchantCommon {
