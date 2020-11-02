@@ -20,6 +20,7 @@ service BillingService {
 
     rpc GetMerchantBy (GetMerchantByRequest) returns (GetMerchantResponse) {}
     rpc ListMerchants (MerchantListingRequest) returns (MerchantListingResponse) {}
+    rpc ListMerchantsForAgreement (MerchantListingRequest) returns (ListMerchantsForAgreementResponse) {}
     rpc ChangeMerchant (OnboardingRequest) returns (ChangeMerchantResponse) {}
     rpc ChangeMerchantStatus (MerchantChangeStatusRequest) returns (ChangeMerchantStatusResponse) {}
     rpc SetMerchantOperatingCompany (SetMerchantOperatingCompanyRequest) returns (SetMerchantOperatingCompanyResponse) {}
@@ -757,6 +758,17 @@ message MerchantListingRequest {
 }
 
 message MerchantListingResponse {
+    // @inject_tag: json:"count"
+    //
+    // The total number of the merchants.
+    int64 count = 1;
+    // @inject_tag: json:"items"
+    //
+    // The merchants list.
+    repeated billing.MerchantShortInfo items = 2;
+}
+
+message ListMerchantsForAgreementResponse {
     // @inject_tag: json:"count"
     //
     // The total number of the merchants.
