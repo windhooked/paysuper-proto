@@ -3159,6 +3159,21 @@ message OrderViewPublic {
     //
     // Recurring identity for order
     string recurring_id = 54;
+
+    // @inject_tag: json:"payment_gross_revenue" bson:"payment_gross_revenue"
+    //
+    // The gross revenue from the payment.
+    OrderViewMoney payment_gross_revenue = 55;
+
+    // @inject_tag: json:"payment_refund_gross_revenue" bson:"payment_refund_gross_revenue"
+    //
+    // The gross revenue of the payment refund.
+    OrderViewMoney payment_refund_gross_revenue = 56;
+
+    // @inject_tag: json:"refund_tax_fee_total" bson:"refund_tax_fee_total"
+    //
+    // The total refund tax fee.
+    OrderViewMoney refund_tax_fee_total = 57;
 }
 
 message OrderViewPrivate {
