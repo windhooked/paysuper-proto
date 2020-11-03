@@ -772,6 +772,47 @@ message Merchant {
     bool dont_charge_vat = 58;
 }
 
+message MerchantShortInfo {
+    // @inject_tag: bson:"_id" faker:"objectIdString"
+    //
+    // The unique identifier for the merchant.
+    string id = 1;
+    // @inject_tag: json:"user"
+    //
+    // Information about the merchant owner from the primary onboarding profile.
+    MerchantUser user = 2;
+    // @inject_tag: json:"company"
+    //
+    // Information about the merchant's company.
+    MerchantCompanyInfo company = 3;
+    // @inject_tag: json:"contacts"
+    //
+    // The merchant's contacts.
+    MerchantContact contacts = 4;
+    // @inject_tag: json:"banking"
+    //
+    // The merchant's banking data.
+    MerchantBanking banking = 5;
+    // @inject_tag: json:"status"
+    //
+    // The merchant's status. Available values: 0 - The merchant've just been created and the merchant profile have not been filled yet.
+    //3 - The agreement with the merchant is signed by the merchant owner.
+    //4 - The agreement with the merchant is signed by PaySuper.
+    //5 - The merchant is removed.
+    //6 - The merchant is marked as a fraud and will be removed.
+    //7 - The merchant must fill the onboarding.
+    //8 - The merchant has passed the onboarding and is waiting the agreement to be signed.
+    int32 status = 6;
+    // @inject_tag: json:"created_at"
+    //
+    // The date of the merchant creation.
+    google.protobuf.Timestamp created_at = 7;
+    // @inject_tag: json:"balance"
+    //
+    // The balance of merchant for payout.
+    billing.MerchantBalance balance = 8;
+}
+
 message MerchantCommon {
     // @inject_tag: bson:"_id"
     string id = 1;

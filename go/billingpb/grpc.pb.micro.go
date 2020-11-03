@@ -45,6 +45,7 @@ type BillingService interface {
 	UpdateOrder(ctx context.Context, in *Order, opts ...client.CallOption) (*EmptyResponse, error)
 	GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, opts ...client.CallOption) (*GetMerchantResponse, error)
 	ListMerchants(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*MerchantListingResponse, error)
+	ListMerchantsForAgreement(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*ListMerchantsForAgreementResponse, error)
 	ChangeMerchant(ctx context.Context, in *OnboardingRequest, opts ...client.CallOption) (*ChangeMerchantResponse, error)
 	ChangeMerchantStatus(ctx context.Context, in *MerchantChangeStatusRequest, opts ...client.CallOption) (*ChangeMerchantStatusResponse, error)
 	SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*SetMerchantOperatingCompanyResponse, error)
@@ -342,6 +343,16 @@ func (c *billingService) GetMerchantBy(ctx context.Context, in *GetMerchantByReq
 func (c *billingService) ListMerchants(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*MerchantListingResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.ListMerchants", in)
 	out := new(MerchantListingResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) ListMerchantsForAgreement(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*ListMerchantsForAgreementResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.ListMerchantsForAgreement", in)
+	out := new(ListMerchantsForAgreementResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2202,6 +2213,7 @@ type BillingServiceHandler interface {
 	UpdateOrder(context.Context, *Order, *EmptyResponse) error
 	GetMerchantBy(context.Context, *GetMerchantByRequest, *GetMerchantResponse) error
 	ListMerchants(context.Context, *MerchantListingRequest, *MerchantListingResponse) error
+	ListMerchantsForAgreement(context.Context, *MerchantListingRequest, *ListMerchantsForAgreementResponse) error
 	ChangeMerchant(context.Context, *OnboardingRequest, *ChangeMerchantResponse) error
 	ChangeMerchantStatus(context.Context, *MerchantChangeStatusRequest, *ChangeMerchantStatusResponse) error
 	SetMerchantOperatingCompany(context.Context, *SetMerchantOperatingCompanyRequest, *SetMerchantOperatingCompanyResponse) error
@@ -2400,6 +2412,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		UpdateOrder(ctx context.Context, in *Order, out *EmptyResponse) error
 		GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, out *GetMerchantResponse) error
 		ListMerchants(ctx context.Context, in *MerchantListingRequest, out *MerchantListingResponse) error
+		ListMerchantsForAgreement(ctx context.Context, in *MerchantListingRequest, out *ListMerchantsForAgreementResponse) error
 		ChangeMerchant(ctx context.Context, in *OnboardingRequest, out *ChangeMerchantResponse) error
 		ChangeMerchantStatus(ctx context.Context, in *MerchantChangeStatusRequest, out *ChangeMerchantStatusResponse) error
 		SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, out *SetMerchantOperatingCompanyResponse) error
@@ -2634,6 +2647,10 @@ func (h *billingServiceHandler) GetMerchantBy(ctx context.Context, in *GetMercha
 
 func (h *billingServiceHandler) ListMerchants(ctx context.Context, in *MerchantListingRequest, out *MerchantListingResponse) error {
 	return h.BillingServiceHandler.ListMerchants(ctx, in, out)
+}
+
+func (h *billingServiceHandler) ListMerchantsForAgreement(ctx context.Context, in *MerchantListingRequest, out *ListMerchantsForAgreementResponse) error {
+	return h.BillingServiceHandler.ListMerchantsForAgreement(ctx, in, out)
 }
 
 func (h *billingServiceHandler) ChangeMerchant(ctx context.Context, in *OnboardingRequest, out *ChangeMerchantResponse) error {
