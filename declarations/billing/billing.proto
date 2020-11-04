@@ -2801,6 +2801,14 @@ message RoyaltyReport {
     //
     // The unique identifier for the operating company.
     string operating_company_id = 19;
+    // @inject_tag: json:"string_period_from" bson:"string_period_from"
+    //
+    // Period from in string format.
+    string string_period_from = 20;
+    // @inject_tag: json:"string_period_to" bson:"string_period_to"
+    //
+    // Period to in string format.
+    string string_period_to = 21;
 }
 
 message RoyaltyReportChanges {
@@ -3873,6 +3881,14 @@ message PayoutDocument {
     //
     // The autoincrement unique identifier for the payout document.
     int64 autoincrement_id = 29;
+    // @inject_tag: json:"string_period_from" bson:"string_period_from"
+    //
+    // Period from in string format.
+    string string_period_from = 30;
+    // @inject_tag: json:"string_period_to" bson:"string_period_to"
+    //
+    // Period to in string format.
+    string string_period_to = 31;
 }
 
 message PayoutDocumentChanges {
