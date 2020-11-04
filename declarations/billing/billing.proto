@@ -4485,3 +4485,14 @@ message CustomerInfo {
     string email = 2;
     string phone = 3;
 }
+
+message MerchantDocument {
+    string id = 1;
+    string merchant_id = 2;
+    string user_id = 3;
+    string original_name = 4;
+    // @inject_tag: json:"-"
+    string file_path = 5;
+    string description = 6;
+    google.protobuf.Timestamp created_at = 7;
+}
