@@ -3675,9 +3675,9 @@ message GetMerchantDocumentsRequest {
     // @inject_tag: param:"merchant_id"
     string merchant_id = 1;
     // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
-    int32 limit = 2;
+    int64 limit = 2;
     // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
-    int32 offset = 3;
+    int64 offset = 3;
 }
 
 message GetMerchantDocumentsResponse {
