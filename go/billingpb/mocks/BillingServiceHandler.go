@@ -29,6 +29,20 @@ func (_m *BillingServiceHandler) AcceptInvite(_a0 context.Context, _a1 *billingp
 	return r0
 }
 
+// AddMerchantDocument provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) AddMerchantDocument(_a0 context.Context, _a1 *billingpb.MerchantDocument, _a2 *billingpb.AddMerchantDocumentResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.MerchantDocument, *billingpb.AddMerchantDocumentResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // AddOperatingCompany provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) AddOperatingCompany(_a0 context.Context, _a1 *billingpb.OperatingCompany, _a2 *billingpb.EmptyResponseWithStatus) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -1183,6 +1197,34 @@ func (_m *BillingServiceHandler) GetMerchantBy(_a0 context.Context, _a1 *billing
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetMerchantByRequest, *billingpb.GetMerchantResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// GetMerchantDocument provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetMerchantDocument(_a0 context.Context, _a1 *billingpb.GetMerchantDocumentRequest, _a2 *billingpb.GetMerchantDocumentResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetMerchantDocumentRequest, *billingpb.GetMerchantDocumentResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// GetMerchantDocuments provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetMerchantDocuments(_a0 context.Context, _a1 *billingpb.GetMerchantDocumentsRequest, _a2 *billingpb.GetMerchantDocumentsResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetMerchantDocumentsRequest, *billingpb.GetMerchantDocumentsResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
