@@ -18459,14 +18459,34 @@ type MerchantDocument struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id           string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	MerchantId   string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty"`
-	UserId       string `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	OriginalName string `protobuf:"bytes,4,opt,name=original_name,json=originalName,proto3" json:"original_name,omitempty"`
+	// @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+	//
+	// The unique identifier for the merchant document.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"`
+	// @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	//
+	// The merchant identifier for the document.
+	MerchantId string `protobuf:"bytes,2,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
+	// @inject_tag: json:"user_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	//
+	// ID of the user who added the document.
+	UserId string `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
+	// @inject_tag: json:"original_name" validate:"required"
+	//
+	// Original uploaded file name.
+	OriginalName string `protobuf:"bytes,4,opt,name=original_name,json=originalName,proto3" json:"original_name" validate:"required"`
 	// @inject_tag: json:"-"
-	FilePath    string               `protobuf:"bytes,5,opt,name=file_path,json=filePath,proto3" json:"-"`
-	Description string               `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
-	CreatedAt   *timestamp.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	//
+	// The path to the saved file in the S3 storage.
+	FilePath string `protobuf:"bytes,5,opt,name=file_path,json=filePath,proto3" json:"-"`
+	// @inject_tag: json:"description" validate:"omitempty"
+	//
+	// The optional description for file.
+	Description string `protobuf:"bytes,6,opt,name=description,proto3" json:"description" validate:"omitempty"`
+	// @inject_tag: json:"created_at"
+	//
+	// The date of the merchant document creation.
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
 }
 
 func (x *MerchantDocument) Reset() {
