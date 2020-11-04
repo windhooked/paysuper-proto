@@ -247,7 +247,7 @@ service BillingService {
     rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
     rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
 
-    rpc AddMerchantDocuments(billing.MerchantDocuments) returns (AddMerchantDocumentsResponse) {}
+    rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
     rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
     rpc GetMerchantDocument(GetMerchantDocumentRequest) returns (GetMerchantDocumentResponse) {}
 }
@@ -3665,7 +3665,7 @@ message DeleteRecurringSubscriptionRequest {
   string merchant_id = 4;
 }
 
-message AddMerchantDocumentsResponse {
+message AddMerchantDocumentResponse {
     billing.MerchantDocument item = 1;
     ResponseErrorMessage message = 2;
     int32 status = 3;
