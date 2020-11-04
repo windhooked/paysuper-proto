@@ -230,6 +230,9 @@ type BillingService interface {
 	GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error)
 	DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
+	AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error)
+	GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error)
+	GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error)
 }
 
 type billingService struct {
@@ -2200,6 +2203,36 @@ func (c *billingService) FindSubscriptions(ctx context.Context, in *FindSubscrip
 	return out, nil
 }
 
+func (c *billingService) AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.AddMerchantDocument", in)
+	out := new(AddMerchantDocumentResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetMerchantDocuments", in)
+	out := new(GetMerchantDocumentsResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetMerchantDocument", in)
+	out := new(GetMerchantDocumentResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for BillingService service
 
 type BillingServiceHandler interface {
@@ -2398,6 +2431,9 @@ type BillingServiceHandler interface {
 	GetSubscriptionOrders(context.Context, *GetSubscriptionOrdersRequest, *GetSubscriptionOrdersResponse) error
 	DeleteRecurringSubscription(context.Context, *DeleteRecurringSubscriptionRequest, *EmptyResponseWithStatus) error
 	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
+	AddMerchantDocument(context.Context, *MerchantDocument, *AddMerchantDocumentResponse) error
+	GetMerchantDocuments(context.Context, *GetMerchantDocumentsRequest, *GetMerchantDocumentsResponse) error
+	GetMerchantDocument(context.Context, *GetMerchantDocumentRequest, *GetMerchantDocumentResponse) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2597,6 +2633,9 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error
 		DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error
 		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
+		AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error
+		GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error
+		GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error
 	}
 	type BillingService struct {
 		billingService
@@ -3387,4 +3426,16 @@ func (h *billingServiceHandler) DeleteRecurringSubscription(ctx context.Context,
 
 func (h *billingServiceHandler) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error {
 	return h.BillingServiceHandler.FindSubscriptions(ctx, in, out)
+}
+
+func (h *billingServiceHandler) AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error {
+	return h.BillingServiceHandler.AddMerchantDocument(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error {
+	return h.BillingServiceHandler.GetMerchantDocuments(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error {
+	return h.BillingServiceHandler.GetMerchantDocument(ctx, in, out)
 }
