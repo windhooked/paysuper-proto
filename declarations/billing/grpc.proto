@@ -246,6 +246,10 @@ service BillingService {
     rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
     rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
     rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
+
+    rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
+    rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
+    rpc GetMerchantDocument(GetMerchantDocumentRequest) returns (GetMerchantDocumentResponse) {}
 }
 
 message EmptyRequest {}
