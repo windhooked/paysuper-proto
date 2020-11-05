@@ -25472,7 +25472,7 @@ var file_grpc_proto_rawDesc = []byte{
 	0x32, 0x1a, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
 	0x45, 0x72, 0x72, 0x6f, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x07, 0x6d, 0x65,
 	0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
-	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x32, 0xfb, 0x8a,
+	0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x32, 0xe5, 0x88,
 	0x01, 0x0a, 0x0e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
 	0x65, 0x12, 0x59, 0x0a, 0x14, 0x4f, 0x72, 0x64, 0x65, 0x72, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x42, 0x79, 0x50, 0x61, 0x79, 0x6c, 0x69, 0x6e, 0x6b, 0x12, 0x1d, 0x2e, 0x62, 0x69, 0x6c, 0x6c,
@@ -26567,26 +26567,8 @@ var file_grpc_proto_rawDesc = []byte{
 	0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71, 0x75,
 	0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e, 0x46, 0x69, 0x6e, 0x64, 0x53,
 	0x75, 0x62, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x55, 0x0a, 0x13, 0x41, 0x64, 0x64, 0x4d, 0x65, 0x72,
-	0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x19, 0x2e,
-	0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74,
-	0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74, 0x1a, 0x21, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e,
-	0x41, 0x64, 0x64, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x6f, 0x63, 0x75, 0x6d,
-	0x65, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x5f, 0x0a,
-	0x14, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x6f, 0x63, 0x75,
-	0x6d, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x21, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e, 0x47, 0x65, 0x74,
-	0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74,
-	0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x22, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e,
-	0x47, 0x65, 0x74, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x6f, 0x63, 0x75, 0x6d,
-	0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x5c,
-	0x0a, 0x13, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x6f, 0x63,
-	0x75, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0x20, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e, 0x47, 0x65, 0x74,
-	0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65, 0x6e, 0x74,
-	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x2e, 0x47,
-	0x65, 0x74, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x44, 0x6f, 0x63, 0x75, 0x6d, 0x65,
-	0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0d, 0x5a, 0x0b,
-	0x2e, 0x3b, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x42, 0x0d, 0x5a, 0x0b, 0x2e, 0x3b, 0x62, 0x69, 0x6c, 0x6c,
+	0x69, 0x6e, 0x67, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -27515,209 +27497,203 @@ var file_grpc_proto_depIdxs = []int32{
 	306, // 499: grpc.BillingService.GetSubscriptionOrders:input_type -> grpc.GetSubscriptionOrdersRequest
 	308, // 500: grpc.BillingService.DeleteRecurringSubscription:input_type -> grpc.DeleteRecurringSubscriptionRequest
 	301, // 501: grpc.BillingService.FindSubscriptions:input_type -> grpc.FindSubscriptionsRequest
-	394, // 502: grpc.BillingService.AddMerchantDocument:input_type -> billing.MerchantDocument
-	310, // 503: grpc.BillingService.GetMerchantDocuments:input_type -> grpc.GetMerchantDocumentsRequest
-	312, // 504: grpc.BillingService.GetMerchantDocument:input_type -> grpc.GetMerchantDocumentRequest
-	68,  // 505: grpc.BillingService.OrderCreateByPaylink:output_type -> grpc.OrderCreateProcessResponse
-	68,  // 506: grpc.BillingService.OrderCreateProcess:output_type -> grpc.OrderCreateProcessResponse
-	28,  // 507: grpc.BillingService.PaymentFormJsonDataProcess:output_type -> grpc.PaymentFormJsonDataResponse
-	24,  // 508: grpc.BillingService.PaymentCreateProcess:output_type -> grpc.PaymentCreateResponse
-	30,  // 509: grpc.BillingService.PaymentCallbackProcess:output_type -> grpc.PaymentNotifyResponse
-	214, // 510: grpc.BillingService.OrderReceipt:output_type -> grpc.OrderReceiptResponse
-	68,  // 511: grpc.BillingService.OrderReCreateProcess:output_type -> grpc.OrderCreateProcessResponse
-	1,   // 512: grpc.BillingService.UpdateOrder:output_type -> grpc.EmptyResponse
-	46,  // 513: grpc.BillingService.GetMerchantBy:output_type -> grpc.GetMerchantResponse
-	34,  // 514: grpc.BillingService.ListMerchants:output_type -> grpc.MerchantListingResponse
-	35,  // 515: grpc.BillingService.ListMerchantsForAgreement:output_type -> grpc.ListMerchantsForAgreementResponse
-	65,  // 516: grpc.BillingService.ChangeMerchant:output_type -> grpc.ChangeMerchantResponse
-	66,  // 517: grpc.BillingService.ChangeMerchantStatus:output_type -> grpc.ChangeMerchantStatusResponse
-	240, // 518: grpc.BillingService.SetMerchantOperatingCompany:output_type -> grpc.SetMerchantOperatingCompanyResponse
-	242, // 519: grpc.BillingService.SetMerchantAcceptedStatus:output_type -> grpc.SetMerchantAcceptedStatusResponse
-	64,  // 520: grpc.BillingService.ChangeMerchantData:output_type -> grpc.ChangeMerchantDataResponse
-	64,  // 521: grpc.BillingService.SetMerchantS3Agreement:output_type -> grpc.ChangeMerchantDataResponse
-	171, // 522: grpc.BillingService.GetMerchantTariffRates:output_type -> grpc.GetMerchantTariffRatesResponse
-	94,  // 523: grpc.BillingService.SetMerchantTariffRates:output_type -> grpc.CheckProjectRequestSignatureResponse
-	219, // 524: grpc.BillingService.ChangeMerchantManualPayouts:output_type -> grpc.ChangeMerchantManualPayoutsResponse
-	67,  // 525: grpc.BillingService.CreateNotification:output_type -> grpc.CreateNotificationResponse
-	344, // 526: grpc.BillingService.GetNotification:output_type -> billing.Notification
-	38,  // 527: grpc.BillingService.ListNotifications:output_type -> grpc.Notifications
-	344, // 528: grpc.BillingService.MarkNotificationAsRead:output_type -> billing.Notification
-	40,  // 529: grpc.BillingService.ListMerchantPaymentMethods:output_type -> grpc.ListingMerchantPaymentMethod
-	42,  // 530: grpc.BillingService.GetMerchantPaymentMethod:output_type -> grpc.GetMerchantPaymentMethodResponse
-	45,  // 531: grpc.BillingService.ChangeMerchantPaymentMethod:output_type -> grpc.MerchantPaymentMethodResponse
-	49,  // 532: grpc.BillingService.CreateRefund:output_type -> grpc.CreateRefundResponse
-	51,  // 533: grpc.BillingService.ListRefunds:output_type -> grpc.ListRefundsResponse
-	49,  // 534: grpc.BillingService.GetRefund:output_type -> grpc.CreateRefundResponse
-	30,  // 535: grpc.BillingService.ProcessRefundCallback:output_type -> grpc.PaymentNotifyResponse
-	58,  // 536: grpc.BillingService.PaymentFormLanguageChanged:output_type -> grpc.PaymentFormDataChangeResponse
-	58,  // 537: grpc.BillingService.PaymentFormPaymentAccountChanged:output_type -> grpc.PaymentFormDataChangeResponse
-	61,  // 538: grpc.BillingService.ProcessBillingAddress:output_type -> grpc.ProcessBillingAddressResponse
-	76,  // 539: grpc.BillingService.CreateOrUpdateProduct:output_type -> grpc.Product
-	82,  // 540: grpc.BillingService.ListProducts:output_type -> grpc.ListProductsResponse
-	215, // 541: grpc.BillingService.GetProduct:output_type -> grpc.GetProductResponse
-	1,   // 542: grpc.BillingService.DeleteProduct:output_type -> grpc.EmptyResponse
-	82,  // 543: grpc.BillingService.GetProductsForOrder:output_type -> grpc.ListProductsResponse
-	141, // 544: grpc.BillingService.GetProductPrices:output_type -> grpc.ProductPricesResponse
-	110, // 545: grpc.BillingService.UpdateProductPrices:output_type -> grpc.ResponseError
-	87,  // 546: grpc.BillingService.ChangeProject:output_type -> grpc.ChangeProjectResponse
-	87,  // 547: grpc.BillingService.GetProject:output_type -> grpc.ChangeProjectResponse
-	90,  // 548: grpc.BillingService.ListProjects:output_type -> grpc.ListProjectsResponse
-	87,  // 549: grpc.BillingService.DeleteProject:output_type -> grpc.ChangeProjectResponse
-	92,  // 550: grpc.BillingService.CreateToken:output_type -> grpc.TokenResponse
-	94,  // 551: grpc.BillingService.CheckProjectRequestSignature:output_type -> grpc.CheckProjectRequestSignatureResponse
-	388, // 552: grpc.BillingService.GetCountriesList:output_type -> billing.CountriesList
-	275, // 553: grpc.BillingService.GetCountriesListForOrder:output_type -> grpc.GetCountriesListForOrderResponse
-	398, // 554: grpc.BillingService.GetCountry:output_type -> billing.Country
-	398, // 555: grpc.BillingService.UpdateCountry:output_type -> billing.Country
-	179, // 556: grpc.BillingService.GetOrderPublic:output_type -> grpc.GetOrderPublicResponse
-	180, // 557: grpc.BillingService.GetOrderPrivate:output_type -> grpc.GetOrderPrivateResponse
-	175, // 558: grpc.BillingService.FindAllOrdersPublic:output_type -> grpc.ListOrdersPublicResponse
-	176, // 559: grpc.BillingService.FindAllOrdersPrivate:output_type -> grpc.ListOrdersPrivateResponse
-	178, // 560: grpc.BillingService.FindAllOrders:output_type -> grpc.ListOrdersResponse
-	98,  // 561: grpc.BillingService.IsOrderCanBePaying:output_type -> grpc.IsOrderCanBePayingResponse
-	381, // 562: grpc.BillingService.GetPriceGroup:output_type -> billing.PriceGroup
-	381, // 563: grpc.BillingService.UpdatePriceGroup:output_type -> billing.PriceGroup
-	381, // 564: grpc.BillingService.GetPriceGroupByCountry:output_type -> billing.PriceGroup
-	133, // 565: grpc.BillingService.GetPriceGroupCurrencies:output_type -> grpc.PriceGroupCurrenciesResponse
-	133, // 566: grpc.BillingService.GetPriceGroupCurrencyByRegion:output_type -> grpc.PriceGroupCurrenciesResponse
-	138, // 567: grpc.BillingService.GetRecommendedPriceByPriceGroup:output_type -> grpc.RecommendedPriceResponse
-	138, // 568: grpc.BillingService.GetRecommendedPriceByConversion:output_type -> grpc.RecommendedPriceResponse
-	140, // 569: grpc.BillingService.GetRecommendedPriceTable:output_type -> grpc.RecommendedPriceTableResponse
-	216, // 570: grpc.BillingService.GetPriceGroupByRegion:output_type -> grpc.GetPriceGroupByRegionResponse
-	1,   // 571: grpc.BillingService.SetUserNotifySales:output_type -> grpc.EmptyResponse
-	1,   // 572: grpc.BillingService.SetUserNotifyNewRegion:output_type -> grpc.EmptyResponse
-	106, // 573: grpc.BillingService.CreateOrUpdatePaymentMethod:output_type -> grpc.ChangePaymentMethodResponse
-	107, // 574: grpc.BillingService.CreateOrUpdatePaymentMethodProductionSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
-	103, // 575: grpc.BillingService.GetPaymentMethodProductionSettings:output_type -> grpc.GetPaymentMethodSettingsResponse
-	107, // 576: grpc.BillingService.DeletePaymentMethodProductionSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
-	107, // 577: grpc.BillingService.CreateOrUpdatePaymentMethodTestSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
-	103, // 578: grpc.BillingService.GetPaymentMethodTestSettings:output_type -> grpc.GetPaymentMethodSettingsResponse
-	107, // 579: grpc.BillingService.DeletePaymentMethodTestSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
-	109, // 580: grpc.BillingService.FindByZipCode:output_type -> grpc.FindByZipCodeResponse
-	124, // 581: grpc.BillingService.GetAllPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemListResponse
-	125, // 582: grpc.BillingService.GetPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemResponse
-	125, // 583: grpc.BillingService.SetPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemResponse
-	110, // 584: grpc.BillingService.DeletePaymentChannelCostSystem:output_type -> grpc.ResponseError
-	126, // 585: grpc.BillingService.GetAllPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantListResponse
-	127, // 586: grpc.BillingService.GetPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantResponse
-	127, // 587: grpc.BillingService.SetPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantResponse
-	110, // 588: grpc.BillingService.DeletePaymentChannelCostMerchant:output_type -> grpc.ResponseError
-	128, // 589: grpc.BillingService.GetAllMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemListResponse
-	129, // 590: grpc.BillingService.GetMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemResponse
-	129, // 591: grpc.BillingService.SetMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemResponse
-	110, // 592: grpc.BillingService.DeleteMoneyBackCostSystem:output_type -> grpc.ResponseError
-	130, // 593: grpc.BillingService.GetAllMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantListResponse
-	131, // 594: grpc.BillingService.GetMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantResponse
-	131, // 595: grpc.BillingService.SetMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantResponse
-	110, // 596: grpc.BillingService.DeleteMoneyBackCostMerchant:output_type -> grpc.ResponseError
-	113, // 597: grpc.BillingService.CreateAccountingEntry:output_type -> grpc.CreateAccountingEntryResponse
-	154, // 598: grpc.BillingService.GetUserProfile:output_type -> grpc.GetUserProfileResponse
-	154, // 599: grpc.BillingService.CreateOrUpdateUserProfile:output_type -> grpc.GetUserProfileResponse
-	158, // 600: grpc.BillingService.ConfirmUserEmail:output_type -> grpc.ConfirmUserEmailResponse
-	94,  // 601: grpc.BillingService.CreatePageReview:output_type -> grpc.CheckProjectRequestSignatureResponse
-	114, // 602: grpc.BillingService.CreateRoyaltyReport:output_type -> grpc.CreateRoyaltyReportRequest
-	117, // 603: grpc.BillingService.ListRoyaltyReports:output_type -> grpc.ListRoyaltyReportsResponse
-	121, // 604: grpc.BillingService.GetRoyaltyReport:output_type -> grpc.GetRoyaltyReportResponse
-	110, // 605: grpc.BillingService.ChangeRoyaltyReport:output_type -> grpc.ResponseError
-	161, // 606: grpc.BillingService.ListRoyaltyReportOrders:output_type -> grpc.TransactionsResponse
-	110, // 607: grpc.BillingService.MerchantReviewRoyaltyReport:output_type -> grpc.ResponseError
-	1,   // 608: grpc.BillingService.AutoAcceptRoyaltyReports:output_type -> grpc.EmptyResponse
-	235, // 609: grpc.BillingService.RoyaltyReportPdfUploaded:output_type -> grpc.RoyaltyReportPdfUploadedResponse
-	164, // 610: grpc.BillingService.GetVatReportsDashboard:output_type -> grpc.VatReportsResponse
-	164, // 611: grpc.BillingService.GetVatReportsForCountry:output_type -> grpc.VatReportsResponse
-	279, // 612: grpc.BillingService.GetVatReportTransactions:output_type -> grpc.PrivateTransactionsResponse
-	1,   // 613: grpc.BillingService.ProcessVatReports:output_type -> grpc.EmptyResponse
-	110, // 614: grpc.BillingService.UpdateVatReportStatus:output_type -> grpc.ResponseError
-	278, // 615: grpc.BillingService.GetVatReport:output_type -> grpc.VatReportResponse
-	1,   // 616: grpc.BillingService.CalcAnnualTurnovers:output_type -> grpc.EmptyResponse
-	168, // 617: grpc.BillingService.GetMerchantOnboardingCompleteData:output_type -> grpc.GetMerchantOnboardingCompleteDataResponse
-	15,  // 618: grpc.BillingService.CreateOrUpdateKeyProduct:output_type -> grpc.KeyProductResponse
-	21,  // 619: grpc.BillingService.GetKeyProducts:output_type -> grpc.ListKeyProductsResponse
-	15,  // 620: grpc.BillingService.GetKeyProduct:output_type -> grpc.KeyProductResponse
-	2,   // 621: grpc.BillingService.DeleteKeyProduct:output_type -> grpc.EmptyResponseWithStatus
-	15,  // 622: grpc.BillingService.PublishKeyProduct:output_type -> grpc.KeyProductResponse
-	15,  // 623: grpc.BillingService.UnPublishKeyProduct:output_type -> grpc.KeyProductResponse
-	21,  // 624: grpc.BillingService.GetKeyProductsForOrder:output_type -> grpc.ListKeyProductsResponse
-	80,  // 625: grpc.BillingService.GetKeyProductInfo:output_type -> grpc.GetKeyProductInfoResponse
-	20,  // 626: grpc.BillingService.GetPlatforms:output_type -> grpc.ListPlatformsResponse
-	6,   // 627: grpc.BillingService.GetAvailableKeysCount:output_type -> grpc.GetPlatformKeyCountResponse
-	11,  // 628: grpc.BillingService.UploadKeysFile:output_type -> grpc.PlatformKeysFileResponse
-	8,   // 629: grpc.BillingService.GetKeyByID:output_type -> grpc.GetKeyForOrderRequestResponse
-	9,   // 630: grpc.BillingService.ReserveKeyForOrder:output_type -> grpc.PlatformKeyReserveResponse
-	8,   // 631: grpc.BillingService.FinishRedeemKeyForOrder:output_type -> grpc.GetKeyForOrderRequestResponse
-	2,   // 632: grpc.BillingService.CancelRedeemKeyForOrder:output_type -> grpc.EmptyResponseWithStatus
-	5,   // 633: grpc.BillingService.ChangeCodeInOrder:output_type -> grpc.ChangeCodeInOrderResponse
-	182, // 634: grpc.BillingService.GetDashboardMainReport:output_type -> grpc.GetDashboardMainResponse
-	185, // 635: grpc.BillingService.GetDashboardRevenueDynamicsReport:output_type -> grpc.GetDashboardRevenueDynamicsReportResponse
-	184, // 636: grpc.BillingService.GetDashboardBaseReport:output_type -> grpc.GetDashboardBaseReportResponse
-	284, // 637: grpc.BillingService.GetDashboardCustomersReport:output_type -> grpc.GetDashboardCustomerReportResponse
-	286, // 638: grpc.BillingService.GetDashboardCustomerArpu:output_type -> grpc.DashboardCustomerReportArpuResponse
-	202, // 639: grpc.BillingService.CreatePayoutDocument:output_type -> grpc.CreatePayoutDocumentResponse
-	201, // 640: grpc.BillingService.UpdatePayoutDocument:output_type -> grpc.PayoutDocumentResponse
-	207, // 641: grpc.BillingService.GetPayoutDocuments:output_type -> grpc.GetPayoutDocumentsResponse
-	201, // 642: grpc.BillingService.GetPayoutDocument:output_type -> grpc.PayoutDocumentResponse
-	117, // 643: grpc.BillingService.GetPayoutDocumentRoyaltyReports:output_type -> grpc.ListRoyaltyReportsResponse
-	212, // 644: grpc.BillingService.PayoutDocumentPdfUploaded:output_type -> grpc.PayoutDocumentPdfUploadedResponse
-	1,   // 645: grpc.BillingService.AutoCreatePayoutDocuments:output_type -> grpc.EmptyResponse
-	210, // 646: grpc.BillingService.GetMerchantBalance:output_type -> grpc.GetMerchantBalanceResponse
-	58,  // 647: grpc.BillingService.PaymentFormPlatformChanged:output_type -> grpc.PaymentFormDataChangeResponse
-	2,   // 648: grpc.BillingService.CheckSkuAndKeyProject:output_type -> grpc.EmptyResponseWithStatus
-	224, // 649: grpc.BillingService.GetPaylinks:output_type -> grpc.GetPaylinksResponse
-	227, // 650: grpc.BillingService.GetPaylink:output_type -> grpc.GetPaylinkResponse
-	1,   // 651: grpc.BillingService.IncrPaylinkVisits:output_type -> grpc.EmptyResponse
-	229, // 652: grpc.BillingService.GetPaylinkURL:output_type -> grpc.GetPaylinkUrlResponse
-	227, // 653: grpc.BillingService.CreateOrUpdatePaylink:output_type -> grpc.GetPaylinkResponse
-	2,   // 654: grpc.BillingService.DeletePaylink:output_type -> grpc.EmptyResponseWithStatus
-	232, // 655: grpc.BillingService.GetPaylinkStatTotal:output_type -> grpc.GetPaylinkStatCommonResponse
-	233, // 656: grpc.BillingService.GetPaylinkStatByCountry:output_type -> grpc.GetPaylinkStatCommonGroupResponse
-	233, // 657: grpc.BillingService.GetPaylinkStatByReferrer:output_type -> grpc.GetPaylinkStatCommonGroupResponse
-	233, // 658: grpc.BillingService.GetPaylinkStatByDate:output_type -> grpc.GetPaylinkStatCommonGroupResponse
-	233, // 659: grpc.BillingService.GetPaylinkStatByUtm:output_type -> grpc.GetPaylinkStatCommonGroupResponse
-	161, // 660: grpc.BillingService.GetPaylinkTransactions:output_type -> grpc.TransactionsResponse
-	2,   // 661: grpc.BillingService.DeleteSavedCard:output_type -> grpc.EmptyResponseWithStatus
-	237, // 662: grpc.BillingService.GetOperatingCompaniesList:output_type -> grpc.GetOperatingCompaniesListResponse
-	2,   // 663: grpc.BillingService.AddOperatingCompany:output_type -> grpc.EmptyResponseWithStatus
-	244, // 664: grpc.BillingService.GetOperatingCompany:output_type -> grpc.GetOperatingCompanyResponse
-	238, // 665: grpc.BillingService.GetPaymentMinLimitsSystem:output_type -> grpc.GetPaymentMinLimitsSystemResponse
-	2,   // 666: grpc.BillingService.SetPaymentMinLimitSystem:output_type -> grpc.EmptyResponseWithStatus
-	247, // 667: grpc.BillingService.GetMerchantUsers:output_type -> grpc.GetMerchantUsersResponse
-	262, // 668: grpc.BillingService.GetAdminUsers:output_type -> grpc.GetAdminUsersResponse
-	249, // 669: grpc.BillingService.InviteUserMerchant:output_type -> grpc.InviteUserMerchantResponse
-	251, // 670: grpc.BillingService.InviteUserAdmin:output_type -> grpc.InviteUserAdminResponse
-	2,   // 671: grpc.BillingService.ResendInviteMerchant:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 672: grpc.BillingService.ResendInviteAdmin:output_type -> grpc.EmptyResponseWithStatus
-	261, // 673: grpc.BillingService.AcceptInvite:output_type -> grpc.AcceptInviteResponse
-	259, // 674: grpc.BillingService.CheckInviteToken:output_type -> grpc.CheckInviteTokenResponse
-	264, // 675: grpc.BillingService.GetMerchantsForUser:output_type -> grpc.GetMerchantsForUserResponse
-	2,   // 676: grpc.BillingService.ChangeRoleForMerchantUser:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 677: grpc.BillingService.ChangeRoleForAdminUser:output_type -> grpc.EmptyResponseWithStatus
-	269, // 678: grpc.BillingService.GetRoleList:output_type -> grpc.GetRoleListResponse
-	2,   // 679: grpc.BillingService.DeleteMerchantUser:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 680: grpc.BillingService.DeleteAdminUser:output_type -> grpc.EmptyResponseWithStatus
-	273, // 681: grpc.BillingService.GetMerchantUserRole:output_type -> grpc.UserRoleResponse
-	273, // 682: grpc.BillingService.GetAdminUserRole:output_type -> grpc.UserRoleResponse
-	151, // 683: grpc.BillingService.GetCommonUserProfile:output_type -> grpc.CommonUserProfileResponse
-	273, // 684: grpc.BillingService.GetAdminByUserId:output_type -> grpc.UserRoleResponse
-	221, // 685: grpc.BillingService.SendWebhookToMerchant:output_type -> grpc.SendWebhookToMerchantResponse
-	2,   // 686: grpc.BillingService.NotifyWebhookTestResults:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 687: grpc.BillingService.RoyaltyReportFinanceDone:output_type -> grpc.EmptyResponseWithStatus
-	2,   // 688: grpc.BillingService.PayoutFinanceDone:output_type -> grpc.EmptyResponseWithStatus
-	283, // 689: grpc.BillingService.GetActOfCompletion:output_type -> grpc.ActOfCompletionResponse
-	2,   // 690: grpc.BillingService.SetCustomerPaymentActivity:output_type -> grpc.EmptyResponseWithStatus
-	292, // 691: grpc.BillingService.GetCustomerList:output_type -> grpc.ListCustomersResponse
-	295, // 692: grpc.BillingService.GetCustomerInfo:output_type -> grpc.GetCustomerInfoResponse
-	297, // 693: grpc.BillingService.DeserializeCookie:output_type -> grpc.DeserializeCookieResponse
-	2,   // 694: grpc.BillingService.DeleteCustomerCard:output_type -> grpc.EmptyResponseWithStatus
-	300, // 695: grpc.BillingService.GetSubscription:output_type -> grpc.GetSubscriptionResponse
-	304, // 696: grpc.BillingService.GetCustomerShortInfo:output_type -> grpc.GetCustomerShortInfoResponse
-	307, // 697: grpc.BillingService.GetSubscriptionOrders:output_type -> grpc.GetSubscriptionOrdersResponse
-	2,   // 698: grpc.BillingService.DeleteRecurringSubscription:output_type -> grpc.EmptyResponseWithStatus
-	302, // 699: grpc.BillingService.FindSubscriptions:output_type -> grpc.FindSubscriptionsResponse
-	309, // 700: grpc.BillingService.AddMerchantDocument:output_type -> grpc.AddMerchantDocumentResponse
-	311, // 701: grpc.BillingService.GetMerchantDocuments:output_type -> grpc.GetMerchantDocumentsResponse
-	313, // 702: grpc.BillingService.GetMerchantDocument:output_type -> grpc.GetMerchantDocumentResponse
-	505, // [505:703] is the sub-list for method output_type
-	307, // [307:505] is the sub-list for method input_type
+	68,  // 502: grpc.BillingService.OrderCreateByPaylink:output_type -> grpc.OrderCreateProcessResponse
+	68,  // 503: grpc.BillingService.OrderCreateProcess:output_type -> grpc.OrderCreateProcessResponse
+	28,  // 504: grpc.BillingService.PaymentFormJsonDataProcess:output_type -> grpc.PaymentFormJsonDataResponse
+	24,  // 505: grpc.BillingService.PaymentCreateProcess:output_type -> grpc.PaymentCreateResponse
+	30,  // 506: grpc.BillingService.PaymentCallbackProcess:output_type -> grpc.PaymentNotifyResponse
+	214, // 507: grpc.BillingService.OrderReceipt:output_type -> grpc.OrderReceiptResponse
+	68,  // 508: grpc.BillingService.OrderReCreateProcess:output_type -> grpc.OrderCreateProcessResponse
+	1,   // 509: grpc.BillingService.UpdateOrder:output_type -> grpc.EmptyResponse
+	46,  // 510: grpc.BillingService.GetMerchantBy:output_type -> grpc.GetMerchantResponse
+	34,  // 511: grpc.BillingService.ListMerchants:output_type -> grpc.MerchantListingResponse
+	35,  // 512: grpc.BillingService.ListMerchantsForAgreement:output_type -> grpc.ListMerchantsForAgreementResponse
+	65,  // 513: grpc.BillingService.ChangeMerchant:output_type -> grpc.ChangeMerchantResponse
+	66,  // 514: grpc.BillingService.ChangeMerchantStatus:output_type -> grpc.ChangeMerchantStatusResponse
+	240, // 515: grpc.BillingService.SetMerchantOperatingCompany:output_type -> grpc.SetMerchantOperatingCompanyResponse
+	242, // 516: grpc.BillingService.SetMerchantAcceptedStatus:output_type -> grpc.SetMerchantAcceptedStatusResponse
+	64,  // 517: grpc.BillingService.ChangeMerchantData:output_type -> grpc.ChangeMerchantDataResponse
+	64,  // 518: grpc.BillingService.SetMerchantS3Agreement:output_type -> grpc.ChangeMerchantDataResponse
+	171, // 519: grpc.BillingService.GetMerchantTariffRates:output_type -> grpc.GetMerchantTariffRatesResponse
+	94,  // 520: grpc.BillingService.SetMerchantTariffRates:output_type -> grpc.CheckProjectRequestSignatureResponse
+	219, // 521: grpc.BillingService.ChangeMerchantManualPayouts:output_type -> grpc.ChangeMerchantManualPayoutsResponse
+	67,  // 522: grpc.BillingService.CreateNotification:output_type -> grpc.CreateNotificationResponse
+	344, // 523: grpc.BillingService.GetNotification:output_type -> billing.Notification
+	38,  // 524: grpc.BillingService.ListNotifications:output_type -> grpc.Notifications
+	344, // 525: grpc.BillingService.MarkNotificationAsRead:output_type -> billing.Notification
+	40,  // 526: grpc.BillingService.ListMerchantPaymentMethods:output_type -> grpc.ListingMerchantPaymentMethod
+	42,  // 527: grpc.BillingService.GetMerchantPaymentMethod:output_type -> grpc.GetMerchantPaymentMethodResponse
+	45,  // 528: grpc.BillingService.ChangeMerchantPaymentMethod:output_type -> grpc.MerchantPaymentMethodResponse
+	49,  // 529: grpc.BillingService.CreateRefund:output_type -> grpc.CreateRefundResponse
+	51,  // 530: grpc.BillingService.ListRefunds:output_type -> grpc.ListRefundsResponse
+	49,  // 531: grpc.BillingService.GetRefund:output_type -> grpc.CreateRefundResponse
+	30,  // 532: grpc.BillingService.ProcessRefundCallback:output_type -> grpc.PaymentNotifyResponse
+	58,  // 533: grpc.BillingService.PaymentFormLanguageChanged:output_type -> grpc.PaymentFormDataChangeResponse
+	58,  // 534: grpc.BillingService.PaymentFormPaymentAccountChanged:output_type -> grpc.PaymentFormDataChangeResponse
+	61,  // 535: grpc.BillingService.ProcessBillingAddress:output_type -> grpc.ProcessBillingAddressResponse
+	76,  // 536: grpc.BillingService.CreateOrUpdateProduct:output_type -> grpc.Product
+	82,  // 537: grpc.BillingService.ListProducts:output_type -> grpc.ListProductsResponse
+	215, // 538: grpc.BillingService.GetProduct:output_type -> grpc.GetProductResponse
+	1,   // 539: grpc.BillingService.DeleteProduct:output_type -> grpc.EmptyResponse
+	82,  // 540: grpc.BillingService.GetProductsForOrder:output_type -> grpc.ListProductsResponse
+	141, // 541: grpc.BillingService.GetProductPrices:output_type -> grpc.ProductPricesResponse
+	110, // 542: grpc.BillingService.UpdateProductPrices:output_type -> grpc.ResponseError
+	87,  // 543: grpc.BillingService.ChangeProject:output_type -> grpc.ChangeProjectResponse
+	87,  // 544: grpc.BillingService.GetProject:output_type -> grpc.ChangeProjectResponse
+	90,  // 545: grpc.BillingService.ListProjects:output_type -> grpc.ListProjectsResponse
+	87,  // 546: grpc.BillingService.DeleteProject:output_type -> grpc.ChangeProjectResponse
+	92,  // 547: grpc.BillingService.CreateToken:output_type -> grpc.TokenResponse
+	94,  // 548: grpc.BillingService.CheckProjectRequestSignature:output_type -> grpc.CheckProjectRequestSignatureResponse
+	388, // 549: grpc.BillingService.GetCountriesList:output_type -> billing.CountriesList
+	275, // 550: grpc.BillingService.GetCountriesListForOrder:output_type -> grpc.GetCountriesListForOrderResponse
+	398, // 551: grpc.BillingService.GetCountry:output_type -> billing.Country
+	398, // 552: grpc.BillingService.UpdateCountry:output_type -> billing.Country
+	179, // 553: grpc.BillingService.GetOrderPublic:output_type -> grpc.GetOrderPublicResponse
+	180, // 554: grpc.BillingService.GetOrderPrivate:output_type -> grpc.GetOrderPrivateResponse
+	175, // 555: grpc.BillingService.FindAllOrdersPublic:output_type -> grpc.ListOrdersPublicResponse
+	176, // 556: grpc.BillingService.FindAllOrdersPrivate:output_type -> grpc.ListOrdersPrivateResponse
+	178, // 557: grpc.BillingService.FindAllOrders:output_type -> grpc.ListOrdersResponse
+	98,  // 558: grpc.BillingService.IsOrderCanBePaying:output_type -> grpc.IsOrderCanBePayingResponse
+	381, // 559: grpc.BillingService.GetPriceGroup:output_type -> billing.PriceGroup
+	381, // 560: grpc.BillingService.UpdatePriceGroup:output_type -> billing.PriceGroup
+	381, // 561: grpc.BillingService.GetPriceGroupByCountry:output_type -> billing.PriceGroup
+	133, // 562: grpc.BillingService.GetPriceGroupCurrencies:output_type -> grpc.PriceGroupCurrenciesResponse
+	133, // 563: grpc.BillingService.GetPriceGroupCurrencyByRegion:output_type -> grpc.PriceGroupCurrenciesResponse
+	138, // 564: grpc.BillingService.GetRecommendedPriceByPriceGroup:output_type -> grpc.RecommendedPriceResponse
+	138, // 565: grpc.BillingService.GetRecommendedPriceByConversion:output_type -> grpc.RecommendedPriceResponse
+	140, // 566: grpc.BillingService.GetRecommendedPriceTable:output_type -> grpc.RecommendedPriceTableResponse
+	216, // 567: grpc.BillingService.GetPriceGroupByRegion:output_type -> grpc.GetPriceGroupByRegionResponse
+	1,   // 568: grpc.BillingService.SetUserNotifySales:output_type -> grpc.EmptyResponse
+	1,   // 569: grpc.BillingService.SetUserNotifyNewRegion:output_type -> grpc.EmptyResponse
+	106, // 570: grpc.BillingService.CreateOrUpdatePaymentMethod:output_type -> grpc.ChangePaymentMethodResponse
+	107, // 571: grpc.BillingService.CreateOrUpdatePaymentMethodProductionSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
+	103, // 572: grpc.BillingService.GetPaymentMethodProductionSettings:output_type -> grpc.GetPaymentMethodSettingsResponse
+	107, // 573: grpc.BillingService.DeletePaymentMethodProductionSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
+	107, // 574: grpc.BillingService.CreateOrUpdatePaymentMethodTestSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
+	103, // 575: grpc.BillingService.GetPaymentMethodTestSettings:output_type -> grpc.GetPaymentMethodSettingsResponse
+	107, // 576: grpc.BillingService.DeletePaymentMethodTestSettings:output_type -> grpc.ChangePaymentMethodParamsResponse
+	109, // 577: grpc.BillingService.FindByZipCode:output_type -> grpc.FindByZipCodeResponse
+	124, // 578: grpc.BillingService.GetAllPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemListResponse
+	125, // 579: grpc.BillingService.GetPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemResponse
+	125, // 580: grpc.BillingService.SetPaymentChannelCostSystem:output_type -> grpc.PaymentChannelCostSystemResponse
+	110, // 581: grpc.BillingService.DeletePaymentChannelCostSystem:output_type -> grpc.ResponseError
+	126, // 582: grpc.BillingService.GetAllPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantListResponse
+	127, // 583: grpc.BillingService.GetPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantResponse
+	127, // 584: grpc.BillingService.SetPaymentChannelCostMerchant:output_type -> grpc.PaymentChannelCostMerchantResponse
+	110, // 585: grpc.BillingService.DeletePaymentChannelCostMerchant:output_type -> grpc.ResponseError
+	128, // 586: grpc.BillingService.GetAllMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemListResponse
+	129, // 587: grpc.BillingService.GetMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemResponse
+	129, // 588: grpc.BillingService.SetMoneyBackCostSystem:output_type -> grpc.MoneyBackCostSystemResponse
+	110, // 589: grpc.BillingService.DeleteMoneyBackCostSystem:output_type -> grpc.ResponseError
+	130, // 590: grpc.BillingService.GetAllMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantListResponse
+	131, // 591: grpc.BillingService.GetMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantResponse
+	131, // 592: grpc.BillingService.SetMoneyBackCostMerchant:output_type -> grpc.MoneyBackCostMerchantResponse
+	110, // 593: grpc.BillingService.DeleteMoneyBackCostMerchant:output_type -> grpc.ResponseError
+	113, // 594: grpc.BillingService.CreateAccountingEntry:output_type -> grpc.CreateAccountingEntryResponse
+	154, // 595: grpc.BillingService.GetUserProfile:output_type -> grpc.GetUserProfileResponse
+	154, // 596: grpc.BillingService.CreateOrUpdateUserProfile:output_type -> grpc.GetUserProfileResponse
+	158, // 597: grpc.BillingService.ConfirmUserEmail:output_type -> grpc.ConfirmUserEmailResponse
+	94,  // 598: grpc.BillingService.CreatePageReview:output_type -> grpc.CheckProjectRequestSignatureResponse
+	114, // 599: grpc.BillingService.CreateRoyaltyReport:output_type -> grpc.CreateRoyaltyReportRequest
+	117, // 600: grpc.BillingService.ListRoyaltyReports:output_type -> grpc.ListRoyaltyReportsResponse
+	121, // 601: grpc.BillingService.GetRoyaltyReport:output_type -> grpc.GetRoyaltyReportResponse
+	110, // 602: grpc.BillingService.ChangeRoyaltyReport:output_type -> grpc.ResponseError
+	161, // 603: grpc.BillingService.ListRoyaltyReportOrders:output_type -> grpc.TransactionsResponse
+	110, // 604: grpc.BillingService.MerchantReviewRoyaltyReport:output_type -> grpc.ResponseError
+	1,   // 605: grpc.BillingService.AutoAcceptRoyaltyReports:output_type -> grpc.EmptyResponse
+	235, // 606: grpc.BillingService.RoyaltyReportPdfUploaded:output_type -> grpc.RoyaltyReportPdfUploadedResponse
+	164, // 607: grpc.BillingService.GetVatReportsDashboard:output_type -> grpc.VatReportsResponse
+	164, // 608: grpc.BillingService.GetVatReportsForCountry:output_type -> grpc.VatReportsResponse
+	279, // 609: grpc.BillingService.GetVatReportTransactions:output_type -> grpc.PrivateTransactionsResponse
+	1,   // 610: grpc.BillingService.ProcessVatReports:output_type -> grpc.EmptyResponse
+	110, // 611: grpc.BillingService.UpdateVatReportStatus:output_type -> grpc.ResponseError
+	278, // 612: grpc.BillingService.GetVatReport:output_type -> grpc.VatReportResponse
+	1,   // 613: grpc.BillingService.CalcAnnualTurnovers:output_type -> grpc.EmptyResponse
+	168, // 614: grpc.BillingService.GetMerchantOnboardingCompleteData:output_type -> grpc.GetMerchantOnboardingCompleteDataResponse
+	15,  // 615: grpc.BillingService.CreateOrUpdateKeyProduct:output_type -> grpc.KeyProductResponse
+	21,  // 616: grpc.BillingService.GetKeyProducts:output_type -> grpc.ListKeyProductsResponse
+	15,  // 617: grpc.BillingService.GetKeyProduct:output_type -> grpc.KeyProductResponse
+	2,   // 618: grpc.BillingService.DeleteKeyProduct:output_type -> grpc.EmptyResponseWithStatus
+	15,  // 619: grpc.BillingService.PublishKeyProduct:output_type -> grpc.KeyProductResponse
+	15,  // 620: grpc.BillingService.UnPublishKeyProduct:output_type -> grpc.KeyProductResponse
+	21,  // 621: grpc.BillingService.GetKeyProductsForOrder:output_type -> grpc.ListKeyProductsResponse
+	80,  // 622: grpc.BillingService.GetKeyProductInfo:output_type -> grpc.GetKeyProductInfoResponse
+	20,  // 623: grpc.BillingService.GetPlatforms:output_type -> grpc.ListPlatformsResponse
+	6,   // 624: grpc.BillingService.GetAvailableKeysCount:output_type -> grpc.GetPlatformKeyCountResponse
+	11,  // 625: grpc.BillingService.UploadKeysFile:output_type -> grpc.PlatformKeysFileResponse
+	8,   // 626: grpc.BillingService.GetKeyByID:output_type -> grpc.GetKeyForOrderRequestResponse
+	9,   // 627: grpc.BillingService.ReserveKeyForOrder:output_type -> grpc.PlatformKeyReserveResponse
+	8,   // 628: grpc.BillingService.FinishRedeemKeyForOrder:output_type -> grpc.GetKeyForOrderRequestResponse
+	2,   // 629: grpc.BillingService.CancelRedeemKeyForOrder:output_type -> grpc.EmptyResponseWithStatus
+	5,   // 630: grpc.BillingService.ChangeCodeInOrder:output_type -> grpc.ChangeCodeInOrderResponse
+	182, // 631: grpc.BillingService.GetDashboardMainReport:output_type -> grpc.GetDashboardMainResponse
+	185, // 632: grpc.BillingService.GetDashboardRevenueDynamicsReport:output_type -> grpc.GetDashboardRevenueDynamicsReportResponse
+	184, // 633: grpc.BillingService.GetDashboardBaseReport:output_type -> grpc.GetDashboardBaseReportResponse
+	284, // 634: grpc.BillingService.GetDashboardCustomersReport:output_type -> grpc.GetDashboardCustomerReportResponse
+	286, // 635: grpc.BillingService.GetDashboardCustomerArpu:output_type -> grpc.DashboardCustomerReportArpuResponse
+	202, // 636: grpc.BillingService.CreatePayoutDocument:output_type -> grpc.CreatePayoutDocumentResponse
+	201, // 637: grpc.BillingService.UpdatePayoutDocument:output_type -> grpc.PayoutDocumentResponse
+	207, // 638: grpc.BillingService.GetPayoutDocuments:output_type -> grpc.GetPayoutDocumentsResponse
+	201, // 639: grpc.BillingService.GetPayoutDocument:output_type -> grpc.PayoutDocumentResponse
+	117, // 640: grpc.BillingService.GetPayoutDocumentRoyaltyReports:output_type -> grpc.ListRoyaltyReportsResponse
+	212, // 641: grpc.BillingService.PayoutDocumentPdfUploaded:output_type -> grpc.PayoutDocumentPdfUploadedResponse
+	1,   // 642: grpc.BillingService.AutoCreatePayoutDocuments:output_type -> grpc.EmptyResponse
+	210, // 643: grpc.BillingService.GetMerchantBalance:output_type -> grpc.GetMerchantBalanceResponse
+	58,  // 644: grpc.BillingService.PaymentFormPlatformChanged:output_type -> grpc.PaymentFormDataChangeResponse
+	2,   // 645: grpc.BillingService.CheckSkuAndKeyProject:output_type -> grpc.EmptyResponseWithStatus
+	224, // 646: grpc.BillingService.GetPaylinks:output_type -> grpc.GetPaylinksResponse
+	227, // 647: grpc.BillingService.GetPaylink:output_type -> grpc.GetPaylinkResponse
+	1,   // 648: grpc.BillingService.IncrPaylinkVisits:output_type -> grpc.EmptyResponse
+	229, // 649: grpc.BillingService.GetPaylinkURL:output_type -> grpc.GetPaylinkUrlResponse
+	227, // 650: grpc.BillingService.CreateOrUpdatePaylink:output_type -> grpc.GetPaylinkResponse
+	2,   // 651: grpc.BillingService.DeletePaylink:output_type -> grpc.EmptyResponseWithStatus
+	232, // 652: grpc.BillingService.GetPaylinkStatTotal:output_type -> grpc.GetPaylinkStatCommonResponse
+	233, // 653: grpc.BillingService.GetPaylinkStatByCountry:output_type -> grpc.GetPaylinkStatCommonGroupResponse
+	233, // 654: grpc.BillingService.GetPaylinkStatByReferrer:output_type -> grpc.GetPaylinkStatCommonGroupResponse
+	233, // 655: grpc.BillingService.GetPaylinkStatByDate:output_type -> grpc.GetPaylinkStatCommonGroupResponse
+	233, // 656: grpc.BillingService.GetPaylinkStatByUtm:output_type -> grpc.GetPaylinkStatCommonGroupResponse
+	161, // 657: grpc.BillingService.GetPaylinkTransactions:output_type -> grpc.TransactionsResponse
+	2,   // 658: grpc.BillingService.DeleteSavedCard:output_type -> grpc.EmptyResponseWithStatus
+	237, // 659: grpc.BillingService.GetOperatingCompaniesList:output_type -> grpc.GetOperatingCompaniesListResponse
+	2,   // 660: grpc.BillingService.AddOperatingCompany:output_type -> grpc.EmptyResponseWithStatus
+	244, // 661: grpc.BillingService.GetOperatingCompany:output_type -> grpc.GetOperatingCompanyResponse
+	238, // 662: grpc.BillingService.GetPaymentMinLimitsSystem:output_type -> grpc.GetPaymentMinLimitsSystemResponse
+	2,   // 663: grpc.BillingService.SetPaymentMinLimitSystem:output_type -> grpc.EmptyResponseWithStatus
+	247, // 664: grpc.BillingService.GetMerchantUsers:output_type -> grpc.GetMerchantUsersResponse
+	262, // 665: grpc.BillingService.GetAdminUsers:output_type -> grpc.GetAdminUsersResponse
+	249, // 666: grpc.BillingService.InviteUserMerchant:output_type -> grpc.InviteUserMerchantResponse
+	251, // 667: grpc.BillingService.InviteUserAdmin:output_type -> grpc.InviteUserAdminResponse
+	2,   // 668: grpc.BillingService.ResendInviteMerchant:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 669: grpc.BillingService.ResendInviteAdmin:output_type -> grpc.EmptyResponseWithStatus
+	261, // 670: grpc.BillingService.AcceptInvite:output_type -> grpc.AcceptInviteResponse
+	259, // 671: grpc.BillingService.CheckInviteToken:output_type -> grpc.CheckInviteTokenResponse
+	264, // 672: grpc.BillingService.GetMerchantsForUser:output_type -> grpc.GetMerchantsForUserResponse
+	2,   // 673: grpc.BillingService.ChangeRoleForMerchantUser:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 674: grpc.BillingService.ChangeRoleForAdminUser:output_type -> grpc.EmptyResponseWithStatus
+	269, // 675: grpc.BillingService.GetRoleList:output_type -> grpc.GetRoleListResponse
+	2,   // 676: grpc.BillingService.DeleteMerchantUser:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 677: grpc.BillingService.DeleteAdminUser:output_type -> grpc.EmptyResponseWithStatus
+	273, // 678: grpc.BillingService.GetMerchantUserRole:output_type -> grpc.UserRoleResponse
+	273, // 679: grpc.BillingService.GetAdminUserRole:output_type -> grpc.UserRoleResponse
+	151, // 680: grpc.BillingService.GetCommonUserProfile:output_type -> grpc.CommonUserProfileResponse
+	273, // 681: grpc.BillingService.GetAdminByUserId:output_type -> grpc.UserRoleResponse
+	221, // 682: grpc.BillingService.SendWebhookToMerchant:output_type -> grpc.SendWebhookToMerchantResponse
+	2,   // 683: grpc.BillingService.NotifyWebhookTestResults:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 684: grpc.BillingService.RoyaltyReportFinanceDone:output_type -> grpc.EmptyResponseWithStatus
+	2,   // 685: grpc.BillingService.PayoutFinanceDone:output_type -> grpc.EmptyResponseWithStatus
+	283, // 686: grpc.BillingService.GetActOfCompletion:output_type -> grpc.ActOfCompletionResponse
+	2,   // 687: grpc.BillingService.SetCustomerPaymentActivity:output_type -> grpc.EmptyResponseWithStatus
+	292, // 688: grpc.BillingService.GetCustomerList:output_type -> grpc.ListCustomersResponse
+	295, // 689: grpc.BillingService.GetCustomerInfo:output_type -> grpc.GetCustomerInfoResponse
+	297, // 690: grpc.BillingService.DeserializeCookie:output_type -> grpc.DeserializeCookieResponse
+	2,   // 691: grpc.BillingService.DeleteCustomerCard:output_type -> grpc.EmptyResponseWithStatus
+	300, // 692: grpc.BillingService.GetSubscription:output_type -> grpc.GetSubscriptionResponse
+	304, // 693: grpc.BillingService.GetCustomerShortInfo:output_type -> grpc.GetCustomerShortInfoResponse
+	307, // 694: grpc.BillingService.GetSubscriptionOrders:output_type -> grpc.GetSubscriptionOrdersResponse
+	2,   // 695: grpc.BillingService.DeleteRecurringSubscription:output_type -> grpc.EmptyResponseWithStatus
+	302, // 696: grpc.BillingService.FindSubscriptions:output_type -> grpc.FindSubscriptionsResponse
+	502, // [502:697] is the sub-list for method output_type
+	307, // [307:502] is the sub-list for method input_type
 	307, // [307:307] is the sub-list for extension type_name
 	307, // [307:307] is the sub-list for extension extendee
 	0,   // [0:307] is the sub-list for field type_name
