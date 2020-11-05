@@ -759,6 +759,10 @@ message MerchantListingRequest {
     string received_date_from = 13;
     // @inject_tag: query:"received_date_to" validate:"omitempty,datetime"
     string received_date_to = 14;
+    // @inject_tag: query:"status_last_updated_from" validate:"omitempty,datetime"
+    string status_last_updated_from = 15;
+    // @inject_tag: query:"status_last_updated_to" validate:"omitempty,datetime"
+    string status_last_updated_to = 16;
 }
 
 message MerchantListingResponse {
