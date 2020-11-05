@@ -3545,6 +3545,8 @@ message ListCustomersResponse {
 
     //@inject_tag: json:"items"
     repeated ShortCustomerInfo items = 3;
+    //@inject_tag: json:"count"
+    int64 count  = 4;
 }
 
 message ShortCustomerInfo {
