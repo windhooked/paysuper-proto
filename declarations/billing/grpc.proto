@@ -3560,6 +3560,8 @@ message ShortCustomerInfo {
     int64 orders = 6;
     //@inject_tag: json:"revenue"
     double revenue = 7;
+    //@inject_tag: json:"email"
+    string email = 8;
 }
 
 message GetCustomerInfoRequest {
