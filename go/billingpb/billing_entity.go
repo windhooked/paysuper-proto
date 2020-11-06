@@ -143,7 +143,11 @@ func (m *Merchant) CanChangeStatusTo(status int32) bool {
 		return true
 	}
 
-	if status == MerchantStatusAccepted && m.Status == MerchantStatusPending {
+	if status == MerchantStatusOpCompanySelected && m.Status == MerchantStatusPending {
+		return true
+	}
+
+	if status == MerchantStatusAccepted && m.Status == MerchantStatusOpCompanySelected {
 		return true
 	}
 
