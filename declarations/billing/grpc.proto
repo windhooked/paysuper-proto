@@ -3700,6 +3700,7 @@ message GetMerchantDocumentsResponse {
 message GetMerchantDocumentRequest {
     // @inject_tag: param:"merchant_id"
     string merchant_id = 1;
+    // @inject_tag: param:"id"
     string id = 2;
 }
 
