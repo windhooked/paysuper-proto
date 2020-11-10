@@ -220,6 +220,7 @@ type BillingService interface {
 	RoyaltyReportFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, opts ...client.CallOption) (*ActOfCompletionResponse, error)
+	GetActsOfCompletionList(ctx context.Context, in *ActsOfCompletionListRequest, opts ...client.CallOption) (*ActsOfCompletionListResponse, error)
 	SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error)
 	GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
@@ -2100,6 +2101,16 @@ func (c *billingService) GetActOfCompletion(ctx context.Context, in *ActOfComple
 	return out, nil
 }
 
+func (c *billingService) GetActsOfCompletionList(ctx context.Context, in *ActsOfCompletionListRequest, opts ...client.CallOption) (*ActsOfCompletionListResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetActsOfCompletionList", in)
+	out := new(ActsOfCompletionListResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
 	req := c.c.NewRequest(c.name, "BillingService.SetCustomerPaymentActivity", in)
 	out := new(EmptyResponseWithStatus)
@@ -2388,6 +2399,7 @@ type BillingServiceHandler interface {
 	RoyaltyReportFinanceDone(context.Context, *ReportFinanceDoneRequest, *EmptyResponseWithStatus) error
 	PayoutFinanceDone(context.Context, *ReportFinanceDoneRequest, *EmptyResponseWithStatus) error
 	GetActOfCompletion(context.Context, *ActOfCompletionRequest, *ActOfCompletionResponse) error
+	GetActsOfCompletionList(context.Context, *ActsOfCompletionListRequest, *ActsOfCompletionListResponse) error
 	SetCustomerPaymentActivity(context.Context, *SetCustomerPaymentActivityRequest, *EmptyResponseWithStatus) error
 	GetCustomerList(context.Context, *ListCustomersRequest, *ListCustomersResponse) error
 	GetCustomerInfo(context.Context, *GetCustomerInfoRequest, *GetCustomerInfoResponse) error
@@ -2587,6 +2599,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		RoyaltyReportFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error
 		PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error
 		GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, out *ActOfCompletionResponse) error
+		GetActsOfCompletionList(ctx context.Context, in *ActsOfCompletionListRequest, out *ActsOfCompletionListResponse) error
 		SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error
 		GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error
 		GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error
@@ -3347,6 +3360,10 @@ func (h *billingServiceHandler) PayoutFinanceDone(ctx context.Context, in *Repor
 
 func (h *billingServiceHandler) GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, out *ActOfCompletionResponse) error {
 	return h.BillingServiceHandler.GetActOfCompletion(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetActsOfCompletionList(ctx context.Context, in *ActsOfCompletionListRequest, out *ActsOfCompletionListResponse) error {
+	return h.BillingServiceHandler.GetActsOfCompletionList(ctx, in, out)
 }
 
 func (h *billingServiceHandler) SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error {
