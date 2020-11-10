@@ -232,6 +232,7 @@ service BillingService {
     rpc RoyaltyReportFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc GetActOfCompletion(ActOfCompletionRequest) returns (ActOfCompletionResponse) {}
+    rpc GetActsOfCompletionList(ActsOfCompletionListRequest) returns (ActsOfCompletionListResponse) {}
     rpc SetCustomerPaymentActivity(SetCustomerPaymentActivityRequest) returns (EmptyResponseWithStatus) {}
 
     rpc GetCustomerList(ListCustomersRequest) returns (ListCustomersResponse) {}
@@ -3438,6 +3439,25 @@ message ActOfCompletionResponse {
     ResponseErrorMessage message = 2;
     //@inject_tag: json:"item"
     billing.ActOfCompletionDocument item = 3;
+}
+
+message ActsOfCompletionListRequest {
+    //@inject_tag: validate:"required,hexadecimal,len=24"
+    string merchant_id = 1;
+}
+
+message ActsOfCompletionListItem {
+    //@inject_tag: json:"date_title"
+    string date_title = 1;
+    //@inject_tag: json:"date_from"
+    string date_from = 2;
+    //@inject_tag: json:"date_to"
+    string date_to = 3;
+}
+
+message ActsOfCompletionListResponse {
+    //@inject_tag: json:"items"
+    repeated ActsOfCompletionListItem items = 1;
 }
 
 message GetDashboardCustomerReportResponse {
