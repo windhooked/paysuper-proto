@@ -3586,6 +3586,8 @@ message ShortCustomerInfo {
     double revenue = 7;
     //@inject_tag: json:"email"
     string email = 8;
+    //@inject_tag: json:"currency"
+    string currency = 9;
 }
 
 message GetCustomerInfoRequest {
