@@ -3515,6 +3515,12 @@ message DashboardCustomerReport {
     //
     // The list of points for drawing the chart.
     repeated DashboardChartItemInt chart = 7;
+
+    //@inject_tag: json:"arppu"
+    float arppu = 8;
+
+    //@inject_tag: json:"currency"
+    string currency = 9;
 }
 
 message Top20Customers {
