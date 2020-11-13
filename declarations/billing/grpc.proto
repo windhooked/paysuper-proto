@@ -3511,16 +3511,28 @@ message DashboardCustomerReport {
 
     //@inject_tag: json:"top20_customers"
     Top20Customers top20Customers = 6;
+
     //@inject_tag: json:"chart" bson:"chart"
     //
     // The list of points for drawing the chart.
     repeated DashboardChartItemInt chart = 7;
 
-    //@inject_tag: json:"arppu_current"
-    billing.OrderViewMoney arppu_current = 8;
+    //@inject_tag: json:"arppu"
+    ArppuData arppu = 8;
+}
 
-    //@inject_tag: json:"arppu_previous"
-    billing.OrderViewMoney arppu_previous = 9;
+message ArppuData {
+    //@inject_tag: json:"current"
+    billing.OrderViewMoney current = 1;
+
+    //@inject_tag: json:"previous"
+    billing.OrderViewMoney previous = 2;
+
+    //@inject_tag: json:"delta"
+    float delta = 3;
+
+    //@inject_tag: json:"percent"
+    float percent = 4;
 }
 
 message Top20Customers {
