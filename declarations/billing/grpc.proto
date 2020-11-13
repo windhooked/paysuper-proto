@@ -3516,11 +3516,11 @@ message DashboardCustomerReport {
     // The list of points for drawing the chart.
     repeated DashboardChartItemInt chart = 7;
 
-    //@inject_tag: json:"arppu"
-    float arppu = 8;
+    //@inject_tag: json:"arppu_current"
+    billing.OrderViewMoney arppu_current = 8;
 
-    //@inject_tag: json:"currency"
-    string currency = 9;
+    //@inject_tag: json:"arppu_previous"
+    billing.OrderViewMoney arppu_previous = 9;
 }
 
 message Top20Customers {
