@@ -232,6 +232,7 @@ service BillingService {
     rpc RoyaltyReportFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc PayoutFinanceDone(ReportFinanceDoneRequest) returns (EmptyResponseWithStatus) {}
     rpc GetActOfCompletion(ActOfCompletionRequest) returns (ActOfCompletionResponse) {}
+    rpc GetActsOfCompletionList(ActsOfCompletionListRequest) returns (ActsOfCompletionListResponse) {}
     rpc SetCustomerPaymentActivity(SetCustomerPaymentActivityRequest) returns (EmptyResponseWithStatus) {}
 
     rpc GetCustomerList(ListCustomersRequest) returns (ListCustomersResponse) {}
@@ -3444,6 +3445,29 @@ message ActOfCompletionResponse {
     billing.ActOfCompletionDocument item = 3;
 }
 
+message ActsOfCompletionListRequest {
+    //@inject_tag: validate:"required,hexadecimal,len=24"
+    string merchant_id = 1;
+}
+
+message ActsOfCompletionListItem {
+    //@inject_tag: json:"date_title"
+    string date_title = 1;
+    //@inject_tag: json:"date_from"
+    string date_from = 2;
+    //@inject_tag: json:"date_to"
+    string date_to = 3;
+}
+
+message ActsOfCompletionListResponse {
+    //@inject_tag: json:"status"
+    int32 status = 1;
+    //@inject_tag: json:"message"
+    ResponseErrorMessage message = 2;
+    //@inject_tag: json:"items"
+    repeated ActsOfCompletionListItem items = 3;
+}
+
 message GetDashboardCustomerReportResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
@@ -3469,7 +3493,7 @@ message DashboardCustomerReportArpuResponse {
 message DashboardCustomerReportRequest {
     //@inject_tag: validate:"required,hexadecimal,len=24"
     string merchant_id = 1;
-    //@inject_tag: query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year current_week previous_week two_weeks_ago two_months_ago two_quarter_ago two_years_ago"
+    //@inject_tag: query:"period" validate:"required,oneof=current_day previous_day current_week previous_week current_month previous_month current_quarter previous_quarter current_year previous_year"
     string period = 2;
 }
 
@@ -3484,17 +3508,35 @@ message DashboardCustomerReport {
     float lostCustomersPercentage = 3;
 
     //@inject_tag: json:"avg_ltv_customer"
-    float avgLtvCustomer = 4;
+    double avgLtvCustomer = 4;
 
     //@inject_tag: json:"avg_orders_count"
-    float avgOrdersCount = 5;
+    double avgOrdersCount = 5;
 
     //@inject_tag: json:"top20_customers"
     Top20Customers top20Customers = 6;
+
     //@inject_tag: json:"chart" bson:"chart"
     //
     // The list of points for drawing the chart.
     repeated DashboardChartItemInt chart = 7;
+
+    //@inject_tag: json:"arppu"
+    ArppuData arppu = 8;
+}
+
+message ArppuData {
+    //@inject_tag: json:"current"
+    billing.OrderViewMoney current = 1;
+
+    //@inject_tag: json:"previous"
+    billing.OrderViewMoney previous = 2;
+
+    //@inject_tag: json:"delta"
+    float delta = 3;
+
+    //@inject_tag: json:"percent"
+    float percent = 4;
 }
 
 message Top20Customers {
@@ -3566,6 +3608,8 @@ message ShortCustomerInfo {
     double revenue = 7;
     //@inject_tag: json:"email"
     string email = 8;
+    //@inject_tag: json:"currency"
+    string currency = 9;
 }
 
 message GetCustomerInfoRequest {

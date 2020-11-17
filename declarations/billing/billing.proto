@@ -1790,7 +1790,7 @@ message Customer {
     string user_agent = 12;
     OrderBillingAddress address = 13;
     repeated CustomerIdentity identity = 14;
-    // @inject_tag: json:"-"
+    // @inject_tag: json:"ip_history"
     repeated CustomerIpHistory ip_history = 15;
     // @inject_tag: json:"-"
     repeated CustomerAddressHistory address_history = 16;

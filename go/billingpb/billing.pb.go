@@ -7517,8 +7517,8 @@ type Customer struct {
 	UserAgent string               `protobuf:"bytes,12,opt,name=user_agent,json=userAgent,proto3" json:"-"`
 	Address   *OrderBillingAddress `protobuf:"bytes,13,opt,name=address,proto3" json:"address,omitempty"`
 	Identity  []*CustomerIdentity  `protobuf:"bytes,14,rep,name=identity,proto3" json:"identity,omitempty"`
-	// @inject_tag: json:"-"
-	IpHistory []*CustomerIpHistory `protobuf:"bytes,15,rep,name=ip_history,json=ipHistory,proto3" json:"-"`
+	// @inject_tag: json:"ip_history"
+	IpHistory []*CustomerIpHistory `protobuf:"bytes,15,rep,name=ip_history,json=ipHistory,proto3" json:"ip_history"`
 	// @inject_tag: json:"-"
 	AddressHistory []*CustomerAddressHistory `protobuf:"bytes,16,rep,name=address_history,json=addressHistory,proto3" json:"-"`
 	// @inject_tag: json:"-"
