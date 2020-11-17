@@ -3545,6 +3545,9 @@ message Top20Customers {
 
     //@inject_tag: json:"count"
     int32 count = 2;
+
+    //@inject_tag: json:"currency"
+    string currency = 3;
 }
 
 message ListCustomersRequest {
