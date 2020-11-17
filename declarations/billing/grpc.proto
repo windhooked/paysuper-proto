@@ -3504,10 +3504,10 @@ message DashboardCustomerReport {
     float lostCustomersPercentage = 3;
 
     //@inject_tag: json:"avg_ltv_customer"
-    float avgLtvCustomer = 4;
+    double avgLtvCustomer = 4;
 
     //@inject_tag: json:"avg_orders_count"
-    float avgOrdersCount = 5;
+    double avgOrdersCount = 5;
 
     //@inject_tag: json:"top20_customers"
     Top20Customers top20Customers = 6;
