@@ -20730,8 +20730,8 @@ type DashboardCustomerReportRequest struct {
 
 	//@inject_tag: validate:"required,hexadecimal,len=24"
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
-	//@inject_tag: query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year current_week previous_week two_weeks_ago two_months_ago two_quarter_ago two_years_ago"
-	Period string `protobuf:"bytes,2,opt,name=period,proto3" json:"period,omitempty" query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year current_week previous_week two_weeks_ago two_months_ago two_quarter_ago two_years_ago"`
+	//@inject_tag: query:"period" validate:"required,oneof=current_day previous_day current_week previous_week current_month previous_month current_quarter previous_quarter current_year previous_year"
+	Period string `protobuf:"bytes,2,opt,name=period,proto3" json:"period,omitempty" query:"period" validate:"required,oneof=current_day previous_day current_week previous_week current_month previous_month current_quarter previous_quarter current_year previous_year"`
 }
 
 func (x *DashboardCustomerReportRequest) Reset() {
