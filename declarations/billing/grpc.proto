@@ -3523,6 +3523,9 @@ message DashboardCustomerReport {
 
     //@inject_tag: json:"arppu"
     ArppuData arppu = 8;
+
+    //@inject_tag: json:"avg_ltv_currency"
+    string avgLtvCurrency = 9;
 }
 
 message ArppuData {
