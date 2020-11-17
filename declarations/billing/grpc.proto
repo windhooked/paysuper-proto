@@ -247,6 +247,10 @@ service BillingService {
     rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
     rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
     rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
+
+    rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
+    rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
+    rpc GetMerchantDocument(GetMerchantDocumentRequest) returns (GetMerchantDocumentResponse) {}
 }
 
 message EmptyRequest {}
@@ -3740,6 +3744,7 @@ message GetMerchantDocumentsResponse {
 message GetMerchantDocumentRequest {
     // @inject_tag: param:"merchant_id"
     string merchant_id = 1;
+    // @inject_tag: param:"id"
     string id = 2;
 }
 

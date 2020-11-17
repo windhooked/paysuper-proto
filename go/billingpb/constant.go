@@ -51,6 +51,7 @@ const (
 	MerchantStatusPending           = int32(7)
 	MerchantStatusAccepted          = int32(8)
 	MerchantStatusOpCompanySelected = int32(9)
+	MerchantStatusKycStarted        = int32(10)
 
 	ProjectStatusDraft         = int32(0)
 	ProjectStatusTestCompleted = int32(1)
