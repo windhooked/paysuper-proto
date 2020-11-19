@@ -225,6 +225,9 @@ const (
 	FilterDatetimeFormat = "2006-01-02T15:04:05"
 
 	AmountPrecisionDefault = 2
+
+	UserLocaleEn = "en"
+	UserLocaleRu = "ru"
 )
 
 var (
@@ -286,4 +289,9 @@ var (
 	productNoNameInLanguage            = "no name in language %s"
 	productNoDescriptionInLanguage     = "no description in language %s"
 	productNoLongDescriptionInLanguage = "no long description in language %s"
+
+	UserLocaleAllowed = map[string]bool{
+		UserLocaleEn: true,
+		UserLocaleRu: true,
+	}
 )

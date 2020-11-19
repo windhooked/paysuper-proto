@@ -2201,6 +2201,10 @@ message UserProfile {
     //
     // The date of the user last update.
     google.protobuf.Timestamp updated_at = 10;
+    //@inject_tag: json:"locale" bson:"locale" validate:"omitempty,alpha"
+    //
+    // The user language locale.
+    string locale = 11;
 }
 
 message CommonUserProfileRequest {
