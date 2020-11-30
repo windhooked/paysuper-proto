@@ -12,8 +12,9 @@ import (
 
 import (
 	context "context"
-	client "github.com/micro/go-micro/client"
-	server "github.com/micro/go-micro/server"
+	api "github.com/unistack-org/micro/v3/api"
+	client "github.com/unistack-org/micro/v3/client"
+	server "github.com/unistack-org/micro/v3/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -28,212 +29,219 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Reference imports to suppress errors if they are not otherwise used.
+var _ api.Endpoint
 var _ context.Context
 var _ client.Option
 var _ server.Option
 
+// Api Endpoints for BillingService service
+
+func NewBillingServiceEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
+
 // Client API for BillingService service
 
 type BillingService interface {
-	OrderCreateByPaylink(ctx context.Context, in *OrderCreateByPaylink, opts ...client.CallOption) (*OrderCreateProcessResponse, error)
-	OrderCreateProcess(ctx context.Context, in *OrderCreateRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error)
-	PaymentFormJsonDataProcess(ctx context.Context, in *PaymentFormJsonDataRequest, opts ...client.CallOption) (*PaymentFormJsonDataResponse, error)
-	PaymentCreateProcess(ctx context.Context, in *PaymentCreateRequest, opts ...client.CallOption) (*PaymentCreateResponse, error)
-	PaymentCallbackProcess(ctx context.Context, in *PaymentNotifyRequest, opts ...client.CallOption) (*PaymentNotifyResponse, error)
-	OrderReceipt(ctx context.Context, in *OrderReceiptRequest, opts ...client.CallOption) (*OrderReceiptResponse, error)
-	OrderReCreateProcess(ctx context.Context, in *OrderReCreateProcessRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error)
-	UpdateOrder(ctx context.Context, in *Order, opts ...client.CallOption) (*EmptyResponse, error)
-	GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, opts ...client.CallOption) (*GetMerchantResponse, error)
-	ListMerchants(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*MerchantListingResponse, error)
-	ListMerchantsForAgreement(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*ListMerchantsForAgreementResponse, error)
-	ChangeMerchant(ctx context.Context, in *OnboardingRequest, opts ...client.CallOption) (*ChangeMerchantResponse, error)
-	ChangeMerchantStatus(ctx context.Context, in *MerchantChangeStatusRequest, opts ...client.CallOption) (*ChangeMerchantStatusResponse, error)
-	SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*SetMerchantOperatingCompanyResponse, error)
-	SetMerchantAcceptedStatus(ctx context.Context, in *SetMerchantAcceptedStatusRequest, opts ...client.CallOption) (*SetMerchantAcceptedStatusResponse, error)
-	ChangeMerchantData(ctx context.Context, in *ChangeMerchantDataRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error)
-	SetMerchantS3Agreement(ctx context.Context, in *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error)
-	GetMerchantTariffRates(ctx context.Context, in *GetMerchantTariffRatesRequest, opts ...client.CallOption) (*GetMerchantTariffRatesResponse, error)
-	SetMerchantTariffRates(ctx context.Context, in *SetMerchantTariffRatesRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error)
-	ChangeMerchantManualPayouts(ctx context.Context, in *ChangeMerchantManualPayoutsRequest, opts ...client.CallOption) (*ChangeMerchantManualPayoutsResponse, error)
-	CreateNotification(ctx context.Context, in *NotificationRequest, opts ...client.CallOption) (*CreateNotificationResponse, error)
-	GetNotification(ctx context.Context, in *GetNotificationRequest, opts ...client.CallOption) (*Notification, error)
-	ListNotifications(ctx context.Context, in *ListingNotificationRequest, opts ...client.CallOption) (*Notifications, error)
-	MarkNotificationAsRead(ctx context.Context, in *GetNotificationRequest, opts ...client.CallOption) (*Notification, error)
-	ListMerchantPaymentMethods(ctx context.Context, in *ListMerchantPaymentMethodsRequest, opts ...client.CallOption) (*ListingMerchantPaymentMethod, error)
-	GetMerchantPaymentMethod(ctx context.Context, in *GetMerchantPaymentMethodRequest, opts ...client.CallOption) (*GetMerchantPaymentMethodResponse, error)
-	ChangeMerchantPaymentMethod(ctx context.Context, in *MerchantPaymentMethodRequest, opts ...client.CallOption) (*MerchantPaymentMethodResponse, error)
-	CreateRefund(ctx context.Context, in *CreateRefundRequest, opts ...client.CallOption) (*CreateRefundResponse, error)
-	ListRefunds(ctx context.Context, in *ListRefundsRequest, opts ...client.CallOption) (*ListRefundsResponse, error)
-	GetRefund(ctx context.Context, in *GetRefundRequest, opts ...client.CallOption) (*CreateRefundResponse, error)
-	ProcessRefundCallback(ctx context.Context, in *CallbackRequest, opts ...client.CallOption) (*PaymentNotifyResponse, error)
-	PaymentFormLanguageChanged(ctx context.Context, in *PaymentFormUserChangeLangRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error)
-	PaymentFormPaymentAccountChanged(ctx context.Context, in *PaymentFormUserChangePaymentAccountRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error)
-	ProcessBillingAddress(ctx context.Context, in *ProcessBillingAddressRequest, opts ...client.CallOption) (*ProcessBillingAddressResponse, error)
-	CreateOrUpdateProduct(ctx context.Context, in *Product, opts ...client.CallOption) (*Product, error)
-	ListProducts(ctx context.Context, in *ListProductsRequest, opts ...client.CallOption) (*ListProductsResponse, error)
-	GetProduct(ctx context.Context, in *RequestProduct, opts ...client.CallOption) (*GetProductResponse, error)
-	DeleteProduct(ctx context.Context, in *RequestProduct, opts ...client.CallOption) (*EmptyResponse, error)
-	GetProductsForOrder(ctx context.Context, in *GetProductsForOrderRequest, opts ...client.CallOption) (*ListProductsResponse, error)
-	GetProductPrices(ctx context.Context, in *RequestProduct, opts ...client.CallOption) (*ProductPricesResponse, error)
-	UpdateProductPrices(ctx context.Context, in *UpdateProductPricesRequest, opts ...client.CallOption) (*ResponseError, error)
-	ChangeProject(ctx context.Context, in *Project, opts ...client.CallOption) (*ChangeProjectResponse, error)
-	GetProject(ctx context.Context, in *GetProjectRequest, opts ...client.CallOption) (*ChangeProjectResponse, error)
-	ListProjects(ctx context.Context, in *ListProjectsRequest, opts ...client.CallOption) (*ListProjectsResponse, error)
-	DeleteProject(ctx context.Context, in *GetProjectRequest, opts ...client.CallOption) (*ChangeProjectResponse, error)
-	CreateToken(ctx context.Context, in *TokenRequest, opts ...client.CallOption) (*TokenResponse, error)
-	CheckProjectRequestSignature(ctx context.Context, in *CheckProjectRequestSignatureRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error)
-	GetCountriesList(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CountriesList, error)
-	GetCountriesListForOrder(ctx context.Context, in *GetCountriesListForOrderRequest, opts ...client.CallOption) (*GetCountriesListForOrderResponse, error)
-	GetCountry(ctx context.Context, in *GetCountryRequest, opts ...client.CallOption) (*Country, error)
-	UpdateCountry(ctx context.Context, in *Country, opts ...client.CallOption) (*Country, error)
-	GetOrderPublic(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPublicResponse, error)
-	GetOrderPrivate(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPrivateResponse, error)
-	FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPublicResponse, error)
-	FindAllOrdersPrivate(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPrivateResponse, error)
-	FindAllOrders(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersResponse, error)
-	IsOrderCanBePaying(ctx context.Context, in *IsOrderCanBePayingRequest, opts ...client.CallOption) (*IsOrderCanBePayingResponse, error)
-	GetPriceGroup(ctx context.Context, in *GetPriceGroupRequest, opts ...client.CallOption) (*PriceGroup, error)
-	UpdatePriceGroup(ctx context.Context, in *PriceGroup, opts ...client.CallOption) (*PriceGroup, error)
-	GetPriceGroupByCountry(ctx context.Context, in *PriceGroupByCountryRequest, opts ...client.CallOption) (*PriceGroup, error)
-	GetPriceGroupCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*PriceGroupCurrenciesResponse, error)
-	GetPriceGroupCurrencyByRegion(ctx context.Context, in *PriceGroupByRegionRequest, opts ...client.CallOption) (*PriceGroupCurrenciesResponse, error)
-	GetRecommendedPriceByPriceGroup(ctx context.Context, in *RecommendedPriceRequest, opts ...client.CallOption) (*RecommendedPriceResponse, error)
-	GetRecommendedPriceByConversion(ctx context.Context, in *RecommendedPriceRequest, opts ...client.CallOption) (*RecommendedPriceResponse, error)
-	GetRecommendedPriceTable(ctx context.Context, in *RecommendedPriceTableRequest, opts ...client.CallOption) (*RecommendedPriceTableResponse, error)
-	GetPriceGroupByRegion(ctx context.Context, in *GetPriceGroupByRegionRequest, opts ...client.CallOption) (*GetPriceGroupByRegionResponse, error)
-	SetUserNotifySales(ctx context.Context, in *SetUserNotifyRequest, opts ...client.CallOption) (*EmptyResponse, error)
-	SetUserNotifyNewRegion(ctx context.Context, in *SetUserNotifyRequest, opts ...client.CallOption) (*EmptyResponse, error)
-	CreateOrUpdatePaymentMethod(ctx context.Context, in *PaymentMethod, opts ...client.CallOption) (*ChangePaymentMethodResponse, error)
-	CreateOrUpdatePaymentMethodProductionSettings(ctx context.Context, in *ChangePaymentMethodParamsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error)
-	GetPaymentMethodProductionSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*GetPaymentMethodSettingsResponse, error)
-	DeletePaymentMethodProductionSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error)
-	CreateOrUpdatePaymentMethodTestSettings(ctx context.Context, in *ChangePaymentMethodParamsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error)
-	GetPaymentMethodTestSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*GetPaymentMethodSettingsResponse, error)
-	DeletePaymentMethodTestSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error)
-	FindByZipCode(ctx context.Context, in *FindByZipCodeRequest, opts ...client.CallOption) (*FindByZipCodeResponse, error)
-	GetAllPaymentChannelCostSystem(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*PaymentChannelCostSystemListResponse, error)
-	GetPaymentChannelCostSystem(ctx context.Context, in *PaymentChannelCostSystemRequest, opts ...client.CallOption) (*PaymentChannelCostSystemResponse, error)
-	SetPaymentChannelCostSystem(ctx context.Context, in *PaymentChannelCostSystem, opts ...client.CallOption) (*PaymentChannelCostSystemResponse, error)
-	DeletePaymentChannelCostSystem(ctx context.Context, in *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error)
-	GetAllPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchantListRequest, opts ...client.CallOption) (*PaymentChannelCostMerchantListResponse, error)
-	GetPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchantRequest, opts ...client.CallOption) (*PaymentChannelCostMerchantResponse, error)
-	SetPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchant, opts ...client.CallOption) (*PaymentChannelCostMerchantResponse, error)
-	DeletePaymentChannelCostMerchant(ctx context.Context, in *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error)
-	GetAllMoneyBackCostSystem(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*MoneyBackCostSystemListResponse, error)
-	GetMoneyBackCostSystem(ctx context.Context, in *MoneyBackCostSystemRequest, opts ...client.CallOption) (*MoneyBackCostSystemResponse, error)
-	SetMoneyBackCostSystem(ctx context.Context, in *MoneyBackCostSystem, opts ...client.CallOption) (*MoneyBackCostSystemResponse, error)
-	DeleteMoneyBackCostSystem(ctx context.Context, in *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error)
-	GetAllMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchantListRequest, opts ...client.CallOption) (*MoneyBackCostMerchantListResponse, error)
-	GetMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchantRequest, opts ...client.CallOption) (*MoneyBackCostMerchantResponse, error)
-	SetMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchant, opts ...client.CallOption) (*MoneyBackCostMerchantResponse, error)
-	DeleteMoneyBackCostMerchant(ctx context.Context, in *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error)
-	CreateAccountingEntry(ctx context.Context, in *CreateAccountingEntryRequest, opts ...client.CallOption) (*CreateAccountingEntryResponse, error)
-	GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...client.CallOption) (*GetUserProfileResponse, error)
-	CreateOrUpdateUserProfile(ctx context.Context, in *UserProfile, opts ...client.CallOption) (*GetUserProfileResponse, error)
-	ConfirmUserEmail(ctx context.Context, in *ConfirmUserEmailRequest, opts ...client.CallOption) (*ConfirmUserEmailResponse, error)
-	CreatePageReview(ctx context.Context, in *CreatePageReviewRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error)
-	CreateRoyaltyReport(ctx context.Context, in *CreateRoyaltyReportRequest, opts ...client.CallOption) (*CreateRoyaltyReportRequest, error)
-	ListRoyaltyReports(ctx context.Context, in *ListRoyaltyReportsRequest, opts ...client.CallOption) (*ListRoyaltyReportsResponse, error)
-	GetRoyaltyReport(ctx context.Context, in *GetRoyaltyReportRequest, opts ...client.CallOption) (*GetRoyaltyReportResponse, error)
-	ChangeRoyaltyReport(ctx context.Context, in *ChangeRoyaltyReportRequest, opts ...client.CallOption) (*ResponseError, error)
-	ListRoyaltyReportOrders(ctx context.Context, in *ListRoyaltyReportOrdersRequest, opts ...client.CallOption) (*TransactionsResponse, error)
-	MerchantReviewRoyaltyReport(ctx context.Context, in *MerchantReviewRoyaltyReportRequest, opts ...client.CallOption) (*ResponseError, error)
-	AutoAcceptRoyaltyReports(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
-	RoyaltyReportPdfUploaded(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, opts ...client.CallOption) (*RoyaltyReportPdfUploadedResponse, error)
-	GetVatReportsDashboard(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*VatReportsResponse, error)
-	GetVatReportsForCountry(ctx context.Context, in *VatReportsRequest, opts ...client.CallOption) (*VatReportsResponse, error)
-	GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, opts ...client.CallOption) (*PrivateTransactionsResponse, error)
-	ProcessVatReports(ctx context.Context, in *ProcessVatReportsRequest, opts ...client.CallOption) (*EmptyResponse, error)
-	UpdateVatReportStatus(ctx context.Context, in *UpdateVatReportStatusRequest, opts ...client.CallOption) (*ResponseError, error)
-	GetVatReport(ctx context.Context, in *VatReportRequest, opts ...client.CallOption) (*VatReportResponse, error)
-	CalcAnnualTurnovers(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
-	GetMerchantOnboardingCompleteData(ctx context.Context, in *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*GetMerchantOnboardingCompleteDataResponse, error)
-	CreateOrUpdateKeyProduct(ctx context.Context, in *CreateOrUpdateKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error)
-	GetKeyProducts(ctx context.Context, in *ListKeyProductsRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error)
-	GetKeyProduct(ctx context.Context, in *RequestKeyProductMerchant, opts ...client.CallOption) (*KeyProductResponse, error)
-	DeleteKeyProduct(ctx context.Context, in *RequestKeyProductMerchant, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	PublishKeyProduct(ctx context.Context, in *PublishKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error)
-	UnPublishKeyProduct(ctx context.Context, in *UnPublishKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error)
-	GetKeyProductsForOrder(ctx context.Context, in *GetKeyProductsForOrderRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error)
-	GetKeyProductInfo(ctx context.Context, in *GetKeyProductInfoRequest, opts ...client.CallOption) (*GetKeyProductInfoResponse, error)
-	GetPlatforms(ctx context.Context, in *ListPlatformsRequest, opts ...client.CallOption) (*ListPlatformsResponse, error)
-	GetAvailableKeysCount(ctx context.Context, in *GetPlatformKeyCountRequest, opts ...client.CallOption) (*GetPlatformKeyCountResponse, error)
-	UploadKeysFile(ctx context.Context, in *PlatformKeysFileRequest, opts ...client.CallOption) (*PlatformKeysFileResponse, error)
-	GetKeyByID(ctx context.Context, in *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error)
-	ReserveKeyForOrder(ctx context.Context, in *PlatformKeyReserveRequest, opts ...client.CallOption) (*PlatformKeyReserveResponse, error)
-	FinishRedeemKeyForOrder(ctx context.Context, in *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error)
-	CancelRedeemKeyForOrder(ctx context.Context, in *KeyForOrderRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	ChangeCodeInOrder(ctx context.Context, in *ChangeCodeInOrderRequest, opts ...client.CallOption) (*ChangeCodeInOrderResponse, error)
-	GetDashboardMainReport(ctx context.Context, in *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardMainResponse, error)
-	GetDashboardRevenueDynamicsReport(ctx context.Context, in *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardRevenueDynamicsReportResponse, error)
-	GetDashboardBaseReport(ctx context.Context, in *GetDashboardBaseReportRequest, opts ...client.CallOption) (*GetDashboardBaseReportResponse, error)
-	GetDashboardCustomersReport(ctx context.Context, in *DashboardCustomerReportRequest, opts ...client.CallOption) (*GetDashboardCustomerReportResponse, error)
-	GetDashboardCustomerArpu(ctx context.Context, in *DashboardCustomerReportArpuRequest, opts ...client.CallOption) (*DashboardCustomerReportArpuResponse, error)
-	CreatePayoutDocument(ctx context.Context, in *CreatePayoutDocumentRequest, opts ...client.CallOption) (*CreatePayoutDocumentResponse, error)
-	UpdatePayoutDocument(ctx context.Context, in *UpdatePayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error)
-	GetPayoutDocuments(ctx context.Context, in *GetPayoutDocumentsRequest, opts ...client.CallOption) (*GetPayoutDocumentsResponse, error)
-	GetPayoutDocument(ctx context.Context, in *GetPayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error)
-	GetPayoutDocumentRoyaltyReports(ctx context.Context, in *GetPayoutDocumentRequest, opts ...client.CallOption) (*ListRoyaltyReportsResponse, error)
-	PayoutDocumentPdfUploaded(ctx context.Context, in *PayoutDocumentPdfUploadedRequest, opts ...client.CallOption) (*PayoutDocumentPdfUploadedResponse, error)
-	AutoCreatePayoutDocuments(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
-	GetMerchantBalance(ctx context.Context, in *GetMerchantBalanceRequest, opts ...client.CallOption) (*GetMerchantBalanceResponse, error)
-	PaymentFormPlatformChanged(ctx context.Context, in *PaymentFormUserChangePlatformRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error)
-	CheckSkuAndKeyProject(ctx context.Context, in *CheckSkuAndKeyProjectRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetPaylinks(ctx context.Context, in *GetPaylinksRequest, opts ...client.CallOption) (*GetPaylinksResponse, error)
-	GetPaylink(ctx context.Context, in *PaylinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error)
-	IncrPaylinkVisits(ctx context.Context, in *PaylinkRequestById, opts ...client.CallOption) (*EmptyResponse, error)
-	GetPaylinkURL(ctx context.Context, in *GetPaylinkURLRequest, opts ...client.CallOption) (*GetPaylinkUrlResponse, error)
-	CreateOrUpdatePaylink(ctx context.Context, in *CreatePaylinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error)
-	DeletePaylink(ctx context.Context, in *PaylinkRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetPaylinkStatTotal(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonResponse, error)
-	GetPaylinkStatByCountry(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
-	GetPaylinkStatByReferrer(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
-	GetPaylinkStatByDate(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
-	GetPaylinkStatByUtm(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
-	GetPaylinkTransactions(ctx context.Context, in *GetPaylinkTransactionsRequest, opts ...client.CallOption) (*TransactionsResponse, error)
-	DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetOperatingCompaniesList(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetOperatingCompaniesListResponse, error)
-	AddOperatingCompany(ctx context.Context, in *OperatingCompany, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetOperatingCompany(ctx context.Context, in *GetOperatingCompanyRequest, opts ...client.CallOption) (*GetOperatingCompanyResponse, error)
-	GetPaymentMinLimitsSystem(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetPaymentMinLimitsSystemResponse, error)
-	SetPaymentMinLimitSystem(ctx context.Context, in *PaymentMinLimitSystem, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetMerchantUsers(ctx context.Context, in *GetMerchantUsersRequest, opts ...client.CallOption) (*GetMerchantUsersResponse, error)
-	GetAdminUsers(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetAdminUsersResponse, error)
-	InviteUserMerchant(ctx context.Context, in *InviteUserMerchantRequest, opts ...client.CallOption) (*InviteUserMerchantResponse, error)
-	InviteUserAdmin(ctx context.Context, in *InviteUserAdminRequest, opts ...client.CallOption) (*InviteUserAdminResponse, error)
-	ResendInviteMerchant(ctx context.Context, in *ResendInviteMerchantRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	ResendInviteAdmin(ctx context.Context, in *ResendInviteAdminRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	AcceptInvite(ctx context.Context, in *AcceptInviteRequest, opts ...client.CallOption) (*AcceptInviteResponse, error)
-	CheckInviteToken(ctx context.Context, in *CheckInviteTokenRequest, opts ...client.CallOption) (*CheckInviteTokenResponse, error)
-	GetMerchantsForUser(ctx context.Context, in *GetMerchantsForUserRequest, opts ...client.CallOption) (*GetMerchantsForUserResponse, error)
-	ChangeRoleForMerchantUser(ctx context.Context, in *ChangeRoleForMerchantUserRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	ChangeRoleForAdminUser(ctx context.Context, in *ChangeRoleForAdminUserRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetRoleList(ctx context.Context, in *GetRoleListRequest, opts ...client.CallOption) (*GetRoleListResponse, error)
-	DeleteMerchantUser(ctx context.Context, in *MerchantRoleRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	DeleteAdminUser(ctx context.Context, in *AdminRoleRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetMerchantUserRole(ctx context.Context, in *MerchantRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error)
-	GetAdminUserRole(ctx context.Context, in *AdminRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error)
-	GetCommonUserProfile(ctx context.Context, in *CommonUserProfileRequest, opts ...client.CallOption) (*CommonUserProfileResponse, error)
-	GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, opts ...client.CallOption) (*UserRoleResponse, error)
-	SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, opts ...client.CallOption) (*SendWebhookToMerchantResponse, error)
-	NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	RoyaltyReportFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, opts ...client.CallOption) (*ActOfCompletionResponse, error)
-	GetActsOfCompletionList(ctx context.Context, in *ActsOfCompletionListRequest, opts ...client.CallOption) (*ActsOfCompletionListResponse, error)
-	SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error)
-	GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
-	DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error)
-	DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
-	GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error)
-	GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error)
-	DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
-	AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error)
-	GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error)
-	GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error)
+	OrderCreateByPaylink(ctx context.Context, req *OrderCreateByPaylink, opts ...client.CallOption) (*OrderCreateProcessResponse, error)
+	OrderCreateProcess(ctx context.Context, req *OrderCreateRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error)
+	PaymentFormJsonDataProcess(ctx context.Context, req *PaymentFormJsonDataRequest, opts ...client.CallOption) (*PaymentFormJsonDataResponse, error)
+	PaymentCreateProcess(ctx context.Context, req *PaymentCreateRequest, opts ...client.CallOption) (*PaymentCreateResponse, error)
+	PaymentCallbackProcess(ctx context.Context, req *PaymentNotifyRequest, opts ...client.CallOption) (*PaymentNotifyResponse, error)
+	OrderReceipt(ctx context.Context, req *OrderReceiptRequest, opts ...client.CallOption) (*OrderReceiptResponse, error)
+	OrderReCreateProcess(ctx context.Context, req *OrderReCreateProcessRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error)
+	UpdateOrder(ctx context.Context, req *Order, opts ...client.CallOption) (*EmptyResponse, error)
+	GetMerchantBy(ctx context.Context, req *GetMerchantByRequest, opts ...client.CallOption) (*GetMerchantResponse, error)
+	ListMerchants(ctx context.Context, req *MerchantListingRequest, opts ...client.CallOption) (*MerchantListingResponse, error)
+	ListMerchantsForAgreement(ctx context.Context, req *MerchantListingRequest, opts ...client.CallOption) (*ListMerchantsForAgreementResponse, error)
+	ChangeMerchant(ctx context.Context, req *OnboardingRequest, opts ...client.CallOption) (*ChangeMerchantResponse, error)
+	ChangeMerchantStatus(ctx context.Context, req *MerchantChangeStatusRequest, opts ...client.CallOption) (*ChangeMerchantStatusResponse, error)
+	SetMerchantOperatingCompany(ctx context.Context, req *SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*SetMerchantOperatingCompanyResponse, error)
+	SetMerchantAcceptedStatus(ctx context.Context, req *SetMerchantAcceptedStatusRequest, opts ...client.CallOption) (*SetMerchantAcceptedStatusResponse, error)
+	ChangeMerchantData(ctx context.Context, req *ChangeMerchantDataRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error)
+	SetMerchantS3Agreement(ctx context.Context, req *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error)
+	GetMerchantTariffRates(ctx context.Context, req *GetMerchantTariffRatesRequest, opts ...client.CallOption) (*GetMerchantTariffRatesResponse, error)
+	SetMerchantTariffRates(ctx context.Context, req *SetMerchantTariffRatesRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error)
+	ChangeMerchantManualPayouts(ctx context.Context, req *ChangeMerchantManualPayoutsRequest, opts ...client.CallOption) (*ChangeMerchantManualPayoutsResponse, error)
+	CreateNotification(ctx context.Context, req *NotificationRequest, opts ...client.CallOption) (*CreateNotificationResponse, error)
+	GetNotification(ctx context.Context, req *GetNotificationRequest, opts ...client.CallOption) (*Notification, error)
+	ListNotifications(ctx context.Context, req *ListingNotificationRequest, opts ...client.CallOption) (*Notifications, error)
+	MarkNotificationAsRead(ctx context.Context, req *GetNotificationRequest, opts ...client.CallOption) (*Notification, error)
+	ListMerchantPaymentMethods(ctx context.Context, req *ListMerchantPaymentMethodsRequest, opts ...client.CallOption) (*ListingMerchantPaymentMethod, error)
+	GetMerchantPaymentMethod(ctx context.Context, req *GetMerchantPaymentMethodRequest, opts ...client.CallOption) (*GetMerchantPaymentMethodResponse, error)
+	ChangeMerchantPaymentMethod(ctx context.Context, req *MerchantPaymentMethodRequest, opts ...client.CallOption) (*MerchantPaymentMethodResponse, error)
+	CreateRefund(ctx context.Context, req *CreateRefundRequest, opts ...client.CallOption) (*CreateRefundResponse, error)
+	ListRefunds(ctx context.Context, req *ListRefundsRequest, opts ...client.CallOption) (*ListRefundsResponse, error)
+	GetRefund(ctx context.Context, req *GetRefundRequest, opts ...client.CallOption) (*CreateRefundResponse, error)
+	ProcessRefundCallback(ctx context.Context, req *CallbackRequest, opts ...client.CallOption) (*PaymentNotifyResponse, error)
+	PaymentFormLanguageChanged(ctx context.Context, req *PaymentFormUserChangeLangRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error)
+	PaymentFormPaymentAccountChanged(ctx context.Context, req *PaymentFormUserChangePaymentAccountRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error)
+	ProcessBillingAddress(ctx context.Context, req *ProcessBillingAddressRequest, opts ...client.CallOption) (*ProcessBillingAddressResponse, error)
+	CreateOrUpdateProduct(ctx context.Context, req *Product, opts ...client.CallOption) (*Product, error)
+	ListProducts(ctx context.Context, req *ListProductsRequest, opts ...client.CallOption) (*ListProductsResponse, error)
+	GetProduct(ctx context.Context, req *RequestProduct, opts ...client.CallOption) (*GetProductResponse, error)
+	DeleteProduct(ctx context.Context, req *RequestProduct, opts ...client.CallOption) (*EmptyResponse, error)
+	GetProductsForOrder(ctx context.Context, req *GetProductsForOrderRequest, opts ...client.CallOption) (*ListProductsResponse, error)
+	GetProductPrices(ctx context.Context, req *RequestProduct, opts ...client.CallOption) (*ProductPricesResponse, error)
+	UpdateProductPrices(ctx context.Context, req *UpdateProductPricesRequest, opts ...client.CallOption) (*ResponseError, error)
+	ChangeProject(ctx context.Context, req *Project, opts ...client.CallOption) (*ChangeProjectResponse, error)
+	GetProject(ctx context.Context, req *GetProjectRequest, opts ...client.CallOption) (*ChangeProjectResponse, error)
+	ListProjects(ctx context.Context, req *ListProjectsRequest, opts ...client.CallOption) (*ListProjectsResponse, error)
+	DeleteProject(ctx context.Context, req *GetProjectRequest, opts ...client.CallOption) (*ChangeProjectResponse, error)
+	CreateToken(ctx context.Context, req *TokenRequest, opts ...client.CallOption) (*TokenResponse, error)
+	CheckProjectRequestSignature(ctx context.Context, req *CheckProjectRequestSignatureRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error)
+	GetCountriesList(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CountriesList, error)
+	GetCountriesListForOrder(ctx context.Context, req *GetCountriesListForOrderRequest, opts ...client.CallOption) (*GetCountriesListForOrderResponse, error)
+	GetCountry(ctx context.Context, req *GetCountryRequest, opts ...client.CallOption) (*Country, error)
+	UpdateCountry(ctx context.Context, req *Country, opts ...client.CallOption) (*Country, error)
+	GetOrderPublic(ctx context.Context, req *GetOrderRequest, opts ...client.CallOption) (*GetOrderPublicResponse, error)
+	GetOrderPrivate(ctx context.Context, req *GetOrderRequest, opts ...client.CallOption) (*GetOrderPrivateResponse, error)
+	FindAllOrdersPublic(ctx context.Context, req *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPublicResponse, error)
+	FindAllOrdersPrivate(ctx context.Context, req *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPrivateResponse, error)
+	FindAllOrders(ctx context.Context, req *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersResponse, error)
+	IsOrderCanBePaying(ctx context.Context, req *IsOrderCanBePayingRequest, opts ...client.CallOption) (*IsOrderCanBePayingResponse, error)
+	GetPriceGroup(ctx context.Context, req *GetPriceGroupRequest, opts ...client.CallOption) (*PriceGroup, error)
+	UpdatePriceGroup(ctx context.Context, req *PriceGroup, opts ...client.CallOption) (*PriceGroup, error)
+	GetPriceGroupByCountry(ctx context.Context, req *PriceGroupByCountryRequest, opts ...client.CallOption) (*PriceGroup, error)
+	GetPriceGroupCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*PriceGroupCurrenciesResponse, error)
+	GetPriceGroupCurrencyByRegion(ctx context.Context, req *PriceGroupByRegionRequest, opts ...client.CallOption) (*PriceGroupCurrenciesResponse, error)
+	GetRecommendedPriceByPriceGroup(ctx context.Context, req *RecommendedPriceRequest, opts ...client.CallOption) (*RecommendedPriceResponse, error)
+	GetRecommendedPriceByConversion(ctx context.Context, req *RecommendedPriceRequest, opts ...client.CallOption) (*RecommendedPriceResponse, error)
+	GetRecommendedPriceTable(ctx context.Context, req *RecommendedPriceTableRequest, opts ...client.CallOption) (*RecommendedPriceTableResponse, error)
+	GetPriceGroupByRegion(ctx context.Context, req *GetPriceGroupByRegionRequest, opts ...client.CallOption) (*GetPriceGroupByRegionResponse, error)
+	SetUserNotifySales(ctx context.Context, req *SetUserNotifyRequest, opts ...client.CallOption) (*EmptyResponse, error)
+	SetUserNotifyNewRegion(ctx context.Context, req *SetUserNotifyRequest, opts ...client.CallOption) (*EmptyResponse, error)
+	CreateOrUpdatePaymentMethod(ctx context.Context, req *PaymentMethod, opts ...client.CallOption) (*ChangePaymentMethodResponse, error)
+	CreateOrUpdatePaymentMethodProductionSettings(ctx context.Context, req *ChangePaymentMethodParamsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error)
+	GetPaymentMethodProductionSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*GetPaymentMethodSettingsResponse, error)
+	DeletePaymentMethodProductionSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error)
+	CreateOrUpdatePaymentMethodTestSettings(ctx context.Context, req *ChangePaymentMethodParamsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error)
+	GetPaymentMethodTestSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*GetPaymentMethodSettingsResponse, error)
+	DeletePaymentMethodTestSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error)
+	FindByZipCode(ctx context.Context, req *FindByZipCodeRequest, opts ...client.CallOption) (*FindByZipCodeResponse, error)
+	GetAllPaymentChannelCostSystem(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*PaymentChannelCostSystemListResponse, error)
+	GetPaymentChannelCostSystem(ctx context.Context, req *PaymentChannelCostSystemRequest, opts ...client.CallOption) (*PaymentChannelCostSystemResponse, error)
+	SetPaymentChannelCostSystem(ctx context.Context, req *PaymentChannelCostSystem, opts ...client.CallOption) (*PaymentChannelCostSystemResponse, error)
+	DeletePaymentChannelCostSystem(ctx context.Context, req *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error)
+	GetAllPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchantListRequest, opts ...client.CallOption) (*PaymentChannelCostMerchantListResponse, error)
+	GetPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchantRequest, opts ...client.CallOption) (*PaymentChannelCostMerchantResponse, error)
+	SetPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchant, opts ...client.CallOption) (*PaymentChannelCostMerchantResponse, error)
+	DeletePaymentChannelCostMerchant(ctx context.Context, req *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error)
+	GetAllMoneyBackCostSystem(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*MoneyBackCostSystemListResponse, error)
+	GetMoneyBackCostSystem(ctx context.Context, req *MoneyBackCostSystemRequest, opts ...client.CallOption) (*MoneyBackCostSystemResponse, error)
+	SetMoneyBackCostSystem(ctx context.Context, req *MoneyBackCostSystem, opts ...client.CallOption) (*MoneyBackCostSystemResponse, error)
+	DeleteMoneyBackCostSystem(ctx context.Context, req *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error)
+	GetAllMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchantListRequest, opts ...client.CallOption) (*MoneyBackCostMerchantListResponse, error)
+	GetMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchantRequest, opts ...client.CallOption) (*MoneyBackCostMerchantResponse, error)
+	SetMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchant, opts ...client.CallOption) (*MoneyBackCostMerchantResponse, error)
+	DeleteMoneyBackCostMerchant(ctx context.Context, req *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error)
+	CreateAccountingEntry(ctx context.Context, req *CreateAccountingEntryRequest, opts ...client.CallOption) (*CreateAccountingEntryResponse, error)
+	GetUserProfile(ctx context.Context, req *GetUserProfileRequest, opts ...client.CallOption) (*GetUserProfileResponse, error)
+	CreateOrUpdateUserProfile(ctx context.Context, req *UserProfile, opts ...client.CallOption) (*GetUserProfileResponse, error)
+	ConfirmUserEmail(ctx context.Context, req *ConfirmUserEmailRequest, opts ...client.CallOption) (*ConfirmUserEmailResponse, error)
+	CreatePageReview(ctx context.Context, req *CreatePageReviewRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error)
+	CreateRoyaltyReport(ctx context.Context, req *CreateRoyaltyReportRequest, opts ...client.CallOption) (*CreateRoyaltyReportRequest, error)
+	ListRoyaltyReports(ctx context.Context, req *ListRoyaltyReportsRequest, opts ...client.CallOption) (*ListRoyaltyReportsResponse, error)
+	GetRoyaltyReport(ctx context.Context, req *GetRoyaltyReportRequest, opts ...client.CallOption) (*GetRoyaltyReportResponse, error)
+	ChangeRoyaltyReport(ctx context.Context, req *ChangeRoyaltyReportRequest, opts ...client.CallOption) (*ResponseError, error)
+	ListRoyaltyReportOrders(ctx context.Context, req *ListRoyaltyReportOrdersRequest, opts ...client.CallOption) (*TransactionsResponse, error)
+	MerchantReviewRoyaltyReport(ctx context.Context, req *MerchantReviewRoyaltyReportRequest, opts ...client.CallOption) (*ResponseError, error)
+	AutoAcceptRoyaltyReports(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
+	RoyaltyReportPdfUploaded(ctx context.Context, req *RoyaltyReportPdfUploadedRequest, opts ...client.CallOption) (*RoyaltyReportPdfUploadedResponse, error)
+	GetVatReportsDashboard(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*VatReportsResponse, error)
+	GetVatReportsForCountry(ctx context.Context, req *VatReportsRequest, opts ...client.CallOption) (*VatReportsResponse, error)
+	GetVatReportTransactions(ctx context.Context, req *VatTransactionsRequest, opts ...client.CallOption) (*PrivateTransactionsResponse, error)
+	ProcessVatReports(ctx context.Context, req *ProcessVatReportsRequest, opts ...client.CallOption) (*EmptyResponse, error)
+	UpdateVatReportStatus(ctx context.Context, req *UpdateVatReportStatusRequest, opts ...client.CallOption) (*ResponseError, error)
+	GetVatReport(ctx context.Context, req *VatReportRequest, opts ...client.CallOption) (*VatReportResponse, error)
+	CalcAnnualTurnovers(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
+	GetMerchantOnboardingCompleteData(ctx context.Context, req *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*GetMerchantOnboardingCompleteDataResponse, error)
+	CreateOrUpdateKeyProduct(ctx context.Context, req *CreateOrUpdateKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error)
+	GetKeyProducts(ctx context.Context, req *ListKeyProductsRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error)
+	GetKeyProduct(ctx context.Context, req *RequestKeyProductMerchant, opts ...client.CallOption) (*KeyProductResponse, error)
+	DeleteKeyProduct(ctx context.Context, req *RequestKeyProductMerchant, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	PublishKeyProduct(ctx context.Context, req *PublishKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error)
+	UnPublishKeyProduct(ctx context.Context, req *UnPublishKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error)
+	GetKeyProductsForOrder(ctx context.Context, req *GetKeyProductsForOrderRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error)
+	GetKeyProductInfo(ctx context.Context, req *GetKeyProductInfoRequest, opts ...client.CallOption) (*GetKeyProductInfoResponse, error)
+	GetPlatforms(ctx context.Context, req *ListPlatformsRequest, opts ...client.CallOption) (*ListPlatformsResponse, error)
+	GetAvailableKeysCount(ctx context.Context, req *GetPlatformKeyCountRequest, opts ...client.CallOption) (*GetPlatformKeyCountResponse, error)
+	UploadKeysFile(ctx context.Context, req *PlatformKeysFileRequest, opts ...client.CallOption) (*PlatformKeysFileResponse, error)
+	GetKeyByID(ctx context.Context, req *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error)
+	ReserveKeyForOrder(ctx context.Context, req *PlatformKeyReserveRequest, opts ...client.CallOption) (*PlatformKeyReserveResponse, error)
+	FinishRedeemKeyForOrder(ctx context.Context, req *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error)
+	CancelRedeemKeyForOrder(ctx context.Context, req *KeyForOrderRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	ChangeCodeInOrder(ctx context.Context, req *ChangeCodeInOrderRequest, opts ...client.CallOption) (*ChangeCodeInOrderResponse, error)
+	GetDashboardMainReport(ctx context.Context, req *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardMainResponse, error)
+	GetDashboardRevenueDynamicsReport(ctx context.Context, req *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardRevenueDynamicsReportResponse, error)
+	GetDashboardBaseReport(ctx context.Context, req *GetDashboardBaseReportRequest, opts ...client.CallOption) (*GetDashboardBaseReportResponse, error)
+	GetDashboardCustomersReport(ctx context.Context, req *DashboardCustomerReportRequest, opts ...client.CallOption) (*GetDashboardCustomerReportResponse, error)
+	GetDashboardCustomerArpu(ctx context.Context, req *DashboardCustomerReportArpuRequest, opts ...client.CallOption) (*DashboardCustomerReportArpuResponse, error)
+	CreatePayoutDocument(ctx context.Context, req *CreatePayoutDocumentRequest, opts ...client.CallOption) (*CreatePayoutDocumentResponse, error)
+	UpdatePayoutDocument(ctx context.Context, req *UpdatePayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error)
+	GetPayoutDocuments(ctx context.Context, req *GetPayoutDocumentsRequest, opts ...client.CallOption) (*GetPayoutDocumentsResponse, error)
+	GetPayoutDocument(ctx context.Context, req *GetPayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error)
+	GetPayoutDocumentRoyaltyReports(ctx context.Context, req *GetPayoutDocumentRequest, opts ...client.CallOption) (*ListRoyaltyReportsResponse, error)
+	PayoutDocumentPdfUploaded(ctx context.Context, req *PayoutDocumentPdfUploadedRequest, opts ...client.CallOption) (*PayoutDocumentPdfUploadedResponse, error)
+	AutoCreatePayoutDocuments(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
+	GetMerchantBalance(ctx context.Context, req *GetMerchantBalanceRequest, opts ...client.CallOption) (*GetMerchantBalanceResponse, error)
+	PaymentFormPlatformChanged(ctx context.Context, req *PaymentFormUserChangePlatformRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error)
+	CheckSkuAndKeyProject(ctx context.Context, req *CheckSkuAndKeyProjectRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetPaylinks(ctx context.Context, req *GetPaylinksRequest, opts ...client.CallOption) (*GetPaylinksResponse, error)
+	GetPaylink(ctx context.Context, req *PaylinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error)
+	IncrPaylinkVisits(ctx context.Context, req *PaylinkRequestById, opts ...client.CallOption) (*EmptyResponse, error)
+	GetPaylinkURL(ctx context.Context, req *GetPaylinkURLRequest, opts ...client.CallOption) (*GetPaylinkUrlResponse, error)
+	CreateOrUpdatePaylink(ctx context.Context, req *CreatePaylinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error)
+	DeletePaylink(ctx context.Context, req *PaylinkRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetPaylinkStatTotal(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonResponse, error)
+	GetPaylinkStatByCountry(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
+	GetPaylinkStatByReferrer(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
+	GetPaylinkStatByDate(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
+	GetPaylinkStatByUtm(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
+	GetPaylinkTransactions(ctx context.Context, req *GetPaylinkTransactionsRequest, opts ...client.CallOption) (*TransactionsResponse, error)
+	DeleteSavedCard(ctx context.Context, req *DeleteSavedCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetOperatingCompaniesList(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*GetOperatingCompaniesListResponse, error)
+	AddOperatingCompany(ctx context.Context, req *OperatingCompany, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetOperatingCompany(ctx context.Context, req *GetOperatingCompanyRequest, opts ...client.CallOption) (*GetOperatingCompanyResponse, error)
+	GetPaymentMinLimitsSystem(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*GetPaymentMinLimitsSystemResponse, error)
+	SetPaymentMinLimitSystem(ctx context.Context, req *PaymentMinLimitSystem, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetMerchantUsers(ctx context.Context, req *GetMerchantUsersRequest, opts ...client.CallOption) (*GetMerchantUsersResponse, error)
+	GetAdminUsers(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*GetAdminUsersResponse, error)
+	InviteUserMerchant(ctx context.Context, req *InviteUserMerchantRequest, opts ...client.CallOption) (*InviteUserMerchantResponse, error)
+	InviteUserAdmin(ctx context.Context, req *InviteUserAdminRequest, opts ...client.CallOption) (*InviteUserAdminResponse, error)
+	ResendInviteMerchant(ctx context.Context, req *ResendInviteMerchantRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	ResendInviteAdmin(ctx context.Context, req *ResendInviteAdminRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	AcceptInvite(ctx context.Context, req *AcceptInviteRequest, opts ...client.CallOption) (*AcceptInviteResponse, error)
+	CheckInviteToken(ctx context.Context, req *CheckInviteTokenRequest, opts ...client.CallOption) (*CheckInviteTokenResponse, error)
+	GetMerchantsForUser(ctx context.Context, req *GetMerchantsForUserRequest, opts ...client.CallOption) (*GetMerchantsForUserResponse, error)
+	ChangeRoleForMerchantUser(ctx context.Context, req *ChangeRoleForMerchantUserRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	ChangeRoleForAdminUser(ctx context.Context, req *ChangeRoleForAdminUserRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetRoleList(ctx context.Context, req *GetRoleListRequest, opts ...client.CallOption) (*GetRoleListResponse, error)
+	DeleteMerchantUser(ctx context.Context, req *MerchantRoleRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	DeleteAdminUser(ctx context.Context, req *AdminRoleRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetMerchantUserRole(ctx context.Context, req *MerchantRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error)
+	GetAdminUserRole(ctx context.Context, req *AdminRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error)
+	GetCommonUserProfile(ctx context.Context, req *CommonUserProfileRequest, opts ...client.CallOption) (*CommonUserProfileResponse, error)
+	GetAdminByUserId(ctx context.Context, req *CommonUserProfileRequest, opts ...client.CallOption) (*UserRoleResponse, error)
+	SendWebhookToMerchant(ctx context.Context, req *OrderCreateRequest, opts ...client.CallOption) (*SendWebhookToMerchantResponse, error)
+	NotifyWebhookTestResults(ctx context.Context, req *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	RoyaltyReportFinanceDone(ctx context.Context, req *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	PayoutFinanceDone(ctx context.Context, req *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetActOfCompletion(ctx context.Context, req *ActOfCompletionRequest, opts ...client.CallOption) (*ActOfCompletionResponse, error)
+	GetActsOfCompletionList(ctx context.Context, req *ActsOfCompletionListRequest, opts ...client.CallOption) (*ActsOfCompletionListResponse, error)
+	SetCustomerPaymentActivity(ctx context.Context, req *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetCustomerList(ctx context.Context, req *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error)
+	GetCustomerInfo(ctx context.Context, req *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
+	DeserializeCookie(ctx context.Context, req *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error)
+	DeleteCustomerCard(ctx context.Context, req *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	GetSubscription(ctx context.Context, req *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
+	GetCustomerShortInfo(ctx context.Context, req *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error)
+	GetSubscriptionOrders(ctx context.Context, req *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error)
+	DeleteRecurringSubscription(ctx context.Context, req *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	FindSubscriptions(ctx context.Context, req *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
+	AddMerchantDocument(ctx context.Context, req *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error)
+	GetMerchantDocuments(ctx context.Context, req *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error)
+	GetMerchantDocument(ctx context.Context, req *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error)
 }
 
 type billingService struct {
@@ -242,2006 +250,1801 @@ type billingService struct {
 }
 
 func NewBillingService(name string, c client.Client) BillingService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "grpc"
-	}
 	return &billingService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *billingService) OrderCreateByPaylink(ctx context.Context, in *OrderCreateByPaylink, opts ...client.CallOption) (*OrderCreateProcessResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.OrderCreateByPaylink", in)
-	out := new(OrderCreateProcessResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) OrderCreateByPaylink(ctx context.Context, req *OrderCreateByPaylink, opts ...client.CallOption) (*OrderCreateProcessResponse, error) {
+	rsp := &OrderCreateProcessResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.OrderCreateByPaylink", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) OrderCreateProcess(ctx context.Context, in *OrderCreateRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.OrderCreateProcess", in)
-	out := new(OrderCreateProcessResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) OrderCreateProcess(ctx context.Context, req *OrderCreateRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error) {
+	rsp := &OrderCreateProcessResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.OrderCreateProcess", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PaymentFormJsonDataProcess(ctx context.Context, in *PaymentFormJsonDataRequest, opts ...client.CallOption) (*PaymentFormJsonDataResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PaymentFormJsonDataProcess", in)
-	out := new(PaymentFormJsonDataResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PaymentFormJsonDataProcess(ctx context.Context, req *PaymentFormJsonDataRequest, opts ...client.CallOption) (*PaymentFormJsonDataResponse, error) {
+	rsp := &PaymentFormJsonDataResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PaymentFormJsonDataProcess", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PaymentCreateProcess(ctx context.Context, in *PaymentCreateRequest, opts ...client.CallOption) (*PaymentCreateResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PaymentCreateProcess", in)
-	out := new(PaymentCreateResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PaymentCreateProcess(ctx context.Context, req *PaymentCreateRequest, opts ...client.CallOption) (*PaymentCreateResponse, error) {
+	rsp := &PaymentCreateResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PaymentCreateProcess", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PaymentCallbackProcess(ctx context.Context, in *PaymentNotifyRequest, opts ...client.CallOption) (*PaymentNotifyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PaymentCallbackProcess", in)
-	out := new(PaymentNotifyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PaymentCallbackProcess(ctx context.Context, req *PaymentNotifyRequest, opts ...client.CallOption) (*PaymentNotifyResponse, error) {
+	rsp := &PaymentNotifyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PaymentCallbackProcess", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) OrderReceipt(ctx context.Context, in *OrderReceiptRequest, opts ...client.CallOption) (*OrderReceiptResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.OrderReceipt", in)
-	out := new(OrderReceiptResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) OrderReceipt(ctx context.Context, req *OrderReceiptRequest, opts ...client.CallOption) (*OrderReceiptResponse, error) {
+	rsp := &OrderReceiptResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.OrderReceipt", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) OrderReCreateProcess(ctx context.Context, in *OrderReCreateProcessRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.OrderReCreateProcess", in)
-	out := new(OrderCreateProcessResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) OrderReCreateProcess(ctx context.Context, req *OrderReCreateProcessRequest, opts ...client.CallOption) (*OrderCreateProcessResponse, error) {
+	rsp := &OrderCreateProcessResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.OrderReCreateProcess", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) UpdateOrder(ctx context.Context, in *Order, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UpdateOrder", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) UpdateOrder(ctx context.Context, req *Order, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.UpdateOrder", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, opts ...client.CallOption) (*GetMerchantResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantBy", in)
-	out := new(GetMerchantResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantBy(ctx context.Context, req *GetMerchantByRequest, opts ...client.CallOption) (*GetMerchantResponse, error) {
+	rsp := &GetMerchantResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantBy", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListMerchants(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*MerchantListingResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListMerchants", in)
-	out := new(MerchantListingResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListMerchants(ctx context.Context, req *MerchantListingRequest, opts ...client.CallOption) (*MerchantListingResponse, error) {
+	rsp := &MerchantListingResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListMerchants", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListMerchantsForAgreement(ctx context.Context, in *MerchantListingRequest, opts ...client.CallOption) (*ListMerchantsForAgreementResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListMerchantsForAgreement", in)
-	out := new(ListMerchantsForAgreementResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListMerchantsForAgreement(ctx context.Context, req *MerchantListingRequest, opts ...client.CallOption) (*ListMerchantsForAgreementResponse, error) {
+	rsp := &ListMerchantsForAgreementResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListMerchantsForAgreement", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeMerchant(ctx context.Context, in *OnboardingRequest, opts ...client.CallOption) (*ChangeMerchantResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeMerchant", in)
-	out := new(ChangeMerchantResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeMerchant(ctx context.Context, req *OnboardingRequest, opts ...client.CallOption) (*ChangeMerchantResponse, error) {
+	rsp := &ChangeMerchantResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeMerchantStatus(ctx context.Context, in *MerchantChangeStatusRequest, opts ...client.CallOption) (*ChangeMerchantStatusResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeMerchantStatus", in)
-	out := new(ChangeMerchantStatusResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeMerchantStatus(ctx context.Context, req *MerchantChangeStatusRequest, opts ...client.CallOption) (*ChangeMerchantStatusResponse, error) {
+	rsp := &ChangeMerchantStatusResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeMerchantStatus", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*SetMerchantOperatingCompanyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetMerchantOperatingCompany", in)
-	out := new(SetMerchantOperatingCompanyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetMerchantOperatingCompany(ctx context.Context, req *SetMerchantOperatingCompanyRequest, opts ...client.CallOption) (*SetMerchantOperatingCompanyResponse, error) {
+	rsp := &SetMerchantOperatingCompanyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetMerchantOperatingCompany", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetMerchantAcceptedStatus(ctx context.Context, in *SetMerchantAcceptedStatusRequest, opts ...client.CallOption) (*SetMerchantAcceptedStatusResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetMerchantAcceptedStatus", in)
-	out := new(SetMerchantAcceptedStatusResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetMerchantAcceptedStatus(ctx context.Context, req *SetMerchantAcceptedStatusRequest, opts ...client.CallOption) (*SetMerchantAcceptedStatusResponse, error) {
+	rsp := &SetMerchantAcceptedStatusResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetMerchantAcceptedStatus", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeMerchantData(ctx context.Context, in *ChangeMerchantDataRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeMerchantData", in)
-	out := new(ChangeMerchantDataResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeMerchantData(ctx context.Context, req *ChangeMerchantDataRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error) {
+	rsp := &ChangeMerchantDataResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeMerchantData", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetMerchantS3Agreement(ctx context.Context, in *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetMerchantS3Agreement", in)
-	out := new(ChangeMerchantDataResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetMerchantS3Agreement(ctx context.Context, req *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*ChangeMerchantDataResponse, error) {
+	rsp := &ChangeMerchantDataResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetMerchantS3Agreement", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantTariffRates(ctx context.Context, in *GetMerchantTariffRatesRequest, opts ...client.CallOption) (*GetMerchantTariffRatesResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantTariffRates", in)
-	out := new(GetMerchantTariffRatesResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantTariffRates(ctx context.Context, req *GetMerchantTariffRatesRequest, opts ...client.CallOption) (*GetMerchantTariffRatesResponse, error) {
+	rsp := &GetMerchantTariffRatesResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantTariffRates", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetMerchantTariffRates(ctx context.Context, in *SetMerchantTariffRatesRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetMerchantTariffRates", in)
-	out := new(CheckProjectRequestSignatureResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetMerchantTariffRates(ctx context.Context, req *SetMerchantTariffRatesRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error) {
+	rsp := &CheckProjectRequestSignatureResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetMerchantTariffRates", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeMerchantManualPayouts(ctx context.Context, in *ChangeMerchantManualPayoutsRequest, opts ...client.CallOption) (*ChangeMerchantManualPayoutsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeMerchantManualPayouts", in)
-	out := new(ChangeMerchantManualPayoutsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeMerchantManualPayouts(ctx context.Context, req *ChangeMerchantManualPayoutsRequest, opts ...client.CallOption) (*ChangeMerchantManualPayoutsResponse, error) {
+	rsp := &ChangeMerchantManualPayoutsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeMerchantManualPayouts", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateNotification(ctx context.Context, in *NotificationRequest, opts ...client.CallOption) (*CreateNotificationResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateNotification", in)
-	out := new(CreateNotificationResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateNotification(ctx context.Context, req *NotificationRequest, opts ...client.CallOption) (*CreateNotificationResponse, error) {
+	rsp := &CreateNotificationResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateNotification", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetNotification(ctx context.Context, in *GetNotificationRequest, opts ...client.CallOption) (*Notification, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetNotification", in)
-	out := new(Notification)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetNotification(ctx context.Context, req *GetNotificationRequest, opts ...client.CallOption) (*Notification, error) {
+	rsp := &Notification{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetNotification", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListNotifications(ctx context.Context, in *ListingNotificationRequest, opts ...client.CallOption) (*Notifications, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListNotifications", in)
-	out := new(Notifications)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListNotifications(ctx context.Context, req *ListingNotificationRequest, opts ...client.CallOption) (*Notifications, error) {
+	rsp := &Notifications{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListNotifications", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) MarkNotificationAsRead(ctx context.Context, in *GetNotificationRequest, opts ...client.CallOption) (*Notification, error) {
-	req := c.c.NewRequest(c.name, "BillingService.MarkNotificationAsRead", in)
-	out := new(Notification)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) MarkNotificationAsRead(ctx context.Context, req *GetNotificationRequest, opts ...client.CallOption) (*Notification, error) {
+	rsp := &Notification{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.MarkNotificationAsRead", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListMerchantPaymentMethods(ctx context.Context, in *ListMerchantPaymentMethodsRequest, opts ...client.CallOption) (*ListingMerchantPaymentMethod, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListMerchantPaymentMethods", in)
-	out := new(ListingMerchantPaymentMethod)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListMerchantPaymentMethods(ctx context.Context, req *ListMerchantPaymentMethodsRequest, opts ...client.CallOption) (*ListingMerchantPaymentMethod, error) {
+	rsp := &ListingMerchantPaymentMethod{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListMerchantPaymentMethods", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantPaymentMethod(ctx context.Context, in *GetMerchantPaymentMethodRequest, opts ...client.CallOption) (*GetMerchantPaymentMethodResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantPaymentMethod", in)
-	out := new(GetMerchantPaymentMethodResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantPaymentMethod(ctx context.Context, req *GetMerchantPaymentMethodRequest, opts ...client.CallOption) (*GetMerchantPaymentMethodResponse, error) {
+	rsp := &GetMerchantPaymentMethodResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantPaymentMethod", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeMerchantPaymentMethod(ctx context.Context, in *MerchantPaymentMethodRequest, opts ...client.CallOption) (*MerchantPaymentMethodResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeMerchantPaymentMethod", in)
-	out := new(MerchantPaymentMethodResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeMerchantPaymentMethod(ctx context.Context, req *MerchantPaymentMethodRequest, opts ...client.CallOption) (*MerchantPaymentMethodResponse, error) {
+	rsp := &MerchantPaymentMethodResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeMerchantPaymentMethod", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateRefund(ctx context.Context, in *CreateRefundRequest, opts ...client.CallOption) (*CreateRefundResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateRefund", in)
-	out := new(CreateRefundResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateRefund(ctx context.Context, req *CreateRefundRequest, opts ...client.CallOption) (*CreateRefundResponse, error) {
+	rsp := &CreateRefundResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateRefund", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListRefunds(ctx context.Context, in *ListRefundsRequest, opts ...client.CallOption) (*ListRefundsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListRefunds", in)
-	out := new(ListRefundsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListRefunds(ctx context.Context, req *ListRefundsRequest, opts ...client.CallOption) (*ListRefundsResponse, error) {
+	rsp := &ListRefundsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListRefunds", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetRefund(ctx context.Context, in *GetRefundRequest, opts ...client.CallOption) (*CreateRefundResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetRefund", in)
-	out := new(CreateRefundResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetRefund(ctx context.Context, req *GetRefundRequest, opts ...client.CallOption) (*CreateRefundResponse, error) {
+	rsp := &CreateRefundResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetRefund", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ProcessRefundCallback(ctx context.Context, in *CallbackRequest, opts ...client.CallOption) (*PaymentNotifyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ProcessRefundCallback", in)
-	out := new(PaymentNotifyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ProcessRefundCallback(ctx context.Context, req *CallbackRequest, opts ...client.CallOption) (*PaymentNotifyResponse, error) {
+	rsp := &PaymentNotifyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ProcessRefundCallback", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PaymentFormLanguageChanged(ctx context.Context, in *PaymentFormUserChangeLangRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PaymentFormLanguageChanged", in)
-	out := new(PaymentFormDataChangeResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PaymentFormLanguageChanged(ctx context.Context, req *PaymentFormUserChangeLangRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error) {
+	rsp := &PaymentFormDataChangeResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PaymentFormLanguageChanged", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PaymentFormPaymentAccountChanged(ctx context.Context, in *PaymentFormUserChangePaymentAccountRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PaymentFormPaymentAccountChanged", in)
-	out := new(PaymentFormDataChangeResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PaymentFormPaymentAccountChanged(ctx context.Context, req *PaymentFormUserChangePaymentAccountRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error) {
+	rsp := &PaymentFormDataChangeResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PaymentFormPaymentAccountChanged", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ProcessBillingAddress(ctx context.Context, in *ProcessBillingAddressRequest, opts ...client.CallOption) (*ProcessBillingAddressResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ProcessBillingAddress", in)
-	out := new(ProcessBillingAddressResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ProcessBillingAddress(ctx context.Context, req *ProcessBillingAddressRequest, opts ...client.CallOption) (*ProcessBillingAddressResponse, error) {
+	rsp := &ProcessBillingAddressResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ProcessBillingAddress", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateOrUpdateProduct(ctx context.Context, in *Product, opts ...client.CallOption) (*Product, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateOrUpdateProduct", in)
-	out := new(Product)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateOrUpdateProduct(ctx context.Context, req *Product, opts ...client.CallOption) (*Product, error) {
+	rsp := &Product{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateOrUpdateProduct", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListProducts(ctx context.Context, in *ListProductsRequest, opts ...client.CallOption) (*ListProductsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListProducts", in)
-	out := new(ListProductsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListProducts(ctx context.Context, req *ListProductsRequest, opts ...client.CallOption) (*ListProductsResponse, error) {
+	rsp := &ListProductsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListProducts", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetProduct(ctx context.Context, in *RequestProduct, opts ...client.CallOption) (*GetProductResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetProduct", in)
-	out := new(GetProductResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetProduct(ctx context.Context, req *RequestProduct, opts ...client.CallOption) (*GetProductResponse, error) {
+	rsp := &GetProductResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetProduct", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteProduct(ctx context.Context, in *RequestProduct, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteProduct", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteProduct(ctx context.Context, req *RequestProduct, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteProduct", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetProductsForOrder(ctx context.Context, in *GetProductsForOrderRequest, opts ...client.CallOption) (*ListProductsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetProductsForOrder", in)
-	out := new(ListProductsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetProductsForOrder(ctx context.Context, req *GetProductsForOrderRequest, opts ...client.CallOption) (*ListProductsResponse, error) {
+	rsp := &ListProductsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetProductsForOrder", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetProductPrices(ctx context.Context, in *RequestProduct, opts ...client.CallOption) (*ProductPricesResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetProductPrices", in)
-	out := new(ProductPricesResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetProductPrices(ctx context.Context, req *RequestProduct, opts ...client.CallOption) (*ProductPricesResponse, error) {
+	rsp := &ProductPricesResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetProductPrices", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) UpdateProductPrices(ctx context.Context, in *UpdateProductPricesRequest, opts ...client.CallOption) (*ResponseError, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UpdateProductPrices", in)
-	out := new(ResponseError)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) UpdateProductPrices(ctx context.Context, req *UpdateProductPricesRequest, opts ...client.CallOption) (*ResponseError, error) {
+	rsp := &ResponseError{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.UpdateProductPrices", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeProject(ctx context.Context, in *Project, opts ...client.CallOption) (*ChangeProjectResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeProject", in)
-	out := new(ChangeProjectResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeProject(ctx context.Context, req *Project, opts ...client.CallOption) (*ChangeProjectResponse, error) {
+	rsp := &ChangeProjectResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeProject", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetProject(ctx context.Context, in *GetProjectRequest, opts ...client.CallOption) (*ChangeProjectResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetProject", in)
-	out := new(ChangeProjectResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetProject(ctx context.Context, req *GetProjectRequest, opts ...client.CallOption) (*ChangeProjectResponse, error) {
+	rsp := &ChangeProjectResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetProject", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListProjects(ctx context.Context, in *ListProjectsRequest, opts ...client.CallOption) (*ListProjectsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListProjects", in)
-	out := new(ListProjectsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListProjects(ctx context.Context, req *ListProjectsRequest, opts ...client.CallOption) (*ListProjectsResponse, error) {
+	rsp := &ListProjectsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListProjects", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteProject(ctx context.Context, in *GetProjectRequest, opts ...client.CallOption) (*ChangeProjectResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteProject", in)
-	out := new(ChangeProjectResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteProject(ctx context.Context, req *GetProjectRequest, opts ...client.CallOption) (*ChangeProjectResponse, error) {
+	rsp := &ChangeProjectResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteProject", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateToken(ctx context.Context, in *TokenRequest, opts ...client.CallOption) (*TokenResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateToken", in)
-	out := new(TokenResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateToken(ctx context.Context, req *TokenRequest, opts ...client.CallOption) (*TokenResponse, error) {
+	rsp := &TokenResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateToken", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CheckProjectRequestSignature(ctx context.Context, in *CheckProjectRequestSignatureRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CheckProjectRequestSignature", in)
-	out := new(CheckProjectRequestSignatureResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CheckProjectRequestSignature(ctx context.Context, req *CheckProjectRequestSignatureRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error) {
+	rsp := &CheckProjectRequestSignatureResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CheckProjectRequestSignature", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetCountriesList(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CountriesList, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCountriesList", in)
-	out := new(CountriesList)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetCountriesList(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CountriesList, error) {
+	rsp := &CountriesList{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetCountriesList", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetCountriesListForOrder(ctx context.Context, in *GetCountriesListForOrderRequest, opts ...client.CallOption) (*GetCountriesListForOrderResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCountriesListForOrder", in)
-	out := new(GetCountriesListForOrderResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetCountriesListForOrder(ctx context.Context, req *GetCountriesListForOrderRequest, opts ...client.CallOption) (*GetCountriesListForOrderResponse, error) {
+	rsp := &GetCountriesListForOrderResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetCountriesListForOrder", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetCountry(ctx context.Context, in *GetCountryRequest, opts ...client.CallOption) (*Country, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCountry", in)
-	out := new(Country)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetCountry(ctx context.Context, req *GetCountryRequest, opts ...client.CallOption) (*Country, error) {
+	rsp := &Country{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetCountry", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) UpdateCountry(ctx context.Context, in *Country, opts ...client.CallOption) (*Country, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UpdateCountry", in)
-	out := new(Country)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) UpdateCountry(ctx context.Context, req *Country, opts ...client.CallOption) (*Country, error) {
+	rsp := &Country{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.UpdateCountry", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetOrderPublic(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPublicResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetOrderPublic", in)
-	out := new(GetOrderPublicResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetOrderPublic(ctx context.Context, req *GetOrderRequest, opts ...client.CallOption) (*GetOrderPublicResponse, error) {
+	rsp := &GetOrderPublicResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetOrderPublic", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetOrderPrivate(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPrivateResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetOrderPrivate", in)
-	out := new(GetOrderPrivateResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetOrderPrivate(ctx context.Context, req *GetOrderRequest, opts ...client.CallOption) (*GetOrderPrivateResponse, error) {
+	rsp := &GetOrderPrivateResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetOrderPrivate", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPublicResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.FindAllOrdersPublic", in)
-	out := new(ListOrdersPublicResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) FindAllOrdersPublic(ctx context.Context, req *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPublicResponse, error) {
+	rsp := &ListOrdersPublicResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.FindAllOrdersPublic", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) FindAllOrdersPrivate(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPrivateResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.FindAllOrdersPrivate", in)
-	out := new(ListOrdersPrivateResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) FindAllOrdersPrivate(ctx context.Context, req *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPrivateResponse, error) {
+	rsp := &ListOrdersPrivateResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.FindAllOrdersPrivate", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) FindAllOrders(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.FindAllOrders", in)
-	out := new(ListOrdersResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) FindAllOrders(ctx context.Context, req *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersResponse, error) {
+	rsp := &ListOrdersResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.FindAllOrders", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) IsOrderCanBePaying(ctx context.Context, in *IsOrderCanBePayingRequest, opts ...client.CallOption) (*IsOrderCanBePayingResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.IsOrderCanBePaying", in)
-	out := new(IsOrderCanBePayingResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) IsOrderCanBePaying(ctx context.Context, req *IsOrderCanBePayingRequest, opts ...client.CallOption) (*IsOrderCanBePayingResponse, error) {
+	rsp := &IsOrderCanBePayingResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.IsOrderCanBePaying", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPriceGroup(ctx context.Context, in *GetPriceGroupRequest, opts ...client.CallOption) (*PriceGroup, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPriceGroup", in)
-	out := new(PriceGroup)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPriceGroup(ctx context.Context, req *GetPriceGroupRequest, opts ...client.CallOption) (*PriceGroup, error) {
+	rsp := &PriceGroup{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPriceGroup", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) UpdatePriceGroup(ctx context.Context, in *PriceGroup, opts ...client.CallOption) (*PriceGroup, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UpdatePriceGroup", in)
-	out := new(PriceGroup)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) UpdatePriceGroup(ctx context.Context, req *PriceGroup, opts ...client.CallOption) (*PriceGroup, error) {
+	rsp := &PriceGroup{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.UpdatePriceGroup", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPriceGroupByCountry(ctx context.Context, in *PriceGroupByCountryRequest, opts ...client.CallOption) (*PriceGroup, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPriceGroupByCountry", in)
-	out := new(PriceGroup)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPriceGroupByCountry(ctx context.Context, req *PriceGroupByCountryRequest, opts ...client.CallOption) (*PriceGroup, error) {
+	rsp := &PriceGroup{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPriceGroupByCountry", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPriceGroupCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*PriceGroupCurrenciesResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPriceGroupCurrencies", in)
-	out := new(PriceGroupCurrenciesResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPriceGroupCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*PriceGroupCurrenciesResponse, error) {
+	rsp := &PriceGroupCurrenciesResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPriceGroupCurrencies", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPriceGroupCurrencyByRegion(ctx context.Context, in *PriceGroupByRegionRequest, opts ...client.CallOption) (*PriceGroupCurrenciesResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPriceGroupCurrencyByRegion", in)
-	out := new(PriceGroupCurrenciesResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPriceGroupCurrencyByRegion(ctx context.Context, req *PriceGroupByRegionRequest, opts ...client.CallOption) (*PriceGroupCurrenciesResponse, error) {
+	rsp := &PriceGroupCurrenciesResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPriceGroupCurrencyByRegion", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetRecommendedPriceByPriceGroup(ctx context.Context, in *RecommendedPriceRequest, opts ...client.CallOption) (*RecommendedPriceResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetRecommendedPriceByPriceGroup", in)
-	out := new(RecommendedPriceResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetRecommendedPriceByPriceGroup(ctx context.Context, req *RecommendedPriceRequest, opts ...client.CallOption) (*RecommendedPriceResponse, error) {
+	rsp := &RecommendedPriceResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetRecommendedPriceByPriceGroup", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetRecommendedPriceByConversion(ctx context.Context, in *RecommendedPriceRequest, opts ...client.CallOption) (*RecommendedPriceResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetRecommendedPriceByConversion", in)
-	out := new(RecommendedPriceResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetRecommendedPriceByConversion(ctx context.Context, req *RecommendedPriceRequest, opts ...client.CallOption) (*RecommendedPriceResponse, error) {
+	rsp := &RecommendedPriceResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetRecommendedPriceByConversion", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetRecommendedPriceTable(ctx context.Context, in *RecommendedPriceTableRequest, opts ...client.CallOption) (*RecommendedPriceTableResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetRecommendedPriceTable", in)
-	out := new(RecommendedPriceTableResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetRecommendedPriceTable(ctx context.Context, req *RecommendedPriceTableRequest, opts ...client.CallOption) (*RecommendedPriceTableResponse, error) {
+	rsp := &RecommendedPriceTableResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetRecommendedPriceTable", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPriceGroupByRegion(ctx context.Context, in *GetPriceGroupByRegionRequest, opts ...client.CallOption) (*GetPriceGroupByRegionResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPriceGroupByRegion", in)
-	out := new(GetPriceGroupByRegionResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPriceGroupByRegion(ctx context.Context, req *GetPriceGroupByRegionRequest, opts ...client.CallOption) (*GetPriceGroupByRegionResponse, error) {
+	rsp := &GetPriceGroupByRegionResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPriceGroupByRegion", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetUserNotifySales(ctx context.Context, in *SetUserNotifyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetUserNotifySales", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetUserNotifySales(ctx context.Context, req *SetUserNotifyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetUserNotifySales", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetUserNotifyNewRegion(ctx context.Context, in *SetUserNotifyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetUserNotifyNewRegion", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetUserNotifyNewRegion(ctx context.Context, req *SetUserNotifyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetUserNotifyNewRegion", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateOrUpdatePaymentMethod(ctx context.Context, in *PaymentMethod, opts ...client.CallOption) (*ChangePaymentMethodResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateOrUpdatePaymentMethod", in)
-	out := new(ChangePaymentMethodResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateOrUpdatePaymentMethod(ctx context.Context, req *PaymentMethod, opts ...client.CallOption) (*ChangePaymentMethodResponse, error) {
+	rsp := &ChangePaymentMethodResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateOrUpdatePaymentMethod", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateOrUpdatePaymentMethodProductionSettings(ctx context.Context, in *ChangePaymentMethodParamsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateOrUpdatePaymentMethodProductionSettings", in)
-	out := new(ChangePaymentMethodParamsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateOrUpdatePaymentMethodProductionSettings(ctx context.Context, req *ChangePaymentMethodParamsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error) {
+	rsp := &ChangePaymentMethodParamsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateOrUpdatePaymentMethodProductionSettings", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaymentMethodProductionSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*GetPaymentMethodSettingsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaymentMethodProductionSettings", in)
-	out := new(GetPaymentMethodSettingsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaymentMethodProductionSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*GetPaymentMethodSettingsResponse, error) {
+	rsp := &GetPaymentMethodSettingsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaymentMethodProductionSettings", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeletePaymentMethodProductionSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeletePaymentMethodProductionSettings", in)
-	out := new(ChangePaymentMethodParamsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeletePaymentMethodProductionSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error) {
+	rsp := &ChangePaymentMethodParamsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeletePaymentMethodProductionSettings", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateOrUpdatePaymentMethodTestSettings(ctx context.Context, in *ChangePaymentMethodParamsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateOrUpdatePaymentMethodTestSettings", in)
-	out := new(ChangePaymentMethodParamsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateOrUpdatePaymentMethodTestSettings(ctx context.Context, req *ChangePaymentMethodParamsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error) {
+	rsp := &ChangePaymentMethodParamsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateOrUpdatePaymentMethodTestSettings", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaymentMethodTestSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*GetPaymentMethodSettingsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaymentMethodTestSettings", in)
-	out := new(GetPaymentMethodSettingsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaymentMethodTestSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*GetPaymentMethodSettingsResponse, error) {
+	rsp := &GetPaymentMethodSettingsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaymentMethodTestSettings", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeletePaymentMethodTestSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeletePaymentMethodTestSettings", in)
-	out := new(ChangePaymentMethodParamsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeletePaymentMethodTestSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, opts ...client.CallOption) (*ChangePaymentMethodParamsResponse, error) {
+	rsp := &ChangePaymentMethodParamsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeletePaymentMethodTestSettings", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) FindByZipCode(ctx context.Context, in *FindByZipCodeRequest, opts ...client.CallOption) (*FindByZipCodeResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.FindByZipCode", in)
-	out := new(FindByZipCodeResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) FindByZipCode(ctx context.Context, req *FindByZipCodeRequest, opts ...client.CallOption) (*FindByZipCodeResponse, error) {
+	rsp := &FindByZipCodeResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.FindByZipCode", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetAllPaymentChannelCostSystem(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*PaymentChannelCostSystemListResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetAllPaymentChannelCostSystem", in)
-	out := new(PaymentChannelCostSystemListResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetAllPaymentChannelCostSystem(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*PaymentChannelCostSystemListResponse, error) {
+	rsp := &PaymentChannelCostSystemListResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetAllPaymentChannelCostSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaymentChannelCostSystem(ctx context.Context, in *PaymentChannelCostSystemRequest, opts ...client.CallOption) (*PaymentChannelCostSystemResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaymentChannelCostSystem", in)
-	out := new(PaymentChannelCostSystemResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaymentChannelCostSystem(ctx context.Context, req *PaymentChannelCostSystemRequest, opts ...client.CallOption) (*PaymentChannelCostSystemResponse, error) {
+	rsp := &PaymentChannelCostSystemResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaymentChannelCostSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetPaymentChannelCostSystem(ctx context.Context, in *PaymentChannelCostSystem, opts ...client.CallOption) (*PaymentChannelCostSystemResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetPaymentChannelCostSystem", in)
-	out := new(PaymentChannelCostSystemResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetPaymentChannelCostSystem(ctx context.Context, req *PaymentChannelCostSystem, opts ...client.CallOption) (*PaymentChannelCostSystemResponse, error) {
+	rsp := &PaymentChannelCostSystemResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetPaymentChannelCostSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeletePaymentChannelCostSystem(ctx context.Context, in *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeletePaymentChannelCostSystem", in)
-	out := new(ResponseError)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeletePaymentChannelCostSystem(ctx context.Context, req *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error) {
+	rsp := &ResponseError{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeletePaymentChannelCostSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetAllPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchantListRequest, opts ...client.CallOption) (*PaymentChannelCostMerchantListResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetAllPaymentChannelCostMerchant", in)
-	out := new(PaymentChannelCostMerchantListResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetAllPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchantListRequest, opts ...client.CallOption) (*PaymentChannelCostMerchantListResponse, error) {
+	rsp := &PaymentChannelCostMerchantListResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetAllPaymentChannelCostMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchantRequest, opts ...client.CallOption) (*PaymentChannelCostMerchantResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaymentChannelCostMerchant", in)
-	out := new(PaymentChannelCostMerchantResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchantRequest, opts ...client.CallOption) (*PaymentChannelCostMerchantResponse, error) {
+	rsp := &PaymentChannelCostMerchantResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaymentChannelCostMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchant, opts ...client.CallOption) (*PaymentChannelCostMerchantResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetPaymentChannelCostMerchant", in)
-	out := new(PaymentChannelCostMerchantResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchant, opts ...client.CallOption) (*PaymentChannelCostMerchantResponse, error) {
+	rsp := &PaymentChannelCostMerchantResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetPaymentChannelCostMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeletePaymentChannelCostMerchant(ctx context.Context, in *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeletePaymentChannelCostMerchant", in)
-	out := new(ResponseError)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeletePaymentChannelCostMerchant(ctx context.Context, req *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error) {
+	rsp := &ResponseError{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeletePaymentChannelCostMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetAllMoneyBackCostSystem(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*MoneyBackCostSystemListResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetAllMoneyBackCostSystem", in)
-	out := new(MoneyBackCostSystemListResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetAllMoneyBackCostSystem(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*MoneyBackCostSystemListResponse, error) {
+	rsp := &MoneyBackCostSystemListResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetAllMoneyBackCostSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMoneyBackCostSystem(ctx context.Context, in *MoneyBackCostSystemRequest, opts ...client.CallOption) (*MoneyBackCostSystemResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMoneyBackCostSystem", in)
-	out := new(MoneyBackCostSystemResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMoneyBackCostSystem(ctx context.Context, req *MoneyBackCostSystemRequest, opts ...client.CallOption) (*MoneyBackCostSystemResponse, error) {
+	rsp := &MoneyBackCostSystemResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMoneyBackCostSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetMoneyBackCostSystem(ctx context.Context, in *MoneyBackCostSystem, opts ...client.CallOption) (*MoneyBackCostSystemResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetMoneyBackCostSystem", in)
-	out := new(MoneyBackCostSystemResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetMoneyBackCostSystem(ctx context.Context, req *MoneyBackCostSystem, opts ...client.CallOption) (*MoneyBackCostSystemResponse, error) {
+	rsp := &MoneyBackCostSystemResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetMoneyBackCostSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteMoneyBackCostSystem(ctx context.Context, in *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteMoneyBackCostSystem", in)
-	out := new(ResponseError)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteMoneyBackCostSystem(ctx context.Context, req *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error) {
+	rsp := &ResponseError{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteMoneyBackCostSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetAllMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchantListRequest, opts ...client.CallOption) (*MoneyBackCostMerchantListResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetAllMoneyBackCostMerchant", in)
-	out := new(MoneyBackCostMerchantListResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetAllMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchantListRequest, opts ...client.CallOption) (*MoneyBackCostMerchantListResponse, error) {
+	rsp := &MoneyBackCostMerchantListResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetAllMoneyBackCostMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchantRequest, opts ...client.CallOption) (*MoneyBackCostMerchantResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMoneyBackCostMerchant", in)
-	out := new(MoneyBackCostMerchantResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchantRequest, opts ...client.CallOption) (*MoneyBackCostMerchantResponse, error) {
+	rsp := &MoneyBackCostMerchantResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMoneyBackCostMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchant, opts ...client.CallOption) (*MoneyBackCostMerchantResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetMoneyBackCostMerchant", in)
-	out := new(MoneyBackCostMerchantResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchant, opts ...client.CallOption) (*MoneyBackCostMerchantResponse, error) {
+	rsp := &MoneyBackCostMerchantResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetMoneyBackCostMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteMoneyBackCostMerchant(ctx context.Context, in *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteMoneyBackCostMerchant", in)
-	out := new(ResponseError)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteMoneyBackCostMerchant(ctx context.Context, req *PaymentCostDeleteRequest, opts ...client.CallOption) (*ResponseError, error) {
+	rsp := &ResponseError{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteMoneyBackCostMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateAccountingEntry(ctx context.Context, in *CreateAccountingEntryRequest, opts ...client.CallOption) (*CreateAccountingEntryResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateAccountingEntry", in)
-	out := new(CreateAccountingEntryResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateAccountingEntry(ctx context.Context, req *CreateAccountingEntryRequest, opts ...client.CallOption) (*CreateAccountingEntryResponse, error) {
+	rsp := &CreateAccountingEntryResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateAccountingEntry", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetUserProfile(ctx context.Context, in *GetUserProfileRequest, opts ...client.CallOption) (*GetUserProfileResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetUserProfile", in)
-	out := new(GetUserProfileResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetUserProfile(ctx context.Context, req *GetUserProfileRequest, opts ...client.CallOption) (*GetUserProfileResponse, error) {
+	rsp := &GetUserProfileResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetUserProfile", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateOrUpdateUserProfile(ctx context.Context, in *UserProfile, opts ...client.CallOption) (*GetUserProfileResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateOrUpdateUserProfile", in)
-	out := new(GetUserProfileResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateOrUpdateUserProfile(ctx context.Context, req *UserProfile, opts ...client.CallOption) (*GetUserProfileResponse, error) {
+	rsp := &GetUserProfileResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateOrUpdateUserProfile", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ConfirmUserEmail(ctx context.Context, in *ConfirmUserEmailRequest, opts ...client.CallOption) (*ConfirmUserEmailResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ConfirmUserEmail", in)
-	out := new(ConfirmUserEmailResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ConfirmUserEmail(ctx context.Context, req *ConfirmUserEmailRequest, opts ...client.CallOption) (*ConfirmUserEmailResponse, error) {
+	rsp := &ConfirmUserEmailResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ConfirmUserEmail", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreatePageReview(ctx context.Context, in *CreatePageReviewRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreatePageReview", in)
-	out := new(CheckProjectRequestSignatureResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreatePageReview(ctx context.Context, req *CreatePageReviewRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error) {
+	rsp := &CheckProjectRequestSignatureResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreatePageReview", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateRoyaltyReport(ctx context.Context, in *CreateRoyaltyReportRequest, opts ...client.CallOption) (*CreateRoyaltyReportRequest, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateRoyaltyReport", in)
-	out := new(CreateRoyaltyReportRequest)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateRoyaltyReport(ctx context.Context, req *CreateRoyaltyReportRequest, opts ...client.CallOption) (*CreateRoyaltyReportRequest, error) {
+	rsp := &CreateRoyaltyReportRequest{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateRoyaltyReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListRoyaltyReports(ctx context.Context, in *ListRoyaltyReportsRequest, opts ...client.CallOption) (*ListRoyaltyReportsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListRoyaltyReports", in)
-	out := new(ListRoyaltyReportsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListRoyaltyReports(ctx context.Context, req *ListRoyaltyReportsRequest, opts ...client.CallOption) (*ListRoyaltyReportsResponse, error) {
+	rsp := &ListRoyaltyReportsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListRoyaltyReports", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetRoyaltyReport(ctx context.Context, in *GetRoyaltyReportRequest, opts ...client.CallOption) (*GetRoyaltyReportResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetRoyaltyReport", in)
-	out := new(GetRoyaltyReportResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetRoyaltyReport(ctx context.Context, req *GetRoyaltyReportRequest, opts ...client.CallOption) (*GetRoyaltyReportResponse, error) {
+	rsp := &GetRoyaltyReportResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetRoyaltyReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeRoyaltyReport(ctx context.Context, in *ChangeRoyaltyReportRequest, opts ...client.CallOption) (*ResponseError, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeRoyaltyReport", in)
-	out := new(ResponseError)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeRoyaltyReport(ctx context.Context, req *ChangeRoyaltyReportRequest, opts ...client.CallOption) (*ResponseError, error) {
+	rsp := &ResponseError{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeRoyaltyReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ListRoyaltyReportOrders(ctx context.Context, in *ListRoyaltyReportOrdersRequest, opts ...client.CallOption) (*TransactionsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ListRoyaltyReportOrders", in)
-	out := new(TransactionsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ListRoyaltyReportOrders(ctx context.Context, req *ListRoyaltyReportOrdersRequest, opts ...client.CallOption) (*TransactionsResponse, error) {
+	rsp := &TransactionsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ListRoyaltyReportOrders", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) MerchantReviewRoyaltyReport(ctx context.Context, in *MerchantReviewRoyaltyReportRequest, opts ...client.CallOption) (*ResponseError, error) {
-	req := c.c.NewRequest(c.name, "BillingService.MerchantReviewRoyaltyReport", in)
-	out := new(ResponseError)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) MerchantReviewRoyaltyReport(ctx context.Context, req *MerchantReviewRoyaltyReportRequest, opts ...client.CallOption) (*ResponseError, error) {
+	rsp := &ResponseError{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.MerchantReviewRoyaltyReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) AutoAcceptRoyaltyReports(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.AutoAcceptRoyaltyReports", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) AutoAcceptRoyaltyReports(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.AutoAcceptRoyaltyReports", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) RoyaltyReportPdfUploaded(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, opts ...client.CallOption) (*RoyaltyReportPdfUploadedResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.RoyaltyReportPdfUploaded", in)
-	out := new(RoyaltyReportPdfUploadedResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) RoyaltyReportPdfUploaded(ctx context.Context, req *RoyaltyReportPdfUploadedRequest, opts ...client.CallOption) (*RoyaltyReportPdfUploadedResponse, error) {
+	rsp := &RoyaltyReportPdfUploadedResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.RoyaltyReportPdfUploaded", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetVatReportsDashboard(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*VatReportsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetVatReportsDashboard", in)
-	out := new(VatReportsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetVatReportsDashboard(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*VatReportsResponse, error) {
+	rsp := &VatReportsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetVatReportsDashboard", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetVatReportsForCountry(ctx context.Context, in *VatReportsRequest, opts ...client.CallOption) (*VatReportsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetVatReportsForCountry", in)
-	out := new(VatReportsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetVatReportsForCountry(ctx context.Context, req *VatReportsRequest, opts ...client.CallOption) (*VatReportsResponse, error) {
+	rsp := &VatReportsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetVatReportsForCountry", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, opts ...client.CallOption) (*PrivateTransactionsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetVatReportTransactions", in)
-	out := new(PrivateTransactionsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetVatReportTransactions(ctx context.Context, req *VatTransactionsRequest, opts ...client.CallOption) (*PrivateTransactionsResponse, error) {
+	rsp := &PrivateTransactionsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetVatReportTransactions", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ProcessVatReports(ctx context.Context, in *ProcessVatReportsRequest, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ProcessVatReports", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ProcessVatReports(ctx context.Context, req *ProcessVatReportsRequest, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ProcessVatReports", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) UpdateVatReportStatus(ctx context.Context, in *UpdateVatReportStatusRequest, opts ...client.CallOption) (*ResponseError, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UpdateVatReportStatus", in)
-	out := new(ResponseError)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) UpdateVatReportStatus(ctx context.Context, req *UpdateVatReportStatusRequest, opts ...client.CallOption) (*ResponseError, error) {
+	rsp := &ResponseError{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.UpdateVatReportStatus", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetVatReport(ctx context.Context, in *VatReportRequest, opts ...client.CallOption) (*VatReportResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetVatReport", in)
-	out := new(VatReportResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetVatReport(ctx context.Context, req *VatReportRequest, opts ...client.CallOption) (*VatReportResponse, error) {
+	rsp := &VatReportResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetVatReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CalcAnnualTurnovers(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CalcAnnualTurnovers", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CalcAnnualTurnovers(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CalcAnnualTurnovers", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantOnboardingCompleteData(ctx context.Context, in *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*GetMerchantOnboardingCompleteDataResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantOnboardingCompleteData", in)
-	out := new(GetMerchantOnboardingCompleteDataResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantOnboardingCompleteData(ctx context.Context, req *SetMerchantS3AgreementRequest, opts ...client.CallOption) (*GetMerchantOnboardingCompleteDataResponse, error) {
+	rsp := &GetMerchantOnboardingCompleteDataResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantOnboardingCompleteData", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateOrUpdateKeyProduct(ctx context.Context, in *CreateOrUpdateKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateOrUpdateKeyProduct", in)
-	out := new(KeyProductResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateOrUpdateKeyProduct(ctx context.Context, req *CreateOrUpdateKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error) {
+	rsp := &KeyProductResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateOrUpdateKeyProduct", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetKeyProducts(ctx context.Context, in *ListKeyProductsRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetKeyProducts", in)
-	out := new(ListKeyProductsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetKeyProducts(ctx context.Context, req *ListKeyProductsRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error) {
+	rsp := &ListKeyProductsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetKeyProducts", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetKeyProduct(ctx context.Context, in *RequestKeyProductMerchant, opts ...client.CallOption) (*KeyProductResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetKeyProduct", in)
-	out := new(KeyProductResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetKeyProduct(ctx context.Context, req *RequestKeyProductMerchant, opts ...client.CallOption) (*KeyProductResponse, error) {
+	rsp := &KeyProductResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetKeyProduct", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteKeyProduct(ctx context.Context, in *RequestKeyProductMerchant, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteKeyProduct", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteKeyProduct(ctx context.Context, req *RequestKeyProductMerchant, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteKeyProduct", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PublishKeyProduct(ctx context.Context, in *PublishKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PublishKeyProduct", in)
-	out := new(KeyProductResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PublishKeyProduct(ctx context.Context, req *PublishKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error) {
+	rsp := &KeyProductResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PublishKeyProduct", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) UnPublishKeyProduct(ctx context.Context, in *UnPublishKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UnPublishKeyProduct", in)
-	out := new(KeyProductResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) UnPublishKeyProduct(ctx context.Context, req *UnPublishKeyProductRequest, opts ...client.CallOption) (*KeyProductResponse, error) {
+	rsp := &KeyProductResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.UnPublishKeyProduct", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetKeyProductsForOrder(ctx context.Context, in *GetKeyProductsForOrderRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetKeyProductsForOrder", in)
-	out := new(ListKeyProductsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetKeyProductsForOrder(ctx context.Context, req *GetKeyProductsForOrderRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error) {
+	rsp := &ListKeyProductsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetKeyProductsForOrder", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetKeyProductInfo(ctx context.Context, in *GetKeyProductInfoRequest, opts ...client.CallOption) (*GetKeyProductInfoResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetKeyProductInfo", in)
-	out := new(GetKeyProductInfoResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetKeyProductInfo(ctx context.Context, req *GetKeyProductInfoRequest, opts ...client.CallOption) (*GetKeyProductInfoResponse, error) {
+	rsp := &GetKeyProductInfoResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetKeyProductInfo", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPlatforms(ctx context.Context, in *ListPlatformsRequest, opts ...client.CallOption) (*ListPlatformsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPlatforms", in)
-	out := new(ListPlatformsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPlatforms(ctx context.Context, req *ListPlatformsRequest, opts ...client.CallOption) (*ListPlatformsResponse, error) {
+	rsp := &ListPlatformsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPlatforms", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetAvailableKeysCount(ctx context.Context, in *GetPlatformKeyCountRequest, opts ...client.CallOption) (*GetPlatformKeyCountResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetAvailableKeysCount", in)
-	out := new(GetPlatformKeyCountResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetAvailableKeysCount(ctx context.Context, req *GetPlatformKeyCountRequest, opts ...client.CallOption) (*GetPlatformKeyCountResponse, error) {
+	rsp := &GetPlatformKeyCountResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetAvailableKeysCount", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) UploadKeysFile(ctx context.Context, in *PlatformKeysFileRequest, opts ...client.CallOption) (*PlatformKeysFileResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UploadKeysFile", in)
-	out := new(PlatformKeysFileResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) UploadKeysFile(ctx context.Context, req *PlatformKeysFileRequest, opts ...client.CallOption) (*PlatformKeysFileResponse, error) {
+	rsp := &PlatformKeysFileResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.UploadKeysFile", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetKeyByID(ctx context.Context, in *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetKeyByID", in)
-	out := new(GetKeyForOrderRequestResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetKeyByID(ctx context.Context, req *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error) {
+	rsp := &GetKeyForOrderRequestResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetKeyByID", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ReserveKeyForOrder(ctx context.Context, in *PlatformKeyReserveRequest, opts ...client.CallOption) (*PlatformKeyReserveResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ReserveKeyForOrder", in)
-	out := new(PlatformKeyReserveResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ReserveKeyForOrder(ctx context.Context, req *PlatformKeyReserveRequest, opts ...client.CallOption) (*PlatformKeyReserveResponse, error) {
+	rsp := &PlatformKeyReserveResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ReserveKeyForOrder", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) FinishRedeemKeyForOrder(ctx context.Context, in *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.FinishRedeemKeyForOrder", in)
-	out := new(GetKeyForOrderRequestResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) FinishRedeemKeyForOrder(ctx context.Context, req *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error) {
+	rsp := &GetKeyForOrderRequestResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.FinishRedeemKeyForOrder", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CancelRedeemKeyForOrder(ctx context.Context, in *KeyForOrderRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CancelRedeemKeyForOrder", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CancelRedeemKeyForOrder(ctx context.Context, req *KeyForOrderRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CancelRedeemKeyForOrder", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeCodeInOrder(ctx context.Context, in *ChangeCodeInOrderRequest, opts ...client.CallOption) (*ChangeCodeInOrderResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeCodeInOrder", in)
-	out := new(ChangeCodeInOrderResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeCodeInOrder(ctx context.Context, req *ChangeCodeInOrderRequest, opts ...client.CallOption) (*ChangeCodeInOrderResponse, error) {
+	rsp := &ChangeCodeInOrderResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeCodeInOrder", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetDashboardMainReport(ctx context.Context, in *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardMainResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetDashboardMainReport", in)
-	out := new(GetDashboardMainResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetDashboardMainReport(ctx context.Context, req *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardMainResponse, error) {
+	rsp := &GetDashboardMainResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetDashboardMainReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetDashboardRevenueDynamicsReport(ctx context.Context, in *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardRevenueDynamicsReportResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetDashboardRevenueDynamicsReport", in)
-	out := new(GetDashboardRevenueDynamicsReportResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetDashboardRevenueDynamicsReport(ctx context.Context, req *GetDashboardMainRequest, opts ...client.CallOption) (*GetDashboardRevenueDynamicsReportResponse, error) {
+	rsp := &GetDashboardRevenueDynamicsReportResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetDashboardRevenueDynamicsReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetDashboardBaseReport(ctx context.Context, in *GetDashboardBaseReportRequest, opts ...client.CallOption) (*GetDashboardBaseReportResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetDashboardBaseReport", in)
-	out := new(GetDashboardBaseReportResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetDashboardBaseReport(ctx context.Context, req *GetDashboardBaseReportRequest, opts ...client.CallOption) (*GetDashboardBaseReportResponse, error) {
+	rsp := &GetDashboardBaseReportResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetDashboardBaseReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetDashboardCustomersReport(ctx context.Context, in *DashboardCustomerReportRequest, opts ...client.CallOption) (*GetDashboardCustomerReportResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetDashboardCustomersReport", in)
-	out := new(GetDashboardCustomerReportResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetDashboardCustomersReport(ctx context.Context, req *DashboardCustomerReportRequest, opts ...client.CallOption) (*GetDashboardCustomerReportResponse, error) {
+	rsp := &GetDashboardCustomerReportResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetDashboardCustomersReport", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetDashboardCustomerArpu(ctx context.Context, in *DashboardCustomerReportArpuRequest, opts ...client.CallOption) (*DashboardCustomerReportArpuResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetDashboardCustomerArpu", in)
-	out := new(DashboardCustomerReportArpuResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetDashboardCustomerArpu(ctx context.Context, req *DashboardCustomerReportArpuRequest, opts ...client.CallOption) (*DashboardCustomerReportArpuResponse, error) {
+	rsp := &DashboardCustomerReportArpuResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetDashboardCustomerArpu", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreatePayoutDocument(ctx context.Context, in *CreatePayoutDocumentRequest, opts ...client.CallOption) (*CreatePayoutDocumentResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreatePayoutDocument", in)
-	out := new(CreatePayoutDocumentResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreatePayoutDocument(ctx context.Context, req *CreatePayoutDocumentRequest, opts ...client.CallOption) (*CreatePayoutDocumentResponse, error) {
+	rsp := &CreatePayoutDocumentResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreatePayoutDocument", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) UpdatePayoutDocument(ctx context.Context, in *UpdatePayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.UpdatePayoutDocument", in)
-	out := new(PayoutDocumentResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) UpdatePayoutDocument(ctx context.Context, req *UpdatePayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error) {
+	rsp := &PayoutDocumentResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.UpdatePayoutDocument", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPayoutDocuments(ctx context.Context, in *GetPayoutDocumentsRequest, opts ...client.CallOption) (*GetPayoutDocumentsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPayoutDocuments", in)
-	out := new(GetPayoutDocumentsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPayoutDocuments(ctx context.Context, req *GetPayoutDocumentsRequest, opts ...client.CallOption) (*GetPayoutDocumentsResponse, error) {
+	rsp := &GetPayoutDocumentsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPayoutDocuments", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPayoutDocument(ctx context.Context, in *GetPayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPayoutDocument", in)
-	out := new(PayoutDocumentResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPayoutDocument(ctx context.Context, req *GetPayoutDocumentRequest, opts ...client.CallOption) (*PayoutDocumentResponse, error) {
+	rsp := &PayoutDocumentResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPayoutDocument", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPayoutDocumentRoyaltyReports(ctx context.Context, in *GetPayoutDocumentRequest, opts ...client.CallOption) (*ListRoyaltyReportsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPayoutDocumentRoyaltyReports", in)
-	out := new(ListRoyaltyReportsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPayoutDocumentRoyaltyReports(ctx context.Context, req *GetPayoutDocumentRequest, opts ...client.CallOption) (*ListRoyaltyReportsResponse, error) {
+	rsp := &ListRoyaltyReportsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPayoutDocumentRoyaltyReports", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PayoutDocumentPdfUploaded(ctx context.Context, in *PayoutDocumentPdfUploadedRequest, opts ...client.CallOption) (*PayoutDocumentPdfUploadedResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PayoutDocumentPdfUploaded", in)
-	out := new(PayoutDocumentPdfUploadedResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PayoutDocumentPdfUploaded(ctx context.Context, req *PayoutDocumentPdfUploadedRequest, opts ...client.CallOption) (*PayoutDocumentPdfUploadedResponse, error) {
+	rsp := &PayoutDocumentPdfUploadedResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PayoutDocumentPdfUploaded", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) AutoCreatePayoutDocuments(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.AutoCreatePayoutDocuments", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) AutoCreatePayoutDocuments(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.AutoCreatePayoutDocuments", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantBalance(ctx context.Context, in *GetMerchantBalanceRequest, opts ...client.CallOption) (*GetMerchantBalanceResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantBalance", in)
-	out := new(GetMerchantBalanceResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantBalance(ctx context.Context, req *GetMerchantBalanceRequest, opts ...client.CallOption) (*GetMerchantBalanceResponse, error) {
+	rsp := &GetMerchantBalanceResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantBalance", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PaymentFormPlatformChanged(ctx context.Context, in *PaymentFormUserChangePlatformRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PaymentFormPlatformChanged", in)
-	out := new(PaymentFormDataChangeResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PaymentFormPlatformChanged(ctx context.Context, req *PaymentFormUserChangePlatformRequest, opts ...client.CallOption) (*PaymentFormDataChangeResponse, error) {
+	rsp := &PaymentFormDataChangeResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PaymentFormPlatformChanged", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CheckSkuAndKeyProject(ctx context.Context, in *CheckSkuAndKeyProjectRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CheckSkuAndKeyProject", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CheckSkuAndKeyProject(ctx context.Context, req *CheckSkuAndKeyProjectRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CheckSkuAndKeyProject", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylinks(ctx context.Context, in *GetPaylinksRequest, opts ...client.CallOption) (*GetPaylinksResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylinks", in)
-	out := new(GetPaylinksResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylinks(ctx context.Context, req *GetPaylinksRequest, opts ...client.CallOption) (*GetPaylinksResponse, error) {
+	rsp := &GetPaylinksResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylinks", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylink(ctx context.Context, in *PaylinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylink", in)
-	out := new(GetPaylinkResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylink(ctx context.Context, req *PaylinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error) {
+	rsp := &GetPaylinkResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylink", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) IncrPaylinkVisits(ctx context.Context, in *PaylinkRequestById, opts ...client.CallOption) (*EmptyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.IncrPaylinkVisits", in)
-	out := new(EmptyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) IncrPaylinkVisits(ctx context.Context, req *PaylinkRequestById, opts ...client.CallOption) (*EmptyResponse, error) {
+	rsp := &EmptyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.IncrPaylinkVisits", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylinkURL(ctx context.Context, in *GetPaylinkURLRequest, opts ...client.CallOption) (*GetPaylinkUrlResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylinkURL", in)
-	out := new(GetPaylinkUrlResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylinkURL(ctx context.Context, req *GetPaylinkURLRequest, opts ...client.CallOption) (*GetPaylinkUrlResponse, error) {
+	rsp := &GetPaylinkUrlResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylinkURL", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CreateOrUpdatePaylink(ctx context.Context, in *CreatePaylinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CreateOrUpdatePaylink", in)
-	out := new(GetPaylinkResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CreateOrUpdatePaylink(ctx context.Context, req *CreatePaylinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error) {
+	rsp := &GetPaylinkResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CreateOrUpdatePaylink", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeletePaylink(ctx context.Context, in *PaylinkRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeletePaylink", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeletePaylink(ctx context.Context, req *PaylinkRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeletePaylink", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylinkStatTotal(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylinkStatTotal", in)
-	out := new(GetPaylinkStatCommonResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylinkStatTotal(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonResponse, error) {
+	rsp := &GetPaylinkStatCommonResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylinkStatTotal", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylinkStatByCountry(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylinkStatByCountry", in)
-	out := new(GetPaylinkStatCommonGroupResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylinkStatByCountry(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error) {
+	rsp := &GetPaylinkStatCommonGroupResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylinkStatByCountry", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylinkStatByReferrer(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylinkStatByReferrer", in)
-	out := new(GetPaylinkStatCommonGroupResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylinkStatByReferrer(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error) {
+	rsp := &GetPaylinkStatCommonGroupResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylinkStatByReferrer", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylinkStatByDate(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylinkStatByDate", in)
-	out := new(GetPaylinkStatCommonGroupResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylinkStatByDate(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error) {
+	rsp := &GetPaylinkStatCommonGroupResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylinkStatByDate", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylinkStatByUtm(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylinkStatByUtm", in)
-	out := new(GetPaylinkStatCommonGroupResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylinkStatByUtm(ctx context.Context, req *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error) {
+	rsp := &GetPaylinkStatCommonGroupResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylinkStatByUtm", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaylinkTransactions(ctx context.Context, in *GetPaylinkTransactionsRequest, opts ...client.CallOption) (*TransactionsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaylinkTransactions", in)
-	out := new(TransactionsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaylinkTransactions(ctx context.Context, req *GetPaylinkTransactionsRequest, opts ...client.CallOption) (*TransactionsResponse, error) {
+	rsp := &TransactionsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaylinkTransactions", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteSavedCard", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteSavedCard(ctx context.Context, req *DeleteSavedCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteSavedCard", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetOperatingCompaniesList(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetOperatingCompaniesListResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetOperatingCompaniesList", in)
-	out := new(GetOperatingCompaniesListResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetOperatingCompaniesList(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*GetOperatingCompaniesListResponse, error) {
+	rsp := &GetOperatingCompaniesListResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetOperatingCompaniesList", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) AddOperatingCompany(ctx context.Context, in *OperatingCompany, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.AddOperatingCompany", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) AddOperatingCompany(ctx context.Context, req *OperatingCompany, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.AddOperatingCompany", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetOperatingCompany(ctx context.Context, in *GetOperatingCompanyRequest, opts ...client.CallOption) (*GetOperatingCompanyResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetOperatingCompany", in)
-	out := new(GetOperatingCompanyResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetOperatingCompany(ctx context.Context, req *GetOperatingCompanyRequest, opts ...client.CallOption) (*GetOperatingCompanyResponse, error) {
+	rsp := &GetOperatingCompanyResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetOperatingCompany", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetPaymentMinLimitsSystem(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetPaymentMinLimitsSystemResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetPaymentMinLimitsSystem", in)
-	out := new(GetPaymentMinLimitsSystemResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetPaymentMinLimitsSystem(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*GetPaymentMinLimitsSystemResponse, error) {
+	rsp := &GetPaymentMinLimitsSystemResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetPaymentMinLimitsSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetPaymentMinLimitSystem(ctx context.Context, in *PaymentMinLimitSystem, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetPaymentMinLimitSystem", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetPaymentMinLimitSystem(ctx context.Context, req *PaymentMinLimitSystem, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetPaymentMinLimitSystem", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantUsers(ctx context.Context, in *GetMerchantUsersRequest, opts ...client.CallOption) (*GetMerchantUsersResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantUsers", in)
-	out := new(GetMerchantUsersResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantUsers(ctx context.Context, req *GetMerchantUsersRequest, opts ...client.CallOption) (*GetMerchantUsersResponse, error) {
+	rsp := &GetMerchantUsersResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantUsers", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetAdminUsers(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetAdminUsersResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetAdminUsers", in)
-	out := new(GetAdminUsersResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetAdminUsers(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*GetAdminUsersResponse, error) {
+	rsp := &GetAdminUsersResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetAdminUsers", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) InviteUserMerchant(ctx context.Context, in *InviteUserMerchantRequest, opts ...client.CallOption) (*InviteUserMerchantResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.InviteUserMerchant", in)
-	out := new(InviteUserMerchantResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) InviteUserMerchant(ctx context.Context, req *InviteUserMerchantRequest, opts ...client.CallOption) (*InviteUserMerchantResponse, error) {
+	rsp := &InviteUserMerchantResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.InviteUserMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) InviteUserAdmin(ctx context.Context, in *InviteUserAdminRequest, opts ...client.CallOption) (*InviteUserAdminResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.InviteUserAdmin", in)
-	out := new(InviteUserAdminResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) InviteUserAdmin(ctx context.Context, req *InviteUserAdminRequest, opts ...client.CallOption) (*InviteUserAdminResponse, error) {
+	rsp := &InviteUserAdminResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.InviteUserAdmin", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ResendInviteMerchant(ctx context.Context, in *ResendInviteMerchantRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ResendInviteMerchant", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ResendInviteMerchant(ctx context.Context, req *ResendInviteMerchantRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ResendInviteMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ResendInviteAdmin(ctx context.Context, in *ResendInviteAdminRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ResendInviteAdmin", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ResendInviteAdmin(ctx context.Context, req *ResendInviteAdminRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ResendInviteAdmin", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) AcceptInvite(ctx context.Context, in *AcceptInviteRequest, opts ...client.CallOption) (*AcceptInviteResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.AcceptInvite", in)
-	out := new(AcceptInviteResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) AcceptInvite(ctx context.Context, req *AcceptInviteRequest, opts ...client.CallOption) (*AcceptInviteResponse, error) {
+	rsp := &AcceptInviteResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.AcceptInvite", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) CheckInviteToken(ctx context.Context, in *CheckInviteTokenRequest, opts ...client.CallOption) (*CheckInviteTokenResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.CheckInviteToken", in)
-	out := new(CheckInviteTokenResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) CheckInviteToken(ctx context.Context, req *CheckInviteTokenRequest, opts ...client.CallOption) (*CheckInviteTokenResponse, error) {
+	rsp := &CheckInviteTokenResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.CheckInviteToken", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantsForUser(ctx context.Context, in *GetMerchantsForUserRequest, opts ...client.CallOption) (*GetMerchantsForUserResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantsForUser", in)
-	out := new(GetMerchantsForUserResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantsForUser(ctx context.Context, req *GetMerchantsForUserRequest, opts ...client.CallOption) (*GetMerchantsForUserResponse, error) {
+	rsp := &GetMerchantsForUserResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantsForUser", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeRoleForMerchantUser(ctx context.Context, in *ChangeRoleForMerchantUserRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeRoleForMerchantUser", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeRoleForMerchantUser(ctx context.Context, req *ChangeRoleForMerchantUserRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeRoleForMerchantUser", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) ChangeRoleForAdminUser(ctx context.Context, in *ChangeRoleForAdminUserRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.ChangeRoleForAdminUser", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) ChangeRoleForAdminUser(ctx context.Context, req *ChangeRoleForAdminUserRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.ChangeRoleForAdminUser", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetRoleList(ctx context.Context, in *GetRoleListRequest, opts ...client.CallOption) (*GetRoleListResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetRoleList", in)
-	out := new(GetRoleListResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetRoleList(ctx context.Context, req *GetRoleListRequest, opts ...client.CallOption) (*GetRoleListResponse, error) {
+	rsp := &GetRoleListResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetRoleList", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteMerchantUser(ctx context.Context, in *MerchantRoleRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteMerchantUser", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteMerchantUser(ctx context.Context, req *MerchantRoleRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteMerchantUser", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteAdminUser(ctx context.Context, in *AdminRoleRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteAdminUser", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteAdminUser(ctx context.Context, req *AdminRoleRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteAdminUser", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantUserRole(ctx context.Context, in *MerchantRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantUserRole", in)
-	out := new(UserRoleResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantUserRole(ctx context.Context, req *MerchantRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error) {
+	rsp := &UserRoleResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantUserRole", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetAdminUserRole(ctx context.Context, in *AdminRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetAdminUserRole", in)
-	out := new(UserRoleResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetAdminUserRole(ctx context.Context, req *AdminRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error) {
+	rsp := &UserRoleResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetAdminUserRole", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetCommonUserProfile(ctx context.Context, in *CommonUserProfileRequest, opts ...client.CallOption) (*CommonUserProfileResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCommonUserProfile", in)
-	out := new(CommonUserProfileResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetCommonUserProfile(ctx context.Context, req *CommonUserProfileRequest, opts ...client.CallOption) (*CommonUserProfileResponse, error) {
+	rsp := &CommonUserProfileResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetCommonUserProfile", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, opts ...client.CallOption) (*UserRoleResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetAdminByUserId", in)
-	out := new(UserRoleResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetAdminByUserId(ctx context.Context, req *CommonUserProfileRequest, opts ...client.CallOption) (*UserRoleResponse, error) {
+	rsp := &UserRoleResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetAdminByUserId", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, opts ...client.CallOption) (*SendWebhookToMerchantResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SendWebhookToMerchant", in)
-	out := new(SendWebhookToMerchantResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SendWebhookToMerchant(ctx context.Context, req *OrderCreateRequest, opts ...client.CallOption) (*SendWebhookToMerchantResponse, error) {
+	rsp := &SendWebhookToMerchantResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SendWebhookToMerchant", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.NotifyWebhookTestResults", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) NotifyWebhookTestResults(ctx context.Context, req *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.NotifyWebhookTestResults", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) RoyaltyReportFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.RoyaltyReportFinanceDone", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) RoyaltyReportFinanceDone(ctx context.Context, req *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.RoyaltyReportFinanceDone", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.PayoutFinanceDone", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) PayoutFinanceDone(ctx context.Context, req *ReportFinanceDoneRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.PayoutFinanceDone", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, opts ...client.CallOption) (*ActOfCompletionResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetActOfCompletion", in)
-	out := new(ActOfCompletionResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetActOfCompletion(ctx context.Context, req *ActOfCompletionRequest, opts ...client.CallOption) (*ActOfCompletionResponse, error) {
+	rsp := &ActOfCompletionResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetActOfCompletion", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetActsOfCompletionList(ctx context.Context, in *ActsOfCompletionListRequest, opts ...client.CallOption) (*ActsOfCompletionListResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetActsOfCompletionList", in)
-	out := new(ActsOfCompletionListResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetActsOfCompletionList(ctx context.Context, req *ActsOfCompletionListRequest, opts ...client.CallOption) (*ActsOfCompletionListResponse, error) {
+	rsp := &ActsOfCompletionListResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetActsOfCompletionList", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.SetCustomerPaymentActivity", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) SetCustomerPaymentActivity(ctx context.Context, req *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.SetCustomerPaymentActivity", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCustomerList", in)
-	out := new(ListCustomersResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetCustomerList(ctx context.Context, req *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error) {
+	rsp := &ListCustomersResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetCustomerList", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCustomerInfo", in)
-	out := new(GetCustomerInfoResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetCustomerInfo(ctx context.Context, req *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error) {
+	rsp := &GetCustomerInfoResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetCustomerInfo", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeserializeCookie", in)
-	out := new(DeserializeCookieResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeserializeCookie(ctx context.Context, req *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error) {
+	rsp := &DeserializeCookieResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeserializeCookie", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteCustomerCard", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteCustomerCard(ctx context.Context, req *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteCustomerCard", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetSubscription", in)
-	out := new(GetSubscriptionResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetSubscription(ctx context.Context, req *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
+	rsp := &GetSubscriptionResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetSubscription", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCustomerShortInfo", in)
-	out := new(GetCustomerShortInfoResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetCustomerShortInfo(ctx context.Context, req *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error) {
+	rsp := &GetCustomerShortInfoResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetCustomerShortInfo", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetSubscriptionOrders", in)
-	out := new(GetSubscriptionOrdersResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetSubscriptionOrders(ctx context.Context, req *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error) {
+	rsp := &GetSubscriptionOrdersResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetSubscriptionOrders", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
-	req := c.c.NewRequest(c.name, "BillingService.DeleteRecurringSubscription", in)
-	out := new(EmptyResponseWithStatus)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) DeleteRecurringSubscription(ctx context.Context, req *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	rsp := &EmptyResponseWithStatus{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.DeleteRecurringSubscription", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.FindSubscriptions", in)
-	out := new(FindSubscriptionsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) FindSubscriptions(ctx context.Context, req *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
+	rsp := &FindSubscriptionsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.FindSubscriptions", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.AddMerchantDocument", in)
-	out := new(AddMerchantDocumentResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) AddMerchantDocument(ctx context.Context, req *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error) {
+	rsp := &AddMerchantDocumentResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.AddMerchantDocument", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantDocuments", in)
-	out := new(GetMerchantDocumentsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantDocuments(ctx context.Context, req *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error) {
+	rsp := &GetMerchantDocumentsResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantDocuments", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
-func (c *billingService) GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantDocument", in)
-	out := new(GetMerchantDocumentResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *billingService) GetMerchantDocument(ctx context.Context, req *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error) {
+	rsp := &GetMerchantDocumentResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "BillingService.GetMerchantDocument", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
 // Server API for BillingService service
@@ -2450,205 +2253,205 @@ type BillingServiceHandler interface {
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
 	type billingService interface {
-		OrderCreateByPaylink(ctx context.Context, in *OrderCreateByPaylink, out *OrderCreateProcessResponse) error
-		OrderCreateProcess(ctx context.Context, in *OrderCreateRequest, out *OrderCreateProcessResponse) error
-		PaymentFormJsonDataProcess(ctx context.Context, in *PaymentFormJsonDataRequest, out *PaymentFormJsonDataResponse) error
-		PaymentCreateProcess(ctx context.Context, in *PaymentCreateRequest, out *PaymentCreateResponse) error
-		PaymentCallbackProcess(ctx context.Context, in *PaymentNotifyRequest, out *PaymentNotifyResponse) error
-		OrderReceipt(ctx context.Context, in *OrderReceiptRequest, out *OrderReceiptResponse) error
-		OrderReCreateProcess(ctx context.Context, in *OrderReCreateProcessRequest, out *OrderCreateProcessResponse) error
-		UpdateOrder(ctx context.Context, in *Order, out *EmptyResponse) error
-		GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, out *GetMerchantResponse) error
-		ListMerchants(ctx context.Context, in *MerchantListingRequest, out *MerchantListingResponse) error
-		ListMerchantsForAgreement(ctx context.Context, in *MerchantListingRequest, out *ListMerchantsForAgreementResponse) error
-		ChangeMerchant(ctx context.Context, in *OnboardingRequest, out *ChangeMerchantResponse) error
-		ChangeMerchantStatus(ctx context.Context, in *MerchantChangeStatusRequest, out *ChangeMerchantStatusResponse) error
-		SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, out *SetMerchantOperatingCompanyResponse) error
-		SetMerchantAcceptedStatus(ctx context.Context, in *SetMerchantAcceptedStatusRequest, out *SetMerchantAcceptedStatusResponse) error
-		ChangeMerchantData(ctx context.Context, in *ChangeMerchantDataRequest, out *ChangeMerchantDataResponse) error
-		SetMerchantS3Agreement(ctx context.Context, in *SetMerchantS3AgreementRequest, out *ChangeMerchantDataResponse) error
-		GetMerchantTariffRates(ctx context.Context, in *GetMerchantTariffRatesRequest, out *GetMerchantTariffRatesResponse) error
-		SetMerchantTariffRates(ctx context.Context, in *SetMerchantTariffRatesRequest, out *CheckProjectRequestSignatureResponse) error
-		ChangeMerchantManualPayouts(ctx context.Context, in *ChangeMerchantManualPayoutsRequest, out *ChangeMerchantManualPayoutsResponse) error
-		CreateNotification(ctx context.Context, in *NotificationRequest, out *CreateNotificationResponse) error
-		GetNotification(ctx context.Context, in *GetNotificationRequest, out *Notification) error
-		ListNotifications(ctx context.Context, in *ListingNotificationRequest, out *Notifications) error
-		MarkNotificationAsRead(ctx context.Context, in *GetNotificationRequest, out *Notification) error
-		ListMerchantPaymentMethods(ctx context.Context, in *ListMerchantPaymentMethodsRequest, out *ListingMerchantPaymentMethod) error
-		GetMerchantPaymentMethod(ctx context.Context, in *GetMerchantPaymentMethodRequest, out *GetMerchantPaymentMethodResponse) error
-		ChangeMerchantPaymentMethod(ctx context.Context, in *MerchantPaymentMethodRequest, out *MerchantPaymentMethodResponse) error
-		CreateRefund(ctx context.Context, in *CreateRefundRequest, out *CreateRefundResponse) error
-		ListRefunds(ctx context.Context, in *ListRefundsRequest, out *ListRefundsResponse) error
-		GetRefund(ctx context.Context, in *GetRefundRequest, out *CreateRefundResponse) error
-		ProcessRefundCallback(ctx context.Context, in *CallbackRequest, out *PaymentNotifyResponse) error
-		PaymentFormLanguageChanged(ctx context.Context, in *PaymentFormUserChangeLangRequest, out *PaymentFormDataChangeResponse) error
-		PaymentFormPaymentAccountChanged(ctx context.Context, in *PaymentFormUserChangePaymentAccountRequest, out *PaymentFormDataChangeResponse) error
-		ProcessBillingAddress(ctx context.Context, in *ProcessBillingAddressRequest, out *ProcessBillingAddressResponse) error
-		CreateOrUpdateProduct(ctx context.Context, in *Product, out *Product) error
-		ListProducts(ctx context.Context, in *ListProductsRequest, out *ListProductsResponse) error
-		GetProduct(ctx context.Context, in *RequestProduct, out *GetProductResponse) error
-		DeleteProduct(ctx context.Context, in *RequestProduct, out *EmptyResponse) error
-		GetProductsForOrder(ctx context.Context, in *GetProductsForOrderRequest, out *ListProductsResponse) error
-		GetProductPrices(ctx context.Context, in *RequestProduct, out *ProductPricesResponse) error
-		UpdateProductPrices(ctx context.Context, in *UpdateProductPricesRequest, out *ResponseError) error
-		ChangeProject(ctx context.Context, in *Project, out *ChangeProjectResponse) error
-		GetProject(ctx context.Context, in *GetProjectRequest, out *ChangeProjectResponse) error
-		ListProjects(ctx context.Context, in *ListProjectsRequest, out *ListProjectsResponse) error
-		DeleteProject(ctx context.Context, in *GetProjectRequest, out *ChangeProjectResponse) error
-		CreateToken(ctx context.Context, in *TokenRequest, out *TokenResponse) error
-		CheckProjectRequestSignature(ctx context.Context, in *CheckProjectRequestSignatureRequest, out *CheckProjectRequestSignatureResponse) error
-		GetCountriesList(ctx context.Context, in *EmptyRequest, out *CountriesList) error
-		GetCountriesListForOrder(ctx context.Context, in *GetCountriesListForOrderRequest, out *GetCountriesListForOrderResponse) error
-		GetCountry(ctx context.Context, in *GetCountryRequest, out *Country) error
-		UpdateCountry(ctx context.Context, in *Country, out *Country) error
-		GetOrderPublic(ctx context.Context, in *GetOrderRequest, out *GetOrderPublicResponse) error
-		GetOrderPrivate(ctx context.Context, in *GetOrderRequest, out *GetOrderPrivateResponse) error
-		FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPublicResponse) error
-		FindAllOrdersPrivate(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPrivateResponse) error
-		FindAllOrders(ctx context.Context, in *ListOrdersRequest, out *ListOrdersResponse) error
-		IsOrderCanBePaying(ctx context.Context, in *IsOrderCanBePayingRequest, out *IsOrderCanBePayingResponse) error
-		GetPriceGroup(ctx context.Context, in *GetPriceGroupRequest, out *PriceGroup) error
-		UpdatePriceGroup(ctx context.Context, in *PriceGroup, out *PriceGroup) error
-		GetPriceGroupByCountry(ctx context.Context, in *PriceGroupByCountryRequest, out *PriceGroup) error
-		GetPriceGroupCurrencies(ctx context.Context, in *EmptyRequest, out *PriceGroupCurrenciesResponse) error
-		GetPriceGroupCurrencyByRegion(ctx context.Context, in *PriceGroupByRegionRequest, out *PriceGroupCurrenciesResponse) error
-		GetRecommendedPriceByPriceGroup(ctx context.Context, in *RecommendedPriceRequest, out *RecommendedPriceResponse) error
-		GetRecommendedPriceByConversion(ctx context.Context, in *RecommendedPriceRequest, out *RecommendedPriceResponse) error
-		GetRecommendedPriceTable(ctx context.Context, in *RecommendedPriceTableRequest, out *RecommendedPriceTableResponse) error
-		GetPriceGroupByRegion(ctx context.Context, in *GetPriceGroupByRegionRequest, out *GetPriceGroupByRegionResponse) error
-		SetUserNotifySales(ctx context.Context, in *SetUserNotifyRequest, out *EmptyResponse) error
-		SetUserNotifyNewRegion(ctx context.Context, in *SetUserNotifyRequest, out *EmptyResponse) error
-		CreateOrUpdatePaymentMethod(ctx context.Context, in *PaymentMethod, out *ChangePaymentMethodResponse) error
-		CreateOrUpdatePaymentMethodProductionSettings(ctx context.Context, in *ChangePaymentMethodParamsRequest, out *ChangePaymentMethodParamsResponse) error
-		GetPaymentMethodProductionSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, out *GetPaymentMethodSettingsResponse) error
-		DeletePaymentMethodProductionSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, out *ChangePaymentMethodParamsResponse) error
-		CreateOrUpdatePaymentMethodTestSettings(ctx context.Context, in *ChangePaymentMethodParamsRequest, out *ChangePaymentMethodParamsResponse) error
-		GetPaymentMethodTestSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, out *GetPaymentMethodSettingsResponse) error
-		DeletePaymentMethodTestSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, out *ChangePaymentMethodParamsResponse) error
-		FindByZipCode(ctx context.Context, in *FindByZipCodeRequest, out *FindByZipCodeResponse) error
-		GetAllPaymentChannelCostSystem(ctx context.Context, in *EmptyRequest, out *PaymentChannelCostSystemListResponse) error
-		GetPaymentChannelCostSystem(ctx context.Context, in *PaymentChannelCostSystemRequest, out *PaymentChannelCostSystemResponse) error
-		SetPaymentChannelCostSystem(ctx context.Context, in *PaymentChannelCostSystem, out *PaymentChannelCostSystemResponse) error
-		DeletePaymentChannelCostSystem(ctx context.Context, in *PaymentCostDeleteRequest, out *ResponseError) error
-		GetAllPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchantListRequest, out *PaymentChannelCostMerchantListResponse) error
-		GetPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchantRequest, out *PaymentChannelCostMerchantResponse) error
-		SetPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchant, out *PaymentChannelCostMerchantResponse) error
-		DeletePaymentChannelCostMerchant(ctx context.Context, in *PaymentCostDeleteRequest, out *ResponseError) error
-		GetAllMoneyBackCostSystem(ctx context.Context, in *EmptyRequest, out *MoneyBackCostSystemListResponse) error
-		GetMoneyBackCostSystem(ctx context.Context, in *MoneyBackCostSystemRequest, out *MoneyBackCostSystemResponse) error
-		SetMoneyBackCostSystem(ctx context.Context, in *MoneyBackCostSystem, out *MoneyBackCostSystemResponse) error
-		DeleteMoneyBackCostSystem(ctx context.Context, in *PaymentCostDeleteRequest, out *ResponseError) error
-		GetAllMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchantListRequest, out *MoneyBackCostMerchantListResponse) error
-		GetMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchantRequest, out *MoneyBackCostMerchantResponse) error
-		SetMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchant, out *MoneyBackCostMerchantResponse) error
-		DeleteMoneyBackCostMerchant(ctx context.Context, in *PaymentCostDeleteRequest, out *ResponseError) error
-		CreateAccountingEntry(ctx context.Context, in *CreateAccountingEntryRequest, out *CreateAccountingEntryResponse) error
-		GetUserProfile(ctx context.Context, in *GetUserProfileRequest, out *GetUserProfileResponse) error
-		CreateOrUpdateUserProfile(ctx context.Context, in *UserProfile, out *GetUserProfileResponse) error
-		ConfirmUserEmail(ctx context.Context, in *ConfirmUserEmailRequest, out *ConfirmUserEmailResponse) error
-		CreatePageReview(ctx context.Context, in *CreatePageReviewRequest, out *CheckProjectRequestSignatureResponse) error
-		CreateRoyaltyReport(ctx context.Context, in *CreateRoyaltyReportRequest, out *CreateRoyaltyReportRequest) error
-		ListRoyaltyReports(ctx context.Context, in *ListRoyaltyReportsRequest, out *ListRoyaltyReportsResponse) error
-		GetRoyaltyReport(ctx context.Context, in *GetRoyaltyReportRequest, out *GetRoyaltyReportResponse) error
-		ChangeRoyaltyReport(ctx context.Context, in *ChangeRoyaltyReportRequest, out *ResponseError) error
-		ListRoyaltyReportOrders(ctx context.Context, in *ListRoyaltyReportOrdersRequest, out *TransactionsResponse) error
-		MerchantReviewRoyaltyReport(ctx context.Context, in *MerchantReviewRoyaltyReportRequest, out *ResponseError) error
-		AutoAcceptRoyaltyReports(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error
-		RoyaltyReportPdfUploaded(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, out *RoyaltyReportPdfUploadedResponse) error
-		GetVatReportsDashboard(ctx context.Context, in *EmptyRequest, out *VatReportsResponse) error
-		GetVatReportsForCountry(ctx context.Context, in *VatReportsRequest, out *VatReportsResponse) error
-		GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, out *PrivateTransactionsResponse) error
-		ProcessVatReports(ctx context.Context, in *ProcessVatReportsRequest, out *EmptyResponse) error
-		UpdateVatReportStatus(ctx context.Context, in *UpdateVatReportStatusRequest, out *ResponseError) error
-		GetVatReport(ctx context.Context, in *VatReportRequest, out *VatReportResponse) error
-		CalcAnnualTurnovers(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error
-		GetMerchantOnboardingCompleteData(ctx context.Context, in *SetMerchantS3AgreementRequest, out *GetMerchantOnboardingCompleteDataResponse) error
-		CreateOrUpdateKeyProduct(ctx context.Context, in *CreateOrUpdateKeyProductRequest, out *KeyProductResponse) error
-		GetKeyProducts(ctx context.Context, in *ListKeyProductsRequest, out *ListKeyProductsResponse) error
-		GetKeyProduct(ctx context.Context, in *RequestKeyProductMerchant, out *KeyProductResponse) error
-		DeleteKeyProduct(ctx context.Context, in *RequestKeyProductMerchant, out *EmptyResponseWithStatus) error
-		PublishKeyProduct(ctx context.Context, in *PublishKeyProductRequest, out *KeyProductResponse) error
-		UnPublishKeyProduct(ctx context.Context, in *UnPublishKeyProductRequest, out *KeyProductResponse) error
-		GetKeyProductsForOrder(ctx context.Context, in *GetKeyProductsForOrderRequest, out *ListKeyProductsResponse) error
-		GetKeyProductInfo(ctx context.Context, in *GetKeyProductInfoRequest, out *GetKeyProductInfoResponse) error
-		GetPlatforms(ctx context.Context, in *ListPlatformsRequest, out *ListPlatformsResponse) error
-		GetAvailableKeysCount(ctx context.Context, in *GetPlatformKeyCountRequest, out *GetPlatformKeyCountResponse) error
-		UploadKeysFile(ctx context.Context, in *PlatformKeysFileRequest, out *PlatformKeysFileResponse) error
-		GetKeyByID(ctx context.Context, in *KeyForOrderRequest, out *GetKeyForOrderRequestResponse) error
-		ReserveKeyForOrder(ctx context.Context, in *PlatformKeyReserveRequest, out *PlatformKeyReserveResponse) error
-		FinishRedeemKeyForOrder(ctx context.Context, in *KeyForOrderRequest, out *GetKeyForOrderRequestResponse) error
-		CancelRedeemKeyForOrder(ctx context.Context, in *KeyForOrderRequest, out *EmptyResponseWithStatus) error
-		ChangeCodeInOrder(ctx context.Context, in *ChangeCodeInOrderRequest, out *ChangeCodeInOrderResponse) error
-		GetDashboardMainReport(ctx context.Context, in *GetDashboardMainRequest, out *GetDashboardMainResponse) error
-		GetDashboardRevenueDynamicsReport(ctx context.Context, in *GetDashboardMainRequest, out *GetDashboardRevenueDynamicsReportResponse) error
-		GetDashboardBaseReport(ctx context.Context, in *GetDashboardBaseReportRequest, out *GetDashboardBaseReportResponse) error
-		GetDashboardCustomersReport(ctx context.Context, in *DashboardCustomerReportRequest, out *GetDashboardCustomerReportResponse) error
-		GetDashboardCustomerArpu(ctx context.Context, in *DashboardCustomerReportArpuRequest, out *DashboardCustomerReportArpuResponse) error
-		CreatePayoutDocument(ctx context.Context, in *CreatePayoutDocumentRequest, out *CreatePayoutDocumentResponse) error
-		UpdatePayoutDocument(ctx context.Context, in *UpdatePayoutDocumentRequest, out *PayoutDocumentResponse) error
-		GetPayoutDocuments(ctx context.Context, in *GetPayoutDocumentsRequest, out *GetPayoutDocumentsResponse) error
-		GetPayoutDocument(ctx context.Context, in *GetPayoutDocumentRequest, out *PayoutDocumentResponse) error
-		GetPayoutDocumentRoyaltyReports(ctx context.Context, in *GetPayoutDocumentRequest, out *ListRoyaltyReportsResponse) error
-		PayoutDocumentPdfUploaded(ctx context.Context, in *PayoutDocumentPdfUploadedRequest, out *PayoutDocumentPdfUploadedResponse) error
-		AutoCreatePayoutDocuments(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error
-		GetMerchantBalance(ctx context.Context, in *GetMerchantBalanceRequest, out *GetMerchantBalanceResponse) error
-		PaymentFormPlatformChanged(ctx context.Context, in *PaymentFormUserChangePlatformRequest, out *PaymentFormDataChangeResponse) error
-		CheckSkuAndKeyProject(ctx context.Context, in *CheckSkuAndKeyProjectRequest, out *EmptyResponseWithStatus) error
-		GetPaylinks(ctx context.Context, in *GetPaylinksRequest, out *GetPaylinksResponse) error
-		GetPaylink(ctx context.Context, in *PaylinkRequest, out *GetPaylinkResponse) error
-		IncrPaylinkVisits(ctx context.Context, in *PaylinkRequestById, out *EmptyResponse) error
-		GetPaylinkURL(ctx context.Context, in *GetPaylinkURLRequest, out *GetPaylinkUrlResponse) error
-		CreateOrUpdatePaylink(ctx context.Context, in *CreatePaylinkRequest, out *GetPaylinkResponse) error
-		DeletePaylink(ctx context.Context, in *PaylinkRequest, out *EmptyResponseWithStatus) error
-		GetPaylinkStatTotal(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonResponse) error
-		GetPaylinkStatByCountry(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error
-		GetPaylinkStatByReferrer(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error
-		GetPaylinkStatByDate(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error
-		GetPaylinkStatByUtm(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error
-		GetPaylinkTransactions(ctx context.Context, in *GetPaylinkTransactionsRequest, out *TransactionsResponse) error
-		DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, out *EmptyResponseWithStatus) error
-		GetOperatingCompaniesList(ctx context.Context, in *EmptyRequest, out *GetOperatingCompaniesListResponse) error
-		AddOperatingCompany(ctx context.Context, in *OperatingCompany, out *EmptyResponseWithStatus) error
-		GetOperatingCompany(ctx context.Context, in *GetOperatingCompanyRequest, out *GetOperatingCompanyResponse) error
-		GetPaymentMinLimitsSystem(ctx context.Context, in *EmptyRequest, out *GetPaymentMinLimitsSystemResponse) error
-		SetPaymentMinLimitSystem(ctx context.Context, in *PaymentMinLimitSystem, out *EmptyResponseWithStatus) error
-		GetMerchantUsers(ctx context.Context, in *GetMerchantUsersRequest, out *GetMerchantUsersResponse) error
-		GetAdminUsers(ctx context.Context, in *EmptyRequest, out *GetAdminUsersResponse) error
-		InviteUserMerchant(ctx context.Context, in *InviteUserMerchantRequest, out *InviteUserMerchantResponse) error
-		InviteUserAdmin(ctx context.Context, in *InviteUserAdminRequest, out *InviteUserAdminResponse) error
-		ResendInviteMerchant(ctx context.Context, in *ResendInviteMerchantRequest, out *EmptyResponseWithStatus) error
-		ResendInviteAdmin(ctx context.Context, in *ResendInviteAdminRequest, out *EmptyResponseWithStatus) error
-		AcceptInvite(ctx context.Context, in *AcceptInviteRequest, out *AcceptInviteResponse) error
-		CheckInviteToken(ctx context.Context, in *CheckInviteTokenRequest, out *CheckInviteTokenResponse) error
-		GetMerchantsForUser(ctx context.Context, in *GetMerchantsForUserRequest, out *GetMerchantsForUserResponse) error
-		ChangeRoleForMerchantUser(ctx context.Context, in *ChangeRoleForMerchantUserRequest, out *EmptyResponseWithStatus) error
-		ChangeRoleForAdminUser(ctx context.Context, in *ChangeRoleForAdminUserRequest, out *EmptyResponseWithStatus) error
-		GetRoleList(ctx context.Context, in *GetRoleListRequest, out *GetRoleListResponse) error
-		DeleteMerchantUser(ctx context.Context, in *MerchantRoleRequest, out *EmptyResponseWithStatus) error
-		DeleteAdminUser(ctx context.Context, in *AdminRoleRequest, out *EmptyResponseWithStatus) error
-		GetMerchantUserRole(ctx context.Context, in *MerchantRoleRequest, out *UserRoleResponse) error
-		GetAdminUserRole(ctx context.Context, in *AdminRoleRequest, out *UserRoleResponse) error
-		GetCommonUserProfile(ctx context.Context, in *CommonUserProfileRequest, out *CommonUserProfileResponse) error
-		GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, out *UserRoleResponse) error
-		SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, out *SendWebhookToMerchantResponse) error
-		NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, out *EmptyResponseWithStatus) error
-		RoyaltyReportFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error
-		PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error
-		GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, out *ActOfCompletionResponse) error
-		GetActsOfCompletionList(ctx context.Context, in *ActsOfCompletionListRequest, out *ActsOfCompletionListResponse) error
-		SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error
-		GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error
-		GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error
-		DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error
-		DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *EmptyResponseWithStatus) error
-		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
-		GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error
-		GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error
-		DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error
-		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
-		AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error
-		GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error
-		GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error
+		OrderCreateByPaylink(ctx context.Context, req *OrderCreateByPaylink, rsp *OrderCreateProcessResponse) error
+		OrderCreateProcess(ctx context.Context, req *OrderCreateRequest, rsp *OrderCreateProcessResponse) error
+		PaymentFormJsonDataProcess(ctx context.Context, req *PaymentFormJsonDataRequest, rsp *PaymentFormJsonDataResponse) error
+		PaymentCreateProcess(ctx context.Context, req *PaymentCreateRequest, rsp *PaymentCreateResponse) error
+		PaymentCallbackProcess(ctx context.Context, req *PaymentNotifyRequest, rsp *PaymentNotifyResponse) error
+		OrderReceipt(ctx context.Context, req *OrderReceiptRequest, rsp *OrderReceiptResponse) error
+		OrderReCreateProcess(ctx context.Context, req *OrderReCreateProcessRequest, rsp *OrderCreateProcessResponse) error
+		UpdateOrder(ctx context.Context, req *Order, rsp *EmptyResponse) error
+		GetMerchantBy(ctx context.Context, req *GetMerchantByRequest, rsp *GetMerchantResponse) error
+		ListMerchants(ctx context.Context, req *MerchantListingRequest, rsp *MerchantListingResponse) error
+		ListMerchantsForAgreement(ctx context.Context, req *MerchantListingRequest, rsp *ListMerchantsForAgreementResponse) error
+		ChangeMerchant(ctx context.Context, req *OnboardingRequest, rsp *ChangeMerchantResponse) error
+		ChangeMerchantStatus(ctx context.Context, req *MerchantChangeStatusRequest, rsp *ChangeMerchantStatusResponse) error
+		SetMerchantOperatingCompany(ctx context.Context, req *SetMerchantOperatingCompanyRequest, rsp *SetMerchantOperatingCompanyResponse) error
+		SetMerchantAcceptedStatus(ctx context.Context, req *SetMerchantAcceptedStatusRequest, rsp *SetMerchantAcceptedStatusResponse) error
+		ChangeMerchantData(ctx context.Context, req *ChangeMerchantDataRequest, rsp *ChangeMerchantDataResponse) error
+		SetMerchantS3Agreement(ctx context.Context, req *SetMerchantS3AgreementRequest, rsp *ChangeMerchantDataResponse) error
+		GetMerchantTariffRates(ctx context.Context, req *GetMerchantTariffRatesRequest, rsp *GetMerchantTariffRatesResponse) error
+		SetMerchantTariffRates(ctx context.Context, req *SetMerchantTariffRatesRequest, rsp *CheckProjectRequestSignatureResponse) error
+		ChangeMerchantManualPayouts(ctx context.Context, req *ChangeMerchantManualPayoutsRequest, rsp *ChangeMerchantManualPayoutsResponse) error
+		CreateNotification(ctx context.Context, req *NotificationRequest, rsp *CreateNotificationResponse) error
+		GetNotification(ctx context.Context, req *GetNotificationRequest, rsp *Notification) error
+		ListNotifications(ctx context.Context, req *ListingNotificationRequest, rsp *Notifications) error
+		MarkNotificationAsRead(ctx context.Context, req *GetNotificationRequest, rsp *Notification) error
+		ListMerchantPaymentMethods(ctx context.Context, req *ListMerchantPaymentMethodsRequest, rsp *ListingMerchantPaymentMethod) error
+		GetMerchantPaymentMethod(ctx context.Context, req *GetMerchantPaymentMethodRequest, rsp *GetMerchantPaymentMethodResponse) error
+		ChangeMerchantPaymentMethod(ctx context.Context, req *MerchantPaymentMethodRequest, rsp *MerchantPaymentMethodResponse) error
+		CreateRefund(ctx context.Context, req *CreateRefundRequest, rsp *CreateRefundResponse) error
+		ListRefunds(ctx context.Context, req *ListRefundsRequest, rsp *ListRefundsResponse) error
+		GetRefund(ctx context.Context, req *GetRefundRequest, rsp *CreateRefundResponse) error
+		ProcessRefundCallback(ctx context.Context, req *CallbackRequest, rsp *PaymentNotifyResponse) error
+		PaymentFormLanguageChanged(ctx context.Context, req *PaymentFormUserChangeLangRequest, rsp *PaymentFormDataChangeResponse) error
+		PaymentFormPaymentAccountChanged(ctx context.Context, req *PaymentFormUserChangePaymentAccountRequest, rsp *PaymentFormDataChangeResponse) error
+		ProcessBillingAddress(ctx context.Context, req *ProcessBillingAddressRequest, rsp *ProcessBillingAddressResponse) error
+		CreateOrUpdateProduct(ctx context.Context, req *Product, rsp *Product) error
+		ListProducts(ctx context.Context, req *ListProductsRequest, rsp *ListProductsResponse) error
+		GetProduct(ctx context.Context, req *RequestProduct, rsp *GetProductResponse) error
+		DeleteProduct(ctx context.Context, req *RequestProduct, rsp *EmptyResponse) error
+		GetProductsForOrder(ctx context.Context, req *GetProductsForOrderRequest, rsp *ListProductsResponse) error
+		GetProductPrices(ctx context.Context, req *RequestProduct, rsp *ProductPricesResponse) error
+		UpdateProductPrices(ctx context.Context, req *UpdateProductPricesRequest, rsp *ResponseError) error
+		ChangeProject(ctx context.Context, req *Project, rsp *ChangeProjectResponse) error
+		GetProject(ctx context.Context, req *GetProjectRequest, rsp *ChangeProjectResponse) error
+		ListProjects(ctx context.Context, req *ListProjectsRequest, rsp *ListProjectsResponse) error
+		DeleteProject(ctx context.Context, req *GetProjectRequest, rsp *ChangeProjectResponse) error
+		CreateToken(ctx context.Context, req *TokenRequest, rsp *TokenResponse) error
+		CheckProjectRequestSignature(ctx context.Context, req *CheckProjectRequestSignatureRequest, rsp *CheckProjectRequestSignatureResponse) error
+		GetCountriesList(ctx context.Context, req *EmptyRequest, rsp *CountriesList) error
+		GetCountriesListForOrder(ctx context.Context, req *GetCountriesListForOrderRequest, rsp *GetCountriesListForOrderResponse) error
+		GetCountry(ctx context.Context, req *GetCountryRequest, rsp *Country) error
+		UpdateCountry(ctx context.Context, req *Country, rsp *Country) error
+		GetOrderPublic(ctx context.Context, req *GetOrderRequest, rsp *GetOrderPublicResponse) error
+		GetOrderPrivate(ctx context.Context, req *GetOrderRequest, rsp *GetOrderPrivateResponse) error
+		FindAllOrdersPublic(ctx context.Context, req *ListOrdersRequest, rsp *ListOrdersPublicResponse) error
+		FindAllOrdersPrivate(ctx context.Context, req *ListOrdersRequest, rsp *ListOrdersPrivateResponse) error
+		FindAllOrders(ctx context.Context, req *ListOrdersRequest, rsp *ListOrdersResponse) error
+		IsOrderCanBePaying(ctx context.Context, req *IsOrderCanBePayingRequest, rsp *IsOrderCanBePayingResponse) error
+		GetPriceGroup(ctx context.Context, req *GetPriceGroupRequest, rsp *PriceGroup) error
+		UpdatePriceGroup(ctx context.Context, req *PriceGroup, rsp *PriceGroup) error
+		GetPriceGroupByCountry(ctx context.Context, req *PriceGroupByCountryRequest, rsp *PriceGroup) error
+		GetPriceGroupCurrencies(ctx context.Context, req *EmptyRequest, rsp *PriceGroupCurrenciesResponse) error
+		GetPriceGroupCurrencyByRegion(ctx context.Context, req *PriceGroupByRegionRequest, rsp *PriceGroupCurrenciesResponse) error
+		GetRecommendedPriceByPriceGroup(ctx context.Context, req *RecommendedPriceRequest, rsp *RecommendedPriceResponse) error
+		GetRecommendedPriceByConversion(ctx context.Context, req *RecommendedPriceRequest, rsp *RecommendedPriceResponse) error
+		GetRecommendedPriceTable(ctx context.Context, req *RecommendedPriceTableRequest, rsp *RecommendedPriceTableResponse) error
+		GetPriceGroupByRegion(ctx context.Context, req *GetPriceGroupByRegionRequest, rsp *GetPriceGroupByRegionResponse) error
+		SetUserNotifySales(ctx context.Context, req *SetUserNotifyRequest, rsp *EmptyResponse) error
+		SetUserNotifyNewRegion(ctx context.Context, req *SetUserNotifyRequest, rsp *EmptyResponse) error
+		CreateOrUpdatePaymentMethod(ctx context.Context, req *PaymentMethod, rsp *ChangePaymentMethodResponse) error
+		CreateOrUpdatePaymentMethodProductionSettings(ctx context.Context, req *ChangePaymentMethodParamsRequest, rsp *ChangePaymentMethodParamsResponse) error
+		GetPaymentMethodProductionSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, rsp *GetPaymentMethodSettingsResponse) error
+		DeletePaymentMethodProductionSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, rsp *ChangePaymentMethodParamsResponse) error
+		CreateOrUpdatePaymentMethodTestSettings(ctx context.Context, req *ChangePaymentMethodParamsRequest, rsp *ChangePaymentMethodParamsResponse) error
+		GetPaymentMethodTestSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, rsp *GetPaymentMethodSettingsResponse) error
+		DeletePaymentMethodTestSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, rsp *ChangePaymentMethodParamsResponse) error
+		FindByZipCode(ctx context.Context, req *FindByZipCodeRequest, rsp *FindByZipCodeResponse) error
+		GetAllPaymentChannelCostSystem(ctx context.Context, req *EmptyRequest, rsp *PaymentChannelCostSystemListResponse) error
+		GetPaymentChannelCostSystem(ctx context.Context, req *PaymentChannelCostSystemRequest, rsp *PaymentChannelCostSystemResponse) error
+		SetPaymentChannelCostSystem(ctx context.Context, req *PaymentChannelCostSystem, rsp *PaymentChannelCostSystemResponse) error
+		DeletePaymentChannelCostSystem(ctx context.Context, req *PaymentCostDeleteRequest, rsp *ResponseError) error
+		GetAllPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchantListRequest, rsp *PaymentChannelCostMerchantListResponse) error
+		GetPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchantRequest, rsp *PaymentChannelCostMerchantResponse) error
+		SetPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchant, rsp *PaymentChannelCostMerchantResponse) error
+		DeletePaymentChannelCostMerchant(ctx context.Context, req *PaymentCostDeleteRequest, rsp *ResponseError) error
+		GetAllMoneyBackCostSystem(ctx context.Context, req *EmptyRequest, rsp *MoneyBackCostSystemListResponse) error
+		GetMoneyBackCostSystem(ctx context.Context, req *MoneyBackCostSystemRequest, rsp *MoneyBackCostSystemResponse) error
+		SetMoneyBackCostSystem(ctx context.Context, req *MoneyBackCostSystem, rsp *MoneyBackCostSystemResponse) error
+		DeleteMoneyBackCostSystem(ctx context.Context, req *PaymentCostDeleteRequest, rsp *ResponseError) error
+		GetAllMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchantListRequest, rsp *MoneyBackCostMerchantListResponse) error
+		GetMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchantRequest, rsp *MoneyBackCostMerchantResponse) error
+		SetMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchant, rsp *MoneyBackCostMerchantResponse) error
+		DeleteMoneyBackCostMerchant(ctx context.Context, req *PaymentCostDeleteRequest, rsp *ResponseError) error
+		CreateAccountingEntry(ctx context.Context, req *CreateAccountingEntryRequest, rsp *CreateAccountingEntryResponse) error
+		GetUserProfile(ctx context.Context, req *GetUserProfileRequest, rsp *GetUserProfileResponse) error
+		CreateOrUpdateUserProfile(ctx context.Context, req *UserProfile, rsp *GetUserProfileResponse) error
+		ConfirmUserEmail(ctx context.Context, req *ConfirmUserEmailRequest, rsp *ConfirmUserEmailResponse) error
+		CreatePageReview(ctx context.Context, req *CreatePageReviewRequest, rsp *CheckProjectRequestSignatureResponse) error
+		CreateRoyaltyReport(ctx context.Context, req *CreateRoyaltyReportRequest, rsp *CreateRoyaltyReportRequest) error
+		ListRoyaltyReports(ctx context.Context, req *ListRoyaltyReportsRequest, rsp *ListRoyaltyReportsResponse) error
+		GetRoyaltyReport(ctx context.Context, req *GetRoyaltyReportRequest, rsp *GetRoyaltyReportResponse) error
+		ChangeRoyaltyReport(ctx context.Context, req *ChangeRoyaltyReportRequest, rsp *ResponseError) error
+		ListRoyaltyReportOrders(ctx context.Context, req *ListRoyaltyReportOrdersRequest, rsp *TransactionsResponse) error
+		MerchantReviewRoyaltyReport(ctx context.Context, req *MerchantReviewRoyaltyReportRequest, rsp *ResponseError) error
+		AutoAcceptRoyaltyReports(ctx context.Context, req *EmptyRequest, rsp *EmptyResponse) error
+		RoyaltyReportPdfUploaded(ctx context.Context, req *RoyaltyReportPdfUploadedRequest, rsp *RoyaltyReportPdfUploadedResponse) error
+		GetVatReportsDashboard(ctx context.Context, req *EmptyRequest, rsp *VatReportsResponse) error
+		GetVatReportsForCountry(ctx context.Context, req *VatReportsRequest, rsp *VatReportsResponse) error
+		GetVatReportTransactions(ctx context.Context, req *VatTransactionsRequest, rsp *PrivateTransactionsResponse) error
+		ProcessVatReports(ctx context.Context, req *ProcessVatReportsRequest, rsp *EmptyResponse) error
+		UpdateVatReportStatus(ctx context.Context, req *UpdateVatReportStatusRequest, rsp *ResponseError) error
+		GetVatReport(ctx context.Context, req *VatReportRequest, rsp *VatReportResponse) error
+		CalcAnnualTurnovers(ctx context.Context, req *EmptyRequest, rsp *EmptyResponse) error
+		GetMerchantOnboardingCompleteData(ctx context.Context, req *SetMerchantS3AgreementRequest, rsp *GetMerchantOnboardingCompleteDataResponse) error
+		CreateOrUpdateKeyProduct(ctx context.Context, req *CreateOrUpdateKeyProductRequest, rsp *KeyProductResponse) error
+		GetKeyProducts(ctx context.Context, req *ListKeyProductsRequest, rsp *ListKeyProductsResponse) error
+		GetKeyProduct(ctx context.Context, req *RequestKeyProductMerchant, rsp *KeyProductResponse) error
+		DeleteKeyProduct(ctx context.Context, req *RequestKeyProductMerchant, rsp *EmptyResponseWithStatus) error
+		PublishKeyProduct(ctx context.Context, req *PublishKeyProductRequest, rsp *KeyProductResponse) error
+		UnPublishKeyProduct(ctx context.Context, req *UnPublishKeyProductRequest, rsp *KeyProductResponse) error
+		GetKeyProductsForOrder(ctx context.Context, req *GetKeyProductsForOrderRequest, rsp *ListKeyProductsResponse) error
+		GetKeyProductInfo(ctx context.Context, req *GetKeyProductInfoRequest, rsp *GetKeyProductInfoResponse) error
+		GetPlatforms(ctx context.Context, req *ListPlatformsRequest, rsp *ListPlatformsResponse) error
+		GetAvailableKeysCount(ctx context.Context, req *GetPlatformKeyCountRequest, rsp *GetPlatformKeyCountResponse) error
+		UploadKeysFile(ctx context.Context, req *PlatformKeysFileRequest, rsp *PlatformKeysFileResponse) error
+		GetKeyByID(ctx context.Context, req *KeyForOrderRequest, rsp *GetKeyForOrderRequestResponse) error
+		ReserveKeyForOrder(ctx context.Context, req *PlatformKeyReserveRequest, rsp *PlatformKeyReserveResponse) error
+		FinishRedeemKeyForOrder(ctx context.Context, req *KeyForOrderRequest, rsp *GetKeyForOrderRequestResponse) error
+		CancelRedeemKeyForOrder(ctx context.Context, req *KeyForOrderRequest, rsp *EmptyResponseWithStatus) error
+		ChangeCodeInOrder(ctx context.Context, req *ChangeCodeInOrderRequest, rsp *ChangeCodeInOrderResponse) error
+		GetDashboardMainReport(ctx context.Context, req *GetDashboardMainRequest, rsp *GetDashboardMainResponse) error
+		GetDashboardRevenueDynamicsReport(ctx context.Context, req *GetDashboardMainRequest, rsp *GetDashboardRevenueDynamicsReportResponse) error
+		GetDashboardBaseReport(ctx context.Context, req *GetDashboardBaseReportRequest, rsp *GetDashboardBaseReportResponse) error
+		GetDashboardCustomersReport(ctx context.Context, req *DashboardCustomerReportRequest, rsp *GetDashboardCustomerReportResponse) error
+		GetDashboardCustomerArpu(ctx context.Context, req *DashboardCustomerReportArpuRequest, rsp *DashboardCustomerReportArpuResponse) error
+		CreatePayoutDocument(ctx context.Context, req *CreatePayoutDocumentRequest, rsp *CreatePayoutDocumentResponse) error
+		UpdatePayoutDocument(ctx context.Context, req *UpdatePayoutDocumentRequest, rsp *PayoutDocumentResponse) error
+		GetPayoutDocuments(ctx context.Context, req *GetPayoutDocumentsRequest, rsp *GetPayoutDocumentsResponse) error
+		GetPayoutDocument(ctx context.Context, req *GetPayoutDocumentRequest, rsp *PayoutDocumentResponse) error
+		GetPayoutDocumentRoyaltyReports(ctx context.Context, req *GetPayoutDocumentRequest, rsp *ListRoyaltyReportsResponse) error
+		PayoutDocumentPdfUploaded(ctx context.Context, req *PayoutDocumentPdfUploadedRequest, rsp *PayoutDocumentPdfUploadedResponse) error
+		AutoCreatePayoutDocuments(ctx context.Context, req *EmptyRequest, rsp *EmptyResponse) error
+		GetMerchantBalance(ctx context.Context, req *GetMerchantBalanceRequest, rsp *GetMerchantBalanceResponse) error
+		PaymentFormPlatformChanged(ctx context.Context, req *PaymentFormUserChangePlatformRequest, rsp *PaymentFormDataChangeResponse) error
+		CheckSkuAndKeyProject(ctx context.Context, req *CheckSkuAndKeyProjectRequest, rsp *EmptyResponseWithStatus) error
+		GetPaylinks(ctx context.Context, req *GetPaylinksRequest, rsp *GetPaylinksResponse) error
+		GetPaylink(ctx context.Context, req *PaylinkRequest, rsp *GetPaylinkResponse) error
+		IncrPaylinkVisits(ctx context.Context, req *PaylinkRequestById, rsp *EmptyResponse) error
+		GetPaylinkURL(ctx context.Context, req *GetPaylinkURLRequest, rsp *GetPaylinkUrlResponse) error
+		CreateOrUpdatePaylink(ctx context.Context, req *CreatePaylinkRequest, rsp *GetPaylinkResponse) error
+		DeletePaylink(ctx context.Context, req *PaylinkRequest, rsp *EmptyResponseWithStatus) error
+		GetPaylinkStatTotal(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonResponse) error
+		GetPaylinkStatByCountry(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonGroupResponse) error
+		GetPaylinkStatByReferrer(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonGroupResponse) error
+		GetPaylinkStatByDate(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonGroupResponse) error
+		GetPaylinkStatByUtm(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonGroupResponse) error
+		GetPaylinkTransactions(ctx context.Context, req *GetPaylinkTransactionsRequest, rsp *TransactionsResponse) error
+		DeleteSavedCard(ctx context.Context, req *DeleteSavedCardRequest, rsp *EmptyResponseWithStatus) error
+		GetOperatingCompaniesList(ctx context.Context, req *EmptyRequest, rsp *GetOperatingCompaniesListResponse) error
+		AddOperatingCompany(ctx context.Context, req *OperatingCompany, rsp *EmptyResponseWithStatus) error
+		GetOperatingCompany(ctx context.Context, req *GetOperatingCompanyRequest, rsp *GetOperatingCompanyResponse) error
+		GetPaymentMinLimitsSystem(ctx context.Context, req *EmptyRequest, rsp *GetPaymentMinLimitsSystemResponse) error
+		SetPaymentMinLimitSystem(ctx context.Context, req *PaymentMinLimitSystem, rsp *EmptyResponseWithStatus) error
+		GetMerchantUsers(ctx context.Context, req *GetMerchantUsersRequest, rsp *GetMerchantUsersResponse) error
+		GetAdminUsers(ctx context.Context, req *EmptyRequest, rsp *GetAdminUsersResponse) error
+		InviteUserMerchant(ctx context.Context, req *InviteUserMerchantRequest, rsp *InviteUserMerchantResponse) error
+		InviteUserAdmin(ctx context.Context, req *InviteUserAdminRequest, rsp *InviteUserAdminResponse) error
+		ResendInviteMerchant(ctx context.Context, req *ResendInviteMerchantRequest, rsp *EmptyResponseWithStatus) error
+		ResendInviteAdmin(ctx context.Context, req *ResendInviteAdminRequest, rsp *EmptyResponseWithStatus) error
+		AcceptInvite(ctx context.Context, req *AcceptInviteRequest, rsp *AcceptInviteResponse) error
+		CheckInviteToken(ctx context.Context, req *CheckInviteTokenRequest, rsp *CheckInviteTokenResponse) error
+		GetMerchantsForUser(ctx context.Context, req *GetMerchantsForUserRequest, rsp *GetMerchantsForUserResponse) error
+		ChangeRoleForMerchantUser(ctx context.Context, req *ChangeRoleForMerchantUserRequest, rsp *EmptyResponseWithStatus) error
+		ChangeRoleForAdminUser(ctx context.Context, req *ChangeRoleForAdminUserRequest, rsp *EmptyResponseWithStatus) error
+		GetRoleList(ctx context.Context, req *GetRoleListRequest, rsp *GetRoleListResponse) error
+		DeleteMerchantUser(ctx context.Context, req *MerchantRoleRequest, rsp *EmptyResponseWithStatus) error
+		DeleteAdminUser(ctx context.Context, req *AdminRoleRequest, rsp *EmptyResponseWithStatus) error
+		GetMerchantUserRole(ctx context.Context, req *MerchantRoleRequest, rsp *UserRoleResponse) error
+		GetAdminUserRole(ctx context.Context, req *AdminRoleRequest, rsp *UserRoleResponse) error
+		GetCommonUserProfile(ctx context.Context, req *CommonUserProfileRequest, rsp *CommonUserProfileResponse) error
+		GetAdminByUserId(ctx context.Context, req *CommonUserProfileRequest, rsp *UserRoleResponse) error
+		SendWebhookToMerchant(ctx context.Context, req *OrderCreateRequest, rsp *SendWebhookToMerchantResponse) error
+		NotifyWebhookTestResults(ctx context.Context, req *NotifyWebhookTestResultsRequest, rsp *EmptyResponseWithStatus) error
+		RoyaltyReportFinanceDone(ctx context.Context, req *ReportFinanceDoneRequest, rsp *EmptyResponseWithStatus) error
+		PayoutFinanceDone(ctx context.Context, req *ReportFinanceDoneRequest, rsp *EmptyResponseWithStatus) error
+		GetActOfCompletion(ctx context.Context, req *ActOfCompletionRequest, rsp *ActOfCompletionResponse) error
+		GetActsOfCompletionList(ctx context.Context, req *ActsOfCompletionListRequest, rsp *ActsOfCompletionListResponse) error
+		SetCustomerPaymentActivity(ctx context.Context, req *SetCustomerPaymentActivityRequest, rsp *EmptyResponseWithStatus) error
+		GetCustomerList(ctx context.Context, req *ListCustomersRequest, rsp *ListCustomersResponse) error
+		GetCustomerInfo(ctx context.Context, req *GetCustomerInfoRequest, rsp *GetCustomerInfoResponse) error
+		DeserializeCookie(ctx context.Context, req *DeserializeCookieRequest, rsp *DeserializeCookieResponse) error
+		DeleteCustomerCard(ctx context.Context, req *DeleteCustomerCardRequest, rsp *EmptyResponseWithStatus) error
+		GetSubscription(ctx context.Context, req *GetSubscriptionRequest, rsp *GetSubscriptionResponse) error
+		GetCustomerShortInfo(ctx context.Context, req *GetCustomerShortInfoRequest, rsp *GetCustomerShortInfoResponse) error
+		GetSubscriptionOrders(ctx context.Context, req *GetSubscriptionOrdersRequest, rsp *GetSubscriptionOrdersResponse) error
+		DeleteRecurringSubscription(ctx context.Context, req *DeleteRecurringSubscriptionRequest, rsp *EmptyResponseWithStatus) error
+		FindSubscriptions(ctx context.Context, req *FindSubscriptionsRequest, rsp *FindSubscriptionsResponse) error
+		AddMerchantDocument(ctx context.Context, req *MerchantDocument, rsp *AddMerchantDocumentResponse) error
+		GetMerchantDocuments(ctx context.Context, req *GetMerchantDocumentsRequest, rsp *GetMerchantDocumentsResponse) error
+		GetMerchantDocument(ctx context.Context, req *GetMerchantDocumentRequest, rsp *GetMerchantDocumentResponse) error
 	}
 	type BillingService struct {
 		billingService
@@ -2661,798 +2464,798 @@ type billingServiceHandler struct {
 	BillingServiceHandler
 }
 
-func (h *billingServiceHandler) OrderCreateByPaylink(ctx context.Context, in *OrderCreateByPaylink, out *OrderCreateProcessResponse) error {
-	return h.BillingServiceHandler.OrderCreateByPaylink(ctx, in, out)
+func (h *billingServiceHandler) OrderCreateByPaylink(ctx context.Context, req *OrderCreateByPaylink, rsp *OrderCreateProcessResponse) error {
+	return h.BillingServiceHandler.OrderCreateByPaylink(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) OrderCreateProcess(ctx context.Context, in *OrderCreateRequest, out *OrderCreateProcessResponse) error {
-	return h.BillingServiceHandler.OrderCreateProcess(ctx, in, out)
+func (h *billingServiceHandler) OrderCreateProcess(ctx context.Context, req *OrderCreateRequest, rsp *OrderCreateProcessResponse) error {
+	return h.BillingServiceHandler.OrderCreateProcess(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PaymentFormJsonDataProcess(ctx context.Context, in *PaymentFormJsonDataRequest, out *PaymentFormJsonDataResponse) error {
-	return h.BillingServiceHandler.PaymentFormJsonDataProcess(ctx, in, out)
+func (h *billingServiceHandler) PaymentFormJsonDataProcess(ctx context.Context, req *PaymentFormJsonDataRequest, rsp *PaymentFormJsonDataResponse) error {
+	return h.BillingServiceHandler.PaymentFormJsonDataProcess(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PaymentCreateProcess(ctx context.Context, in *PaymentCreateRequest, out *PaymentCreateResponse) error {
-	return h.BillingServiceHandler.PaymentCreateProcess(ctx, in, out)
+func (h *billingServiceHandler) PaymentCreateProcess(ctx context.Context, req *PaymentCreateRequest, rsp *PaymentCreateResponse) error {
+	return h.BillingServiceHandler.PaymentCreateProcess(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PaymentCallbackProcess(ctx context.Context, in *PaymentNotifyRequest, out *PaymentNotifyResponse) error {
-	return h.BillingServiceHandler.PaymentCallbackProcess(ctx, in, out)
+func (h *billingServiceHandler) PaymentCallbackProcess(ctx context.Context, req *PaymentNotifyRequest, rsp *PaymentNotifyResponse) error {
+	return h.BillingServiceHandler.PaymentCallbackProcess(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) OrderReceipt(ctx context.Context, in *OrderReceiptRequest, out *OrderReceiptResponse) error {
-	return h.BillingServiceHandler.OrderReceipt(ctx, in, out)
+func (h *billingServiceHandler) OrderReceipt(ctx context.Context, req *OrderReceiptRequest, rsp *OrderReceiptResponse) error {
+	return h.BillingServiceHandler.OrderReceipt(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) OrderReCreateProcess(ctx context.Context, in *OrderReCreateProcessRequest, out *OrderCreateProcessResponse) error {
-	return h.BillingServiceHandler.OrderReCreateProcess(ctx, in, out)
+func (h *billingServiceHandler) OrderReCreateProcess(ctx context.Context, req *OrderReCreateProcessRequest, rsp *OrderCreateProcessResponse) error {
+	return h.BillingServiceHandler.OrderReCreateProcess(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) UpdateOrder(ctx context.Context, in *Order, out *EmptyResponse) error {
-	return h.BillingServiceHandler.UpdateOrder(ctx, in, out)
+func (h *billingServiceHandler) UpdateOrder(ctx context.Context, req *Order, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.UpdateOrder(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantBy(ctx context.Context, in *GetMerchantByRequest, out *GetMerchantResponse) error {
-	return h.BillingServiceHandler.GetMerchantBy(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantBy(ctx context.Context, req *GetMerchantByRequest, rsp *GetMerchantResponse) error {
+	return h.BillingServiceHandler.GetMerchantBy(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListMerchants(ctx context.Context, in *MerchantListingRequest, out *MerchantListingResponse) error {
-	return h.BillingServiceHandler.ListMerchants(ctx, in, out)
+func (h *billingServiceHandler) ListMerchants(ctx context.Context, req *MerchantListingRequest, rsp *MerchantListingResponse) error {
+	return h.BillingServiceHandler.ListMerchants(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListMerchantsForAgreement(ctx context.Context, in *MerchantListingRequest, out *ListMerchantsForAgreementResponse) error {
-	return h.BillingServiceHandler.ListMerchantsForAgreement(ctx, in, out)
+func (h *billingServiceHandler) ListMerchantsForAgreement(ctx context.Context, req *MerchantListingRequest, rsp *ListMerchantsForAgreementResponse) error {
+	return h.BillingServiceHandler.ListMerchantsForAgreement(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeMerchant(ctx context.Context, in *OnboardingRequest, out *ChangeMerchantResponse) error {
-	return h.BillingServiceHandler.ChangeMerchant(ctx, in, out)
+func (h *billingServiceHandler) ChangeMerchant(ctx context.Context, req *OnboardingRequest, rsp *ChangeMerchantResponse) error {
+	return h.BillingServiceHandler.ChangeMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeMerchantStatus(ctx context.Context, in *MerchantChangeStatusRequest, out *ChangeMerchantStatusResponse) error {
-	return h.BillingServiceHandler.ChangeMerchantStatus(ctx, in, out)
+func (h *billingServiceHandler) ChangeMerchantStatus(ctx context.Context, req *MerchantChangeStatusRequest, rsp *ChangeMerchantStatusResponse) error {
+	return h.BillingServiceHandler.ChangeMerchantStatus(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetMerchantOperatingCompany(ctx context.Context, in *SetMerchantOperatingCompanyRequest, out *SetMerchantOperatingCompanyResponse) error {
-	return h.BillingServiceHandler.SetMerchantOperatingCompany(ctx, in, out)
+func (h *billingServiceHandler) SetMerchantOperatingCompany(ctx context.Context, req *SetMerchantOperatingCompanyRequest, rsp *SetMerchantOperatingCompanyResponse) error {
+	return h.BillingServiceHandler.SetMerchantOperatingCompany(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetMerchantAcceptedStatus(ctx context.Context, in *SetMerchantAcceptedStatusRequest, out *SetMerchantAcceptedStatusResponse) error {
-	return h.BillingServiceHandler.SetMerchantAcceptedStatus(ctx, in, out)
+func (h *billingServiceHandler) SetMerchantAcceptedStatus(ctx context.Context, req *SetMerchantAcceptedStatusRequest, rsp *SetMerchantAcceptedStatusResponse) error {
+	return h.BillingServiceHandler.SetMerchantAcceptedStatus(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeMerchantData(ctx context.Context, in *ChangeMerchantDataRequest, out *ChangeMerchantDataResponse) error {
-	return h.BillingServiceHandler.ChangeMerchantData(ctx, in, out)
+func (h *billingServiceHandler) ChangeMerchantData(ctx context.Context, req *ChangeMerchantDataRequest, rsp *ChangeMerchantDataResponse) error {
+	return h.BillingServiceHandler.ChangeMerchantData(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetMerchantS3Agreement(ctx context.Context, in *SetMerchantS3AgreementRequest, out *ChangeMerchantDataResponse) error {
-	return h.BillingServiceHandler.SetMerchantS3Agreement(ctx, in, out)
+func (h *billingServiceHandler) SetMerchantS3Agreement(ctx context.Context, req *SetMerchantS3AgreementRequest, rsp *ChangeMerchantDataResponse) error {
+	return h.BillingServiceHandler.SetMerchantS3Agreement(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantTariffRates(ctx context.Context, in *GetMerchantTariffRatesRequest, out *GetMerchantTariffRatesResponse) error {
-	return h.BillingServiceHandler.GetMerchantTariffRates(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantTariffRates(ctx context.Context, req *GetMerchantTariffRatesRequest, rsp *GetMerchantTariffRatesResponse) error {
+	return h.BillingServiceHandler.GetMerchantTariffRates(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetMerchantTariffRates(ctx context.Context, in *SetMerchantTariffRatesRequest, out *CheckProjectRequestSignatureResponse) error {
-	return h.BillingServiceHandler.SetMerchantTariffRates(ctx, in, out)
+func (h *billingServiceHandler) SetMerchantTariffRates(ctx context.Context, req *SetMerchantTariffRatesRequest, rsp *CheckProjectRequestSignatureResponse) error {
+	return h.BillingServiceHandler.SetMerchantTariffRates(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeMerchantManualPayouts(ctx context.Context, in *ChangeMerchantManualPayoutsRequest, out *ChangeMerchantManualPayoutsResponse) error {
-	return h.BillingServiceHandler.ChangeMerchantManualPayouts(ctx, in, out)
+func (h *billingServiceHandler) ChangeMerchantManualPayouts(ctx context.Context, req *ChangeMerchantManualPayoutsRequest, rsp *ChangeMerchantManualPayoutsResponse) error {
+	return h.BillingServiceHandler.ChangeMerchantManualPayouts(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateNotification(ctx context.Context, in *NotificationRequest, out *CreateNotificationResponse) error {
-	return h.BillingServiceHandler.CreateNotification(ctx, in, out)
+func (h *billingServiceHandler) CreateNotification(ctx context.Context, req *NotificationRequest, rsp *CreateNotificationResponse) error {
+	return h.BillingServiceHandler.CreateNotification(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetNotification(ctx context.Context, in *GetNotificationRequest, out *Notification) error {
-	return h.BillingServiceHandler.GetNotification(ctx, in, out)
+func (h *billingServiceHandler) GetNotification(ctx context.Context, req *GetNotificationRequest, rsp *Notification) error {
+	return h.BillingServiceHandler.GetNotification(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListNotifications(ctx context.Context, in *ListingNotificationRequest, out *Notifications) error {
-	return h.BillingServiceHandler.ListNotifications(ctx, in, out)
+func (h *billingServiceHandler) ListNotifications(ctx context.Context, req *ListingNotificationRequest, rsp *Notifications) error {
+	return h.BillingServiceHandler.ListNotifications(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) MarkNotificationAsRead(ctx context.Context, in *GetNotificationRequest, out *Notification) error {
-	return h.BillingServiceHandler.MarkNotificationAsRead(ctx, in, out)
+func (h *billingServiceHandler) MarkNotificationAsRead(ctx context.Context, req *GetNotificationRequest, rsp *Notification) error {
+	return h.BillingServiceHandler.MarkNotificationAsRead(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListMerchantPaymentMethods(ctx context.Context, in *ListMerchantPaymentMethodsRequest, out *ListingMerchantPaymentMethod) error {
-	return h.BillingServiceHandler.ListMerchantPaymentMethods(ctx, in, out)
+func (h *billingServiceHandler) ListMerchantPaymentMethods(ctx context.Context, req *ListMerchantPaymentMethodsRequest, rsp *ListingMerchantPaymentMethod) error {
+	return h.BillingServiceHandler.ListMerchantPaymentMethods(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantPaymentMethod(ctx context.Context, in *GetMerchantPaymentMethodRequest, out *GetMerchantPaymentMethodResponse) error {
-	return h.BillingServiceHandler.GetMerchantPaymentMethod(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantPaymentMethod(ctx context.Context, req *GetMerchantPaymentMethodRequest, rsp *GetMerchantPaymentMethodResponse) error {
+	return h.BillingServiceHandler.GetMerchantPaymentMethod(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeMerchantPaymentMethod(ctx context.Context, in *MerchantPaymentMethodRequest, out *MerchantPaymentMethodResponse) error {
-	return h.BillingServiceHandler.ChangeMerchantPaymentMethod(ctx, in, out)
+func (h *billingServiceHandler) ChangeMerchantPaymentMethod(ctx context.Context, req *MerchantPaymentMethodRequest, rsp *MerchantPaymentMethodResponse) error {
+	return h.BillingServiceHandler.ChangeMerchantPaymentMethod(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateRefund(ctx context.Context, in *CreateRefundRequest, out *CreateRefundResponse) error {
-	return h.BillingServiceHandler.CreateRefund(ctx, in, out)
+func (h *billingServiceHandler) CreateRefund(ctx context.Context, req *CreateRefundRequest, rsp *CreateRefundResponse) error {
+	return h.BillingServiceHandler.CreateRefund(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListRefunds(ctx context.Context, in *ListRefundsRequest, out *ListRefundsResponse) error {
-	return h.BillingServiceHandler.ListRefunds(ctx, in, out)
+func (h *billingServiceHandler) ListRefunds(ctx context.Context, req *ListRefundsRequest, rsp *ListRefundsResponse) error {
+	return h.BillingServiceHandler.ListRefunds(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetRefund(ctx context.Context, in *GetRefundRequest, out *CreateRefundResponse) error {
-	return h.BillingServiceHandler.GetRefund(ctx, in, out)
+func (h *billingServiceHandler) GetRefund(ctx context.Context, req *GetRefundRequest, rsp *CreateRefundResponse) error {
+	return h.BillingServiceHandler.GetRefund(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ProcessRefundCallback(ctx context.Context, in *CallbackRequest, out *PaymentNotifyResponse) error {
-	return h.BillingServiceHandler.ProcessRefundCallback(ctx, in, out)
+func (h *billingServiceHandler) ProcessRefundCallback(ctx context.Context, req *CallbackRequest, rsp *PaymentNotifyResponse) error {
+	return h.BillingServiceHandler.ProcessRefundCallback(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PaymentFormLanguageChanged(ctx context.Context, in *PaymentFormUserChangeLangRequest, out *PaymentFormDataChangeResponse) error {
-	return h.BillingServiceHandler.PaymentFormLanguageChanged(ctx, in, out)
+func (h *billingServiceHandler) PaymentFormLanguageChanged(ctx context.Context, req *PaymentFormUserChangeLangRequest, rsp *PaymentFormDataChangeResponse) error {
+	return h.BillingServiceHandler.PaymentFormLanguageChanged(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PaymentFormPaymentAccountChanged(ctx context.Context, in *PaymentFormUserChangePaymentAccountRequest, out *PaymentFormDataChangeResponse) error {
-	return h.BillingServiceHandler.PaymentFormPaymentAccountChanged(ctx, in, out)
+func (h *billingServiceHandler) PaymentFormPaymentAccountChanged(ctx context.Context, req *PaymentFormUserChangePaymentAccountRequest, rsp *PaymentFormDataChangeResponse) error {
+	return h.BillingServiceHandler.PaymentFormPaymentAccountChanged(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ProcessBillingAddress(ctx context.Context, in *ProcessBillingAddressRequest, out *ProcessBillingAddressResponse) error {
-	return h.BillingServiceHandler.ProcessBillingAddress(ctx, in, out)
+func (h *billingServiceHandler) ProcessBillingAddress(ctx context.Context, req *ProcessBillingAddressRequest, rsp *ProcessBillingAddressResponse) error {
+	return h.BillingServiceHandler.ProcessBillingAddress(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateOrUpdateProduct(ctx context.Context, in *Product, out *Product) error {
-	return h.BillingServiceHandler.CreateOrUpdateProduct(ctx, in, out)
+func (h *billingServiceHandler) CreateOrUpdateProduct(ctx context.Context, req *Product, rsp *Product) error {
+	return h.BillingServiceHandler.CreateOrUpdateProduct(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListProducts(ctx context.Context, in *ListProductsRequest, out *ListProductsResponse) error {
-	return h.BillingServiceHandler.ListProducts(ctx, in, out)
+func (h *billingServiceHandler) ListProducts(ctx context.Context, req *ListProductsRequest, rsp *ListProductsResponse) error {
+	return h.BillingServiceHandler.ListProducts(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetProduct(ctx context.Context, in *RequestProduct, out *GetProductResponse) error {
-	return h.BillingServiceHandler.GetProduct(ctx, in, out)
+func (h *billingServiceHandler) GetProduct(ctx context.Context, req *RequestProduct, rsp *GetProductResponse) error {
+	return h.BillingServiceHandler.GetProduct(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteProduct(ctx context.Context, in *RequestProduct, out *EmptyResponse) error {
-	return h.BillingServiceHandler.DeleteProduct(ctx, in, out)
+func (h *billingServiceHandler) DeleteProduct(ctx context.Context, req *RequestProduct, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.DeleteProduct(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetProductsForOrder(ctx context.Context, in *GetProductsForOrderRequest, out *ListProductsResponse) error {
-	return h.BillingServiceHandler.GetProductsForOrder(ctx, in, out)
+func (h *billingServiceHandler) GetProductsForOrder(ctx context.Context, req *GetProductsForOrderRequest, rsp *ListProductsResponse) error {
+	return h.BillingServiceHandler.GetProductsForOrder(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetProductPrices(ctx context.Context, in *RequestProduct, out *ProductPricesResponse) error {
-	return h.BillingServiceHandler.GetProductPrices(ctx, in, out)
+func (h *billingServiceHandler) GetProductPrices(ctx context.Context, req *RequestProduct, rsp *ProductPricesResponse) error {
+	return h.BillingServiceHandler.GetProductPrices(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) UpdateProductPrices(ctx context.Context, in *UpdateProductPricesRequest, out *ResponseError) error {
-	return h.BillingServiceHandler.UpdateProductPrices(ctx, in, out)
+func (h *billingServiceHandler) UpdateProductPrices(ctx context.Context, req *UpdateProductPricesRequest, rsp *ResponseError) error {
+	return h.BillingServiceHandler.UpdateProductPrices(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeProject(ctx context.Context, in *Project, out *ChangeProjectResponse) error {
-	return h.BillingServiceHandler.ChangeProject(ctx, in, out)
+func (h *billingServiceHandler) ChangeProject(ctx context.Context, req *Project, rsp *ChangeProjectResponse) error {
+	return h.BillingServiceHandler.ChangeProject(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetProject(ctx context.Context, in *GetProjectRequest, out *ChangeProjectResponse) error {
-	return h.BillingServiceHandler.GetProject(ctx, in, out)
+func (h *billingServiceHandler) GetProject(ctx context.Context, req *GetProjectRequest, rsp *ChangeProjectResponse) error {
+	return h.BillingServiceHandler.GetProject(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListProjects(ctx context.Context, in *ListProjectsRequest, out *ListProjectsResponse) error {
-	return h.BillingServiceHandler.ListProjects(ctx, in, out)
+func (h *billingServiceHandler) ListProjects(ctx context.Context, req *ListProjectsRequest, rsp *ListProjectsResponse) error {
+	return h.BillingServiceHandler.ListProjects(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteProject(ctx context.Context, in *GetProjectRequest, out *ChangeProjectResponse) error {
-	return h.BillingServiceHandler.DeleteProject(ctx, in, out)
+func (h *billingServiceHandler) DeleteProject(ctx context.Context, req *GetProjectRequest, rsp *ChangeProjectResponse) error {
+	return h.BillingServiceHandler.DeleteProject(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateToken(ctx context.Context, in *TokenRequest, out *TokenResponse) error {
-	return h.BillingServiceHandler.CreateToken(ctx, in, out)
+func (h *billingServiceHandler) CreateToken(ctx context.Context, req *TokenRequest, rsp *TokenResponse) error {
+	return h.BillingServiceHandler.CreateToken(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CheckProjectRequestSignature(ctx context.Context, in *CheckProjectRequestSignatureRequest, out *CheckProjectRequestSignatureResponse) error {
-	return h.BillingServiceHandler.CheckProjectRequestSignature(ctx, in, out)
+func (h *billingServiceHandler) CheckProjectRequestSignature(ctx context.Context, req *CheckProjectRequestSignatureRequest, rsp *CheckProjectRequestSignatureResponse) error {
+	return h.BillingServiceHandler.CheckProjectRequestSignature(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetCountriesList(ctx context.Context, in *EmptyRequest, out *CountriesList) error {
-	return h.BillingServiceHandler.GetCountriesList(ctx, in, out)
+func (h *billingServiceHandler) GetCountriesList(ctx context.Context, req *EmptyRequest, rsp *CountriesList) error {
+	return h.BillingServiceHandler.GetCountriesList(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetCountriesListForOrder(ctx context.Context, in *GetCountriesListForOrderRequest, out *GetCountriesListForOrderResponse) error {
-	return h.BillingServiceHandler.GetCountriesListForOrder(ctx, in, out)
+func (h *billingServiceHandler) GetCountriesListForOrder(ctx context.Context, req *GetCountriesListForOrderRequest, rsp *GetCountriesListForOrderResponse) error {
+	return h.BillingServiceHandler.GetCountriesListForOrder(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetCountry(ctx context.Context, in *GetCountryRequest, out *Country) error {
-	return h.BillingServiceHandler.GetCountry(ctx, in, out)
+func (h *billingServiceHandler) GetCountry(ctx context.Context, req *GetCountryRequest, rsp *Country) error {
+	return h.BillingServiceHandler.GetCountry(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) UpdateCountry(ctx context.Context, in *Country, out *Country) error {
-	return h.BillingServiceHandler.UpdateCountry(ctx, in, out)
+func (h *billingServiceHandler) UpdateCountry(ctx context.Context, req *Country, rsp *Country) error {
+	return h.BillingServiceHandler.UpdateCountry(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetOrderPublic(ctx context.Context, in *GetOrderRequest, out *GetOrderPublicResponse) error {
-	return h.BillingServiceHandler.GetOrderPublic(ctx, in, out)
+func (h *billingServiceHandler) GetOrderPublic(ctx context.Context, req *GetOrderRequest, rsp *GetOrderPublicResponse) error {
+	return h.BillingServiceHandler.GetOrderPublic(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetOrderPrivate(ctx context.Context, in *GetOrderRequest, out *GetOrderPrivateResponse) error {
-	return h.BillingServiceHandler.GetOrderPrivate(ctx, in, out)
+func (h *billingServiceHandler) GetOrderPrivate(ctx context.Context, req *GetOrderRequest, rsp *GetOrderPrivateResponse) error {
+	return h.BillingServiceHandler.GetOrderPrivate(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPublicResponse) error {
-	return h.BillingServiceHandler.FindAllOrdersPublic(ctx, in, out)
+func (h *billingServiceHandler) FindAllOrdersPublic(ctx context.Context, req *ListOrdersRequest, rsp *ListOrdersPublicResponse) error {
+	return h.BillingServiceHandler.FindAllOrdersPublic(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) FindAllOrdersPrivate(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPrivateResponse) error {
-	return h.BillingServiceHandler.FindAllOrdersPrivate(ctx, in, out)
+func (h *billingServiceHandler) FindAllOrdersPrivate(ctx context.Context, req *ListOrdersRequest, rsp *ListOrdersPrivateResponse) error {
+	return h.BillingServiceHandler.FindAllOrdersPrivate(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) FindAllOrders(ctx context.Context, in *ListOrdersRequest, out *ListOrdersResponse) error {
-	return h.BillingServiceHandler.FindAllOrders(ctx, in, out)
+func (h *billingServiceHandler) FindAllOrders(ctx context.Context, req *ListOrdersRequest, rsp *ListOrdersResponse) error {
+	return h.BillingServiceHandler.FindAllOrders(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) IsOrderCanBePaying(ctx context.Context, in *IsOrderCanBePayingRequest, out *IsOrderCanBePayingResponse) error {
-	return h.BillingServiceHandler.IsOrderCanBePaying(ctx, in, out)
+func (h *billingServiceHandler) IsOrderCanBePaying(ctx context.Context, req *IsOrderCanBePayingRequest, rsp *IsOrderCanBePayingResponse) error {
+	return h.BillingServiceHandler.IsOrderCanBePaying(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPriceGroup(ctx context.Context, in *GetPriceGroupRequest, out *PriceGroup) error {
-	return h.BillingServiceHandler.GetPriceGroup(ctx, in, out)
+func (h *billingServiceHandler) GetPriceGroup(ctx context.Context, req *GetPriceGroupRequest, rsp *PriceGroup) error {
+	return h.BillingServiceHandler.GetPriceGroup(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) UpdatePriceGroup(ctx context.Context, in *PriceGroup, out *PriceGroup) error {
-	return h.BillingServiceHandler.UpdatePriceGroup(ctx, in, out)
+func (h *billingServiceHandler) UpdatePriceGroup(ctx context.Context, req *PriceGroup, rsp *PriceGroup) error {
+	return h.BillingServiceHandler.UpdatePriceGroup(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPriceGroupByCountry(ctx context.Context, in *PriceGroupByCountryRequest, out *PriceGroup) error {
-	return h.BillingServiceHandler.GetPriceGroupByCountry(ctx, in, out)
+func (h *billingServiceHandler) GetPriceGroupByCountry(ctx context.Context, req *PriceGroupByCountryRequest, rsp *PriceGroup) error {
+	return h.BillingServiceHandler.GetPriceGroupByCountry(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPriceGroupCurrencies(ctx context.Context, in *EmptyRequest, out *PriceGroupCurrenciesResponse) error {
-	return h.BillingServiceHandler.GetPriceGroupCurrencies(ctx, in, out)
+func (h *billingServiceHandler) GetPriceGroupCurrencies(ctx context.Context, req *EmptyRequest, rsp *PriceGroupCurrenciesResponse) error {
+	return h.BillingServiceHandler.GetPriceGroupCurrencies(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPriceGroupCurrencyByRegion(ctx context.Context, in *PriceGroupByRegionRequest, out *PriceGroupCurrenciesResponse) error {
-	return h.BillingServiceHandler.GetPriceGroupCurrencyByRegion(ctx, in, out)
+func (h *billingServiceHandler) GetPriceGroupCurrencyByRegion(ctx context.Context, req *PriceGroupByRegionRequest, rsp *PriceGroupCurrenciesResponse) error {
+	return h.BillingServiceHandler.GetPriceGroupCurrencyByRegion(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetRecommendedPriceByPriceGroup(ctx context.Context, in *RecommendedPriceRequest, out *RecommendedPriceResponse) error {
-	return h.BillingServiceHandler.GetRecommendedPriceByPriceGroup(ctx, in, out)
+func (h *billingServiceHandler) GetRecommendedPriceByPriceGroup(ctx context.Context, req *RecommendedPriceRequest, rsp *RecommendedPriceResponse) error {
+	return h.BillingServiceHandler.GetRecommendedPriceByPriceGroup(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetRecommendedPriceByConversion(ctx context.Context, in *RecommendedPriceRequest, out *RecommendedPriceResponse) error {
-	return h.BillingServiceHandler.GetRecommendedPriceByConversion(ctx, in, out)
+func (h *billingServiceHandler) GetRecommendedPriceByConversion(ctx context.Context, req *RecommendedPriceRequest, rsp *RecommendedPriceResponse) error {
+	return h.BillingServiceHandler.GetRecommendedPriceByConversion(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetRecommendedPriceTable(ctx context.Context, in *RecommendedPriceTableRequest, out *RecommendedPriceTableResponse) error {
-	return h.BillingServiceHandler.GetRecommendedPriceTable(ctx, in, out)
+func (h *billingServiceHandler) GetRecommendedPriceTable(ctx context.Context, req *RecommendedPriceTableRequest, rsp *RecommendedPriceTableResponse) error {
+	return h.BillingServiceHandler.GetRecommendedPriceTable(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPriceGroupByRegion(ctx context.Context, in *GetPriceGroupByRegionRequest, out *GetPriceGroupByRegionResponse) error {
-	return h.BillingServiceHandler.GetPriceGroupByRegion(ctx, in, out)
+func (h *billingServiceHandler) GetPriceGroupByRegion(ctx context.Context, req *GetPriceGroupByRegionRequest, rsp *GetPriceGroupByRegionResponse) error {
+	return h.BillingServiceHandler.GetPriceGroupByRegion(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetUserNotifySales(ctx context.Context, in *SetUserNotifyRequest, out *EmptyResponse) error {
-	return h.BillingServiceHandler.SetUserNotifySales(ctx, in, out)
+func (h *billingServiceHandler) SetUserNotifySales(ctx context.Context, req *SetUserNotifyRequest, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.SetUserNotifySales(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetUserNotifyNewRegion(ctx context.Context, in *SetUserNotifyRequest, out *EmptyResponse) error {
-	return h.BillingServiceHandler.SetUserNotifyNewRegion(ctx, in, out)
+func (h *billingServiceHandler) SetUserNotifyNewRegion(ctx context.Context, req *SetUserNotifyRequest, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.SetUserNotifyNewRegion(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateOrUpdatePaymentMethod(ctx context.Context, in *PaymentMethod, out *ChangePaymentMethodResponse) error {
-	return h.BillingServiceHandler.CreateOrUpdatePaymentMethod(ctx, in, out)
+func (h *billingServiceHandler) CreateOrUpdatePaymentMethod(ctx context.Context, req *PaymentMethod, rsp *ChangePaymentMethodResponse) error {
+	return h.BillingServiceHandler.CreateOrUpdatePaymentMethod(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateOrUpdatePaymentMethodProductionSettings(ctx context.Context, in *ChangePaymentMethodParamsRequest, out *ChangePaymentMethodParamsResponse) error {
-	return h.BillingServiceHandler.CreateOrUpdatePaymentMethodProductionSettings(ctx, in, out)
+func (h *billingServiceHandler) CreateOrUpdatePaymentMethodProductionSettings(ctx context.Context, req *ChangePaymentMethodParamsRequest, rsp *ChangePaymentMethodParamsResponse) error {
+	return h.BillingServiceHandler.CreateOrUpdatePaymentMethodProductionSettings(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaymentMethodProductionSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, out *GetPaymentMethodSettingsResponse) error {
-	return h.BillingServiceHandler.GetPaymentMethodProductionSettings(ctx, in, out)
+func (h *billingServiceHandler) GetPaymentMethodProductionSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, rsp *GetPaymentMethodSettingsResponse) error {
+	return h.BillingServiceHandler.GetPaymentMethodProductionSettings(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeletePaymentMethodProductionSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, out *ChangePaymentMethodParamsResponse) error {
-	return h.BillingServiceHandler.DeletePaymentMethodProductionSettings(ctx, in, out)
+func (h *billingServiceHandler) DeletePaymentMethodProductionSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, rsp *ChangePaymentMethodParamsResponse) error {
+	return h.BillingServiceHandler.DeletePaymentMethodProductionSettings(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateOrUpdatePaymentMethodTestSettings(ctx context.Context, in *ChangePaymentMethodParamsRequest, out *ChangePaymentMethodParamsResponse) error {
-	return h.BillingServiceHandler.CreateOrUpdatePaymentMethodTestSettings(ctx, in, out)
+func (h *billingServiceHandler) CreateOrUpdatePaymentMethodTestSettings(ctx context.Context, req *ChangePaymentMethodParamsRequest, rsp *ChangePaymentMethodParamsResponse) error {
+	return h.BillingServiceHandler.CreateOrUpdatePaymentMethodTestSettings(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaymentMethodTestSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, out *GetPaymentMethodSettingsResponse) error {
-	return h.BillingServiceHandler.GetPaymentMethodTestSettings(ctx, in, out)
+func (h *billingServiceHandler) GetPaymentMethodTestSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, rsp *GetPaymentMethodSettingsResponse) error {
+	return h.BillingServiceHandler.GetPaymentMethodTestSettings(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeletePaymentMethodTestSettings(ctx context.Context, in *GetPaymentMethodSettingsRequest, out *ChangePaymentMethodParamsResponse) error {
-	return h.BillingServiceHandler.DeletePaymentMethodTestSettings(ctx, in, out)
+func (h *billingServiceHandler) DeletePaymentMethodTestSettings(ctx context.Context, req *GetPaymentMethodSettingsRequest, rsp *ChangePaymentMethodParamsResponse) error {
+	return h.BillingServiceHandler.DeletePaymentMethodTestSettings(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) FindByZipCode(ctx context.Context, in *FindByZipCodeRequest, out *FindByZipCodeResponse) error {
-	return h.BillingServiceHandler.FindByZipCode(ctx, in, out)
+func (h *billingServiceHandler) FindByZipCode(ctx context.Context, req *FindByZipCodeRequest, rsp *FindByZipCodeResponse) error {
+	return h.BillingServiceHandler.FindByZipCode(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetAllPaymentChannelCostSystem(ctx context.Context, in *EmptyRequest, out *PaymentChannelCostSystemListResponse) error {
-	return h.BillingServiceHandler.GetAllPaymentChannelCostSystem(ctx, in, out)
+func (h *billingServiceHandler) GetAllPaymentChannelCostSystem(ctx context.Context, req *EmptyRequest, rsp *PaymentChannelCostSystemListResponse) error {
+	return h.BillingServiceHandler.GetAllPaymentChannelCostSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaymentChannelCostSystem(ctx context.Context, in *PaymentChannelCostSystemRequest, out *PaymentChannelCostSystemResponse) error {
-	return h.BillingServiceHandler.GetPaymentChannelCostSystem(ctx, in, out)
+func (h *billingServiceHandler) GetPaymentChannelCostSystem(ctx context.Context, req *PaymentChannelCostSystemRequest, rsp *PaymentChannelCostSystemResponse) error {
+	return h.BillingServiceHandler.GetPaymentChannelCostSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetPaymentChannelCostSystem(ctx context.Context, in *PaymentChannelCostSystem, out *PaymentChannelCostSystemResponse) error {
-	return h.BillingServiceHandler.SetPaymentChannelCostSystem(ctx, in, out)
+func (h *billingServiceHandler) SetPaymentChannelCostSystem(ctx context.Context, req *PaymentChannelCostSystem, rsp *PaymentChannelCostSystemResponse) error {
+	return h.BillingServiceHandler.SetPaymentChannelCostSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeletePaymentChannelCostSystem(ctx context.Context, in *PaymentCostDeleteRequest, out *ResponseError) error {
-	return h.BillingServiceHandler.DeletePaymentChannelCostSystem(ctx, in, out)
+func (h *billingServiceHandler) DeletePaymentChannelCostSystem(ctx context.Context, req *PaymentCostDeleteRequest, rsp *ResponseError) error {
+	return h.BillingServiceHandler.DeletePaymentChannelCostSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetAllPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchantListRequest, out *PaymentChannelCostMerchantListResponse) error {
-	return h.BillingServiceHandler.GetAllPaymentChannelCostMerchant(ctx, in, out)
+func (h *billingServiceHandler) GetAllPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchantListRequest, rsp *PaymentChannelCostMerchantListResponse) error {
+	return h.BillingServiceHandler.GetAllPaymentChannelCostMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchantRequest, out *PaymentChannelCostMerchantResponse) error {
-	return h.BillingServiceHandler.GetPaymentChannelCostMerchant(ctx, in, out)
+func (h *billingServiceHandler) GetPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchantRequest, rsp *PaymentChannelCostMerchantResponse) error {
+	return h.BillingServiceHandler.GetPaymentChannelCostMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetPaymentChannelCostMerchant(ctx context.Context, in *PaymentChannelCostMerchant, out *PaymentChannelCostMerchantResponse) error {
-	return h.BillingServiceHandler.SetPaymentChannelCostMerchant(ctx, in, out)
+func (h *billingServiceHandler) SetPaymentChannelCostMerchant(ctx context.Context, req *PaymentChannelCostMerchant, rsp *PaymentChannelCostMerchantResponse) error {
+	return h.BillingServiceHandler.SetPaymentChannelCostMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeletePaymentChannelCostMerchant(ctx context.Context, in *PaymentCostDeleteRequest, out *ResponseError) error {
-	return h.BillingServiceHandler.DeletePaymentChannelCostMerchant(ctx, in, out)
+func (h *billingServiceHandler) DeletePaymentChannelCostMerchant(ctx context.Context, req *PaymentCostDeleteRequest, rsp *ResponseError) error {
+	return h.BillingServiceHandler.DeletePaymentChannelCostMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetAllMoneyBackCostSystem(ctx context.Context, in *EmptyRequest, out *MoneyBackCostSystemListResponse) error {
-	return h.BillingServiceHandler.GetAllMoneyBackCostSystem(ctx, in, out)
+func (h *billingServiceHandler) GetAllMoneyBackCostSystem(ctx context.Context, req *EmptyRequest, rsp *MoneyBackCostSystemListResponse) error {
+	return h.BillingServiceHandler.GetAllMoneyBackCostSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMoneyBackCostSystem(ctx context.Context, in *MoneyBackCostSystemRequest, out *MoneyBackCostSystemResponse) error {
-	return h.BillingServiceHandler.GetMoneyBackCostSystem(ctx, in, out)
+func (h *billingServiceHandler) GetMoneyBackCostSystem(ctx context.Context, req *MoneyBackCostSystemRequest, rsp *MoneyBackCostSystemResponse) error {
+	return h.BillingServiceHandler.GetMoneyBackCostSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetMoneyBackCostSystem(ctx context.Context, in *MoneyBackCostSystem, out *MoneyBackCostSystemResponse) error {
-	return h.BillingServiceHandler.SetMoneyBackCostSystem(ctx, in, out)
+func (h *billingServiceHandler) SetMoneyBackCostSystem(ctx context.Context, req *MoneyBackCostSystem, rsp *MoneyBackCostSystemResponse) error {
+	return h.BillingServiceHandler.SetMoneyBackCostSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteMoneyBackCostSystem(ctx context.Context, in *PaymentCostDeleteRequest, out *ResponseError) error {
-	return h.BillingServiceHandler.DeleteMoneyBackCostSystem(ctx, in, out)
+func (h *billingServiceHandler) DeleteMoneyBackCostSystem(ctx context.Context, req *PaymentCostDeleteRequest, rsp *ResponseError) error {
+	return h.BillingServiceHandler.DeleteMoneyBackCostSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetAllMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchantListRequest, out *MoneyBackCostMerchantListResponse) error {
-	return h.BillingServiceHandler.GetAllMoneyBackCostMerchant(ctx, in, out)
+func (h *billingServiceHandler) GetAllMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchantListRequest, rsp *MoneyBackCostMerchantListResponse) error {
+	return h.BillingServiceHandler.GetAllMoneyBackCostMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchantRequest, out *MoneyBackCostMerchantResponse) error {
-	return h.BillingServiceHandler.GetMoneyBackCostMerchant(ctx, in, out)
+func (h *billingServiceHandler) GetMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchantRequest, rsp *MoneyBackCostMerchantResponse) error {
+	return h.BillingServiceHandler.GetMoneyBackCostMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetMoneyBackCostMerchant(ctx context.Context, in *MoneyBackCostMerchant, out *MoneyBackCostMerchantResponse) error {
-	return h.BillingServiceHandler.SetMoneyBackCostMerchant(ctx, in, out)
+func (h *billingServiceHandler) SetMoneyBackCostMerchant(ctx context.Context, req *MoneyBackCostMerchant, rsp *MoneyBackCostMerchantResponse) error {
+	return h.BillingServiceHandler.SetMoneyBackCostMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteMoneyBackCostMerchant(ctx context.Context, in *PaymentCostDeleteRequest, out *ResponseError) error {
-	return h.BillingServiceHandler.DeleteMoneyBackCostMerchant(ctx, in, out)
+func (h *billingServiceHandler) DeleteMoneyBackCostMerchant(ctx context.Context, req *PaymentCostDeleteRequest, rsp *ResponseError) error {
+	return h.BillingServiceHandler.DeleteMoneyBackCostMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateAccountingEntry(ctx context.Context, in *CreateAccountingEntryRequest, out *CreateAccountingEntryResponse) error {
-	return h.BillingServiceHandler.CreateAccountingEntry(ctx, in, out)
+func (h *billingServiceHandler) CreateAccountingEntry(ctx context.Context, req *CreateAccountingEntryRequest, rsp *CreateAccountingEntryResponse) error {
+	return h.BillingServiceHandler.CreateAccountingEntry(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetUserProfile(ctx context.Context, in *GetUserProfileRequest, out *GetUserProfileResponse) error {
-	return h.BillingServiceHandler.GetUserProfile(ctx, in, out)
+func (h *billingServiceHandler) GetUserProfile(ctx context.Context, req *GetUserProfileRequest, rsp *GetUserProfileResponse) error {
+	return h.BillingServiceHandler.GetUserProfile(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateOrUpdateUserProfile(ctx context.Context, in *UserProfile, out *GetUserProfileResponse) error {
-	return h.BillingServiceHandler.CreateOrUpdateUserProfile(ctx, in, out)
+func (h *billingServiceHandler) CreateOrUpdateUserProfile(ctx context.Context, req *UserProfile, rsp *GetUserProfileResponse) error {
+	return h.BillingServiceHandler.CreateOrUpdateUserProfile(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ConfirmUserEmail(ctx context.Context, in *ConfirmUserEmailRequest, out *ConfirmUserEmailResponse) error {
-	return h.BillingServiceHandler.ConfirmUserEmail(ctx, in, out)
+func (h *billingServiceHandler) ConfirmUserEmail(ctx context.Context, req *ConfirmUserEmailRequest, rsp *ConfirmUserEmailResponse) error {
+	return h.BillingServiceHandler.ConfirmUserEmail(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreatePageReview(ctx context.Context, in *CreatePageReviewRequest, out *CheckProjectRequestSignatureResponse) error {
-	return h.BillingServiceHandler.CreatePageReview(ctx, in, out)
+func (h *billingServiceHandler) CreatePageReview(ctx context.Context, req *CreatePageReviewRequest, rsp *CheckProjectRequestSignatureResponse) error {
+	return h.BillingServiceHandler.CreatePageReview(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateRoyaltyReport(ctx context.Context, in *CreateRoyaltyReportRequest, out *CreateRoyaltyReportRequest) error {
-	return h.BillingServiceHandler.CreateRoyaltyReport(ctx, in, out)
+func (h *billingServiceHandler) CreateRoyaltyReport(ctx context.Context, req *CreateRoyaltyReportRequest, rsp *CreateRoyaltyReportRequest) error {
+	return h.BillingServiceHandler.CreateRoyaltyReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListRoyaltyReports(ctx context.Context, in *ListRoyaltyReportsRequest, out *ListRoyaltyReportsResponse) error {
-	return h.BillingServiceHandler.ListRoyaltyReports(ctx, in, out)
+func (h *billingServiceHandler) ListRoyaltyReports(ctx context.Context, req *ListRoyaltyReportsRequest, rsp *ListRoyaltyReportsResponse) error {
+	return h.BillingServiceHandler.ListRoyaltyReports(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetRoyaltyReport(ctx context.Context, in *GetRoyaltyReportRequest, out *GetRoyaltyReportResponse) error {
-	return h.BillingServiceHandler.GetRoyaltyReport(ctx, in, out)
+func (h *billingServiceHandler) GetRoyaltyReport(ctx context.Context, req *GetRoyaltyReportRequest, rsp *GetRoyaltyReportResponse) error {
+	return h.BillingServiceHandler.GetRoyaltyReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeRoyaltyReport(ctx context.Context, in *ChangeRoyaltyReportRequest, out *ResponseError) error {
-	return h.BillingServiceHandler.ChangeRoyaltyReport(ctx, in, out)
+func (h *billingServiceHandler) ChangeRoyaltyReport(ctx context.Context, req *ChangeRoyaltyReportRequest, rsp *ResponseError) error {
+	return h.BillingServiceHandler.ChangeRoyaltyReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ListRoyaltyReportOrders(ctx context.Context, in *ListRoyaltyReportOrdersRequest, out *TransactionsResponse) error {
-	return h.BillingServiceHandler.ListRoyaltyReportOrders(ctx, in, out)
+func (h *billingServiceHandler) ListRoyaltyReportOrders(ctx context.Context, req *ListRoyaltyReportOrdersRequest, rsp *TransactionsResponse) error {
+	return h.BillingServiceHandler.ListRoyaltyReportOrders(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) MerchantReviewRoyaltyReport(ctx context.Context, in *MerchantReviewRoyaltyReportRequest, out *ResponseError) error {
-	return h.BillingServiceHandler.MerchantReviewRoyaltyReport(ctx, in, out)
+func (h *billingServiceHandler) MerchantReviewRoyaltyReport(ctx context.Context, req *MerchantReviewRoyaltyReportRequest, rsp *ResponseError) error {
+	return h.BillingServiceHandler.MerchantReviewRoyaltyReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) AutoAcceptRoyaltyReports(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error {
-	return h.BillingServiceHandler.AutoAcceptRoyaltyReports(ctx, in, out)
+func (h *billingServiceHandler) AutoAcceptRoyaltyReports(ctx context.Context, req *EmptyRequest, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.AutoAcceptRoyaltyReports(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) RoyaltyReportPdfUploaded(ctx context.Context, in *RoyaltyReportPdfUploadedRequest, out *RoyaltyReportPdfUploadedResponse) error {
-	return h.BillingServiceHandler.RoyaltyReportPdfUploaded(ctx, in, out)
+func (h *billingServiceHandler) RoyaltyReportPdfUploaded(ctx context.Context, req *RoyaltyReportPdfUploadedRequest, rsp *RoyaltyReportPdfUploadedResponse) error {
+	return h.BillingServiceHandler.RoyaltyReportPdfUploaded(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetVatReportsDashboard(ctx context.Context, in *EmptyRequest, out *VatReportsResponse) error {
-	return h.BillingServiceHandler.GetVatReportsDashboard(ctx, in, out)
+func (h *billingServiceHandler) GetVatReportsDashboard(ctx context.Context, req *EmptyRequest, rsp *VatReportsResponse) error {
+	return h.BillingServiceHandler.GetVatReportsDashboard(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetVatReportsForCountry(ctx context.Context, in *VatReportsRequest, out *VatReportsResponse) error {
-	return h.BillingServiceHandler.GetVatReportsForCountry(ctx, in, out)
+func (h *billingServiceHandler) GetVatReportsForCountry(ctx context.Context, req *VatReportsRequest, rsp *VatReportsResponse) error {
+	return h.BillingServiceHandler.GetVatReportsForCountry(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetVatReportTransactions(ctx context.Context, in *VatTransactionsRequest, out *PrivateTransactionsResponse) error {
-	return h.BillingServiceHandler.GetVatReportTransactions(ctx, in, out)
+func (h *billingServiceHandler) GetVatReportTransactions(ctx context.Context, req *VatTransactionsRequest, rsp *PrivateTransactionsResponse) error {
+	return h.BillingServiceHandler.GetVatReportTransactions(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ProcessVatReports(ctx context.Context, in *ProcessVatReportsRequest, out *EmptyResponse) error {
-	return h.BillingServiceHandler.ProcessVatReports(ctx, in, out)
+func (h *billingServiceHandler) ProcessVatReports(ctx context.Context, req *ProcessVatReportsRequest, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.ProcessVatReports(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) UpdateVatReportStatus(ctx context.Context, in *UpdateVatReportStatusRequest, out *ResponseError) error {
-	return h.BillingServiceHandler.UpdateVatReportStatus(ctx, in, out)
+func (h *billingServiceHandler) UpdateVatReportStatus(ctx context.Context, req *UpdateVatReportStatusRequest, rsp *ResponseError) error {
+	return h.BillingServiceHandler.UpdateVatReportStatus(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetVatReport(ctx context.Context, in *VatReportRequest, out *VatReportResponse) error {
-	return h.BillingServiceHandler.GetVatReport(ctx, in, out)
+func (h *billingServiceHandler) GetVatReport(ctx context.Context, req *VatReportRequest, rsp *VatReportResponse) error {
+	return h.BillingServiceHandler.GetVatReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CalcAnnualTurnovers(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error {
-	return h.BillingServiceHandler.CalcAnnualTurnovers(ctx, in, out)
+func (h *billingServiceHandler) CalcAnnualTurnovers(ctx context.Context, req *EmptyRequest, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.CalcAnnualTurnovers(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantOnboardingCompleteData(ctx context.Context, in *SetMerchantS3AgreementRequest, out *GetMerchantOnboardingCompleteDataResponse) error {
-	return h.BillingServiceHandler.GetMerchantOnboardingCompleteData(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantOnboardingCompleteData(ctx context.Context, req *SetMerchantS3AgreementRequest, rsp *GetMerchantOnboardingCompleteDataResponse) error {
+	return h.BillingServiceHandler.GetMerchantOnboardingCompleteData(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateOrUpdateKeyProduct(ctx context.Context, in *CreateOrUpdateKeyProductRequest, out *KeyProductResponse) error {
-	return h.BillingServiceHandler.CreateOrUpdateKeyProduct(ctx, in, out)
+func (h *billingServiceHandler) CreateOrUpdateKeyProduct(ctx context.Context, req *CreateOrUpdateKeyProductRequest, rsp *KeyProductResponse) error {
+	return h.BillingServiceHandler.CreateOrUpdateKeyProduct(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetKeyProducts(ctx context.Context, in *ListKeyProductsRequest, out *ListKeyProductsResponse) error {
-	return h.BillingServiceHandler.GetKeyProducts(ctx, in, out)
+func (h *billingServiceHandler) GetKeyProducts(ctx context.Context, req *ListKeyProductsRequest, rsp *ListKeyProductsResponse) error {
+	return h.BillingServiceHandler.GetKeyProducts(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetKeyProduct(ctx context.Context, in *RequestKeyProductMerchant, out *KeyProductResponse) error {
-	return h.BillingServiceHandler.GetKeyProduct(ctx, in, out)
+func (h *billingServiceHandler) GetKeyProduct(ctx context.Context, req *RequestKeyProductMerchant, rsp *KeyProductResponse) error {
+	return h.BillingServiceHandler.GetKeyProduct(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteKeyProduct(ctx context.Context, in *RequestKeyProductMerchant, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.DeleteKeyProduct(ctx, in, out)
+func (h *billingServiceHandler) DeleteKeyProduct(ctx context.Context, req *RequestKeyProductMerchant, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.DeleteKeyProduct(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PublishKeyProduct(ctx context.Context, in *PublishKeyProductRequest, out *KeyProductResponse) error {
-	return h.BillingServiceHandler.PublishKeyProduct(ctx, in, out)
+func (h *billingServiceHandler) PublishKeyProduct(ctx context.Context, req *PublishKeyProductRequest, rsp *KeyProductResponse) error {
+	return h.BillingServiceHandler.PublishKeyProduct(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) UnPublishKeyProduct(ctx context.Context, in *UnPublishKeyProductRequest, out *KeyProductResponse) error {
-	return h.BillingServiceHandler.UnPublishKeyProduct(ctx, in, out)
+func (h *billingServiceHandler) UnPublishKeyProduct(ctx context.Context, req *UnPublishKeyProductRequest, rsp *KeyProductResponse) error {
+	return h.BillingServiceHandler.UnPublishKeyProduct(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetKeyProductsForOrder(ctx context.Context, in *GetKeyProductsForOrderRequest, out *ListKeyProductsResponse) error {
-	return h.BillingServiceHandler.GetKeyProductsForOrder(ctx, in, out)
+func (h *billingServiceHandler) GetKeyProductsForOrder(ctx context.Context, req *GetKeyProductsForOrderRequest, rsp *ListKeyProductsResponse) error {
+	return h.BillingServiceHandler.GetKeyProductsForOrder(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetKeyProductInfo(ctx context.Context, in *GetKeyProductInfoRequest, out *GetKeyProductInfoResponse) error {
-	return h.BillingServiceHandler.GetKeyProductInfo(ctx, in, out)
+func (h *billingServiceHandler) GetKeyProductInfo(ctx context.Context, req *GetKeyProductInfoRequest, rsp *GetKeyProductInfoResponse) error {
+	return h.BillingServiceHandler.GetKeyProductInfo(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPlatforms(ctx context.Context, in *ListPlatformsRequest, out *ListPlatformsResponse) error {
-	return h.BillingServiceHandler.GetPlatforms(ctx, in, out)
+func (h *billingServiceHandler) GetPlatforms(ctx context.Context, req *ListPlatformsRequest, rsp *ListPlatformsResponse) error {
+	return h.BillingServiceHandler.GetPlatforms(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetAvailableKeysCount(ctx context.Context, in *GetPlatformKeyCountRequest, out *GetPlatformKeyCountResponse) error {
-	return h.BillingServiceHandler.GetAvailableKeysCount(ctx, in, out)
+func (h *billingServiceHandler) GetAvailableKeysCount(ctx context.Context, req *GetPlatformKeyCountRequest, rsp *GetPlatformKeyCountResponse) error {
+	return h.BillingServiceHandler.GetAvailableKeysCount(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) UploadKeysFile(ctx context.Context, in *PlatformKeysFileRequest, out *PlatformKeysFileResponse) error {
-	return h.BillingServiceHandler.UploadKeysFile(ctx, in, out)
+func (h *billingServiceHandler) UploadKeysFile(ctx context.Context, req *PlatformKeysFileRequest, rsp *PlatformKeysFileResponse) error {
+	return h.BillingServiceHandler.UploadKeysFile(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetKeyByID(ctx context.Context, in *KeyForOrderRequest, out *GetKeyForOrderRequestResponse) error {
-	return h.BillingServiceHandler.GetKeyByID(ctx, in, out)
+func (h *billingServiceHandler) GetKeyByID(ctx context.Context, req *KeyForOrderRequest, rsp *GetKeyForOrderRequestResponse) error {
+	return h.BillingServiceHandler.GetKeyByID(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ReserveKeyForOrder(ctx context.Context, in *PlatformKeyReserveRequest, out *PlatformKeyReserveResponse) error {
-	return h.BillingServiceHandler.ReserveKeyForOrder(ctx, in, out)
+func (h *billingServiceHandler) ReserveKeyForOrder(ctx context.Context, req *PlatformKeyReserveRequest, rsp *PlatformKeyReserveResponse) error {
+	return h.BillingServiceHandler.ReserveKeyForOrder(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) FinishRedeemKeyForOrder(ctx context.Context, in *KeyForOrderRequest, out *GetKeyForOrderRequestResponse) error {
-	return h.BillingServiceHandler.FinishRedeemKeyForOrder(ctx, in, out)
+func (h *billingServiceHandler) FinishRedeemKeyForOrder(ctx context.Context, req *KeyForOrderRequest, rsp *GetKeyForOrderRequestResponse) error {
+	return h.BillingServiceHandler.FinishRedeemKeyForOrder(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CancelRedeemKeyForOrder(ctx context.Context, in *KeyForOrderRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.CancelRedeemKeyForOrder(ctx, in, out)
+func (h *billingServiceHandler) CancelRedeemKeyForOrder(ctx context.Context, req *KeyForOrderRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.CancelRedeemKeyForOrder(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeCodeInOrder(ctx context.Context, in *ChangeCodeInOrderRequest, out *ChangeCodeInOrderResponse) error {
-	return h.BillingServiceHandler.ChangeCodeInOrder(ctx, in, out)
+func (h *billingServiceHandler) ChangeCodeInOrder(ctx context.Context, req *ChangeCodeInOrderRequest, rsp *ChangeCodeInOrderResponse) error {
+	return h.BillingServiceHandler.ChangeCodeInOrder(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetDashboardMainReport(ctx context.Context, in *GetDashboardMainRequest, out *GetDashboardMainResponse) error {
-	return h.BillingServiceHandler.GetDashboardMainReport(ctx, in, out)
+func (h *billingServiceHandler) GetDashboardMainReport(ctx context.Context, req *GetDashboardMainRequest, rsp *GetDashboardMainResponse) error {
+	return h.BillingServiceHandler.GetDashboardMainReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetDashboardRevenueDynamicsReport(ctx context.Context, in *GetDashboardMainRequest, out *GetDashboardRevenueDynamicsReportResponse) error {
-	return h.BillingServiceHandler.GetDashboardRevenueDynamicsReport(ctx, in, out)
+func (h *billingServiceHandler) GetDashboardRevenueDynamicsReport(ctx context.Context, req *GetDashboardMainRequest, rsp *GetDashboardRevenueDynamicsReportResponse) error {
+	return h.BillingServiceHandler.GetDashboardRevenueDynamicsReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetDashboardBaseReport(ctx context.Context, in *GetDashboardBaseReportRequest, out *GetDashboardBaseReportResponse) error {
-	return h.BillingServiceHandler.GetDashboardBaseReport(ctx, in, out)
+func (h *billingServiceHandler) GetDashboardBaseReport(ctx context.Context, req *GetDashboardBaseReportRequest, rsp *GetDashboardBaseReportResponse) error {
+	return h.BillingServiceHandler.GetDashboardBaseReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetDashboardCustomersReport(ctx context.Context, in *DashboardCustomerReportRequest, out *GetDashboardCustomerReportResponse) error {
-	return h.BillingServiceHandler.GetDashboardCustomersReport(ctx, in, out)
+func (h *billingServiceHandler) GetDashboardCustomersReport(ctx context.Context, req *DashboardCustomerReportRequest, rsp *GetDashboardCustomerReportResponse) error {
+	return h.BillingServiceHandler.GetDashboardCustomersReport(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetDashboardCustomerArpu(ctx context.Context, in *DashboardCustomerReportArpuRequest, out *DashboardCustomerReportArpuResponse) error {
-	return h.BillingServiceHandler.GetDashboardCustomerArpu(ctx, in, out)
+func (h *billingServiceHandler) GetDashboardCustomerArpu(ctx context.Context, req *DashboardCustomerReportArpuRequest, rsp *DashboardCustomerReportArpuResponse) error {
+	return h.BillingServiceHandler.GetDashboardCustomerArpu(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreatePayoutDocument(ctx context.Context, in *CreatePayoutDocumentRequest, out *CreatePayoutDocumentResponse) error {
-	return h.BillingServiceHandler.CreatePayoutDocument(ctx, in, out)
+func (h *billingServiceHandler) CreatePayoutDocument(ctx context.Context, req *CreatePayoutDocumentRequest, rsp *CreatePayoutDocumentResponse) error {
+	return h.BillingServiceHandler.CreatePayoutDocument(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) UpdatePayoutDocument(ctx context.Context, in *UpdatePayoutDocumentRequest, out *PayoutDocumentResponse) error {
-	return h.BillingServiceHandler.UpdatePayoutDocument(ctx, in, out)
+func (h *billingServiceHandler) UpdatePayoutDocument(ctx context.Context, req *UpdatePayoutDocumentRequest, rsp *PayoutDocumentResponse) error {
+	return h.BillingServiceHandler.UpdatePayoutDocument(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPayoutDocuments(ctx context.Context, in *GetPayoutDocumentsRequest, out *GetPayoutDocumentsResponse) error {
-	return h.BillingServiceHandler.GetPayoutDocuments(ctx, in, out)
+func (h *billingServiceHandler) GetPayoutDocuments(ctx context.Context, req *GetPayoutDocumentsRequest, rsp *GetPayoutDocumentsResponse) error {
+	return h.BillingServiceHandler.GetPayoutDocuments(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPayoutDocument(ctx context.Context, in *GetPayoutDocumentRequest, out *PayoutDocumentResponse) error {
-	return h.BillingServiceHandler.GetPayoutDocument(ctx, in, out)
+func (h *billingServiceHandler) GetPayoutDocument(ctx context.Context, req *GetPayoutDocumentRequest, rsp *PayoutDocumentResponse) error {
+	return h.BillingServiceHandler.GetPayoutDocument(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPayoutDocumentRoyaltyReports(ctx context.Context, in *GetPayoutDocumentRequest, out *ListRoyaltyReportsResponse) error {
-	return h.BillingServiceHandler.GetPayoutDocumentRoyaltyReports(ctx, in, out)
+func (h *billingServiceHandler) GetPayoutDocumentRoyaltyReports(ctx context.Context, req *GetPayoutDocumentRequest, rsp *ListRoyaltyReportsResponse) error {
+	return h.BillingServiceHandler.GetPayoutDocumentRoyaltyReports(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PayoutDocumentPdfUploaded(ctx context.Context, in *PayoutDocumentPdfUploadedRequest, out *PayoutDocumentPdfUploadedResponse) error {
-	return h.BillingServiceHandler.PayoutDocumentPdfUploaded(ctx, in, out)
+func (h *billingServiceHandler) PayoutDocumentPdfUploaded(ctx context.Context, req *PayoutDocumentPdfUploadedRequest, rsp *PayoutDocumentPdfUploadedResponse) error {
+	return h.BillingServiceHandler.PayoutDocumentPdfUploaded(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) AutoCreatePayoutDocuments(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error {
-	return h.BillingServiceHandler.AutoCreatePayoutDocuments(ctx, in, out)
+func (h *billingServiceHandler) AutoCreatePayoutDocuments(ctx context.Context, req *EmptyRequest, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.AutoCreatePayoutDocuments(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantBalance(ctx context.Context, in *GetMerchantBalanceRequest, out *GetMerchantBalanceResponse) error {
-	return h.BillingServiceHandler.GetMerchantBalance(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantBalance(ctx context.Context, req *GetMerchantBalanceRequest, rsp *GetMerchantBalanceResponse) error {
+	return h.BillingServiceHandler.GetMerchantBalance(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PaymentFormPlatformChanged(ctx context.Context, in *PaymentFormUserChangePlatformRequest, out *PaymentFormDataChangeResponse) error {
-	return h.BillingServiceHandler.PaymentFormPlatformChanged(ctx, in, out)
+func (h *billingServiceHandler) PaymentFormPlatformChanged(ctx context.Context, req *PaymentFormUserChangePlatformRequest, rsp *PaymentFormDataChangeResponse) error {
+	return h.BillingServiceHandler.PaymentFormPlatformChanged(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CheckSkuAndKeyProject(ctx context.Context, in *CheckSkuAndKeyProjectRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.CheckSkuAndKeyProject(ctx, in, out)
+func (h *billingServiceHandler) CheckSkuAndKeyProject(ctx context.Context, req *CheckSkuAndKeyProjectRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.CheckSkuAndKeyProject(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylinks(ctx context.Context, in *GetPaylinksRequest, out *GetPaylinksResponse) error {
-	return h.BillingServiceHandler.GetPaylinks(ctx, in, out)
+func (h *billingServiceHandler) GetPaylinks(ctx context.Context, req *GetPaylinksRequest, rsp *GetPaylinksResponse) error {
+	return h.BillingServiceHandler.GetPaylinks(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylink(ctx context.Context, in *PaylinkRequest, out *GetPaylinkResponse) error {
-	return h.BillingServiceHandler.GetPaylink(ctx, in, out)
+func (h *billingServiceHandler) GetPaylink(ctx context.Context, req *PaylinkRequest, rsp *GetPaylinkResponse) error {
+	return h.BillingServiceHandler.GetPaylink(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) IncrPaylinkVisits(ctx context.Context, in *PaylinkRequestById, out *EmptyResponse) error {
-	return h.BillingServiceHandler.IncrPaylinkVisits(ctx, in, out)
+func (h *billingServiceHandler) IncrPaylinkVisits(ctx context.Context, req *PaylinkRequestById, rsp *EmptyResponse) error {
+	return h.BillingServiceHandler.IncrPaylinkVisits(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylinkURL(ctx context.Context, in *GetPaylinkURLRequest, out *GetPaylinkUrlResponse) error {
-	return h.BillingServiceHandler.GetPaylinkURL(ctx, in, out)
+func (h *billingServiceHandler) GetPaylinkURL(ctx context.Context, req *GetPaylinkURLRequest, rsp *GetPaylinkUrlResponse) error {
+	return h.BillingServiceHandler.GetPaylinkURL(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CreateOrUpdatePaylink(ctx context.Context, in *CreatePaylinkRequest, out *GetPaylinkResponse) error {
-	return h.BillingServiceHandler.CreateOrUpdatePaylink(ctx, in, out)
+func (h *billingServiceHandler) CreateOrUpdatePaylink(ctx context.Context, req *CreatePaylinkRequest, rsp *GetPaylinkResponse) error {
+	return h.BillingServiceHandler.CreateOrUpdatePaylink(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeletePaylink(ctx context.Context, in *PaylinkRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.DeletePaylink(ctx, in, out)
+func (h *billingServiceHandler) DeletePaylink(ctx context.Context, req *PaylinkRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.DeletePaylink(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylinkStatTotal(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonResponse) error {
-	return h.BillingServiceHandler.GetPaylinkStatTotal(ctx, in, out)
+func (h *billingServiceHandler) GetPaylinkStatTotal(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonResponse) error {
+	return h.BillingServiceHandler.GetPaylinkStatTotal(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylinkStatByCountry(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error {
-	return h.BillingServiceHandler.GetPaylinkStatByCountry(ctx, in, out)
+func (h *billingServiceHandler) GetPaylinkStatByCountry(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonGroupResponse) error {
+	return h.BillingServiceHandler.GetPaylinkStatByCountry(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylinkStatByReferrer(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error {
-	return h.BillingServiceHandler.GetPaylinkStatByReferrer(ctx, in, out)
+func (h *billingServiceHandler) GetPaylinkStatByReferrer(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonGroupResponse) error {
+	return h.BillingServiceHandler.GetPaylinkStatByReferrer(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylinkStatByDate(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error {
-	return h.BillingServiceHandler.GetPaylinkStatByDate(ctx, in, out)
+func (h *billingServiceHandler) GetPaylinkStatByDate(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonGroupResponse) error {
+	return h.BillingServiceHandler.GetPaylinkStatByDate(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylinkStatByUtm(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error {
-	return h.BillingServiceHandler.GetPaylinkStatByUtm(ctx, in, out)
+func (h *billingServiceHandler) GetPaylinkStatByUtm(ctx context.Context, req *GetPaylinkStatCommonRequest, rsp *GetPaylinkStatCommonGroupResponse) error {
+	return h.BillingServiceHandler.GetPaylinkStatByUtm(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaylinkTransactions(ctx context.Context, in *GetPaylinkTransactionsRequest, out *TransactionsResponse) error {
-	return h.BillingServiceHandler.GetPaylinkTransactions(ctx, in, out)
+func (h *billingServiceHandler) GetPaylinkTransactions(ctx context.Context, req *GetPaylinkTransactionsRequest, rsp *TransactionsResponse) error {
+	return h.BillingServiceHandler.GetPaylinkTransactions(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.DeleteSavedCard(ctx, in, out)
+func (h *billingServiceHandler) DeleteSavedCard(ctx context.Context, req *DeleteSavedCardRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.DeleteSavedCard(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetOperatingCompaniesList(ctx context.Context, in *EmptyRequest, out *GetOperatingCompaniesListResponse) error {
-	return h.BillingServiceHandler.GetOperatingCompaniesList(ctx, in, out)
+func (h *billingServiceHandler) GetOperatingCompaniesList(ctx context.Context, req *EmptyRequest, rsp *GetOperatingCompaniesListResponse) error {
+	return h.BillingServiceHandler.GetOperatingCompaniesList(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) AddOperatingCompany(ctx context.Context, in *OperatingCompany, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.AddOperatingCompany(ctx, in, out)
+func (h *billingServiceHandler) AddOperatingCompany(ctx context.Context, req *OperatingCompany, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.AddOperatingCompany(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetOperatingCompany(ctx context.Context, in *GetOperatingCompanyRequest, out *GetOperatingCompanyResponse) error {
-	return h.BillingServiceHandler.GetOperatingCompany(ctx, in, out)
+func (h *billingServiceHandler) GetOperatingCompany(ctx context.Context, req *GetOperatingCompanyRequest, rsp *GetOperatingCompanyResponse) error {
+	return h.BillingServiceHandler.GetOperatingCompany(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetPaymentMinLimitsSystem(ctx context.Context, in *EmptyRequest, out *GetPaymentMinLimitsSystemResponse) error {
-	return h.BillingServiceHandler.GetPaymentMinLimitsSystem(ctx, in, out)
+func (h *billingServiceHandler) GetPaymentMinLimitsSystem(ctx context.Context, req *EmptyRequest, rsp *GetPaymentMinLimitsSystemResponse) error {
+	return h.BillingServiceHandler.GetPaymentMinLimitsSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetPaymentMinLimitSystem(ctx context.Context, in *PaymentMinLimitSystem, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.SetPaymentMinLimitSystem(ctx, in, out)
+func (h *billingServiceHandler) SetPaymentMinLimitSystem(ctx context.Context, req *PaymentMinLimitSystem, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.SetPaymentMinLimitSystem(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantUsers(ctx context.Context, in *GetMerchantUsersRequest, out *GetMerchantUsersResponse) error {
-	return h.BillingServiceHandler.GetMerchantUsers(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantUsers(ctx context.Context, req *GetMerchantUsersRequest, rsp *GetMerchantUsersResponse) error {
+	return h.BillingServiceHandler.GetMerchantUsers(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetAdminUsers(ctx context.Context, in *EmptyRequest, out *GetAdminUsersResponse) error {
-	return h.BillingServiceHandler.GetAdminUsers(ctx, in, out)
+func (h *billingServiceHandler) GetAdminUsers(ctx context.Context, req *EmptyRequest, rsp *GetAdminUsersResponse) error {
+	return h.BillingServiceHandler.GetAdminUsers(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) InviteUserMerchant(ctx context.Context, in *InviteUserMerchantRequest, out *InviteUserMerchantResponse) error {
-	return h.BillingServiceHandler.InviteUserMerchant(ctx, in, out)
+func (h *billingServiceHandler) InviteUserMerchant(ctx context.Context, req *InviteUserMerchantRequest, rsp *InviteUserMerchantResponse) error {
+	return h.BillingServiceHandler.InviteUserMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) InviteUserAdmin(ctx context.Context, in *InviteUserAdminRequest, out *InviteUserAdminResponse) error {
-	return h.BillingServiceHandler.InviteUserAdmin(ctx, in, out)
+func (h *billingServiceHandler) InviteUserAdmin(ctx context.Context, req *InviteUserAdminRequest, rsp *InviteUserAdminResponse) error {
+	return h.BillingServiceHandler.InviteUserAdmin(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ResendInviteMerchant(ctx context.Context, in *ResendInviteMerchantRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.ResendInviteMerchant(ctx, in, out)
+func (h *billingServiceHandler) ResendInviteMerchant(ctx context.Context, req *ResendInviteMerchantRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.ResendInviteMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ResendInviteAdmin(ctx context.Context, in *ResendInviteAdminRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.ResendInviteAdmin(ctx, in, out)
+func (h *billingServiceHandler) ResendInviteAdmin(ctx context.Context, req *ResendInviteAdminRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.ResendInviteAdmin(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) AcceptInvite(ctx context.Context, in *AcceptInviteRequest, out *AcceptInviteResponse) error {
-	return h.BillingServiceHandler.AcceptInvite(ctx, in, out)
+func (h *billingServiceHandler) AcceptInvite(ctx context.Context, req *AcceptInviteRequest, rsp *AcceptInviteResponse) error {
+	return h.BillingServiceHandler.AcceptInvite(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) CheckInviteToken(ctx context.Context, in *CheckInviteTokenRequest, out *CheckInviteTokenResponse) error {
-	return h.BillingServiceHandler.CheckInviteToken(ctx, in, out)
+func (h *billingServiceHandler) CheckInviteToken(ctx context.Context, req *CheckInviteTokenRequest, rsp *CheckInviteTokenResponse) error {
+	return h.BillingServiceHandler.CheckInviteToken(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantsForUser(ctx context.Context, in *GetMerchantsForUserRequest, out *GetMerchantsForUserResponse) error {
-	return h.BillingServiceHandler.GetMerchantsForUser(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantsForUser(ctx context.Context, req *GetMerchantsForUserRequest, rsp *GetMerchantsForUserResponse) error {
+	return h.BillingServiceHandler.GetMerchantsForUser(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeRoleForMerchantUser(ctx context.Context, in *ChangeRoleForMerchantUserRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.ChangeRoleForMerchantUser(ctx, in, out)
+func (h *billingServiceHandler) ChangeRoleForMerchantUser(ctx context.Context, req *ChangeRoleForMerchantUserRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.ChangeRoleForMerchantUser(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) ChangeRoleForAdminUser(ctx context.Context, in *ChangeRoleForAdminUserRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.ChangeRoleForAdminUser(ctx, in, out)
+func (h *billingServiceHandler) ChangeRoleForAdminUser(ctx context.Context, req *ChangeRoleForAdminUserRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.ChangeRoleForAdminUser(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetRoleList(ctx context.Context, in *GetRoleListRequest, out *GetRoleListResponse) error {
-	return h.BillingServiceHandler.GetRoleList(ctx, in, out)
+func (h *billingServiceHandler) GetRoleList(ctx context.Context, req *GetRoleListRequest, rsp *GetRoleListResponse) error {
+	return h.BillingServiceHandler.GetRoleList(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteMerchantUser(ctx context.Context, in *MerchantRoleRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.DeleteMerchantUser(ctx, in, out)
+func (h *billingServiceHandler) DeleteMerchantUser(ctx context.Context, req *MerchantRoleRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.DeleteMerchantUser(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteAdminUser(ctx context.Context, in *AdminRoleRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.DeleteAdminUser(ctx, in, out)
+func (h *billingServiceHandler) DeleteAdminUser(ctx context.Context, req *AdminRoleRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.DeleteAdminUser(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantUserRole(ctx context.Context, in *MerchantRoleRequest, out *UserRoleResponse) error {
-	return h.BillingServiceHandler.GetMerchantUserRole(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantUserRole(ctx context.Context, req *MerchantRoleRequest, rsp *UserRoleResponse) error {
+	return h.BillingServiceHandler.GetMerchantUserRole(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetAdminUserRole(ctx context.Context, in *AdminRoleRequest, out *UserRoleResponse) error {
-	return h.BillingServiceHandler.GetAdminUserRole(ctx, in, out)
+func (h *billingServiceHandler) GetAdminUserRole(ctx context.Context, req *AdminRoleRequest, rsp *UserRoleResponse) error {
+	return h.BillingServiceHandler.GetAdminUserRole(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetCommonUserProfile(ctx context.Context, in *CommonUserProfileRequest, out *CommonUserProfileResponse) error {
-	return h.BillingServiceHandler.GetCommonUserProfile(ctx, in, out)
+func (h *billingServiceHandler) GetCommonUserProfile(ctx context.Context, req *CommonUserProfileRequest, rsp *CommonUserProfileResponse) error {
+	return h.BillingServiceHandler.GetCommonUserProfile(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, out *UserRoleResponse) error {
-	return h.BillingServiceHandler.GetAdminByUserId(ctx, in, out)
+func (h *billingServiceHandler) GetAdminByUserId(ctx context.Context, req *CommonUserProfileRequest, rsp *UserRoleResponse) error {
+	return h.BillingServiceHandler.GetAdminByUserId(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, out *SendWebhookToMerchantResponse) error {
-	return h.BillingServiceHandler.SendWebhookToMerchant(ctx, in, out)
+func (h *billingServiceHandler) SendWebhookToMerchant(ctx context.Context, req *OrderCreateRequest, rsp *SendWebhookToMerchantResponse) error {
+	return h.BillingServiceHandler.SendWebhookToMerchant(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.NotifyWebhookTestResults(ctx, in, out)
+func (h *billingServiceHandler) NotifyWebhookTestResults(ctx context.Context, req *NotifyWebhookTestResultsRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.NotifyWebhookTestResults(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) RoyaltyReportFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.RoyaltyReportFinanceDone(ctx, in, out)
+func (h *billingServiceHandler) RoyaltyReportFinanceDone(ctx context.Context, req *ReportFinanceDoneRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.RoyaltyReportFinanceDone(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) PayoutFinanceDone(ctx context.Context, in *ReportFinanceDoneRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.PayoutFinanceDone(ctx, in, out)
+func (h *billingServiceHandler) PayoutFinanceDone(ctx context.Context, req *ReportFinanceDoneRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.PayoutFinanceDone(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetActOfCompletion(ctx context.Context, in *ActOfCompletionRequest, out *ActOfCompletionResponse) error {
-	return h.BillingServiceHandler.GetActOfCompletion(ctx, in, out)
+func (h *billingServiceHandler) GetActOfCompletion(ctx context.Context, req *ActOfCompletionRequest, rsp *ActOfCompletionResponse) error {
+	return h.BillingServiceHandler.GetActOfCompletion(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetActsOfCompletionList(ctx context.Context, in *ActsOfCompletionListRequest, out *ActsOfCompletionListResponse) error {
-	return h.BillingServiceHandler.GetActsOfCompletionList(ctx, in, out)
+func (h *billingServiceHandler) GetActsOfCompletionList(ctx context.Context, req *ActsOfCompletionListRequest, rsp *ActsOfCompletionListResponse) error {
+	return h.BillingServiceHandler.GetActsOfCompletionList(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.SetCustomerPaymentActivity(ctx, in, out)
+func (h *billingServiceHandler) SetCustomerPaymentActivity(ctx context.Context, req *SetCustomerPaymentActivityRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.SetCustomerPaymentActivity(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error {
-	return h.BillingServiceHandler.GetCustomerList(ctx, in, out)
+func (h *billingServiceHandler) GetCustomerList(ctx context.Context, req *ListCustomersRequest, rsp *ListCustomersResponse) error {
+	return h.BillingServiceHandler.GetCustomerList(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error {
-	return h.BillingServiceHandler.GetCustomerInfo(ctx, in, out)
+func (h *billingServiceHandler) GetCustomerInfo(ctx context.Context, req *GetCustomerInfoRequest, rsp *GetCustomerInfoResponse) error {
+	return h.BillingServiceHandler.GetCustomerInfo(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error {
-	return h.BillingServiceHandler.DeserializeCookie(ctx, in, out)
+func (h *billingServiceHandler) DeserializeCookie(ctx context.Context, req *DeserializeCookieRequest, rsp *DeserializeCookieResponse) error {
+	return h.BillingServiceHandler.DeserializeCookie(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.DeleteCustomerCard(ctx, in, out)
+func (h *billingServiceHandler) DeleteCustomerCard(ctx context.Context, req *DeleteCustomerCardRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.DeleteCustomerCard(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error {
-	return h.BillingServiceHandler.GetSubscription(ctx, in, out)
+func (h *billingServiceHandler) GetSubscription(ctx context.Context, req *GetSubscriptionRequest, rsp *GetSubscriptionResponse) error {
+	return h.BillingServiceHandler.GetSubscription(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error {
-	return h.BillingServiceHandler.GetCustomerShortInfo(ctx, in, out)
+func (h *billingServiceHandler) GetCustomerShortInfo(ctx context.Context, req *GetCustomerShortInfoRequest, rsp *GetCustomerShortInfoResponse) error {
+	return h.BillingServiceHandler.GetCustomerShortInfo(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error {
-	return h.BillingServiceHandler.GetSubscriptionOrders(ctx, in, out)
+func (h *billingServiceHandler) GetSubscriptionOrders(ctx context.Context, req *GetSubscriptionOrdersRequest, rsp *GetSubscriptionOrdersResponse) error {
+	return h.BillingServiceHandler.GetSubscriptionOrders(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error {
-	return h.BillingServiceHandler.DeleteRecurringSubscription(ctx, in, out)
+func (h *billingServiceHandler) DeleteRecurringSubscription(ctx context.Context, req *DeleteRecurringSubscriptionRequest, rsp *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.DeleteRecurringSubscription(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error {
-	return h.BillingServiceHandler.FindSubscriptions(ctx, in, out)
+func (h *billingServiceHandler) FindSubscriptions(ctx context.Context, req *FindSubscriptionsRequest, rsp *FindSubscriptionsResponse) error {
+	return h.BillingServiceHandler.FindSubscriptions(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error {
-	return h.BillingServiceHandler.AddMerchantDocument(ctx, in, out)
+func (h *billingServiceHandler) AddMerchantDocument(ctx context.Context, req *MerchantDocument, rsp *AddMerchantDocumentResponse) error {
+	return h.BillingServiceHandler.AddMerchantDocument(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error {
-	return h.BillingServiceHandler.GetMerchantDocuments(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantDocuments(ctx context.Context, req *GetMerchantDocumentsRequest, rsp *GetMerchantDocumentsResponse) error {
+	return h.BillingServiceHandler.GetMerchantDocuments(ctx, req, rsp)
 }
 
-func (h *billingServiceHandler) GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error {
-	return h.BillingServiceHandler.GetMerchantDocument(ctx, in, out)
+func (h *billingServiceHandler) GetMerchantDocument(ctx context.Context, req *GetMerchantDocumentRequest, rsp *GetMerchantDocumentResponse) error {
+	return h.BillingServiceHandler.GetMerchantDocument(ctx, req, rsp)
 }

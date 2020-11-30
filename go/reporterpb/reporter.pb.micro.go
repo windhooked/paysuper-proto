@@ -12,8 +12,9 @@ import (
 
 import (
 	context "context"
-	client "github.com/micro/go-micro/client"
-	server "github.com/micro/go-micro/server"
+	api "github.com/unistack-org/micro/v3/api"
+	client "github.com/unistack-org/micro/v3/client"
+	server "github.com/unistack-org/micro/v3/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -28,14 +29,21 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 // Reference imports to suppress errors if they are not otherwise used.
+var _ api.Endpoint
 var _ context.Context
 var _ client.Option
 var _ server.Option
 
+// Api Endpoints for ReporterService service
+
+func NewReporterServiceEndpoints() []*api.Endpoint {
+	return []*api.Endpoint{}
+}
+
 // Client API for ReporterService service
 
 type ReporterService interface {
-	CreateFile(ctx context.Context, in *ReportFile, opts ...client.CallOption) (*CreateFileResponse, error)
+	CreateFile(ctx context.Context, req *ReportFile, opts ...client.CallOption) (*CreateFileResponse, error)
 }
 
 type reporterService struct {
@@ -44,26 +52,19 @@ type reporterService struct {
 }
 
 func NewReporterService(name string, c client.Client) ReporterService {
-	if c == nil {
-		c = client.NewClient()
-	}
-	if len(name) == 0 {
-		name = "reporter"
-	}
 	return &reporterService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *reporterService) CreateFile(ctx context.Context, in *ReportFile, opts ...client.CallOption) (*CreateFileResponse, error) {
-	req := c.c.NewRequest(c.name, "ReporterService.CreateFile", in)
-	out := new(CreateFileResponse)
-	err := c.c.Call(ctx, req, out, opts...)
+func (c *reporterService) CreateFile(ctx context.Context, req *ReportFile, opts ...client.CallOption) (*CreateFileResponse, error) {
+	rsp := &CreateFileResponse{}
+	err := c.c.Call(ctx, c.c.NewRequest(c.name, "ReporterService.CreateFile", req), rsp, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	return rsp, nil
 }
 
 // Server API for ReporterService service
@@ -74,7 +75,7 @@ type ReporterServiceHandler interface {
 
 func RegisterReporterServiceHandler(s server.Server, hdlr ReporterServiceHandler, opts ...server.HandlerOption) error {
 	type reporterService interface {
-		CreateFile(ctx context.Context, in *ReportFile, out *CreateFileResponse) error
+		CreateFile(ctx context.Context, req *ReportFile, rsp *CreateFileResponse) error
 	}
 	type ReporterService struct {
 		reporterService
@@ -87,6 +88,6 @@ type reporterServiceHandler struct {
 	ReporterServiceHandler
 }
 
-func (h *reporterServiceHandler) CreateFile(ctx context.Context, in *ReportFile, out *CreateFileResponse) error {
-	return h.ReporterServiceHandler.CreateFile(ctx, in, out)
+func (h *reporterServiceHandler) CreateFile(ctx context.Context, req *ReportFile, rsp *CreateFileResponse) error {
+	return h.ReporterServiceHandler.CreateFile(ctx, req, rsp)
 }
