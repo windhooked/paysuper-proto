@@ -12,9 +12,9 @@ import (
 
 import (
 	context "context"
-	api "github.com/unistack-org/micro/v3/api"
-	client "github.com/unistack-org/micro/v3/client"
-	server "github.com/unistack-org/micro/v3/server"
+	api "github.com/micro/micro/v3/service/api"
+	client "github.com/micro/micro/v3/service/client"
+	server "github.com/micro/micro/v3/service/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -43,8 +43,8 @@ func NewDocumentSignerServiceEndpoints() []*api.Endpoint {
 // Client API for DocumentSignerService service
 
 type DocumentSignerService interface {
-	CreateSignature(ctx context.Context, req *CreateSignatureRequest, opts ...client.CallOption) (*CreateSignatureResponse, error)
-	GetSignatureUrl(ctx context.Context, req *GetSignatureUrlRequest, opts ...client.CallOption) (*GetSignatureUrlResponse, error)
+	CreateSignature(ctx context.Context, in *CreateSignatureRequest, opts ...client.CallOption) (*CreateSignatureResponse, error)
+	GetSignatureUrl(ctx context.Context, in *GetSignatureUrlRequest, opts ...client.CallOption) (*GetSignatureUrlResponse, error)
 }
 
 type documentSignerService struct {
@@ -59,22 +59,24 @@ func NewDocumentSignerService(name string, c client.Client) DocumentSignerServic
 	}
 }
 
-func (c *documentSignerService) CreateSignature(ctx context.Context, req *CreateSignatureRequest, opts ...client.CallOption) (*CreateSignatureResponse, error) {
-	rsp := &CreateSignatureResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "DocumentSignerService.CreateSignature", req), rsp, opts...)
+func (c *documentSignerService) CreateSignature(ctx context.Context, in *CreateSignatureRequest, opts ...client.CallOption) (*CreateSignatureResponse, error) {
+	req := c.c.NewRequest(c.name, "DocumentSignerService.CreateSignature", in)
+	out := new(CreateSignatureResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *documentSignerService) GetSignatureUrl(ctx context.Context, req *GetSignatureUrlRequest, opts ...client.CallOption) (*GetSignatureUrlResponse, error) {
-	rsp := &GetSignatureUrlResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "DocumentSignerService.GetSignatureUrl", req), rsp, opts...)
+func (c *documentSignerService) GetSignatureUrl(ctx context.Context, in *GetSignatureUrlRequest, opts ...client.CallOption) (*GetSignatureUrlResponse, error) {
+	req := c.c.NewRequest(c.name, "DocumentSignerService.GetSignatureUrl", in)
+	out := new(GetSignatureUrlResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
 // Server API for DocumentSignerService service
@@ -86,8 +88,8 @@ type DocumentSignerServiceHandler interface {
 
 func RegisterDocumentSignerServiceHandler(s server.Server, hdlr DocumentSignerServiceHandler, opts ...server.HandlerOption) error {
 	type documentSignerService interface {
-		CreateSignature(ctx context.Context, req *CreateSignatureRequest, rsp *CreateSignatureResponse) error
-		GetSignatureUrl(ctx context.Context, req *GetSignatureUrlRequest, rsp *GetSignatureUrlResponse) error
+		CreateSignature(ctx context.Context, in *CreateSignatureRequest, out *CreateSignatureResponse) error
+		GetSignatureUrl(ctx context.Context, in *GetSignatureUrlRequest, out *GetSignatureUrlResponse) error
 	}
 	type DocumentSignerService struct {
 		documentSignerService
@@ -100,10 +102,10 @@ type documentSignerServiceHandler struct {
 	DocumentSignerServiceHandler
 }
 
-func (h *documentSignerServiceHandler) CreateSignature(ctx context.Context, req *CreateSignatureRequest, rsp *CreateSignatureResponse) error {
-	return h.DocumentSignerServiceHandler.CreateSignature(ctx, req, rsp)
+func (h *documentSignerServiceHandler) CreateSignature(ctx context.Context, in *CreateSignatureRequest, out *CreateSignatureResponse) error {
+	return h.DocumentSignerServiceHandler.CreateSignature(ctx, in, out)
 }
 
-func (h *documentSignerServiceHandler) GetSignatureUrl(ctx context.Context, req *GetSignatureUrlRequest, rsp *GetSignatureUrlResponse) error {
-	return h.DocumentSignerServiceHandler.GetSignatureUrl(ctx, req, rsp)
+func (h *documentSignerServiceHandler) GetSignatureUrl(ctx context.Context, in *GetSignatureUrlRequest, out *GetSignatureUrlResponse) error {
+	return h.DocumentSignerServiceHandler.GetSignatureUrl(ctx, in, out)
 }

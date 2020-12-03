@@ -12,9 +12,9 @@ import (
 
 import (
 	context "context"
-	api "github.com/unistack-org/micro/v3/api"
-	client "github.com/unistack-org/micro/v3/client"
-	server "github.com/unistack-org/micro/v3/server"
+	api "github.com/micro/micro/v3/service/api"
+	client "github.com/micro/micro/v3/service/client"
+	server "github.com/micro/micro/v3/service/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -43,15 +43,15 @@ func NewRepositoryEndpoints() []*api.Endpoint {
 // Client API for Repository service
 
 type RepositoryService interface {
-	InsertSavedCard(ctx context.Context, req *SavedCardRequest, opts ...client.CallOption) (*Result, error)
-	DeleteSavedCard(ctx context.Context, req *DeleteSavedCardRequest, opts ...client.CallOption) (*DeleteSavedCardResponse, error)
-	FindSavedCards(ctx context.Context, req *SavedCardRequest, opts ...client.CallOption) (*SavedCardList, error)
-	FindSavedCardById(ctx context.Context, req *FindByStringValue, opts ...client.CallOption) (*SavedCard, error)
-	AddSubscription(ctx context.Context, req *Subscription, opts ...client.CallOption) (*AddSubscriptionResponse, error)
-	UpdateSubscription(ctx context.Context, req *Subscription, opts ...client.CallOption) (*UpdateSubscriptionResponse, error)
-	GetSubscription(ctx context.Context, req *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
-	FindSubscriptions(ctx context.Context, req *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
-	DeleteSubscription(ctx context.Context, req *Subscription, opts ...client.CallOption) (*DeleteSubscriptionResponse, error)
+	InsertSavedCard(ctx context.Context, in *SavedCardRequest, opts ...client.CallOption) (*Result, error)
+	DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, opts ...client.CallOption) (*DeleteSavedCardResponse, error)
+	FindSavedCards(ctx context.Context, in *SavedCardRequest, opts ...client.CallOption) (*SavedCardList, error)
+	FindSavedCardById(ctx context.Context, in *FindByStringValue, opts ...client.CallOption) (*SavedCard, error)
+	AddSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*AddSubscriptionResponse, error)
+	UpdateSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*UpdateSubscriptionResponse, error)
+	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
+	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
+	DeleteSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*DeleteSubscriptionResponse, error)
 }
 
 type repositoryService struct {
@@ -66,85 +66,94 @@ func NewRepositoryService(name string, c client.Client) RepositoryService {
 	}
 }
 
-func (c *repositoryService) InsertSavedCard(ctx context.Context, req *SavedCardRequest, opts ...client.CallOption) (*Result, error) {
-	rsp := &Result{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.InsertSavedCard", req), rsp, opts...)
+func (c *repositoryService) InsertSavedCard(ctx context.Context, in *SavedCardRequest, opts ...client.CallOption) (*Result, error) {
+	req := c.c.NewRequest(c.name, "Repository.InsertSavedCard", in)
+	out := new(Result)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *repositoryService) DeleteSavedCard(ctx context.Context, req *DeleteSavedCardRequest, opts ...client.CallOption) (*DeleteSavedCardResponse, error) {
-	rsp := &DeleteSavedCardResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.DeleteSavedCard", req), rsp, opts...)
+func (c *repositoryService) DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, opts ...client.CallOption) (*DeleteSavedCardResponse, error) {
+	req := c.c.NewRequest(c.name, "Repository.DeleteSavedCard", in)
+	out := new(DeleteSavedCardResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *repositoryService) FindSavedCards(ctx context.Context, req *SavedCardRequest, opts ...client.CallOption) (*SavedCardList, error) {
-	rsp := &SavedCardList{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.FindSavedCards", req), rsp, opts...)
+func (c *repositoryService) FindSavedCards(ctx context.Context, in *SavedCardRequest, opts ...client.CallOption) (*SavedCardList, error) {
+	req := c.c.NewRequest(c.name, "Repository.FindSavedCards", in)
+	out := new(SavedCardList)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *repositoryService) FindSavedCardById(ctx context.Context, req *FindByStringValue, opts ...client.CallOption) (*SavedCard, error) {
-	rsp := &SavedCard{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.FindSavedCardById", req), rsp, opts...)
+func (c *repositoryService) FindSavedCardById(ctx context.Context, in *FindByStringValue, opts ...client.CallOption) (*SavedCard, error) {
+	req := c.c.NewRequest(c.name, "Repository.FindSavedCardById", in)
+	out := new(SavedCard)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *repositoryService) AddSubscription(ctx context.Context, req *Subscription, opts ...client.CallOption) (*AddSubscriptionResponse, error) {
-	rsp := &AddSubscriptionResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.AddSubscription", req), rsp, opts...)
+func (c *repositoryService) AddSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*AddSubscriptionResponse, error) {
+	req := c.c.NewRequest(c.name, "Repository.AddSubscription", in)
+	out := new(AddSubscriptionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *repositoryService) UpdateSubscription(ctx context.Context, req *Subscription, opts ...client.CallOption) (*UpdateSubscriptionResponse, error) {
-	rsp := &UpdateSubscriptionResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.UpdateSubscription", req), rsp, opts...)
+func (c *repositoryService) UpdateSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*UpdateSubscriptionResponse, error) {
+	req := c.c.NewRequest(c.name, "Repository.UpdateSubscription", in)
+	out := new(UpdateSubscriptionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *repositoryService) GetSubscription(ctx context.Context, req *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
-	rsp := &GetSubscriptionResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.GetSubscription", req), rsp, opts...)
+func (c *repositoryService) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
+	req := c.c.NewRequest(c.name, "Repository.GetSubscription", in)
+	out := new(GetSubscriptionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *repositoryService) FindSubscriptions(ctx context.Context, req *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
-	rsp := &FindSubscriptionsResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.FindSubscriptions", req), rsp, opts...)
+func (c *repositoryService) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
+	req := c.c.NewRequest(c.name, "Repository.FindSubscriptions", in)
+	out := new(FindSubscriptionsResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *repositoryService) DeleteSubscription(ctx context.Context, req *Subscription, opts ...client.CallOption) (*DeleteSubscriptionResponse, error) {
-	rsp := &DeleteSubscriptionResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Repository.DeleteSubscription", req), rsp, opts...)
+func (c *repositoryService) DeleteSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*DeleteSubscriptionResponse, error) {
+	req := c.c.NewRequest(c.name, "Repository.DeleteSubscription", in)
+	out := new(DeleteSubscriptionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
 // Server API for Repository service
@@ -163,15 +172,15 @@ type RepositoryHandler interface {
 
 func RegisterRepositoryHandler(s server.Server, hdlr RepositoryHandler, opts ...server.HandlerOption) error {
 	type repository interface {
-		InsertSavedCard(ctx context.Context, req *SavedCardRequest, rsp *Result) error
-		DeleteSavedCard(ctx context.Context, req *DeleteSavedCardRequest, rsp *DeleteSavedCardResponse) error
-		FindSavedCards(ctx context.Context, req *SavedCardRequest, rsp *SavedCardList) error
-		FindSavedCardById(ctx context.Context, req *FindByStringValue, rsp *SavedCard) error
-		AddSubscription(ctx context.Context, req *Subscription, rsp *AddSubscriptionResponse) error
-		UpdateSubscription(ctx context.Context, req *Subscription, rsp *UpdateSubscriptionResponse) error
-		GetSubscription(ctx context.Context, req *GetSubscriptionRequest, rsp *GetSubscriptionResponse) error
-		FindSubscriptions(ctx context.Context, req *FindSubscriptionsRequest, rsp *FindSubscriptionsResponse) error
-		DeleteSubscription(ctx context.Context, req *Subscription, rsp *DeleteSubscriptionResponse) error
+		InsertSavedCard(ctx context.Context, in *SavedCardRequest, out *Result) error
+		DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, out *DeleteSavedCardResponse) error
+		FindSavedCards(ctx context.Context, in *SavedCardRequest, out *SavedCardList) error
+		FindSavedCardById(ctx context.Context, in *FindByStringValue, out *SavedCard) error
+		AddSubscription(ctx context.Context, in *Subscription, out *AddSubscriptionResponse) error
+		UpdateSubscription(ctx context.Context, in *Subscription, out *UpdateSubscriptionResponse) error
+		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
+		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
+		DeleteSubscription(ctx context.Context, in *Subscription, out *DeleteSubscriptionResponse) error
 	}
 	type Repository struct {
 		repository
@@ -184,38 +193,38 @@ type repositoryHandler struct {
 	RepositoryHandler
 }
 
-func (h *repositoryHandler) InsertSavedCard(ctx context.Context, req *SavedCardRequest, rsp *Result) error {
-	return h.RepositoryHandler.InsertSavedCard(ctx, req, rsp)
+func (h *repositoryHandler) InsertSavedCard(ctx context.Context, in *SavedCardRequest, out *Result) error {
+	return h.RepositoryHandler.InsertSavedCard(ctx, in, out)
 }
 
-func (h *repositoryHandler) DeleteSavedCard(ctx context.Context, req *DeleteSavedCardRequest, rsp *DeleteSavedCardResponse) error {
-	return h.RepositoryHandler.DeleteSavedCard(ctx, req, rsp)
+func (h *repositoryHandler) DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, out *DeleteSavedCardResponse) error {
+	return h.RepositoryHandler.DeleteSavedCard(ctx, in, out)
 }
 
-func (h *repositoryHandler) FindSavedCards(ctx context.Context, req *SavedCardRequest, rsp *SavedCardList) error {
-	return h.RepositoryHandler.FindSavedCards(ctx, req, rsp)
+func (h *repositoryHandler) FindSavedCards(ctx context.Context, in *SavedCardRequest, out *SavedCardList) error {
+	return h.RepositoryHandler.FindSavedCards(ctx, in, out)
 }
 
-func (h *repositoryHandler) FindSavedCardById(ctx context.Context, req *FindByStringValue, rsp *SavedCard) error {
-	return h.RepositoryHandler.FindSavedCardById(ctx, req, rsp)
+func (h *repositoryHandler) FindSavedCardById(ctx context.Context, in *FindByStringValue, out *SavedCard) error {
+	return h.RepositoryHandler.FindSavedCardById(ctx, in, out)
 }
 
-func (h *repositoryHandler) AddSubscription(ctx context.Context, req *Subscription, rsp *AddSubscriptionResponse) error {
-	return h.RepositoryHandler.AddSubscription(ctx, req, rsp)
+func (h *repositoryHandler) AddSubscription(ctx context.Context, in *Subscription, out *AddSubscriptionResponse) error {
+	return h.RepositoryHandler.AddSubscription(ctx, in, out)
 }
 
-func (h *repositoryHandler) UpdateSubscription(ctx context.Context, req *Subscription, rsp *UpdateSubscriptionResponse) error {
-	return h.RepositoryHandler.UpdateSubscription(ctx, req, rsp)
+func (h *repositoryHandler) UpdateSubscription(ctx context.Context, in *Subscription, out *UpdateSubscriptionResponse) error {
+	return h.RepositoryHandler.UpdateSubscription(ctx, in, out)
 }
 
-func (h *repositoryHandler) GetSubscription(ctx context.Context, req *GetSubscriptionRequest, rsp *GetSubscriptionResponse) error {
-	return h.RepositoryHandler.GetSubscription(ctx, req, rsp)
+func (h *repositoryHandler) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error {
+	return h.RepositoryHandler.GetSubscription(ctx, in, out)
 }
 
-func (h *repositoryHandler) FindSubscriptions(ctx context.Context, req *FindSubscriptionsRequest, rsp *FindSubscriptionsResponse) error {
-	return h.RepositoryHandler.FindSubscriptions(ctx, req, rsp)
+func (h *repositoryHandler) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error {
+	return h.RepositoryHandler.FindSubscriptions(ctx, in, out)
 }
 
-func (h *repositoryHandler) DeleteSubscription(ctx context.Context, req *Subscription, rsp *DeleteSubscriptionResponse) error {
-	return h.RepositoryHandler.DeleteSubscription(ctx, req, rsp)
+func (h *repositoryHandler) DeleteSubscription(ctx context.Context, in *Subscription, out *DeleteSubscriptionResponse) error {
+	return h.RepositoryHandler.DeleteSubscription(ctx, in, out)
 }

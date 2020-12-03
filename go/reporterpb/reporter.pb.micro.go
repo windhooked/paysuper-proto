@@ -12,9 +12,9 @@ import (
 
 import (
 	context "context"
-	api "github.com/unistack-org/micro/v3/api"
-	client "github.com/unistack-org/micro/v3/client"
-	server "github.com/unistack-org/micro/v3/server"
+	api "github.com/micro/micro/v3/service/api"
+	client "github.com/micro/micro/v3/service/client"
+	server "github.com/micro/micro/v3/service/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -43,7 +43,7 @@ func NewReporterServiceEndpoints() []*api.Endpoint {
 // Client API for ReporterService service
 
 type ReporterService interface {
-	CreateFile(ctx context.Context, req *ReportFile, opts ...client.CallOption) (*CreateFileResponse, error)
+	CreateFile(ctx context.Context, in *ReportFile, opts ...client.CallOption) (*CreateFileResponse, error)
 }
 
 type reporterService struct {
@@ -58,13 +58,14 @@ func NewReporterService(name string, c client.Client) ReporterService {
 	}
 }
 
-func (c *reporterService) CreateFile(ctx context.Context, req *ReportFile, opts ...client.CallOption) (*CreateFileResponse, error) {
-	rsp := &CreateFileResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "ReporterService.CreateFile", req), rsp, opts...)
+func (c *reporterService) CreateFile(ctx context.Context, in *ReportFile, opts ...client.CallOption) (*CreateFileResponse, error) {
+	req := c.c.NewRequest(c.name, "ReporterService.CreateFile", in)
+	out := new(CreateFileResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
 // Server API for ReporterService service
@@ -75,7 +76,7 @@ type ReporterServiceHandler interface {
 
 func RegisterReporterServiceHandler(s server.Server, hdlr ReporterServiceHandler, opts ...server.HandlerOption) error {
 	type reporterService interface {
-		CreateFile(ctx context.Context, req *ReportFile, rsp *CreateFileResponse) error
+		CreateFile(ctx context.Context, in *ReportFile, out *CreateFileResponse) error
 	}
 	type ReporterService struct {
 		reporterService
@@ -88,6 +89,6 @@ type reporterServiceHandler struct {
 	ReporterServiceHandler
 }
 
-func (h *reporterServiceHandler) CreateFile(ctx context.Context, req *ReportFile, rsp *CreateFileResponse) error {
-	return h.ReporterServiceHandler.CreateFile(ctx, req, rsp)
+func (h *reporterServiceHandler) CreateFile(ctx context.Context, in *ReportFile, out *CreateFileResponse) error {
+	return h.ReporterServiceHandler.CreateFile(ctx, in, out)
 }

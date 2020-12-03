@@ -14,9 +14,9 @@ import (
 
 import (
 	context "context"
-	api "github.com/unistack-org/micro/v3/api"
-	client "github.com/unistack-org/micro/v3/client"
-	server "github.com/unistack-org/micro/v3/server"
+	api "github.com/micro/micro/v3/service/api"
+	client "github.com/micro/micro/v3/service/client"
+	server "github.com/micro/micro/v3/service/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -325,50 +325,50 @@ func NewCasbinEndpoints() []*api.Endpoint {
 // Client API for Casbin service
 
 type CasbinService interface {
-	Enforce(ctx context.Context, req *EnforceRequest, opts ...client.CallOption) (*Empty, error)
-	ImportPolicy(ctx context.Context, req *ImportPolicyRequest, opts ...client.CallOption) (*Empty, error)
-	LoadPolicy(ctx context.Context, req *Empty, opts ...client.CallOption) (*Empty, error)
-	SavePolicy(ctx context.Context, req *Empty, opts ...client.CallOption) (*Empty, error)
-	AddPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	AddNamedPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	RemovePolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	RemoveNamedPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	RemoveFilteredPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error)
-	RemoveFilteredNamedPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error)
-	GetPolicy(ctx context.Context, req *Empty, opts ...client.CallOption) (*Array2DReply, error)
-	GetNamedPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
-	GetFilteredPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
-	GetFilteredNamedPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
-	AddGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	AddNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	RemoveGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	RemoveNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	RemoveFilteredGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error)
-	RemoveFilteredNamedGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error)
-	GetGroupingPolicy(ctx context.Context, req *Empty, opts ...client.CallOption) (*Array2DReply, error)
-	GetNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
-	GetFilteredGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
-	GetFilteredNamedGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
-	GetAllSubjects(ctx context.Context, req *Empty, opts ...client.CallOption) (*ArrayReply, error)
-	GetAllNamedSubjects(ctx context.Context, req *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error)
-	GetAllObjects(ctx context.Context, req *Empty, opts ...client.CallOption) (*ArrayReply, error)
-	GetAllNamedObjects(ctx context.Context, req *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error)
-	GetAllActions(ctx context.Context, req *Empty, opts ...client.CallOption) (*ArrayReply, error)
-	GetAllNamedActions(ctx context.Context, req *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error)
-	GetAllRoles(ctx context.Context, req *Empty, opts ...client.CallOption) (*ArrayReply, error)
-	GetAllNamedRoles(ctx context.Context, req *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error)
-	HasPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	HasNamedPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	HasGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	HasNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error)
-	AddRoleForUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*Empty, error)
-	DeleteRoleForUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*Empty, error)
-	DeleteUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*Empty, error)
-	GetRolesForUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error)
-	GetImplicitRolesForUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error)
-	GetUsersForRole(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error)
-	GetPermissionsForUser(ctx context.Context, req *PermissionRequest, opts ...client.CallOption) (*Array2DReply, error)
-	GetImplicitPermissionsForUser(ctx context.Context, req *PermissionRequest, opts ...client.CallOption) (*Array2DReply, error)
+	Enforce(ctx context.Context, in *EnforceRequest, opts ...client.CallOption) (*Empty, error)
+	ImportPolicy(ctx context.Context, in *ImportPolicyRequest, opts ...client.CallOption) (*Empty, error)
+	LoadPolicy(ctx context.Context, in *Empty, opts ...client.CallOption) (*Empty, error)
+	SavePolicy(ctx context.Context, in *Empty, opts ...client.CallOption) (*Empty, error)
+	AddPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	AddNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	RemovePolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	RemoveNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	RemoveFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error)
+	RemoveFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error)
+	GetPolicy(ctx context.Context, in *Empty, opts ...client.CallOption) (*Array2DReply, error)
+	GetNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
+	GetFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
+	GetFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
+	AddGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	AddNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	RemoveGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	RemoveNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	RemoveFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error)
+	RemoveFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error)
+	GetGroupingPolicy(ctx context.Context, in *Empty, opts ...client.CallOption) (*Array2DReply, error)
+	GetNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
+	GetFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
+	GetFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error)
+	GetAllSubjects(ctx context.Context, in *Empty, opts ...client.CallOption) (*ArrayReply, error)
+	GetAllNamedSubjects(ctx context.Context, in *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error)
+	GetAllObjects(ctx context.Context, in *Empty, opts ...client.CallOption) (*ArrayReply, error)
+	GetAllNamedObjects(ctx context.Context, in *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error)
+	GetAllActions(ctx context.Context, in *Empty, opts ...client.CallOption) (*ArrayReply, error)
+	GetAllNamedActions(ctx context.Context, in *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error)
+	GetAllRoles(ctx context.Context, in *Empty, opts ...client.CallOption) (*ArrayReply, error)
+	GetAllNamedRoles(ctx context.Context, in *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error)
+	HasPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	HasNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	HasGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	HasNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error)
+	AddRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*Empty, error)
+	DeleteRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*Empty, error)
+	DeleteUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*Empty, error)
+	GetRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error)
+	GetImplicitRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error)
+	GetUsersForRole(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error)
+	GetPermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...client.CallOption) (*Array2DReply, error)
+	GetImplicitPermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...client.CallOption) (*Array2DReply, error)
 }
 
 type casbinService struct {
@@ -383,400 +383,444 @@ func NewCasbinService(name string, c client.Client) CasbinService {
 	}
 }
 
-func (c *casbinService) Enforce(ctx context.Context, req *EnforceRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.Enforce", req), rsp, opts...)
+func (c *casbinService) Enforce(ctx context.Context, in *EnforceRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.Enforce", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) ImportPolicy(ctx context.Context, req *ImportPolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.ImportPolicy", req), rsp, opts...)
+func (c *casbinService) ImportPolicy(ctx context.Context, in *ImportPolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.ImportPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) LoadPolicy(ctx context.Context, req *Empty, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.LoadPolicy", req), rsp, opts...)
+func (c *casbinService) LoadPolicy(ctx context.Context, in *Empty, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.LoadPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) SavePolicy(ctx context.Context, req *Empty, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.SavePolicy", req), rsp, opts...)
+func (c *casbinService) SavePolicy(ctx context.Context, in *Empty, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.SavePolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) AddPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.AddPolicy", req), rsp, opts...)
+func (c *casbinService) AddPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.AddPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) AddNamedPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.AddNamedPolicy", req), rsp, opts...)
+func (c *casbinService) AddNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.AddNamedPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) RemovePolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.RemovePolicy", req), rsp, opts...)
+func (c *casbinService) RemovePolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.RemovePolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) RemoveNamedPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.RemoveNamedPolicy", req), rsp, opts...)
+func (c *casbinService) RemoveNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.RemoveNamedPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) RemoveFilteredPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.RemoveFilteredPolicy", req), rsp, opts...)
+func (c *casbinService) RemoveFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.RemoveFilteredPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) RemoveFilteredNamedPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.RemoveFilteredNamedPolicy", req), rsp, opts...)
+func (c *casbinService) RemoveFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.RemoveFilteredNamedPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetPolicy(ctx context.Context, req *Empty, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetPolicy", req), rsp, opts...)
+func (c *casbinService) GetPolicy(ctx context.Context, in *Empty, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetPolicy", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetNamedPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetNamedPolicy", req), rsp, opts...)
+func (c *casbinService) GetNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetNamedPolicy", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetFilteredPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetFilteredPolicy", req), rsp, opts...)
+func (c *casbinService) GetFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetFilteredPolicy", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetFilteredNamedPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetFilteredNamedPolicy", req), rsp, opts...)
+func (c *casbinService) GetFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetFilteredNamedPolicy", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) AddGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.AddGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) AddGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.AddGroupingPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) AddNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.AddNamedGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) AddNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.AddNamedGroupingPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) RemoveGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.RemoveGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) RemoveGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.RemoveGroupingPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) RemoveNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.RemoveNamedGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) RemoveNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.RemoveNamedGroupingPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) RemoveFilteredGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.RemoveFilteredGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) RemoveFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.RemoveFilteredGroupingPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) RemoveFilteredNamedGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.RemoveFilteredNamedGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) RemoveFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.RemoveFilteredNamedGroupingPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetGroupingPolicy(ctx context.Context, req *Empty, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) GetGroupingPolicy(ctx context.Context, in *Empty, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetGroupingPolicy", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetNamedGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) GetNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetNamedGroupingPolicy", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetFilteredGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetFilteredGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) GetFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetFilteredGroupingPolicy", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetFilteredNamedGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetFilteredNamedGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) GetFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetFilteredNamedGroupingPolicy", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetAllSubjects(ctx context.Context, req *Empty, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetAllSubjects", req), rsp, opts...)
+func (c *casbinService) GetAllSubjects(ctx context.Context, in *Empty, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetAllSubjects", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetAllNamedSubjects(ctx context.Context, req *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetAllNamedSubjects", req), rsp, opts...)
+func (c *casbinService) GetAllNamedSubjects(ctx context.Context, in *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetAllNamedSubjects", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetAllObjects(ctx context.Context, req *Empty, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetAllObjects", req), rsp, opts...)
+func (c *casbinService) GetAllObjects(ctx context.Context, in *Empty, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetAllObjects", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetAllNamedObjects(ctx context.Context, req *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetAllNamedObjects", req), rsp, opts...)
+func (c *casbinService) GetAllNamedObjects(ctx context.Context, in *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetAllNamedObjects", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetAllActions(ctx context.Context, req *Empty, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetAllActions", req), rsp, opts...)
+func (c *casbinService) GetAllActions(ctx context.Context, in *Empty, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetAllActions", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetAllNamedActions(ctx context.Context, req *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetAllNamedActions", req), rsp, opts...)
+func (c *casbinService) GetAllNamedActions(ctx context.Context, in *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetAllNamedActions", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetAllRoles(ctx context.Context, req *Empty, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetAllRoles", req), rsp, opts...)
+func (c *casbinService) GetAllRoles(ctx context.Context, in *Empty, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetAllRoles", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetAllNamedRoles(ctx context.Context, req *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetAllNamedRoles", req), rsp, opts...)
+func (c *casbinService) GetAllNamedRoles(ctx context.Context, in *SimpleGetRequest, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetAllNamedRoles", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) HasPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.HasPolicy", req), rsp, opts...)
+func (c *casbinService) HasPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.HasPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) HasNamedPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.HasNamedPolicy", req), rsp, opts...)
+func (c *casbinService) HasNamedPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.HasNamedPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) HasGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.HasGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) HasGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.HasGroupingPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) HasNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.HasNamedGroupingPolicy", req), rsp, opts...)
+func (c *casbinService) HasNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.HasNamedGroupingPolicy", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) AddRoleForUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.AddRoleForUser", req), rsp, opts...)
+func (c *casbinService) AddRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.AddRoleForUser", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) DeleteRoleForUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.DeleteRoleForUser", req), rsp, opts...)
+func (c *casbinService) DeleteRoleForUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.DeleteRoleForUser", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) DeleteUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*Empty, error) {
-	rsp := &Empty{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.DeleteUser", req), rsp, opts...)
+func (c *casbinService) DeleteUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*Empty, error) {
+	req := c.c.NewRequest(c.name, "Casbin.DeleteUser", in)
+	out := new(Empty)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetRolesForUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetRolesForUser", req), rsp, opts...)
+func (c *casbinService) GetRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetRolesForUser", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetImplicitRolesForUser(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetImplicitRolesForUser", req), rsp, opts...)
+func (c *casbinService) GetImplicitRolesForUser(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetImplicitRolesForUser", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetUsersForRole(ctx context.Context, req *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error) {
-	rsp := &ArrayReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetUsersForRole", req), rsp, opts...)
+func (c *casbinService) GetUsersForRole(ctx context.Context, in *UserRoleRequest, opts ...client.CallOption) (*ArrayReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetUsersForRole", in)
+	out := new(ArrayReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetPermissionsForUser(ctx context.Context, req *PermissionRequest, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetPermissionsForUser", req), rsp, opts...)
+func (c *casbinService) GetPermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetPermissionsForUser", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *casbinService) GetImplicitPermissionsForUser(ctx context.Context, req *PermissionRequest, opts ...client.CallOption) (*Array2DReply, error) {
-	rsp := &Array2DReply{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "Casbin.GetImplicitPermissionsForUser", req), rsp, opts...)
+func (c *casbinService) GetImplicitPermissionsForUser(ctx context.Context, in *PermissionRequest, opts ...client.CallOption) (*Array2DReply, error) {
+	req := c.c.NewRequest(c.name, "Casbin.GetImplicitPermissionsForUser", in)
+	out := new(Array2DReply)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
 // Server API for Casbin service
@@ -830,50 +874,50 @@ type CasbinHandler interface {
 
 func RegisterCasbinHandler(s server.Server, hdlr CasbinHandler, opts ...server.HandlerOption) error {
 	type casbin interface {
-		Enforce(ctx context.Context, req *EnforceRequest, rsp *Empty) error
-		ImportPolicy(ctx context.Context, req *ImportPolicyRequest, rsp *Empty) error
-		LoadPolicy(ctx context.Context, req *Empty, rsp *Empty) error
-		SavePolicy(ctx context.Context, req *Empty, rsp *Empty) error
-		AddPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		AddNamedPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		RemovePolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		RemoveNamedPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		RemoveFilteredPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Empty) error
-		RemoveFilteredNamedPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Empty) error
-		GetPolicy(ctx context.Context, req *Empty, rsp *Array2DReply) error
-		GetNamedPolicy(ctx context.Context, req *PolicyRequest, rsp *Array2DReply) error
-		GetFilteredPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Array2DReply) error
-		GetFilteredNamedPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Array2DReply) error
-		AddGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		AddNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		RemoveGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		RemoveNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		RemoveFilteredGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Empty) error
-		RemoveFilteredNamedGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Empty) error
-		GetGroupingPolicy(ctx context.Context, req *Empty, rsp *Array2DReply) error
-		GetNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Array2DReply) error
-		GetFilteredGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Array2DReply) error
-		GetFilteredNamedGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Array2DReply) error
-		GetAllSubjects(ctx context.Context, req *Empty, rsp *ArrayReply) error
-		GetAllNamedSubjects(ctx context.Context, req *SimpleGetRequest, rsp *ArrayReply) error
-		GetAllObjects(ctx context.Context, req *Empty, rsp *ArrayReply) error
-		GetAllNamedObjects(ctx context.Context, req *SimpleGetRequest, rsp *ArrayReply) error
-		GetAllActions(ctx context.Context, req *Empty, rsp *ArrayReply) error
-		GetAllNamedActions(ctx context.Context, req *SimpleGetRequest, rsp *ArrayReply) error
-		GetAllRoles(ctx context.Context, req *Empty, rsp *ArrayReply) error
-		GetAllNamedRoles(ctx context.Context, req *SimpleGetRequest, rsp *ArrayReply) error
-		HasPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		HasNamedPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		HasGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		HasNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error
-		AddRoleForUser(ctx context.Context, req *UserRoleRequest, rsp *Empty) error
-		DeleteRoleForUser(ctx context.Context, req *UserRoleRequest, rsp *Empty) error
-		DeleteUser(ctx context.Context, req *UserRoleRequest, rsp *Empty) error
-		GetRolesForUser(ctx context.Context, req *UserRoleRequest, rsp *ArrayReply) error
-		GetImplicitRolesForUser(ctx context.Context, req *UserRoleRequest, rsp *ArrayReply) error
-		GetUsersForRole(ctx context.Context, req *UserRoleRequest, rsp *ArrayReply) error
-		GetPermissionsForUser(ctx context.Context, req *PermissionRequest, rsp *Array2DReply) error
-		GetImplicitPermissionsForUser(ctx context.Context, req *PermissionRequest, rsp *Array2DReply) error
+		Enforce(ctx context.Context, in *EnforceRequest, out *Empty) error
+		ImportPolicy(ctx context.Context, in *ImportPolicyRequest, out *Empty) error
+		LoadPolicy(ctx context.Context, in *Empty, out *Empty) error
+		SavePolicy(ctx context.Context, in *Empty, out *Empty) error
+		AddPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		AddNamedPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		RemovePolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		RemoveNamedPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		RemoveFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Empty) error
+		RemoveFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Empty) error
+		GetPolicy(ctx context.Context, in *Empty, out *Array2DReply) error
+		GetNamedPolicy(ctx context.Context, in *PolicyRequest, out *Array2DReply) error
+		GetFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Array2DReply) error
+		GetFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Array2DReply) error
+		AddGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		AddNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		RemoveGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		RemoveNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		RemoveFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Empty) error
+		RemoveFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Empty) error
+		GetGroupingPolicy(ctx context.Context, in *Empty, out *Array2DReply) error
+		GetNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Array2DReply) error
+		GetFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Array2DReply) error
+		GetFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Array2DReply) error
+		GetAllSubjects(ctx context.Context, in *Empty, out *ArrayReply) error
+		GetAllNamedSubjects(ctx context.Context, in *SimpleGetRequest, out *ArrayReply) error
+		GetAllObjects(ctx context.Context, in *Empty, out *ArrayReply) error
+		GetAllNamedObjects(ctx context.Context, in *SimpleGetRequest, out *ArrayReply) error
+		GetAllActions(ctx context.Context, in *Empty, out *ArrayReply) error
+		GetAllNamedActions(ctx context.Context, in *SimpleGetRequest, out *ArrayReply) error
+		GetAllRoles(ctx context.Context, in *Empty, out *ArrayReply) error
+		GetAllNamedRoles(ctx context.Context, in *SimpleGetRequest, out *ArrayReply) error
+		HasPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		HasNamedPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		HasGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		HasNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error
+		AddRoleForUser(ctx context.Context, in *UserRoleRequest, out *Empty) error
+		DeleteRoleForUser(ctx context.Context, in *UserRoleRequest, out *Empty) error
+		DeleteUser(ctx context.Context, in *UserRoleRequest, out *Empty) error
+		GetRolesForUser(ctx context.Context, in *UserRoleRequest, out *ArrayReply) error
+		GetImplicitRolesForUser(ctx context.Context, in *UserRoleRequest, out *ArrayReply) error
+		GetUsersForRole(ctx context.Context, in *UserRoleRequest, out *ArrayReply) error
+		GetPermissionsForUser(ctx context.Context, in *PermissionRequest, out *Array2DReply) error
+		GetImplicitPermissionsForUser(ctx context.Context, in *PermissionRequest, out *Array2DReply) error
 	}
 	type Casbin struct {
 		casbin
@@ -1165,178 +1209,178 @@ type casbinHandler struct {
 	CasbinHandler
 }
 
-func (h *casbinHandler) Enforce(ctx context.Context, req *EnforceRequest, rsp *Empty) error {
-	return h.CasbinHandler.Enforce(ctx, req, rsp)
+func (h *casbinHandler) Enforce(ctx context.Context, in *EnforceRequest, out *Empty) error {
+	return h.CasbinHandler.Enforce(ctx, in, out)
 }
 
-func (h *casbinHandler) ImportPolicy(ctx context.Context, req *ImportPolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.ImportPolicy(ctx, req, rsp)
+func (h *casbinHandler) ImportPolicy(ctx context.Context, in *ImportPolicyRequest, out *Empty) error {
+	return h.CasbinHandler.ImportPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) LoadPolicy(ctx context.Context, req *Empty, rsp *Empty) error {
-	return h.CasbinHandler.LoadPolicy(ctx, req, rsp)
+func (h *casbinHandler) LoadPolicy(ctx context.Context, in *Empty, out *Empty) error {
+	return h.CasbinHandler.LoadPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) SavePolicy(ctx context.Context, req *Empty, rsp *Empty) error {
-	return h.CasbinHandler.SavePolicy(ctx, req, rsp)
+func (h *casbinHandler) SavePolicy(ctx context.Context, in *Empty, out *Empty) error {
+	return h.CasbinHandler.SavePolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) AddPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.AddPolicy(ctx, req, rsp)
+func (h *casbinHandler) AddPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.AddPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) AddNamedPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.AddNamedPolicy(ctx, req, rsp)
+func (h *casbinHandler) AddNamedPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.AddNamedPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) RemovePolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.RemovePolicy(ctx, req, rsp)
+func (h *casbinHandler) RemovePolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.RemovePolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) RemoveNamedPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.RemoveNamedPolicy(ctx, req, rsp)
+func (h *casbinHandler) RemoveNamedPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.RemoveNamedPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) RemoveFilteredPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.RemoveFilteredPolicy(ctx, req, rsp)
+func (h *casbinHandler) RemoveFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Empty) error {
+	return h.CasbinHandler.RemoveFilteredPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) RemoveFilteredNamedPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.RemoveFilteredNamedPolicy(ctx, req, rsp)
+func (h *casbinHandler) RemoveFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Empty) error {
+	return h.CasbinHandler.RemoveFilteredNamedPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetPolicy(ctx context.Context, req *Empty, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetPolicy(ctx, req, rsp)
+func (h *casbinHandler) GetPolicy(ctx context.Context, in *Empty, out *Array2DReply) error {
+	return h.CasbinHandler.GetPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetNamedPolicy(ctx context.Context, req *PolicyRequest, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetNamedPolicy(ctx, req, rsp)
+func (h *casbinHandler) GetNamedPolicy(ctx context.Context, in *PolicyRequest, out *Array2DReply) error {
+	return h.CasbinHandler.GetNamedPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetFilteredPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetFilteredPolicy(ctx, req, rsp)
+func (h *casbinHandler) GetFilteredPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Array2DReply) error {
+	return h.CasbinHandler.GetFilteredPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetFilteredNamedPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetFilteredNamedPolicy(ctx, req, rsp)
+func (h *casbinHandler) GetFilteredNamedPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Array2DReply) error {
+	return h.CasbinHandler.GetFilteredNamedPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) AddGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.AddGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) AddGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.AddGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) AddNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.AddNamedGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) AddNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.AddNamedGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) RemoveGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.RemoveGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) RemoveGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.RemoveGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) RemoveNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.RemoveNamedGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) RemoveNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.RemoveNamedGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) RemoveFilteredGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.RemoveFilteredGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) RemoveFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Empty) error {
+	return h.CasbinHandler.RemoveFilteredGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) RemoveFilteredNamedGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.RemoveFilteredNamedGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) RemoveFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Empty) error {
+	return h.CasbinHandler.RemoveFilteredNamedGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetGroupingPolicy(ctx context.Context, req *Empty, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) GetGroupingPolicy(ctx context.Context, in *Empty, out *Array2DReply) error {
+	return h.CasbinHandler.GetGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetNamedGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) GetNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Array2DReply) error {
+	return h.CasbinHandler.GetNamedGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetFilteredGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetFilteredGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) GetFilteredGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Array2DReply) error {
+	return h.CasbinHandler.GetFilteredGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetFilteredNamedGroupingPolicy(ctx context.Context, req *FilteredPolicyRequest, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetFilteredNamedGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) GetFilteredNamedGroupingPolicy(ctx context.Context, in *FilteredPolicyRequest, out *Array2DReply) error {
+	return h.CasbinHandler.GetFilteredNamedGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) GetAllSubjects(ctx context.Context, req *Empty, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetAllSubjects(ctx, req, rsp)
+func (h *casbinHandler) GetAllSubjects(ctx context.Context, in *Empty, out *ArrayReply) error {
+	return h.CasbinHandler.GetAllSubjects(ctx, in, out)
 }
 
-func (h *casbinHandler) GetAllNamedSubjects(ctx context.Context, req *SimpleGetRequest, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetAllNamedSubjects(ctx, req, rsp)
+func (h *casbinHandler) GetAllNamedSubjects(ctx context.Context, in *SimpleGetRequest, out *ArrayReply) error {
+	return h.CasbinHandler.GetAllNamedSubjects(ctx, in, out)
 }
 
-func (h *casbinHandler) GetAllObjects(ctx context.Context, req *Empty, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetAllObjects(ctx, req, rsp)
+func (h *casbinHandler) GetAllObjects(ctx context.Context, in *Empty, out *ArrayReply) error {
+	return h.CasbinHandler.GetAllObjects(ctx, in, out)
 }
 
-func (h *casbinHandler) GetAllNamedObjects(ctx context.Context, req *SimpleGetRequest, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetAllNamedObjects(ctx, req, rsp)
+func (h *casbinHandler) GetAllNamedObjects(ctx context.Context, in *SimpleGetRequest, out *ArrayReply) error {
+	return h.CasbinHandler.GetAllNamedObjects(ctx, in, out)
 }
 
-func (h *casbinHandler) GetAllActions(ctx context.Context, req *Empty, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetAllActions(ctx, req, rsp)
+func (h *casbinHandler) GetAllActions(ctx context.Context, in *Empty, out *ArrayReply) error {
+	return h.CasbinHandler.GetAllActions(ctx, in, out)
 }
 
-func (h *casbinHandler) GetAllNamedActions(ctx context.Context, req *SimpleGetRequest, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetAllNamedActions(ctx, req, rsp)
+func (h *casbinHandler) GetAllNamedActions(ctx context.Context, in *SimpleGetRequest, out *ArrayReply) error {
+	return h.CasbinHandler.GetAllNamedActions(ctx, in, out)
 }
 
-func (h *casbinHandler) GetAllRoles(ctx context.Context, req *Empty, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetAllRoles(ctx, req, rsp)
+func (h *casbinHandler) GetAllRoles(ctx context.Context, in *Empty, out *ArrayReply) error {
+	return h.CasbinHandler.GetAllRoles(ctx, in, out)
 }
 
-func (h *casbinHandler) GetAllNamedRoles(ctx context.Context, req *SimpleGetRequest, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetAllNamedRoles(ctx, req, rsp)
+func (h *casbinHandler) GetAllNamedRoles(ctx context.Context, in *SimpleGetRequest, out *ArrayReply) error {
+	return h.CasbinHandler.GetAllNamedRoles(ctx, in, out)
 }
 
-func (h *casbinHandler) HasPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.HasPolicy(ctx, req, rsp)
+func (h *casbinHandler) HasPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.HasPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) HasNamedPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.HasNamedPolicy(ctx, req, rsp)
+func (h *casbinHandler) HasNamedPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.HasNamedPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) HasGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.HasGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) HasGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.HasGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) HasNamedGroupingPolicy(ctx context.Context, req *PolicyRequest, rsp *Empty) error {
-	return h.CasbinHandler.HasNamedGroupingPolicy(ctx, req, rsp)
+func (h *casbinHandler) HasNamedGroupingPolicy(ctx context.Context, in *PolicyRequest, out *Empty) error {
+	return h.CasbinHandler.HasNamedGroupingPolicy(ctx, in, out)
 }
 
-func (h *casbinHandler) AddRoleForUser(ctx context.Context, req *UserRoleRequest, rsp *Empty) error {
-	return h.CasbinHandler.AddRoleForUser(ctx, req, rsp)
+func (h *casbinHandler) AddRoleForUser(ctx context.Context, in *UserRoleRequest, out *Empty) error {
+	return h.CasbinHandler.AddRoleForUser(ctx, in, out)
 }
 
-func (h *casbinHandler) DeleteRoleForUser(ctx context.Context, req *UserRoleRequest, rsp *Empty) error {
-	return h.CasbinHandler.DeleteRoleForUser(ctx, req, rsp)
+func (h *casbinHandler) DeleteRoleForUser(ctx context.Context, in *UserRoleRequest, out *Empty) error {
+	return h.CasbinHandler.DeleteRoleForUser(ctx, in, out)
 }
 
-func (h *casbinHandler) DeleteUser(ctx context.Context, req *UserRoleRequest, rsp *Empty) error {
-	return h.CasbinHandler.DeleteUser(ctx, req, rsp)
+func (h *casbinHandler) DeleteUser(ctx context.Context, in *UserRoleRequest, out *Empty) error {
+	return h.CasbinHandler.DeleteUser(ctx, in, out)
 }
 
-func (h *casbinHandler) GetRolesForUser(ctx context.Context, req *UserRoleRequest, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetRolesForUser(ctx, req, rsp)
+func (h *casbinHandler) GetRolesForUser(ctx context.Context, in *UserRoleRequest, out *ArrayReply) error {
+	return h.CasbinHandler.GetRolesForUser(ctx, in, out)
 }
 
-func (h *casbinHandler) GetImplicitRolesForUser(ctx context.Context, req *UserRoleRequest, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetImplicitRolesForUser(ctx, req, rsp)
+func (h *casbinHandler) GetImplicitRolesForUser(ctx context.Context, in *UserRoleRequest, out *ArrayReply) error {
+	return h.CasbinHandler.GetImplicitRolesForUser(ctx, in, out)
 }
 
-func (h *casbinHandler) GetUsersForRole(ctx context.Context, req *UserRoleRequest, rsp *ArrayReply) error {
-	return h.CasbinHandler.GetUsersForRole(ctx, req, rsp)
+func (h *casbinHandler) GetUsersForRole(ctx context.Context, in *UserRoleRequest, out *ArrayReply) error {
+	return h.CasbinHandler.GetUsersForRole(ctx, in, out)
 }
 
-func (h *casbinHandler) GetPermissionsForUser(ctx context.Context, req *PermissionRequest, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetPermissionsForUser(ctx, req, rsp)
+func (h *casbinHandler) GetPermissionsForUser(ctx context.Context, in *PermissionRequest, out *Array2DReply) error {
+	return h.CasbinHandler.GetPermissionsForUser(ctx, in, out)
 }
 
-func (h *casbinHandler) GetImplicitPermissionsForUser(ctx context.Context, req *PermissionRequest, rsp *Array2DReply) error {
-	return h.CasbinHandler.GetImplicitPermissionsForUser(ctx, req, rsp)
+func (h *casbinHandler) GetImplicitPermissionsForUser(ctx context.Context, in *PermissionRequest, out *Array2DReply) error {
+	return h.CasbinHandler.GetImplicitPermissionsForUser(ctx, in, out)
 }

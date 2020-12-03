@@ -12,9 +12,9 @@ import (
 
 import (
 	context "context"
-	api "github.com/unistack-org/micro/v3/api"
-	client "github.com/unistack-org/micro/v3/client"
-	server "github.com/unistack-org/micro/v3/server"
+	api "github.com/micro/micro/v3/service/api"
+	client "github.com/micro/micro/v3/service/client"
+	server "github.com/micro/micro/v3/service/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -43,24 +43,24 @@ func NewCurrencyRatesServiceEndpoints() []*api.Endpoint {
 // Client API for CurrencyRatesService service
 
 type CurrencyRatesService interface {
-	GetRateCurrentCommon(ctx context.Context, req *GetRateCurrentCommonRequest, opts ...client.CallOption) (*RateData, error)
-	GetRateByDateCommon(ctx context.Context, req *GetRateByDateCommonRequest, opts ...client.CallOption) (*RateData, error)
-	GetRateCurrentForMerchant(ctx context.Context, req *GetRateCurrentForMerchantRequest, opts ...client.CallOption) (*RateData, error)
-	GetRateByDateForMerchant(ctx context.Context, req *GetRateByDateForMerchantRequest, opts ...client.CallOption) (*RateData, error)
-	ExchangeCurrencyCurrentCommon(ctx context.Context, req *ExchangeCurrencyCurrentCommonRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error)
-	ExchangeCurrencyCurrentForMerchant(ctx context.Context, req *ExchangeCurrencyCurrentForMerchantRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error)
-	ExchangeCurrencyByDateCommon(ctx context.Context, req *ExchangeCurrencyByDateCommonRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error)
-	ExchangeCurrencyByDateForMerchant(ctx context.Context, req *ExchangeCurrencyByDateForMerchantRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error)
-	GetCommonRateCorrectionRule(ctx context.Context, req *CommonCorrectionRuleRequest, opts ...client.CallOption) (*CorrectionRule, error)
-	GetMerchantRateCorrectionRule(ctx context.Context, req *MerchantCorrectionRuleRequest, opts ...client.CallOption) (*CorrectionRule, error)
-	AddCommonRateCorrectionRule(ctx context.Context, req *CommonCorrectionRule, opts ...client.CallOption) (*EmptyResponse, error)
-	AddMerchantRateCorrectionRule(ctx context.Context, req *CorrectionRule, opts ...client.CallOption) (*EmptyResponse, error)
-	GetSupportedCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
-	GetSettlementCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
-	GetPriceCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
-	GetVatCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
-	GetAccountingCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
-	GetCurrenciesPrecision(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesPrecisionResponse, error)
+	GetRateCurrentCommon(ctx context.Context, in *GetRateCurrentCommonRequest, opts ...client.CallOption) (*RateData, error)
+	GetRateByDateCommon(ctx context.Context, in *GetRateByDateCommonRequest, opts ...client.CallOption) (*RateData, error)
+	GetRateCurrentForMerchant(ctx context.Context, in *GetRateCurrentForMerchantRequest, opts ...client.CallOption) (*RateData, error)
+	GetRateByDateForMerchant(ctx context.Context, in *GetRateByDateForMerchantRequest, opts ...client.CallOption) (*RateData, error)
+	ExchangeCurrencyCurrentCommon(ctx context.Context, in *ExchangeCurrencyCurrentCommonRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error)
+	ExchangeCurrencyCurrentForMerchant(ctx context.Context, in *ExchangeCurrencyCurrentForMerchantRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error)
+	ExchangeCurrencyByDateCommon(ctx context.Context, in *ExchangeCurrencyByDateCommonRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error)
+	ExchangeCurrencyByDateForMerchant(ctx context.Context, in *ExchangeCurrencyByDateForMerchantRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error)
+	GetCommonRateCorrectionRule(ctx context.Context, in *CommonCorrectionRuleRequest, opts ...client.CallOption) (*CorrectionRule, error)
+	GetMerchantRateCorrectionRule(ctx context.Context, in *MerchantCorrectionRuleRequest, opts ...client.CallOption) (*CorrectionRule, error)
+	AddCommonRateCorrectionRule(ctx context.Context, in *CommonCorrectionRule, opts ...client.CallOption) (*EmptyResponse, error)
+	AddMerchantRateCorrectionRule(ctx context.Context, in *CorrectionRule, opts ...client.CallOption) (*EmptyResponse, error)
+	GetSupportedCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
+	GetSettlementCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
+	GetPriceCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
+	GetVatCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
+	GetAccountingCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error)
+	GetCurrenciesPrecision(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesPrecisionResponse, error)
 }
 
 type currencyRatesService struct {
@@ -75,166 +75,184 @@ func NewCurrencyRatesService(name string, c client.Client) CurrencyRatesService 
 	}
 }
 
-func (c *currencyRatesService) GetRateCurrentCommon(ctx context.Context, req *GetRateCurrentCommonRequest, opts ...client.CallOption) (*RateData, error) {
-	rsp := &RateData{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetRateCurrentCommon", req), rsp, opts...)
+func (c *currencyRatesService) GetRateCurrentCommon(ctx context.Context, in *GetRateCurrentCommonRequest, opts ...client.CallOption) (*RateData, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetRateCurrentCommon", in)
+	out := new(RateData)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetRateByDateCommon(ctx context.Context, req *GetRateByDateCommonRequest, opts ...client.CallOption) (*RateData, error) {
-	rsp := &RateData{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetRateByDateCommon", req), rsp, opts...)
+func (c *currencyRatesService) GetRateByDateCommon(ctx context.Context, in *GetRateByDateCommonRequest, opts ...client.CallOption) (*RateData, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetRateByDateCommon", in)
+	out := new(RateData)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetRateCurrentForMerchant(ctx context.Context, req *GetRateCurrentForMerchantRequest, opts ...client.CallOption) (*RateData, error) {
-	rsp := &RateData{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetRateCurrentForMerchant", req), rsp, opts...)
+func (c *currencyRatesService) GetRateCurrentForMerchant(ctx context.Context, in *GetRateCurrentForMerchantRequest, opts ...client.CallOption) (*RateData, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetRateCurrentForMerchant", in)
+	out := new(RateData)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetRateByDateForMerchant(ctx context.Context, req *GetRateByDateForMerchantRequest, opts ...client.CallOption) (*RateData, error) {
-	rsp := &RateData{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetRateByDateForMerchant", req), rsp, opts...)
+func (c *currencyRatesService) GetRateByDateForMerchant(ctx context.Context, in *GetRateByDateForMerchantRequest, opts ...client.CallOption) (*RateData, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetRateByDateForMerchant", in)
+	out := new(RateData)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) ExchangeCurrencyCurrentCommon(ctx context.Context, req *ExchangeCurrencyCurrentCommonRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error) {
-	rsp := &ExchangeCurrencyResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.ExchangeCurrencyCurrentCommon", req), rsp, opts...)
+func (c *currencyRatesService) ExchangeCurrencyCurrentCommon(ctx context.Context, in *ExchangeCurrencyCurrentCommonRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.ExchangeCurrencyCurrentCommon", in)
+	out := new(ExchangeCurrencyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) ExchangeCurrencyCurrentForMerchant(ctx context.Context, req *ExchangeCurrencyCurrentForMerchantRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error) {
-	rsp := &ExchangeCurrencyResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.ExchangeCurrencyCurrentForMerchant", req), rsp, opts...)
+func (c *currencyRatesService) ExchangeCurrencyCurrentForMerchant(ctx context.Context, in *ExchangeCurrencyCurrentForMerchantRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.ExchangeCurrencyCurrentForMerchant", in)
+	out := new(ExchangeCurrencyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) ExchangeCurrencyByDateCommon(ctx context.Context, req *ExchangeCurrencyByDateCommonRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error) {
-	rsp := &ExchangeCurrencyResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.ExchangeCurrencyByDateCommon", req), rsp, opts...)
+func (c *currencyRatesService) ExchangeCurrencyByDateCommon(ctx context.Context, in *ExchangeCurrencyByDateCommonRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.ExchangeCurrencyByDateCommon", in)
+	out := new(ExchangeCurrencyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) ExchangeCurrencyByDateForMerchant(ctx context.Context, req *ExchangeCurrencyByDateForMerchantRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error) {
-	rsp := &ExchangeCurrencyResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.ExchangeCurrencyByDateForMerchant", req), rsp, opts...)
+func (c *currencyRatesService) ExchangeCurrencyByDateForMerchant(ctx context.Context, in *ExchangeCurrencyByDateForMerchantRequest, opts ...client.CallOption) (*ExchangeCurrencyResponse, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.ExchangeCurrencyByDateForMerchant", in)
+	out := new(ExchangeCurrencyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetCommonRateCorrectionRule(ctx context.Context, req *CommonCorrectionRuleRequest, opts ...client.CallOption) (*CorrectionRule, error) {
-	rsp := &CorrectionRule{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetCommonRateCorrectionRule", req), rsp, opts...)
+func (c *currencyRatesService) GetCommonRateCorrectionRule(ctx context.Context, in *CommonCorrectionRuleRequest, opts ...client.CallOption) (*CorrectionRule, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetCommonRateCorrectionRule", in)
+	out := new(CorrectionRule)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetMerchantRateCorrectionRule(ctx context.Context, req *MerchantCorrectionRuleRequest, opts ...client.CallOption) (*CorrectionRule, error) {
-	rsp := &CorrectionRule{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetMerchantRateCorrectionRule", req), rsp, opts...)
+func (c *currencyRatesService) GetMerchantRateCorrectionRule(ctx context.Context, in *MerchantCorrectionRuleRequest, opts ...client.CallOption) (*CorrectionRule, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetMerchantRateCorrectionRule", in)
+	out := new(CorrectionRule)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) AddCommonRateCorrectionRule(ctx context.Context, req *CommonCorrectionRule, opts ...client.CallOption) (*EmptyResponse, error) {
-	rsp := &EmptyResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.AddCommonRateCorrectionRule", req), rsp, opts...)
+func (c *currencyRatesService) AddCommonRateCorrectionRule(ctx context.Context, in *CommonCorrectionRule, opts ...client.CallOption) (*EmptyResponse, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.AddCommonRateCorrectionRule", in)
+	out := new(EmptyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) AddMerchantRateCorrectionRule(ctx context.Context, req *CorrectionRule, opts ...client.CallOption) (*EmptyResponse, error) {
-	rsp := &EmptyResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.AddMerchantRateCorrectionRule", req), rsp, opts...)
+func (c *currencyRatesService) AddMerchantRateCorrectionRule(ctx context.Context, in *CorrectionRule, opts ...client.CallOption) (*EmptyResponse, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.AddMerchantRateCorrectionRule", in)
+	out := new(EmptyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetSupportedCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
-	rsp := &CurrenciesList{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetSupportedCurrencies", req), rsp, opts...)
+func (c *currencyRatesService) GetSupportedCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetSupportedCurrencies", in)
+	out := new(CurrenciesList)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetSettlementCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
-	rsp := &CurrenciesList{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetSettlementCurrencies", req), rsp, opts...)
+func (c *currencyRatesService) GetSettlementCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetSettlementCurrencies", in)
+	out := new(CurrenciesList)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetPriceCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
-	rsp := &CurrenciesList{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetPriceCurrencies", req), rsp, opts...)
+func (c *currencyRatesService) GetPriceCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetPriceCurrencies", in)
+	out := new(CurrenciesList)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetVatCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
-	rsp := &CurrenciesList{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetVatCurrencies", req), rsp, opts...)
+func (c *currencyRatesService) GetVatCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetVatCurrencies", in)
+	out := new(CurrenciesList)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetAccountingCurrencies(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
-	rsp := &CurrenciesList{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetAccountingCurrencies", req), rsp, opts...)
+func (c *currencyRatesService) GetAccountingCurrencies(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesList, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetAccountingCurrencies", in)
+	out := new(CurrenciesList)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *currencyRatesService) GetCurrenciesPrecision(ctx context.Context, req *EmptyRequest, opts ...client.CallOption) (*CurrenciesPrecisionResponse, error) {
-	rsp := &CurrenciesPrecisionResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "CurrencyRatesService.GetCurrenciesPrecision", req), rsp, opts...)
+func (c *currencyRatesService) GetCurrenciesPrecision(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*CurrenciesPrecisionResponse, error) {
+	req := c.c.NewRequest(c.name, "CurrencyRatesService.GetCurrenciesPrecision", in)
+	out := new(CurrenciesPrecisionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
 // Server API for CurrencyRatesService service
@@ -262,24 +280,24 @@ type CurrencyRatesServiceHandler interface {
 
 func RegisterCurrencyRatesServiceHandler(s server.Server, hdlr CurrencyRatesServiceHandler, opts ...server.HandlerOption) error {
 	type currencyRatesService interface {
-		GetRateCurrentCommon(ctx context.Context, req *GetRateCurrentCommonRequest, rsp *RateData) error
-		GetRateByDateCommon(ctx context.Context, req *GetRateByDateCommonRequest, rsp *RateData) error
-		GetRateCurrentForMerchant(ctx context.Context, req *GetRateCurrentForMerchantRequest, rsp *RateData) error
-		GetRateByDateForMerchant(ctx context.Context, req *GetRateByDateForMerchantRequest, rsp *RateData) error
-		ExchangeCurrencyCurrentCommon(ctx context.Context, req *ExchangeCurrencyCurrentCommonRequest, rsp *ExchangeCurrencyResponse) error
-		ExchangeCurrencyCurrentForMerchant(ctx context.Context, req *ExchangeCurrencyCurrentForMerchantRequest, rsp *ExchangeCurrencyResponse) error
-		ExchangeCurrencyByDateCommon(ctx context.Context, req *ExchangeCurrencyByDateCommonRequest, rsp *ExchangeCurrencyResponse) error
-		ExchangeCurrencyByDateForMerchant(ctx context.Context, req *ExchangeCurrencyByDateForMerchantRequest, rsp *ExchangeCurrencyResponse) error
-		GetCommonRateCorrectionRule(ctx context.Context, req *CommonCorrectionRuleRequest, rsp *CorrectionRule) error
-		GetMerchantRateCorrectionRule(ctx context.Context, req *MerchantCorrectionRuleRequest, rsp *CorrectionRule) error
-		AddCommonRateCorrectionRule(ctx context.Context, req *CommonCorrectionRule, rsp *EmptyResponse) error
-		AddMerchantRateCorrectionRule(ctx context.Context, req *CorrectionRule, rsp *EmptyResponse) error
-		GetSupportedCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error
-		GetSettlementCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error
-		GetPriceCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error
-		GetVatCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error
-		GetAccountingCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error
-		GetCurrenciesPrecision(ctx context.Context, req *EmptyRequest, rsp *CurrenciesPrecisionResponse) error
+		GetRateCurrentCommon(ctx context.Context, in *GetRateCurrentCommonRequest, out *RateData) error
+		GetRateByDateCommon(ctx context.Context, in *GetRateByDateCommonRequest, out *RateData) error
+		GetRateCurrentForMerchant(ctx context.Context, in *GetRateCurrentForMerchantRequest, out *RateData) error
+		GetRateByDateForMerchant(ctx context.Context, in *GetRateByDateForMerchantRequest, out *RateData) error
+		ExchangeCurrencyCurrentCommon(ctx context.Context, in *ExchangeCurrencyCurrentCommonRequest, out *ExchangeCurrencyResponse) error
+		ExchangeCurrencyCurrentForMerchant(ctx context.Context, in *ExchangeCurrencyCurrentForMerchantRequest, out *ExchangeCurrencyResponse) error
+		ExchangeCurrencyByDateCommon(ctx context.Context, in *ExchangeCurrencyByDateCommonRequest, out *ExchangeCurrencyResponse) error
+		ExchangeCurrencyByDateForMerchant(ctx context.Context, in *ExchangeCurrencyByDateForMerchantRequest, out *ExchangeCurrencyResponse) error
+		GetCommonRateCorrectionRule(ctx context.Context, in *CommonCorrectionRuleRequest, out *CorrectionRule) error
+		GetMerchantRateCorrectionRule(ctx context.Context, in *MerchantCorrectionRuleRequest, out *CorrectionRule) error
+		AddCommonRateCorrectionRule(ctx context.Context, in *CommonCorrectionRule, out *EmptyResponse) error
+		AddMerchantRateCorrectionRule(ctx context.Context, in *CorrectionRule, out *EmptyResponse) error
+		GetSupportedCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error
+		GetSettlementCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error
+		GetPriceCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error
+		GetVatCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error
+		GetAccountingCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error
+		GetCurrenciesPrecision(ctx context.Context, in *EmptyRequest, out *CurrenciesPrecisionResponse) error
 	}
 	type CurrencyRatesService struct {
 		currencyRatesService
@@ -292,74 +310,74 @@ type currencyRatesServiceHandler struct {
 	CurrencyRatesServiceHandler
 }
 
-func (h *currencyRatesServiceHandler) GetRateCurrentCommon(ctx context.Context, req *GetRateCurrentCommonRequest, rsp *RateData) error {
-	return h.CurrencyRatesServiceHandler.GetRateCurrentCommon(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetRateCurrentCommon(ctx context.Context, in *GetRateCurrentCommonRequest, out *RateData) error {
+	return h.CurrencyRatesServiceHandler.GetRateCurrentCommon(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetRateByDateCommon(ctx context.Context, req *GetRateByDateCommonRequest, rsp *RateData) error {
-	return h.CurrencyRatesServiceHandler.GetRateByDateCommon(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetRateByDateCommon(ctx context.Context, in *GetRateByDateCommonRequest, out *RateData) error {
+	return h.CurrencyRatesServiceHandler.GetRateByDateCommon(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetRateCurrentForMerchant(ctx context.Context, req *GetRateCurrentForMerchantRequest, rsp *RateData) error {
-	return h.CurrencyRatesServiceHandler.GetRateCurrentForMerchant(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetRateCurrentForMerchant(ctx context.Context, in *GetRateCurrentForMerchantRequest, out *RateData) error {
+	return h.CurrencyRatesServiceHandler.GetRateCurrentForMerchant(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetRateByDateForMerchant(ctx context.Context, req *GetRateByDateForMerchantRequest, rsp *RateData) error {
-	return h.CurrencyRatesServiceHandler.GetRateByDateForMerchant(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetRateByDateForMerchant(ctx context.Context, in *GetRateByDateForMerchantRequest, out *RateData) error {
+	return h.CurrencyRatesServiceHandler.GetRateByDateForMerchant(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) ExchangeCurrencyCurrentCommon(ctx context.Context, req *ExchangeCurrencyCurrentCommonRequest, rsp *ExchangeCurrencyResponse) error {
-	return h.CurrencyRatesServiceHandler.ExchangeCurrencyCurrentCommon(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) ExchangeCurrencyCurrentCommon(ctx context.Context, in *ExchangeCurrencyCurrentCommonRequest, out *ExchangeCurrencyResponse) error {
+	return h.CurrencyRatesServiceHandler.ExchangeCurrencyCurrentCommon(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) ExchangeCurrencyCurrentForMerchant(ctx context.Context, req *ExchangeCurrencyCurrentForMerchantRequest, rsp *ExchangeCurrencyResponse) error {
-	return h.CurrencyRatesServiceHandler.ExchangeCurrencyCurrentForMerchant(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) ExchangeCurrencyCurrentForMerchant(ctx context.Context, in *ExchangeCurrencyCurrentForMerchantRequest, out *ExchangeCurrencyResponse) error {
+	return h.CurrencyRatesServiceHandler.ExchangeCurrencyCurrentForMerchant(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) ExchangeCurrencyByDateCommon(ctx context.Context, req *ExchangeCurrencyByDateCommonRequest, rsp *ExchangeCurrencyResponse) error {
-	return h.CurrencyRatesServiceHandler.ExchangeCurrencyByDateCommon(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) ExchangeCurrencyByDateCommon(ctx context.Context, in *ExchangeCurrencyByDateCommonRequest, out *ExchangeCurrencyResponse) error {
+	return h.CurrencyRatesServiceHandler.ExchangeCurrencyByDateCommon(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) ExchangeCurrencyByDateForMerchant(ctx context.Context, req *ExchangeCurrencyByDateForMerchantRequest, rsp *ExchangeCurrencyResponse) error {
-	return h.CurrencyRatesServiceHandler.ExchangeCurrencyByDateForMerchant(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) ExchangeCurrencyByDateForMerchant(ctx context.Context, in *ExchangeCurrencyByDateForMerchantRequest, out *ExchangeCurrencyResponse) error {
+	return h.CurrencyRatesServiceHandler.ExchangeCurrencyByDateForMerchant(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetCommonRateCorrectionRule(ctx context.Context, req *CommonCorrectionRuleRequest, rsp *CorrectionRule) error {
-	return h.CurrencyRatesServiceHandler.GetCommonRateCorrectionRule(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetCommonRateCorrectionRule(ctx context.Context, in *CommonCorrectionRuleRequest, out *CorrectionRule) error {
+	return h.CurrencyRatesServiceHandler.GetCommonRateCorrectionRule(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetMerchantRateCorrectionRule(ctx context.Context, req *MerchantCorrectionRuleRequest, rsp *CorrectionRule) error {
-	return h.CurrencyRatesServiceHandler.GetMerchantRateCorrectionRule(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetMerchantRateCorrectionRule(ctx context.Context, in *MerchantCorrectionRuleRequest, out *CorrectionRule) error {
+	return h.CurrencyRatesServiceHandler.GetMerchantRateCorrectionRule(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) AddCommonRateCorrectionRule(ctx context.Context, req *CommonCorrectionRule, rsp *EmptyResponse) error {
-	return h.CurrencyRatesServiceHandler.AddCommonRateCorrectionRule(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) AddCommonRateCorrectionRule(ctx context.Context, in *CommonCorrectionRule, out *EmptyResponse) error {
+	return h.CurrencyRatesServiceHandler.AddCommonRateCorrectionRule(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) AddMerchantRateCorrectionRule(ctx context.Context, req *CorrectionRule, rsp *EmptyResponse) error {
-	return h.CurrencyRatesServiceHandler.AddMerchantRateCorrectionRule(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) AddMerchantRateCorrectionRule(ctx context.Context, in *CorrectionRule, out *EmptyResponse) error {
+	return h.CurrencyRatesServiceHandler.AddMerchantRateCorrectionRule(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetSupportedCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error {
-	return h.CurrencyRatesServiceHandler.GetSupportedCurrencies(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetSupportedCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error {
+	return h.CurrencyRatesServiceHandler.GetSupportedCurrencies(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetSettlementCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error {
-	return h.CurrencyRatesServiceHandler.GetSettlementCurrencies(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetSettlementCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error {
+	return h.CurrencyRatesServiceHandler.GetSettlementCurrencies(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetPriceCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error {
-	return h.CurrencyRatesServiceHandler.GetPriceCurrencies(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetPriceCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error {
+	return h.CurrencyRatesServiceHandler.GetPriceCurrencies(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetVatCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error {
-	return h.CurrencyRatesServiceHandler.GetVatCurrencies(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetVatCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error {
+	return h.CurrencyRatesServiceHandler.GetVatCurrencies(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetAccountingCurrencies(ctx context.Context, req *EmptyRequest, rsp *CurrenciesList) error {
-	return h.CurrencyRatesServiceHandler.GetAccountingCurrencies(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetAccountingCurrencies(ctx context.Context, in *EmptyRequest, out *CurrenciesList) error {
+	return h.CurrencyRatesServiceHandler.GetAccountingCurrencies(ctx, in, out)
 }
 
-func (h *currencyRatesServiceHandler) GetCurrenciesPrecision(ctx context.Context, req *EmptyRequest, rsp *CurrenciesPrecisionResponse) error {
-	return h.CurrencyRatesServiceHandler.GetCurrenciesPrecision(ctx, req, rsp)
+func (h *currencyRatesServiceHandler) GetCurrenciesPrecision(ctx context.Context, in *EmptyRequest, out *CurrenciesPrecisionResponse) error {
+	return h.CurrencyRatesServiceHandler.GetCurrenciesPrecision(ctx, in, out)
 }

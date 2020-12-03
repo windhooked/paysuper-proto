@@ -11,9 +11,9 @@ import (
 
 import (
 	context "context"
-	api "github.com/unistack-org/micro/v3/api"
-	client "github.com/unistack-org/micro/v3/client"
-	server "github.com/unistack-org/micro/v3/server"
+	api "github.com/micro/micro/v3/service/api"
+	client "github.com/micro/micro/v3/service/client"
+	server "github.com/micro/micro/v3/service/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -42,10 +42,10 @@ func NewTaxServiceEndpoints() []*api.Endpoint {
 // Client API for TaxService service
 
 type TaxService interface {
-	GetRate(ctx context.Context, req *GeoIdentity, opts ...client.CallOption) (*TaxRate, error)
-	GetRates(ctx context.Context, req *GetRatesRequest, opts ...client.CallOption) (*GetRatesResponse, error)
-	CreateOrUpdate(ctx context.Context, req *TaxRate, opts ...client.CallOption) (*TaxRate, error)
-	DeleteRateById(ctx context.Context, req *DeleteRateRequest, opts ...client.CallOption) (*DeleteRateResponse, error)
+	GetRate(ctx context.Context, in *GeoIdentity, opts ...client.CallOption) (*TaxRate, error)
+	GetRates(ctx context.Context, in *GetRatesRequest, opts ...client.CallOption) (*GetRatesResponse, error)
+	CreateOrUpdate(ctx context.Context, in *TaxRate, opts ...client.CallOption) (*TaxRate, error)
+	DeleteRateById(ctx context.Context, in *DeleteRateRequest, opts ...client.CallOption) (*DeleteRateResponse, error)
 }
 
 type taxService struct {
@@ -60,40 +60,44 @@ func NewTaxService(name string, c client.Client) TaxService {
 	}
 }
 
-func (c *taxService) GetRate(ctx context.Context, req *GeoIdentity, opts ...client.CallOption) (*TaxRate, error) {
-	rsp := &TaxRate{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "TaxService.GetRate", req), rsp, opts...)
+func (c *taxService) GetRate(ctx context.Context, in *GeoIdentity, opts ...client.CallOption) (*TaxRate, error) {
+	req := c.c.NewRequest(c.name, "TaxService.GetRate", in)
+	out := new(TaxRate)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *taxService) GetRates(ctx context.Context, req *GetRatesRequest, opts ...client.CallOption) (*GetRatesResponse, error) {
-	rsp := &GetRatesResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "TaxService.GetRates", req), rsp, opts...)
+func (c *taxService) GetRates(ctx context.Context, in *GetRatesRequest, opts ...client.CallOption) (*GetRatesResponse, error) {
+	req := c.c.NewRequest(c.name, "TaxService.GetRates", in)
+	out := new(GetRatesResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *taxService) CreateOrUpdate(ctx context.Context, req *TaxRate, opts ...client.CallOption) (*TaxRate, error) {
-	rsp := &TaxRate{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "TaxService.CreateOrUpdate", req), rsp, opts...)
+func (c *taxService) CreateOrUpdate(ctx context.Context, in *TaxRate, opts ...client.CallOption) (*TaxRate, error) {
+	req := c.c.NewRequest(c.name, "TaxService.CreateOrUpdate", in)
+	out := new(TaxRate)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
-func (c *taxService) DeleteRateById(ctx context.Context, req *DeleteRateRequest, opts ...client.CallOption) (*DeleteRateResponse, error) {
-	rsp := &DeleteRateResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "TaxService.DeleteRateById", req), rsp, opts...)
+func (c *taxService) DeleteRateById(ctx context.Context, in *DeleteRateRequest, opts ...client.CallOption) (*DeleteRateResponse, error) {
+	req := c.c.NewRequest(c.name, "TaxService.DeleteRateById", in)
+	out := new(DeleteRateResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
 // Server API for TaxService service
@@ -107,10 +111,10 @@ type TaxServiceHandler interface {
 
 func RegisterTaxServiceHandler(s server.Server, hdlr TaxServiceHandler, opts ...server.HandlerOption) error {
 	type taxService interface {
-		GetRate(ctx context.Context, req *GeoIdentity, rsp *TaxRate) error
-		GetRates(ctx context.Context, req *GetRatesRequest, rsp *GetRatesResponse) error
-		CreateOrUpdate(ctx context.Context, req *TaxRate, rsp *TaxRate) error
-		DeleteRateById(ctx context.Context, req *DeleteRateRequest, rsp *DeleteRateResponse) error
+		GetRate(ctx context.Context, in *GeoIdentity, out *TaxRate) error
+		GetRates(ctx context.Context, in *GetRatesRequest, out *GetRatesResponse) error
+		CreateOrUpdate(ctx context.Context, in *TaxRate, out *TaxRate) error
+		DeleteRateById(ctx context.Context, in *DeleteRateRequest, out *DeleteRateResponse) error
 	}
 	type TaxService struct {
 		taxService
@@ -123,18 +127,18 @@ type taxServiceHandler struct {
 	TaxServiceHandler
 }
 
-func (h *taxServiceHandler) GetRate(ctx context.Context, req *GeoIdentity, rsp *TaxRate) error {
-	return h.TaxServiceHandler.GetRate(ctx, req, rsp)
+func (h *taxServiceHandler) GetRate(ctx context.Context, in *GeoIdentity, out *TaxRate) error {
+	return h.TaxServiceHandler.GetRate(ctx, in, out)
 }
 
-func (h *taxServiceHandler) GetRates(ctx context.Context, req *GetRatesRequest, rsp *GetRatesResponse) error {
-	return h.TaxServiceHandler.GetRates(ctx, req, rsp)
+func (h *taxServiceHandler) GetRates(ctx context.Context, in *GetRatesRequest, out *GetRatesResponse) error {
+	return h.TaxServiceHandler.GetRates(ctx, in, out)
 }
 
-func (h *taxServiceHandler) CreateOrUpdate(ctx context.Context, req *TaxRate, rsp *TaxRate) error {
-	return h.TaxServiceHandler.CreateOrUpdate(ctx, req, rsp)
+func (h *taxServiceHandler) CreateOrUpdate(ctx context.Context, in *TaxRate, out *TaxRate) error {
+	return h.TaxServiceHandler.CreateOrUpdate(ctx, in, out)
 }
 
-func (h *taxServiceHandler) DeleteRateById(ctx context.Context, req *DeleteRateRequest, rsp *DeleteRateResponse) error {
-	return h.TaxServiceHandler.DeleteRateById(ctx, req, rsp)
+func (h *taxServiceHandler) DeleteRateById(ctx context.Context, in *DeleteRateRequest, out *DeleteRateResponse) error {
+	return h.TaxServiceHandler.DeleteRateById(ctx, in, out)
 }

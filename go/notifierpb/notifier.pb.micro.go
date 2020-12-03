@@ -11,9 +11,9 @@ import (
 
 import (
 	context "context"
-	api "github.com/unistack-org/micro/v3/api"
-	client "github.com/unistack-org/micro/v3/client"
-	server "github.com/unistack-org/micro/v3/server"
+	api "github.com/micro/micro/v3/service/api"
+	client "github.com/micro/micro/v3/service/client"
+	server "github.com/micro/micro/v3/service/server"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -42,7 +42,7 @@ func NewNotifierServiceEndpoints() []*api.Endpoint {
 // Client API for NotifierService service
 
 type NotifierService interface {
-	CheckUser(ctx context.Context, req *CheckUserRequest, opts ...client.CallOption) (*CheckUserResponse, error)
+	CheckUser(ctx context.Context, in *CheckUserRequest, opts ...client.CallOption) (*CheckUserResponse, error)
 }
 
 type notifierService struct {
@@ -57,13 +57,14 @@ func NewNotifierService(name string, c client.Client) NotifierService {
 	}
 }
 
-func (c *notifierService) CheckUser(ctx context.Context, req *CheckUserRequest, opts ...client.CallOption) (*CheckUserResponse, error) {
-	rsp := &CheckUserResponse{}
-	err := c.c.Call(ctx, c.c.NewRequest(c.name, "NotifierService.CheckUser", req), rsp, opts...)
+func (c *notifierService) CheckUser(ctx context.Context, in *CheckUserRequest, opts ...client.CallOption) (*CheckUserResponse, error) {
+	req := c.c.NewRequest(c.name, "NotifierService.CheckUser", in)
+	out := new(CheckUserResponse)
+	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return rsp, nil
+	return out, nil
 }
 
 // Server API for NotifierService service
@@ -74,7 +75,7 @@ type NotifierServiceHandler interface {
 
 func RegisterNotifierServiceHandler(s server.Server, hdlr NotifierServiceHandler, opts ...server.HandlerOption) error {
 	type notifierService interface {
-		CheckUser(ctx context.Context, req *CheckUserRequest, rsp *CheckUserResponse) error
+		CheckUser(ctx context.Context, in *CheckUserRequest, out *CheckUserResponse) error
 	}
 	type NotifierService struct {
 		notifierService
@@ -87,6 +88,6 @@ type notifierServiceHandler struct {
 	NotifierServiceHandler
 }
 
-func (h *notifierServiceHandler) CheckUser(ctx context.Context, req *CheckUserRequest, rsp *CheckUserResponse) error {
-	return h.NotifierServiceHandler.CheckUser(ctx, req, rsp)
+func (h *notifierServiceHandler) CheckUser(ctx context.Context, in *CheckUserRequest, out *CheckUserResponse) error {
+	return h.NotifierServiceHandler.CheckUser(ctx, in, out)
 }
