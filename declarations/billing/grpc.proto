@@ -436,6 +436,10 @@ message CreateOrUpdateKeyProductRequest {
     //
     // The pricing mode. Available values: currency, manual, steam, default.
     string pricing = 14;
+    // @inject_tag: json:"minimal_limit_notify" validate:"omitempty"
+    //
+    // The minimum number of keys to send a notification that they are running out.
+    int32 minimal_limit_notify = 15;
 }
 
 message UnPublishKeyProductRequest {
@@ -1262,6 +1266,10 @@ message KeyProduct {
     //
     // The pricing mode. Available values: currency, manual, steam, default.
     string pricing = 19;
+    // @inject_tag: json:"minimal_limit_notify" validate:"omitempty"
+    //
+    // The minimum number of keys to send a notification that they are running out.
+    int32 minimal_limit_notify = 20;
 }
 
 message PlatformPrice {
