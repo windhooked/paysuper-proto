@@ -3003,6 +3003,38 @@ message OrderViewMerchantInfo {
     string agreement_number = 2;
 }
 
+message OrderViewReportSummary {
+    // @inject_tag: json:"status" bson:"status"
+    //
+    // The status for reports
+    string status = 1;
+
+    // @inject_tag: json:"charge" bson:"charge"
+    //
+    // Transaction charge for reports
+    OrderViewMoney charge = 2;
+
+    // @inject_tag: json:"gross" bson:"gross"
+    //
+    // Transaction gross for reports
+    OrderViewMoney gross = 3;
+
+    // @inject_tag: json:"vat" bson:"vat"
+    //
+    // Transaction vat for reports
+    OrderViewMoney vat = 4;
+
+    // @inject_tag: json:"fees" bson:"fees"
+    //
+    // Transaction fees for reports
+    OrderViewMoney fees = 5;
+
+    // @inject_tag: json:"revenue" bson:"revenue"
+    //
+    // Transaction revenue for reports
+    OrderViewMoney revenue = 6;
+}
+
 message OrderViewPublic {
     // @inject_tag: json:"-" bson:"_id" faker:"objectIdString"
     string id = 1; // unique internal order identifier in Protocol One
@@ -3231,6 +3263,11 @@ message OrderViewPublic {
     //
     // The total refund tax fee.
     OrderViewMoney refund_tax_fee_total = 57;
+
+    // @inject_tag: json:"report_summary" bson:"report_summary"
+    //
+    // Transaction summary for reports
+    OrderViewReportSummary report_summary = 58;
 }
 
 message OrderViewPrivate {
@@ -3612,6 +3649,11 @@ message OrderViewPrivate {
     //
     // The order amount excluding commissions.
     double amount_before_vat = 95;
+
+    // @inject_tag: json:"report_summary" bson:"report_summary"
+    //
+    // Transaction summary for reports
+    OrderViewReportSummary report_summary = 96;
 }
 
 message RecommendedPrice {
