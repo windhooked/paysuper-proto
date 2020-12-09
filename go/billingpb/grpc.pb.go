@@ -13673,8 +13673,8 @@ type GetDashboardMainRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	//@inject_tag: validate:"required,hexadecimal,len=24"
-	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24"`
+	//@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
+	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" validate:"required,hexadecimal,len=24" param:"merchant_id"`
 	//@inject_tag: query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year"
 	Period string `protobuf:"bytes,2,opt,name=period,proto3" json:"period,omitempty" query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year"`
 }
