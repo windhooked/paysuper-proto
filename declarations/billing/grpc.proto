@@ -2493,7 +2493,7 @@ message GetOrderPrivateResponse {
 }
 
 message GetDashboardMainRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
     string merchant_id = 1;
     //@inject_tag: query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year"
     string period = 2;
