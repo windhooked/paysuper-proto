@@ -2817,10 +2817,10 @@ message RoyaltyReport {
     //
     // Period to in string format.
     string string_period_to = 21;
-    //@inject_tag: json:"merchant"
+    //@inject_tag: json:"merchant_name"
     //
-    // The information about merchant who owns the report.
-    Merchant merchant = 22;
+    // The merchant name who owns the report.
+    string merchant_name = 22;
 }
 
 message RoyaltyReportChanges {
