@@ -1792,7 +1792,7 @@ message ListRoyaltyReportsRequest {
     string period_from = 1;
     // @inject_tag: query:"period_to" validate:"omitempty,datetime"
     string period_to = 2;
-    // @inject_tag: validate:"required,hexadecimal,len=24"
+    // @inject_tag: validate:"omitempty,hexadecimal,len=24"
     string merchant_id = 3;
     //@inject_tag: query:"status[]" validate:"omitempty,dive,oneof=pending accepted canceled dispute waiting_payment paid"
     repeated string status = 4;
@@ -1800,6 +1800,8 @@ message ListRoyaltyReportsRequest {
     int64 limit = 5;
     // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int64 offset = 6;
+    // @inject_tag: query:"sort[]"
+    repeated string sort = 7;
 }
 
 message RoyaltyReportsPaginate {
@@ -2493,7 +2495,7 @@ message GetOrderPrivateResponse {
 }
 
 message GetDashboardMainRequest {
-    //@inject_tag: validate:"required,hexadecimal,len=24"
+    //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
     string merchant_id = 1;
     //@inject_tag: query:"period" validate:"required,oneof=current_month previous_month current_quarter previous_quarter current_year previous_year"
     string period = 2;
