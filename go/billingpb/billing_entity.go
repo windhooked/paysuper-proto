@@ -197,14 +197,6 @@ func (m *Merchant) GetOwnerEmail() string {
 	return m.User.Email
 }
 
-func (m *Merchant) GetProcessingDefaultCurrency() string {
-	if m.Banking == nil {
-		return ""
-	}
-
-	return m.Banking.ProcessingDefaultCurrency
-}
-
 func (m *Project) IsProduction() bool {
 	return m.Status == ProjectStatusInProduction
 }

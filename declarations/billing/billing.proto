@@ -473,8 +473,9 @@ message MerchantBanking {
     //
     // The merchant's bank's correspondent account number.
     string correspondent_account = 7;
-    // @inject_tag: json:"processing_default_currency" bson:"processing_default_currency"
+    // @inject_tag: json:"-" bson:"-"
     //
+    // DONT USE, DEPRECATED!
     // The merchant's default processing currency, used as fallback currency for prices in virtual item, virtual currency, game key and other.
     string processing_default_currency = 8;
 }

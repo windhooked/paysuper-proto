@@ -1819,10 +1819,11 @@ type MerchantBanking struct {
 	//
 	// The merchant's bank's correspondent account number.
 	CorrespondentAccount string `protobuf:"bytes,7,opt,name=correspondent_account,json=correspondentAccount,proto3" json:"correspondent_account" bson:"correspondent_account" validate:"omitempty,numeric,max=30"`
-	// @inject_tag: json:"processing_default_currency" bson:"processing_default_currency"
+	// @inject_tag: json:"-" bson:"-"
 	//
+	// DONT USE, DEPRECATED!
 	// The merchant's default processing currency, used as fallback currency for prices in virtual item, virtual currency, game key and other.
-	ProcessingDefaultCurrency string `protobuf:"bytes,8,opt,name=processing_default_currency,json=processingDefaultCurrency,proto3" json:"processing_default_currency" bson:"processing_default_currency"`
+	ProcessingDefaultCurrency string `protobuf:"bytes,8,opt,name=processing_default_currency,json=processingDefaultCurrency,proto3" json:"-" bson:"-"`
 }
 
 func (x *MerchantBanking) Reset() {
