@@ -108,8 +108,9 @@ service BillingService {
     rpc GetAllPaymentChannelCostMerchant (billing.PaymentChannelCostMerchantListRequest) returns (PaymentChannelCostMerchantListResponse) {}
     rpc GetPaymentChannelCostMerchant (billing.PaymentChannelCostMerchantRequest) returns (PaymentChannelCostMerchantResponse) {}
     rpc SetPaymentChannelCostMerchant (billing.PaymentChannelCostMerchant) returns (PaymentChannelCostMerchantResponse) {}
-    rpc SetAllPaymentChannelCostMerchant (billing.SetAllPaymentChannelCostMerchantRequest) returns (SetAllPaymentChannelCostMerchantResponse) {}
+    rpc SetAllPaymentChannelCostMerchant (SetAllPaymentChannelCostMerchantRequest) returns (SetAllPaymentChannelCostMerchantResponse) {}
     rpc DeletePaymentChannelCostMerchant (billing.PaymentCostDeleteRequest) returns (ResponseError) {}
+
     rpc GetAllMoneyBackCostSystem (EmptyRequest) returns (MoneyBackCostSystemListResponse) {}
     rpc GetMoneyBackCostSystem (billing.MoneyBackCostSystemRequest) returns (MoneyBackCostSystemResponse) {}
     rpc SetMoneyBackCostSystem (billing.MoneyBackCostSystem) returns (MoneyBackCostSystemResponse) {}
