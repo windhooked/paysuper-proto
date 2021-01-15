@@ -273,6 +273,7 @@ var (
 		recurringpb.OrderStatusRefund:                      recurringpb.OrderPublicStatusRefunded,
 		recurringpb.OrderStatusChargeback:                  recurringpb.OrderPublicStatusChargeback,
 		recurringpb.OrderStatusItemReplaced:                recurringpb.OrderPublicStatusProcessed,
+		recurringpb.OrderStatusProjectInProgress:           recurringpb.OrderPublicStatusPending,
 	}
 
 	HomeRegions = map[string]string{
