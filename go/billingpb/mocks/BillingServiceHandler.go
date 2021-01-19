@@ -2521,6 +2521,20 @@ func (_m *BillingServiceHandler) SendWebhookToMerchant(_a0 context.Context, _a1 
 	return r0
 }
 
+// SetAllPaymentChannelCostMerchant provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) SetAllPaymentChannelCostMerchant(_a0 context.Context, _a1 *billingpb.SetAllPaymentChannelCostMerchantRequest, _a2 *billingpb.SetAllPaymentChannelCostMerchantResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.SetAllPaymentChannelCostMerchantRequest, *billingpb.SetAllPaymentChannelCostMerchantResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // SetCustomerPaymentActivity provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) SetCustomerPaymentActivity(_a0 context.Context, _a1 *billingpb.SetCustomerPaymentActivityRequest, _a2 *billingpb.EmptyResponseWithStatus) error {
 	ret := _m.Called(_a0, _a1, _a2)

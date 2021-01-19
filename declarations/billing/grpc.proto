@@ -108,6 +108,7 @@ service BillingService {
     rpc GetAllPaymentChannelCostMerchant (billing.PaymentChannelCostMerchantListRequest) returns (PaymentChannelCostMerchantListResponse) {}
     rpc GetPaymentChannelCostMerchant (billing.PaymentChannelCostMerchantRequest) returns (PaymentChannelCostMerchantResponse) {}
     rpc SetPaymentChannelCostMerchant (billing.PaymentChannelCostMerchant) returns (PaymentChannelCostMerchantResponse) {}
+    rpc SetAllPaymentChannelCostMerchant (SetAllPaymentChannelCostMerchantRequest) returns (SetAllPaymentChannelCostMerchantResponse) {}
     rpc DeletePaymentChannelCostMerchant (billing.PaymentCostDeleteRequest) returns (ResponseError) {}
 
     rpc GetAllMoneyBackCostSystem (EmptyRequest) returns (MoneyBackCostSystemListResponse) {}
@@ -3772,4 +3773,20 @@ message GetMerchantDocumentResponse {
     billing.MerchantDocument item = 1;
     ResponseErrorMessage message = 2;
     int32 status = 3;
+}
+
+message SetAllPaymentChannelCostMerchantRequest {
+    //@inject_tag: validate:"required,hexadecimal,len=24"
+    string merchant_id = 1;
+    //@inject_tag: validate:"required,min=1,costs,dive" json:"costs"
+    repeated billing.PaymentChannelCostMerchant costs = 2;
+}
+
+message SetAllPaymentChannelCostMerchantResponse {
+    //@inject_tag: json:"status"
+    int32 status = 1;
+    //@inject_tag: json:"message"
+    ResponseErrorMessage message = 2;
+    //@inject_tag: json:"items"
+    repeated billing.PaymentChannelCostMerchant items = 3;
 }
