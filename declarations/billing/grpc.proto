@@ -3778,7 +3778,7 @@ message GetMerchantDocumentResponse {
 message SetAllPaymentChannelCostMerchantRequest {
     //@inject_tag: validate:"required,hexadecimal,len=24"
     string merchant_id = 1;
-    //@inject_tag: validate:"required,min=1,costs,dive" json:"costs"
+    //@inject_tag: validate:"required,min=1,dive" json:"costs"
     repeated billing.PaymentChannelCostMerchant costs = 2;
 }
 
