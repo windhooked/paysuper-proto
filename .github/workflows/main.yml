@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
 
 env:
-  GO111MODULE=on
-  PROTOBUF_VERSION=3.13.0
+  GO111MODULE: "on"
+  PROTOBUF_VERSION: "3.13.0"
 
 jobs:
   generate:
