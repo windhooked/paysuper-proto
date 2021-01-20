@@ -37,13 +37,13 @@ jobs:
           unzip "protoc-${PROTOBUF_VERSION}-linux-x86_64.zip" -d protoc
           export PATH="$(pwd)/protoc/bin:$PATH"
           export GOBIN=$GOPATH/bin && export PATH=$PATH:$GOROOT:$GOPATH:$GOBIN
-          sudo go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v1.14.7
-          sudo go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-          sudo go get -u github.com/golang/protobuf/protoc-gen-go
-          sudo go get -u github.com/micro/protoc-gen-micro
-          sudo go get -d github.com/envoyproxy/protoc-gen-validate@v0.4.1
-          sudo go get github.com/favadi/protoc-go-inject-tag
-          sudo go get github.com/vektra/mockery/v2/.../          
+          sudo GO111MODULE=on go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v1.14.7
+          sudo GO111MODULE=on go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+          sudo GO111MODULE=on go get -u github.com/golang/protobuf/protoc-gen-go
+          sudo GO111MODULE=on go get -u github.com/micro/protoc-gen-micro
+          sudo GO111MODULE=on go get -d github.com/envoyproxy/protoc-gen-validate@v0.4.1
+          sudo GO111MODULE=on go get github.com/favadi/protoc-go-inject-tag
+          sudo GO111MODULE=on go get github.com/vektra/mockery/v2/.../          
       
       - name: Build
         run: |
