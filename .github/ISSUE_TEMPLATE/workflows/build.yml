@@ -1,0 +1,62 @@
+name: Build
+on:
+  push:
+    branches:
+  workflow_dispatch:
+
+env:
+  GO111MODULE=on
+  PROTOBUF_VERSION=3.13.0
+
+jobs:
+  generate:
+    name: generate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.14'
+
+      - name: Install deps
+        run: |
+          wget "https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip"
+          unzip "protoc-${PROTOBUF_VERSION}-linux-x86_64.zip" -d protoc
+          export PATH="$(pwd)/protoc/bin:$PATH"
+          export GOBIN=$GOPATH/bin && export PATH=$PATH:$GOROOT:$GOPATH:$GOBIN
+          go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v1.14.7
+          go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+          go get -u github.com/golang/protobuf/protoc-gen-go
+          go get -u github.com/micro/protoc-gen-micro
+          go get -d github.com/envoyproxy/protoc-gen-validate@v0.4.1
+          go get github.com/favadi/protoc-go-inject-tag
+          go get github.com/vektra/mockery/v2/.../          
+      
+      - name: Build
+        run: |
+          cd ./go && ./generate.sh        
+
+      # - name: Commit
+      #   run: |
+      #     git config --local user.email "github-actions"
+      #     git config --local user.name "github-actions"
+      #     git add .
+      #     git commit --allow-empty -m "Update repo [skip ci]"
+      #     export GIT_TAG=v0.1.${{ github.run_number }}
+      #     git tag $GIT_TAG -a -m "Generated tag from GitHub Actions for build ${{ github.run_number }}"
+      #     git push --tags
+
+
