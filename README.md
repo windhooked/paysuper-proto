@@ -2,7 +2,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0) 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/paysuper/paysuper-proto/issues)
-[![Build Status](https://travis-ci.com/paysuper/paysuper-proto.svg?branch=develop)](https://travis-ci.com/paysuper/paysuper-proto) 
+[![Build Status](https://github.com/paysuper/paysuper-proto/workflows/Build/badge.svg?branch=develop)](https://github.com/paysuper/paysuper-proto/actions) 
 [![Go Report Card](https://goreportcard.com/badge/github.com/paysuper/paysuper-proto)](https://goreportcard.com/report/github.com/paysuper/paysuper-proto) 
 
 PaySuper Proto contains data structures generated from protobuf definitions for PaySuper services
