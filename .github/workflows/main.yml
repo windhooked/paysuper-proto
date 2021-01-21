@@ -1,7 +1,6 @@
 name: Build
 on:
   push:
-    branches:
   workflow_dispatch:
 
 env:
@@ -19,12 +18,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
 
-      - uses: actions/cache@v2
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: ~/go/pkg/mod
+      #     key: ${{ runner.os }}-go-some-cache-key
+      #     restore-keys: |
+      #       ${{ runner.os }}-go-some-cache-key
 
       - name: Install Go
         uses: actions/setup-go@v2
@@ -35,28 +34,32 @@ jobs:
         run: |
           wget "https://github.com/google/protobuf/releases/download/v${PROTOBUF_VERSION}/protoc-${PROTOBUF_VERSION}-linux-x86_64.zip"
           unzip "protoc-${PROTOBUF_VERSION}-linux-x86_64.zip" -d protoc
-          export PATH="$(pwd)/protoc/bin:$PATH"
-          export GOBIN=$GOPATH/bin && export PATH=$PATH:$GOROOT:$GOPATH:$GOBIN
-          sudo GO111MODULE=on go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v1.14.7
-          sudo GO111MODULE=on go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
-          sudo GO111MODULE=on go get -u github.com/golang/protobuf/protoc-gen-go
-          sudo GO111MODULE=on go get -u github.com/micro/protoc-gen-micro
-          sudo GO111MODULE=on go get -d github.com/envoyproxy/protoc-gen-validate@v0.4.1
-          sudo GO111MODULE=on go get github.com/favadi/protoc-go-inject-tag
-          sudo GO111MODULE=on go get github.com/vektra/mockery/v2/.../          
+          export GOPATH=/home/runner/go
+          export GOBIN=$GOPATH/bin
+          export PATH=$(pwd)/protoc/bin:$PATH:$GOROOT:$GOPATH:$GOBIN
+          go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway@v1.14.7
+          go get -u github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+          go get -u github.com/golang/protobuf/protoc-gen-go
+          go get -u github.com/micro/protoc-gen-micro
+          go get -d github.com/envoyproxy/protoc-gen-validate@v0.4.1
+          go get github.com/favadi/protoc-go-inject-tag
+          go get github.com/vektra/mockery/v2/.../          
       
       - name: Build
         run: |
-          cd ./go && ./generate.sh        
+          export GOPATH=/home/runner/go
+          export GOBIN=$GOPATH/bin
+          export PATH=$(pwd)/protoc/bin:$PATH:$GOROOT:$GOPATH:$GOBIN
+          cd ./go && ./generate.sh
 
-      # - name: Commit
-      #   run: |
-      #     git config --local user.email "github-actions"
-      #     git config --local user.name "github-actions"
-      #     git add .
-      #     git commit --allow-empty -m "Update repo [skip ci]"
-      #     export GIT_TAG=v0.2.${{ github.run_number }}
-      #     git tag $GIT_TAG -a -m "Generated tag from GitHub Actions for build ${{ github.run_number }}"
-      #     git push --tags
-
-
+      - name: Commit
+        run: |
+          cd ./go
+          git config --local user.email "github-actions"
+          git config --local user.name "github-actions"
+          git checkout "${GITHUB_REF:11}"
+          git add .
+          git commit --allow-empty -m "Update repo [skip ci]"
+          export GIT_TAG=v0.2.${{ github.run_number }}
+          git tag $GIT_TAG -a -m "Generated tag from GitHub Actions for build ${{ github.run_number }}"
+          git push --tags --set-upstream origin ${GITHUB_REF:11}
