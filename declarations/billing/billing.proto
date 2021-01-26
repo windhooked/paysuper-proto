@@ -3956,6 +3956,10 @@ message PayoutDocument {
     //
     // The b2b vat amount.
     double b2b_vat_amount = 34;
+    // @inject_tag: json:"fees_excluding_vat" bson:"fees_excluding_vat" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double fees_excluding_vat = 35;
 }
 
 message PayoutDocumentChanges {
