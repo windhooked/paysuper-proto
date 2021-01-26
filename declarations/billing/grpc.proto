@@ -2829,6 +2829,8 @@ message GetPayoutDocumentsRequest {
     int64 limit = 6;
     // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
     int64 offset = 7;
+    //@inject_tag: validate:"omitempty,hexadecimal,len=24"
+    string operating_company_id = 8;
 }
 
 message PayoutDocumentsPaginate {
