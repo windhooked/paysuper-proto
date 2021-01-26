@@ -2348,6 +2348,10 @@ message PaymentChannelCostMerchant {
     //
     // The Merchant Category Code (MCC) is a four-digit number listed in ISO 18245.
     string mcc_code = 17;
+    // @inject_tag: json:"max_amount" bson:"max_amount" validate:"omitempty,numeric,gte=0"
+    //
+    // The maximum payment amount.
+    double max_amount = 18;
 }
 
 message PaymentChannelCostMerchantRequest {
