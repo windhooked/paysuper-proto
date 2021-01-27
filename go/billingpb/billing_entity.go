@@ -229,7 +229,9 @@ func (m *Order) GetPaymentMethodId() string {
 }
 
 func (m *Order) IsDeclined() bool {
-	return m.PrivateStatus == recurringpb.OrderStatusPaymentSystemDeclined || m.PrivateStatus == recurringpb.OrderStatusPaymentSystemCanceled
+	return m.PrivateStatus == recurringpb.OrderStatusPaymentSystemDeclined ||
+		m.PrivateStatus == recurringpb.OrderStatusPaymentSystemCanceled ||
+		m.PrivateStatus == recurringpb.OrderStatusPaymentSystemReject
 }
 
 func (m *Order) GetDeclineReason() string {
