@@ -64,9 +64,29 @@ jobs:
           git tag $GIT_TAG -a -m "Generated tag from GitHub Actions for build ${{ github.run_number }}"
           git push --tags --set-upstream origin ${GITHUB_REF:11}
 
-      - name: Notify slack
-        if: always()
-        uses: paysuper/ghaction-slack-notify@v1
+      - name: Notify slack success
+        if: success()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
         with:
-          slack_channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-          slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          status: SUCCESS
+          color: good
+
+      - name: Notify slack fail
+        if: failure()
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        uses: voxmedia/github-action-slack-notify-build@v1
+        with:
+          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          status: FAILED
+          color: danger
+
+      # - name: Notify slack
+      #   if: always()
+      #   uses: paysuper/ghaction-slack-notify@v1
+      #   with:
+      #     slack_channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+      #     slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
