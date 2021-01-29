@@ -66,7 +66,7 @@ jobs:
 
       - name: Notify slack
         if: always()
-        uses: paysuper/ghaction-slack-notify
+        uses: paysuper/ghaction-slack-notify@v1
         with:
           slack_channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
           slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
