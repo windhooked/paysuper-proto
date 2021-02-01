@@ -1,6 +1,7 @@
 name: Build
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 env:
@@ -64,17 +65,14 @@ jobs:
           git tag $GIT_TAG -a -m "Generated tag from GitHub Actions for build ${{ github.run_number }}"
           git push --tags --set-upstream origin ${GITHUB_REF:11}
 
-      - name: Notify Slack 
-        if: always()
-        uses: kpritam/slack-job-status-action@v1
+  slack-notification:
+    needs: [generate]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Slack Workflow Notification
+        uses: paysuper/slack-workflow-status@118b3b43993d447a1a5cd7fddf5a1235ab219b18
         with:
-          job-status: ${{ job.status }}
-          slack-bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
-          channel: ${{ secrets.SLACK_CHANNEL_ID }}
+          repo_token: ${{secrets.GITHUB_TOKEN}}
+          slack_webhook_url: ${{secrets.SLACK_WEBHOOK_URL}}
 
-      # - name: Notify slack
-      #   if: always()
-      #   uses: paysuper/ghaction-slack-notify@v1
-      #   with:
-      #     slack_channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-      #     slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
