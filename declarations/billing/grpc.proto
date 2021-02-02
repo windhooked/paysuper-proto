@@ -248,6 +248,13 @@ service BillingService {
     rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
     rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
     rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
+    rpc AddRecurringPlan(billing.RecurringPlan) returns (AddRecurringPlanResponse) {}
+    rpc UpdateRecurringPlan(billing.RecurringPlan) returns (UpdateRecurringPlanResponse) {}
+    rpc EnableRecurringPlan(EnableRecurringPlanRequest) returns (EnableRecurringPlanResponse) {}
+    rpc DisableRecurringPlan(DisableRecurringPlanRequest) returns (DisableRecurringPlanResponse) {}
+    rpc DeleteRecurringPlan(DeleteRecurringPlanRequest) returns (DeleteRecurringPlanResponse) {}
+    rpc GetRecurringPlan(GetRecurringPlanRequest) returns (GetRecurringPlanPlanResponse) {}
+    rpc GetRecurringPlans(GetRecurringPlansRequest) returns (GetRecurringPlansPlanResponse) {}
 
     rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
     rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
@@ -3693,6 +3700,98 @@ message FindSubscriptionsResponse {
     ResponseErrorMessage message = 2;
     int32 status = 3;
     //@inject_tag: json:"count"
+    int32 count = 4;
+}
+
+message AddRecurringPlanResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    billing.RecurringPlan item = 3;
+}
+
+message UpdateRecurringPlanResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+}
+
+message EnableRecurringPlanRequest {
+    //@inject_tag: json:"merchant_id"
+    string merchant_id = 1;
+    // @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
+    string project_id = 2;
+    //@inject_tag: json:"plan_id" validate:"required,hexadecimal,len=24" param:"plan_id"
+    string plan_id = 3;
+}
+
+message EnableRecurringPlanResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+}
+
+message DisableRecurringPlanRequest {
+    //@inject_tag: json:"merchant_id"
+    string merchant_id = 1;
+    // @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
+    string project_id = 2;
+    //@inject_tag: json:"plan_id" validate:"required,hexadecimal,len=24" param:"plan_id"
+    string plan_id = 3;
+}
+
+message DisableRecurringPlanResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+}
+
+message DeleteRecurringPlanRequest {
+    //@inject_tag: json:"merchant_id"
+    string merchant_id = 1;
+    // @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
+    string project_id = 2;
+    //@inject_tag: json:"plan_id" validate:"required,hexadecimal,len=24" param:"plan_id"
+    string plan_id = 3;
+}
+
+message DeleteRecurringPlanResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+}
+
+message GetRecurringPlanRequest {
+    // @inject_tag: param:"merchant_id"
+    string merchant_id = 1;
+    // @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
+    string project_id = 2;
+    //@inject_tag: json:"plan_id" validate:"required,hexadecimal,len=24" param:"plan_id"
+    string plan_id = 3;
+}
+
+message GetRecurringPlanResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    billing.RecurringPlan item = 3;
+}
+
+message GetRecurringPlansRequest {
+    // @inject_tag: param:"merchant_id"
+    string merchant_id = 1;
+    // @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
+    string project_id = 2;
+    // @inject_tag: json:"external_id" query:"external_id"
+    string external_id = 3;
+    // @inject_tag: json:"group_id" query:"group_id"
+    string group_id = 4;
+    // @inject_tag: json:"query" query:"query"
+    string query = 5;
+    // @inject_tag: query:"limit" query:"limit" validate:"omitempty,numeric,gt=0"
+    int32 limit = 6;
+    // @inject_tag: query:"offset" query:"offset" validate:"omitempty,numeric,gte=0"
+    int32 offset = 7;
+}
+
+message GetRecurringPlansResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    repeated billing.RecurringPlan list = 3;
     int32 count = 4;
 }
 

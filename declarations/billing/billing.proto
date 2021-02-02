@@ -4607,3 +4607,129 @@ message MerchantDocument {
     // The date of the merchant document creation.
     google.protobuf.Timestamp created_at = 7;
 }
+
+message RecurringPlan {
+    // @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24" param:"plan_id" faker:"objectIdString"
+    //
+    // The unique identifier of recurring plan.
+    string id = 1;
+    // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" param:"merchant_id" faker:"objectIdString"
+    //
+    // The identifier of the merchant who owns the plan.
+    string merchant_id = 2;
+    // @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id" faker:"objectIdString"
+    //
+    // The identifier of the merchant project.
+    string project_id = 3;
+    // @inject_tag: json:"name" validate:"required" required:"true"
+    //
+    // The list of the plan localized names.
+    map<string, string> name = 4;
+    // @inject_tag: json:"charge" validate:"required" required:"true"
+    //
+    // The plan charge settings.
+    RecurringPlanCharge charge = 5;
+    // @inject_tag: json:"external_id" validate:"omitempty,alphanum,lte=32"
+    //
+    // Plan external ID (up to 32 characters).
+    string external_id = 6;
+    // @inject_tag: json:"description" validate:"omitempty"
+    //
+    // The list of the plan localized description
+    map<string, string> description = 7;
+    // @inject_tag: json:"group_id" validate:"omitempty,alphanum,lte=32"
+    //
+    // Group ID the plans are linked to (up to 32 characters).
+    string group_id = 8;
+    // @inject_tag: json:"expiration" validate:"omitempty"
+    //
+    // Subscription expiration details.
+    RecurringPlanExpiration expiration = 9;
+    // @inject_tag: json:"trial" validate:"omitempty"
+    //
+    // Trial period details.
+    RecurringPlanTrial trial = 10;
+    // @inject_tag: json:"grace_period" validate:"omitempty"
+    //
+    // Trial period details.
+    RecurringPlanGracePeriod grace_period = 11;
+    // @inject_tag: json:"tags" validate:"omitempty"
+    //
+    // Plan tags.
+    repeated string tags = 12;
+    // @inject_tag: json:"status" validate:"omitempty,oneof=active disabled"
+    //
+    // Subscription plan status.
+    string status = 13;
+    // @inject_tag: json:"created_at"
+    //
+    // The date of the recurring plan creation.
+    google.protobuf.Timestamp created_at = 14;
+    // @inject_tag: json:"updated_at"
+    //
+    // The date of the recurring plan last updated.
+    google.protobuf.Timestamp updated_at = 15;
+    // @inject_tag: json:"-"
+    //
+    // The date of the recurring plan deleted.
+    google.protobuf.Timestamp deleted_at = 16;
+}
+
+message RecurringPlanCharge {
+    // @inject_tag: json:"period" validate:"required"
+    //
+    // Billing period of the recurring plan.
+    RecurringPlanPeriod period = 1;
+    // @inject_tag: json:"amount" validate:"required,numeric,gte=0"
+    //
+    // The plan charge amount as a positive number.
+    double amount = 2;
+    // @inject_tag: json:"currency" validate:"required,alpha,len=3"
+    //
+    // The currency of the plan charge. Three-letter Currency Code ISO 4217, in uppercase.
+    string currency = 3;
+}
+
+message RecurringPlanPeriod {
+    // @inject_tag: json:"value" validate:"required"
+    //
+    // Number of time units.
+    int32 value = 1;
+    // @inject_tag: json:"type" validate:"required,oneof=minute day week month year lifetime"
+    //
+    // Time unit.
+    string type = 2;
+}
+
+message RecurringPlanExpiration {
+    // @inject_tag: json:"value" validate:"required"
+    //
+    // Number of time units.
+    int32 value = 1;
+    // @inject_tag: json:"type" validate:"required,oneof=minute day week month"
+    //
+    // Time unit.
+    string type = 2;
+}
+
+message RecurringPlanTrial {
+    // @inject_tag: json:"value" validate:"required"
+    //
+    // Number of time units.
+    int32 value = 1;
+    // @inject_tag: json:"type" validate:"required,oneof=minute day"
+    //
+    // Time unit.
+    string type = 2;
+}
+
+message RecurringPlanGracePeriod {
+    // @inject_tag: json:"value" validate:"required"
+    //
+    // Number of time units.
+    int32 value = 1;
+    // @inject_tag: json:"type" validate:"required,oneof=minute day"
+    //
+    // Time unit.
+    string type = 2;
+}
