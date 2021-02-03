@@ -106,6 +106,36 @@ func (_m *BillingService) AddOperatingCompany(ctx context.Context, in *billingpb
 	return r0, r1
 }
 
+// AddRecurringPlan provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) AddRecurringPlan(ctx context.Context, in *billingpb.RecurringPlan, opts ...client.CallOption) (*billingpb.AddRecurringPlanResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.AddRecurringPlanResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.RecurringPlan, ...client.CallOption) *billingpb.AddRecurringPlanResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.AddRecurringPlanResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.RecurringPlan, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // AutoAcceptRoyaltyReports provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) AutoAcceptRoyaltyReports(ctx context.Context, in *billingpb.EmptyRequest, opts ...client.CallOption) (*billingpb.EmptyResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -1456,6 +1486,36 @@ func (_m *BillingService) DeleteProject(ctx context.Context, in *billingpb.GetPr
 	return r0, r1
 }
 
+// DeleteRecurringPlan provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) DeleteRecurringPlan(ctx context.Context, in *billingpb.DeleteRecurringPlanRequest, opts ...client.CallOption) (*billingpb.DeleteRecurringPlanResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.DeleteRecurringPlanResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DeleteRecurringPlanRequest, ...client.CallOption) *billingpb.DeleteRecurringPlanResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.DeleteRecurringPlanResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.DeleteRecurringPlanRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // DeleteRecurringSubscription provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) DeleteRecurringSubscription(ctx context.Context, in *billingpb.DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
 	_va := make([]interface{}, len(opts))
@@ -1538,6 +1598,66 @@ func (_m *BillingService) DeserializeCookie(ctx context.Context, in *billingpb.D
 
 	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.DeserializeCookieRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// DisableRecurringPlan provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) DisableRecurringPlan(ctx context.Context, in *billingpb.DisableRecurringPlanRequest, opts ...client.CallOption) (*billingpb.DisableRecurringPlanResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.DisableRecurringPlanResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DisableRecurringPlanRequest, ...client.CallOption) *billingpb.DisableRecurringPlanResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.DisableRecurringPlanResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.DisableRecurringPlanRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// EnableRecurringPlan provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) EnableRecurringPlan(ctx context.Context, in *billingpb.EnableRecurringPlanRequest, opts ...client.CallOption) (*billingpb.EnableRecurringPlanResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.EnableRecurringPlanResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.EnableRecurringPlanRequest, ...client.CallOption) *billingpb.EnableRecurringPlanResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.EnableRecurringPlanResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.EnableRecurringPlanRequest, ...client.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)
@@ -3946,6 +4066,66 @@ func (_m *BillingService) GetRecommendedPriceTable(ctx context.Context, in *bill
 	return r0, r1
 }
 
+// GetRecurringPlan provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetRecurringPlan(ctx context.Context, in *billingpb.GetRecurringPlanRequest, opts ...client.CallOption) (*billingpb.GetRecurringPlanResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.GetRecurringPlanResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetRecurringPlanRequest, ...client.CallOption) *billingpb.GetRecurringPlanResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.GetRecurringPlanResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.GetRecurringPlanRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// GetRecurringPlans provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetRecurringPlans(ctx context.Context, in *billingpb.GetRecurringPlansRequest, opts ...client.CallOption) (*billingpb.GetRecurringPlansResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.GetRecurringPlansResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetRecurringPlansRequest, ...client.CallOption) *billingpb.GetRecurringPlansResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.GetRecurringPlansResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.GetRecurringPlansRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetRefund provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) GetRefund(ctx context.Context, in *billingpb.GetRefundRequest, opts ...client.CallOption) (*billingpb.CreateRefundResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -5948,6 +6128,36 @@ func (_m *BillingService) UpdateProductPrices(ctx context.Context, in *billingpb
 
 	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.UpdateProductPricesRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// UpdateRecurringPlan provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) UpdateRecurringPlan(ctx context.Context, in *billingpb.RecurringPlan, opts ...client.CallOption) (*billingpb.UpdateRecurringPlanResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.UpdateRecurringPlanResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.RecurringPlan, ...client.CallOption) *billingpb.UpdateRecurringPlanResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.UpdateRecurringPlanResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.RecurringPlan, ...client.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)
