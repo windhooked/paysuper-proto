@@ -253,8 +253,8 @@ service BillingService {
     rpc EnableRecurringPlan(EnableRecurringPlanRequest) returns (EnableRecurringPlanResponse) {}
     rpc DisableRecurringPlan(DisableRecurringPlanRequest) returns (DisableRecurringPlanResponse) {}
     rpc DeleteRecurringPlan(DeleteRecurringPlanRequest) returns (DeleteRecurringPlanResponse) {}
-    rpc GetRecurringPlan(GetRecurringPlanRequest) returns (GetRecurringPlanPlanResponse) {}
-    rpc GetRecurringPlans(GetRecurringPlansRequest) returns (GetRecurringPlansPlanResponse) {}
+    rpc GetRecurringPlan(GetRecurringPlanRequest) returns (GetRecurringPlanResponse) {}
+    rpc GetRecurringPlans(GetRecurringPlansRequest) returns (GetRecurringPlansResponse) {}
 
     rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
     rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
