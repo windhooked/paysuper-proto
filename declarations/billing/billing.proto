@@ -4644,15 +4644,15 @@ message RecurringPlan {
     // @inject_tag: json:"expiration" validate:"omitempty"
     //
     // Subscription expiration details.
-    RecurringPlanExpiration expiration = 9;
+    RecurringPlanPeriod expiration = 9;
     // @inject_tag: json:"trial" validate:"omitempty"
     //
     // Trial period details.
-    RecurringPlanTrial trial = 10;
+    RecurringPlanPeriod trial = 10;
     // @inject_tag: json:"grace_period" validate:"omitempty"
     //
     // Trial period details.
-    RecurringPlanGracePeriod grace_period = 11;
+    RecurringPlanPeriod grace_period = 11;
     // @inject_tag: json:"tags" validate:"omitempty"
     //
     // Plan tags.
@@ -4695,40 +4695,7 @@ message RecurringPlanPeriod {
     //
     // Number of time units.
     int32 value = 1;
-    // @inject_tag: json:"type" validate:"required,oneof=minute day week month year lifetime"
-    //
-    // Time unit.
-    string type = 2;
-}
-
-message RecurringPlanExpiration {
-    // @inject_tag: json:"value" validate:"required"
-    //
-    // Number of time units.
-    int32 value = 1;
-    // @inject_tag: json:"type" validate:"required,oneof=minute day week month"
-    //
-    // Time unit.
-    string type = 2;
-}
-
-message RecurringPlanTrial {
-    // @inject_tag: json:"value" validate:"required"
-    //
-    // Number of time units.
-    int32 value = 1;
-    // @inject_tag: json:"type" validate:"required,oneof=minute day"
-    //
-    // Time unit.
-    string type = 2;
-}
-
-message RecurringPlanGracePeriod {
-    // @inject_tag: json:"value" validate:"required"
-    //
-    // Number of time units.
-    int32 value = 1;
-    // @inject_tag: json:"type" validate:"required,oneof=minute day"
+    // @inject_tag: json:"type" validate:"required,oneof=minute day week month year"
     //
     // Time unit.
     string type = 2;
