@@ -12,11 +12,6 @@ service Repository {
   rpc DeleteSavedCard(DeleteSavedCardRequest) returns (DeleteSavedCardResponse) {}
   rpc FindSavedCards(SavedCardRequest) returns (SavedCardList) {}
   rpc FindSavedCardById(FindByStringValue) returns (entity.SavedCard) {}
-  rpc AddSubscription(entity.Subscription) returns (AddSubscriptionResponse) {}
-  rpc UpdateSubscription(entity.Subscription) returns (UpdateSubscriptionResponse) {}
-  rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
-  rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
-  rpc DeleteSubscription(entity.Subscription) returns (DeleteSubscriptionResponse) {}
 }
 
 message Result {}
@@ -47,57 +42,3 @@ message DeleteSavedCardResponse {
   int32 status = 1;
   string message = 2;
 }
-
-message AddSubscriptionResponse {
-  int32 status = 1;
-  string message = 2;
-  string subscription_id = 3;
-}
-
-message UpdateSubscriptionRequest {
-  string id = 1;
-  bool is_active = 2;
-  google.protobuf.Timestamp expire_at = 3;
-  google.protobuf.Timestamp last_payment_at = 4;
-}
-
-message UpdateSubscriptionResponse {
-  int32 status = 1;
-  string message = 2;
-}
-
-message GetSubscriptionRequest {
-  string id = 1;
-}
-
-message GetSubscriptionResponse {
-  entity.Subscription subscription = 1;
-  int32 status = 2;
-  string message = 3;
-}
-
-message FindSubscriptionsRequest {
-  string customer_id = 1;
-  string customer_uuid = 2;
-  string created_at = 3;
-  string quick_filter = 6;
-  string merchant_id = 7;
-  int32 limit = 8;
-  int32 offset = 9;
-  string expire_at = 10;
-}
-
-message FindSubscriptionsResponse {
-  repeated entity.Subscription list = 1;
-  int32 count = 2;
-}
-
-message DeleteSubscriptionRequest {
-  string id = 1;
-}
-
-message DeleteSubscriptionResponse {
-  int32 status = 1;
-  string message = 2;
-}
-
