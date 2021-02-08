@@ -2646,6 +2646,18 @@ message RoyaltyReportTotals {
     //
     // The corrections amount.
     double correction_amount = 7;
+    //@inject_tag: json:"b2b_vat_rate" bson:"b2b_vat_rate" validate:"numeric,gte=0"
+    //
+    // Effective rate of b2b_vat.
+    double b2b_vat_rate = 8;
+    //@inject_tag: json:"b2b_vat_amount" bson:"b2b_vat_amount" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double b2b_vat_amount = 9;
+    //@inject_tag: json:"final_payout_amount" bson:"final_payout_amount" validate:"numeric,gte=0"
+    //
+    // The final payout amount.
+    double final_payout_amount = 10;
 }
 
 message RoyaltyReportProductSummaryItem {
