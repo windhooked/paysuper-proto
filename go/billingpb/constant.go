@@ -228,6 +228,12 @@ const (
 
 	UserLocaleEn = "en"
 	UserLocaleRu = "ru"
+
+	RecurringPeriodMinute = "minute"
+	RecurringPeriodDay    = "day"
+	RecurringPeriodWeek   = "week"
+	RecurringPeriodMonth  = "month"
+	RecurringPeriodYear   = "year"
 )
 
 var (

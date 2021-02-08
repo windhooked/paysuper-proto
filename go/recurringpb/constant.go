@@ -44,10 +44,4 @@ const (
 	TaxjarRefundsRetryTopicName      = "taxjar-sync-refunds-retry"
 	TaxjarNotificationStatusPayment  = "taxjar-payment"
 	TaxjarNotificationStatusRefund   = "taxjar-refund"
-
-	RecurringPeriodMinute = "minute"
-	RecurringPeriodDay    = "day"
-	RecurringPeriodWeek   = "week"
-	RecurringPeriodMonth  = "month"
-	RecurringPeriodYear   = "year"
 )
