@@ -18899,22 +18899,62 @@ type RecurringSubscription struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id       string                         `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Plan     *RecurringPlan                 `protobuf:"bytes,2,opt,name=plan,proto3" json:"plan,omitempty"`
-	Customer *RecurringSubscriptionCustomer `protobuf:"bytes,3,opt,name=customer,proto3" json:"customer,omitempty"`
-	Project  *RecurringSubscriptionProject  `protobuf:"bytes,4,opt,name=project,proto3" json:"project,omitempty"`
-	Status   string                         `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
-	ItemType string                         `protobuf:"bytes,6,opt,name=item_type,json=itemType,proto3" json:"item_type,omitempty"`
-	ItemList []string                       `protobuf:"bytes,7,rep,name=item_list,json=itemList,proto3" json:"item_list,omitempty"`
-	// @inject_tag: json:"-"
-	CardpayPlanId string `protobuf:"bytes,8,opt,name=cardpay_plan_id,json=cardpayPlanId,proto3" json:"-"`
-	// @inject_tag: json:"-"
-	CardpaySubscriptionId string               `protobuf:"bytes,9,opt,name=cardpay_subscription_id,json=cardpaySubscriptionId,proto3" json:"-"`
-	TotalAmount           float64              `protobuf:"fixed64,10,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount,omitempty"`
-	CreatedAt             *timestamp.Timestamp `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt             *timestamp.Timestamp `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	ExpireAt              *timestamp.Timestamp `protobuf:"bytes,13,opt,name=expire_at,json=expireAt,proto3" json:"expire_at,omitempty"`
-	LastPaymentAt         *timestamp.Timestamp `protobuf:"bytes,14,opt,name=last_payment_at,json=lastPaymentAt,proto3" json:"last_payment_at,omitempty"`
+	// @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24" param:"subscription_id" faker:"objectIdString"
+	//
+	// The unique identifier of recurring subscription.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"omitempty,hexadecimal,len=24" param:"subscription_id" faker:"objectIdString"`
+	// @inject_tag: json:"plan" validate:"required"
+	//
+	// The recurring plan settings.
+	Plan *RecurringPlan `protobuf:"bytes,2,opt,name=plan,proto3" json:"plan" validate:"required"`
+	// @inject_tag: json:"customer" validate:"required"
+	//
+	// Information about the owner of the subscription.
+	Customer *RecurringSubscriptionCustomer `protobuf:"bytes,3,opt,name=customer,proto3" json:"customer" validate:"required"`
+	// @inject_tag: json:"project" validate:"required"
+	//
+	// Information about the product of the subscription.
+	Project *RecurringSubscriptionProject `protobuf:"bytes,4,opt,name=project,proto3" json:"project" validate:"required"`
+	// @inject_tag: json:"status" validate:"required,oneof=active canceled none_renewing"
+	//
+	// Status of the recurring subscription. May be an active, canceled or none_renewing.
+	Status string `protobuf:"bytes,5,opt,name=status,proto3" json:"status" validate:"required,oneof=active canceled none_renewing"`
+	// @inject_tag: json:"item_type" validate:"required,oneof=simple, product, key, virtual_currency"
+	//
+	// The type of the product for subscription. Available values: simple, product, key or virtual_currency.
+	ItemType string `protobuf:"bytes,6,opt,name=item_type,json=itemType,proto3" json:"item_type" validate:"required,oneof=simple, product, key, virtual_currency"`
+	// @inject_tag: json:"item_list" validate:"omitempty"
+	//
+	// List of identifiers for a subscription product type or key.
+	ItemList []string `protobuf:"bytes,7,rep,name=item_list,json=itemList,proto3" json:"item_list" validate:"omitempty"`
+	// @inject_tag: json:"-" validate:"omitempty"
+	//
+	// The CardPay recurring plan identifier.
+	CardpayPlanId string `protobuf:"bytes,8,opt,name=cardpay_plan_id,json=cardpayPlanId,proto3" json:"-" validate:"omitempty"`
+	// @inject_tag: json:"-" validate:"omitempty"
+	//
+	// The CardPay subscription identifier.
+	CardpaySubscriptionId string `protobuf:"bytes,9,opt,name=cardpay_subscription_id,json=cardpaySubscriptionId,proto3" json:"-" validate:"omitempty"`
+	// @inject_tag: json:"total_amount" validate:"omitempty"
+	//
+	// The total amount of payments for the subscription.
+	TotalAmount float64 `protobuf:"fixed64,10,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount" validate:"omitempty"`
+	// @inject_tag: json:"created_at"
+	//
+	// Date and time the subscription was created.
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,11,opt,name=created_at,json=createdAt,proto3" json:"created_at"`
+	// @inject_tag: json:"updated_at"
+	//
+	// Date and time the subscription was updated.
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,12,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at"`
+	// @inject_tag: json:"expire_at"
+	//
+	// Subscription end date and time.
+	ExpireAt *timestamp.Timestamp `protobuf:"bytes,13,opt,name=expire_at,json=expireAt,proto3" json:"expire_at"`
+	// @inject_tag: json:"last_payment_at"
+	//
+	// Date and time of the last subscription payment.
+	LastPaymentAt *timestamp.Timestamp `protobuf:"bytes,14,opt,name=last_payment_at,json=lastPaymentAt,proto3" json:"last_payment_at"`
 }
 
 func (x *RecurringSubscription) Reset() {
@@ -19141,11 +19181,18 @@ type RecurringSubscriptionCustomer struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id         string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Uuid       string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	// @inject_tag: json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	//
+	// The identifier of customer.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
+	// The UUID identifier of customer.
+	Uuid string `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	// The external identifier of customer.
 	ExternalId string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id,omitempty"`
-	Email      string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
-	Phone      string `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
+	// The email address of customer.
+	Email string `protobuf:"bytes,4,opt,name=email,proto3" json:"email,omitempty"`
+	// The phone number of customer.
+	Phone string `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
 }
 
 func (x *RecurringSubscriptionCustomer) Reset() {
@@ -19220,7 +19267,11 @@ type RecurringSubscriptionProject struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id   string            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// @inject_tag: json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+	//
+	// The identifier of project.
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"`
+	// The multi language name of project.
 	Name map[string]string `protobuf:"bytes,2,rep,name=name,proto3" json:"name,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }
 
