@@ -1236,11 +1236,12 @@ message Order {
   OrderViewMoney fee = 93;
   // @inject_tag: json:"-"
   //
-  // DEPRECATED! Use the recurring_subscription_id property
+  // DEPRECATED! Use the recurring_plan_id property
   // Recurring settings for order
   OrderRecurringSettings recurring_settings = 94;
   // @inject_tag: json:"recurring"
   //
+  // DEPRECATED! Use the recurring_subscription_id property
   // Exists recurring for order
   bool recurring = 95;
   // @inject_tag: json:"recurring_id"
@@ -1252,6 +1253,10 @@ message Order {
   //
   // Identity of recurring subscription for order
   string recurring_subscription_id = 97;
+  // @inject_tag: json:"recurring_plan_id"
+  //
+  // Identity of recurring plan for order
+  string recurring_plan_id = 98;
 }
 
 // DEPRECATED
@@ -3254,6 +3259,7 @@ message OrderViewPublic {
   OrderViewMerchantInfo merchant_info = 52;
   // @inject_tag: json:"-"
   //
+  // DEPRECATED! Use the recurring_subscription_id property
   // Exists recurring for order
   bool recurring = 53;
   // @inject_tag: json:"-"
@@ -3285,6 +3291,10 @@ message OrderViewPublic {
   //
   // Identity of recurring subscription for order
   string recurring_subscription_id = 59;
+  // @inject_tag: json:"recurring_plan_id"
+  //
+  // Identity of recurring plan for order
+  string recurring_plan_id = 60;
 }
 
 message OrderViewPrivate {
@@ -3648,6 +3658,7 @@ message OrderViewPrivate {
   string payment_method_terminal_id = 90;
   // @inject_tag: json:"-" bson:"recurring"
   //
+  // DEPRECATED! Use the recurring_subscription_id property
   // Exists recurring for order
   bool recurring = 91;
   // @inject_tag: json:"-" bson:"recurring_id"
@@ -3676,6 +3687,10 @@ message OrderViewPrivate {
   //
   // Identity of recurring subscription for order
   string recurring_subscription_id = 97;
+  // @inject_tag: json:"recurring_plan_id"
+  //
+  // Identity of recurring plan for order
+  string recurring_plan_id = 98;
 }
 
 message RecommendedPrice {

@@ -766,3 +766,11 @@ func (m *Order) IsIdentifiedUser() bool {
 	_, err := primitive.ObjectIDFromHex(m.User.Id)
 	return err == nil
 }
+
+func (m *Order) HasRecurringPlan() bool {
+	return m.RecurringSubscriptionId != ""
+}
+
+func (m *Order) HasRecurringSubscription() bool {
+	return m.RecurringSubscriptionId != ""
+}
