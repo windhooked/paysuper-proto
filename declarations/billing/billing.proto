@@ -1990,14 +1990,10 @@ message TokenSettings {
   //
   //The redirect button messages after the successful or failed payment. If it has an empty value the redirect message will be set at OK.
   string button_caption = 14;
-  //@inject_tag: json:"recurring_period" validate:"omitempty,oneof=minute day week month year"
+  //@inject_tag: json:"recurring_plan_id" validate:"omitempty"
   //
-  // Recurring period of order. Available values: day, week, month.
-  string recurring_period = 15;
-  //@inject_tag: json:"recurring_date_end" validate:"omitempty,date"
-  //
-  // End date of recurring period for order.
-  string recurring_date_end = 16;
+  // Identifier of plan for the recurring subscription.
+  string recurring_plan_id = 15;
 }
 
 message OrderIssuer {
