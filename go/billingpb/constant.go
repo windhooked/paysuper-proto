@@ -234,6 +234,10 @@ const (
 	RecurringPeriodWeek   = "week"
 	RecurringPeriodMonth  = "month"
 	RecurringPeriodYear   = "year"
+
+	RecurringSubscriptionStatusActive      = "active"
+	RecurringSubscriptionStatusCanceled    = "canceled"
+	RecurringSubscriptionStatusNonRenewing = "no_renewing"
 )
 
 var (

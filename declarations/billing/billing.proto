@@ -4680,21 +4680,61 @@ message RecurringPlanPeriod {
 }
 
 message RecurringSubscription {
+  // @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24" param:"subscription_id" faker:"objectIdString"
+  //
+  // The unique identifier of recurring subscription.
   string id = 1;
+  // @inject_tag: json:"plan" validate:"required"
+  //
+  // The recurring plan settings.
   RecurringPlan plan = 2;
+  // @inject_tag: json:"customer" validate:"required"
+  //
+  // Information about the owner of the subscription.
   RecurringSubscriptionCustomer customer = 3;
+  // @inject_tag: json:"project" validate:"required"
+  //
+  // Information about the product of the subscription.
   RecurringSubscriptionProject project = 4;
+  // @inject_tag: json:"status" validate:"required,oneof=active canceled none_renewing"
+  //
+  // Status of the recurring subscription. May be an active, canceled or none_renewing.
   string status = 5;
+  // @inject_tag: json:"item_type" validate:"required,oneof=simple, product, key, virtual_currency"
+  //
+  // The type of the product for subscription. Available values: simple, product, key or virtual_currency.
   string item_type = 6;
+  // @inject_tag: json:"item_list" validate:"omitempty"
+  //
+  // List of identifiers for a subscription product type or key.
   repeated string item_list = 7;
-  // @inject_tag: json:"-"
+  // @inject_tag: json:"-" validate:"omitempty"
+  //
+  // The CardPay recurring plan identifier.
   string cardpay_plan_id = 8;
-  // @inject_tag: json:"-"
+  // @inject_tag: json:"-" validate:"omitempty"
+  //
+  // The CardPay subscription identifier.
   string cardpay_subscription_id = 9;
+  // @inject_tag: json:"total_amount" validate:"omitempty"
+  //
+  // The total amount of payments for the subscription.
   double total_amount = 10;
+  // @inject_tag: json:"created_at"
+  //
+  // Date and time the subscription was created.
   google.protobuf.Timestamp created_at = 11;
+  // @inject_tag: json:"updated_at"
+  //
+  // Date and time the subscription was updated.
   google.protobuf.Timestamp updated_at = 12;
+  // @inject_tag: json:"expire_at"
+  //
+  // Subscription end date and time.
   google.protobuf.Timestamp expire_at = 13;
+  // @inject_tag: json:"last_payment_at"
+  //
+  // Date and time of the last subscription payment.
   google.protobuf.Timestamp last_payment_at = 14;
 }
 
@@ -4710,14 +4750,25 @@ message SubscriptionOrder {
 }
 
 message RecurringSubscriptionCustomer {
+  // @inject_tag: json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+  //
+  // The identifier of customer.
   string id = 1;
+  // The UUID identifier of customer.
   string uuid = 2;
+  // The external identifier of customer.
   string external_id = 3;
+  // The email address of customer.
   string email = 4;
+  // The phone number of customer.
   string phone = 5;
 }
 
 message RecurringSubscriptionProject {
+  // @inject_tag: json:"id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+  //
+  // The identifier of project.
   string id = 1;
+  // The multi language name of project.
   map<string, string> name = 2;
 }
