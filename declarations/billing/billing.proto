@@ -4545,6 +4545,22 @@ message ActOfCompletionDocument {
     //
     // The total number of transactions.
     int32 total_transactions = 4;
+    // @inject_tag: json:"b2b_vat_base" bson:"b2b_vat_base" validate:"numeric,gte=0"
+    //
+    // The total Licensee Revenue Share amount as base for b2b vat calculation
+    double b2b_vat_rate = 5;
+    // @inject_tag: json:"b2b_vat_amount" bson:"b2b_vat_amount" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double b2b_vat_amount = 6;
+    // @inject_tag: json:"fees_excluding_vat" bson:"fees_excluding_vat" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double fees_excluding_vat = 7;
+    // @inject_tag: json:"corrections_amount" bson:"corrections_amount" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double corrections_amount = 8;
 }
 
 message BrowserCookie {
