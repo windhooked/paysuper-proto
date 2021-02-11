@@ -4229,21 +4229,21 @@ type Order struct {
 	//
 	// Fee for order
 	Fee *OrderViewMoney `protobuf:"bytes,93,opt,name=fee,proto3" json:"fee"`
-	// @inject_tag: json:"-"
+	// @inject_tag: json:"-" faker:"-"
 	//
 	// DEPRECATED! Use the recurring_plan_id property
 	// Recurring settings for order
-	RecurringSettings *OrderRecurringSettings `protobuf:"bytes,94,opt,name=recurring_settings,json=recurringSettings,proto3" json:"-"`
-	// @inject_tag: json:"recurring"
+	RecurringSettings *OrderRecurringSettings `protobuf:"bytes,94,opt,name=recurring_settings,json=recurringSettings,proto3" json:"-" faker:"-"`
+	// @inject_tag: json:"recurring" faker:"-"
 	//
 	// DEPRECATED! Use the recurring_subscription_id property
 	// Exists recurring for order
-	Recurring bool `protobuf:"varint,95,opt,name=recurring,proto3" json:"recurring"`
-	// @inject_tag: json:"recurring_id"
+	Recurring bool `protobuf:"varint,95,opt,name=recurring,proto3" json:"recurring" faker:"-"`
+	// @inject_tag: json:"recurring_id" faker:"-"
 	//
 	// DEPRECATED! Use the recurring_subscription_id property
 	// Recurring identity for order
-	RecurringId string `protobuf:"bytes,96,opt,name=recurring_id,json=recurringId,proto3" json:"recurring_id"`
+	RecurringId string `protobuf:"bytes,96,opt,name=recurring_id,json=recurringId,proto3" json:"recurring_id" faker:"-"`
 	// @inject_tag: json:"recurring_subscription_id"
 	//
 	// Identity of recurring subscription for order
