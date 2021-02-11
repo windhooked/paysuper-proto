@@ -1234,17 +1234,17 @@ message Order {
   //
   // Fee for order
   OrderViewMoney fee = 93;
-  // @inject_tag: json:"-"
+  // @inject_tag: json:"-" faker:"-"
   //
   // DEPRECATED! Use the recurring_plan_id property
   // Recurring settings for order
   OrderRecurringSettings recurring_settings = 94;
-  // @inject_tag: json:"recurring"
+  // @inject_tag: json:"recurring" faker:"-"
   //
   // DEPRECATED! Use the recurring_subscription_id property
   // Exists recurring for order
   bool recurring = 95;
-  // @inject_tag: json:"recurring_id"
+  // @inject_tag: json:"recurring_id" faker:"-"
   //
   // DEPRECATED! Use the recurring_subscription_id property
   // Recurring identity for order
