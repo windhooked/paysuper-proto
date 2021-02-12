@@ -768,7 +768,7 @@ func (m *Order) IsIdentifiedUser() bool {
 }
 
 func (m *Order) HasRecurringPlan() bool {
-	return m.RecurringSubscriptionId != ""
+	return m.RecurringPlanId != ""
 }
 
 func (m *Order) HasRecurringSubscription() bool {
