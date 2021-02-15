@@ -1259,7 +1259,7 @@ message Order {
   string recurring_plan_id = 98;
 }
 
-// DEPRECATED
+// Use for order receipt
 message OrderRecurringSettings {
   //@inject_tag: json:"period" validate:"required,oneof=day week month" required:"true" bson:"period"
   //
