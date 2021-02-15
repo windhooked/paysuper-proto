@@ -567,6 +567,10 @@ message MerchantCompanyInfo {
     //
     // The merchant's company tax number.
     string tax_id = 11;
+    // @inject_tag: json:"trademark" bson:"trademark"
+    //
+    // The merchant's trade mark.
+    string trademark = 12;
 }
 
 message MerchantCompletedSteps {
@@ -4127,6 +4131,10 @@ message OrderReceipt {
     //
     //The last day for recurring payments.
     string recurring_date_end = 24;
+    // @inject_tag: json:"trademark"
+    //
+    // The merchant's trade mark.
+    string trademark = 25;
 }
 
 message OrderReceiptItem {
