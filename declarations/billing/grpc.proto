@@ -243,11 +243,6 @@ service BillingService {
 
     rpc DeleteCustomerCard(DeleteCustomerCardRequest) returns (EmptyResponseWithStatus) {}
 
-    rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
-    rpc GetCustomerShortInfo(GetCustomerShortInfoRequest) returns (GetCustomerShortInfoResponse) {}
-    rpc GetSubscriptionOrders(GetSubscriptionOrdersRequest) returns (GetSubscriptionOrdersResponse) {}
-    rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
-    rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
     rpc AddRecurringPlan(billing.RecurringPlan) returns (AddRecurringPlanResponse) {}
     rpc UpdateRecurringPlan(billing.RecurringPlan) returns (UpdateRecurringPlanResponse) {}
     rpc EnableRecurringPlan(EnableRecurringPlanRequest) returns (EnableRecurringPlanResponse) {}
