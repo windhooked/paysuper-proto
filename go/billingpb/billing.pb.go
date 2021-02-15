@@ -4860,7 +4860,7 @@ func (x *Order) GetRecurringPlanId() string {
 	return ""
 }
 
-// DEPRECATED
+// Use for order receipt
 type OrderRecurringSettings struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
