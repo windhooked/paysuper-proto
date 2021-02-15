@@ -284,6 +284,10 @@ message Project {
     //
     // The webhooks mode. Available values: default, pre_approval.
     string webhook_mode = 39;
+    //@inject_tag: json:"form_default_text"
+    //
+    // The localized default text on payment form ("In-game purchase").
+    map<string, string> form_default_text = 40;
 }
 
 message WebHookTesting {
