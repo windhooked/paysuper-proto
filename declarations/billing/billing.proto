@@ -401,6 +401,10 @@ message ProjectOrder {
     //
     // Date of first payment for merchant.
     google.protobuf.Timestamp first_payment_at = 19;
+    //@inject_tag: json:"form_default_text"
+    //
+    // The localized default text on payment form ("In-game purchase").
+    map<string, string> form_default_text = 20;
 }
 
 message MerchantContact {
