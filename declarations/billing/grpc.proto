@@ -3799,7 +3799,7 @@ message FindExpiredSubscriptionsRequest {
 message FindExpiredSubscriptionsResponse {
     int32 status = 1;
     ResponseErrorMessage message = 2;
-    repeated billing.RecurringPlan list = 3;
+    repeated billing.RecurringSubscription list = 3;
 }
 
 message DeleteSubscriptionRequest {
