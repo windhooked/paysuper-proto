@@ -715,6 +715,20 @@ func (_m *BillingServiceHandler) DeleteRecurringPlan(_a0 context.Context, _a1 *b
 	return r0
 }
 
+// DeleteRecurringSubscription provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) DeleteRecurringSubscription(_a0 context.Context, _a1 *billingpb.DeleteRecurringSubscriptionRequest, _a2 *billingpb.EmptyResponseWithStatus) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DeleteRecurringSubscriptionRequest, *billingpb.EmptyResponseWithStatus) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // DeleteSavedCard provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) DeleteSavedCard(_a0 context.Context, _a1 *billingpb.DeleteSavedCardRequest, _a2 *billingpb.EmptyResponseWithStatus) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -819,6 +833,20 @@ func (_m *BillingServiceHandler) FindByZipCode(_a0 context.Context, _a1 *billing
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindByZipCodeRequest, *billingpb.FindByZipCodeResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// FindExpiredSubscriptions provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) FindExpiredSubscriptions(_a0 context.Context, _a1 *billingpb.FindExpiredSubscriptionsRequest, _a2 *billingpb.FindExpiredSubscriptionsResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindExpiredSubscriptionsRequest, *billingpb.FindExpiredSubscriptionsResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
