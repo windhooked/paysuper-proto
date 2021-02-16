@@ -1816,6 +1816,36 @@ func (_m *BillingService) FindExpiredSubscriptions(ctx context.Context, in *bill
 	return r0, r1
 }
 
+// FindSubscriptions provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) FindSubscriptions(ctx context.Context, in *billingpb.FindSubscriptionsRequest, opts ...client.CallOption) (*billingpb.FindSubscriptionsResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.FindSubscriptionsResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindSubscriptionsRequest, ...client.CallOption) *billingpb.FindSubscriptionsResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.FindSubscriptionsResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.FindSubscriptionsRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // FinishRedeemKeyForOrder provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) FinishRedeemKeyForOrder(ctx context.Context, in *billingpb.KeyForOrderRequest, opts ...client.CallOption) (*billingpb.GetKeyForOrderRequestResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -4178,6 +4208,66 @@ func (_m *BillingService) GetRoyaltyReport(ctx context.Context, in *billingpb.Ge
 
 	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.GetRoyaltyReportRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// GetSubscription provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetSubscription(ctx context.Context, in *billingpb.GetSubscriptionRequest, opts ...client.CallOption) (*billingpb.GetSubscriptionResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.GetSubscriptionResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionRequest, ...client.CallOption) *billingpb.GetSubscriptionResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.GetSubscriptionResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.GetSubscriptionRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// GetSubscriptionsOrders provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetSubscriptionsOrders(ctx context.Context, in *billingpb.GetSubscriptionsOrdersRequest, opts ...client.CallOption) (*billingpb.GetSubscriptionsOrdersResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.GetSubscriptionsOrdersResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionsOrdersRequest, ...client.CallOption) *billingpb.GetSubscriptionsOrdersResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.GetSubscriptionsOrdersResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.GetSubscriptionsOrdersRequest, ...client.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)

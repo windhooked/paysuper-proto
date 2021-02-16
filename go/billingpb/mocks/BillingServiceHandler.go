@@ -855,6 +855,20 @@ func (_m *BillingServiceHandler) FindExpiredSubscriptions(_a0 context.Context, _
 	return r0
 }
 
+// FindSubscriptions provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) FindSubscriptions(_a0 context.Context, _a1 *billingpb.FindSubscriptionsRequest, _a2 *billingpb.FindSubscriptionsResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindSubscriptionsRequest, *billingpb.FindSubscriptionsResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // FinishRedeemKeyForOrder provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) FinishRedeemKeyForOrder(_a0 context.Context, _a1 *billingpb.KeyForOrderRequest, _a2 *billingpb.GetKeyForOrderRequestResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -1953,6 +1967,34 @@ func (_m *BillingServiceHandler) GetRoyaltyReport(_a0 context.Context, _a1 *bill
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetRoyaltyReportRequest, *billingpb.GetRoyaltyReportResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// GetSubscription provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetSubscription(_a0 context.Context, _a1 *billingpb.GetSubscriptionRequest, _a2 *billingpb.GetSubscriptionResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionRequest, *billingpb.GetSubscriptionResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// GetSubscriptionsOrders provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetSubscriptionsOrders(_a0 context.Context, _a1 *billingpb.GetSubscriptionsOrdersRequest, _a2 *billingpb.GetSubscriptionsOrdersResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionsOrdersRequest, *billingpb.GetSubscriptionsOrdersResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)

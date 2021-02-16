@@ -236,6 +236,9 @@ type BillingService interface {
 	GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, opts ...client.CallOption) (*GetRecurringPlansResponse, error)
 	FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, opts ...client.CallOption) (*FindExpiredSubscriptionsResponse, error)
 	DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
+	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
+	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
+	GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, opts ...client.CallOption) (*GetSubscriptionsOrdersResponse, error)
 	AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error)
 	GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error)
 	GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error)
@@ -2269,6 +2272,36 @@ func (c *billingService) DeleteRecurringSubscription(ctx context.Context, in *De
 	return out, nil
 }
 
+func (c *billingService) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.FindSubscriptions", in)
+	out := new(FindSubscriptionsResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetSubscription", in)
+	out := new(GetSubscriptionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, opts ...client.CallOption) (*GetSubscriptionsOrdersResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetSubscriptionsOrders", in)
+	out := new(GetSubscriptionsOrdersResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.AddMerchantDocument", in)
 	out := new(AddMerchantDocumentResponse)
@@ -2503,6 +2536,9 @@ type BillingServiceHandler interface {
 	GetRecurringPlans(context.Context, *GetRecurringPlansRequest, *GetRecurringPlansResponse) error
 	FindExpiredSubscriptions(context.Context, *FindExpiredSubscriptionsRequest, *FindExpiredSubscriptionsResponse) error
 	DeleteRecurringSubscription(context.Context, *DeleteRecurringSubscriptionRequest, *EmptyResponseWithStatus) error
+	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
+	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
+	GetSubscriptionsOrders(context.Context, *GetSubscriptionsOrdersRequest, *GetSubscriptionsOrdersResponse) error
 	AddMerchantDocument(context.Context, *MerchantDocument, *AddMerchantDocumentResponse) error
 	GetMerchantDocuments(context.Context, *GetMerchantDocumentsRequest, *GetMerchantDocumentsResponse) error
 	GetMerchantDocument(context.Context, *GetMerchantDocumentRequest, *GetMerchantDocumentResponse) error
@@ -2711,6 +2747,9 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, out *GetRecurringPlansResponse) error
 		FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, out *FindExpiredSubscriptionsResponse) error
 		DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error
+		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
+		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
+		GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, out *GetSubscriptionsOrdersResponse) error
 		AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error
 		GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error
 		GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error
@@ -3528,6 +3567,18 @@ func (h *billingServiceHandler) FindExpiredSubscriptions(ctx context.Context, in
 
 func (h *billingServiceHandler) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error {
 	return h.BillingServiceHandler.DeleteRecurringSubscription(ctx, in, out)
+}
+
+func (h *billingServiceHandler) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error {
+	return h.BillingServiceHandler.FindSubscriptions(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error {
+	return h.BillingServiceHandler.GetSubscription(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, out *GetSubscriptionsOrdersResponse) error {
+	return h.BillingServiceHandler.GetSubscriptionsOrders(ctx, in, out)
 }
 
 func (h *billingServiceHandler) AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error {
