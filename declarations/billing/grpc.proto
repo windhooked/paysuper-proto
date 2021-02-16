@@ -250,6 +250,8 @@ service BillingService {
     rpc DeleteRecurringPlan(DeleteRecurringPlanRequest) returns (DeleteRecurringPlanResponse) {}
     rpc GetRecurringPlan(GetRecurringPlanRequest) returns (GetRecurringPlanResponse) {}
     rpc GetRecurringPlans(GetRecurringPlansRequest) returns (GetRecurringPlansResponse) {}
+    rpc FindExpiredSubscriptions(FindExpiredSubscriptionsRequest) returns (FindExpiredSubscriptionsResponse) {}
+    rpc DeleteRecurringSubscription(DeleteRecurringSubscriptionRequest) returns (EmptyResponseWithStatus) {}
 
     rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
     rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
@@ -3788,6 +3790,25 @@ message GetRecurringPlansResponse {
     ResponseErrorMessage message = 2;
     repeated billing.RecurringPlan list = 3;
     int32 count = 4;
+}
+
+message FindExpiredSubscriptionsRequest {
+    string expire_at = 1;
+}
+
+message FindExpiredSubscriptionsResponse {
+    int32 status = 1;
+    ResponseErrorMessage message = 2;
+    repeated billing.RecurringPlan list = 3;
+}
+
+message DeleteSubscriptionRequest {
+    string id = 1;
+}
+
+message DeleteSubscriptionResponse {
+    int32 status = 1;
+    string message = 2;
 }
 
 message GetCustomerShortInfoRequest {
