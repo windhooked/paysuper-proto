@@ -54,6 +54,7 @@ jobs:
           cd ./go && ./generate.sh
 
       - name: Commit
+        if: github.event_name == 'push'
         run: |
           cd ./go
           git config --local user.email "github-actions"
