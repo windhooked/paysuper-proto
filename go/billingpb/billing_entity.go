@@ -38,6 +38,13 @@ func (m *Merchant) GetCompanyName() string {
 	return m.Company.Name
 }
 
+func (m *Merchant) GetTrademark() string {
+	if m.Company == nil || m.Company.Trademark == "" {
+		return ""
+	}
+	return m.Company.Trademark
+}
+
 func (m *Merchant) IsAgreementSigningStarted() bool {
 	return m.AgreementSignatureData != nil && (!m.HasPspSignature || !m.HasMerchantSignature)
 }

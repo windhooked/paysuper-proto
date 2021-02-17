@@ -148,138 +148,142 @@ message ProjectRedirectSettings {
 }
 
 message Project {
-  // @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
-  //
-  // The unique identifier for the project.
-  string id = 1;
-  // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
-  //
-  // The unique identifier for the project's merchant.
-  string merchant_id = 2;
-  // @inject_tag: json:"name" validate:"required" required:"true"
-  //
-  // The list of the project's localized names.
-  map<string, string> name = 3;
-  //@inject_tag: json:"-"
-  string reserved_4 = 4;
-  //@inject_tag: json:"-" validate:"omitempty,len=3"
-  string callback_currency = 5;
-  //@inject_tag: json:"callback_protocol" validate:"omitempty,oneof=default empty"
-  //
-  // The protocol of the payment notification. Available values: default - the webhook protocol that is set in the Project notification settings, empty - the webhook is not sent and the payment is immediately marked as successful in the PaySuper system.
-  string callback_protocol = 6;
-  //@inject_tag: json:"-" validate:"omitempty,dive,url"
-  repeated string create_order_allowed_urls = 7;
-  //@inject_tag: json:"-"
-  bool allow_dynamic_notify_urls = 8;
-  //@inject_tag: json:"-"
-  bool allow_dynamic_redirect_urls = 9;
-  //@inject_tag: json:"limits_currency" validate:"omitempty,len=3"
-  //
-  // The currency of the limit amount.
-  string limits_currency = 10;
-  // @inject_tag: json:"min_payment_amount" validate:"omitempty,numeric,gte=0"
-  //
-  // The minimum order amount.
-  double min_payment_amount = 11;
-  // @inject_tag: json:"max_payment_amount" validate:"omitempty,numeric,gte=0"
-  //
-  // The maximum order amount.
-  double max_payment_amount = 12;
-  // @inject_tag: json:"-" validate:"omitempty,dive,email"
-  repeated string notify_emails = 13;
-  // @inject_tag: json:"-"
-  bool is_products_checkout = 14;
-  // @inject_tag: json:"secret_key" validate:"omitempty,max=255"
-  //
-  // The project's secret key for sign notification requests
-  string secret_key = 15;
-  // @inject_tag: json:"-"
-  bool signature_required = 16;
-  // @inject_tag: json:"-"
-  bool send_notify_email = 17;
-  // @inject_tag: json:"-" validate:"omitempty,url"
-  string url_check_account = 18;
-  // @inject_tag: json:"url_process_payment" validate:"omitempty,url"
-  //
-  // The URL configured on the merchant project to get webhooks from PaySuper.
-  string url_process_payment = 19;
-  // @inject_tag: json:"url_redirect_fail" validate:"omitempty,url"
-  //
-  // The default URL to redirect a customer after the failed payment.
-  string url_redirect_fail = 20;
-  // @inject_tag: json:"url_redirect_success" validate:"omitempty,url"
-  //
-  // The default URL to redirect a customer after the successful payment.
-  string url_redirect_success = 21;
-  // @inject_tag: json:"status" validate:"omitempty,numeric,oneof=0 1 2 3 4"
-  //
-  // The project's status. Available values: 0 - the new project,
-  //1 - the project successfully completed integration tests,
-  //2 - the project failed some integration tests,
-  //3 - the project is on production,
-  //4 - the project is removed.
-  int32 status = 22;
-  // @inject_tag: json:"created_at"
-  //
-  // The date of the project creation.
-  google.protobuf.Timestamp created_at = 23;
-  // @inject_tag: json:"updated_at"
-  //
-  // The date of the project last update.
-  google.protobuf.Timestamp updated_at = 24;
-  // @inject_tag: json:"products_count"
-  //
-  // The number of products in the project.
-  int64 products_count = 25;
-  // @inject_tag: json:"-" validate:"omitempty,url"
-  string url_chargeback_payment = 26;
-  // @inject_tag: json:"-" validate:"omitempty,url"
-  string url_cancel_payment = 27;
-  // @inject_tag: json:"-" validate:"omitempty,url"
-  string url_fraud_payment = 28;
-  // @inject_tag: json:"-" validate:"omitempty,url"
-  string url_refund_payment = 29;
-  //@inject_tag: json:"localizations"
-  //
-  // The list of languages for the project's and its products descriptions localization.
-  repeated string localizations = 30;
-  //@inject_tag: json:"full_description"
-  //
-  // The localized extended descriptions of the project.
-  map<string, string> full_description = 31;
-  //@inject_tag: json:"short_description"
-  //
-  // The localized concise descriptions of the project.
-  map<string, string> short_description = 32;
-  //@inject_tag: json:"currencies" validate:"omitempty,dive"
-  //
-  //The list of the project's currencies.
-  repeated HasCurrencyItem currencies = 33;
-  //@inject_tag: json:"cover"
-  //
-  // The project's covers for each localization.
-  ImageCollection cover = 34;
-  //@inject_tag: json:"virtual_currency" validate:"omitempty,dive"
-  //
-  // The virtual currency settings.
-  ProjectVirtualCurrency virtual_currency = 35;
-  // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
-  //
-  // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
-  string vat_payer = 36;
-  //@inject_tag: json:"redirect_settings" bson:"redirect_settings" validate:"omitempty,dive"
-  //
-  //The customer's redirection settings for the successful or failed payment.
-  ProjectRedirectSettings redirect_settings = 37;
-  //@inject_tag: json:"webhook_testing"
-  //
-  // The object contains webhooks' tests results of various test cases.
-  WebHookTesting webhook_testing = 38;
-  //@inject_tag: json:"webhook_mode" validate:"omitempty,oneof=default pre_approval"
-  //
-  // The webhooks mode. Available values: default, pre_approval.
-  string webhook_mode = 39;
+    // @inject_tag: json:"id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+    //
+    // The unique identifier for the project.
+    string id = 1;
+    // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" required:"true" faker:"objectIdString"
+    //
+    // The unique identifier for the project's merchant.
+    string merchant_id = 2;
+    // @inject_tag: json:"name" validate:"required" required:"true"
+    //
+    // The list of the project's localized names.
+    map<string, string> name = 3;
+    //@inject_tag: json:"-"
+    string reserved_4 = 4;
+    //@inject_tag: json:"-" validate:"omitempty,len=3"
+    string callback_currency = 5;
+    //@inject_tag: json:"callback_protocol" validate:"omitempty,oneof=default empty"
+    //
+    // The protocol of the payment notification. Available values: default - the webhook protocol that is set in the Project notification settings, empty - the webhook is not sent and the payment is immediately marked as successful in the PaySuper system.
+    string callback_protocol = 6;
+    //@inject_tag: json:"-" validate:"omitempty,dive,url"
+    repeated string create_order_allowed_urls = 7;
+    //@inject_tag: json:"-"
+    bool allow_dynamic_notify_urls = 8;
+    //@inject_tag: json:"-"
+    bool allow_dynamic_redirect_urls = 9;
+    //@inject_tag: json:"limits_currency" validate:"omitempty,len=3"
+    //
+    // The currency of the limit amount.
+    string limits_currency = 10;
+    // @inject_tag: json:"min_payment_amount" validate:"omitempty,numeric,gte=0"
+    //
+    // The minimum order amount.
+    double min_payment_amount = 11;
+    // @inject_tag: json:"max_payment_amount" validate:"omitempty,numeric,gte=0"
+    //
+    // The maximum order amount.
+    double max_payment_amount = 12;
+    // @inject_tag: json:"-" validate:"omitempty,dive,email"
+    repeated string notify_emails = 13;
+    // @inject_tag: json:"-"
+    bool is_products_checkout = 14;
+    // @inject_tag: json:"secret_key" validate:"omitempty,max=255"
+    //
+    // The project's secret key for sign notification requests
+    string secret_key = 15;
+    // @inject_tag: json:"-"
+    bool signature_required = 16;
+    // @inject_tag: json:"-"
+    bool send_notify_email = 17;
+    // @inject_tag: json:"-" validate:"omitempty,url"
+    string url_check_account = 18;
+    // @inject_tag: json:"url_process_payment" validate:"omitempty,url"
+    //
+    // The URL configured on the merchant project to get webhooks from PaySuper.
+    string url_process_payment = 19;
+    // @inject_tag: json:"url_redirect_fail" validate:"omitempty,url"
+    //
+    // The default URL to redirect a customer after the failed payment.
+    string url_redirect_fail = 20;
+    // @inject_tag: json:"url_redirect_success" validate:"omitempty,url"
+    //
+    // The default URL to redirect a customer after the successful payment.
+    string url_redirect_success = 21;
+    // @inject_tag: json:"status" validate:"omitempty,numeric,oneof=0 1 2 3 4"
+    //
+    // The project's status. Available values: 0 - the new project,
+    //1 - the project successfully completed integration tests,
+    //2 - the project failed some integration tests,
+    //3 - the project is on production,
+    //4 - the project is removed.
+    int32 status = 22;
+    // @inject_tag: json:"created_at"
+    //
+    // The date of the project creation.
+    google.protobuf.Timestamp created_at = 23;
+    // @inject_tag: json:"updated_at"
+    //
+    // The date of the project last update.
+    google.protobuf.Timestamp updated_at = 24;
+    // @inject_tag: json:"products_count"
+    //
+    // The number of products in the project.
+    int64 products_count = 25;
+    // @inject_tag: json:"-" validate:"omitempty,url"
+    string url_chargeback_payment = 26;
+    // @inject_tag: json:"-" validate:"omitempty,url"
+    string url_cancel_payment = 27;
+    // @inject_tag: json:"-" validate:"omitempty,url"
+    string url_fraud_payment = 28;
+    // @inject_tag: json:"-" validate:"omitempty,url"
+    string url_refund_payment = 29;
+    //@inject_tag: json:"localizations"
+    //
+    // The list of languages for the project's and its products descriptions localization.
+    repeated string localizations = 30;
+    //@inject_tag: json:"full_description"
+    //
+    // The localized extended descriptions of the project.
+    map<string, string> full_description = 31;
+    //@inject_tag: json:"short_description"
+    //
+    // The localized concise descriptions of the project.
+    map<string, string> short_description = 32;
+    //@inject_tag: json:"currencies" validate:"omitempty,dive"
+    //
+    //The list of the project's currencies.
+    repeated HasCurrencyItem currencies = 33;
+    //@inject_tag: json:"cover"
+    //
+    // The project's covers for each localization.
+    ImageCollection cover = 34;
+    //@inject_tag: json:"virtual_currency" validate:"omitempty,dive"
+    //
+    // The virtual currency settings.
+    ProjectVirtualCurrency virtual_currency = 35;
+    // @inject_tag: json:"vat_payer" bson:"vat_payer" validate:"oneof=buyer seller nobody"
+    //
+    // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
+    string vat_payer = 36;
+    //@inject_tag: json:"redirect_settings" bson:"redirect_settings" validate:"omitempty,dive"
+    //
+    //The customer's redirection settings for the successful or failed payment.
+    ProjectRedirectSettings redirect_settings = 37;
+    //@inject_tag: json:"webhook_testing"
+    //
+    // The object contains webhooks' tests results of various test cases.
+    WebHookTesting webhook_testing = 38;
+    //@inject_tag: json:"webhook_mode" validate:"omitempty,oneof=default pre_approval"
+    //
+    // The webhooks mode. Available values: default, pre_approval.
+    string webhook_mode = 39;
+    //@inject_tag: json:"form_default_text"
+    //
+    // The localized default text on payment form ("In-game purchase").
+    map<string, string> form_default_text = 40;
 }
 
 message WebHookTesting {
@@ -343,56 +347,60 @@ message KeysTesting {
 }
 
 message ProjectOrder {
-  // @inject_tag: json:"id" faker:"objectIdString"
-  //
-  // The unique identifier for the project.
-  string id = 1;
-  // @inject_tag: json:"merchant_id" faker:"objectIdString"
-  //
-  // The unique identifier for the merchant.
-  string merchant_id = 2;
-  // The list of the project's localized names.
-  map<string, string> name = 3;
-  // The redirect URL for the successful payment.
-  string url_success = 4;
-  // The redirect URL for the failed payment.
-  string url_fail = 5;
-  // @inject_tag: json:"-"
-  repeated string notify_emails = 6;
-  // @inject_tag: json:"-"
-  string secret_key = 7;
-  // @inject_tag: json:"-"
-  bool send_notify_email = 8;
-  // The default URL to send a request to the merchant project for the payment data verification.
-  string url_check_account = 9;
-  // The default URL to send a notification request to the merchant project.
-  string url_process_payment = 10;
-  // The protocol of the payment notification. Available values: default - the webhook protocol that is set in the Project notification settings, empty - the webhook is not sent and the payment is immediately marked as successful in the PaySuper system.
-  string callback_protocol = 11;
-  // @inject_tag: json:"-"
-  string url_chargeback_payment = 12;
-  // @inject_tag: json:"-"
-  string url_cancel_payment = 13;
-  // @inject_tag: json:"-"
-  string url_fraud_payment = 14;
-  // @inject_tag: json:"-"
-  string url_refund_payment = 15;
-  // The project's status. Available values: 0 - the new project,
-  //1 - the project successfully completed integration tests,
-  //2 - the project failed some integration tests,
-  //3 - the project is on production,
-  //4 - the project is removed.
-  int32 status = 16;
-  // @inject_tag: json:"-"
-  string merchant_royalty_currency = 17;
-  //@inject_tag: json:"redirect_settings" bson:"redirect_settings" validate:"required,dive"
-  //
-  //The customer's redirection settings for the successful or failed payment.
-  ProjectRedirectSettings redirect_settings = 18;
-  //@inject_tag: json:"first_payment_at" bson:"first_payment_at"
-  //
-  // Date of first payment for merchant.
-  google.protobuf.Timestamp first_payment_at = 19;
+    // @inject_tag: json:"id" faker:"objectIdString"
+    //
+    // The unique identifier for the project.
+    string id = 1;
+    // @inject_tag: json:"merchant_id" faker:"objectIdString"
+    //
+    // The unique identifier for the merchant.
+    string merchant_id = 2;
+    // The list of the project's localized names.
+    map<string, string> name = 3;
+    // The redirect URL for the successful payment.
+    string url_success = 4;
+    // The redirect URL for the failed payment.
+    string url_fail = 5;
+    // @inject_tag: json:"-"
+    repeated string notify_emails = 6;
+    // @inject_tag: json:"-"
+    string secret_key = 7;
+    // @inject_tag: json:"-"
+    bool send_notify_email = 8;
+    // The default URL to send a request to the merchant project for the payment data verification.
+    string url_check_account = 9;
+    // The default URL to send a notification request to the merchant project.
+    string url_process_payment = 10;
+    // The protocol of the payment notification. Available values: default - the webhook protocol that is set in the Project notification settings, empty - the webhook is not sent and the payment is immediately marked as successful in the PaySuper system.
+    string callback_protocol = 11;
+    // @inject_tag: json:"-"
+    string url_chargeback_payment = 12;
+    // @inject_tag: json:"-"
+    string url_cancel_payment = 13;
+    // @inject_tag: json:"-"
+    string url_fraud_payment = 14;
+    // @inject_tag: json:"-"
+    string url_refund_payment = 15;
+    // The project's status. Available values: 0 - the new project,
+    //1 - the project successfully completed integration tests,
+    //2 - the project failed some integration tests,
+    //3 - the project is on production,
+    //4 - the project is removed.
+    int32 status = 16;
+    // @inject_tag: json:"-"
+    string merchant_royalty_currency = 17;
+    //@inject_tag: json:"redirect_settings" bson:"redirect_settings" validate:"required,dive"
+    //
+    //The customer's redirection settings for the successful or failed payment.
+    ProjectRedirectSettings redirect_settings = 18;
+    //@inject_tag: json:"first_payment_at" bson:"first_payment_at"
+    //
+    // Date of first payment for merchant.
+    google.protobuf.Timestamp first_payment_at = 19;
+    //@inject_tag: json:"form_default_text"
+    //
+    // The localized default text on payment form ("In-game purchase").
+    map<string, string> form_default_text = 20;
 }
 
 message MerchantContact {
@@ -515,50 +523,54 @@ message MerchantUser {
 }
 
 message MerchantCompanyInfo {
-  // @inject_tag: json:"name" validate:"required,company_name,max=60" required:"true"
-  //
-  // The merchant's company name.
-  string name = 1;
-  // @inject_tag: json:"alternative_name" bson:"alternative_name" validate:"required,company_name,max=60" required:"true"
-  //
-  // The merchant's company alternative name.
-  string alternative_name = 2;
-  // @inject_tag: json:"website" validate:"required,url" required:"true"
-  //
-  // The merchant's company website.
-  string website = 3;
-  // @inject_tag: json:"country" validate:"required,alpha,len=2" required:"true"
-  //
-  // The merchant's company country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
-  string country = 4;
-  // @inject_tag: json:"state"
-  //
-  // The merchant's company state.
-  string state = 5;
-  // @inject_tag: json:"zip" validate:"required,max=30" required:"true"
-  //
-  // The merchant's company ZIP code.
-  string zip = 6;
-  // @inject_tag: json:"city" validate:"required,city,max=60"
-  //
-  // The merchant's company city.
-  string city = 7;
-  // @inject_tag: json:"address" validate:"required,max=100"
-  //
-  // The merchant's company address.
-  string address = 8;
-  // @inject_tag: json:"address_additional" bson:"address_additional" validate:"omitempty,max=100"
-  //
-  // The merchant's company additional address.
-  string address_additional = 9;
-  // @inject_tag: json:"registration_number" bson:"registration_number" validate:"required,max=100" required:"true"
-  //
-  // The merchant's company registration number.
-  string registration_number = 10;
-  // @inject_tag: json:"tax_id" bson:"tax_id"
-  //
-  // The merchant's company tax number.
-  string tax_id = 11;
+    // @inject_tag: json:"name" validate:"required,company_name,max=60" required:"true"
+    //
+    // The merchant's company name.
+    string name = 1;
+    // @inject_tag: json:"alternative_name" bson:"alternative_name" validate:"required,company_name,max=60" required:"true"
+    //
+    // The merchant's company alternative name.
+    string alternative_name = 2;
+    // @inject_tag: json:"website" validate:"required,url" required:"true"
+    //
+    // The merchant's company website.
+    string website = 3;
+    // @inject_tag: json:"country" validate:"required,alpha,len=2" required:"true"
+    //
+    // The merchant's company country. Two-letter country code in ISO 3166-1, in uppercase (for instance US).
+    string country = 4;
+    // @inject_tag: json:"state"
+    //
+    // The merchant's company state.
+    string state = 5;
+    // @inject_tag: json:"zip" validate:"required,max=30" required:"true"
+    //
+    // The merchant's company ZIP code.
+    string zip = 6;
+    // @inject_tag: json:"city" validate:"required,city,max=60"
+    //
+    // The merchant's company city.
+    string city = 7;
+    // @inject_tag: json:"address" validate:"required,max=100"
+    //
+    // The merchant's company address.
+    string address = 8;
+    // @inject_tag: json:"address_additional" bson:"address_additional" validate:"omitempty,max=100"
+    //
+    // The merchant's company additional address.
+    string address_additional = 9;
+    // @inject_tag: json:"registration_number" bson:"registration_number" validate:"required,max=100" required:"true"
+    //
+    // The merchant's company registration number.
+    string registration_number = 10;
+    // @inject_tag: json:"tax_id" bson:"tax_id"
+    //
+    // The merchant's company tax number.
+    string tax_id = 11;
+    // @inject_tag: json:"trademark" bson:"trademark"
+    //
+    // The merchant's trade mark.
+    string trademark = 12;
 }
 
 message MerchantCompletedSteps {
@@ -2626,30 +2638,46 @@ message AccountingEntry {
 }
 
 message RoyaltyReportTotals {
-  //@inject_tag: bson:"transactions_count"
-  //
-  // The total transactions.
-  int32 transactions_count = 2;
-  //@inject_tag: bson:"fee_amount"
-  //
-  // The amount of fees.
-  double fee_amount = 3;
-  //@inject_tag: bson:"vat_amount"
-  //
-  // The amount of VAT.
-  double vat_amount = 4;
-  //@inject_tag: bson:"payout_amount"
-  //
-  // The payout amount.
-  double payout_amount = 5;
-  //@inject_tag: bson:"rolling_reserve_total_amount"
-  //
-  // The rolling reserve amount.
-  double rolling_reserve_amount = 6;
-  //@inject_tag: bson:"correction_total_amount"
-  //
-  // The corrections amount.
-  double correction_amount = 7;
+    //@inject_tag: bson:"transactions_count"
+    //
+    // The total transactions.
+    int32 transactions_count = 2;
+    //@inject_tag: bson:"fee_amount"
+    //
+    // The amount of fees.
+    double fee_amount = 3;
+    //@inject_tag: bson:"vat_amount"
+    //
+    // The amount of VAT.
+    double vat_amount = 4;
+    //@inject_tag: bson:"payout_amount"
+    //
+    // The payout amount.
+    double payout_amount = 5;
+    //@inject_tag: bson:"rolling_reserve_total_amount"
+    //
+    // The rolling reserve amount.
+    double rolling_reserve_amount = 6;
+    //@inject_tag: bson:"correction_total_amount"
+    //
+    // The corrections amount.
+    double correction_amount = 7;
+    //@inject_tag: json:"b2b_vat_rate" bson:"b2b_vat_rate" validate:"numeric,gte=0"
+    //
+    // Effective rate of b2b_vat.
+    double b2b_vat_rate = 8;
+    //@inject_tag: json:"b2b_vat_base" bson:"b2b_vat_base" validate:"numeric,gte=0"
+    //
+    // The b2b vat base.
+    double b2b_vat_base = 9;
+    //@inject_tag: json:"b2b_vat_amount" bson:"b2b_vat_amount" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double b2b_vat_amount = 10;
+    //@inject_tag: json:"final_payout_amount" bson:"final_payout_amount" validate:"numeric,gte=0"
+    //
+    // The final payout amount.
+    double final_payout_amount = 11;
 }
 
 message RoyaltyReportProductSummaryItem {
@@ -4035,102 +4063,106 @@ message MerchantBalance {
 }
 
 message OrderReceipt {
-  //@inject_tag: json:"total_price"
-  //
-  // The total order price not including VAT formatted with a sign of the order currency.
-  string total_price = 1;
-  //@inject_tag: json:"transaction_id"
-  //
-  // The unique identifier for the transaction.
-  string transaction_id = 2;
-  //@inject_tag: json:"transaction_date"
-  //
-  // The transaction date.
-  string transaction_date = 3;
-  //@inject_tag: json:"project_name"
-  //
-  // The project's name.
-  string project_name = 4;
-  //@inject_tag: json:"merchant_name"
-  //
-  // The merchant's name.
-  string merchant_name = 5;
-  //@inject_tag: json:"items"
-  //
-  // The receipt's items data.
-  repeated OrderReceiptItem items = 6;
-  //@inject_tag: json:"order_type"
-  //
-  // The type of the order.
-  string order_type = 7;
-  //@inject_tag: json:"platform_name"
-  //
-  // The platform's name (if any).
-  string platform_name = 8;
-  //@inject_tag: json:"payment_partner"
-  //
-  // The payment partner's name.
-  string payment_partner = 9;
-  // @inject_tag: json:"vat_payer"
-  //
-  // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
-  string vat_payer = 10;
-  //@inject_tag: json:"vat_in_order_currency"
-  //
-  // VAT amount formatted with a sign of the order currency.
-  string vat_in_order_currency = 11;
-  //@inject_tag: json:"vat_in_charge_currency"
-  //
-  // VAT amount formatted with an order charge currency sign.
-  string vat_in_charge_currency = 12;
-  //@inject_tag: json:"total_amount"
-  //
-  // The order total amount including VAT formatted with a sign of the order currency.
-  string total_amount = 13;
-  //@inject_tag: json:"total_charge"
-  //
-  // The order total amount including VAT formatted with a sign of the order charge currency.
-  string total_charge = 14;
-  //@inject_tag: json:"receipt_id"
-  //
-  // The unique identifier for the order receipt.
-  string receipt_id = 15;
-  //@inject_tag: json:"url"
-  //
-  // The order receipt URL.
-  string url = 16;
-  //@inject_tag: json:"vat_rate"
-  //
-  // The order VAT rate formatted with a percent sign.
-  string vat_rate = 17;
-  //@inject_tag: json:"customer_email"
-  //
-  //The customer's email.
-  string customer_email = 18;
-  //@inject_tag: json:"customer_uuid"
-  //
-  //The customer's public identifier.
-  string customer_uuid = 19;
-  //@inject_tag: json:"subscription_view_url"
-  //
-  //The url for show recurring subscription of customer.
-  string subscription_view_url = 20;
-  //@inject_tag: json:"subscriptions_management_url"
-  //
-  //The url for manage recurring subscriptions of customer.
-  string subscriptions_management_url = 21;
-  //@inject_tag: json:"recurring_period"
-  //
-  //The period alias for recurring payments.
-  string recurring_period = 22;
-  //@inject_tag: json:"recurring_interval"
-  //
-  //The interval for recurring period.
-  string recurring_interval = 23;
-  //@inject_tag: json:"recurring_date_end"
-  //
-  //The last day for recurring payments.
-  string recurring_date_end = 24;
+    //@inject_tag: json:"total_price"
+    //
+    // The total order price not including VAT formatted with a sign of the order currency.
+    string total_price = 1;
+    //@inject_tag: json:"transaction_id"
+    //
+    // The unique identifier for the transaction.
+    string transaction_id = 2;
+    //@inject_tag: json:"transaction_date"
+    //
+    // The transaction date.
+    string transaction_date = 3;
+    //@inject_tag: json:"project_name"
+    //
+    // The project's name.
+    string project_name = 4;
+    //@inject_tag: json:"merchant_name"
+    //
+    // The merchant's name.
+    string merchant_name = 5;
+    //@inject_tag: json:"items"
+    //
+    // The receipt's items data.
+    repeated OrderReceiptItem items = 6;
+    //@inject_tag: json:"order_type"
+    //
+    // The type of the order.
+    string order_type = 7;
+    //@inject_tag: json:"platform_name"
+    //
+    // The platform's name (if any).
+    string platform_name = 8;
+    //@inject_tag: json:"payment_partner"
+    //
+    // The payment partner's name.
+    string payment_partner = 9;
+    // @inject_tag: json:"vat_payer"
+    //
+    // The responsible for VAT. Available values: buyer (VAT is added to the order charge), seller (VAT is included in the order charge), nobody (VAT exempt).
+    string vat_payer = 10;
+    //@inject_tag: json:"vat_in_order_currency"
+    //
+    // VAT amount formatted with a sign of the order currency.
+    string vat_in_order_currency = 11;
+    //@inject_tag: json:"vat_in_charge_currency"
+    //
+    // VAT amount formatted with an order charge currency sign.
+    string vat_in_charge_currency = 12;
+    //@inject_tag: json:"total_amount"
+    //
+    // The order total amount including VAT formatted with a sign of the order currency.
+    string total_amount = 13;
+    //@inject_tag: json:"total_charge"
+    //
+    // The order total amount including VAT formatted with a sign of the order charge currency.
+    string total_charge = 14;
+    //@inject_tag: json:"receipt_id"
+    //
+    // The unique identifier for the order receipt.
+    string receipt_id = 15;
+    //@inject_tag: json:"url"
+    //
+    // The order receipt URL.
+    string url = 16;
+    //@inject_tag: json:"vat_rate"
+    //
+    // The order VAT rate formatted with a percent sign.
+    string vat_rate = 17;
+    //@inject_tag: json:"customer_email"
+    //
+    //The customer's email.
+    string customer_email = 18;
+    //@inject_tag: json:"customer_uuid"
+    //
+    //The customer's public identifier.
+    string customer_uuid = 19;
+    //@inject_tag: json:"subscription_view_url"
+    //
+    //The url for show recurring subscription of customer.
+    string subscription_view_url = 20;
+    //@inject_tag: json:"subscriptions_management_url"
+    //
+    //The url for manage recurring subscriptions of customer.
+    string subscriptions_management_url = 21;
+    //@inject_tag: json:"recurring_period"
+    //
+    //The period alias for recurring payments.
+    string recurring_period = 22;
+    //@inject_tag: json:"recurring_interval"
+    //
+    //The interval for recurring period.
+    string recurring_interval = 23;
+    //@inject_tag: json:"recurring_date_end"
+    //
+    //The last day for recurring payments.
+    string recurring_date_end = 24;
+    // @inject_tag: json:"trademark"
+    //
+    // The merchant's trade mark.
+    string trademark = 25;
 }
 
 message OrderReceiptItem {
@@ -4537,22 +4569,42 @@ message RoleListItem {
 }
 
 message ActOfCompletionDocument {
-  //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
-  //
-  // The unique identifier for the merchant who is the owner of the payout document.
-  string merchant_id = 1;
-  // @inject_tag: json:"total_fees" validate:"numeric,gte=0"
-  //
-  // The total amount of fees.
-  double total_fees = 2;
-  // @inject_tag: json:"balance" validate:"numeric,gte=0"
-  //
-  // The payout amount.
-  double balance = 3;
-  // @inject_tag: json:"total_transactions"
-  //
-  // The total number of transactions.
-  int32 total_transactions = 4;
+    //@inject_tag: json:"merchant_id" bson:"merchant_id" validate:"omitempty,hexadecimal,len=24" faker:"objectIdString"
+    //
+    // The unique identifier for the merchant who is the owner of the payout document.
+    string merchant_id = 1;
+    // @inject_tag: json:"total_fees" validate:"numeric,gte=0"
+    //
+    // The total amount of fees.
+    double total_fees = 2;
+    // @inject_tag: json:"balance" validate:"numeric,gte=0"
+    //
+    // The payout amount.
+    double balance = 3;
+    // @inject_tag: json:"total_transactions"
+    //
+    // The total number of transactions.
+    int32 total_transactions = 4;
+    // @inject_tag: json:"b2b_vat_base" bson:"b2b_vat_base" validate:"numeric,gte=0"
+    //
+    // The total Licensee Revenue Share amount as base for b2b vat calculation
+    double b2b_vat_base = 5;
+    //@inject_tag: json:"b2b_vat_rate" bson:"b2b_vat_rate" validate:"numeric,gte=0"
+    //
+    // Effective rate of b2b_vat.
+    double b2b_vat_rate = 6;
+    // @inject_tag: json:"b2b_vat_amount" bson:"b2b_vat_amount" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double b2b_vat_amount = 7;
+    // @inject_tag: json:"fees_excluding_vat" bson:"fees_excluding_vat" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double fees_excluding_vat = 8;
+    // @inject_tag: json:"corrections_amount" bson:"corrections_amount" validate:"numeric,gte=0"
+    //
+    // The b2b vat amount.
+    double corrections_amount = 9;
 }
 
 message BrowserCookie {
