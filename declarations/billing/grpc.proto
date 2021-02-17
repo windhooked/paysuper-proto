@@ -597,6 +597,10 @@ message PaymentFormJsonDataProject {
     //
     //Object contain setting for user's redirect after when payment ending
     billing.ProjectRedirectSettings redirect_settings = 5;
+    // @inject_tag: json:"form_default_text"
+    //
+    // The localized default text on payment form ("In-game purchase")
+    string form_default_text = 6;
 }
 
 message PaymentFormJsonData {
