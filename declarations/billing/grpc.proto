@@ -3848,9 +3848,9 @@ message CustomerShortInfo {
 message GetSubscriptionsOrdersRequest {
   string cookie = 1;
   // @inject_tag: query:"limit" validate:"omitempty,numeric,gt=0"
-  int32 limit = 4;
+  int64 limit = 4;
   // @inject_tag: query:"offset" validate:"omitempty,numeric,gte=0"
-  int32 offset = 5;
+  int64 offset = 5;
   // @inject_tag: param:"merchant_id"
   string merchant_id = 6;
   // @inject_tag: param:"project_id"
