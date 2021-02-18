@@ -3859,7 +3859,7 @@ message GetSubscriptionsOrdersRequest {
   string subscription_id = 8;
   // @inject_tag: query:"user_id" param:"user_id" validate:"omitempty,hexadecimal,len=24"
   string user_id = 9;
-  // @inject_tag: query:"status" validate:"omitempty,oneof=active canceled no_renewing"
+  // @inject_tag: query:"status" validate:"omitempty,oneof=processed canceled rejected refunded"
   string status = 10;
   // @inject_tag: query:"datetime_from" validate:"omitempty,datetime"
   string datetime_from = 11;
