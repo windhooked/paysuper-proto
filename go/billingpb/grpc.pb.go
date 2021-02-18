@@ -23301,8 +23301,8 @@ type GetSubscriptionsOrdersRequest struct {
 	SubscriptionId string `protobuf:"bytes,8,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty" query:"subscription_id"`
 	// @inject_tag: query:"user_id" param:"user_id" validate:"omitempty,hexadecimal,len=24"
 	UserId string `protobuf:"bytes,9,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" query:"user_id" param:"user_id" validate:"omitempty,hexadecimal,len=24"`
-	// @inject_tag: query:"status" validate:"omitempty,oneof=active canceled no_renewing"
-	Status string `protobuf:"bytes,10,opt,name=status,proto3" json:"status,omitempty" query:"status" validate:"omitempty,oneof=active canceled no_renewing"`
+	// @inject_tag: query:"status" validate:"omitempty,oneof=processed canceled rejected refunded"
+	Status string `protobuf:"bytes,10,opt,name=status,proto3" json:"status,omitempty" query:"status" validate:"omitempty,oneof=processed canceled rejected refunded"`
 	// @inject_tag: query:"datetime_from" validate:"omitempty,datetime"
 	DatetimeFrom string `protobuf:"bytes,11,opt,name=datetime_from,json=datetimeFrom,proto3" json:"datetime_from,omitempty" query:"datetime_from" validate:"omitempty,datetime"`
 	// @inject_tag: query:"datetime_to" validate:"omitempty,datetime"
