@@ -781,3 +781,31 @@ func (m *Order) HasRecurringPlan() bool {
 func (m *Order) HasRecurringSubscription() bool {
 	return m.RecurringSubscriptionId != ""
 }
+
+func (p *RecurringPlan) GetExpirationTime() (*time.Time, error) {
+	if p.Expiration == nil {
+		return nil, nil
+	}
+
+	if p.CreatedAt == nil {
+		p.CreatedAt = ptypes.TimestampNow()
+	}
+
+	expireAt, err := ptypes.Timestamp(p.CreatedAt)
+	if err != nil {
+		return nil, err
+	}
+
+	value := int(p.Charge.Period.Value)
+
+	switch p.Charge.Period.Type {
+	case RecurringPeriodDay:
+		expireAt = expireAt.AddDate(0, 0, value)
+	case RecurringPeriodMonth:
+		expireAt = expireAt.AddDate(0, value, 0)
+	default:
+		return nil, fmt.Errorf("invalid expiration type")
+	}
+
+	return &expireAt, nil
+}
