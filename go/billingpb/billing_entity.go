@@ -781,23 +781,3 @@ func (m *Order) HasRecurringPlan() bool {
 func (m *Order) HasRecurringSubscription() bool {
 	return m.RecurringSubscriptionId != ""
 }
-
-func (p *RecurringPlan) GetChargeExpireTime() time.Time {
-	expireAt := time.Now().UTC()
-	value := int(p.Charge.Period.Value)
-
-	switch p.Charge.Period.Type {
-	case RecurringPeriodMinute:
-		return expireAt.Add(time.Duration(value) * time.Minute)
-	case RecurringPeriodDay:
-		return expireAt.AddDate(0, 0, value)
-	case RecurringPeriodWeek:
-		return expireAt.AddDate(0, 0, value*7)
-	case RecurringPeriodMonth:
-		return expireAt.AddDate(0, value, 0)
-	case RecurringPeriodYear:
-		return expireAt.AddDate(value, 0, 0)
-	}
-
-	return expireAt
-}
