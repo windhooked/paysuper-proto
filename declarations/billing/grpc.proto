@@ -3714,7 +3714,7 @@ message FindSubscriptionsResponse {
   ResponseErrorMessage message = 2;
   int32 status = 3;
   //@inject_tag: json:"count"
-  int32 count = 4;
+  int64 count = 4;
 }
 
 message AddRecurringPlanResponse {
@@ -3871,7 +3871,7 @@ message GetSubscriptionsOrdersResponse {
   int32 status = 1;
   ResponseErrorMessage message = 2;
   repeated billing.SubscriptionOrder list = 3;
-  int32 count = 4;
+  int64 count = 4;
 }
 
 message DeleteRecurringSubscriptionRequest {
