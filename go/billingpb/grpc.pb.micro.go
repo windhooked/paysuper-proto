@@ -225,6 +225,7 @@ type BillingService interface {
 	SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error)
 	GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
+	GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error)
 	DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error)
 	DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	AddRecurringPlan(ctx context.Context, in *RecurringPlan, opts ...client.CallOption) (*AddRecurringPlanResponse, error)
@@ -2162,6 +2163,16 @@ func (c *billingService) GetCustomerInfo(ctx context.Context, in *GetCustomerInf
 	return out, nil
 }
 
+func (c *billingService) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetCustomerShortInfo", in)
+	out := new(GetCustomerShortInfoResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.DeserializeCookie", in)
 	out := new(DeserializeCookieResponse)
@@ -2525,6 +2536,7 @@ type BillingServiceHandler interface {
 	SetCustomerPaymentActivity(context.Context, *SetCustomerPaymentActivityRequest, *EmptyResponseWithStatus) error
 	GetCustomerList(context.Context, *ListCustomersRequest, *ListCustomersResponse) error
 	GetCustomerInfo(context.Context, *GetCustomerInfoRequest, *GetCustomerInfoResponse) error
+	GetCustomerShortInfo(context.Context, *GetCustomerShortInfoRequest, *GetCustomerShortInfoResponse) error
 	DeserializeCookie(context.Context, *DeserializeCookieRequest, *DeserializeCookieResponse) error
 	DeleteCustomerCard(context.Context, *DeleteCustomerCardRequest, *EmptyResponseWithStatus) error
 	AddRecurringPlan(context.Context, *RecurringPlan, *AddRecurringPlanResponse) error
@@ -2736,6 +2748,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error
 		GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error
 		GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error
+		GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error
 		DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error
 		DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *EmptyResponseWithStatus) error
 		AddRecurringPlan(ctx context.Context, in *RecurringPlan, out *AddRecurringPlanResponse) error
@@ -3523,6 +3536,10 @@ func (h *billingServiceHandler) GetCustomerList(ctx context.Context, in *ListCus
 
 func (h *billingServiceHandler) GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error {
 	return h.BillingServiceHandler.GetCustomerInfo(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error {
+	return h.BillingServiceHandler.GetCustomerShortInfo(ctx, in, out)
 }
 
 func (h *billingServiceHandler) DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error {
