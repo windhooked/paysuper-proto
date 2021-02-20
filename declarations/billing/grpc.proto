@@ -238,6 +238,7 @@ service BillingService {
 
   rpc GetCustomerList(ListCustomersRequest) returns (ListCustomersResponse) {}
   rpc GetCustomerInfo(GetCustomerInfoRequest) returns (GetCustomerInfoResponse) {}
+  rpc GetCustomerShortInfo(GetCustomerShortInfoRequest) returns (GetCustomerShortInfoResponse) {}
 
   rpc DeserializeCookie(DeserializeCookieRequest) returns (DeserializeCookieResponse) {}
 
