@@ -841,6 +841,20 @@ func (_m *BillingServiceHandler) FindByZipCode(_a0 context.Context, _a1 *billing
 	return r0
 }
 
+// FindExpiredSubscriptions provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) FindExpiredSubscriptions(_a0 context.Context, _a1 *billingpb.FindExpiredSubscriptionsRequest, _a2 *billingpb.FindExpiredSubscriptionsResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindExpiredSubscriptionsRequest, *billingpb.FindExpiredSubscriptionsResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // FindSubscriptions provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) FindSubscriptions(_a0 context.Context, _a1 *billingpb.FindSubscriptionsRequest, _a2 *billingpb.FindSubscriptionsResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -1989,12 +2003,12 @@ func (_m *BillingServiceHandler) GetSubscription(_a0 context.Context, _a1 *billi
 	return r0
 }
 
-// GetSubscriptionOrders provides a mock function with given fields: _a0, _a1, _a2
-func (_m *BillingServiceHandler) GetSubscriptionOrders(_a0 context.Context, _a1 *billingpb.GetSubscriptionOrdersRequest, _a2 *billingpb.GetSubscriptionOrdersResponse) error {
+// GetSubscriptionsOrders provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetSubscriptionsOrders(_a0 context.Context, _a1 *billingpb.GetSubscriptionsOrdersRequest, _a2 *billingpb.GetSubscriptionsOrdersResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionOrdersRequest, *billingpb.GetSubscriptionOrdersResponse) error); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionsOrdersRequest, *billingpb.GetSubscriptionsOrdersResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
