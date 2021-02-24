@@ -7,6 +7,9 @@ const (
 	PayOneTopicNotifyPaymentName  = "notify-payment"
 	PayOneTopicNotifyMerchantName = "notify-merchant"
 
+	RecurringSubscriptionExchangeName = "recurring-subscription"
+	RecurringSubscriptionDeleteTopic  = "recurring-delete-subscription"
+
 	OrderPublicStatusCreated    = "created"
 	OrderPublicStatusProcessed  = "processed"
 	OrderPublicStatusCanceled   = "canceled"
