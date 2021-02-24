@@ -212,6 +212,14 @@ func (m *Project) IsDeleted() bool {
 	return m.Status == ProjectStatusDeleted
 }
 
+func (m *Project) HasConfiguredLimits() bool {
+	return m.LimitsCurrency != "" && (m.MinPaymentAmount > 0 || m.MaxPaymentAmount > 0)
+}
+
+func (m *PaymentMethod) HasConfiguredLimits() bool {
+	return m.LimitsCurrency != "" && (m.MinPaymentAmount > 0 || m.MaxPaymentAmount > 0)
+}
+
 func (m *Order) CanBeRecreated() bool {
 	if m.PrivateStatus != recurringpb.OrderStatusPaymentSystemRejectOnCreate &&
 		m.PrivateStatus != recurringpb.OrderStatusPaymentSystemReject &&
