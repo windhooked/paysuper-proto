@@ -1598,6 +1598,10 @@ message PaymentMethod {
     //
     // Has a true value if the payment method allows a recurring.
     bool recurring_allowed = 18;
+    //@inject_tag: json:"limits_currency" validate:"omitempty,len=3"
+    //
+    // The currency of the limit amount.
+    string limits_currency = 19;
 }
 
 message CardExpire {
