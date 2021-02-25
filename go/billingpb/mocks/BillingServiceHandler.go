@@ -2199,6 +2199,34 @@ func (_m *BillingServiceHandler) MerchantReviewRoyaltyReport(_a0 context.Context
 	return r0
 }
 
+// MerchantSuspend provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) MerchantSuspend(_a0 context.Context, _a1 *billingpb.MerchantSuspendRequest, _a2 *billingpb.EmptyResponseWithStatus) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.MerchantSuspendRequest, *billingpb.EmptyResponseWithStatus) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// MerchantUnsuspend provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) MerchantUnsuspend(_a0 context.Context, _a1 *billingpb.MerchantUnsuspendRequest, _a2 *billingpb.EmptyResponseWithStatus) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.MerchantUnsuspendRequest, *billingpb.EmptyResponseWithStatus) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // NotifyWebhookTestResults provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) NotifyWebhookTestResults(_a0 context.Context, _a1 *billingpb.NotifyWebhookTestResultsRequest, _a2 *billingpb.EmptyResponseWithStatus) error {
 	ret := _m.Called(_a0, _a1, _a2)
