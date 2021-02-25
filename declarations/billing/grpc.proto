@@ -30,6 +30,8 @@ service BillingService {
     rpc GetMerchantTariffRates (GetMerchantTariffRatesRequest) returns (GetMerchantTariffRatesResponse) {}
     rpc SetMerchantTariffRates (SetMerchantTariffRatesRequest) returns (CheckProjectRequestSignatureResponse) {}
     rpc ChangeMerchantManualPayouts(ChangeMerchantManualPayoutsRequest) returns (ChangeMerchantManualPayoutsResponse) {}
+    rpc MerchantSuspend(MerchantSuspendRequest) returns (EmptyResponseWithStatus) {}
+    rpc MerchantUnsuspend(MerchantUnsuspendRequest) returns (EmptyResponseWithStatus) {}
 
     rpc CreateNotification (NotificationRequest) returns (CreateNotificationResponse) {}
     rpc GetNotification (GetNotificationRequest) returns (billing.Notification) {}
@@ -3795,4 +3797,14 @@ message SetAllPaymentChannelCostMerchantResponse {
     ResponseErrorMessage message = 2;
     //@inject_tag: json:"items"
     repeated billing.PaymentChannelCostMerchant items = 3;
+}
+
+message MerchantSuspendRequest {
+    // @inject_tag: validate:"required,hexadecimal" json:"-"
+    string merchant_id = 1;
+}
+
+message MerchantUnsuspendRequest {
+    // @inject_tag: validate:"required,hexadecimal" json:"-"
+    string merchant_id = 1;
 }
