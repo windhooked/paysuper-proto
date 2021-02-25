@@ -4696,66 +4696,6 @@ func (_m *BillingService) MerchantReviewRoyaltyReport(ctx context.Context, in *b
 	return r0, r1
 }
 
-// MerchantSuspend provides a mock function with given fields: ctx, in, opts
-func (_m *BillingService) MerchantSuspend(ctx context.Context, in *billingpb.MerchantSuspendRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *billingpb.EmptyResponseWithStatus
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.MerchantSuspendRequest, ...client.CallOption) *billingpb.EmptyResponseWithStatus); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*billingpb.EmptyResponseWithStatus)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.MerchantSuspendRequest, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// MerchantUnsuspend provides a mock function with given fields: ctx, in, opts
-func (_m *BillingService) MerchantUnsuspend(ctx context.Context, in *billingpb.MerchantUnsuspendRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *billingpb.EmptyResponseWithStatus
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.MerchantUnsuspendRequest, ...client.CallOption) *billingpb.EmptyResponseWithStatus); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*billingpb.EmptyResponseWithStatus)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.MerchantUnsuspendRequest, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
 // NotifyWebhookTestResults provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) NotifyWebhookTestResults(ctx context.Context, in *billingpb.NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*billingpb.EmptyResponseWithStatus, error) {
 	_va := make([]interface{}, len(opts))
