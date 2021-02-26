@@ -3114,10 +3114,10 @@ type MerchantChangeStatusRequest struct {
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"-" validate:"required,hexadecimal"`
 	// @inject_tag: json:"-"
 	UserId string `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"-"`
-	// @inject_tag: validate:"omitempty,numeric,oneof=5 6"
+	// @inject_tag: validate:"omitempty,numeric,oneof=5 6 4 11"
 	//
-	// The merchant's status. Available values: 5 - removed, 6 - rejected.
-	Status int32 `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty" validate:"omitempty,numeric,oneof=5 6"`
+	// The merchant's status. Available values: 5 - removed, 6 - rejected, 4 - signed, 11 - suspend.
+	Status int32 `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty" validate:"omitempty,numeric,oneof=5 6 4 11"`
 	// The information about changes.
 	Message string `protobuf:"bytes,4,opt,name=message,proto3" json:"message,omitempty"`
 }
