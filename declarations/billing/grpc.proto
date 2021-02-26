@@ -3796,8 +3796,3 @@ message SetAllPaymentChannelCostMerchantResponse {
   //@inject_tag: json:"items"
   repeated billing.PaymentChannelCostMerchant items = 3;
 }
-
-message MerchantSuspendRequest {
-  // @inject_tag: validate:"required,hexadecimal" json:"-"
-  string merchant_id = 1;
-}
