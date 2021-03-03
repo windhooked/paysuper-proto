@@ -142,7 +142,7 @@ func (m *Merchant) IsHighRisk() bool {
 }
 
 func (m *Merchant) CanChangeStatusTo(status int32) bool {
-	if status == MerchantStatusDraft && (m.Status == MerchantStatusPending || m.Status == MerchantStatusRejected) {
+	if status == MerchantStatusDraft && (m.Status == MerchantStatusPending || m.Status == MerchantStatusRejected || m.Status == MerchantStatusKycStarted) {
 		return true
 	}
 
@@ -166,7 +166,7 @@ func (m *Merchant) CanChangeStatusTo(status int32) bool {
 		return true
 	}
 
-	if status == MerchantStatusAgreementSigned && m.Status == MerchantStatusAgreementSigning {
+	if status == MerchantStatusAgreementSigned && (m.Status == MerchantStatusAgreementSigning || m.Status == MerchantStatusSuspend) {
 		return true
 	}
 
@@ -175,6 +175,10 @@ func (m *Merchant) CanChangeStatusTo(status int32) bool {
 	}
 
 	if status == MerchantStatusDeleted && (m.Status == MerchantStatusRejected || m.Status == MerchantStatusDraft) {
+		return true
+	}
+
+	if status == MerchantStatusSuspend && m.Status == MerchantStatusAgreementSigned {
 		return true
 	}
 
