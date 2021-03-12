@@ -39,11 +39,6 @@ type RepositoryService interface {
 	DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, opts ...client.CallOption) (*DeleteSavedCardResponse, error)
 	FindSavedCards(ctx context.Context, in *SavedCardRequest, opts ...client.CallOption) (*SavedCardList, error)
 	FindSavedCardById(ctx context.Context, in *FindByStringValue, opts ...client.CallOption) (*SavedCard, error)
-	AddSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*AddSubscriptionResponse, error)
-	UpdateSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*UpdateSubscriptionResponse, error)
-	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
-	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
-	DeleteSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*DeleteSubscriptionResponse, error)
 }
 
 type repositoryService struct {
@@ -104,56 +99,6 @@ func (c *repositoryService) FindSavedCardById(ctx context.Context, in *FindByStr
 	return out, nil
 }
 
-func (c *repositoryService) AddSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*AddSubscriptionResponse, error) {
-	req := c.c.NewRequest(c.name, "Repository.AddSubscription", in)
-	out := new(AddSubscriptionResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *repositoryService) UpdateSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*UpdateSubscriptionResponse, error) {
-	req := c.c.NewRequest(c.name, "Repository.UpdateSubscription", in)
-	out := new(UpdateSubscriptionResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *repositoryService) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
-	req := c.c.NewRequest(c.name, "Repository.GetSubscription", in)
-	out := new(GetSubscriptionResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *repositoryService) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
-	req := c.c.NewRequest(c.name, "Repository.FindSubscriptions", in)
-	out := new(FindSubscriptionsResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *repositoryService) DeleteSubscription(ctx context.Context, in *Subscription, opts ...client.CallOption) (*DeleteSubscriptionResponse, error) {
-	req := c.c.NewRequest(c.name, "Repository.DeleteSubscription", in)
-	out := new(DeleteSubscriptionResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Server API for Repository service
 
 type RepositoryHandler interface {
@@ -161,11 +106,6 @@ type RepositoryHandler interface {
 	DeleteSavedCard(context.Context, *DeleteSavedCardRequest, *DeleteSavedCardResponse) error
 	FindSavedCards(context.Context, *SavedCardRequest, *SavedCardList) error
 	FindSavedCardById(context.Context, *FindByStringValue, *SavedCard) error
-	AddSubscription(context.Context, *Subscription, *AddSubscriptionResponse) error
-	UpdateSubscription(context.Context, *Subscription, *UpdateSubscriptionResponse) error
-	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
-	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
-	DeleteSubscription(context.Context, *Subscription, *DeleteSubscriptionResponse) error
 }
 
 func RegisterRepositoryHandler(s server.Server, hdlr RepositoryHandler, opts ...server.HandlerOption) error {
@@ -174,11 +114,6 @@ func RegisterRepositoryHandler(s server.Server, hdlr RepositoryHandler, opts ...
 		DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, out *DeleteSavedCardResponse) error
 		FindSavedCards(ctx context.Context, in *SavedCardRequest, out *SavedCardList) error
 		FindSavedCardById(ctx context.Context, in *FindByStringValue, out *SavedCard) error
-		AddSubscription(ctx context.Context, in *Subscription, out *AddSubscriptionResponse) error
-		UpdateSubscription(ctx context.Context, in *Subscription, out *UpdateSubscriptionResponse) error
-		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
-		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
-		DeleteSubscription(ctx context.Context, in *Subscription, out *DeleteSubscriptionResponse) error
 	}
 	type Repository struct {
 		repository
@@ -205,24 +140,4 @@ func (h *repositoryHandler) FindSavedCards(ctx context.Context, in *SavedCardReq
 
 func (h *repositoryHandler) FindSavedCardById(ctx context.Context, in *FindByStringValue, out *SavedCard) error {
 	return h.RepositoryHandler.FindSavedCardById(ctx, in, out)
-}
-
-func (h *repositoryHandler) AddSubscription(ctx context.Context, in *Subscription, out *AddSubscriptionResponse) error {
-	return h.RepositoryHandler.AddSubscription(ctx, in, out)
-}
-
-func (h *repositoryHandler) UpdateSubscription(ctx context.Context, in *Subscription, out *UpdateSubscriptionResponse) error {
-	return h.RepositoryHandler.UpdateSubscription(ctx, in, out)
-}
-
-func (h *repositoryHandler) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error {
-	return h.RepositoryHandler.GetSubscription(ctx, in, out)
-}
-
-func (h *repositoryHandler) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error {
-	return h.RepositoryHandler.FindSubscriptions(ctx, in, out)
-}
-
-func (h *repositoryHandler) DeleteSubscription(ctx context.Context, in *Subscription, out *DeleteSubscriptionResponse) error {
-	return h.RepositoryHandler.DeleteSubscription(ctx, in, out)
 }

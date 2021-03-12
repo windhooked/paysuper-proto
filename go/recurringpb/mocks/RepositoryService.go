@@ -17,36 +17,6 @@ type RepositoryService struct {
 	mock.Mock
 }
 
-// AddSubscription provides a mock function with given fields: ctx, in, opts
-func (_m *RepositoryService) AddSubscription(ctx context.Context, in *recurringpb.Subscription, opts ...client.CallOption) (*recurringpb.AddSubscriptionResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *recurringpb.AddSubscriptionResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.Subscription, ...client.CallOption) *recurringpb.AddSubscriptionResponse); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*recurringpb.AddSubscriptionResponse)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *recurringpb.Subscription, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
 // DeleteSavedCard provides a mock function with given fields: ctx, in, opts
 func (_m *RepositoryService) DeleteSavedCard(ctx context.Context, in *recurringpb.DeleteSavedCardRequest, opts ...client.CallOption) (*recurringpb.DeleteSavedCardResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -69,36 +39,6 @@ func (_m *RepositoryService) DeleteSavedCard(ctx context.Context, in *recurringp
 
 	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, *recurringpb.DeleteSavedCardRequest, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// DeleteSubscription provides a mock function with given fields: ctx, in, opts
-func (_m *RepositoryService) DeleteSubscription(ctx context.Context, in *recurringpb.Subscription, opts ...client.CallOption) (*recurringpb.DeleteSubscriptionResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *recurringpb.DeleteSubscriptionResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.Subscription, ...client.CallOption) *recurringpb.DeleteSubscriptionResponse); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*recurringpb.DeleteSubscriptionResponse)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *recurringpb.Subscription, ...client.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)
@@ -167,66 +107,6 @@ func (_m *RepositoryService) FindSavedCards(ctx context.Context, in *recurringpb
 	return r0, r1
 }
 
-// FindSubscriptions provides a mock function with given fields: ctx, in, opts
-func (_m *RepositoryService) FindSubscriptions(ctx context.Context, in *recurringpb.FindSubscriptionsRequest, opts ...client.CallOption) (*recurringpb.FindSubscriptionsResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *recurringpb.FindSubscriptionsResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.FindSubscriptionsRequest, ...client.CallOption) *recurringpb.FindSubscriptionsResponse); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*recurringpb.FindSubscriptionsResponse)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *recurringpb.FindSubscriptionsRequest, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// GetSubscription provides a mock function with given fields: ctx, in, opts
-func (_m *RepositoryService) GetSubscription(ctx context.Context, in *recurringpb.GetSubscriptionRequest, opts ...client.CallOption) (*recurringpb.GetSubscriptionResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *recurringpb.GetSubscriptionResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.GetSubscriptionRequest, ...client.CallOption) *recurringpb.GetSubscriptionResponse); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*recurringpb.GetSubscriptionResponse)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *recurringpb.GetSubscriptionRequest, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
 // InsertSavedCard provides a mock function with given fields: ctx, in, opts
 func (_m *RepositoryService) InsertSavedCard(ctx context.Context, in *recurringpb.SavedCardRequest, opts ...client.CallOption) (*recurringpb.Result, error) {
 	_va := make([]interface{}, len(opts))
@@ -249,36 +129,6 @@ func (_m *RepositoryService) InsertSavedCard(ctx context.Context, in *recurringp
 
 	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, *recurringpb.SavedCardRequest, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// UpdateSubscription provides a mock function with given fields: ctx, in, opts
-func (_m *RepositoryService) UpdateSubscription(ctx context.Context, in *recurringpb.Subscription, opts ...client.CallOption) (*recurringpb.UpdateSubscriptionResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *recurringpb.UpdateSubscriptionResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.Subscription, ...client.CallOption) *recurringpb.UpdateSubscriptionResponse); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*recurringpb.UpdateSubscriptionResponse)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *recurringpb.Subscription, ...client.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)

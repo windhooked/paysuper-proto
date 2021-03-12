@@ -57,6 +57,20 @@ func (_m *BillingServiceHandler) AddOperatingCompany(_a0 context.Context, _a1 *b
 	return r0
 }
 
+// AddRecurringPlan provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) AddRecurringPlan(_a0 context.Context, _a1 *billingpb.RecurringPlan, _a2 *billingpb.AddRecurringPlanResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.RecurringPlan, *billingpb.AddRecurringPlanResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // AutoAcceptRoyaltyReports provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) AutoAcceptRoyaltyReports(_a0 context.Context, _a1 *billingpb.EmptyRequest, _a2 *billingpb.EmptyResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -687,6 +701,20 @@ func (_m *BillingServiceHandler) DeleteProject(_a0 context.Context, _a1 *billing
 	return r0
 }
 
+// DeleteRecurringPlan provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) DeleteRecurringPlan(_a0 context.Context, _a1 *billingpb.DeleteRecurringPlanRequest, _a2 *billingpb.DeleteRecurringPlanResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DeleteRecurringPlanRequest, *billingpb.DeleteRecurringPlanResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // DeleteRecurringSubscription provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) DeleteRecurringSubscription(_a0 context.Context, _a1 *billingpb.DeleteRecurringSubscriptionRequest, _a2 *billingpb.EmptyResponseWithStatus) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -721,6 +749,34 @@ func (_m *BillingServiceHandler) DeserializeCookie(_a0 context.Context, _a1 *bil
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DeserializeCookieRequest, *billingpb.DeserializeCookieResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// DisableRecurringPlan provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) DisableRecurringPlan(_a0 context.Context, _a1 *billingpb.DisableRecurringPlanRequest, _a2 *billingpb.DisableRecurringPlanResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.DisableRecurringPlanRequest, *billingpb.DisableRecurringPlanResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// EnableRecurringPlan provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) EnableRecurringPlan(_a0 context.Context, _a1 *billingpb.EnableRecurringPlanRequest, _a2 *billingpb.EnableRecurringPlanResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.EnableRecurringPlanRequest, *billingpb.EnableRecurringPlanResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
@@ -777,6 +833,20 @@ func (_m *BillingServiceHandler) FindByZipCode(_a0 context.Context, _a1 *billing
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindByZipCodeRequest, *billingpb.FindByZipCodeResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// FindExpiredSubscriptions provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) FindExpiredSubscriptions(_a0 context.Context, _a1 *billingpb.FindExpiredSubscriptionsRequest, _a2 *billingpb.FindExpiredSubscriptionsResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.FindExpiredSubscriptionsRequest, *billingpb.FindExpiredSubscriptionsResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
@@ -1849,6 +1919,34 @@ func (_m *BillingServiceHandler) GetRecommendedPriceTable(_a0 context.Context, _
 	return r0
 }
 
+// GetRecurringPlan provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetRecurringPlan(_a0 context.Context, _a1 *billingpb.GetRecurringPlanRequest, _a2 *billingpb.GetRecurringPlanResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetRecurringPlanRequest, *billingpb.GetRecurringPlanResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// GetRecurringPlans provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetRecurringPlans(_a0 context.Context, _a1 *billingpb.GetRecurringPlansRequest, _a2 *billingpb.GetRecurringPlansResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetRecurringPlansRequest, *billingpb.GetRecurringPlansResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetRefund provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetRefund(_a0 context.Context, _a1 *billingpb.GetRefundRequest, _a2 *billingpb.CreateRefundResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -1905,12 +2003,12 @@ func (_m *BillingServiceHandler) GetSubscription(_a0 context.Context, _a1 *billi
 	return r0
 }
 
-// GetSubscriptionOrders provides a mock function with given fields: _a0, _a1, _a2
-func (_m *BillingServiceHandler) GetSubscriptionOrders(_a0 context.Context, _a1 *billingpb.GetSubscriptionOrdersRequest, _a2 *billingpb.GetSubscriptionOrdersResponse) error {
+// GetSubscriptionsOrders provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetSubscriptionsOrders(_a0 context.Context, _a1 *billingpb.GetSubscriptionsOrdersRequest, _a2 *billingpb.GetSubscriptionsOrdersResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionOrdersRequest, *billingpb.GetSubscriptionOrdersResponse) error); ok {
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetSubscriptionsOrdersRequest, *billingpb.GetSubscriptionsOrdersResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
@@ -2779,6 +2877,20 @@ func (_m *BillingServiceHandler) UpdateProductPrices(_a0 context.Context, _a1 *b
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.UpdateProductPricesRequest, *billingpb.ResponseError) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// UpdateRecurringPlan provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) UpdateRecurringPlan(_a0 context.Context, _a1 *billingpb.RecurringPlan, _a2 *billingpb.UpdateRecurringPlanResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.RecurringPlan, *billingpb.UpdateRecurringPlanResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)

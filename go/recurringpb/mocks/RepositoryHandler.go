@@ -14,40 +14,12 @@ type RepositoryHandler struct {
 	mock.Mock
 }
 
-// AddSubscription provides a mock function with given fields: _a0, _a1, _a2
-func (_m *RepositoryHandler) AddSubscription(_a0 context.Context, _a1 *recurringpb.Subscription, _a2 *recurringpb.AddSubscriptionResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.Subscription, *recurringpb.AddSubscriptionResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // DeleteSavedCard provides a mock function with given fields: _a0, _a1, _a2
 func (_m *RepositoryHandler) DeleteSavedCard(_a0 context.Context, _a1 *recurringpb.DeleteSavedCardRequest, _a2 *recurringpb.DeleteSavedCardResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.DeleteSavedCardRequest, *recurringpb.DeleteSavedCardResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
-// DeleteSubscription provides a mock function with given fields: _a0, _a1, _a2
-func (_m *RepositoryHandler) DeleteSubscription(_a0 context.Context, _a1 *recurringpb.Subscription, _a2 *recurringpb.DeleteSubscriptionResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.Subscription, *recurringpb.DeleteSubscriptionResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
@@ -84,54 +56,12 @@ func (_m *RepositoryHandler) FindSavedCards(_a0 context.Context, _a1 *recurringp
 	return r0
 }
 
-// FindSubscriptions provides a mock function with given fields: _a0, _a1, _a2
-func (_m *RepositoryHandler) FindSubscriptions(_a0 context.Context, _a1 *recurringpb.FindSubscriptionsRequest, _a2 *recurringpb.FindSubscriptionsResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.FindSubscriptionsRequest, *recurringpb.FindSubscriptionsResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
-// GetSubscription provides a mock function with given fields: _a0, _a1, _a2
-func (_m *RepositoryHandler) GetSubscription(_a0 context.Context, _a1 *recurringpb.GetSubscriptionRequest, _a2 *recurringpb.GetSubscriptionResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.GetSubscriptionRequest, *recurringpb.GetSubscriptionResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // InsertSavedCard provides a mock function with given fields: _a0, _a1, _a2
 func (_m *RepositoryHandler) InsertSavedCard(_a0 context.Context, _a1 *recurringpb.SavedCardRequest, _a2 *recurringpb.Result) error {
 	ret := _m.Called(_a0, _a1, _a2)
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.SavedCardRequest, *recurringpb.Result) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
-// UpdateSubscription provides a mock function with given fields: _a0, _a1, _a2
-func (_m *RepositoryHandler) UpdateSubscription(_a0 context.Context, _a1 *recurringpb.Subscription, _a2 *recurringpb.UpdateSubscriptionResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *recurringpb.Subscription, *recurringpb.UpdateSubscriptionResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)

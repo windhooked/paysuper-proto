@@ -225,13 +225,21 @@ type BillingService interface {
 	SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	GetCustomerList(ctx context.Context, in *ListCustomersRequest, opts ...client.CallOption) (*ListCustomersResponse, error)
 	GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, opts ...client.CallOption) (*GetCustomerInfoResponse, error)
+	GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error)
 	DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error)
 	DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
-	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
-	GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error)
-	GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error)
+	AddRecurringPlan(ctx context.Context, in *RecurringPlan, opts ...client.CallOption) (*AddRecurringPlanResponse, error)
+	UpdateRecurringPlan(ctx context.Context, in *RecurringPlan, opts ...client.CallOption) (*UpdateRecurringPlanResponse, error)
+	EnableRecurringPlan(ctx context.Context, in *EnableRecurringPlanRequest, opts ...client.CallOption) (*EnableRecurringPlanResponse, error)
+	DisableRecurringPlan(ctx context.Context, in *DisableRecurringPlanRequest, opts ...client.CallOption) (*DisableRecurringPlanResponse, error)
+	DeleteRecurringPlan(ctx context.Context, in *DeleteRecurringPlanRequest, opts ...client.CallOption) (*DeleteRecurringPlanResponse, error)
+	GetRecurringPlan(ctx context.Context, in *GetRecurringPlanRequest, opts ...client.CallOption) (*GetRecurringPlanResponse, error)
+	GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, opts ...client.CallOption) (*GetRecurringPlansResponse, error)
+	FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, opts ...client.CallOption) (*FindExpiredSubscriptionsResponse, error)
 	DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
+	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
+	GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, opts ...client.CallOption) (*GetSubscriptionsOrdersResponse, error)
 	AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error)
 	GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error)
 	GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error)
@@ -2155,6 +2163,16 @@ func (c *billingService) GetCustomerInfo(ctx context.Context, in *GetCustomerInf
 	return out, nil
 }
 
+func (c *billingService) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetCustomerShortInfo", in)
+	out := new(GetCustomerShortInfoResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, opts ...client.CallOption) (*DeserializeCookieResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.DeserializeCookie", in)
 	out := new(DeserializeCookieResponse)
@@ -2175,9 +2193,9 @@ func (c *billingService) DeleteCustomerCard(ctx context.Context, in *DeleteCusto
 	return out, nil
 }
 
-func (c *billingService) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetSubscription", in)
-	out := new(GetSubscriptionResponse)
+func (c *billingService) AddRecurringPlan(ctx context.Context, in *RecurringPlan, opts ...client.CallOption) (*AddRecurringPlanResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.AddRecurringPlan", in)
+	out := new(AddRecurringPlanResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2185,9 +2203,9 @@ func (c *billingService) GetSubscription(ctx context.Context, in *GetSubscriptio
 	return out, nil
 }
 
-func (c *billingService) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, opts ...client.CallOption) (*GetCustomerShortInfoResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetCustomerShortInfo", in)
-	out := new(GetCustomerShortInfoResponse)
+func (c *billingService) UpdateRecurringPlan(ctx context.Context, in *RecurringPlan, opts ...client.CallOption) (*UpdateRecurringPlanResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.UpdateRecurringPlan", in)
+	out := new(UpdateRecurringPlanResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2195,9 +2213,59 @@ func (c *billingService) GetCustomerShortInfo(ctx context.Context, in *GetCustom
 	return out, nil
 }
 
-func (c *billingService) GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, opts ...client.CallOption) (*GetSubscriptionOrdersResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetSubscriptionOrders", in)
-	out := new(GetSubscriptionOrdersResponse)
+func (c *billingService) EnableRecurringPlan(ctx context.Context, in *EnableRecurringPlanRequest, opts ...client.CallOption) (*EnableRecurringPlanResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.EnableRecurringPlan", in)
+	out := new(EnableRecurringPlanResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) DisableRecurringPlan(ctx context.Context, in *DisableRecurringPlanRequest, opts ...client.CallOption) (*DisableRecurringPlanResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.DisableRecurringPlan", in)
+	out := new(DisableRecurringPlanResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) DeleteRecurringPlan(ctx context.Context, in *DeleteRecurringPlanRequest, opts ...client.CallOption) (*DeleteRecurringPlanResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.DeleteRecurringPlan", in)
+	out := new(DeleteRecurringPlanResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetRecurringPlan(ctx context.Context, in *GetRecurringPlanRequest, opts ...client.CallOption) (*GetRecurringPlanResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetRecurringPlan", in)
+	out := new(GetRecurringPlanResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, opts ...client.CallOption) (*GetRecurringPlansResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetRecurringPlans", in)
+	out := new(GetRecurringPlansResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, opts ...client.CallOption) (*FindExpiredSubscriptionsResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.FindExpiredSubscriptions", in)
+	out := new(FindExpiredSubscriptionsResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2218,6 +2286,26 @@ func (c *billingService) DeleteRecurringSubscription(ctx context.Context, in *De
 func (c *billingService) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.FindSubscriptions", in)
 	out := new(FindSubscriptionsResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetSubscription", in)
+	out := new(GetSubscriptionResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, opts ...client.CallOption) (*GetSubscriptionsOrdersResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetSubscriptionsOrders", in)
+	out := new(GetSubscriptionsOrdersResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2448,13 +2536,21 @@ type BillingServiceHandler interface {
 	SetCustomerPaymentActivity(context.Context, *SetCustomerPaymentActivityRequest, *EmptyResponseWithStatus) error
 	GetCustomerList(context.Context, *ListCustomersRequest, *ListCustomersResponse) error
 	GetCustomerInfo(context.Context, *GetCustomerInfoRequest, *GetCustomerInfoResponse) error
+	GetCustomerShortInfo(context.Context, *GetCustomerShortInfoRequest, *GetCustomerShortInfoResponse) error
 	DeserializeCookie(context.Context, *DeserializeCookieRequest, *DeserializeCookieResponse) error
 	DeleteCustomerCard(context.Context, *DeleteCustomerCardRequest, *EmptyResponseWithStatus) error
-	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
-	GetCustomerShortInfo(context.Context, *GetCustomerShortInfoRequest, *GetCustomerShortInfoResponse) error
-	GetSubscriptionOrders(context.Context, *GetSubscriptionOrdersRequest, *GetSubscriptionOrdersResponse) error
+	AddRecurringPlan(context.Context, *RecurringPlan, *AddRecurringPlanResponse) error
+	UpdateRecurringPlan(context.Context, *RecurringPlan, *UpdateRecurringPlanResponse) error
+	EnableRecurringPlan(context.Context, *EnableRecurringPlanRequest, *EnableRecurringPlanResponse) error
+	DisableRecurringPlan(context.Context, *DisableRecurringPlanRequest, *DisableRecurringPlanResponse) error
+	DeleteRecurringPlan(context.Context, *DeleteRecurringPlanRequest, *DeleteRecurringPlanResponse) error
+	GetRecurringPlan(context.Context, *GetRecurringPlanRequest, *GetRecurringPlanResponse) error
+	GetRecurringPlans(context.Context, *GetRecurringPlansRequest, *GetRecurringPlansResponse) error
+	FindExpiredSubscriptions(context.Context, *FindExpiredSubscriptionsRequest, *FindExpiredSubscriptionsResponse) error
 	DeleteRecurringSubscription(context.Context, *DeleteRecurringSubscriptionRequest, *EmptyResponseWithStatus) error
 	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
+	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
+	GetSubscriptionsOrders(context.Context, *GetSubscriptionsOrdersRequest, *GetSubscriptionsOrdersResponse) error
 	AddMerchantDocument(context.Context, *MerchantDocument, *AddMerchantDocumentResponse) error
 	GetMerchantDocuments(context.Context, *GetMerchantDocumentsRequest, *GetMerchantDocumentsResponse) error
 	GetMerchantDocument(context.Context, *GetMerchantDocumentRequest, *GetMerchantDocumentResponse) error
@@ -2652,13 +2748,21 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		SetCustomerPaymentActivity(ctx context.Context, in *SetCustomerPaymentActivityRequest, out *EmptyResponseWithStatus) error
 		GetCustomerList(ctx context.Context, in *ListCustomersRequest, out *ListCustomersResponse) error
 		GetCustomerInfo(ctx context.Context, in *GetCustomerInfoRequest, out *GetCustomerInfoResponse) error
+		GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error
 		DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error
 		DeleteCustomerCard(ctx context.Context, in *DeleteCustomerCardRequest, out *EmptyResponseWithStatus) error
-		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
-		GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error
-		GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error
+		AddRecurringPlan(ctx context.Context, in *RecurringPlan, out *AddRecurringPlanResponse) error
+		UpdateRecurringPlan(ctx context.Context, in *RecurringPlan, out *UpdateRecurringPlanResponse) error
+		EnableRecurringPlan(ctx context.Context, in *EnableRecurringPlanRequest, out *EnableRecurringPlanResponse) error
+		DisableRecurringPlan(ctx context.Context, in *DisableRecurringPlanRequest, out *DisableRecurringPlanResponse) error
+		DeleteRecurringPlan(ctx context.Context, in *DeleteRecurringPlanRequest, out *DeleteRecurringPlanResponse) error
+		GetRecurringPlan(ctx context.Context, in *GetRecurringPlanRequest, out *GetRecurringPlanResponse) error
+		GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, out *GetRecurringPlansResponse) error
+		FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, out *FindExpiredSubscriptionsResponse) error
 		DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error
 		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
+		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
+		GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, out *GetSubscriptionsOrdersResponse) error
 		AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error
 		GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error
 		GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error
@@ -3434,6 +3538,10 @@ func (h *billingServiceHandler) GetCustomerInfo(ctx context.Context, in *GetCust
 	return h.BillingServiceHandler.GetCustomerInfo(ctx, in, out)
 }
 
+func (h *billingServiceHandler) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error {
+	return h.BillingServiceHandler.GetCustomerShortInfo(ctx, in, out)
+}
+
 func (h *billingServiceHandler) DeserializeCookie(ctx context.Context, in *DeserializeCookieRequest, out *DeserializeCookieResponse) error {
 	return h.BillingServiceHandler.DeserializeCookie(ctx, in, out)
 }
@@ -3442,16 +3550,36 @@ func (h *billingServiceHandler) DeleteCustomerCard(ctx context.Context, in *Dele
 	return h.BillingServiceHandler.DeleteCustomerCard(ctx, in, out)
 }
 
-func (h *billingServiceHandler) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error {
-	return h.BillingServiceHandler.GetSubscription(ctx, in, out)
+func (h *billingServiceHandler) AddRecurringPlan(ctx context.Context, in *RecurringPlan, out *AddRecurringPlanResponse) error {
+	return h.BillingServiceHandler.AddRecurringPlan(ctx, in, out)
 }
 
-func (h *billingServiceHandler) GetCustomerShortInfo(ctx context.Context, in *GetCustomerShortInfoRequest, out *GetCustomerShortInfoResponse) error {
-	return h.BillingServiceHandler.GetCustomerShortInfo(ctx, in, out)
+func (h *billingServiceHandler) UpdateRecurringPlan(ctx context.Context, in *RecurringPlan, out *UpdateRecurringPlanResponse) error {
+	return h.BillingServiceHandler.UpdateRecurringPlan(ctx, in, out)
 }
 
-func (h *billingServiceHandler) GetSubscriptionOrders(ctx context.Context, in *GetSubscriptionOrdersRequest, out *GetSubscriptionOrdersResponse) error {
-	return h.BillingServiceHandler.GetSubscriptionOrders(ctx, in, out)
+func (h *billingServiceHandler) EnableRecurringPlan(ctx context.Context, in *EnableRecurringPlanRequest, out *EnableRecurringPlanResponse) error {
+	return h.BillingServiceHandler.EnableRecurringPlan(ctx, in, out)
+}
+
+func (h *billingServiceHandler) DisableRecurringPlan(ctx context.Context, in *DisableRecurringPlanRequest, out *DisableRecurringPlanResponse) error {
+	return h.BillingServiceHandler.DisableRecurringPlan(ctx, in, out)
+}
+
+func (h *billingServiceHandler) DeleteRecurringPlan(ctx context.Context, in *DeleteRecurringPlanRequest, out *DeleteRecurringPlanResponse) error {
+	return h.BillingServiceHandler.DeleteRecurringPlan(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetRecurringPlan(ctx context.Context, in *GetRecurringPlanRequest, out *GetRecurringPlanResponse) error {
+	return h.BillingServiceHandler.GetRecurringPlan(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, out *GetRecurringPlansResponse) error {
+	return h.BillingServiceHandler.GetRecurringPlans(ctx, in, out)
+}
+
+func (h *billingServiceHandler) FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, out *FindExpiredSubscriptionsResponse) error {
+	return h.BillingServiceHandler.FindExpiredSubscriptions(ctx, in, out)
 }
 
 func (h *billingServiceHandler) DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error {
@@ -3460,6 +3588,14 @@ func (h *billingServiceHandler) DeleteRecurringSubscription(ctx context.Context,
 
 func (h *billingServiceHandler) FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error {
 	return h.BillingServiceHandler.FindSubscriptions(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error {
+	return h.BillingServiceHandler.GetSubscription(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, out *GetSubscriptionsOrdersResponse) error {
+	return h.BillingServiceHandler.GetSubscriptionsOrders(ctx, in, out)
 }
 
 func (h *billingServiceHandler) AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error {

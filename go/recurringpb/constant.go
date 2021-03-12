@@ -7,6 +7,9 @@ const (
 	PayOneTopicNotifyPaymentName  = "notify-payment"
 	PayOneTopicNotifyMerchantName = "notify-merchant"
 
+	RecurringSubscriptionExchangeName = "recurring-subscription"
+	RecurringSubscriptionDeleteTopic  = "recurring-delete-subscription"
+
 	OrderPublicStatusCreated    = "created"
 	OrderPublicStatusProcessed  = "processed"
 	OrderPublicStatusCanceled   = "canceled"
@@ -44,10 +47,4 @@ const (
 	TaxjarRefundsRetryTopicName      = "taxjar-sync-refunds-retry"
 	TaxjarNotificationStatusPayment  = "taxjar-payment"
 	TaxjarNotificationStatusRefund   = "taxjar-refund"
-
-	RecurringPeriodMinute = "minute"
-	RecurringPeriodDay    = "day"
-	RecurringPeriodWeek   = "week"
-	RecurringPeriodMonth  = "month"
-	RecurringPeriodYear   = "year"
 )

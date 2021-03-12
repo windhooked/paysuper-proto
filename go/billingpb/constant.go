@@ -229,6 +229,16 @@ const (
 
 	UserLocaleEn = "en"
 	UserLocaleRu = "ru"
+
+	RecurringPeriodMinute = "minute"
+	RecurringPeriodDay    = "day"
+	RecurringPeriodWeek   = "week"
+	RecurringPeriodMonth  = "month"
+	RecurringPeriodYear   = "year"
+
+	RecurringSubscriptionStatusActive      = "active"
+	RecurringSubscriptionStatusCanceled    = "canceled"
+	RecurringSubscriptionStatusNonRenewing = "no_renewing"
 )
 
 var (
