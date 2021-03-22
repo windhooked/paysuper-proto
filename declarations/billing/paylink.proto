@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = ".;billingpb";
+option go_package = "github.com/paysuper/paysuper-proto/billingpb";
 package paylink;
 
 import "google/protobuf/timestamp.proto";
