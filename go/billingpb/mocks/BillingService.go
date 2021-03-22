@@ -4,7 +4,7 @@ package mocks
 
 import (
 	client "github.com/micro/go-micro/client"
-	billingpb "github.com/paysuper/paysuper-proto/go/billingpb"
+	billingpb "github.com/paysuper/paysuper-proto/go/billingpb/github.com/paysuper/paysuper-proto/billingpb"
 
 	context "context"
 
@@ -5408,6 +5408,36 @@ func (_m *BillingService) PublishKeyProduct(ctx context.Context, in *billingpb.P
 
 	var r1 error
 	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.PublishKeyProductRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// RefreshMerchantApiToken provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) RefreshMerchantApiToken(ctx context.Context, in *billingpb.RefreshMerchantApiTokenRequest, opts ...client.CallOption) (*billingpb.RefreshMerchantApiTokenResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.RefreshMerchantApiTokenResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.RefreshMerchantApiTokenRequest, ...client.CallOption) *billingpb.RefreshMerchantApiTokenResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.RefreshMerchantApiTokenResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.RefreshMerchantApiTokenRequest, ...client.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)
