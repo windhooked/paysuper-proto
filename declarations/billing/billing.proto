@@ -779,6 +779,10 @@ message Merchant {
   //
   // Has a true value if the merchant doesn't pay any taxes.
   bool dont_charge_vat = 58;
+  // @inject_tag: json:"api_token"
+  //
+  // The merchant token for making S2S API requests.
+  string api_token = 59;
 }
 
 message MerchantShortInfo {
