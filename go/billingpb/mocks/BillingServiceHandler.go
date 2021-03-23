@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	billingpb "github.com/paysuper/paysuper-proto/go/billingpb"
+	billingpb "github.com/paysuper/paysuper-proto/go/billingpb/github.com/paysuper/paysuper-proto/billingpb"
 
 	mock "github.com/stretchr/testify/mock"
 )
@@ -2527,6 +2527,20 @@ func (_m *BillingServiceHandler) PublishKeyProduct(_a0 context.Context, _a1 *bil
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.PublishKeyProductRequest, *billingpb.KeyProductResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// RefreshMerchantApiToken provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) RefreshMerchantApiToken(_a0 context.Context, _a1 *billingpb.RefreshMerchantApiTokenRequest, _a2 *billingpb.RefreshMerchantApiTokenResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.RefreshMerchantApiTokenRequest, *billingpb.RefreshMerchantApiTokenResponse) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)
