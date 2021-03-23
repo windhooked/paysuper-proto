@@ -5,7 +5,7 @@ package mocks
 import (
 	context "context"
 
-	billingpb "github.com/paysuper/paysuper-proto/go/billingpb"
+	billingpb "github.com/paysuper/paysuper-proto/go/billingpb/github.com/paysuper/paysuper-proto/billingpb"
 
 	mock "github.com/stretchr/testify/mock"
 )
