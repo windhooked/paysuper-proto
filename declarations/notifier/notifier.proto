@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = ".;notifierpb";
+option go_package = "./;notifierpb";
 package notifier;
 
 service NotifierService {

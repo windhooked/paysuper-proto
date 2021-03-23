@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package casbinpb;
 
-option go_package = ".;casbinpb";
+option go_package = "./;casbinpb";
 import "protoc-gen-swagger/options/annotations.proto";
 import "google/api/annotations.proto";
 import "validate/validate.proto";

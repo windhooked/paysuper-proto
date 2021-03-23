@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = ".;document_signerpb";
+option go_package = "./;document_signerpb";
 package document_signer;
 
 import "google/protobuf/timestamp.proto";
