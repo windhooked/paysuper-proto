@@ -55,6 +55,7 @@ type BillingService interface {
 	GetMerchantTariffRates(ctx context.Context, in *GetMerchantTariffRatesRequest, opts ...client.CallOption) (*GetMerchantTariffRatesResponse, error)
 	SetMerchantTariffRates(ctx context.Context, in *SetMerchantTariffRatesRequest, opts ...client.CallOption) (*CheckProjectRequestSignatureResponse, error)
 	ChangeMerchantManualPayouts(ctx context.Context, in *ChangeMerchantManualPayoutsRequest, opts ...client.CallOption) (*ChangeMerchantManualPayoutsResponse, error)
+	RefreshMerchantApiToken(ctx context.Context, in *RefreshMerchantApiTokenRequest, opts ...client.CallOption) (*RefreshMerchantApiTokenResponse, error)
 	CreateNotification(ctx context.Context, in *NotificationRequest, opts ...client.CallOption) (*CreateNotificationResponse, error)
 	GetNotification(ctx context.Context, in *GetNotificationRequest, opts ...client.CallOption) (*Notification, error)
 	ListNotifications(ctx context.Context, in *ListingNotificationRequest, opts ...client.CallOption) (*Notifications, error)
@@ -456,6 +457,16 @@ func (c *billingService) SetMerchantTariffRates(ctx context.Context, in *SetMerc
 func (c *billingService) ChangeMerchantManualPayouts(ctx context.Context, in *ChangeMerchantManualPayoutsRequest, opts ...client.CallOption) (*ChangeMerchantManualPayoutsResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.ChangeMerchantManualPayouts", in)
 	out := new(ChangeMerchantManualPayoutsResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) RefreshMerchantApiToken(ctx context.Context, in *RefreshMerchantApiTokenRequest, opts ...client.CallOption) (*RefreshMerchantApiTokenResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.RefreshMerchantApiToken", in)
+	out := new(RefreshMerchantApiTokenResponse)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2366,6 +2377,7 @@ type BillingServiceHandler interface {
 	GetMerchantTariffRates(context.Context, *GetMerchantTariffRatesRequest, *GetMerchantTariffRatesResponse) error
 	SetMerchantTariffRates(context.Context, *SetMerchantTariffRatesRequest, *CheckProjectRequestSignatureResponse) error
 	ChangeMerchantManualPayouts(context.Context, *ChangeMerchantManualPayoutsRequest, *ChangeMerchantManualPayoutsResponse) error
+	RefreshMerchantApiToken(context.Context, *RefreshMerchantApiTokenRequest, *RefreshMerchantApiTokenResponse) error
 	CreateNotification(context.Context, *NotificationRequest, *CreateNotificationResponse) error
 	GetNotification(context.Context, *GetNotificationRequest, *Notification) error
 	ListNotifications(context.Context, *ListingNotificationRequest, *Notifications) error
@@ -2578,6 +2590,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetMerchantTariffRates(ctx context.Context, in *GetMerchantTariffRatesRequest, out *GetMerchantTariffRatesResponse) error
 		SetMerchantTariffRates(ctx context.Context, in *SetMerchantTariffRatesRequest, out *CheckProjectRequestSignatureResponse) error
 		ChangeMerchantManualPayouts(ctx context.Context, in *ChangeMerchantManualPayoutsRequest, out *ChangeMerchantManualPayoutsResponse) error
+		RefreshMerchantApiToken(ctx context.Context, in *RefreshMerchantApiTokenRequest, out *RefreshMerchantApiTokenResponse) error
 		CreateNotification(ctx context.Context, in *NotificationRequest, out *CreateNotificationResponse) error
 		GetNotification(ctx context.Context, in *GetNotificationRequest, out *Notification) error
 		ListNotifications(ctx context.Context, in *ListingNotificationRequest, out *Notifications) error
@@ -2856,6 +2869,10 @@ func (h *billingServiceHandler) SetMerchantTariffRates(ctx context.Context, in *
 
 func (h *billingServiceHandler) ChangeMerchantManualPayouts(ctx context.Context, in *ChangeMerchantManualPayoutsRequest, out *ChangeMerchantManualPayoutsResponse) error {
 	return h.BillingServiceHandler.ChangeMerchantManualPayouts(ctx, in, out)
+}
+
+func (h *billingServiceHandler) RefreshMerchantApiToken(ctx context.Context, in *RefreshMerchantApiTokenRequest, out *RefreshMerchantApiTokenResponse) error {
+	return h.BillingServiceHandler.RefreshMerchantApiToken(ctx, in, out)
 }
 
 func (h *billingServiceHandler) CreateNotification(ctx context.Context, in *NotificationRequest, out *CreateNotificationResponse) error {
