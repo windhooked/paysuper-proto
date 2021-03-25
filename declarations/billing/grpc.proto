@@ -3708,6 +3708,8 @@ message FindSubscriptionsRequest {
   string datetime_from = 9;
   // @inject_tag: query:"datetime_to" validate:"omitempty,datetime"
   string datetime_to = 10;
+  // @inject_tag: query:"plan_id"
+  string plan_id = 11;
 }
 
 message FindSubscriptionsResponse {
