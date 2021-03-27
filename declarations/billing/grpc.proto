@@ -3734,14 +3734,16 @@ message GetRecurringPlanStatRequest {
 }
 
 message GetRecurringPlanStatResponse {
+  ResponseErrorMessage message = 1;
+  int32 status = 2;
   // @inject_tag: json:"active_subscriptions_count"
-  int64 active_subscriptions_count = 1;
+  int64 active_subscriptions_count = 3;
   // @inject_tag: json:"canceled_subscriptions_count"
-  int64 canceled_subscriptions_count = 2;
+  int64 canceled_subscriptions_count = 4;
   // @inject_tag: json:"no_renewing_subscriptions_count"
-  int64 no_renewing_subscriptions_count = 3;
+  int64 no_renewing_subscriptions_count = 5;
   // @inject_tag: json:"reactivate_subscriptions_count"
-  int64 reactivate_subscriptions_count = 4;
+  int64 reactivate_subscriptions_count = 6;
 }
 
 message AddRecurringPlanResponse {
