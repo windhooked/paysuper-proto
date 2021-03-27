@@ -1933,6 +1933,20 @@ func (_m *BillingServiceHandler) GetRecurringPlan(_a0 context.Context, _a1 *bill
 	return r0
 }
 
+// GetRecurringPlanStat provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetRecurringPlanStat(_a0 context.Context, _a1 *billingpb.GetRecurringPlanStatRequest, _a2 *billingpb.GetRecurringPlanStatResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetRecurringPlanStatRequest, *billingpb.GetRecurringPlanStatResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetRecurringPlans provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetRecurringPlans(_a0 context.Context, _a1 *billingpb.GetRecurringPlansRequest, _a2 *billingpb.GetRecurringPlansResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)

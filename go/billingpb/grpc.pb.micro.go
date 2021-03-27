@@ -236,6 +236,7 @@ type BillingService interface {
 	DeleteRecurringPlan(ctx context.Context, in *DeleteRecurringPlanRequest, opts ...client.CallOption) (*DeleteRecurringPlanResponse, error)
 	GetRecurringPlan(ctx context.Context, in *GetRecurringPlanRequest, opts ...client.CallOption) (*GetRecurringPlanResponse, error)
 	GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, opts ...client.CallOption) (*GetRecurringPlansResponse, error)
+	GetRecurringPlanStat(ctx context.Context, in *GetRecurringPlanStatRequest, opts ...client.CallOption) (*GetRecurringPlanStatResponse, error)
 	FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, opts ...client.CallOption) (*FindExpiredSubscriptionsResponse, error)
 	DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
@@ -2274,6 +2275,16 @@ func (c *billingService) GetRecurringPlans(ctx context.Context, in *GetRecurring
 	return out, nil
 }
 
+func (c *billingService) GetRecurringPlanStat(ctx context.Context, in *GetRecurringPlanStatRequest, opts ...client.CallOption) (*GetRecurringPlanStatResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetRecurringPlanStat", in)
+	out := new(GetRecurringPlanStatResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, opts ...client.CallOption) (*FindExpiredSubscriptionsResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.FindExpiredSubscriptions", in)
 	out := new(FindExpiredSubscriptionsResponse)
@@ -2558,6 +2569,7 @@ type BillingServiceHandler interface {
 	DeleteRecurringPlan(context.Context, *DeleteRecurringPlanRequest, *DeleteRecurringPlanResponse) error
 	GetRecurringPlan(context.Context, *GetRecurringPlanRequest, *GetRecurringPlanResponse) error
 	GetRecurringPlans(context.Context, *GetRecurringPlansRequest, *GetRecurringPlansResponse) error
+	GetRecurringPlanStat(context.Context, *GetRecurringPlanStatRequest, *GetRecurringPlanStatResponse) error
 	FindExpiredSubscriptions(context.Context, *FindExpiredSubscriptionsRequest, *FindExpiredSubscriptionsResponse) error
 	DeleteRecurringSubscription(context.Context, *DeleteRecurringSubscriptionRequest, *EmptyResponseWithStatus) error
 	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
@@ -2771,6 +2783,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		DeleteRecurringPlan(ctx context.Context, in *DeleteRecurringPlanRequest, out *DeleteRecurringPlanResponse) error
 		GetRecurringPlan(ctx context.Context, in *GetRecurringPlanRequest, out *GetRecurringPlanResponse) error
 		GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, out *GetRecurringPlansResponse) error
+		GetRecurringPlanStat(ctx context.Context, in *GetRecurringPlanStatRequest, out *GetRecurringPlanStatResponse) error
 		FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, out *FindExpiredSubscriptionsResponse) error
 		DeleteRecurringSubscription(ctx context.Context, in *DeleteRecurringSubscriptionRequest, out *EmptyResponseWithStatus) error
 		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
@@ -3593,6 +3606,10 @@ func (h *billingServiceHandler) GetRecurringPlan(ctx context.Context, in *GetRec
 
 func (h *billingServiceHandler) GetRecurringPlans(ctx context.Context, in *GetRecurringPlansRequest, out *GetRecurringPlansResponse) error {
 	return h.BillingServiceHandler.GetRecurringPlans(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetRecurringPlanStat(ctx context.Context, in *GetRecurringPlanStatRequest, out *GetRecurringPlanStatResponse) error {
+	return h.BillingServiceHandler.GetRecurringPlanStat(ctx, in, out)
 }
 
 func (h *billingServiceHandler) FindExpiredSubscriptions(ctx context.Context, in *FindExpiredSubscriptionsRequest, out *FindExpiredSubscriptionsResponse) error {
