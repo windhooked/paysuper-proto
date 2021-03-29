@@ -23588,8 +23588,10 @@ type GetSubscriptionsOrdersResponse struct {
 
 	Status  int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
 	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	List    []*SubscriptionOrder  `protobuf:"bytes,3,rep,name=list,proto3" json:"list,omitempty"`
-	Count   int64                 `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`
+	// @inject_tag: json:"list"
+	List []*SubscriptionOrder `protobuf:"bytes,3,rep,name=list,proto3" json:"list"`
+	// @inject_tag: json:"count"
+	Count int64 `protobuf:"varint,4,opt,name=count,proto3" json:"count"`
 }
 
 func (x *GetSubscriptionsOrdersResponse) Reset() {
