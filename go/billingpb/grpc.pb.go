@@ -23465,12 +23465,12 @@ type GetSubscriptionsOrdersRequest struct {
 	Offset int64 `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty" query:"offset" validate:"omitempty,numeric,gte=0"`
 	// @inject_tag: param:"merchant_id"
 	MerchantId string `protobuf:"bytes,6,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" param:"merchant_id"`
-	// @inject_tag: query:"project_id" param:"project_id" validate:"omitempty,hexadecimal,len=24"
-	ProjectId string `protobuf:"bytes,7,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty" query:"project_id" param:"project_id" validate:"omitempty,hexadecimal,len=24"`
+	// @inject_tag: query:"project_id" validate:"omitempty,hexadecimal,len=24"
+	ProjectId string `protobuf:"bytes,7,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty" query:"project_id" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: query:"subscription_id" validate:"omitempty,hexadecimal,len=24"
 	SubscriptionId string `protobuf:"bytes,8,opt,name=subscription_id,json=subscriptionId,proto3" json:"subscription_id,omitempty" query:"subscription_id" validate:"omitempty,hexadecimal,len=24"`
-	// @inject_tag: query:"user_id" param:"user_id" validate:"omitempty,hexadecimal,len=24"
-	UserId string `protobuf:"bytes,9,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" query:"user_id" param:"user_id" validate:"omitempty,hexadecimal,len=24"`
+	// @inject_tag: query:"user_id" validate:"omitempty,hexadecimal,len=24"
+	UserId string `protobuf:"bytes,9,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty" query:"user_id" validate:"omitempty,hexadecimal,len=24"`
 	// @inject_tag: query:"status" validate:"omitempty,oneof=processed canceled rejected refunded"
 	Status string `protobuf:"bytes,10,opt,name=status,proto3" json:"status,omitempty" query:"status" validate:"omitempty,oneof=processed canceled rejected refunded"`
 	// @inject_tag: query:"datetime_from" validate:"omitempty,datetime"
