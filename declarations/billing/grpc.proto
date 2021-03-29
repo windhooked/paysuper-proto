@@ -3882,11 +3882,11 @@ message GetSubscriptionsOrdersRequest {
   int64 offset = 5;
   // @inject_tag: param:"merchant_id"
   string merchant_id = 6;
-  // @inject_tag: query:"project_id" param:"project_id" validate:"omitempty,hexadecimal,len=24"
+  // @inject_tag: query:"project_id" validate:"omitempty,hexadecimal,len=24"
   string project_id = 7;
   // @inject_tag: query:"subscription_id" validate:"omitempty,hexadecimal,len=24"
   string subscription_id = 8;
-  // @inject_tag: query:"user_id" param:"user_id" validate:"omitempty,hexadecimal,len=24"
+  // @inject_tag: query:"user_id" validate:"omitempty,hexadecimal,len=24"
   string user_id = 9;
   // @inject_tag: query:"status" validate:"omitempty,oneof=processed canceled rejected refunded"
   string status = 10;
