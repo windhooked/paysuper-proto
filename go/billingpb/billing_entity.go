@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/golang/protobuf/ptypes"
+	"github.com/golang/protobuf/ptypes/timestamp"
 	"github.com/jinzhu/copier"
 	"github.com/paysuper/paysuper-proto/go/recurringpb"
 	tools "github.com/paysuper/paysuper-tools/number"
@@ -794,16 +795,12 @@ func (m *Order) HasRecurringSubscription() bool {
 	return m.RecurringSubscriptionId != ""
 }
 
-func (p *RecurringPlan) GetExpirationTime() (*time.Time, error) {
+func (p *RecurringPlan) GetExpirationTime(orderTime *timestamp.Timestamp) (*time.Time, error) {
 	if p.Expiration == nil {
 		return nil, nil
 	}
 
-	if p.CreatedAt == nil {
-		p.CreatedAt = ptypes.TimestampNow()
-	}
-
-	expireAt, err := ptypes.Timestamp(p.CreatedAt)
+	expireAt, err := ptypes.Timestamp(orderTime)
 	if err != nil {
 		return nil, err
 	}
