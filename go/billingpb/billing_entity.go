@@ -805,9 +805,9 @@ func (p *RecurringPlan) GetExpirationTime(orderTime *timestamp.Timestamp) (*time
 		return nil, err
 	}
 
-	value := int(p.Charge.Period.Value)
+	value := int(p.Expiration.Value)
 
-	switch p.Charge.Period.Type {
+	switch p.Expiration.Type {
 	case RecurringPeriodDay:
 		expireAt = expireAt.AddDate(0, 0, value)
 	case RecurringPeriodMonth:
