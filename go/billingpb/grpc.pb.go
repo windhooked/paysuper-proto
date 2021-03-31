@@ -22901,8 +22901,8 @@ type GetRecurringPlansRequest struct {
 
 	// @inject_tag: param:"merchant_id"
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" param:"merchant_id"`
-	// @inject_tag: json:"project_id" validate:"omitempty,hexadecimal,len=24" param:"project_id"
-	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"omitempty,hexadecimal,len=24" param:"project_id"`
+	// @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
+	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"`
 	// @inject_tag: json:"external_id" query:"external_id"
 	ExternalId string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id" query:"external_id"`
 	// @inject_tag: json:"group_id" query:"group_id"
@@ -23003,8 +23003,10 @@ type GetRecurringPlansResponse struct {
 
 	Status  int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
 	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	List    []*RecurringPlan      `protobuf:"bytes,3,rep,name=list,proto3" json:"list,omitempty"`
-	Count   int32                 `protobuf:"varint,4,opt,name=count,proto3" json:"count,omitempty"`
+	// @inject_tag: json:"list"
+	List []*RecurringPlan `protobuf:"bytes,3,rep,name=list,proto3" json:"list"`
+	// @inject_tag: json:"count"
+	Count int32 `protobuf:"varint,4,opt,name=count,proto3" json:"count"`
 }
 
 func (x *GetRecurringPlansResponse) Reset() {
@@ -23119,9 +23121,10 @@ type FindExpiredSubscriptionsResponse struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Status  int32                    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Message *ResponseErrorMessage    `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	List    []*RecurringSubscription `protobuf:"bytes,3,rep,name=list,proto3" json:"list,omitempty"`
+	Status  int32                 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
+	Message *ResponseErrorMessage `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	// @inject_tag: json:"list"
+	List []*RecurringSubscription `protobuf:"bytes,3,rep,name=list,proto3" json:"list"`
 }
 
 func (x *FindExpiredSubscriptionsResponse) Reset() {
