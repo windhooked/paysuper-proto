@@ -3817,7 +3817,7 @@ message GetRecurringPlanResponse {
 message GetRecurringPlansRequest {
   // @inject_tag: param:"merchant_id"
   string merchant_id = 1;
-  // @inject_tag: json:"project_id" validate:"omitempty,hexadecimal,len=24" param:"project_id"
+  // @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
   string project_id = 2;
   // @inject_tag: json:"external_id" query:"external_id"
   string external_id = 3;
@@ -3834,7 +3834,9 @@ message GetRecurringPlansRequest {
 message GetRecurringPlansResponse {
   int32 status = 1;
   ResponseErrorMessage message = 2;
+  // @inject_tag: json:"list"
   repeated billing.RecurringPlan list = 3;
+  // @inject_tag: json:"count"
   int32 count = 4;
 }
 
@@ -3845,6 +3847,7 @@ message FindExpiredSubscriptionsRequest {
 message FindExpiredSubscriptionsResponse {
   int32 status = 1;
   ResponseErrorMessage message = 2;
+  // @inject_tag: json:"list"
   repeated billing.RecurringSubscription list = 3;
 }
 
