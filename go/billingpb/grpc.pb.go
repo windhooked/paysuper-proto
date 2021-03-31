@@ -22772,8 +22772,8 @@ type GetRecurringPlanRequest struct {
 
 	// @inject_tag: param:"merchant_id"
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" param:"merchant_id"`
-	// @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
-	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"`
+	// @inject_tag: json:"project_id" validate:"omitempty,hexadecimal,len=24" param:"project_id"
+	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"omitempty,hexadecimal,len=24" param:"project_id"`
 	//@inject_tag: json:"plan_id" validate:"required,hexadecimal,len=24" param:"plan_id"
 	PlanId string `protobuf:"bytes,3,opt,name=plan_id,json=planId,proto3" json:"plan_id" validate:"required,hexadecimal,len=24" param:"plan_id"`
 }
@@ -22901,8 +22901,8 @@ type GetRecurringPlansRequest struct {
 
 	// @inject_tag: param:"merchant_id"
 	MerchantId string `protobuf:"bytes,1,opt,name=merchant_id,json=merchantId,proto3" json:"merchant_id,omitempty" param:"merchant_id"`
-	// @inject_tag: json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"
-	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"required,hexadecimal,len=24" param:"project_id"`
+	// @inject_tag: json:"project_id" validate:"omitempty,hexadecimal,len=24" param:"project_id"
+	ProjectId string `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id" validate:"omitempty,hexadecimal,len=24" param:"project_id"`
 	// @inject_tag: json:"external_id" query:"external_id"
 	ExternalId string `protobuf:"bytes,3,opt,name=external_id,json=externalId,proto3" json:"external_id" query:"external_id"`
 	// @inject_tag: json:"group_id" query:"group_id"
