@@ -3529,57 +3529,54 @@ message DashboardCustomerReportRequest {
 }
 
 message DashboardCustomerReport {
+  //@inject_tag: json:"dynamic"
+  DashboardCustomerDynamic dynamic = 1;
   //@inject_tag: json:"new_customers_percentage"
-  float newCustomersPercentage = 1;
-
+  float newCustomersPercentage = 2;
   //@inject_tag: json:"returning_customers_percentage"
-  float returningCustomersPercentage = 2;
-
+  float returningCustomersPercentage = 3;
   //@inject_tag: json:"lost_customers_percentage"
-  float lostCustomersPercentage = 3;
-
-  //@inject_tag: json:"avg_ltv_customer"
-  double avgLtvCustomer = 4;
-
-  //@inject_tag: json:"avg_orders_count"
-  double avgOrdersCount = 5;
-
-  //@inject_tag: json:"top20_customers"
-  Top20Customers top20Customers = 6;
-
-  //@inject_tag: json:"chart" bson:"chart"
-  //
-  // The list of points for drawing the chart.
-  repeated DashboardChartItemInt chart = 7;
-
+  float lostCustomersPercentage = 4;
+  //@inject_tag: json:"altv"
+  DashboardCustomerAltv altv = 5;
   //@inject_tag: json:"arppu"
-  ArppuData arppu = 8;
-
-  //@inject_tag: json:"avg_ltv_currency"
-  string avgLtvCurrency = 9;
+  DashboardCustomerArppu arppu = 6;
+  //@inject_tag: json:"top20"
+  DashboardCustomerTop20 top20 = 7;
+  //@inject_tag: json:"chart" bson:"chart"
+  repeated DashboardChartItemInt chart = 8;
 }
 
-message ArppuData {
+message DashboardCustomerDynamic {
   //@inject_tag: json:"current"
-  billing.OrderViewMoney current = 1;
-
+  int64 current = 1;
   //@inject_tag: json:"previous"
-  billing.OrderViewMoney previous = 2;
-
+  int64 previous = 2;
   //@inject_tag: json:"delta"
   float delta = 3;
-
-  //@inject_tag: json:"percent"
-  float percent = 4;
 }
 
-message Top20Customers {
+message DashboardCustomerAltv {
   //@inject_tag: json:"revenue"
   float revenue = 1;
+  //@inject_tag: json:"currency"
+  string currency = 2;
+}
 
-  //@inject_tag: json:"count"
-  int32 count = 2;
+message DashboardCustomerArppu {
+  //@inject_tag: json:"revenue"
+  float revenue = 1;
+  //@inject_tag: json:"currency"
+  string currency = 2;
+  //@inject_tag: json:"avg_orders"
+  float avg_orders = 3;
+}
 
+message DashboardCustomerTop20 {
+  //@inject_tag: json:"revenue"
+  float revenue = 1;
+  //@inject_tag: json:"order_count"
+  int32 order_count = 2;
   //@inject_tag: json:"currency"
   string currency = 3;
 }
