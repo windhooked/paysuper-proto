@@ -159,6 +159,7 @@ type BillingService interface {
 	GetKeyProductsForOrder(ctx context.Context, in *GetKeyProductsForOrderRequest, opts ...client.CallOption) (*ListKeyProductsResponse, error)
 	GetKeyProductInfo(ctx context.Context, in *GetKeyProductInfoRequest, opts ...client.CallOption) (*GetKeyProductInfoResponse, error)
 	GetPlatforms(ctx context.Context, in *ListPlatformsRequest, opts ...client.CallOption) (*ListPlatformsResponse, error)
+	GetPlatformsOs(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*ListPlatformsOsResponse, error)
 	GetAvailableKeysCount(ctx context.Context, in *GetPlatformKeyCountRequest, opts ...client.CallOption) (*GetPlatformKeyCountResponse, error)
 	UploadKeysFile(ctx context.Context, in *PlatformKeysFileRequest, opts ...client.CallOption) (*PlatformKeysFileResponse, error)
 	GetKeyByID(ctx context.Context, in *KeyForOrderRequest, opts ...client.CallOption) (*GetKeyForOrderRequestResponse, error)
@@ -1505,6 +1506,16 @@ func (c *billingService) GetPlatforms(ctx context.Context, in *ListPlatformsRequ
 	return out, nil
 }
 
+func (c *billingService) GetPlatformsOs(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*ListPlatformsOsResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetPlatformsOs", in)
+	out := new(ListPlatformsOsResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) GetAvailableKeysCount(ctx context.Context, in *GetPlatformKeyCountRequest, opts ...client.CallOption) (*GetPlatformKeyCountResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.GetAvailableKeysCount", in)
 	out := new(GetPlatformKeyCountResponse)
@@ -2492,6 +2503,7 @@ type BillingServiceHandler interface {
 	GetKeyProductsForOrder(context.Context, *GetKeyProductsForOrderRequest, *ListKeyProductsResponse) error
 	GetKeyProductInfo(context.Context, *GetKeyProductInfoRequest, *GetKeyProductInfoResponse) error
 	GetPlatforms(context.Context, *ListPlatformsRequest, *ListPlatformsResponse) error
+	GetPlatformsOs(context.Context, *EmptyRequest, *ListPlatformsOsResponse) error
 	GetAvailableKeysCount(context.Context, *GetPlatformKeyCountRequest, *GetPlatformKeyCountResponse) error
 	UploadKeysFile(context.Context, *PlatformKeysFileRequest, *PlatformKeysFileResponse) error
 	GetKeyByID(context.Context, *KeyForOrderRequest, *GetKeyForOrderRequestResponse) error
@@ -2706,6 +2718,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetKeyProductsForOrder(ctx context.Context, in *GetKeyProductsForOrderRequest, out *ListKeyProductsResponse) error
 		GetKeyProductInfo(ctx context.Context, in *GetKeyProductInfoRequest, out *GetKeyProductInfoResponse) error
 		GetPlatforms(ctx context.Context, in *ListPlatformsRequest, out *ListPlatformsResponse) error
+		GetPlatformsOs(ctx context.Context, in *EmptyRequest, out *ListPlatformsOsResponse) error
 		GetAvailableKeysCount(ctx context.Context, in *GetPlatformKeyCountRequest, out *GetPlatformKeyCountResponse) error
 		UploadKeysFile(ctx context.Context, in *PlatformKeysFileRequest, out *PlatformKeysFileResponse) error
 		GetKeyByID(ctx context.Context, in *KeyForOrderRequest, out *GetKeyForOrderRequestResponse) error
@@ -3298,6 +3311,10 @@ func (h *billingServiceHandler) GetKeyProductInfo(ctx context.Context, in *GetKe
 
 func (h *billingServiceHandler) GetPlatforms(ctx context.Context, in *ListPlatformsRequest, out *ListPlatformsResponse) error {
 	return h.BillingServiceHandler.GetPlatforms(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetPlatformsOs(ctx context.Context, in *EmptyRequest, out *ListPlatformsOsResponse) error {
+	return h.BillingServiceHandler.GetPlatformsOs(ctx, in, out)
 }
 
 func (h *billingServiceHandler) GetAvailableKeysCount(ctx context.Context, in *GetPlatformKeyCountRequest, out *GetPlatformKeyCountResponse) error {
