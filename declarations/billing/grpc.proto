@@ -157,6 +157,7 @@ service BillingService {
   rpc GetKeyProductInfo (GetKeyProductInfoRequest) returns (GetKeyProductInfoResponse) {}
 
   rpc GetPlatforms (ListPlatformsRequest) returns (ListPlatformsResponse) {}
+  rpc GetPlatformsOs (ListPlatformsOsRequest) returns (ListPlatformsOsResponse) {}
 
   rpc GetAvailableKeysCount (GetPlatformKeyCountRequest) returns (GetPlatformKeyCountResponse) {}
   rpc UploadKeysFile (PlatformKeysFileRequest) returns (PlatformKeysFileResponse) {}
@@ -1312,6 +1313,21 @@ message PlatformPrice {
   //
   // The number of created keys for the platform.
   int32 count = 6;
+  //@inject_tag: validate:"required,min=1,dive" json:"os"
+  //
+  // An available operation systems for keys on this platform.
+  repeated PlatformOs os = 7;
+}
+
+message PlatformOs {
+  //@inject_tag: validate:"required,oneof=win mac linux steam" json:"id"
+  //
+  // The unique name of the operation system. Available values: win, mac, linux and steam.
+  string id = 1;
+  //@inject_tag: json:"name"
+  //
+  // The full name of the operation system. (for instance for steam - SteamOS)
+  string name = 2;
 }
 
 message Platform {
