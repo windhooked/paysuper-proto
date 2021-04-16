@@ -1356,6 +1356,8 @@ message Platform {
   int32 order = 4;
   //@inject_tag: json:"-"
   string activation_instruction_url = 5;
+  //@inject_tag: json:"os"
+  repeated PlatformOs os = 6;
 }
 
 message Product {
