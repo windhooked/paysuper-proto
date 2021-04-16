@@ -3736,36 +3736,6 @@ func (_m *BillingService) GetPlatforms(ctx context.Context, in *billingpb.ListPl
 	return r0, r1
 }
 
-// GetPlatformsOs provides a mock function with given fields: ctx, in, opts
-func (_m *BillingService) GetPlatformsOs(ctx context.Context, in *billingpb.EmptyRequest, opts ...client.CallOption) (*billingpb.ListPlatformsOsResponse, error) {
-	_va := make([]interface{}, len(opts))
-	for _i := range opts {
-		_va[_i] = opts[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, ctx, in)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *billingpb.ListPlatformsOsResponse
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.EmptyRequest, ...client.CallOption) *billingpb.ListPlatformsOsResponse); ok {
-		r0 = rf(ctx, in, opts...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*billingpb.ListPlatformsOsResponse)
-		}
-	}
-
-	var r1 error
-	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.EmptyRequest, ...client.CallOption) error); ok {
-		r1 = rf(ctx, in, opts...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
 // GetPriceGroup provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) GetPriceGroup(ctx context.Context, in *billingpb.GetPriceGroupRequest, opts ...client.CallOption) (*billingpb.PriceGroup, error) {
 	_va := make([]interface{}, len(opts))
