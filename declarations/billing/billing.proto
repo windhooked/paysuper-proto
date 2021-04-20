@@ -64,7 +64,7 @@ message OrderCreateRequest {
   bool is_json = 20;
   // @inject_tag: json:"-"
   string language = 21;
-  // @inject_tag: json:"products" validate:"omitempty,gte=1,dive,hexadecimal,len=24"
+  // @inject_tag: json:"products" validate:"omitempty,eq=1,dive,hexadecimal,len=24"
   //
   // The list of unique identifiers of Products being in the Project. It is required if a payment type is equal to product or key.
   repeated string products = 22;
@@ -1986,7 +1986,7 @@ message TokenSettings {
   //
   // An arbitrary order description.
   string description = 8;
-  //@inject_tag: json:"products_ids"
+  //@inject_tag: json:"products_ids" validate:"omitempty,eq=1,dive,hexadecimal,len=24"
   //
   // A list of unique identifiers for Project's products. It's required if a payment type equals to ‘product’ or ‘key’.
   repeated string products_ids = 9;
