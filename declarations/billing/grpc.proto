@@ -3534,7 +3534,7 @@ message DashboardCustomerReport {
   //@inject_tag: json:"new_customers_percentage"
   float new_customers_percentage = 2;
   //@inject_tag: json:"new_customers_per_day"
-  int32 new_customers_per_day = 3;
+  float new_customers_per_day = 3;
   //@inject_tag: json:"returning_customers_percentage"
   float returning_customers_percentage = 4;
   //@inject_tag: json:"lost_customers_percentage"
