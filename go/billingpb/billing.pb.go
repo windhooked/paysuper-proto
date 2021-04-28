@@ -134,10 +134,10 @@ type OrderCreateRequest struct {
 	IsJson bool `protobuf:"varint,20,opt,name=is_json,json=isJson,proto3" json:"-"`
 	// @inject_tag: json:"-"
 	Language string `protobuf:"bytes,21,opt,name=language,proto3" json:"-"`
-	// @inject_tag: json:"products" validate:"omitempty,gte=1,dive,hexadecimal,len=24"
+	// @inject_tag: json:"products" validate:"omitempty,eq=1,dive,hexadecimal,len=24"
 	//
 	// The list of unique identifiers of Products being in the Project. It is required if a payment type is equal to product or key.
-	Products []string `protobuf:"bytes,22,rep,name=products,proto3" json:"products" validate:"omitempty,gte=1,dive,hexadecimal,len=24"`
+	Products []string `protobuf:"bytes,22,rep,name=products,proto3" json:"products" validate:"omitempty,eq=1,dive,hexadecimal,len=24"`
 	// @inject_tag: json:"metadata" validate:"omitempty,dive,keys,max=255,endkeys,max=255"
 	//
 	// A string-value description that you can attach to the order object. It can be useful for storing additional information about your customer payment.
@@ -8638,10 +8638,10 @@ type TokenSettings struct {
 	//
 	// An arbitrary order description.
 	Description string `protobuf:"bytes,8,opt,name=description,proto3" json:"description"`
-	//@inject_tag: json:"products_ids"
+	//@inject_tag: json:"products_ids" validate:"omitempty,eq=1,dive,hexadecimal,len=24"
 	//
 	// A list of unique identifiers for Project's products. It's required if a payment type equals to ‘product’ or ‘key’.
-	ProductsIds []string `protobuf:"bytes,9,rep,name=products_ids,json=productsIds,proto3" json:"products_ids"`
+	ProductsIds []string `protobuf:"bytes,9,rep,name=products_ids,json=productsIds,proto3" json:"products_ids" validate:"omitempty,eq=1,dive,hexadecimal,len=24"`
 	//@inject_tag: json:"metadata"
 	//
 	// The string-value description that you can attach to the customer's object. It can be useful for storing additional information about your customer’s payment.
