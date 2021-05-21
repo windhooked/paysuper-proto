@@ -3729,6 +3729,8 @@ message FindSubscriptionsRequest {
   string datetime_to = 10;
   // @inject_tag: query:"plan_id"
   string plan_id = 11;
+  // @inject_tag: query:"sort[]"
+  repeated string sort = 12;
 }
 
 message FindSubscriptionsResponse {
@@ -3847,6 +3849,8 @@ message GetRecurringPlansRequest {
   int32 limit = 6;
   // @inject_tag: query:"offset" query:"offset" validate:"omitempty,numeric,gte=0"
   int32 offset = 7;
+  // @inject_tag: query:"sort[]"
+  repeated string sort = 8;
 }
 
 message GetRecurringPlansResponse {
