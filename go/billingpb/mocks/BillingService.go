@@ -3226,6 +3226,36 @@ func (_m *BillingService) GetPaylink(ctx context.Context, in *billingpb.PaylinkR
 	return r0, r1
 }
 
+// GetPaylinkByShortLink provides a mock function with given fields: ctx, in, opts
+func (_m *BillingService) GetPaylinkByShortLink(ctx context.Context, in *billingpb.GetPaylinkByShortLinkRequest, opts ...client.CallOption) (*billingpb.GetPaylinkResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *billingpb.GetPaylinkResponse
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetPaylinkByShortLinkRequest, ...client.CallOption) *billingpb.GetPaylinkResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*billingpb.GetPaylinkResponse)
+		}
+	}
+
+	var r1 error
+	if rf, ok := ret.Get(1).(func(context.Context, *billingpb.GetPaylinkByShortLinkRequest, ...client.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // GetPaylinkStatByCountry provides a mock function with given fields: ctx, in, opts
 func (_m *BillingService) GetPaylinkStatByCountry(ctx context.Context, in *billingpb.GetPaylinkStatCommonRequest, opts ...client.CallOption) (*billingpb.GetPaylinkStatCommonGroupResponse, error) {
 	_va := make([]interface{}, len(opts))

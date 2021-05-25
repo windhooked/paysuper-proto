@@ -193,6 +193,7 @@ type BillingService interface {
 	GetPaylinkStatByDate(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
 	GetPaylinkStatByUtm(ctx context.Context, in *GetPaylinkStatCommonRequest, opts ...client.CallOption) (*GetPaylinkStatCommonGroupResponse, error)
 	GetPaylinkTransactions(ctx context.Context, in *GetPaylinkTransactionsRequest, opts ...client.CallOption) (*TransactionsResponse, error)
+	GetPaylinkByShortLink(ctx context.Context, in *GetPaylinkByShortLinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error)
 	DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	GetOperatingCompaniesList(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*GetOperatingCompaniesListResponse, error)
 	AddOperatingCompany(ctx context.Context, in *OperatingCompany, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
@@ -1845,6 +1846,16 @@ func (c *billingService) GetPaylinkTransactions(ctx context.Context, in *GetPayl
 	return out, nil
 }
 
+func (c *billingService) GetPaylinkByShortLink(ctx context.Context, in *GetPaylinkByShortLinkRequest, opts ...client.CallOption) (*GetPaylinkResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.GetPaylinkByShortLink", in)
+	out := new(GetPaylinkResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
 	req := c.c.NewRequest(c.name, "BillingService.DeleteSavedCard", in)
 	out := new(EmptyResponseWithStatus)
@@ -2526,6 +2537,7 @@ type BillingServiceHandler interface {
 	GetPaylinkStatByDate(context.Context, *GetPaylinkStatCommonRequest, *GetPaylinkStatCommonGroupResponse) error
 	GetPaylinkStatByUtm(context.Context, *GetPaylinkStatCommonRequest, *GetPaylinkStatCommonGroupResponse) error
 	GetPaylinkTransactions(context.Context, *GetPaylinkTransactionsRequest, *TransactionsResponse) error
+	GetPaylinkByShortLink(context.Context, *GetPaylinkByShortLinkRequest, *GetPaylinkResponse) error
 	DeleteSavedCard(context.Context, *DeleteSavedCardRequest, *EmptyResponseWithStatus) error
 	GetOperatingCompaniesList(context.Context, *EmptyRequest, *GetOperatingCompaniesListResponse) error
 	AddOperatingCompany(context.Context, *OperatingCompany, *EmptyResponseWithStatus) error
@@ -2740,6 +2752,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetPaylinkStatByDate(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error
 		GetPaylinkStatByUtm(ctx context.Context, in *GetPaylinkStatCommonRequest, out *GetPaylinkStatCommonGroupResponse) error
 		GetPaylinkTransactions(ctx context.Context, in *GetPaylinkTransactionsRequest, out *TransactionsResponse) error
+		GetPaylinkByShortLink(ctx context.Context, in *GetPaylinkByShortLinkRequest, out *GetPaylinkResponse) error
 		DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, out *EmptyResponseWithStatus) error
 		GetOperatingCompaniesList(ctx context.Context, in *EmptyRequest, out *GetOperatingCompaniesListResponse) error
 		AddOperatingCompany(ctx context.Context, in *OperatingCompany, out *EmptyResponseWithStatus) error
@@ -3434,6 +3447,10 @@ func (h *billingServiceHandler) GetPaylinkStatByUtm(ctx context.Context, in *Get
 
 func (h *billingServiceHandler) GetPaylinkTransactions(ctx context.Context, in *GetPaylinkTransactionsRequest, out *TransactionsResponse) error {
 	return h.BillingServiceHandler.GetPaylinkTransactions(ctx, in, out)
+}
+
+func (h *billingServiceHandler) GetPaylinkByShortLink(ctx context.Context, in *GetPaylinkByShortLinkRequest, out *GetPaylinkResponse) error {
+	return h.BillingServiceHandler.GetPaylinkByShortLink(ctx, in, out)
 }
 
 func (h *billingServiceHandler) DeleteSavedCard(ctx context.Context, in *DeleteSavedCardRequest, out *EmptyResponseWithStatus) error {
