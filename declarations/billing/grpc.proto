@@ -200,6 +200,7 @@ service BillingService {
   rpc GetPaylinkStatByDate (GetPaylinkStatCommonRequest) returns (GetPaylinkStatCommonGroupResponse) {}
   rpc GetPaylinkStatByUtm (GetPaylinkStatCommonRequest) returns (GetPaylinkStatCommonGroupResponse) {}
   rpc GetPaylinkTransactions (GetPaylinkTransactionsRequest) returns (TransactionsResponse) {}
+  rpc GetPaylinkByShortLink (GetPaylinkByShortLinkRequest) returns (GetPaylinkResponse) {}
 
   rpc DeleteSavedCard(DeleteSavedCardRequest) returns (EmptyResponseWithStatus) {}
 
@@ -3036,6 +3037,11 @@ message GetPaylinkResponse {
   ResponseErrorMessage message = 2;
   // @inject_tag: json:"item"
   paylink.Paylink item = 3;
+}
+
+message GetPaylinkByShortLinkRequest {
+  //@inject_tag: validate:"required,hexadecimal" param="id"
+  string id = 1;
 }
 
 message GetPaylinkURLRequest {

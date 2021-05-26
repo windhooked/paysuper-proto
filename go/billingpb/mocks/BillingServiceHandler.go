@@ -1513,6 +1513,20 @@ func (_m *BillingServiceHandler) GetPaylink(_a0 context.Context, _a1 *billingpb.
 	return r0
 }
 
+// GetPaylinkByShortLink provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) GetPaylinkByShortLink(_a0 context.Context, _a1 *billingpb.GetPaylinkByShortLinkRequest, _a2 *billingpb.GetPaylinkResponse) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetPaylinkByShortLinkRequest, *billingpb.GetPaylinkResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetPaylinkStatByCountry provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetPaylinkStatByCountry(_a0 context.Context, _a1 *billingpb.GetPaylinkStatCommonRequest, _a2 *billingpb.GetPaylinkStatCommonGroupResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
