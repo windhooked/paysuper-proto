@@ -1,9 +1,9 @@
 protoc -I=../declarations/casbin -I=%GOPATH%/src/github.com/envoyproxy/protoc-gen-validate/ -I=%GOPATH%/pkg/mod/github.com/envoyproxy/protoc-gen-validate@v0.4.1/ -I=%GOPATH%/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/ -I=%GOPATH%/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.14.7/third_party/googleapis/ --micro_out=./casbinpb/ --go_out=./casbinpb/ ../declarations/casbin/casbin.proto
 
-protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/billing.proto
-protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/cardpay.proto
+protoc -I=../declarations/billing --go_out=./billingpb/ ../declarations/billing/billing.proto
+protoc -I=../declarations/billing --go_out=./billingpb/ ../declarations/billing/cardpay.proto
+protoc -I=../declarations/billing --go_out=./billingpb/ ../declarations/billing/paylink.proto
 protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/grpc.proto
-protoc -I=../declarations/billing --micro_out=./billingpb/ --go_out=./billingpb/ ../declarations/billing/paylink.proto
 
 protoc -I=../declarations/currencies-service --micro_out=./currenciespb/ --go_out=./currenciespb/ ../declarations/currencies-service/currencies.proto
 
