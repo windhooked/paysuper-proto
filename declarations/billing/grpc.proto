@@ -200,7 +200,7 @@ service BillingService {
   rpc GetPaylinkStatByDate (GetPaylinkStatCommonRequest) returns (GetPaylinkStatCommonGroupResponse) {}
   rpc GetPaylinkStatByUtm (GetPaylinkStatCommonRequest) returns (GetPaylinkStatCommonGroupResponse) {}
   rpc GetPaylinkTransactions (GetPaylinkTransactionsRequest) returns (TransactionsResponse) {}
-  rpc GetPaylinkByShortLink (GetPaylinkByShortLinkRequest) returns (GetPaylinkResponse) {}
+  rpc GetPaylinkUrlByShortLink (GetPaylinkUrlByShortLinkRequest) returns (GetPaylinkUrlByShortLinkResponse) {}
 
   rpc DeleteSavedCard(DeleteSavedCardRequest) returns (EmptyResponseWithStatus) {}
 
@@ -3039,7 +3039,7 @@ message GetPaylinkResponse {
   paylink.Paylink item = 3;
 }
 
-message GetPaylinkByShortLinkRequest {
+message GetPaylinkUrlByShortLinkRequest {
   //@inject_tag: validate:"required,hexadecimal" param="id"
   string id = 1;
   // @inject_tag: query:"utm_source"
@@ -3048,6 +3048,14 @@ message GetPaylinkByShortLinkRequest {
   string utm_medium = 3;
   // @inject_tag: query:"utm_campaign"
   string utm_campaign = 4;
+}
+
+message GetPaylinkUrlByShortLinkResponse {
+  int32 status = 1;
+  // @inject_tag: json:"message,omitempty"
+  ResponseErrorMessage message = 2;
+  // @inject_tag: json:"url"
+  string url = 3;
 }
 
 message GetPaylinkURLRequest {
