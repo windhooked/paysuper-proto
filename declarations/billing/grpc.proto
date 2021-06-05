@@ -3752,6 +3752,8 @@ message FindSubscriptionsRequest {
   string plan_id = 11;
   // @inject_tag: query:"sort[]"
   repeated string sort = 12;
+  // @inject_tag: query:"locale"
+  string locale = 13;
 }
 
 message FindSubscriptionsResponse {
@@ -3872,6 +3874,8 @@ message GetRecurringPlansRequest {
   int32 offset = 7;
   // @inject_tag: query:"sort[]"
   repeated string sort = 8;
+  // @inject_tag: query:"locale"
+  string locale = 9;
 }
 
 message GetRecurringPlansResponse {
