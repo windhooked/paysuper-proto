@@ -184,7 +184,7 @@ func (m *Merchant) CanChangeStatusTo(status int32) bool {
 		return true
 	}
 
-	if status == MerchantStatusDeleted && (m.Status == MerchantStatusRejected || m.Status == MerchantStatusDraft) {
+	if status == MerchantStatusDeleted && (m.Status == MerchantStatusRejected || m.Status == MerchantStatusDraft || m.Status == MerchantStatusKycStarted) {
 		return true
 	}
 
