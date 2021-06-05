@@ -128,6 +128,10 @@ message Paylink {
     //
     // The transactions currency. Three-letter currency code in ISO 4217, in uppercase.
     string transactions_currency = 22;
+    // @inject_tag: json:"short_link"
+    //
+    // The short identity of paylink for use the link shortening service.
+    string short_link = 23;
 }
 
 message StatCommon {
