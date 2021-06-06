@@ -1805,10 +1805,10 @@ type MerchantBanking struct {
 	//
 	// The merchant's bank name.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name" validate:"required,city,max=60" required:"true"`
-	// @inject_tag: json:"address" validate:"required,max=60" required:"true"
+	// @inject_tag: json:"address" validate:"required,max=120" required:"true"
 	//
 	// The merchant's bank address.
-	Address string `protobuf:"bytes,3,opt,name=address,proto3" json:"address" validate:"required,max=60" required:"true"`
+	Address string `protobuf:"bytes,3,opt,name=address,proto3" json:"address" validate:"required,max=120" required:"true"`
 	// @inject_tag: json:"account_number" bson:"account_number" validate:"required,iban" required:"true"
 	//
 	// The merchant's bank account number.
