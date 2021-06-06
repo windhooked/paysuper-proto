@@ -457,7 +457,7 @@ message MerchantBanking {
   //
   // The merchant's bank name.
   string name = 2;
-  // @inject_tag: json:"address" validate:"required,max=60" required:"true"
+  // @inject_tag: json:"address" validate:"required,max=120" required:"true"
   //
   // The merchant's bank address.
   string address = 3;
