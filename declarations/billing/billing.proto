@@ -4807,6 +4807,10 @@ message RecurringSubscription {
   //
   // Date and time of the last subscription payment.
   google.protobuf.Timestamp last_payment_at = 14;
+  // @inject_tag: json:"canceled_at"
+  //
+  // Date and time of the canceled subscription.
+  google.protobuf.Timestamp canceled_at = 15;
 }
 
 message SubscriptionOrder {
