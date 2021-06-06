@@ -457,7 +457,7 @@ message MerchantBanking {
   //
   // The merchant's bank name.
   string name = 2;
-  // @inject_tag: json:"address" validate:"required,max=60" required:"true"
+  // @inject_tag: json:"address" validate:"required,max=120" required:"true"
   //
   // The merchant's bank address.
   string address = 3;
@@ -4807,6 +4807,10 @@ message RecurringSubscription {
   //
   // Date and time of the last subscription payment.
   google.protobuf.Timestamp last_payment_at = 14;
+  // @inject_tag: json:"canceled_at"
+  //
+  // Date and time of the canceled subscription.
+  google.protobuf.Timestamp canceled_at = 15;
 }
 
 message SubscriptionOrder {
