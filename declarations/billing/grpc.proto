@@ -228,6 +228,7 @@ service BillingService {
   rpc GetMerchantUserRole(MerchantRoleRequest) returns (UserRoleResponse) {}
   rpc GetAdminUserRole(AdminRoleRequest) returns (UserRoleResponse) {}
   rpc GetCommonUserProfile(CommonUserProfileRequest) returns (CommonUserProfileResponse) {}
+  rpc GetMerchantUser(GetMerchantUserRequest) returns (GetMerchantUserResponse) {}
   rpc GetAdminByUserId(CommonUserProfileRequest) returns (UserRoleResponse) {}
 
   rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
@@ -2278,6 +2279,13 @@ message CommonUserProfile {
   billing.Merchant merchant = 4;
 }
 
+message UserProfileWithMerchants {
+  // The user profile data.
+  UserProfile profile = 1;
+  // List of the user's available merchants.
+  repeated MerchantForUserInfo merchants = 2;
+}
+
 message GetUserProfileRequest {
   //@inject_tag: validate:"required,hexadecimal,len=24"
   string user_id = 1;
@@ -2288,7 +2296,7 @@ message GetUserProfileRequest {
 message GetUserProfileResponse {
   int32 status = 1;
   ResponseErrorMessage message = 2;
-  UserProfile item = 3;
+  UserProfileWithMerchants item = 3;
 }
 
 message PageReview {
@@ -2545,7 +2553,7 @@ message GetDashboardMainResponse {
 }
 
 message GetDashboardBaseReportRequest {
-  //@inject_tag: validate:"required,hexadecimal,len=24"
+  //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 1;
   //@inject_tag: query:"period" validate:"required,oneof=current_day previous_day current_week previous_week current_month previous_month current_quarter previous_quarter current_year previous_year"
   string period = 2;
@@ -3283,12 +3291,14 @@ message ResendInviteAdminRequest {
 message GetMerchantUserRequest {
   //@inject_tag: validate:"required,hexadecimal,len=24"
   string id = 1;
+  //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
+  string merchant_id = 2;
 }
 
 message GetMerchantUserResponse {
   int32 status = 1;
   ResponseErrorMessage message = 2;
-  billing.UserRole role = 3;
+  CommonUserProfile item = 3;
 }
 
 message GetAdminUserRequest {
@@ -3499,7 +3509,7 @@ message SetCustomerPaymentActivityRequest {
 }
 
 message ActOfCompletionRequest {
-  //@inject_tag: validate:"required,hexadecimal,len=24"
+  //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 1;
   // @inject_tag: json:"date_from" validate:"required,date"
   string date_from = 2;
@@ -3519,7 +3529,7 @@ message ActOfCompletionResponse {
 }
 
 message ActsOfCompletionListRequest {
-  //@inject_tag: validate:"required,hexadecimal,len=24"
+  //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 1;
 }
 
@@ -3564,7 +3574,7 @@ message DashboardCustomerReportArpuResponse {
 }
 
 message DashboardCustomerReportRequest {
-  //@inject_tag: validate:"required,hexadecimal,len=24"
+  //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 1;
   //@inject_tag: query:"period" validate:"required,oneof=current_day previous_day current_week previous_week current_month previous_month current_quarter previous_quarter current_year previous_year"
   string period = 2;
@@ -3624,7 +3634,7 @@ message DashboardCustomerTop20 {
 }
 
 message ListCustomersRequest {
-  //@inject_tag: json:"merchant_id"
+  // @inject_tag: validate:"hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 1;
   //@inject_tag: json:"external_id"
   string external_id = 2;
@@ -3689,6 +3699,7 @@ message ShortCustomerInfo {
 }
 
 message GetCustomerInfoRequest {
+  // @inject_tag: validate:"hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 1;
   string user_id = 2;
 }
