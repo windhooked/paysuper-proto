@@ -228,7 +228,6 @@ service BillingService {
   rpc GetMerchantUserRole(MerchantRoleRequest) returns (UserRoleResponse) {}
   rpc GetAdminUserRole(AdminRoleRequest) returns (UserRoleResponse) {}
   rpc GetCommonUserProfile(CommonUserProfileRequest) returns (CommonUserProfileResponse) {}
-  rpc GetMerchantUser(GetMerchantUserRequest) returns (GetMerchantUserResponse) {}
   rpc GetAdminByUserId(CommonUserProfileRequest) returns (UserRoleResponse) {}
 
   rpc SendWebhookToMerchant(billing.OrderCreateRequest) returns (SendWebhookToMerchantResponse) {}
@@ -314,6 +313,8 @@ message GetPlatformKeyCountResponse {
 message KeyForOrderRequest {
   //@inject_tag: validate:"required,hexadecimal,len=24"
   string key_id = 1;
+  // @inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
+  string merchant_id = 2;
 }
 
 message GetKeyForOrderRequestResponse {
@@ -2258,7 +2259,7 @@ message UserProfile {
 message CommonUserProfileRequest {
   //@inject_tag: json:"user_id" validate:"required,hexadecimal,len=24"
   string user_id = 1;
-  //@inject_tag: json:"merchant_id" validate:"omitempty,hexadecimal,len=24"
+  //@inject_tag: json:"merchant_id" validate:"omitempty,hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 2;
 }
 
@@ -3279,19 +3280,6 @@ message ResendInviteAdminRequest {
   //
   // The user's email.
   string email = 1;
-}
-
-message GetMerchantUserRequest {
-  //@inject_tag: validate:"required,hexadecimal,len=24"
-  string id = 1;
-  //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
-  string merchant_id = 2;
-}
-
-message GetMerchantUserResponse {
-  int32 status = 1;
-  ResponseErrorMessage message = 2;
-  CommonUserProfile item = 3;
 }
 
 message GetAdminUserRequest {
