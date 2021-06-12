@@ -217,7 +217,6 @@ type BillingService interface {
 	GetMerchantUserRole(ctx context.Context, in *MerchantRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error)
 	GetAdminUserRole(ctx context.Context, in *AdminRoleRequest, opts ...client.CallOption) (*UserRoleResponse, error)
 	GetCommonUserProfile(ctx context.Context, in *CommonUserProfileRequest, opts ...client.CallOption) (*CommonUserProfileResponse, error)
-	GetMerchantUser(ctx context.Context, in *GetMerchantUserRequest, opts ...client.CallOption) (*GetMerchantUserResponse, error)
 	GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, opts ...client.CallOption) (*UserRoleResponse, error)
 	SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, opts ...client.CallOption) (*SendWebhookToMerchantResponse, error)
 	NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
@@ -2087,16 +2086,6 @@ func (c *billingService) GetCommonUserProfile(ctx context.Context, in *CommonUse
 	return out, nil
 }
 
-func (c *billingService) GetMerchantUser(ctx context.Context, in *GetMerchantUserRequest, opts ...client.CallOption) (*GetMerchantUserResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetMerchantUser", in)
-	out := new(GetMerchantUserResponse)
-	err := c.c.Call(ctx, req, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *billingService) GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, opts ...client.CallOption) (*UserRoleResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.GetAdminByUserId", in)
 	out := new(UserRoleResponse)
@@ -2572,7 +2561,6 @@ type BillingServiceHandler interface {
 	GetMerchantUserRole(context.Context, *MerchantRoleRequest, *UserRoleResponse) error
 	GetAdminUserRole(context.Context, *AdminRoleRequest, *UserRoleResponse) error
 	GetCommonUserProfile(context.Context, *CommonUserProfileRequest, *CommonUserProfileResponse) error
-	GetMerchantUser(context.Context, *GetMerchantUserRequest, *GetMerchantUserResponse) error
 	GetAdminByUserId(context.Context, *CommonUserProfileRequest, *UserRoleResponse) error
 	SendWebhookToMerchant(context.Context, *OrderCreateRequest, *SendWebhookToMerchantResponse) error
 	NotifyWebhookTestResults(context.Context, *NotifyWebhookTestResultsRequest, *EmptyResponseWithStatus) error
@@ -2788,7 +2776,6 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		GetMerchantUserRole(ctx context.Context, in *MerchantRoleRequest, out *UserRoleResponse) error
 		GetAdminUserRole(ctx context.Context, in *AdminRoleRequest, out *UserRoleResponse) error
 		GetCommonUserProfile(ctx context.Context, in *CommonUserProfileRequest, out *CommonUserProfileResponse) error
-		GetMerchantUser(ctx context.Context, in *GetMerchantUserRequest, out *GetMerchantUserResponse) error
 		GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, out *UserRoleResponse) error
 		SendWebhookToMerchant(ctx context.Context, in *OrderCreateRequest, out *SendWebhookToMerchantResponse) error
 		NotifyWebhookTestResults(ctx context.Context, in *NotifyWebhookTestResultsRequest, out *EmptyResponseWithStatus) error
@@ -3556,10 +3543,6 @@ func (h *billingServiceHandler) GetAdminUserRole(ctx context.Context, in *AdminR
 
 func (h *billingServiceHandler) GetCommonUserProfile(ctx context.Context, in *CommonUserProfileRequest, out *CommonUserProfileResponse) error {
 	return h.BillingServiceHandler.GetCommonUserProfile(ctx, in, out)
-}
-
-func (h *billingServiceHandler) GetMerchantUser(ctx context.Context, in *GetMerchantUserRequest, out *GetMerchantUserResponse) error {
-	return h.BillingServiceHandler.GetMerchantUser(ctx, in, out)
 }
 
 func (h *billingServiceHandler) GetAdminByUserId(ctx context.Context, in *CommonUserProfileRequest, out *UserRoleResponse) error {
