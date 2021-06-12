@@ -2279,13 +2279,6 @@ message CommonUserProfile {
   billing.Merchant merchant = 4;
 }
 
-message UserProfileWithMerchants {
-  // The user profile data.
-  UserProfile profile = 1;
-  // List of the user's available merchants.
-  repeated MerchantForUserInfo merchants = 2;
-}
-
 message GetUserProfileRequest {
   //@inject_tag: validate:"required,hexadecimal,len=24"
   string user_id = 1;
@@ -2296,7 +2289,7 @@ message GetUserProfileRequest {
 message GetUserProfileResponse {
   int32 status = 1;
   ResponseErrorMessage message = 2;
-  UserProfileWithMerchants item = 3;
+  UserProfile item = 3;
 }
 
 message PageReview {
