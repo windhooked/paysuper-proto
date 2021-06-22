@@ -4631,7 +4631,7 @@ message MerchantDocument {
   //
   // The unique identifier for the merchant document.
   string id = 1;
-  // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString"
+  // @inject_tag: json:"merchant_id" validate:"required,hexadecimal,len=24" faker:"objectIdString" param:"merchant_id"
   //
   // The merchant identifier for the document.
   string merchant_id = 2;
