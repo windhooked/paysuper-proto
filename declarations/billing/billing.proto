@@ -4350,6 +4350,7 @@ message OrderCreateByPaylink {
   //@inject_tag: json:"id" validate:"required,hexadecimal,len=24"
   string paylink_id = 1;
   string payer_ip = 2;
+  // @inject_tag: json:"referer"
   string issuer_url = 3;
   // @inject_tag: json:"is_embedded"
   bool is_embedded = 4;
