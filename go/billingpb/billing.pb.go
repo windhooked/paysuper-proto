@@ -17494,7 +17494,8 @@ type OrderCreateByPaylink struct {
 	//@inject_tag: json:"id" validate:"required,hexadecimal,len=24"
 	PaylinkId string `protobuf:"bytes,1,opt,name=paylink_id,json=paylinkId,proto3" json:"id" validate:"required,hexadecimal,len=24"`
 	PayerIp   string `protobuf:"bytes,2,opt,name=payer_ip,json=payerIp,proto3" json:"payer_ip,omitempty"`
-	IssuerUrl string `protobuf:"bytes,3,opt,name=issuer_url,json=issuerUrl,proto3" json:"issuer_url,omitempty"`
+	// @inject_tag: json:"referer"
+	IssuerUrl string `protobuf:"bytes,3,opt,name=issuer_url,json=issuerUrl,proto3" json:"referer"`
 	// @inject_tag: json:"is_embedded"
 	IsEmbedded bool `protobuf:"varint,4,opt,name=is_embedded,json=isEmbedded,proto3" json:"is_embedded"`
 	//@inject_tag: bson:"utm_source" json:"utm_source"
