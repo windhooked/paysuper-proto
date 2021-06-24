@@ -1499,20 +1499,6 @@ func (_m *BillingServiceHandler) GetOrderPublic(_a0 context.Context, _a1 *billin
 	return r0
 }
 
-// GetOriginalOrder provides a mock function with given fields: _a0, _a1, _a2
-func (_m *BillingServiceHandler) GetOriginalOrder(_a0 context.Context, _a1 *billingpb.GetOrderRequest, _a2 *billingpb.GetOriginalOrderResponse) error {
-	ret := _m.Called(_a0, _a1, _a2)
-
-	var r0 error
-	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetOrderRequest, *billingpb.GetOriginalOrderResponse) error); ok {
-		r0 = rf(_a0, _a1, _a2)
-	} else {
-		r0 = ret.Error(0)
-	}
-
-	return r0
-}
-
 // GetPaylink provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) GetPaylink(_a0 context.Context, _a1 *billingpb.PaylinkRequest, _a2 *billingpb.GetPaylinkResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)
@@ -2653,6 +2639,20 @@ func (_m *BillingServiceHandler) RoyaltyReportPdfUploaded(_a0 context.Context, _
 
 	var r0 error
 	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.RoyaltyReportPdfUploadedRequest, *billingpb.RoyaltyReportPdfUploadedResponse) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// SendOrderToWebHookNotifier provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) SendOrderToWebHookNotifier(_a0 context.Context, _a1 *billingpb.GetOrderRequest, _a2 *billingpb.ResponseError) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.GetOrderRequest, *billingpb.ResponseError) error); ok {
 		r0 = rf(_a0, _a1, _a2)
 	} else {
 		r0 = ret.Error(0)

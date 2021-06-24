@@ -89,7 +89,7 @@ type BillingService interface {
 	UpdateCountry(ctx context.Context, in *Country, opts ...client.CallOption) (*Country, error)
 	GetOrderPublic(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPublicResponse, error)
 	GetOrderPrivate(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPrivateResponse, error)
-	GetOriginalOrder(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOriginalOrderResponse, error)
+	SendOrderToWebHookNotifier(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*ResponseError, error)
 	FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPublicResponse, error)
 	FindAllOrdersPrivate(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPrivateResponse, error)
 	FindAllOrders(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersResponse, error)
@@ -807,9 +807,9 @@ func (c *billingService) GetOrderPrivate(ctx context.Context, in *GetOrderReques
 	return out, nil
 }
 
-func (c *billingService) GetOriginalOrder(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOriginalOrderResponse, error) {
-	req := c.c.NewRequest(c.name, "BillingService.GetOriginalOrder", in)
-	out := new(GetOriginalOrderResponse)
+func (c *billingService) SendOrderToWebHookNotifier(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*ResponseError, error) {
+	req := c.c.NewRequest(c.name, "BillingService.SendOrderToWebHookNotifier", in)
+	out := new(ResponseError)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2444,7 +2444,7 @@ type BillingServiceHandler interface {
 	UpdateCountry(context.Context, *Country, *Country) error
 	GetOrderPublic(context.Context, *GetOrderRequest, *GetOrderPublicResponse) error
 	GetOrderPrivate(context.Context, *GetOrderRequest, *GetOrderPrivateResponse) error
-	GetOriginalOrder(context.Context, *GetOrderRequest, *GetOriginalOrderResponse) error
+	SendOrderToWebHookNotifier(context.Context, *GetOrderRequest, *ResponseError) error
 	FindAllOrdersPublic(context.Context, *ListOrdersRequest, *ListOrdersPublicResponse) error
 	FindAllOrdersPrivate(context.Context, *ListOrdersRequest, *ListOrdersPrivateResponse) error
 	FindAllOrders(context.Context, *ListOrdersRequest, *ListOrdersResponse) error
@@ -2660,7 +2660,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		UpdateCountry(ctx context.Context, in *Country, out *Country) error
 		GetOrderPublic(ctx context.Context, in *GetOrderRequest, out *GetOrderPublicResponse) error
 		GetOrderPrivate(ctx context.Context, in *GetOrderRequest, out *GetOrderPrivateResponse) error
-		GetOriginalOrder(ctx context.Context, in *GetOrderRequest, out *GetOriginalOrderResponse) error
+		SendOrderToWebHookNotifier(ctx context.Context, in *GetOrderRequest, out *ResponseError) error
 		FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPublicResponse) error
 		FindAllOrdersPrivate(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPrivateResponse) error
 		FindAllOrders(ctx context.Context, in *ListOrdersRequest, out *ListOrdersResponse) error
@@ -3046,8 +3046,8 @@ func (h *billingServiceHandler) GetOrderPrivate(ctx context.Context, in *GetOrde
 	return h.BillingServiceHandler.GetOrderPrivate(ctx, in, out)
 }
 
-func (h *billingServiceHandler) GetOriginalOrder(ctx context.Context, in *GetOrderRequest, out *GetOriginalOrderResponse) error {
-	return h.BillingServiceHandler.GetOriginalOrder(ctx, in, out)
+func (h *billingServiceHandler) SendOrderToWebHookNotifier(ctx context.Context, in *GetOrderRequest, out *ResponseError) error {
+	return h.BillingServiceHandler.SendOrderToWebHookNotifier(ctx, in, out)
 }
 
 func (h *billingServiceHandler) FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPublicResponse) error {
