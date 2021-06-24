@@ -73,6 +73,7 @@ service BillingService {
 
   rpc GetOrderPublic (GetOrderRequest) returns (GetOrderPublicResponse) {}
   rpc GetOrderPrivate (GetOrderRequest) returns (GetOrderPrivateResponse) {}
+  rpc GetOriginalOrder (GetOrderRequest) returns (GetOriginalOrderResponse) {}
   rpc FindAllOrdersPublic (ListOrdersRequest) returns (ListOrdersPublicResponse) {}
   rpc FindAllOrdersPrivate (ListOrdersRequest) returns (ListOrdersPrivateResponse) {}
   rpc FindAllOrders (ListOrdersRequest) returns (ListOrdersResponse) {}
@@ -2529,6 +2530,12 @@ message GetOrderPrivateResponse {
   int32 status = 1;
   ResponseErrorMessage message = 2;
   billing.OrderViewPrivate item = 3;
+}
+
+message GetOriginalOrderResponse {
+  int32 status = 1;
+  ResponseErrorMessage message = 2;
+  billing.Order item = 3;
 }
 
 message GetDashboardMainRequest {
