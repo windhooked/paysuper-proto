@@ -73,7 +73,7 @@ service BillingService {
 
   rpc GetOrderPublic (GetOrderRequest) returns (GetOrderPublicResponse) {}
   rpc GetOrderPrivate (GetOrderRequest) returns (GetOrderPrivateResponse) {}
-  rpc GetOriginalOrder (GetOrderRequest) returns (GetOriginalOrderResponse) {}
+  rpc SendOrderToWebHookNotifier (GetOrderRequest) returns (ResponseError) {}
   rpc FindAllOrdersPublic (ListOrdersRequest) returns (ListOrdersPublicResponse) {}
   rpc FindAllOrdersPrivate (ListOrdersRequest) returns (ListOrdersPrivateResponse) {}
   rpc FindAllOrders (ListOrdersRequest) returns (ListOrdersResponse) {}
