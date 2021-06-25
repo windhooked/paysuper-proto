@@ -3972,7 +3972,10 @@ message DeleteRecurringSubscriptionRequest {
 }
 
 message SetSubscriptionRenewalPendingRequest {
-  bool status = 1;
+  string cookie = 1;
+  // @inject_tag: validate:"required" param:"id"
+  string id = 2;
+  bool status = 3;
 }
 
 message AddMerchantDocumentResponse {
