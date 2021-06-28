@@ -2829,6 +2829,20 @@ func (_m *BillingServiceHandler) SetPaymentMinLimitSystem(_a0 context.Context, _
 	return r0
 }
 
+// SetSubscriptionRenewalPending provides a mock function with given fields: _a0, _a1, _a2
+func (_m *BillingServiceHandler) SetSubscriptionRenewalPending(_a0 context.Context, _a1 *billingpb.SetSubscriptionRenewalPendingRequest, _a2 *billingpb.EmptyResponseWithStatus) error {
+	ret := _m.Called(_a0, _a1, _a2)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *billingpb.SetSubscriptionRenewalPendingRequest, *billingpb.EmptyResponseWithStatus) error); ok {
+		r0 = rf(_a0, _a1, _a2)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // SetUserNotifyNewRegion provides a mock function with given fields: _a0, _a1, _a2
 func (_m *BillingServiceHandler) SetUserNotifyNewRegion(_a0 context.Context, _a1 *billingpb.SetUserNotifyRequest, _a2 *billingpb.EmptyResponse) error {
 	ret := _m.Called(_a0, _a1, _a2)

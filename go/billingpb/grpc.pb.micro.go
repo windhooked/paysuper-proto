@@ -244,6 +244,7 @@ type BillingService interface {
 	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
 	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
 	GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, opts ...client.CallOption) (*GetSubscriptionsOrdersResponse, error)
+	SetSubscriptionRenewalPending(ctx context.Context, in *SetSubscriptionRenewalPendingRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error)
 	GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error)
 	GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error)
@@ -2357,6 +2358,16 @@ func (c *billingService) GetSubscriptionsOrders(ctx context.Context, in *GetSubs
 	return out, nil
 }
 
+func (c *billingService) SetSubscriptionRenewalPending(ctx context.Context, in *SetSubscriptionRenewalPendingRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	req := c.c.NewRequest(c.name, "BillingService.SetSubscriptionRenewalPending", in)
+	out := new(EmptyResponseWithStatus)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.AddMerchantDocument", in)
 	out := new(AddMerchantDocumentResponse)
@@ -2599,6 +2610,7 @@ type BillingServiceHandler interface {
 	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
 	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
 	GetSubscriptionsOrders(context.Context, *GetSubscriptionsOrdersRequest, *GetSubscriptionsOrdersResponse) error
+	SetSubscriptionRenewalPending(context.Context, *SetSubscriptionRenewalPendingRequest, *EmptyResponseWithStatus) error
 	AddMerchantDocument(context.Context, *MerchantDocument, *AddMerchantDocumentResponse) error
 	GetMerchantDocuments(context.Context, *GetMerchantDocumentsRequest, *GetMerchantDocumentsResponse) error
 	GetMerchantDocument(context.Context, *GetMerchantDocumentRequest, *GetMerchantDocumentResponse) error
@@ -2815,6 +2827,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
 		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
 		GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, out *GetSubscriptionsOrdersResponse) error
+		SetSubscriptionRenewalPending(ctx context.Context, in *SetSubscriptionRenewalPendingRequest, out *EmptyResponseWithStatus) error
 		AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error
 		GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error
 		GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error
@@ -3664,6 +3677,10 @@ func (h *billingServiceHandler) GetSubscription(ctx context.Context, in *GetSubs
 
 func (h *billingServiceHandler) GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, out *GetSubscriptionsOrdersResponse) error {
 	return h.BillingServiceHandler.GetSubscriptionsOrders(ctx, in, out)
+}
+
+func (h *billingServiceHandler) SetSubscriptionRenewalPending(ctx context.Context, in *SetSubscriptionRenewalPendingRequest, out *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.SetSubscriptionRenewalPending(ctx, in, out)
 }
 
 func (h *billingServiceHandler) AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error {

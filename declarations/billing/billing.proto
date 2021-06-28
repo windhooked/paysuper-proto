@@ -4812,6 +4812,10 @@ message RecurringSubscription {
   //
   // Date and time of the canceled subscription.
   google.protobuf.Timestamp canceled_at = 15;
+  // @inject_tag: json:"renewal_pending"
+  //
+  // Subscription pending renewal.
+  bool renewal_pending = 16;
 }
 
 message SubscriptionOrder {

@@ -260,6 +260,7 @@ service BillingService {
   rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
   rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
   rpc GetSubscriptionsOrders(GetSubscriptionsOrdersRequest) returns (GetSubscriptionsOrdersResponse) {}
+  rpc SetSubscriptionRenewalPending(SetSubscriptionRenewalPendingRequest) returns (EmptyResponseWithStatus) {}
 
   rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
   rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
@@ -3968,6 +3969,13 @@ message DeleteRecurringSubscriptionRequest {
   string cookie = 3;
   // @inject_tag: param:"merchant_id"
   string merchant_id = 4;
+}
+
+message SetSubscriptionRenewalPendingRequest {
+  string cookie = 1;
+  // @inject_tag: validate:"required" param:"id"
+  string id = 2;
+  bool status = 3;
 }
 
 message AddMerchantDocumentResponse {
