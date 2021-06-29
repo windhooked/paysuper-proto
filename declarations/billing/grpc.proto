@@ -125,7 +125,7 @@ service BillingService {
   rpc CreateAccountingEntry (CreateAccountingEntryRequest) returns (CreateAccountingEntryResponse) {}
 
   rpc GetUserProfile (GetUserProfileRequest) returns (GetUserProfileResponse) {}
-  rpc CreateOrUpdateUserProfile (UserProfile) returns (GetUserProfileResponse) {}
+  rpc CreateOrUpdateUserProfile (UserProfile) returns (CreateOrUpdateUserProfileResponse) {}
   rpc ConfirmUserEmail (ConfirmUserEmailRequest) returns (ConfirmUserEmailResponse) {}
   rpc CreatePageReview (CreatePageReviewRequest) returns (CheckProjectRequestSignatureResponse) {}
 
@@ -2291,6 +2291,17 @@ message GetUserProfileRequest {
 }
 
 message GetUserProfileResponse {
+  int32 status = 1;
+  ResponseErrorMessage message = 2;
+  MainUserProfile item = 3;
+}
+
+message MainUserProfile {
+  UserProfile profile = 1;
+  repeated MerchantForUserInfo merchants = 2;
+}
+
+message CreateOrUpdateUserProfileResponse {
   int32 status = 1;
   ResponseErrorMessage message = 2;
   UserProfile item = 3;
