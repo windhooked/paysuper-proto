@@ -89,6 +89,7 @@ type BillingService interface {
 	UpdateCountry(ctx context.Context, in *Country, opts ...client.CallOption) (*Country, error)
 	GetOrderPublic(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPublicResponse, error)
 	GetOrderPrivate(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPrivateResponse, error)
+	SendOrderToWebHookNotifier(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*ResponseError, error)
 	FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPublicResponse, error)
 	FindAllOrdersPrivate(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersPrivateResponse, error)
 	FindAllOrders(ctx context.Context, in *ListOrdersRequest, opts ...client.CallOption) (*ListOrdersResponse, error)
@@ -243,6 +244,7 @@ type BillingService interface {
 	FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, opts ...client.CallOption) (*FindSubscriptionsResponse, error)
 	GetSubscription(ctx context.Context, in *GetSubscriptionRequest, opts ...client.CallOption) (*GetSubscriptionResponse, error)
 	GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, opts ...client.CallOption) (*GetSubscriptionsOrdersResponse, error)
+	SetSubscriptionRenewalPending(ctx context.Context, in *SetSubscriptionRenewalPendingRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error)
 	AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error)
 	GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error)
 	GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error)
@@ -799,6 +801,16 @@ func (c *billingService) GetOrderPublic(ctx context.Context, in *GetOrderRequest
 func (c *billingService) GetOrderPrivate(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*GetOrderPrivateResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.GetOrderPrivate", in)
 	out := new(GetOrderPrivateResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *billingService) SendOrderToWebHookNotifier(ctx context.Context, in *GetOrderRequest, opts ...client.CallOption) (*ResponseError, error) {
+	req := c.c.NewRequest(c.name, "BillingService.SendOrderToWebHookNotifier", in)
+	out := new(ResponseError)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -2346,6 +2358,16 @@ func (c *billingService) GetSubscriptionsOrders(ctx context.Context, in *GetSubs
 	return out, nil
 }
 
+func (c *billingService) SetSubscriptionRenewalPending(ctx context.Context, in *SetSubscriptionRenewalPendingRequest, opts ...client.CallOption) (*EmptyResponseWithStatus, error) {
+	req := c.c.NewRequest(c.name, "BillingService.SetSubscriptionRenewalPending", in)
+	out := new(EmptyResponseWithStatus)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *billingService) AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error) {
 	req := c.c.NewRequest(c.name, "BillingService.AddMerchantDocument", in)
 	out := new(AddMerchantDocumentResponse)
@@ -2433,6 +2455,7 @@ type BillingServiceHandler interface {
 	UpdateCountry(context.Context, *Country, *Country) error
 	GetOrderPublic(context.Context, *GetOrderRequest, *GetOrderPublicResponse) error
 	GetOrderPrivate(context.Context, *GetOrderRequest, *GetOrderPrivateResponse) error
+	SendOrderToWebHookNotifier(context.Context, *GetOrderRequest, *ResponseError) error
 	FindAllOrdersPublic(context.Context, *ListOrdersRequest, *ListOrdersPublicResponse) error
 	FindAllOrdersPrivate(context.Context, *ListOrdersRequest, *ListOrdersPrivateResponse) error
 	FindAllOrders(context.Context, *ListOrdersRequest, *ListOrdersResponse) error
@@ -2587,6 +2610,7 @@ type BillingServiceHandler interface {
 	FindSubscriptions(context.Context, *FindSubscriptionsRequest, *FindSubscriptionsResponse) error
 	GetSubscription(context.Context, *GetSubscriptionRequest, *GetSubscriptionResponse) error
 	GetSubscriptionsOrders(context.Context, *GetSubscriptionsOrdersRequest, *GetSubscriptionsOrdersResponse) error
+	SetSubscriptionRenewalPending(context.Context, *SetSubscriptionRenewalPendingRequest, *EmptyResponseWithStatus) error
 	AddMerchantDocument(context.Context, *MerchantDocument, *AddMerchantDocumentResponse) error
 	GetMerchantDocuments(context.Context, *GetMerchantDocumentsRequest, *GetMerchantDocumentsResponse) error
 	GetMerchantDocument(context.Context, *GetMerchantDocumentRequest, *GetMerchantDocumentResponse) error
@@ -2648,6 +2672,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		UpdateCountry(ctx context.Context, in *Country, out *Country) error
 		GetOrderPublic(ctx context.Context, in *GetOrderRequest, out *GetOrderPublicResponse) error
 		GetOrderPrivate(ctx context.Context, in *GetOrderRequest, out *GetOrderPrivateResponse) error
+		SendOrderToWebHookNotifier(ctx context.Context, in *GetOrderRequest, out *ResponseError) error
 		FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPublicResponse) error
 		FindAllOrdersPrivate(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPrivateResponse) error
 		FindAllOrders(ctx context.Context, in *ListOrdersRequest, out *ListOrdersResponse) error
@@ -2802,6 +2827,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		FindSubscriptions(ctx context.Context, in *FindSubscriptionsRequest, out *FindSubscriptionsResponse) error
 		GetSubscription(ctx context.Context, in *GetSubscriptionRequest, out *GetSubscriptionResponse) error
 		GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, out *GetSubscriptionsOrdersResponse) error
+		SetSubscriptionRenewalPending(ctx context.Context, in *SetSubscriptionRenewalPendingRequest, out *EmptyResponseWithStatus) error
 		AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error
 		GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error
 		GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error
@@ -3031,6 +3057,10 @@ func (h *billingServiceHandler) GetOrderPublic(ctx context.Context, in *GetOrder
 
 func (h *billingServiceHandler) GetOrderPrivate(ctx context.Context, in *GetOrderRequest, out *GetOrderPrivateResponse) error {
 	return h.BillingServiceHandler.GetOrderPrivate(ctx, in, out)
+}
+
+func (h *billingServiceHandler) SendOrderToWebHookNotifier(ctx context.Context, in *GetOrderRequest, out *ResponseError) error {
+	return h.BillingServiceHandler.SendOrderToWebHookNotifier(ctx, in, out)
 }
 
 func (h *billingServiceHandler) FindAllOrdersPublic(ctx context.Context, in *ListOrdersRequest, out *ListOrdersPublicResponse) error {
@@ -3647,6 +3677,10 @@ func (h *billingServiceHandler) GetSubscription(ctx context.Context, in *GetSubs
 
 func (h *billingServiceHandler) GetSubscriptionsOrders(ctx context.Context, in *GetSubscriptionsOrdersRequest, out *GetSubscriptionsOrdersResponse) error {
 	return h.BillingServiceHandler.GetSubscriptionsOrders(ctx, in, out)
+}
+
+func (h *billingServiceHandler) SetSubscriptionRenewalPending(ctx context.Context, in *SetSubscriptionRenewalPendingRequest, out *EmptyResponseWithStatus) error {
+	return h.BillingServiceHandler.SetSubscriptionRenewalPending(ctx, in, out)
 }
 
 func (h *billingServiceHandler) AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error {

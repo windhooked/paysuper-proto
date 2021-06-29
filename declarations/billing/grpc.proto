@@ -73,6 +73,7 @@ service BillingService {
 
   rpc GetOrderPublic (GetOrderRequest) returns (GetOrderPublicResponse) {}
   rpc GetOrderPrivate (GetOrderRequest) returns (GetOrderPrivateResponse) {}
+  rpc SendOrderToWebHookNotifier (GetOrderRequest) returns (ResponseError) {}
   rpc FindAllOrdersPublic (ListOrdersRequest) returns (ListOrdersPublicResponse) {}
   rpc FindAllOrdersPrivate (ListOrdersRequest) returns (ListOrdersPrivateResponse) {}
   rpc FindAllOrders (ListOrdersRequest) returns (ListOrdersResponse) {}
@@ -259,6 +260,7 @@ service BillingService {
   rpc FindSubscriptions(FindSubscriptionsRequest) returns (FindSubscriptionsResponse) {}
   rpc GetSubscription(GetSubscriptionRequest) returns (GetSubscriptionResponse) {}
   rpc GetSubscriptionsOrders(GetSubscriptionsOrdersRequest) returns (GetSubscriptionsOrdersResponse) {}
+  rpc SetSubscriptionRenewalPending(SetSubscriptionRenewalPendingRequest) returns (EmptyResponseWithStatus) {}
 
   rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
   rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
@@ -2547,6 +2549,12 @@ message GetOrderPrivateResponse {
   billing.OrderViewPrivate item = 3;
 }
 
+message GetOriginalOrderResponse {
+  int32 status = 1;
+  ResponseErrorMessage message = 2;
+  billing.Order item = 3;
+}
+
 message GetDashboardMainRequest {
   //@inject_tag: validate:"required,hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 1;
@@ -3967,6 +3975,13 @@ message DeleteRecurringSubscriptionRequest {
   string cookie = 3;
   // @inject_tag: param:"merchant_id"
   string merchant_id = 4;
+}
+
+message SetSubscriptionRenewalPendingRequest {
+  string cookie = 1;
+  // @inject_tag: validate:"required" param:"id"
+  string id = 2;
+  bool status = 3;
 }
 
 message AddMerchantDocumentResponse {
