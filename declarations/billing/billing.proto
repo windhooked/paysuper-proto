@@ -4997,3 +4997,8 @@ message CardPayRefundCallback {
   // @inject_tag: json:"-"
   CardPayEWalletAccount ewallet_account = 8;
 }
+
+message WebHookPaymentMessage {
+  Order order = 1;
+  bool force_retry = 2;
+}
