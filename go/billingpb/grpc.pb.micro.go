@@ -248,6 +248,7 @@ type BillingService interface {
 	AddMerchantDocument(ctx context.Context, in *MerchantDocument, opts ...client.CallOption) (*AddMerchantDocumentResponse, error)
 	GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, opts ...client.CallOption) (*GetMerchantDocumentsResponse, error)
 	GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, opts ...client.CallOption) (*GetMerchantDocumentResponse, error)
+	Ping(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error)
 }
 
 type billingService struct {
@@ -2398,6 +2399,16 @@ func (c *billingService) GetMerchantDocument(ctx context.Context, in *GetMerchan
 	return out, nil
 }
 
+func (c *billingService) Ping(ctx context.Context, in *EmptyRequest, opts ...client.CallOption) (*EmptyResponse, error) {
+	req := c.c.NewRequest(c.name, "BillingService.Ping", in)
+	out := new(EmptyResponse)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for BillingService service
 
 type BillingServiceHandler interface {
@@ -2614,6 +2625,7 @@ type BillingServiceHandler interface {
 	AddMerchantDocument(context.Context, *MerchantDocument, *AddMerchantDocumentResponse) error
 	GetMerchantDocuments(context.Context, *GetMerchantDocumentsRequest, *GetMerchantDocumentsResponse) error
 	GetMerchantDocument(context.Context, *GetMerchantDocumentRequest, *GetMerchantDocumentResponse) error
+	Ping(context.Context, *EmptyRequest, *EmptyResponse) error
 }
 
 func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, opts ...server.HandlerOption) error {
@@ -2831,6 +2843,7 @@ func RegisterBillingServiceHandler(s server.Server, hdlr BillingServiceHandler, 
 		AddMerchantDocument(ctx context.Context, in *MerchantDocument, out *AddMerchantDocumentResponse) error
 		GetMerchantDocuments(ctx context.Context, in *GetMerchantDocumentsRequest, out *GetMerchantDocumentsResponse) error
 		GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error
+		Ping(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error
 	}
 	type BillingService struct {
 		billingService
@@ -3693,4 +3706,8 @@ func (h *billingServiceHandler) GetMerchantDocuments(ctx context.Context, in *Ge
 
 func (h *billingServiceHandler) GetMerchantDocument(ctx context.Context, in *GetMerchantDocumentRequest, out *GetMerchantDocumentResponse) error {
 	return h.BillingServiceHandler.GetMerchantDocument(ctx, in, out)
+}
+
+func (h *billingServiceHandler) Ping(ctx context.Context, in *EmptyRequest, out *EmptyResponse) error {
+	return h.BillingServiceHandler.Ping(ctx, in, out)
 }
