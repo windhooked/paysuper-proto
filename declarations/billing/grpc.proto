@@ -265,6 +265,8 @@ service BillingService {
   rpc AddMerchantDocument(billing.MerchantDocument) returns (AddMerchantDocumentResponse) {}
   rpc GetMerchantDocuments(GetMerchantDocumentsRequest) returns (GetMerchantDocumentsResponse) {}
   rpc GetMerchantDocument(GetMerchantDocumentRequest) returns (GetMerchantDocumentResponse) {}
+
+  rpc Ping(EmptyRequest) returns (EmptyResponse) {}
 }
 
 message EmptyRequest {}
