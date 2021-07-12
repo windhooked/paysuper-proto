@@ -3032,6 +3032,12 @@ message GetPaylinksResponse {
 message PaylinkRequestById {
   //@inject_tag: validate:"required,hexadecimal,len=24"
   string id = 1;
+  // @inject_tag: query:"utm_source"
+  string utm_source = 2;
+  // @inject_tag: query:"utm_medium"
+  string utm_medium = 3;
+  // @inject_tag: query:"utm_campaign"
+  string utm_campaign = 4;
 }
 
 message PaylinkRequest {
