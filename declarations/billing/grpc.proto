@@ -3645,7 +3645,7 @@ message DashboardCustomerTop20 {
 }
 
 message ListCustomersRequest {
-  // @inject_tag: validate:"hexadecimal,len=24" param:"merchant_id"
+  // @inject_tag: validate:"omitempty,hexadecimal,len=24" param:"merchant_id"
   string merchant_id = 1;
   //@inject_tag: json:"external_id"
   string external_id = 2;
