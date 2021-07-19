@@ -2282,6 +2282,7 @@ message CommonUserProfile {
   // The user's role.
   billing.UserRole role = 2;
   // The user permissions.
+  // @inject_tag: json:"permissions,omitempty"
   repeated Permission permissions = 3;
   // Information about the merchant (the full list of parameters returns only for the owner and the short list for others).
   billing.Merchant merchant = 4;
@@ -2303,6 +2304,8 @@ message GetUserProfileResponse {
 message MainUserProfile {
   UserProfile profile = 1;
   repeated MerchantForUserInfo merchants = 2;
+  // @inject_tag: json:"role,omitempty"
+  billing.UserRole role = 3;
 }
 
 message CreateOrUpdateUserProfileResponse {
