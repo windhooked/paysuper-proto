@@ -4500,6 +4500,10 @@ message OperatingCompany {
   //
   // The operating company's email.
   string email = 15;
+  // @inject_tag: json:"is_active"
+  //
+  // Has a true value if the operating company is active.
+  bool is_active = 16;
 }
 
 message PaymentMinLimitSystem {
