@@ -622,6 +622,10 @@ message MerchantTariff {
   //
   // The merchant's minimal payout amounts.
   map<string, float> minimal_payout = 6;
+  //@inject_tag: json:"has_payment_tariff" bson:"has_payment_tariff"
+  //
+  // True if the merchant exists payment tariff.
+  bool has_payment_tariff = 7;
 }
 
 message Merchant {
