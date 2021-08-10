@@ -96,7 +96,7 @@ func (m *Merchant) IsDataComplete() bool {
 }
 
 func (m *Merchant) HasTariff() bool {
-	return m.Tariff != nil && len(m.Tariff.Payment) > 0 && m.Tariff.Payout != nil &&
+	return m.Tariff != nil && m.Tariff.HasPaymentTariff && m.Tariff.Payout != nil &&
 		m.Tariff.Payout.MethodFixedFee > 0 && m.Tariff.Payout.MethodFixedFeeCurrency != "" &&
 		m.Tariff.HomeRegion != ""
 
