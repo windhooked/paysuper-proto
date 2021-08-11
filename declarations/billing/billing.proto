@@ -1667,6 +1667,10 @@ message PaymentFormPaymentMethod {
   //
   // The saved cards' data.
   repeated SavedCard saved_cards = 7;
+  // @inject_tag: json:"use_luhn_validator" bson:"use_luhn_validator"
+  //
+  // Has a true value if the payment method use Luhn validator.
+  bool use_luhn_validator = 8;
 }
 
 message MerchantPaymentMethodPerTransactionCommission {
