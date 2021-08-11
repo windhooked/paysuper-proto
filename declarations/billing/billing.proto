@@ -1618,6 +1618,10 @@ message PaymentMethod {
     //
     // The currency of the limit amount.
     string limits_currency = 19;
+  // @inject_tag: json:"use_luhn_validator" bson:"use_luhn_validator"
+  //
+  // Has a true value if the payment method use Luhn validator.
+  bool use_luhn_validator = 20;
 }
 
 message CardExpire {
